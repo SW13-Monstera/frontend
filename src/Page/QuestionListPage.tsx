@@ -5,6 +5,7 @@ import SearchInputBox from '../Component/Box/InputBox/SearchInputBox';
 import TextBox from '../Component/Box/TextBox';
 import Dropdown from '../Component/Utils/Dropdown';
 import Slider from '../Component/Utils/Slider';
+import { TAGLIST, TAGTYPELIST } from '../constants';
 import { listData } from '../data';
 import Header from '../Template/Header';
 import { IQuetionListElement } from '../types';
@@ -20,9 +21,9 @@ function QuestionListPage() {
           <div css={filterStyle}>
             <div css={filterTitleStyle}>필터</div>
             <div css={dropdownListStyle}>
-              <Dropdown />
-              <Dropdown />
-              <Dropdown />
+              {TAGTYPELIST.map((tagtype) => (
+                <Dropdown {...TAGLIST[tagtype]} key={tagtype} />
+              ))}
             </div>
           </div>
         </aside>
