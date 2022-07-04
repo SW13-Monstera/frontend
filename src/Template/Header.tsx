@@ -8,7 +8,9 @@ import { ReactComponent as MyPageIcon } from '../assets/icons/mypage-icon.svg';
 function Header() {
   return (
     <header css={headerStyle}>
-      <Link to="/">CS Broker</Link>
+      <Link to="/">
+        <div css={logoStyle}>CS Broker</div>
+      </Link>
       <div css={navStyle}>
         <Link to="/list">문제</Link>
         <p>고득점 문제 kit</p>
@@ -27,33 +29,38 @@ const headerStyle = css`
   align-items: center;
   justify-content: space-between;
   font-weight: bold;
-  padding: 40px;
 
   width: 100%;
-  height: 100px;
+  height: 10%;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 39px;
+  font-size: 2rem;
+  line-height: 2rem;
 
   color: #ffffff;
   background-color: black;
+`;
+
+const logoStyle = css`
+  padding: 1.25rem;
 `;
 
 const navStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 2.5rem;
 `;
 
 const menuStyle = css`
+  width: 10%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: right;
+  gap: 15%;
+  padding: 1.25rem;
   svg path {
     fill: white;
     stroke: white;
