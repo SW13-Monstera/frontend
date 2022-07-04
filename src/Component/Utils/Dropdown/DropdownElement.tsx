@@ -28,5 +28,11 @@ const dropdownContentElementStyle = css`
   align-items: center;
   justify-content: center;
   gap: 10px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
 `;
 export default DropdownElement;

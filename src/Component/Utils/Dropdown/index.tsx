@@ -57,7 +57,7 @@ function Dropdown(tagType: ITagType) {
 
 const dropDownStyle = css`
   position: relative;
-  display: inline-block;
+  width: 80%;
 `;
 
 const dropdownBoxStyle = css`
@@ -65,7 +65,7 @@ const dropdownBoxStyle = css`
   align-items: center;
   justify-content: space-around;
 
-  width: 199px;
+  width: 100%;
   height: 74.09px;
 
   background: #ffffff;
@@ -75,17 +75,23 @@ const dropdownBoxStyle = css`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 
   cursor: pointer;
 `;
 const dropDownContentStyle = (isSelected: boolean) => css`
   position: absolute;
 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 50%;
+
   visibility: ${isSelected ? 'visible' : 'hidden'};
 
-  width: 199px;
+  width: 100%;
 
   background: #ffffff;
   border-radius: 10px;
@@ -93,8 +99,8 @@ const dropDownContentStyle = (isSelected: boolean) => css`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 1rem;
+  line-height: 1.25rem;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
