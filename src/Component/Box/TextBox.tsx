@@ -7,7 +7,7 @@ import { IQuetionListElement } from '../../types';
 function TextBox({ title, numberSolved, averageScore, tag, id }: IQuetionListElement) {
   return (
     <div>
-      <Link to={'/list/' + id} css={linkStyle}>
+      <Link to={`/list/${id}`} css={linkStyle}>
         <div css={textBoxStyle}>
           <p css={titleStyle}>{title}</p>
           <div>

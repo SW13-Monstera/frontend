@@ -19,19 +19,19 @@ function Dropdown() {
       <div css={dropDownContentStyle(isSelected)}>
         <ul>
           <li css={dropdownContentElementStyle}>
-            <input type="checkbox" name="xxx" value="yyy" id="nt" />
+            <input type="checkbox" name="network" id="nt" />
             <label htmlFor="nt">네트워크</label>
           </li>
           <li css={dropdownContentElementStyle}>
-            <input type="checkbox" name="xxx" value="yyy" id="os" />
+            <input type="checkbox" name="os" id="os" />
             <label htmlFor="os">운영체제</label>
           </li>
           <li css={dropdownContentElementStyle}>
-            <input type="checkbox" name="xxx" value="yyy" id="db" />
+            <input type="checkbox" name="db" id="db" />
             <label htmlFor="db">데이터베이스</label>
           </li>
           <li css={dropdownContentElementStyle}>
-            <input type="checkbox" name="xxx" value="yyy" id="ds" />
+            <input type="checkbox" name="ds" id="ds" />
             <label htmlFor="ds">자료구조</label>
           </li>
         </ul>
