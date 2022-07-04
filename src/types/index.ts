@@ -6,4 +6,9 @@ interface IQuetionListElement {
   tag: string[];
 }
 
-export type { IQuetionListElement };
+interface IDropdownElement {
+  id: string;
+  name: string;
+}
+
+export type { IQuetionListElement, IDropdownElement };
