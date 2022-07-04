@@ -12,7 +12,7 @@ import { IQuetionListElement } from '../types';
 
 function QuestionListPage() {
   return (
-    <div>
+    <>
       <Header />
       <Slider />
       <main css={pageMainStyle}>
@@ -42,7 +42,7 @@ function QuestionListPage() {
           ))}
         </div>
       </main>
-    </div>
+    </>
   );
 }
 
@@ -60,8 +60,8 @@ const asideStyle = css`
   flex-direction: column;
   gap: 20px;
 
-  left: 70px;
-  top: 624px;
+  left: 3%;
+  top: 35%;
 `;
 
 const filterStyle = css`
@@ -69,22 +69,21 @@ const filterStyle = css`
   flex-direction: column;
   gap: 20px;
 
-  width: 284px;
   height: fit-content;
 
   background: #f5f5f5;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
 
-  padding: 20px;
+  padding: 1.25rem;
 `;
 
 const filterTitleStyle = css`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
-  line-height: 34px;
+  font-size: 1.75rem;
+  line-height: 2rem;
 
   color: #000000;
 `;
@@ -94,6 +93,9 @@ const dropdownListStyle = css`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  @media screen and (max-width: 600px) {
+    flex-direction: row;
+  }
 `;
 
 const questionListStyle = css`
