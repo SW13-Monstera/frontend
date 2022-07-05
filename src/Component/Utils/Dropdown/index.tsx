@@ -23,11 +23,9 @@ function Dropdown(tagType: ITagType) {
 
   function checkedItemHandler(id: string, isChecked: boolean) {
     if (isChecked) {
-      checkedItems.add(id);
-      setCheckedItems(checkedItems);
-    } else if (!isChecked && checkedItems.has(id)) {
-      checkedItems.delete(id);
-      setCheckedItems(checkedItems);
+      setCheckedItems((prev) => new Set([...prev, id]));
+    } else {
+      setCheckedItems((prev) => new Set([...prev].filter((currId) => currId !== id)));
     }
   }
 
