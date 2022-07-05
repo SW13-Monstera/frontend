@@ -17,7 +17,7 @@ function DropdownElement({ id, name, checkedItemHandler }: IDropdownComponentPro
 
   return (
     <li css={dropdownContentElementStyle}>
-      <input type="checkbox" name={name} id={id} onChange={(e) => checkHandler(e)} />
+      <input type="checkbox" name={name} id={id} onChange={checkHandler} />
       <label htmlFor={id}>{name}</label>
     </li>
   );
