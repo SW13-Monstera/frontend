@@ -46,7 +46,7 @@ function Dropdown(tagType: ITagType) {
               id={e.id}
               name={e.name}
               checkedItemHandler={checkedItemHandler}
-              key={e.id + e.name}
+              key={`${e.id}${e.name}`}
             />
           ))}
         </ul>
