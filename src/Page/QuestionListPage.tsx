@@ -5,13 +5,14 @@ import SearchInputBox from '../Component/Box/InputBox/SearchInputBox';
 import TextBox from '../Component/Box/TextBox';
 import Dropdown from '../Component/Utils/Dropdown';
 import Slider from '../Component/Utils/Slider';
+import { TAGLIST, TAGTYPELIST } from '../constants';
 import { listData } from '../data';
 import Header from '../Template/Header';
 import { IQuetionListElement } from '../types';
 
 function QuestionListPage() {
   return (
-    <div>
+    <>
       <Header />
       <Slider />
       <main css={pageMainStyle}>
@@ -20,9 +21,9 @@ function QuestionListPage() {
           <div css={filterStyle}>
             <div css={filterTitleStyle}>필터</div>
             <div css={dropdownListStyle}>
-              <Dropdown />
-              <Dropdown />
-              <Dropdown />
+              {TAGTYPELIST.map((tagtype) => (
+                <Dropdown {...TAGLIST[tagtype]} key={tagtype} />
+              ))}
             </div>
           </div>
         </aside>
@@ -41,7 +42,7 @@ function QuestionListPage() {
           ))}
         </div>
       </main>
-    </div>
+    </>
   );
 }
 
@@ -59,8 +60,8 @@ const asideStyle = css`
   flex-direction: column;
   gap: 20px;
 
-  left: 70px;
-  top: 624px;
+  left: 3%;
+  top: 35%;
 `;
 
 const filterStyle = css`
@@ -68,22 +69,21 @@ const filterStyle = css`
   flex-direction: column;
   gap: 20px;
 
-  width: 284px;
   height: fit-content;
 
   background: #f5f5f5;
   border: 1px solid #d9d9d9;
   border-radius: 10px;
 
-  padding: 20px;
+  padding: 1.25rem;
 `;
 
 const filterTitleStyle = css`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
-  line-height: 34px;
+  font-size: 1.75rem;
+  line-height: 2rem;
 
   color: #000000;
 `;
@@ -93,6 +93,9 @@ const dropdownListStyle = css`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  @media screen and (max-width: 600px) {
+    flex-direction: row;
+  }
 `;
 
 const questionListStyle = css`

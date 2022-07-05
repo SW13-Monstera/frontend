@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { Link, Outlet } from 'react-router-dom';
-import { css, SerializedStyles } from '@emotion/react';
+import { css } from '@emotion/react';
 import { IQuetionListElement } from '../../types';
 
 function TextBox({ title, numberSolved, averageScore, tag, id }: IQuetionListElement) {
@@ -23,17 +23,15 @@ function TextBox({ title, numberSolved, averageScore, tag, id }: IQuetionListEle
 
 const linkStyle = css`
   display: block;
-  width: 501px;
 `;
 
 const textBoxStyle = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 5%;
 
-  width: 501px;
-  height: 180px;
+  width: 100%;
 
   color: #000000;
   background: #ffffff;
@@ -47,7 +45,7 @@ const titleStyle = css`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 1.75rem;
   line-height: 34px;
 `;
 
@@ -55,8 +53,8 @@ const detailStyle = css`
   font-family: 'Inter';
   font-style: italic;
   font-weight: 300;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 `;
 
 export default TextBox;
