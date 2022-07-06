@@ -1,7 +1,7 @@
 const TAGLIST = [
   {
     name: '카테고리',
-    type: [
+    elements: [
       {
         id: 'nt',
         name: '네트워크',
@@ -22,7 +22,7 @@ const TAGLIST = [
   },
   {
     name: '풀이 여부',
-    type: [
+    elements: [
       {
         id: 'solved',
         name: '푼 문제',
@@ -35,13 +35,13 @@ const TAGLIST = [
   },
   {
     name: '채점 가능 여부',
-    type: [
+    elements: [
       {
-        id: 'grade-able',
+        id: 'gradeable',
         name: '채점 가능',
       },
       {
-        id: 'grade-unable',
+        id: 'ungradable',
         name: '채점 불가능',
       },
     ],
@@ -50,4 +50,4 @@ const TAGLIST = [
 
 const TAGTYPELIST = ['category', 'isSolved', 'problemKit'] as const;
 
-export { TAGLIST, TAGTYPELIST };
+export { TAGLIST };

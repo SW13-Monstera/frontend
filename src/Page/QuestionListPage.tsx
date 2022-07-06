@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
-import { useEffect, useState } from 'react';
 import SearchInputBox from '../Component/Box/InputBox/SearchInputBox';
 import TextBox from '../Component/Box/TextBox';
 import Tag from '../Component/Tag';
@@ -29,7 +28,7 @@ function QuestionListPage() {
               {TAGLIST.map((tagtype) => (
                 <Dropdown
                   name={tagtype.name}
-                  type={tagtype.type}
+                  elements={tagtype.elements}
                   handleCheckedTags={handleCheckedTags}
                   key={tagtype.name}
                 />

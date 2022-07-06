@@ -9,14 +9,14 @@ import { IDropdownElement } from '../../../types';
 
 interface ITagType {
   name: string;
-  type: IDropdownElement[];
+  elements: IDropdownElement[];
 }
 
 interface IDropdownProps extends ITagType {
   handleCheckedTags: (name: string, isChecked: boolean) => void;
 }
 
-function Dropdown({ name, type, handleCheckedTags }: IDropdownProps) {
+function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +34,7 @@ function Dropdown({ name, type, handleCheckedTags }: IDropdownProps) {
       </button>
       <div css={dropDownContentStyle(isOpen)}>
         <ul>
-          {type.map((e) => (
+          {elements.map((e) => (
             <DropdownElement
               id={e.id}
               name={e.name}
