@@ -2,11 +2,11 @@
 
 import { css } from '@emotion/react';
 
-interface TTag {
+interface ITag {
   name: string;
 }
 
-function Tag({ name }: TTag) {
+function Tag({ name }: ITag) {
   return <li css={tagStyle}>{name}</li>;
 }
 
