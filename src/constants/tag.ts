@@ -1,5 +1,5 @@
-const TAGLIST = {
-  category: {
+const TAGLIST = [
+  {
     name: '카테고리',
     type: [
       {
@@ -20,7 +20,7 @@ const TAGLIST = {
       },
     ],
   },
-  isSolved: {
+  {
     name: '풀이 여부',
     type: [
       {
@@ -33,7 +33,7 @@ const TAGLIST = {
       },
     ],
   },
-  problemKit: {
+  {
     name: '문제 kit',
     type: [
       {
@@ -50,7 +50,7 @@ const TAGLIST = {
       },
     ],
   },
-};
+];
 
 const TAGTYPELIST = ['category', 'isSolved', 'problemKit'] as const;
 

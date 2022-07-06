@@ -12,7 +12,7 @@ function DropdownElement({ id, name, checkedItemHandler }: IDropdownComponentPro
   const [isChecked, setIsChecked] = useState(false);
   function checkHandler({ target }: ChangeEvent<HTMLInputElement>) {
     setIsChecked(!isChecked);
-    checkedItemHandler(target.id, target.checked);
+    checkedItemHandler(target.name, target.checked);
   }
 
   return (
