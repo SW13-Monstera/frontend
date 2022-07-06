@@ -24,29 +24,25 @@ const TAGLIST = [
     name: '풀이 여부',
     type: [
       {
-        id: 'true',
+        id: 'solved',
         name: '푼 문제',
       },
       {
-        id: 'false',
+        id: 'unsolved',
         name: '안 푼 문제',
       },
     ],
   },
   {
-    name: '문제 kit',
+    name: '채점 가능 여부',
     type: [
       {
-        id: 'ds-1',
-        name: '자료구조 완벽정리 1',
+        id: 'grade-able',
+        name: '채점 가능',
       },
       {
-        id: 'ds-2',
-        name: '자료구조 완벽정리 2',
-      },
-      {
-        id: 'ds-3',
-        name: '자료구조 완벽정리 3',
+        id: 'grade-unable',
+        name: '채점 불가능',
       },
     ],
   },
