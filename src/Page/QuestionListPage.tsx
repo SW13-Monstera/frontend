@@ -16,10 +16,6 @@ import { IQuetionListElement } from '../types';
 function QuestionListPage() {
   const { checkedTags, handleCheckedTags } = useStore();
 
-  // useEffect(() => {
-  //   console.log(checkedTags);
-  // });
-
   return (
     <>
       <Header />
@@ -39,7 +35,7 @@ function QuestionListPage() {
                 />
               ))}
             </div>
-            <ul>
+            <ul css={checkedTagListStyle}>
               {[...checkedTags].map((tagName) => (
                 <Tag name={tagName} key={tagName} />
               ))}
@@ -69,7 +65,10 @@ const pageMainStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
   height: 100%;
+
   padding: 40px;
 `;
 
@@ -78,6 +77,8 @@ const asideStyle = css`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  width: 100%;
 
   left: 3%;
   top: 35%;
@@ -88,6 +89,7 @@ const filterStyle = css`
   flex-direction: column;
   gap: 20px;
 
+  width: 284px;
   height: fit-content;
 
   background: #f5f5f5;
@@ -115,6 +117,14 @@ const dropdownListStyle = css`
   @media screen and (max-width: 600px) {
     flex-direction: row;
   }
+`;
+
+const checkedTagListStyle = css`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
+  grid-gap: 1rem;
+
+  /* width: 50%; */
 `;
 
 const questionListStyle = css`
