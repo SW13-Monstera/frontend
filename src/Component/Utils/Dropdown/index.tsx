@@ -13,10 +13,10 @@ interface ITagType {
 }
 
 interface IDropdownProps extends ITagType {
-  checkedItemHandler: (name: string, isChecked: boolean) => void;
+  handleCheckedTags: (name: string, isChecked: boolean) => void;
 }
 
-function Dropdown({ name, type, checkedItemHandler }: IDropdownProps) {
+function Dropdown({ name, type, handleCheckedTags }: IDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -38,7 +38,7 @@ function Dropdown({ name, type, checkedItemHandler }: IDropdownProps) {
             <DropdownElement
               id={e.id}
               name={e.name}
-              checkedItemHandler={checkedItemHandler}
+              handleCheckedTags={handleCheckedTags}
               key={`${e.id}${e.name}`}
             />
           ))}

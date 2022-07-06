@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchInputBox from '../Component/Box/InputBox/SearchInputBox';
 import TextBox from '../Component/Box/TextBox';
 import Tag from '../Component/Tag';
@@ -9,19 +9,17 @@ import Dropdown from '../Component/Utils/Dropdown';
 import Slider from '../Component/Utils/Slider';
 import { TAGLIST } from '../constants';
 import { listData } from '../data';
+import useStore from '../hooks/useStore';
 import Header from '../Template/Header';
 import { IQuetionListElement } from '../types';
 
 function QuestionListPage() {
-  const [checkedItems, setCheckedItems] = useState(new Set<string>());
+  const { checkedTags, handleCheckedTags } = useStore();
 
-  function checkedItemHandler(name: string, isChecked: boolean) {
-    if (isChecked) {
-      setCheckedItems((prev) => new Set([...prev, name]));
-    } else {
-      setCheckedItems((prev) => new Set([...prev].filter((currId) => currId !== name)));
-    }
-  }
+  // useEffect(() => {
+  //   console.log(checkedTags);
+  // });
+
   return (
     <>
       <Header />
@@ -36,15 +34,15 @@ function QuestionListPage() {
                 <Dropdown
                   name={tagtype.name}
                   type={tagtype.type}
-                  checkedItemHandler={checkedItemHandler}
+                  handleCheckedTags={handleCheckedTags}
                   key={tagtype.name}
                 />
               ))}
             </div>
             <ul>
-              {/* {[...checkedItems].map((tagName) => (
+              {[...checkedTags].map((tagName) => (
                 <Tag name={tagName} key={tagName} />
-              ))} */}
+              ))}
             </ul>
           </div>
         </aside>
