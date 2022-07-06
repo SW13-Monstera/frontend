@@ -12,21 +12,16 @@ interface ITagType {
   type: IDropdownElement[];
 }
 
-function Dropdown(tagType: ITagType) {
+interface IDropdownProps extends ITagType {
+  checkedItemHandler: (name: string, isChecked: boolean) => void;
+}
+
+function Dropdown({ name, type, checkedItemHandler }: IDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [checkedItems, setCheckedItems] = useState(new Set<string>());
   const menuRef = useRef<HTMLDivElement>(null);
 
   function onClickDropdown() {
     setIsOpen(!isOpen);
-  }
-
-  function checkedItemHandler(id: string, isChecked: boolean) {
-    if (isChecked) {
-      setCheckedItems((prev) => new Set([...prev, id]));
-    } else {
-      setCheckedItems((prev) => new Set([...prev].filter((currId) => currId !== id)));
-    }
   }
 
   useEffect(listenOutsideClick(menuRef, setIsOpen), []);
@@ -34,12 +29,12 @@ function Dropdown(tagType: ITagType) {
   return (
     <div css={dropDownStyle} ref={menuRef}>
       <button css={dropdownBoxStyle} onClick={onClickDropdown} type="button">
-        <p>{tagType.name} 선택</p>
+        <p>{name} 선택</p>
         <DownIcon />
       </button>
       <div css={dropDownContentStyle(isOpen)}>
         <ul>
-          {tagType.type.map((e) => (
+          {type.map((e) => (
             <DropdownElement
               id={e.id}
               name={e.name}
