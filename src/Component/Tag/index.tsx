@@ -15,7 +15,7 @@ const tagStyle = css`
   align-items: center;
   justify-content: center;
 
-  width: 50px;
+  width: 70px;
   height: 25px;
 
   background: #fff1cd;
