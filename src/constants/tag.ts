@@ -48,6 +48,4 @@ const TAGLIST = [
   },
 ];
 
-const TAGTYPELIST = ['category', 'isSolved', 'problemKit'] as const;
-
 export { TAGLIST };
