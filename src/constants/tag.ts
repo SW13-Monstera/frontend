@@ -1,7 +1,7 @@
-const TAGLIST = {
-  category: {
+const TAGLIST = [
+  {
     name: '카테고리',
-    type: [
+    elements: [
       {
         id: 'nt',
         name: '네트워크',
@@ -20,38 +20,32 @@ const TAGLIST = {
       },
     ],
   },
-  isSolved: {
+  {
     name: '풀이 여부',
-    type: [
+    elements: [
       {
-        id: 'true',
+        id: 'solved',
         name: '푼 문제',
       },
       {
-        id: 'false',
+        id: 'unsolved',
         name: '안 푼 문제',
       },
     ],
   },
-  problemKit: {
-    name: '문제 kit',
-    type: [
+  {
+    name: '채점 가능 여부',
+    elements: [
       {
-        id: 'ds-1',
-        name: '자료구조 완벽정리 1',
+        id: 'gradeable',
+        name: '채점 가능',
       },
       {
-        id: 'ds-2',
-        name: '자료구조 완벽정리 2',
-      },
-      {
-        id: 'ds-3',
-        name: '자료구조 완벽정리 3',
+        id: 'ungradable',
+        name: '채점 불가능',
       },
     ],
   },
-};
+];
 
-const TAGTYPELIST = ['category', 'isSolved', 'problemKit'] as const;
-
-export { TAGLIST, TAGTYPELIST };
+export { TAGLIST };

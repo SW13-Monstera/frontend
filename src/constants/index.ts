@@ -1,4 +1,4 @@
-import { TAGLIST, TAGTYPELIST } from './tag';
+import { TAGLIST } from './tag';
 import { EVENT } from './event';
 
-export { TAGLIST, TAGTYPELIST, EVENT };
+export { TAGLIST, EVENT };

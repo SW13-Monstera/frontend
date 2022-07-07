@@ -5,14 +5,15 @@ import { ChangeEvent, useState } from 'react';
 import { IDropdownElement } from '../../../types';
 
 interface IDropdownComponentProps extends IDropdownElement {
-  checkedItemHandler: (id: string, isChecked: boolean) => void;
+  handleCheckedTags: (name: string, isChecked: boolean) => void;
 }
 
-function DropdownElement({ id, name, checkedItemHandler }: IDropdownComponentProps) {
+function DropdownElement({ id, name, handleCheckedTags }: IDropdownComponentProps) {
   const [isChecked, setIsChecked] = useState(false);
+
   function checkHandler({ target }: ChangeEvent<HTMLInputElement>) {
     setIsChecked(!isChecked);
-    checkedItemHandler(target.id, target.checked);
+    handleCheckedTags(target.name, target.checked);
   }
 
   return (
