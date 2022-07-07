@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint 'src/**/*.ts'",
+    "lint-diff": "eslint $(git diff --name-only --diff-filter=duxb origin/$BASE origin/$HEAD | grep -E '\\.((j|t)sx?)$' | xargs)"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
