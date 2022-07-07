@@ -56,28 +56,23 @@ export const statisticsStyle = style({
 
 export const questionContentStyle = style({
   display: 'flex',
-  position: 'relative',
+  flexDirection: 'row',
   width: '90%',
   height: '90%',
   background: '#F5F5F5',
 });
 
+export const splitStyle = style({
+  display: 'flex',
+});
+
 export const questionDescStyle = style({
-  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
   border: '1px solid #D9D9D9',
 });
 
 export const answerInputStyle = style({
-  position: 'relative',
   display: 'flex',
   flexDirection: 'column',
-});
-
-export const handlerStyle = style({
-  position: 'relative',
-  width: '24px',
-  backgroundColor: 'black',
-  cursor: 'ew-resize',
 });
