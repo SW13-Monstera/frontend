@@ -120,10 +120,11 @@ const dropdownListStyle = css`
 
 const checkedTagListStyle = css`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  grid-gap: 10px;
 
-  /* width: 50%; */
+  width: 50%;
+  align-self: center;
 `;
 
 const questionListStyle = css`
