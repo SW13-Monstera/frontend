@@ -1,6 +1,6 @@
 import { createTheme, style } from '@vanilla-extract/css';
 
-const [themeClass, vars] = createTheme({
+export const [themeClass, vars] = createTheme({
   color: {
     brand: 'blue',
   },
@@ -9,31 +9,36 @@ const [themeClass, vars] = createTheme({
   },
 });
 
-const pageStyle = style({
+export const pageStyle = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
 
+  width: '100%',
+  height: '100%',
+  padding: '2.5rem',
+
   fontFamily: vars.font.body,
 });
 
-const topStyle = style({
+export const topStyle = style({
   display: 'flex',
   alignItems: 'start',
   justifyContent: 'space-between',
 
   width: '100%',
+  height: '70%',
 });
 
-const descStyle = style({
+export const descStyle = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
 });
 
-const titleStyle = style({
+export const titleStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '700',
@@ -41,7 +46,7 @@ const titleStyle = style({
   lineHeight: '48px',
 });
 
-const statisticsStyle = style({
+export const statisticsStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '400',
@@ -49,4 +54,30 @@ const statisticsStyle = style({
   lineHeight: '24px',
 });
 
-export { themeClass, pageStyle, topStyle, descStyle, titleStyle, statisticsStyle };
+export const questionContentStyle = style({
+  display: 'flex',
+  position: 'relative',
+  width: '90%',
+  height: '90%',
+  background: '#F5F5F5',
+});
+
+export const questionDescStyle = style({
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  border: '1px solid #D9D9D9',
+});
+
+export const answerInputStyle = style({
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+export const handlerStyle = style({
+  position: 'relative',
+  width: '24px',
+  backgroundColor: 'black',
+  cursor: 'ew-resize',
+});
