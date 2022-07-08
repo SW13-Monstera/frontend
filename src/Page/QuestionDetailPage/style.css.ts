@@ -10,20 +10,23 @@ export const [themeClass, vars] = createTheme({
 });
 
 export const pageStyle = style({
+  boxSizing: 'border-box',
+  padding: '3rem',
+
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'start',
-  justifyContent: 'start',
+  flexWrap: 'wrap',
+  justifyContent: 'flex-start',
+  alignItems: 'stretch',
+  gap: '1.5rem',
 
   width: '100%',
-  height: '100%',
-
   fontFamily: vars.font.body,
 });
 
 export const topStyle = style({
   display: 'flex',
-  alignItems: 'start',
+  alignItems: 'flex-start',
   justifyContent: 'space-between',
 
   width: '100%',
@@ -65,6 +68,8 @@ export const questionContentStyle = style({
   width: '100%',
   height: '70vh',
   background: '#F5F5F5',
+
+  padding: '2rem',
 });
 
 export const splitStyle = style({
@@ -75,11 +80,11 @@ export const splitStyle = style({
 export const questionDescStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'start',
-  justifyContent: 'start',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
   gap: '40px',
 
-  border: '1px solid #D9D9D9',
+  padding: '2rem',
 });
 
 export const answerInputStyle = style({
@@ -106,4 +111,12 @@ export const problemDescContentStyle = style({
   lineHeight: '24px',
 
   color: '#000000',
+});
+
+export const buttonListStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  alignSelf: 'flex-end',
+  gap: '1rem',
 });
