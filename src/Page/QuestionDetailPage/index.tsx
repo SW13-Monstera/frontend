@@ -12,7 +12,9 @@ import {
   questionDescStyle,
   answerInputStyle,
 } from './style.css';
+import './gutter.css';
 import AnswerInput from '../../Component/Box/InputBox/AnswerInput';
+import { Link } from 'react-router-dom';
 
 function QuestionDetailPage() {
   return (
@@ -41,15 +43,33 @@ function QuestionDetailPage() {
           </div>
         </div> */}
         <div className={questionContentStyle}>
-          <Split className={splitStyle}>
-            <div>hi</div>
-            <div>bye</div>
+          <Split
+            sizes={[25, 75]}
+            minSize={100}
+            expandToMin={false}
+            gutterSize={10}
+            gutterAlign="center"
+            snapOffset={30}
+            dragInterval={1}
+            direction="horizontal"
+            cursor="col-resize"
+            className={splitStyle}
+          >
+            <div className={questionDescStyle}>
+              <div>문제 설명</div>
+              <div>문제 내용</div>
+            </div>
+            <AnswerInput />
           </Split>
         </div>
 
         <div>
-          <button type="submit">제출</button>
-          <button type="button">돌아가기</button>
+          <Link to={`/result/${1}`}>
+            <button type="submit">제출</button>
+          </Link>
+          <Link to="">
+            <button type="button">돌아가기</button>
+          </Link>
         </div>
       </main>
     </>
