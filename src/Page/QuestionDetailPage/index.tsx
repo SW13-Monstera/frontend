@@ -13,12 +13,15 @@ import {
   questionDescStyle,
   problemDescTitleStyle,
   problemDescContentStyle,
+  buttonListStyle,
 } from './style.css';
 import './gutter.css';
 import AnswerInput from '../../Component/Box/InputBox/AnswerInput';
 import { Link, useLocation } from 'react-router-dom';
 import { listData } from '../../data';
 import Tag from '../../Component/Tag';
+import MainButton from '../../Component/Button/MainButton';
+import SecondaryButton from '../../Component/Button/SecondaryButton';
 
 interface IState {
   problemId: number;
@@ -70,12 +73,12 @@ function QuestionDetailPage() {
           </Split>
         </div>
 
-        <div>
-          <Link to={`/result/${1}`}>
-            <button type="submit">제출</button>
+        <div className={buttonListStyle}>
+          <Link to={`/result/${problemData.id}`}>
+            <MainButton text="제출하기" />
           </Link>
-          <Link to="">
-            <button type="button">돌아가기</button>
+          <Link to="/list">
+            <SecondaryButton text="돌아가기" />
           </Link>
         </div>
       </main>
