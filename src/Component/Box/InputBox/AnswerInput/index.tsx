@@ -1,10 +1,12 @@
-import { answerInputStyle } from './style.css';
+import { answerInputContentStyle, answerInputStyle, answerInputTitleStyle } from './style.css';
 
 function AnswerInput() {
   return (
     <div className={answerInputStyle}>
-      <label htmlFor="answer">답안 작성</label>
-      <input id="answer"></input>
+      <label htmlFor="answer" className={answerInputTitleStyle}>
+        답안 작성
+      </label>
+      <textarea id="answer" className={answerInputContentStyle}></textarea>
     </div>
   );
 }
