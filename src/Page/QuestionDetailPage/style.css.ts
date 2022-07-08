@@ -13,11 +13,10 @@ export const pageStyle = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
-  justifyContent: 'center',
+  justifyContent: 'start',
 
   width: '100%',
   height: '100%',
-  padding: '2.5rem',
 
   fontFamily: vars.font.body,
 });
@@ -28,7 +27,7 @@ export const topStyle = style({
   justifyContent: 'space-between',
 
   width: '100%',
-  height: '70%',
+  height: '10vh',
 });
 
 export const descStyle = style({
@@ -36,6 +35,13 @@ export const descStyle = style({
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
+});
+
+export const titleTagStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '1.5rem',
 });
 
 export const titleStyle = style({
@@ -56,9 +62,8 @@ export const statisticsStyle = style({
 
 export const questionContentStyle = style({
   display: 'flex',
-  flexDirection: 'row',
-  width: '90%',
-  height: '90%',
+  width: '100%',
+  height: '70vh',
   background: '#F5F5F5',
 });
 
@@ -70,6 +75,9 @@ export const splitStyle = style({
 export const questionDescStyle = style({
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'start',
+  justifyContent: 'start',
+  gap: '40px',
 
   border: '1px solid #D9D9D9',
 });
@@ -77,4 +85,25 @@ export const questionDescStyle = style({
 export const answerInputStyle = style({
   display: 'flex',
   flexDirection: 'column',
+});
+
+export const problemDescTitleStyle = style({
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: '600',
+  fontSize: '24px',
+  lineHeight: '29px',
+  /* identical to box height */
+
+  color: '#000000',
+});
+
+export const problemDescContentStyle = style({
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '20px',
+  lineHeight: '24px',
+
+  color: '#000000',
 });
