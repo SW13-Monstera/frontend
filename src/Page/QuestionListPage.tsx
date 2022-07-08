@@ -77,7 +77,7 @@ const asideStyle = css`
   flex-direction: column;
   gap: 20px;
 
-  width: 100%;
+  width: fit-content;
 
   left: 3%;
   top: 35%;
