@@ -5,25 +5,43 @@ import {
   pageStyle,
   topStyle,
   descStyle,
+  titleTagStyle,
   titleStyle,
   statisticsStyle,
   questionContentStyle,
   splitStyle,
   questionDescStyle,
-  answerInputStyle,
+  problemDescTitleStyle,
+  problemDescContentStyle,
 } from './style.css';
 import './gutter.css';
 import AnswerInput from '../../Component/Box/InputBox/AnswerInput';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { listData } from '../../data';
+import Tag from '../../Component/Tag';
+
+interface IState {
+  problemId: number;
+}
 
 function QuestionDetailPage() {
+  const state = useLocation().state as IState;
+  const problemData = listData[state.problemId];
+
   return (
     <>
       <Header />
       <main className={`${themeClass} ${pageStyle}`}>
         <div className={topStyle}>
           <div className={descStyle}>
-            <h1 className={titleStyle}>문제 제목</h1>
+            <div className={titleTagStyle}>
+              <h1 className={titleStyle}>{problemData.title}</h1>
+              <ul>
+                {problemData.tag.map((tagName) => (
+                  <Tag name={tagName} key={tagName} />
+                ))}
+              </ul>
+            </div>
             <div className={statisticsStyle}>
               제출 : 12345, 평균 점수 : 00.00점, 최고점 : 10점 , 최저점 : 2점
             </div>
@@ -31,17 +49,6 @@ function QuestionDetailPage() {
 
           <div>토글 버튼</div>
         </div>
-        {/* <div className={questionContentStyle}>
-          <div className={questionDescStyle}>
-            <div>문제 설명</div>
-            <div>문제 내용</div>
-          </div>
-          <div className={handlerStyle}></div>z
-          <div className={answerInputStyle}>
-            <label htmlFor="answer">답안 작성</label>
-            <input id="answer"></input>
-          </div>
-        </div> */}
         <div className={questionContentStyle}>
           <Split
             sizes={[25, 75]}
@@ -56,8 +63,8 @@ function QuestionDetailPage() {
             className={splitStyle}
           >
             <div className={questionDescStyle}>
-              <div>문제 설명</div>
-              <div>문제 내용</div>
+              <div className={problemDescTitleStyle}>문제 설명</div>
+              <div className={problemDescContentStyle}>{problemData.desc}</div>
             </div>
             <AnswerInput />
           </Split>
