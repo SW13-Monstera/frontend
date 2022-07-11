@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { ReactComponent as DownIcon } from '../../../assets/icons/down-arrow-icon.svg';
 import DropdownElement from './DropdownElement';
 import listenOutsideClick from '../listenOutsideClick';
-import { IDropdownElement } from '../../../types';
+import { BUTTON_TYPE } from '../../../types/button';
+import { IDropdownElement } from '../../../types/util';
 
 interface ITagType {
   name: string;
@@ -28,7 +29,7 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
 
   return (
     <div css={dropDownStyle} ref={menuRef}>
-      <button css={dropdownBoxStyle} onClick={onClickDropdown} type="button">
+      <button css={dropdownBoxStyle} onClick={onClickDropdown} type={BUTTON_TYPE.BUTTON}>
         <p>{name} 선택</p>
         <DownIcon />
       </button>

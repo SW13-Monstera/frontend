@@ -2,16 +2,10 @@
 
 import { Link, Outlet } from 'react-router-dom';
 import { css } from '@emotion/react';
-import { IQuetionListElement } from '../../types';
 import Tag from '../Tag';
+import { IProblem } from '../../types/problem';
 
-function QuestionListElementBox({
-  title,
-  numberSolved,
-  averageScore,
-  tagList,
-  id,
-}: IQuetionListElement) {
+function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id }: IProblem) {
   return (
     <div>
       <Link to={`/list/${id}`} state={{ problemId: id }} css={linkStyle}>

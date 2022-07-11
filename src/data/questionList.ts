@@ -1,4 +1,4 @@
-import { IProblem } from '../types';
+import { IProblem } from '../types/problem';
 
 const listData: IProblem[] = [
   {

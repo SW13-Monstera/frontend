@@ -22,7 +22,7 @@ import { listData } from '../../data';
 import Tag from '../../Component/Tag';
 import { BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
-import { IProblemIdLinkState } from '../../types';
+import { IProblemIdLinkState } from '../../types/problem';
 
 function QuestionDetailPage() {
   const state = useLocation().state as IProblemIdLinkState;

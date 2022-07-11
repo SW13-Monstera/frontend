@@ -9,13 +9,8 @@ interface IProblem {
   desc: string;
 }
 
-interface IDropdownElement {
-  id: string;
-  name: string;
-}
-
 interface IProblemIdLinkState {
   problemId: number;
 }
 
-export type { IProblem, IDropdownElement, IProblemIdLinkState };
+export type { IProblem, IProblemIdLinkState };

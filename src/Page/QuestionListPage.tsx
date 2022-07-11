@@ -10,7 +10,7 @@ import { TAGLIST } from '../constants';
 import { listData } from '../data';
 import useStore from '../hooks/useStore';
 import Header from '../Template/Header';
-import { IProblem } from '../types';
+import { IProblem } from '../types/problem';
 
 function QuestionListPage() {
   const { checkedTags, handleCheckedTags } = useStore();
@@ -52,6 +52,9 @@ function QuestionListPage() {
               key={e.id}
               id={e.id}
               css={listElementStyle}
+              highestScore={0}
+              lowestScore={0}
+              desc={''}
             />
           ))}
         </div>

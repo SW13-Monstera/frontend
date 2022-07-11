@@ -2,12 +2,16 @@
 
 import { css } from '@emotion/react';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/search-icon.svg';
+import { BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
+import IconButton from '../../Button/IconButton';
 
 function SearchInputBox() {
   return (
     <div css={inputBoxStyle}>
       <input placeholder='검색어를 입력해주세요' css={inputTextBoxStyle}></input>
-      <SearchIcon css={searchButtonStyle} />
+      <IconButton type={BUTTON_TYPE.SUBMIT} theme={BUTTON_THEME.PRIMARY}>
+        <SearchIcon css={searchButtonStyle} />
+      </IconButton>
     </div>
   );
 }
