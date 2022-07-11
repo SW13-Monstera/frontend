@@ -3,17 +3,29 @@
 import { Link, Outlet } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { IQuetionListElement } from '../../types';
+import Tag from '../Tag';
 
-function TextBox({ title, numberSolved, averageScore, tag, id }: IQuetionListElement) {
+function QuestionListElementBox({
+  title,
+  numberSolved,
+  averageScore,
+  tagList,
+  id,
+}: IQuetionListElement) {
   return (
     <div>
-      <Link to={`/list/${id}`} css={linkStyle}>
+      <Link to={`/list/${id}`} state={{ problemId: id }} css={linkStyle}>
         <div css={textBoxStyle}>
           <p css={titleStyle}>{title}</p>
           <div>
             <p css={detailStyle}>푼 사람 수 : {numberSolved} 명</p>
             <p css={detailStyle}>평균 점수 : {averageScore} 점</p>
           </div>
+          <ul>
+            {tagList.map((tag) => (
+              <Tag name={tag} key={tag} />
+            ))}
+          </ul>
         </div>
       </Link>
       <Outlet />
@@ -57,4 +69,4 @@ const detailStyle = css`
   line-height: 1.5rem;
 `;
 
-export default TextBox;
+export default QuestionListElementBox;

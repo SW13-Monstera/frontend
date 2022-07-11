@@ -4,20 +4,26 @@ import { Link, Outlet } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { ReactComponent as AlarmIcon } from '../assets/icons/alarm-icon.svg';
 import { ReactComponent as MyPageIcon } from '../assets/icons/mypage-icon.svg';
+import IconButton from '../Component/Button/IconButton';
+import { BUTTON_THEME } from '../types/button';
 
 function Header() {
   return (
     <header css={headerStyle}>
-      <Link to="/">
+      <Link to='/'>
         <div css={logoStyle}>CS Broker</div>
       </Link>
       <div css={navStyle}>
-        <Link to="/list">문제</Link>
+        <Link to='/list'>문제</Link>
         <p>고득점 문제 kit</p>
       </div>
       <div css={menuStyle}>
-        <AlarmIcon />
-        <MyPageIcon />
+        <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
+          <AlarmIcon />
+        </IconButton>
+        <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
+          <MyPageIcon />
+        </IconButton>
       </div>
       <Outlet />
     </header>
@@ -61,10 +67,6 @@ const menuStyle = css`
   justify-content: right;
   gap: 15%;
   padding: 1.25rem;
-  svg path {
-    fill: white;
-    stroke: white;
-  }
 `;
 
 export default Header;
