@@ -6,7 +6,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제', '네트워크'],
+    tagList: ['운영체제', '네트워크'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -16,7 +16,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -26,7 +26,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -36,7 +36,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -46,7 +46,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -56,7 +56,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -66,7 +66,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -76,7 +76,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -84,7 +84,7 @@ const listData = [
     title: '멀티 프로세스의 특징',
     numberSolved: 522323,
     averageScore: 6.8,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -94,7 +94,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -102,7 +102,7 @@ const listData = [
     title: '멀티 프로세스의 특징',
     numberSolved: 522323,
     averageScore: 6.8,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -112,7 +112,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -122,7 +122,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -132,7 +132,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -142,7 +142,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -152,7 +152,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -162,7 +162,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -172,7 +172,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -182,7 +182,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -192,7 +192,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -202,7 +202,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -212,7 +212,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -222,7 +222,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -232,7 +232,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -242,7 +242,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -252,7 +252,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -262,7 +262,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
   {
@@ -272,7 +272,7 @@ const listData = [
     averageScore: 6.8,
     highestScore: 9.2,
     lowestScore: 1.3,
-    tag: ['운영체제'],
+    tagList: ['운영체제'],
     desc: '멀티 스레드의 공유 자원 문제가 생기는 예시와 멀티 프로세스의 공유 자원 문제가 생기는 예시를 각각 설명해주세요. 언제 공유자원문제가 발생할까요?',
   },
 ];

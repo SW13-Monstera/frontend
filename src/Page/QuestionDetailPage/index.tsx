@@ -40,7 +40,7 @@ function QuestionDetailPage() {
             <div className={titleTagStyle}>
               <h1 className={titleStyle}>{problemData.title}</h1>
               <ul>
-                {problemData.tag.map((tagName) => (
+                {problemData.tagList.map((tagName) => (
                   <Tag name={tagName} key={tagName} />
                 ))}
               </ul>

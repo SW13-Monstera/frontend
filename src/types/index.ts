@@ -3,7 +3,7 @@ interface IQuetionListElement {
   title: string;
   numberSolved: number;
   averageScore: number;
-  tag: string[];
+  tagList: string[];
 }
 
 interface IDropdownElement {

@@ -2,7 +2,7 @@
 
 import { css } from '@emotion/react';
 import SearchInputBox from '../Component/Box/InputBox/SearchInputBox';
-import TextBox from '../Component/Box/TextBox';
+import QuestionListElementBox from '../Component/Box/QuestionListElementBox';
 import Tag from '../Component/Tag';
 import Dropdown from '../Component/Utils/Dropdown';
 import Slider from '../Component/Utils/Slider';
@@ -44,11 +44,11 @@ function QuestionListPage() {
 
         <div css={questionListStyle}>
           {listData.map((e: IQuetionListElement) => (
-            <TextBox
+            <QuestionListElementBox
               title={e.title}
               numberSolved={e.numberSolved}
               averageScore={e.averageScore}
-              tag={e.tag}
+              tagList={e.tagList}
               key={e.id}
               id={e.id}
               css={listElementStyle}
