@@ -66,6 +66,11 @@ const menuStyle = css`
   justify-content: right;
   gap: 15%;
   padding: 1.25rem;
+
+  svg path {
+    fill: white;
+    stroke: white;
+  }
 `;
 
 export default Header;

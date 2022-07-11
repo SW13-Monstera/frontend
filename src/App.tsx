@@ -1,6 +1,5 @@
 import Router from './Router';
 import './styles/App.css';
-import './styles/svg.css';
 
 function App() {
   return (
