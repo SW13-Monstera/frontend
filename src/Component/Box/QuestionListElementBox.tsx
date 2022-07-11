@@ -2,7 +2,7 @@
 
 import { Link, Outlet } from 'react-router-dom';
 import { css } from '@emotion/react';
-import Tag from '../Tag';
+import TagBox from './TagBox';
 import { IProblem } from '../../types/problem';
 
 function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id }: IProblem) {
@@ -17,7 +17,7 @@ function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id
           </div>
           <ul>
             {tagList.map((tag) => (
-              <Tag name={tag} key={tag} />
+              <TagBox name={tag} key={tag} />
             ))}
           </ul>
         </div>

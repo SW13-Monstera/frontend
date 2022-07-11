@@ -15,7 +15,6 @@ function Header() {
       </Link>
       <div css={navStyle}>
         <Link to='/list'>문제</Link>
-        <p>고득점 문제 kit</p>
       </div>
       <div css={menuStyle}>
         <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>

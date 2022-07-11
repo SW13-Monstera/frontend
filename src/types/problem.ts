@@ -1,12 +1,14 @@
 interface IProblem {
   id: number;
   title: string;
-  numberSolved: number;
-  averageScore: number;
-  highestScore: number;
-  lowestScore: number;
   tagList: string[];
-  desc: string;
+  numberSolved?: number;
+  averageScore?: number;
+  highestScore?: number;
+  lowestScore?: number;
+  desc?: string;
+  keywordList?: string[];
+  answer?: string;
 }
 
 interface IProblemIdLinkState {

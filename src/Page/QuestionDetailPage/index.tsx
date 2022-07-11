@@ -19,7 +19,7 @@ import './gutter.css';
 import AnswerInput from '../../Component/Box/InputBox/AnswerInput';
 import { Link, useLocation } from 'react-router-dom';
 import { listData } from '../../data';
-import Tag from '../../Component/Tag';
+import Tag from '../../Component/Box/TagBox';
 import { BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { IProblemIdLinkState } from '../../types/problem';

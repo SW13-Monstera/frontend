@@ -3,7 +3,7 @@
 import { css } from '@emotion/react';
 import SearchInputBox from '../Component/Box/InputBox/SearchInputBox';
 import QuestionListElementBox from '../Component/Box/QuestionListElementBox';
-import Tag from '../Component/Tag';
+import TagBox from '../Component/Box/TagBox';
 import Dropdown from '../Component/Utils/Dropdown';
 import Slider from '../Component/Utils/Slider';
 import { TAGLIST } from '../constants';
@@ -36,7 +36,7 @@ function QuestionListPage() {
             </div>
             <ul css={checkedTagListStyle}>
               {[...checkedTags].map((tagName) => (
-                <Tag name={tagName} key={tagName} />
+                <TagBox name={tagName} key={tagName} />
               ))}
             </ul>
           </div>
@@ -52,9 +52,6 @@ function QuestionListPage() {
               key={e.id}
               id={e.id}
               css={listElementStyle}
-              highestScore={0}
-              lowestScore={0}
-              desc={''}
             />
           ))}
         </div>
