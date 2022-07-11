@@ -10,7 +10,7 @@ import { TAGLIST } from '../constants';
 import { listData } from '../data';
 import useStore from '../hooks/useStore';
 import Header from '../Template/Header';
-import { IQuetionListElement } from '../types';
+import { IProblem } from '../types';
 
 function QuestionListPage() {
   const { checkedTags, handleCheckedTags } = useStore();
@@ -43,7 +43,7 @@ function QuestionListPage() {
         </aside>
 
         <div css={questionListStyle}>
-          {listData.map((e: IQuetionListElement) => (
+          {listData.map((e: IProblem) => (
             <QuestionListElementBox
               title={e.title}
               numberSolved={e.numberSolved}

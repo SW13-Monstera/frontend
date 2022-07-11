@@ -1,9 +1,12 @@
-interface IQuetionListElement {
+interface IProblem {
   id: number;
   title: string;
   numberSolved: number;
   averageScore: number;
+  highestScore: number;
+  lowestScore: number;
   tagList: string[];
+  desc: string;
 }
 
 interface IDropdownElement {
@@ -11,4 +14,8 @@ interface IDropdownElement {
   name: string;
 }
 
-export type { IQuetionListElement, IDropdownElement };
+interface IProblemIdLinkState {
+  problemId: number;
+}
+
+export type { IProblem, IDropdownElement, IProblemIdLinkState };
