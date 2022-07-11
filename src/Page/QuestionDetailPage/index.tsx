@@ -46,7 +46,7 @@ function QuestionDetailPage() {
               </ul>
             </div>
             <div className={statisticsStyle}>
-              제출 : 12345, 평균 점수 : 00.00점, 최고점 : 10점 , 최저점 : 2점
+              {`제출 : ${problemData.numberSolved}, 평균 점수 : ${problemData.averageScore}점, 최고점 : ${problemData.highestScore}점 , 최저점 : ${problemData.lowestScore}점`}
             </div>
           </div>
 
