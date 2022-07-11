@@ -20,8 +20,8 @@ import AnswerInput from '../../Component/Box/InputBox/AnswerInput';
 import { Link, useLocation } from 'react-router-dom';
 import { listData } from '../../data';
 import Tag from '../../Component/Tag';
-import MainButton from '../../Component/Button/MainButton';
-import SecondaryButton from '../../Component/Button/SecondaryButton';
+import { BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import TextButton from '../../Component/Button/TextButton';
 
 interface IState {
   problemId: number;
@@ -75,10 +75,10 @@ function QuestionDetailPage() {
 
         <div className={buttonListStyle}>
           <Link to={`/result/${problemData.id}`}>
-            <MainButton text="제출하기" />
+            <TextButton text="제출하기" type={BUTTON_TYPE.SUBMIT} theme={BUTTON_THEME.PRIMARY} />
           </Link>
           <Link to="/list">
-            <SecondaryButton text="돌아가기" />
+            <TextButton text="돌아가기" type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.SECONDARY} />
           </Link>
         </div>
       </main>
