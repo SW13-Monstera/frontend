@@ -6,7 +6,7 @@ import { ReactComponent as SearchIcon } from '../../../assets/icons/search-icon.
 function SearchInputBox() {
   return (
     <div css={inputBoxStyle}>
-      <input placeholder="검색어를 입력해주세요" css={inputTextBoxStyle}></input>
+      <input placeholder='검색어를 입력해주세요' css={inputTextBoxStyle}></input>
       <SearchIcon css={searchButtonStyle} />
     </div>
   );
