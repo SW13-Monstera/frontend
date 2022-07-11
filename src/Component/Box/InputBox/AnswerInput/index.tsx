@@ -3,10 +3,10 @@ import { answerInputContentStyle, answerInputStyle, answerInputTitleStyle } from
 function AnswerInput() {
   return (
     <div className={answerInputStyle}>
-      <label htmlFor="answer" className={answerInputTitleStyle}>
+      <label htmlFor='answer' className={answerInputTitleStyle}>
         답안 작성
       </label>
-      <textarea id="answer" className={answerInputContentStyle}></textarea>
+      <textarea id='answer' className={answerInputContentStyle}></textarea>
     </div>
   );
 }

@@ -10,11 +10,11 @@ import { BUTTON_THEME } from '../types/button';
 function Header() {
   return (
     <header css={headerStyle}>
-      <Link to="/">
+      <Link to='/'>
         <div css={logoStyle}>CS Broker</div>
       </Link>
       <div css={navStyle}>
-        <Link to="/list">문제</Link>
+        <Link to='/list'>문제</Link>
         <p>고득점 문제 kit</p>
       </div>
       <div css={menuStyle}>

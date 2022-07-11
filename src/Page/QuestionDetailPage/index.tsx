@@ -58,11 +58,11 @@ function QuestionDetailPage() {
             minSize={100}
             expandToMin={false}
             gutterSize={10}
-            gutterAlign="center"
+            gutterAlign='center'
             snapOffset={30}
             dragInterval={1}
-            direction="horizontal"
-            cursor="col-resize"
+            direction='horizontal'
+            cursor='col-resize'
             className={splitStyle}
           >
             <div className={questionDescStyle}>
@@ -79,7 +79,7 @@ function QuestionDetailPage() {
               제출하기
             </TextButton>
           </Link>
-          <Link to="/list">
+          <Link to='/list'>
             <TextButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.SECONDARY}>
               돌아가기
             </TextButton>
