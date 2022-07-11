@@ -22,13 +22,10 @@ import { listData } from '../../data';
 import Tag from '../../Component/Tag';
 import { BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
-
-interface IState {
-  problemId: number;
-}
+import { IProblemIdLinkState } from '../../types';
 
 function QuestionDetailPage() {
-  const state = useLocation().state as IState;
+  const state = useLocation().state as IProblemIdLinkState;
   const problemData = listData[state.problemId];
 
   return (
@@ -74,7 +71,7 @@ function QuestionDetailPage() {
         </div>
 
         <div className={buttonListStyle}>
-          <Link to={`/result/${problemData.id}`}>
+          <Link to={`/result/${problemData.id}`} state={{ problemId: problemData.id }}>
             <TextButton type={BUTTON_TYPE.SUBMIT} theme={BUTTON_THEME.PRIMARY}>
               제출하기
             </TextButton>
