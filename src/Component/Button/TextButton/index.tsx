@@ -1,10 +1,10 @@
 import { IButton } from '../../../types/button';
-import { textButtonStyle } from './style.css';
+import { textButtonThemeStyle } from './style.css';
 
-function TextButton({ text, type, theme }: IButton) {
+function TextButton({ type, theme, children }: IButton) {
   return (
-    <button type={type} className={textButtonStyle(theme)}>
-      {text}
+    <button type={type} className={textButtonThemeStyle[theme]}>
+      {children}
     </button>
   );
 }

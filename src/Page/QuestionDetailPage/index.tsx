@@ -75,10 +75,14 @@ function QuestionDetailPage() {
 
         <div className={buttonListStyle}>
           <Link to={`/result/${problemData.id}`}>
-            <TextButton text="제출하기" type={BUTTON_TYPE.SUBMIT} theme={BUTTON_THEME.PRIMARY} />
+            <TextButton type={BUTTON_TYPE.SUBMIT} theme={BUTTON_THEME.PRIMARY}>
+              제출하기
+            </TextButton>
           </Link>
           <Link to="/list">
-            <TextButton text="돌아가기" type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.SECONDARY} />
+            <TextButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.SECONDARY}>
+              돌아가기
+            </TextButton>
           </Link>
         </div>
       </main>
