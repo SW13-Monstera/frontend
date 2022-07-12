@@ -24,7 +24,7 @@ export const [buttonThemeClass, vars] = createTheme({
       height: '66px',
     },
     large: {
-      width: '500px',
+      width: '504px',
       height: '70px',
     },
     icon: {

@@ -53,6 +53,7 @@ li {
 input {
   border: none;
   font-size: 14px;
+  padding: 0;
 }
 em {
   font-weight: bold;

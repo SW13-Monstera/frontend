@@ -1,8 +1,13 @@
 export interface IButton {
   type: TButtonType;
+  theme?: TButtonTheme;
+  size?: TButtonSize;
+  children: JSX.Element | string;
+}
+
+export interface IButtonDetail extends IButton {
   theme: TButtonTheme;
   size: TButtonSize;
-  children: JSX.Element | string;
 }
 
 export const BUTTON_TYPE = { SUBMIT: 'submit', BUTTON: 'button', RESET: 'reset' } as const;

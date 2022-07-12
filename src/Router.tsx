@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MainPage, QuestionListPage, QuestionDetailPage, ResultPage } from './Page';
+import JoinPage from './Page/JoinPage';
 import NicknamePage from './Page/NicknamePage';
 
 function Router() {
@@ -10,6 +11,7 @@ function Router() {
         <Route path='/list' element={<QuestionListPage />} />
         <Route path='/list/:id' element={<QuestionDetailPage />} />
         <Route path='/result/:id' element={<ResultPage />} />
+        <Route path='/join' element={<JoinPage />} />
         <Route path='/join/nickname' element={<NicknamePage />} />
       </Routes>
     </BrowserRouter>
