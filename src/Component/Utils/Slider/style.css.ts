@@ -14,4 +14,9 @@ export const sliderContainerStyle = style({
   backgroundColor: '#000000',
 });
 
-export const slideStyle = style({});
+export const slideStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
