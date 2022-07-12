@@ -20,7 +20,7 @@ import AnswerInput from '../../Component/Box/InputBox/AnswerInput';
 import { Link, useLocation } from 'react-router-dom';
 import { listData } from '../../data';
 import Tag from '../../Component/Box/TagBox';
-import { BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { IProblemIdLinkState } from '../../types/problem';
 
@@ -72,12 +72,20 @@ function QuestionDetailPage() {
 
         <div className={buttonListStyle}>
           <Link to={`/result/${problemData.id}`} state={{ problemId: problemData.id }}>
-            <TextButton type={BUTTON_TYPE.SUBMIT} theme={BUTTON_THEME.PRIMARY}>
+            <TextButton
+              type={BUTTON_TYPE.SUBMIT}
+              theme={BUTTON_THEME.PRIMARY}
+              size={BUTTON_SIZE.MEDIUM}
+            >
               제출하기
             </TextButton>
           </Link>
           <Link to='/list'>
-            <TextButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.SECONDARY}>
+            <TextButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.SECONDARY}
+              size={BUTTON_SIZE.MEDIUM}
+            >
               돌아가기
             </TextButton>
           </Link>
