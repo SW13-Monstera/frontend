@@ -2,11 +2,11 @@
 
 import { css } from '@emotion/react';
 
-interface ITag {
+interface ITagBox {
   name: string;
 }
 
-function Tag({ name }: ITag) {
+function TagBox({ name }: ITagBox) {
   return <li css={tagStyle}>{name}</li>;
 }
 
@@ -30,4 +30,4 @@ const tagStyle = css`
   text-align: center;
 `;
 
-export default Tag;
+export default TagBox;

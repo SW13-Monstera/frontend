@@ -15,7 +15,6 @@ function Header() {
       </Link>
       <div css={navStyle}>
         <Link to='/list'>문제</Link>
-        <p>고득점 문제 kit</p>
       </div>
       <div css={menuStyle}>
         <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
@@ -67,6 +66,11 @@ const menuStyle = css`
   justify-content: right;
   gap: 15%;
   padding: 1.25rem;
+
+  svg path {
+    fill: white;
+    stroke: white;
+  }
 `;
 
 export default Header;

@@ -3,14 +3,14 @@
 import { css } from '@emotion/react';
 import SearchInputBox from '../Component/Box/InputBox/SearchInputBox';
 import QuestionListElementBox from '../Component/Box/QuestionListElementBox';
-import Tag from '../Component/Tag';
+import TagBox from '../Component/Box/TagBox';
 import Dropdown from '../Component/Utils/Dropdown';
 import Slider from '../Component/Utils/Slider';
 import { TAGLIST } from '../constants';
 import { listData } from '../data';
 import useStore from '../hooks/useStore';
 import Header from '../Template/Header';
-import { IQuetionListElement } from '../types';
+import { IProblem } from '../types/problem';
 
 function QuestionListPage() {
   const { checkedTags, handleCheckedTags } = useStore();
@@ -36,14 +36,14 @@ function QuestionListPage() {
             </div>
             <ul css={checkedTagListStyle}>
               {[...checkedTags].map((tagName) => (
-                <Tag name={tagName} key={tagName} />
+                <TagBox name={tagName} key={tagName} />
               ))}
             </ul>
           </div>
         </aside>
 
         <div css={questionListStyle}>
-          {listData.map((e: IQuetionListElement) => (
+          {listData.map((e: IProblem) => (
             <QuestionListElementBox
               title={e.title}
               numberSolved={e.numberSolved}

@@ -2,7 +2,7 @@
 
 import { css } from '@emotion/react';
 import { ChangeEvent, useState } from 'react';
-import { IDropdownElement } from '../../../types';
+import { IDropdownElement } from '../../../types/util';
 
 interface IDropdownComponentProps extends IDropdownElement {
   handleCheckedTags: (name: string, isChecked: boolean) => void;
@@ -18,7 +18,7 @@ function DropdownElement({ id, name, handleCheckedTags }: IDropdownComponentProp
 
   return (
     <li css={dropdownContentElementStyle}>
-      <input type="checkbox" name={name} id={id} onChange={checkHandler} />
+      <input type='checkbox' name={name} id={id} onChange={checkHandler} />
       <label htmlFor={id}>{name}</label>
     </li>
   );
