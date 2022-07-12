@@ -28,3 +28,8 @@ export const textButtonThemeStyle = styleVariants({
     { backgroundColor: vars.color.secondary.back, color: vars.color.secondary.text },
   ],
 });
+
+export const textButtonSizeStyle = styleVariants({
+  medium: [{ width: vars.size.medium.width, height: vars.size.medium.height }],
+  large: [{ width: vars.size.large.width, height: vars.size.large.height }],
+});
