@@ -6,7 +6,7 @@ import ProblemTitle from '../../Component/Utils/ProblemTitle';
 import { listData } from '../../data';
 import { scoringResult } from '../../data/scoringResult';
 import Header from '../../Template/Header';
-import { BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { IProblemIdLinkState } from '../../types/problem';
 import {
   buttonListStyle,
@@ -62,12 +62,20 @@ function ResultPage() {
         </div>
         <div className={buttonListStyle}>
           <Link to={`/list/${problemData.id}`} state={{ problemId: problemData.id }}>
-            <TextButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
+            <TextButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.PRIMARY}
+              size={BUTTON_SIZE.MEDIUM}
+            >
               다시 풀기
             </TextButton>
           </Link>
           <Link to='/list'>
-            <TextButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.SECONDARY}>
+            <TextButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.SECONDARY}
+              size={BUTTON_SIZE.MEDIUM}
+            >
               돌아가기
             </TextButton>
           </Link>
