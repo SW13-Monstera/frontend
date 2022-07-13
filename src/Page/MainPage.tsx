@@ -1,11 +1,11 @@
-import Slider from '../Component/Utils/Slider';
+import DefaultSlider from '../Component/Utils/DefaultSlider';
 import Header from '../Template/Header';
 
 function MainPage() {
   return (
     <>
       <Header />
-      <Slider />
+      <DefaultSlider />
     </>
   );
 }

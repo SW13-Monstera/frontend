@@ -12,7 +12,7 @@ const items = [
   },
 ];
 
-function Slider() {
+function DefaultSlider() {
   return (
     <Carousel className={sliderContainerStyle}>
       {items.map((item) => (
@@ -24,4 +24,4 @@ function Slider() {
     </Carousel>
   );
 }
-export default Slider;
+export default DefaultSlider;

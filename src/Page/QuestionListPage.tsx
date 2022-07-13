@@ -5,20 +5,20 @@ import SearchInputBox from '../Component/Box/InputBox/SearchInputBox';
 import QuestionListElementBox from '../Component/Box/QuestionListElementBox';
 import TagBox from '../Component/Box/TagBox';
 import Dropdown from '../Component/Utils/Dropdown';
-import Slider from '../Component/Utils/Slider';
+import DefaultSlider from '../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../constants';
 import { listData } from '../data';
-import useStore from '../hooks/useStore';
+import { useCheckedTagsStore } from '../hooks/useStore';
 import Header from '../Template/Header';
 import { IProblem } from '../types/problem';
 
 function QuestionListPage() {
-  const { checkedTags, handleCheckedTags } = useStore();
+  const { checkedTags, handleCheckedTags } = useCheckedTagsStore();
 
   return (
     <>
       <Header />
-      <Slider />
+      <DefaultSlider />
       <main css={pageMainStyle}>
         <aside css={asideStyle}>
           <SearchInputBox />
