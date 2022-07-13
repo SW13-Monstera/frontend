@@ -1,8 +1,9 @@
 export interface IButton {
   type: TButtonType;
+  children: JSX.Element | string;
   theme?: TButtonTheme;
   size?: TButtonSize;
-  children: JSX.Element | string;
+  onClick?: () => void;
 }
 
 export interface IButtonDetail extends IButton {
