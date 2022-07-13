@@ -16,17 +16,20 @@ import {
   buttonListStyle,
 } from './style.css';
 import './gutter.css';
-import AnswerInput from '../../Component/Box/InputBox/AnswerInput';
+import AnswerInput from '../../Component/Box/InputBox/AnswerInputBox';
 import { Link, useLocation } from 'react-router-dom';
 import { listData } from '../../data';
 import Tag from '../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { IProblemIdLinkState } from '../../types/problem';
+import { useAuthStore } from '../../hooks/useStore';
 
 function QuestionDetailPage() {
   const state = useLocation().state as IProblemIdLinkState;
   const problemData = listData[state.problemId];
+
+  const { isLogin } = useAuthStore();
 
   return (
     <>
@@ -71,15 +74,25 @@ function QuestionDetailPage() {
         </div>
 
         <div className={buttonListStyle}>
-          <Link to={`/result/${problemData.id}`} state={{ problemId: problemData.id }}>
+          {isLogin ? (
+            <Link to={`/result/${problemData.id}`} state={{ problemId: problemData.id }}>
+              <TextButton
+                type={BUTTON_TYPE.SUBMIT}
+                theme={BUTTON_THEME.PRIMARY}
+                size={BUTTON_SIZE.MEDIUM}
+              >
+                제출하기
+              </TextButton>
+            </Link>
+          ) : (
             <TextButton
               type={BUTTON_TYPE.SUBMIT}
               theme={BUTTON_THEME.PRIMARY}
               size={BUTTON_SIZE.MEDIUM}
             >
-              제출하기
+              로그인
             </TextButton>
-          </Link>
+          )}
           <Link to='/list'>
             <TextButton
               type={BUTTON_TYPE.BUTTON}

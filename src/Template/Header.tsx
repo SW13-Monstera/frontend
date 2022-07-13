@@ -4,10 +4,18 @@ import { Link, Outlet } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { ReactComponent as AlarmIcon } from '../assets/icons/alarm-icon.svg';
 import { ReactComponent as MyPageIcon } from '../assets/icons/mypage-icon.svg';
-import IconButton from '../Component/Button/IconButton';
 import { BUTTON_THEME } from '../types/button';
+import { useAuthStore } from '../hooks/useStore';
+import { useEffect } from 'react';
+import { IconButton, TransparentButton } from '../Component/Button';
 
 function Header() {
+  const { isLogin, setIsLogin } = useAuthStore();
+
+  function handleLoginState() {
+    setIsLogin();
+  }
+
   return (
     <header css={headerStyle}>
       <Link to='/'>
@@ -17,12 +25,30 @@ function Header() {
         <Link to='/list'>문제</Link>
       </div>
       <div css={menuStyle}>
-        <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
-          <AlarmIcon />
-        </IconButton>
-        <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
-          <MyPageIcon />
-        </IconButton>
+        {isLogin ? (
+          <>
+            <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
+              <AlarmIcon />
+            </IconButton>
+            <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
+              <MyPageIcon />
+            </IconButton>
+          </>
+        ) : (
+          <>
+            <TransparentButton
+              type='button'
+              onClick={handleLoginState}
+              theme={'primary'}
+              size={'medium'}
+            >
+              로그인
+            </TransparentButton>
+            <TransparentButton type='button' theme={'primary'} size={'medium'}>
+              회원가입
+            </TransparentButton>
+          </>
+        )}
       </div>
       <Outlet />
     </header>

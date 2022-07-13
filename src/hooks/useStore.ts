@@ -5,7 +5,12 @@ interface ICheckedTags {
   handleCheckedTags: (name: string, isChecked: boolean) => void;
 }
 
-const useStore = create<ICheckedTags>((set) => ({
+interface IAuth {
+  isLogin: boolean;
+  setIsLogin: () => void;
+}
+
+const useCheckedTagsStore = create<ICheckedTags>((set) => ({
   checkedTags: new Set<string>(),
   handleCheckedTags: (name: string, isChecked: boolean) =>
     set((state: ICheckedTags) => ({
@@ -15,4 +20,9 @@ const useStore = create<ICheckedTags>((set) => ({
     })),
 }));
 
-export default useStore;
+const useAuthStore = create<IAuth>((set) => ({
+  isLogin: false,
+  setIsLogin: () => set((state) => ({ isLogin: !state.isLogin })),
+}));
+
+export { useCheckedTagsStore, useAuthStore };
