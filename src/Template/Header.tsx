@@ -6,18 +6,17 @@ import { ReactComponent as AlarmIcon } from '../assets/icons/alarm-icon.svg';
 import { ReactComponent as MyPageIcon } from '../assets/icons/mypage-icon.svg';
 import { BUTTON_THEME } from '../types/button';
 import { useAuthStore } from '../hooks/useStore';
-import { useEffect } from 'react';
 import { IconButton, TransparentButton } from '../Component/Button';
+import useLoginModal from '../hooks/useLoginModal';
+import LoginModal from '../Component/Utils/Modal/LoginModal';
 
 function Header() {
-  const { isLogin, setIsLogin } = useAuthStore();
-
-  function handleLoginState() {
-    setIsLogin();
-  }
+  const { isLogin } = useAuthStore();
+  const { isLoginModalOpen, openLoginModal, closeLoginModal } = useLoginModal();
 
   return (
     <header css={headerStyle}>
+      <LoginModal isModalOpen={isLoginModalOpen} closeModal={closeLoginModal}></LoginModal>
       <Link to='/'>
         <div css={logoStyle}>CS Broker</div>
       </Link>
@@ -38,15 +37,17 @@ function Header() {
           <>
             <TransparentButton
               type='button'
-              onClick={handleLoginState}
+              onClick={openLoginModal}
               theme={'primary'}
               size={'medium'}
             >
               로그인
             </TransparentButton>
-            <TransparentButton type='button' theme={'primary'} size={'medium'}>
-              회원가입
-            </TransparentButton>
+            <Link to='/join'>
+              <TransparentButton type='button' theme={'primary'} size={'medium'}>
+                회원가입
+              </TransparentButton>
+            </Link>
           </>
         )}
       </div>
