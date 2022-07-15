@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import KeywordBox from '../../Component/Box/KeywordBox';
 import TextBox from '../../Component/Box/TextBox';
 import TextButton from '../../Component/Button/TextButton';
-import ProblemTitle from '../../Component/Utils/ProblemTitle';
+import ProblemTitle from '../../Organism/ProblemTitle';
 import { listData } from '../../data';
 import { scoringResult } from '../../data/scoringResult';
 import Header from '../../Template/Header';

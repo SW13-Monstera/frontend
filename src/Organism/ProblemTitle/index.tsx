@@ -1,5 +1,5 @@
-import { IProblem } from '../../../types/problem';
-import TagBox from '../../Box/TagBox';
+import { IProblem } from '../../types/problem';
+import TagBox from '../../Component/Box/TagBox';
 import { descStyle, statisticsStyle, titleStyle, titleTagStyle, topStyle } from './style.css';
 
 function ProblemTitle({

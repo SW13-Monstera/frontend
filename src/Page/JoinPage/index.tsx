@@ -1,20 +1,9 @@
 import DefaultInputBox from '../../Component/Box/InputBox/DefaultInputBox';
-import OAuthButton, { OAUTH } from '../../Component/Button/OAuthButton';
 import TextButton from '../../Component/Button/TextButton';
 import Header from '../../Template/Header';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import {
-  horizontalLineStyle,
-  inputListStyle,
-  oauthButtonListStyle,
-  oauthJoinStyle,
-  oauthJoinWrapperStyle,
-  pageStyle,
-  titleStyle,
-} from './style.css';
-
-import githubLogo from '../../assets/images/github.png';
-import googleLogo from '../../assets/images/google.png';
+import { inputListStyle, pageStyle, titleStyle } from './style.css';
+import HorizontalOAuthButtonList from '../../Organism/ButtonList/HorizontalOAuthButtonList';
 
 function JoinPage() {
   return (
@@ -39,21 +28,7 @@ function JoinPage() {
         <TextButton type={BUTTON_TYPE.SUBMIT} theme={BUTTON_THEME.PRIMARY} size={BUTTON_SIZE.LARGE}>
           회원가입
         </TextButton>
-        <div className={oauthJoinWrapperStyle}>
-          <div className={oauthJoinStyle}>
-            <div className={horizontalLineStyle} />
-            <p>간편 회원가입</p>
-            <div className={horizontalLineStyle} />
-          </div>
-          <div className={oauthButtonListStyle}>
-            <OAuthButton oAuth={OAUTH.GITHUB} type={BUTTON_TYPE.SUBMIT}>
-              <img src={githubLogo} />
-            </OAuthButton>
-            <OAuthButton oAuth={OAUTH.GOOGLE} type={BUTTON_TYPE.SUBMIT}>
-              <img src={googleLogo} />
-            </OAuthButton>
-          </div>
-        </div>
+        <HorizontalOAuthButtonList>간편 회원가입</HorizontalOAuthButtonList>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import { answerInputContentStyle, answerInputStyle, answerInputTitleStyle } from './style.css';
 
-function AnswerInput() {
+function AnswerInputBox() {
   return (
     <div className={answerInputStyle}>
       <label htmlFor='answer' className={answerInputTitleStyle}>
@@ -10,4 +10,4 @@ function AnswerInput() {
     </div>
   );
 }
-export default AnswerInput;
+export default AnswerInputBox;
