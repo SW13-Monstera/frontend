@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { ReactComponent as AlarmIcon } from '../assets/icons/alarm-icon.svg';
 import { ReactComponent as MyPageIcon } from '../assets/icons/mypage-icon.svg';
-import { BUTTON_THEME } from '../types/button';
+import { BUTTON_THEME, BUTTON_TYPE } from '../types/button';
 import { useAuthStore } from '../hooks/useStore';
 import { IconButton, TransparentButton } from '../Component/Button';
 import useLoginModal from '../hooks/useLoginModal';
@@ -26,17 +26,17 @@ function Header() {
       <div css={menuStyle}>
         {isLogin ? (
           <>
-            <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
+            <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
               <AlarmIcon />
             </IconButton>
-            <IconButton type={'button'} theme={BUTTON_THEME.PRIMARY}>
+            <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
               <MyPageIcon />
             </IconButton>
           </>
         ) : (
           <>
             <TransparentButton
-              type='button'
+              type={BUTTON_TYPE.BUTTON}
               onClick={openLoginModal}
               theme={'primary'}
               size={'medium'}
@@ -44,7 +44,7 @@ function Header() {
               로그인
             </TransparentButton>
             <Link to='/join'>
-              <TransparentButton type='button' theme={'primary'} size={'medium'}>
+              <TransparentButton type={BUTTON_TYPE.BUTTON}theme={'primary'} size={'medium'}>
                 회원가입
               </TransparentButton>
             </Link>

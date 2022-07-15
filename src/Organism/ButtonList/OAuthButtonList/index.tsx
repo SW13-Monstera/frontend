@@ -7,10 +7,10 @@ import { oauthButtonListStyle } from './style.css';
 function OAuthButtonList() {
   return (
     <div className={oauthButtonListStyle}>
-      <OAuthButton oAuth={OAUTH.GITHUB} type={BUTTON_TYPE.SUBMIT}>
+      <OAuthButton oAuth={OAUTH.GITHUB}>
         <img src={githubLogo} />
       </OAuthButton>
-      <OAuthButton oAuth={OAUTH.GOOGLE} type={BUTTON_TYPE.SUBMIT}>
+      <OAuthButton oAuth={OAUTH.GOOGLE}>
         <img src={googleLogo} />
       </OAuthButton>
     </div>
