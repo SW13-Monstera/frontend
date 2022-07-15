@@ -44,7 +44,7 @@ function Header() {
               로그인
             </TransparentButton>
             <Link to='/join'>
-              <TransparentButton type={BUTTON_TYPE.BUTTON}theme={BUTTON_THEME.PRIMARY} size={BUTTON_SIZE.MEDIUM}>
+              <TransparentButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} size={BUTTON_SIZE.MEDIUM}>
                 회원가입
               </TransparentButton>
             </Link>
