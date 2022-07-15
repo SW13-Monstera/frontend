@@ -24,7 +24,7 @@ function LoginForm({ closeModal }: ILoginForm) {
         <label htmlFor='id'></label>
         <DefaultInputBox id='id' placeholder='아이디를 입력해주세요' />
         <label htmlFor='pw'></label>
-        <DefaultInputBox id='pw' placeholder='아이디를 입력해주세요' />
+        <DefaultInputBox id='pw' placeholder='비밀번호를 입력해주세요' />
       </div>
       <TextButton
         theme={BUTTON_THEME.PRIMARY}
