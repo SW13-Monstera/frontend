@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { ReactComponent as AlarmIcon } from '../assets/icons/alarm-icon.svg';
 import { ReactComponent as MyPageIcon } from '../assets/icons/mypage-icon.svg';
-import { BUTTON_THEME, BUTTON_TYPE } from '../types/button';
+import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../types/button';
 import { useAuthStore } from '../hooks/useStore';
 import { IconButton, TransparentButton } from '../Component/Button';
 import useLoginModal from '../hooks/useLoginModal';
@@ -38,13 +38,13 @@ function Header() {
             <TransparentButton
               type={BUTTON_TYPE.BUTTON}
               onClick={openLoginModal}
-              theme={'primary'}
-              size={'medium'}
+              theme={BUTTON_THEME.PRIMARY}
+              size={BUTTON_SIZE.MEDIUM}
             >
               로그인
             </TransparentButton>
             <Link to='/join'>
-              <TransparentButton type={BUTTON_TYPE.BUTTON}theme={'primary'} size={'medium'}>
+              <TransparentButton type={BUTTON_TYPE.BUTTON}theme={BUTTON_THEME.PRIMARY} size={BUTTON_SIZE.MEDIUM}>
                 회원가입
               </TransparentButton>
             </Link>

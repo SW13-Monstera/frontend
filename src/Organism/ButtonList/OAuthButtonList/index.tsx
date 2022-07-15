@@ -1,5 +1,4 @@
 import OAuthButton, { OAUTH } from '../../../Component/Button/OAuthButton';
-import { BUTTON_TYPE } from '../../../types/button';
 import githubLogo from '../../../assets/images/github.png';
 import googleLogo from '../../../assets/images/google.png';
 import { oauthButtonListStyle } from './style.css';
