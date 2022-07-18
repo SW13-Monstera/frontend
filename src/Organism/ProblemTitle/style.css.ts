@@ -16,15 +16,20 @@ export const pageStyle = style({
 });
 
 export const topStyle = style({
+  boxSizing: 'border-box',
+
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'space-between',
 
   width: '100%',
-  height: '10vh',
+
+  padding: '0.5rem',
 });
 
 export const descStyle = style({
+  boxSizing: 'border-box',
+
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
@@ -32,6 +37,8 @@ export const descStyle = style({
 });
 
 export const titleTagStyle = style({
+  boxSizing: 'border-box',
+
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

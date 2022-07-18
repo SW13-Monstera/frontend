@@ -16,8 +16,8 @@ const keywordBoxStyle = (isIncluded: boolean) => css`
   align-items: center;
   justify-content: center;
 
-  width: 110px;
-  height: 43px;
+  width: 6.875rem;
+  height: 2.6875rem;
 
   background-color: ${isIncluded ? '#FF6D6D' : '#d9d9d9'};
   border-radius: 10px;

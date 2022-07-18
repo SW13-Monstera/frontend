@@ -8,7 +8,7 @@ export const pageStyle = style({
   justifyContent: 'start',
   gap: '2rem',
 
-  padding: '40px 110px 40px 110px',
+  padding: '2.5rem 6.875rem 2.5rem 6.875rem',
 });
 
 export const pageContentStyle = style({
@@ -50,11 +50,12 @@ export const textStyle = style({
 export const keywordListStyle = style({
   boxSizing: 'border-box',
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, minmax(110px, 1fr))',
+  gridAutoFlow: 'column',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(6.875rem, 1fr))',
   gridGap: '0.2rem',
 
   justifyItems: 'center',
-  gap: '15px',
+  gap: '0.9375rem',
 });
 
 export const contentStyle = style({
