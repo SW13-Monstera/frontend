@@ -6,3 +6,8 @@ export const oauthButtonListStyle = style({
   justifyContent: 'center',
   gap: '1.5rem',
 });
+
+export const oAuthImgStyle = style({
+  width: '2.5rem',
+  height: '2.5rem',
+});

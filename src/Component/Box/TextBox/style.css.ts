@@ -11,6 +11,6 @@ export const textBoxStyle = style({
   backgroundColor: '#F5F5F5',
   borderRadius: '10px',
 
-  width: 'fit-content',
-  height: 'fit-content',
+  width: '100%',
+  height: '100%',
 });

@@ -11,8 +11,8 @@ export const transparentButtonStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '700',
-  fontSize: '24px',
-  lineHeight: '29px',
+  fontSize: '1rem',
+  lineHeight: '1rem',
 
   color: 'white',
   background: 'transparent',

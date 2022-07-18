@@ -20,15 +20,15 @@ export const [buttonThemeClass, vars] = createTheme({
   },
   size: {
     medium: {
-      width: '148px',
-      height: '66px',
+      width: '9.25rem',
+      height: '4.125rem',
     },
     large: {
-      width: '504px',
-      height: '70px',
+      width: '31.5rem',
+      height: '4.375rem',
     },
     icon: {
-      length: '50px',
+      length: '3.125rem',
     },
   },
   border: {

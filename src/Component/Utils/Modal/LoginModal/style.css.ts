@@ -9,8 +9,8 @@ export const modalStyle = {
     right: 'auto',
     bottom: 'auto',
 
-    width: '50%',
-    height: '30%',
+    width: 'fit-content',
+    height: 'fit-content',
 
     background: '#FFFFFF',
     border: 'none',
@@ -22,5 +22,6 @@ export const modalStyle = {
   overlay: {
     background: 'rgba(38, 38, 38, 0.15)',
     backdropFilter: 'blur(10px)',
+    zIndex: '999',
   },
 };
