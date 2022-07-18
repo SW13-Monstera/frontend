@@ -22,5 +22,6 @@ export const modalStyle = {
   overlay: {
     background: 'rgba(38, 38, 38, 0.15)',
     backdropFilter: 'blur(10px)',
+    zIndex: '999',
   },
 };
