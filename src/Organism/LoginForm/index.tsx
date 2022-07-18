@@ -1,5 +1,4 @@
 import { DefaultInputBox } from '../../Component/Box';
-import { ReactComponent as Logo } from '../../assets/images/csbroker.svg';
 import { loginFormContentStyle, loginFormStyle, logoStyle } from './style.css';
 import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
