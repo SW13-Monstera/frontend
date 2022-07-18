@@ -67,7 +67,7 @@ const pageMainStyle = css`
   width: 100%;
   height: 100%;
 
-  padding: 40px;
+  padding: 2.5rem;
 `;
 
 const asideStyle = css`
@@ -114,7 +114,7 @@ const dropdownListStyle = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
 `;
 
 const checkedTagListStyle = css`

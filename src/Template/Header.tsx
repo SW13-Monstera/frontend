@@ -21,16 +21,16 @@ function Header() {
         <div css={logoStyle}>CS Broker</div>
       </Link>
       <div css={navStyle}>
-        <Link to='/list'>문제</Link>
+        <Link to='/list'>모든 문제</Link>
       </div>
       <div css={menuStyle}>
         {isLogin ? (
           <>
             <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
-              <AlarmIcon />
+              <AlarmIcon css={iconButtonStyle} />
             </IconButton>
             <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
-              <MyPageIcon />
+              <MyPageIcon css={iconButtonStyle} />
             </IconButton>
           </>
         ) : (
@@ -44,7 +44,11 @@ function Header() {
               로그인
             </TransparentButton>
             <Link to='/join'>
-              <TransparentButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} size={BUTTON_SIZE.MEDIUM}>
+              <TransparentButton
+                type={BUTTON_TYPE.BUTTON}
+                theme={BUTTON_THEME.PRIMARY}
+                size={BUTTON_SIZE.MEDIUM}
+              >
                 회원가입
               </TransparentButton>
             </Link>
@@ -65,6 +69,8 @@ const headerStyle = css`
   width: 100%;
   height: 10%;
 
+  padding-top: 1rem;
+
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
@@ -84,6 +90,12 @@ const navStyle = css`
   align-items: center;
   justify-content: space-between;
   gap: 2.5rem;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 `;
 
 const menuStyle = css`
@@ -91,13 +103,16 @@ const menuStyle = css`
   display: flex;
   align-items: center;
   justify-content: right;
-  gap: 15%;
-  padding: 1.25rem;
 
   svg path {
     fill: white;
     stroke: white;
   }
+`;
+
+const iconButtonStyle = css`
+  width: 2rem;
+  height: 2rem;
 `;
 
 export default Header;

@@ -43,7 +43,7 @@ const textBoxStyle = css`
   border: 1px solid #d9d9d9;
   border-radius: 10px;
 
-  padding: 0 0.625rem 0 0.625rem;
+  padding: 0.625rem;
 `;
 
 const textBoxMainStyle = css`
