@@ -103,6 +103,7 @@ const menuStyle = css`
   display: flex;
   align-items: center;
   justify-content: right;
+  gap: 1rem;
 
   svg path {
     fill: white;

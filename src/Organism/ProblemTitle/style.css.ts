@@ -42,14 +42,14 @@ export const titleStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '700',
-  fontSize: '40px',
-  lineHeight: '48px',
+  fontSize: '2.5rem',
+  lineHeight: '3rem',
 });
 
 export const statisticsStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '400',
-  fontSize: '20px',
-  lineHeight: '24px',
+  fontSize: '1.25rem',
+  lineHeight: '1.5rem',
 });

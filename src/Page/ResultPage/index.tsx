@@ -10,11 +10,10 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { IProblemIdLinkState } from '../../types/problem';
 import {
   buttonListStyle,
+  contentStyle,
   keywordListStyle,
-  myAnswerContentStyle,
   pageContentStyle,
   pageStyle,
-  providedAnswerStyle,
   subtitleStyle,
   textStyle,
 } from './style.css';
@@ -39,7 +38,7 @@ function ResultPage() {
         />
         <div className={pageContentStyle}>
           <TextBox>
-            <div className={myAnswerContentStyle}>
+            <div className={contentStyle}>
               <h3 className={subtitleStyle}>내 답안</h3>
               <ul className={keywordListStyle}>
                 {problemData.keywordList?.map((keyword) => (
@@ -54,7 +53,7 @@ function ResultPage() {
             </div>
           </TextBox>
           <TextBox>
-            <div className={providedAnswerStyle}>
+            <div className={contentStyle}>
               <h3 className={subtitleStyle}>모범 답안</h3>
               <p className={textStyle}>{problemData.answer}</p>
             </div>

@@ -25,8 +25,8 @@ const keywordBoxStyle = (isIncluded: boolean) => css`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 1rem;
+  line-height: 1.1875rem;
   display: flex;
   align-items: center;
   text-align: center;

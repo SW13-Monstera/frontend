@@ -30,7 +30,6 @@ export const topStyle = style({
   justifyContent: 'space-between',
 
   width: '100%',
-  height: '10vh',
 });
 
 export const descStyle = style({
@@ -51,25 +50,22 @@ export const titleStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '700',
-  fontSize: '40px',
-  lineHeight: '48px',
+  fontSize: '2.5rem',
+  lineHeight: '3rem',
 });
 
 export const statisticsStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '400',
-  fontSize: '20px',
-  lineHeight: '24px',
+  fontSize: '1.25rem',
+  lineHeight: '1.5rem',
 });
 
 export const questionContentStyle = style({
   display: 'flex',
-  width: '100%',
   height: '70vh',
   background: '#F5F5F5',
-
-  padding: '2rem',
 });
 
 export const splitStyle = style({
@@ -82,9 +78,7 @@ export const questionDescStyle = style({
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
-  gap: '40px',
-
-  padding: '2rem',
+  gap: '2.5rem',
 });
 
 export const answerInputStyle = style({
@@ -96,9 +90,8 @@ export const problemDescTitleStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '600',
-  fontSize: '24px',
-  lineHeight: '29px',
-  /* identical to box height */
+  fontSize: '1.5rem',
+  lineHeight: '1.8125rem',
 
   color: '#000000',
 });
@@ -107,8 +100,8 @@ export const problemDescContentStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '400',
-  fontSize: '20px',
-  lineHeight: '24px',
+  fontSize: '1.25rem',
+  lineHeight: '1.5rem',
 
   color: '#000000',
 });
