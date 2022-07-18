@@ -31,7 +31,7 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
     <div css={dropDownStyle} ref={menuRef}>
       <button css={dropdownBoxStyle} onClick={onClickDropdown} type={BUTTON_TYPE.BUTTON}>
         <p>{name} 선택</p>
-        <DownIcon />
+        <DownIcon css={downIconStyle} />
       </button>
       <div css={dropDownContentStyle(isOpen)}>
         <ul>
@@ -50,8 +50,9 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
 }
 
 const dropDownStyle = css`
+  box-sizing: border-box;
   position: relative;
-  width: 80%;
+  width: 100%;
 `;
 
 const dropdownBoxStyle = css`
@@ -60,16 +61,18 @@ const dropdownBoxStyle = css`
   justify-content: space-around;
 
   width: 100%;
-  height: 74.09px;
+  height: 4.6306rem;
 
   background: #ffffff;
-  border: 1px solid #d8d8d8;
-  border-radius: 10px;
+  border: 0.0625rem solid #d8d8d8;
+  border-radius: 0.625rem;
+
+  padding: 0.625rem;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.5rem;
 
   cursor: pointer;
@@ -88,7 +91,7 @@ const dropDownContentStyle = (isSelected: boolean) => css`
   width: 100%;
 
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 0.625rem;
 
   font-family: 'Inter';
   font-style: normal;
@@ -96,9 +99,13 @@ const dropDownContentStyle = (isSelected: boolean) => css`
   font-size: 1rem;
   line-height: 1.25rem;
 
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25));
 
   z-index: 1;
+`;
+
+const downIconStyle = css`
+  width: 1.5rem;
 `;
 
 export default Dropdown;

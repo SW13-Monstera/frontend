@@ -5,7 +5,6 @@ export const sliderContainerStyle = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '300px',
   width: '100%',
   height: '30vh',
   margin: 'auto',

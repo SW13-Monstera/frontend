@@ -15,8 +15,8 @@ const tagStyle = css`
   align-items: center;
   justify-content: center;
 
-  width: 70px;
-  height: 25px;
+  width: 56px;
+  height: 24px;
 
   background: #fff1cd;
   border-radius: 10px;
@@ -24,10 +24,16 @@ const tagStyle = css`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 0.75rem;
-  line-height: inherit;
+  font-size: 0.5rem;
 
   text-align: center;
+
+  padding: 0.0313rem;
+
+  @media screen and (max-width: 600px) {
+    width: 56px;
+    height: 20px;
+  }
 `;
 
 export default TagBox;

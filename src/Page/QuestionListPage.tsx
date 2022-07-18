@@ -62,8 +62,7 @@ function QuestionListPage() {
 
 const pageMainStyle = css`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  box-sizing: border-box;
 
   width: 100%;
   height: 100%;
@@ -72,23 +71,25 @@ const pageMainStyle = css`
 `;
 
 const asideStyle = css`
+  box-sizing: border-box;
   position: fixed;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
 
-  width: fit-content;
-
-  left: 3%;
-  top: 35%;
+  width: 15.625rem;
+  height: 12.5rem;
 `;
 
 const filterStyle = css`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  gap: 1.25rem;
 
-  width: 284px;
+  width: 100%;
   height: fit-content;
 
   background: #f5f5f5;
@@ -102,41 +103,53 @@ const filterTitleStyle = css`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size: 1.75rem;
+  font-size: 1rem;
   line-height: 2rem;
 
   color: #000000;
 `;
 
 const dropdownListStyle = css`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  @media screen and (max-width: 600px) {
-    flex-direction: row;
-  }
 `;
 
 const checkedTagListStyle = css`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-  grid-gap: 10px;
+  box-sizing: border-box;
 
-  width: 50%;
-  align-self: center;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  grid-gap: 0.2rem;
+
+  justify-items: center;
 `;
 
 const questionListStyle = css`
+  box-sizing: border-box;
+  margin-left: 18.75rem;
+
+  width: 65%;
+
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px 50px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  @media screen and (max-width: 1600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 1100px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const listElementStyle = css`
-  grid-column: 1 / 2;
-  grid-row: 1;
+  flex: 1;
 `;
 
 export default QuestionListPage;

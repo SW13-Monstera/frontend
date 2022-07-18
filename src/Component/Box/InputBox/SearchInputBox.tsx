@@ -17,34 +17,40 @@ function SearchInputBox() {
 }
 
 const inputBoxStyle = css`
+  box-sizing: border-box;
+
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 30px;
+  gap: 1.875rem;
 
-  width: 284px;
-  height: 70px;
-  left: 239px;
-  top: 540px;
+  width: 100%;
+  height: 4.375rem;
 
-  background: #ffffff;
-  border: 1px solid #d9d9d9;
-  border-radius: 10px;
+  border: 0.0625rem solid #d9d9d9;
+  border-radius: 0.625rem;
 
-  padding: 0 20px 0 20px;
+  padding: 0 1.25rem 0 1.25rem;
 `;
 
 const inputTextBoxStyle = css`
-  width: 207px;
+  width: 100%;
   height: 24px;
 
   margin: 5px;
 
   border: none;
+
+  ::placeholder {
+    @media screen and (max-width: 600px) {
+      visibility: hidden;
+    }
+  }
 `;
 
 const searchButtonStyle = css`
-  margin: 5px;
+  width: 1.5rem;
+  margin: 0.3125rem;
   cursor: pointer;
 `;
 
