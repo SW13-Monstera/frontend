@@ -9,8 +9,8 @@ export const modalStyle = {
     right: 'auto',
     bottom: 'auto',
 
-    width: '50%',
-    height: '30%',
+    width: 'fit-content',
+    height: 'fit-content',
 
     background: '#FFFFFF',
     border: 'none',

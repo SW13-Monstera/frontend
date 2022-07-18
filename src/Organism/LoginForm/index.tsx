@@ -1,10 +1,11 @@
 import { DefaultInputBox } from '../../Component/Box';
 import { ReactComponent as Logo } from '../../assets/images/csbroker.svg';
-import { loginFormContentStyle, loginFormStyle } from './style.css';
+import { loginFormContentStyle, loginFormStyle, logoStyle } from './style.css';
 import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import HorizontalOAuthButtonList from '../ButtonList/HorizontalOAuthButtonList';
 import { useAuthStore } from '../../hooks/useStore';
+import CSBroker from '../../assets/images/cs broker.png';
 
 interface ILoginForm {
   closeModal: () => void;
@@ -17,9 +18,10 @@ function LoginForm({ closeModal }: ILoginForm) {
     setIsLogin();
     closeModal();
   }
+
   return (
     <div className={loginFormStyle}>
-      <Logo />
+      <img src={CSBroker} alt='logo' className={logoStyle} />
       <div className={loginFormContentStyle}>
         <label htmlFor='id'></label>
         <DefaultInputBox id='id' placeholder='아이디를 입력해주세요' />

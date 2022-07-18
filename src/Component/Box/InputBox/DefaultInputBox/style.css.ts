@@ -3,8 +3,8 @@ import { createTheme, style } from '@vanilla-extract/css';
 export const [inputBoxClass, inputVars] = createTheme({
   size: {
     medium: {
-      width: '500px',
-      height: '70px',
+      width: '31.25rem',
+      height: '4.375rem',
     },
   },
 });
@@ -19,16 +19,16 @@ export const defaultInputBoxStyle = style({
 
   'fontFamily': 'Inter',
   'fontWeight': '300',
-  'fontSize': '32px',
-  'lineHeight': '39px',
+  'fontSize': '2rem',
+  'lineHeight': '2.4375rem',
   'display': 'flex',
   'alignItems': 'center',
 
   '::placeholder': {
     fontFamily: 'Inter',
     fontWeight: '300',
-    fontSize: '20px',
-    lineHeight: '24px',
+    fontSize: '1.25rem',
+    lineHeight: '1.5rem',
 
     color: '#D8D8D8',
   },

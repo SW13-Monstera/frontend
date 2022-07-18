@@ -8,6 +8,11 @@ export const loginFormStyle = style({
   gap: '1.5rem',
 });
 
+export const logoStyle = style({
+  width: '20rem',
+  height: '5rem',
+});
+
 export const loginFormContentStyle = style({
   display: 'flex',
   flexDirection: 'column',
