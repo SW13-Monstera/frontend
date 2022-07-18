@@ -5,7 +5,7 @@ export const pageStyle = style({
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  gap: '30px',
+  gap: '1.875rem',
 
   boxSizing: 'border-box',
   width: '100vw',
@@ -17,8 +17,8 @@ export const titleStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '700',
-  fontSize: '32px',
-  lineHeight: '39px',
+  fontSize: '2rem',
+  lineHeight: '2.4375rem',
 
   textAlign: 'center',
 
@@ -33,8 +33,8 @@ export const inputListStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '400',
-  fontSize: '20px',
-  lineHeight: '24px',
+  fontSize: '1.25rem',
+  lineHeight: '1.5rem',
 
   color: '#000000',
 });
@@ -48,7 +48,7 @@ export const oauthJoinStyle = style({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
-  gap: '10px',
+  gap: '0.625rem',
 
   color: ' #D9D9D9',
   fontFamily: 'Inter',
@@ -61,7 +61,7 @@ export const oauthJoinStyle = style({
 });
 
 export const horizontalLineStyle = style({
-  width: '238px',
+  width: '14.875rem',
   borderTop: 'solid 1px #D9D9D9',
 });
 
