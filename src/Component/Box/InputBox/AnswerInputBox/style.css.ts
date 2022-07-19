@@ -12,8 +12,8 @@ export const answerInputTitleStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '600',
-  fontSize: '24px',
-  lineHeight: '29px',
+  fontSize: '1.5rem',
+  lineHeight: '1.8125rem',
   /* identical to box height */
 
   color: '#000000',
@@ -24,8 +24,8 @@ export const answerInputContentStyle = style({
   fontFamily: 'Inter',
   fontStyle: 'normal',
   fontWeight: '400',
-  fontSize: '20px',
-  lineHeight: '24px',
+  fontSize: '1.25rem',
+  lineHeight: '1.5rem',
 
   color: '#000000',
 
