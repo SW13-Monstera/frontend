@@ -6,7 +6,7 @@ export const modalStyle = {
     alignItems: 'center',
     justifyContent: 'center',
 
-    top: '30%',
+    top: '40%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
