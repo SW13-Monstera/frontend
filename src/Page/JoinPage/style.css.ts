@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
@@ -31,7 +32,7 @@ export const inputListStyle = style([
     flexDirection: 'column',
     gap: '1.5rem',
 
-    color: '#000000',
+    color: COLOR.TITLEACTIVE,
   },
 ]);
 
@@ -54,7 +55,7 @@ export const oauthJoinStyle = style([
 
 export const horizontalLineStyle = style({
   width: '14.875rem',
-  borderTop: 'solid 1px #D9D9D9',
+  borderTop: `solid 1px ${COLOR.GRAY}`,
 });
 
 export const oauthButtonListStyle = style({

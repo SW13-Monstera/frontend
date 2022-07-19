@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
@@ -40,7 +41,7 @@ export const titleTagStyle = style({
 export const questionContentStyle = style({
   display: 'flex',
   height: '70vh',
-  background: '#F5F5F5',
+  background: COLOR.OFFWHITE,
 });
 
 export const splitStyle = style({
@@ -64,14 +65,14 @@ export const answerInputStyle = style({
 export const problemDescTitleStyle = style([
   baseFontStyle.xlarge,
   {
-    color: '#000000',
+    color: COLOR.TITLEACTIVE,
   },
 ]);
 
 export const problemDescContentStyle = style([
   baseFontStyle.medium,
   {
-    color: '#000000',
+    color: COLOR.TITLEACTIVE,
   },
 ]);
 

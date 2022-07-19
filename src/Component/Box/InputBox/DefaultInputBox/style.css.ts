@@ -1,4 +1,5 @@
 import { createTheme, style } from '@vanilla-extract/css';
+import { COLOR } from '../../../../constants/color';
 import baseFontStyle from '../../../../styles/font.css';
 
 export const [inputBoxClass, inputVars] = createTheme({
@@ -19,8 +20,8 @@ export const defaultInputBoxStyle = style([
     'width': inputVars.size.medium.width,
     'height': inputVars.size.medium.height,
 
-    'color': '#000000',
-    'background': '#FFFFFF',
+    'color': COLOR.TITLEACTIVE,
+    'background': COLOR.WHITE,
     'border': '1px solid #D9D9D9',
     'borderRadius': '10px',
 
@@ -30,7 +31,7 @@ export const defaultInputBoxStyle = style([
       fontSize: '1.25rem',
       lineHeight: '1.5rem',
 
-      color: '#D8D8D8',
+      color: COLOR.GRAY,
     },
   },
 ]);

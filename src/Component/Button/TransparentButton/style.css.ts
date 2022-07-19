@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
 
 export const transparentButtonStyle = style([
@@ -11,7 +12,7 @@ export const transparentButtonStyle = style([
     width: 'fit-content',
     height: 'fit-content',
 
-    color: 'white',
+    color: COLOR.WHITE,
     background: 'transparent',
 
     whiteSpace: 'nowrap',

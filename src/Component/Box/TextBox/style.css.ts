@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../../constants/color';
 
 export const textBoxStyle = style({
   boxSizing: 'border-box',
@@ -7,8 +8,8 @@ export const textBoxStyle = style({
   alignItems: 'start',
   justifyContent: 'center',
 
-  color: '#000000',
-  backgroundColor: '#F5F5F5',
+  color: COLOR.TITLEACTIVE,
+  backgroundColor: COLOR.OFFWHITE,
   borderRadius: '10px',
 
   width: '100%',

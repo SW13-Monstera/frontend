@@ -1,3 +1,5 @@
+import { COLOR } from '../../../../constants/color';
+
 export const modalStyle = {
   content: {
     display: 'flex',
@@ -12,7 +14,7 @@ export const modalStyle = {
     width: 'fit-content',
     height: 'fit-content',
 
-    background: '#FFFFFF',
+    background: COLOR.WHITE,
     border: 'none',
     borderRadius: '10px',
 

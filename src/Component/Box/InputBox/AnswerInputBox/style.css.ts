@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../../../constants/color';
 import baseFontStyle from '../../../../styles/font.css';
 
 export const answerInputStyle = style({
@@ -12,7 +13,7 @@ export const answerInputStyle = style({
 export const answerInputTitleStyle = style([
   baseFontStyle.xlarge,
   {
-    color: '#000000',
+    color: COLOR.TITLEACTIVE,
   },
 ]);
 
@@ -22,6 +23,6 @@ export const answerInputContentStyle = style([
     width: '80%',
     height: '80%',
 
-    color: '#000000',
+    color: COLOR.TITLEACTIVE,
   },
 ]);

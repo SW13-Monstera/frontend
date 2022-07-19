@@ -1,4 +1,5 @@
 import { createTheme } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
 
 export const [buttonThemeClass, vars] = createTheme({
   display: {
@@ -8,15 +9,8 @@ export const [buttonThemeClass, vars] = createTheme({
     },
   },
   color: {
-    primary: { back: '#4682DB', text: '#ffffff' },
-    secondary: { back: '#D9D9D9', text: '#0000000' },
-  },
-  font: {
-    body: 'Inter',
-    style: 'normal',
-    weight: '400',
-    size: '1.5rem',
-    lineHeight: '1.5rem',
+    primary: { back: COLOR.PRIMARY, text: COLOR.WHITE },
+    secondary: { back: COLOR.GRAY, text: COLOR.TITLEACTIVE },
   },
   size: {
     medium: {

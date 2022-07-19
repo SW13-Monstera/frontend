@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
@@ -19,7 +20,7 @@ export const titleStyle = style([
   baseFontStyle.title,
   {
     textAlign: 'center',
-    color: '#000000',
+    color: COLOR.TITLEACTIVE,
   },
 ]);
 
@@ -27,6 +28,6 @@ export const descStyle = style([
   baseFontStyle.small,
   {
     textAlign: 'center',
-    color: '#000000',
+    color: COLOR.TITLEACTIVE,
   },
 ]);

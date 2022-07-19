@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
 
 export const oauthJoinWrapperStyle = style({
@@ -14,7 +15,7 @@ export const oauthJoinStyle = style([
     alignItems: 'center',
     gap: '10px',
 
-    color: ' #D9D9D9',
+    color: COLOR.GRAY,
 
     textAlign: 'center',
   },
