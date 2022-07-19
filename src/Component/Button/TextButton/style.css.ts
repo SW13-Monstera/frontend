@@ -1,4 +1,5 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import baseFontStyle from '../../../styles/font.css';
 import { vars } from '../theme.css';
 
 export const textButtonStyle = style({
@@ -20,10 +21,12 @@ export const textButtonStyle = style({
 
 export const textButtonThemeStyle = styleVariants({
   primary: [
+    baseFontStyle.large,
     textButtonStyle,
     { backgroundColor: vars.color.primary.back, color: vars.color.primary.text },
   ],
   secondary: [
+    baseFontStyle.large,
     textButtonStyle,
     { backgroundColor: vars.color.secondary.back, color: vars.color.secondary.text },
   ],
