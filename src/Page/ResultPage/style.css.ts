@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
@@ -25,27 +26,22 @@ export const pageContentStyle = style({
   },
 });
 
-export const subtitleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '2.25rem',
-  lineHeight: '2.75rem',
-  display: 'flex',
-  alignItems: 'center',
+export const subtitleStyle = style([
+  baseFontStyle.title,
+  {
+    display: 'flex',
+    alignItems: 'center',
 
-  color: '#000000',
-});
+    color: '#000000',
+  },
+]);
 
-export const textStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '1.25rem',
-  lineHeight: '1.5rem',
-
-  color: '#000000',
-});
+export const textStyle = style([
+  baseFontStyle.medium,
+  {
+    color: '#000000',
+  },
+]);
 
 export const keywordListStyle = style({
   boxSizing: 'border-box',

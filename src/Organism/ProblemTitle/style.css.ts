@@ -44,19 +44,3 @@ export const titleTagStyle = style({
   justifyContent: 'center',
   gap: '1.5rem',
 });
-
-export const titleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  fontSize: '2.5rem',
-  lineHeight: '3rem',
-});
-
-export const statisticsStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '1.25rem',
-  lineHeight: '1.5rem',
-});

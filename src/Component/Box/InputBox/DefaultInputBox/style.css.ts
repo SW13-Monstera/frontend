@@ -1,4 +1,5 @@
 import { createTheme, style } from '@vanilla-extract/css';
+import baseFontStyle from '../../../../styles/font.css';
 
 export const [inputBoxClass, inputVars] = createTheme({
   size: {
@@ -9,27 +10,27 @@ export const [inputBoxClass, inputVars] = createTheme({
   },
 });
 
-export const defaultInputBoxStyle = style({
-  'color': '#000000',
-  'background': '#FFFFFF',
-  'border': '1px solid #D9D9D9',
-  'borderRadius': '10px',
-  'width': inputVars.size.medium.width,
-  'height': inputVars.size.medium.height,
+export const defaultInputBoxStyle = style([
+  baseFontStyle.xlarge,
+  {
+    'display': 'flex',
+    'alignItems': 'center',
 
-  'fontFamily': 'Inter',
-  'fontWeight': '300',
-  'fontSize': '2rem',
-  'lineHeight': '2.4375rem',
-  'display': 'flex',
-  'alignItems': 'center',
+    'width': inputVars.size.medium.width,
+    'height': inputVars.size.medium.height,
 
-  '::placeholder': {
-    fontFamily: 'Inter',
-    fontWeight: '300',
-    fontSize: '1.25rem',
-    lineHeight: '1.5rem',
+    'color': '#000000',
+    'background': '#FFFFFF',
+    'border': '1px solid #D9D9D9',
+    'borderRadius': '10px',
 
-    color: '#D8D8D8',
+    '::placeholder': {
+      fontFamily: 'Inter',
+      fontWeight: '300',
+      fontSize: '1.25rem',
+      lineHeight: '1.5rem',
+
+      color: '#D8D8D8',
+    },
   },
-});
+]);

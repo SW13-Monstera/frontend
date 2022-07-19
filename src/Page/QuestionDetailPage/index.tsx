@@ -1,13 +1,10 @@
 import Header from '../../Template/Header';
 import Split from 'react-split';
 import {
-  themeClass,
   pageStyle,
   topStyle,
   descStyle,
   titleTagStyle,
-  titleStyle,
-  statisticsStyle,
   questionContentStyle,
   splitStyle,
   questionDescStyle,
@@ -24,6 +21,7 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { IProblemIdLinkState } from '../../types/problem';
 import { useAuthStore } from '../../hooks/useStore';
+import baseFontStyle from '../../styles/font.css';
 
 function QuestionDetailPage() {
   const state = useLocation().state as IProblemIdLinkState;
@@ -34,18 +32,18 @@ function QuestionDetailPage() {
   return (
     <>
       <Header />
-      <main className={`${themeClass} ${pageStyle}`}>
+      <main className={pageStyle}>
         <div className={topStyle}>
           <div className={descStyle}>
             <div className={titleTagStyle}>
-              <h1 className={titleStyle}>{problemData.title}</h1>
+              <h1 className={baseFontStyle.title}>{problemData.title}</h1>
               <ul>
                 {problemData.tagList.map((tagName) => (
                   <Tag name={tagName} key={tagName} />
                 ))}
               </ul>
             </div>
-            <div className={statisticsStyle}>
+            <div className={baseFontStyle.medium}>
               {`제출 : ${problemData.numberSolved}, 평균 점수 : ${problemData.averageScore}점, 최고점 : ${problemData.highestScore}점 , 최저점 : ${problemData.lowestScore}점`}
             </div>
           </div>

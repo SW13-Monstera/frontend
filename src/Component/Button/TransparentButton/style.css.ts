@@ -1,21 +1,19 @@
 import { style } from '@vanilla-extract/css';
+import baseFontStyle from '../../../styles/font.css';
 
-export const transparentButtonStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+export const transparentButtonStyle = style([
+  baseFontStyle.small,
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
 
-  width: 'fit-content',
-  height: 'fit-content',
+    width: 'fit-content',
+    height: 'fit-content',
 
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  fontSize: '1rem',
-  lineHeight: '1rem',
+    color: 'white',
+    background: 'transparent',
 
-  color: 'white',
-  background: 'transparent',
-
-  whiteSpace: 'nowrap',
-});
+    whiteSpace: 'nowrap',
+  },
+]);
