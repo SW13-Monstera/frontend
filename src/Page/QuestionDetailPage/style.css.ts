@@ -139,17 +139,17 @@ export const answerInputTitleStyle = style({
 });
 
 export const answerInputContentStyle = style({
-  'height': '90%',
-  'fontFamily': 'Inter',
-  'fontStyle': 'normal',
-  'fontWeight': '400',
-  'fontSize': '20px',
-  'lineHeight': '24px',
+  height: '90%',
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '20px',
+  lineHeight: '24px',
 
-  'color': vars.textColor,
-  'backgroundColor': vars.backgroundColor,
+  color: vars.textColor,
+  backgroundColor: vars.backgroundColor,
 
-  'width': '100%',
+  width: '100%',
 
   '::placeholder': {
     color: 'gray',

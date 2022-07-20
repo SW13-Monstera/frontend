@@ -12,11 +12,11 @@ export const pageStyle = style({
 });
 
 export const pageContentStyle = style({
-  'boxSizing': 'border-box',
-  'display': 'flex',
-  'alignItems': 'start',
-  'justifyContent': 'space-between',
-  'width': '100%',
+  boxSizing: 'border-box',
+  display: 'flex',
+  alignItems: 'start',
+  justifyContent: 'space-between',
+  width: '100%',
 
   '@media': {
     'screen and (max-width: 1100px)': {
@@ -59,18 +59,18 @@ export const keywordListStyle = style({
 });
 
 export const contentStyle = style({
-  'boxSizing': 'border-box',
-  'display': 'flex',
-  'flexDirection': 'column',
-  'alignItems': 'start',
-  'justifyContent': 'start',
-  'gap': '1.5rem',
+  boxSizing: 'border-box',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'start',
+  justifyContent: 'start',
+  gap: '1.5rem',
 
-  'width': '100%',
-  'height': '60vh',
-  'padding': '2rem',
+  width: '100%',
+  height: '60vh',
+  padding: '2rem',
 
-  'overflowY': 'scroll',
+  overflowY: 'scroll',
 
   '@media': {
     'screen and (max-width: 1100px)': {
