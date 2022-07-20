@@ -5,14 +5,20 @@ import { vars } from '../theme.css';
 export const textButtonStyle = style([
   baseFontStyle.large,
   {
-    display: 'flex',
-    alignItems: vars.display.flex.alignItems,
-    justifyContent: vars.display.flex.justifyContents,
+    'display': 'flex',
+    'alignItems': vars.display.flex.alignItems,
+    'justifyContent': vars.display.flex.justifyContents,
 
-    width: vars.size.medium.width,
-    height: vars.size.medium.height,
+    'width': vars.size.medium.width,
+    'height': vars.size.medium.height,
 
-    borderRadius: vars.border.radius,
+    'borderRadius': vars.border.radius,
+
+    'transitionProperty': 'background-color, color',
+    'transitionDuration': '1s',
+    'transitionTimingFunction': 'ease-out',
+
+    ':hover': { filter: 'brightness(120%)' },
   },
 ]);
 
