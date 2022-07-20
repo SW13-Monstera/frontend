@@ -1,10 +1,7 @@
 import Header from '../../Template/Header';
 import Split from 'react-split';
 import {
-<<<<<<< HEAD
   themeLightClass,
-=======
->>>>>>> dev
   pageStyle,
   topStyle,
   descStyle,
@@ -12,11 +9,10 @@ import {
   questionContentStyle,
   splitStyle,
   contentWrapperStyle,
-  problemDescTitleStyle,
+  contentTitleStyle,
   problemDescContentStyle,
   buttonListStyle,
   themeDarkClass,
-  answerInputTitleStyle,
   answerInputContentStyle,
 } from './style.css';
 import './gutter.css';
@@ -46,11 +42,7 @@ function QuestionDetailPage() {
   return (
     <>
       <Header />
-<<<<<<< HEAD
       <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
-=======
-      <main className={pageStyle}>
->>>>>>> dev
         <div className={topStyle}>
           <div className={descStyle}>
             <div className={titleTagStyle}>
@@ -82,11 +74,11 @@ function QuestionDetailPage() {
             className={splitStyle}
           >
             <div className={contentWrapperStyle}>
-              <div className={problemDescTitleStyle}>문제 설명</div>
+              <div className={contentTitleStyle}>문제 설명</div>
               <div className={problemDescContentStyle}>{problemData.desc}</div>
             </div>
             <div className={contentWrapperStyle}>
-              <label htmlFor='answer' className={answerInputTitleStyle}>
+              <label htmlFor='answer' className={contentTitleStyle}>
                 답안 작성
               </label>
               <textarea

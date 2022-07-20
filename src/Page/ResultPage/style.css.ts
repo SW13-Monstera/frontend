@@ -15,21 +15,11 @@ export const pageStyle = style({
 });
 
 export const pageContentStyle = style({
-<<<<<<< HEAD
   boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'start',
   justifyContent: 'space-between',
   width: '100%',
-=======
-  'boxSizing': 'border-box',
-
-  'display': 'flex',
-  'alignItems': 'start',
-  'justifyContent': 'space-between',
-
-  'width': '100%',
->>>>>>> dev
 
   '@media': {
     'screen and (max-width: 1100px)': {
@@ -39,7 +29,7 @@ export const pageContentStyle = style({
 });
 
 export const subtitleStyle = style([
-  baseFontStyle.title,
+  baseFontStyle.xlarge,
   {
     display: 'flex',
     alignItems: 'center',
@@ -48,9 +38,10 @@ export const subtitleStyle = style([
   },
 ]);
 
-export const textStyle = style([
-  baseFontStyle.medium,
+export const answerContentStyle = style([
+  baseFontStyle.small,
   {
+    overflowY: 'scroll',
     color: COLOR.TITLEACTIVE,
   },
 ]);
@@ -77,7 +68,7 @@ export const contentStyle = style({
 
   width: '100%',
   height: '60vh',
-  padding: '2rem',
+  padding: '1rem 2rem 1rem 2rem',
 
   overflowY: 'scroll',
 
