@@ -10,7 +10,6 @@ export const loginFormStyle = style({
 
 export const logoStyle = style({
   width: '20rem',
-  height: '5rem',
 });
 
 export const loginFormContentStyle = style({

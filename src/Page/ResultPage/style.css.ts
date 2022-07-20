@@ -1,7 +1,10 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
+import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
+
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
@@ -13,9 +16,11 @@ export const pageStyle = style({
 
 export const pageContentStyle = style({
   'boxSizing': 'border-box',
+
   'display': 'flex',
   'alignItems': 'start',
   'justifyContent': 'space-between',
+
   'width': '100%',
 
   '@media': {
@@ -25,30 +30,26 @@ export const pageContentStyle = style({
   },
 });
 
-export const subtitleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '2.25rem',
-  lineHeight: '2.75rem',
-  display: 'flex',
-  alignItems: 'center',
+export const subtitleStyle = style([
+  baseFontStyle.title,
+  {
+    display: 'flex',
+    alignItems: 'center',
 
-  color: '#000000',
-});
+    color: COLOR.TITLEACTIVE,
+  },
+]);
 
-export const textStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '1.25rem',
-  lineHeight: '1.5rem',
-
-  color: '#000000',
-});
+export const textStyle = style([
+  baseFontStyle.medium,
+  {
+    color: COLOR.TITLEACTIVE,
+  },
+]);
 
 export const keywordListStyle = style({
   boxSizing: 'border-box',
+
   display: 'grid',
   gridAutoFlow: 'column',
   gridTemplateColumns: 'repeat(auto-fill, minmax(6.875rem, 1fr))',
@@ -60,6 +61,7 @@ export const keywordListStyle = style({
 
 export const contentStyle = style({
   'boxSizing': 'border-box',
+
   'display': 'flex',
   'flexDirection': 'column',
   'alignItems': 'start',
@@ -81,6 +83,7 @@ export const contentStyle = style({
 
 export const buttonListStyle = style({
   boxSizing: 'border-box',
+
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

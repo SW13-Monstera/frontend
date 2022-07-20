@@ -1,17 +1,9 @@
-import { createTheme, style } from '@vanilla-extract/css';
-
-export const [themeClass, vars] = createTheme({
-  color: {
-    brand: 'blue',
-  },
-  font: {
-    body: 'Inter',
-  },
-});
+import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
+import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
-  padding: '3rem',
 
   display: 'flex',
   flexDirection: 'column',
@@ -21,7 +13,7 @@ export const pageStyle = style({
   gap: '1.5rem',
 
   width: '100%',
-  fontFamily: vars.font.body,
+  padding: '3rem',
 });
 
 export const topStyle = style({
@@ -46,26 +38,10 @@ export const titleTagStyle = style({
   gap: '1.5rem',
 });
 
-export const titleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  fontSize: '2.5rem',
-  lineHeight: '3rem',
-});
-
-export const statisticsStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '1.25rem',
-  lineHeight: '1.5rem',
-});
-
 export const questionContentStyle = style({
   display: 'flex',
   height: '70vh',
-  background: '#F5F5F5',
+  background: COLOR.OFFWHITE,
 });
 
 export const splitStyle = style({
@@ -86,25 +62,19 @@ export const answerInputStyle = style({
   flexDirection: 'column',
 });
 
-export const problemDescTitleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '1.5rem',
-  lineHeight: '1.8125rem',
+export const problemDescTitleStyle = style([
+  baseFontStyle.xlarge,
+  {
+    color: COLOR.TITLEACTIVE,
+  },
+]);
 
-  color: '#000000',
-});
-
-export const problemDescContentStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '1.25rem',
-  lineHeight: '1.5rem',
-
-  color: '#000000',
-});
+export const problemDescContentStyle = style([
+  baseFontStyle.medium,
+  {
+    color: COLOR.TITLEACTIVE,
+  },
+]);
 
 export const buttonListStyle = style({
   display: 'flex',

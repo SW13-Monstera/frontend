@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
-  padding: '3rem',
 
   display: 'flex',
   flexDirection: 'column',
@@ -12,7 +11,7 @@ export const pageStyle = style({
   gap: '1.5rem',
 
   width: '100%',
-  fontFamily: 'Inter',
+  padding: '3rem',
 });
 
 export const topStyle = style({
@@ -23,7 +22,6 @@ export const topStyle = style({
   justifyContent: 'space-between',
 
   width: '100%',
-
   padding: '0.5rem',
 });
 
@@ -43,20 +41,4 @@ export const titleTagStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: '1.5rem',
-});
-
-export const titleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  fontSize: '2.5rem',
-  lineHeight: '3rem',
-});
-
-export const statisticsStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '1.25rem',
-  lineHeight: '1.5rem',
 });

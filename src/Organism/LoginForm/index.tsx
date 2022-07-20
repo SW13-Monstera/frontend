@@ -4,7 +4,7 @@ import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import HorizontalOAuthButtonList from '../ButtonList/HorizontalOAuthButtonList';
 import { useAuthStore } from '../../hooks/useStore';
-import CSBroker from '../../assets/images/cs broker.png';
+import CSBroker from '../../assets/images/csbroker.png';
 
 interface ILoginForm {
   closeModal: () => void;

@@ -1,4 +1,6 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../../../constants/color';
+import baseFontStyle from '../../../../styles/font.css';
 
 export const answerInputStyle = style({
   display: 'flex',
@@ -8,26 +10,19 @@ export const answerInputStyle = style({
   gap: '40px',
 });
 
-export const answerInputTitleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '24px',
-  lineHeight: '29px',
-  /* identical to box height */
+export const answerInputTitleStyle = style([
+  baseFontStyle.xlarge,
+  {
+    color: COLOR.TITLEACTIVE,
+  },
+]);
 
-  color: '#000000',
-});
+export const answerInputContentStyle = style([
+  baseFontStyle.medium,
+  {
+    width: '80%',
+    height: '80%',
 
-export const answerInputContentStyle = style({
-  height: '90%',
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '20px',
-  lineHeight: '24px',
-
-  color: '#000000',
-
-  width: '100%',
-});
+    color: COLOR.TITLEACTIVE,
+  },
+]);
