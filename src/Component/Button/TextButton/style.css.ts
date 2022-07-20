@@ -1,22 +1,26 @@
 import { style, styleVariants } from '@vanilla-extract/css';
+import baseFontStyle from '../../../styles/font.css';
 import { vars } from '../theme.css';
 
-export const textButtonStyle = style({
-  display: 'flex',
-  alignItems: vars.display.flex.alignItems,
-  justifyContent: vars.display.flex.justifyContents,
+export const textButtonStyle = style([
+  baseFontStyle.large,
+  {
+    'display': 'flex',
+    'alignItems': vars.display.flex.alignItems,
+    'justifyContent': vars.display.flex.justifyContents,
 
-  width: vars.size.medium.width,
-  height: vars.size.medium.height,
+    'width': vars.size.medium.width,
+    'height': vars.size.medium.height,
 
-  borderRadius: vars.border.radius,
+    'borderRadius': vars.border.radius,
 
-  fontFamily: vars.font.body,
-  fontStyle: vars.font.style,
-  fontWeight: vars.font.weight,
-  fontSize: vars.font.size,
-  lineHeight: vars.font.lineHeight,
-});
+    'transitionProperty': 'background-color, color',
+    'transitionDuration': '1s',
+    'transitionTimingFunction': 'ease-out',
+
+    ':hover': { filter: 'brightness(120%)' },
+  },
+]);
 
 export const textButtonThemeStyle = styleVariants({
   primary: [

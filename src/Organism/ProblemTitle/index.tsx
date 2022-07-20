@@ -1,6 +1,7 @@
 import { IProblem } from '../../types/problem';
 import TagBox from '../../Component/Box/TagBox';
-import { descStyle, statisticsStyle, titleStyle, titleTagStyle, topStyle } from './style.css';
+import { descStyle, titleTagStyle, topStyle } from './style.css';
+import baseFontStyle from '../../styles/font.css';
 
 function ProblemTitle({
   title,
@@ -14,14 +15,14 @@ function ProblemTitle({
     <div className={topStyle}>
       <div className={descStyle}>
         <div className={titleTagStyle}>
-          <h1 className={titleStyle}>{title}</h1>
+          <h1 className={baseFontStyle.title}>{title}</h1>
           <ul>
             {tagList.map((tagName) => (
               <TagBox name={tagName} key={tagName} />
             ))}
           </ul>
         </div>
-        <div className={statisticsStyle}>
+        <div className={baseFontStyle.medium}>
           {`제출 : ${numberSolved}, 평균 점수 : ${averageScore}점, 최고점 : ${highestScore}점 , 최저점 : ${lowestScore}점`}
         </div>
       </div>

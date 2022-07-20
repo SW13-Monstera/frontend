@@ -1,13 +1,14 @@
 import Header from '../../Template/Header';
 import Split from 'react-split';
 import {
+<<<<<<< HEAD
   themeLightClass,
+=======
+>>>>>>> dev
   pageStyle,
   topStyle,
   descStyle,
   titleTagStyle,
-  titleStyle,
-  statisticsStyle,
   questionContentStyle,
   splitStyle,
   contentWrapperStyle,
@@ -29,6 +30,7 @@ import { ReactComponent as SunIcon } from '../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
 import { useAuthStore } from '../../hooks/useStore';
 import { useState } from 'react';
+import baseFontStyle from '../../styles/font.css';
 
 function QuestionDetailPage() {
   const state = useLocation().state as IProblemIdLinkState;
@@ -44,18 +46,22 @@ function QuestionDetailPage() {
   return (
     <>
       <Header />
+<<<<<<< HEAD
       <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
+=======
+      <main className={pageStyle}>
+>>>>>>> dev
         <div className={topStyle}>
           <div className={descStyle}>
             <div className={titleTagStyle}>
-              <h1 className={titleStyle}>{problemData.title}</h1>
+              <h1 className={baseFontStyle.title}>{problemData.title}</h1>
               <ul>
                 {problemData.tagList.map((tagName) => (
                   <Tag name={tagName} key={tagName} />
                 ))}
               </ul>
             </div>
-            <div className={statisticsStyle}>
+            <div className={baseFontStyle.medium}>
               {`제출 : ${problemData.numberSolved}, 평균 점수 : ${problemData.averageScore}점, 최고점 : ${problemData.highestScore}점 , 최저점 : ${problemData.lowestScore}점`}
             </div>
           </div>

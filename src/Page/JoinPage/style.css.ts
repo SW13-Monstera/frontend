@@ -1,68 +1,61 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
+import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
+  boxSizing: 'border-box',
+
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   alignItems: 'center',
   gap: '1.875rem',
 
-  boxSizing: 'border-box',
   width: '100vw',
   height: '100vh',
-  padding: '70px',
+
+  padding: '4.375rem',
 });
 
-export const titleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  fontSize: '2rem',
-  lineHeight: '2.4375rem',
+export const titleStyle = style([
+  baseFontStyle.title,
+  {
+    textAlign: 'center',
+    color: '#000000',
+  },
+]);
 
-  textAlign: 'center',
+export const inputListStyle = style([
+  baseFontStyle.medium,
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.5rem',
 
-  color: '#000000',
-});
-
-export const inputListStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1.5rem',
-
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '1.25rem',
-  lineHeight: '1.5rem',
-
-  color: '#000000',
-});
+    color: COLOR.TITLEACTIVE,
+  },
+]);
 
 export const oauthJoinWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
 });
 
-export const oauthJoinStyle = style({
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center',
-  gap: '0.625rem',
+export const oauthJoinStyle = style([
+  baseFontStyle.medium,
+  {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    gap: '0.625rem',
 
-  color: ' #D9D9D9',
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  fontSize: '1.2rem',
-  lineHeight: '19px',
-
-  textAlign: 'center',
-});
+    textAlign: 'center',
+  },
+]);
 
 export const horizontalLineStyle = style({
   width: '14.875rem',
-  borderTop: 'solid 1px #D9D9D9',
+  borderTop: `solid 1px ${COLOR.GRAY}`,
 });
 
 export const oauthButtonListStyle = style({

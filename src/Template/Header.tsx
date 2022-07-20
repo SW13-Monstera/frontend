@@ -9,6 +9,7 @@ import { useAuthStore } from '../hooks/useStore';
 import { IconButton, TransparentButton } from '../Component/Button';
 import useLoginModal from '../hooks/useLoginModal';
 import LoginModal from '../Component/Utils/Modal/LoginModal';
+import logo from '../assets/images/csbroker.png';
 
 function Header() {
   const { isLogin } = useAuthStore();
@@ -18,7 +19,7 @@ function Header() {
     <header css={headerStyle}>
       <LoginModal isModalOpen={isLoginModalOpen} closeModal={closeLoginModal}></LoginModal>
       <Link to='/'>
-        <div css={logoStyle}>CS Broker</div>
+        <img src={logo} css={logoStyle} />
       </Link>
       <div css={navStyle}>
         <Link to='/list'>모든 문제</Link>
@@ -61,6 +62,8 @@ function Header() {
 }
 
 const headerStyle = css`
+  box-sizing: border-box;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,11 +84,9 @@ const headerStyle = css`
   background-color: black;
 `;
 
-const logoStyle = css`
-  padding: 1.25rem;
-`;
-
 const navStyle = css`
+  box-sizing: border-box;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -99,11 +100,15 @@ const navStyle = css`
 `;
 
 const menuStyle = css`
-  width: 10%;
+  box-sizing: border-box;
+
   display: flex;
   align-items: center;
   justify-content: right;
   gap: 1rem;
+
+  width: 10%;
+  padding: 1rem;
 
   svg path {
     fill: white;
@@ -114,6 +119,11 @@ const menuStyle = css`
 const iconButtonStyle = css`
   width: 2rem;
   height: 2rem;
+`;
+
+const logoStyle = css`
+  width: 12rem;
+  padding: 2rem;
 `;
 
 export default Header;
