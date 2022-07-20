@@ -3,6 +3,7 @@
   background-repeat: no-repeat;
   background-position: 50%;
   flex-shrink: 0;
+  margin: 0 1.5rem 0 1.5rem;
 }
 
 .gutter.gutter-horizontal {

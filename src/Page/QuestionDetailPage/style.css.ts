@@ -64,8 +64,9 @@ export const statisticsStyle = style({
 
 export const questionContentStyle = style({
   display: 'flex',
-  height: '70vh',
+  height: '50vh',
   background: '#F5F5F5',
+  padding: ' 0 1.5rem 0 1.5rem',
 });
 
 export const splitStyle = style({
