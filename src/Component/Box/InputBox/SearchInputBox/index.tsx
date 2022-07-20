@@ -1,19 +1,19 @@
-import { ReactComponent as SearchIcon } from '../../../assets/icons/search-icon.svg';
+import { ReactComponent as SearchIcon } from '../../../../assets/icons/search-icon.svg';
 import { INPUT_TYPE } from '../../../../constants/input';
 import { BUTTON_THEME, BUTTON_TYPE } from '../../../../types/button';
 import IconButton from '../../../Button/IconButton';
-import { inputBoxStyle, inputTextBoxStyle, searchButtonStyle } from './style.css';
+import { searchInputBoxStyle, inputTextBoxStyle, searchButtonStyle } from './style.css';
 
 function SearchInputBox() {
   return (
-    <div css={inputBoxStyle}>
+    <div className={searchInputBoxStyle}>
       <input
         placeholder='검색어를 입력해주세요'
-        css={inputTextBoxStyle}
+        className={inputTextBoxStyle}
         type={INPUT_TYPE.SEARCH}
       ></input>
       <IconButton type={BUTTON_TYPE.SUBMIT} theme={BUTTON_THEME.PRIMARY}>
-        <SearchIcon css={searchButtonStyle} />
+        <SearchIcon className={searchButtonStyle} />
       </IconButton>
     </div>
   );

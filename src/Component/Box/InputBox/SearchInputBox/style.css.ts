@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-export const inputBoxStyle = style({
+export const searchInputBoxStyle = style({
   boxSizing: 'border-box',
 
   display: 'flex',
@@ -20,7 +20,7 @@ export const inputBoxStyle = style({
 export const inputTextBoxStyle = style({
   width: '100%',
 
-  margin: '5px',
+  margin: '0.3125rem',
 
   border: 'none',
 });
