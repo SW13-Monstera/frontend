@@ -5,7 +5,7 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import HorizontalOAuthButtonList from '../ButtonList/HorizontalOAuthButtonList';
 import { useAuthStore } from '../../hooks/useStore';
 import CSBroker from '../../assets/images/csbroker.png';
-import PasswordInputBox from '../../Component/Box/InputBox/PasswordInputBox';
+import { INPUT_TYPE } from '../../constants/input';
 
 interface ILoginForm {
   closeModal: () => void;
@@ -23,10 +23,10 @@ function LoginForm({ closeModal }: ILoginForm) {
     <div className={loginFormStyle}>
       <img src={CSBroker} alt='logo' className={logoStyle} />
       <div className={loginFormContentStyle}>
-        <label htmlFor='id'></label>
-        <DefaultInputBox id='id' placeholder='아이디를 입력해주세요' />
+        <label htmlFor='email'></label>
+        <DefaultInputBox id='email' placeholder='이메일을 입력해주세요' type={INPUT_TYPE.EMAIL} />
         <label htmlFor='pw'></label>
-        <PasswordInputBox id='pw' placeholder='비밀번호를 입력해주세요' />
+        <DefaultInputBox id='pw' placeholder='비밀번호를 입력해주세요' type={INPUT_TYPE.PASSWORD} />
       </div>
       <TextButton
         theme={BUTTON_THEME.PRIMARY}
