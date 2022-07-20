@@ -25,6 +25,8 @@ export const defaultInputBoxStyle = style([
     border: '1px solid #D9D9D9',
     borderRadius: '10px',
 
+    padding: '0 1rem 0 1rem',
+
     '::placeholder': {
       fontFamily: 'Inter',
       fontWeight: '300',

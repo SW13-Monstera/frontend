@@ -12,7 +12,6 @@ export const pageStyle = style({
   gap: '1.875rem',
 
   width: '100vw',
-  height: '100vh',
 
   padding: '4.375rem',
 });
