@@ -40,7 +40,7 @@ export const pageStyle = style({
   backgroundColor: vars.backgroundColor,
 
   transition: 'background-color 0.2s',
-  animation: `${spread}`,
+  animation: spread,
 });
 
 export const topStyle = style({
@@ -87,12 +87,6 @@ export const questionContentStyle = style({
   background: vars.contentBackgroundColor,
   padding: ' 0 1.5rem 0 1.5rem',
   borderRadius: '10px',
-
-  // selectors: {
-  //   '& div': {
-  //     background: 'red',
-  //   },
-  // },
 });
 
 export const splitStyle = style({
