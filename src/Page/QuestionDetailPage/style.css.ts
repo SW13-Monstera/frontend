@@ -71,7 +71,7 @@ export const questionContentStyle = style({
   display: 'flex',
   height: '60vh',
   background: vars.contentBackgroundColor,
-  padding: ' 0 1.5rem 0 1.5rem',
+  padding: ' 0 1.5rem',
   borderRadius: '10px',
 });
 
@@ -87,7 +87,7 @@ export const contentWrapperStyle = style({
   justifyContent: 'flex-start',
   gap: '2rem',
 
-  padding: '1.5rem 0 1.5rem 0',
+  padding: '1.5rem 0',
 });
 
 export const contentTitleStyle = style([

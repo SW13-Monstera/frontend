@@ -30,7 +30,7 @@ const inputBoxStyle = css`
   border: 0.0625rem solid #d9d9d9;
   border-radius: 0.625rem;
 
-  padding: 0 1.25rem 0 1.25rem;
+  padding: 0 1.25rem;
 `;
 
 const inputTextBoxStyle = css`

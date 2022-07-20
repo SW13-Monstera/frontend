@@ -11,7 +11,7 @@ export const pageStyle = style({
   justifyContent: 'start',
   gap: '2rem',
 
-  padding: '2.5rem 6.875rem 2.5rem 6.875rem',
+  padding: '2.5rem 6.875rem',
 });
 
 export const pageContentStyle = style({
@@ -68,7 +68,7 @@ export const contentStyle = style({
 
   width: '100%',
   height: '60vh',
-  padding: '1rem 2rem 1rem 2rem',
+  padding: '1rem 2rem',
 
   overflowY: 'scroll',
 
