@@ -1,9 +1,12 @@
 .gutter {
-  background-color: #eee;
   background-repeat: no-repeat;
   background-position: 50%;
   flex-shrink: 0;
-  margin: 0 1.5rem 0 1.5rem;
+  margin: 0 1rem 0 1rem;
+}
+
+.gutter:hover {
+  background-color: gray;
 }
 
 .gutter.gutter-horizontal {

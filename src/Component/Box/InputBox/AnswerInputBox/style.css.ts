@@ -14,7 +14,6 @@ export const answerInputTitleStyle = style({
   fontWeight: '600',
   fontSize: '24px',
   lineHeight: '29px',
-  /* identical to box height */
 
   color: '#000000',
 });
