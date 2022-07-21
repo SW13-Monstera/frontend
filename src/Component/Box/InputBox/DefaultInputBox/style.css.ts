@@ -14,16 +14,18 @@ export const [inputBoxClass, inputVars] = createTheme({
 export const defaultInputBoxStyle = style([
   baseFontStyle.xlarge,
   {
-    'display': 'flex',
-    'alignItems': 'center',
+    display: 'flex',
+    alignItems: 'center',
 
-    'width': inputVars.size.medium.width,
-    'height': inputVars.size.medium.height,
+    width: inputVars.size.medium.width,
+    height: inputVars.size.medium.height,
 
-    'color': COLOR.TITLEACTIVE,
-    'background': COLOR.WHITE,
-    'border': '1px solid #D9D9D9',
-    'borderRadius': '10px',
+    color: COLOR.TITLEACTIVE,
+    background: COLOR.WHITE,
+    border: '1px solid #D9D9D9',
+    borderRadius: '10px',
+
+    padding: '0 1rem',
 
     '::placeholder': {
       fontFamily: 'Inter',

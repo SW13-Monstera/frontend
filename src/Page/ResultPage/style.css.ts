@@ -11,17 +11,15 @@ export const pageStyle = style({
   justifyContent: 'start',
   gap: '2rem',
 
-  padding: '2.5rem 6.875rem 2.5rem 6.875rem',
+  padding: '2.5rem 6.875rem',
 });
 
 export const pageContentStyle = style({
-  'boxSizing': 'border-box',
-
-  'display': 'flex',
-  'alignItems': 'start',
-  'justifyContent': 'space-between',
-
-  'width': '100%',
+  boxSizing: 'border-box',
+  display: 'flex',
+  alignItems: 'start',
+  justifyContent: 'space-between',
+  width: '100%',
 
   '@media': {
     'screen and (max-width: 1100px)': {
@@ -31,7 +29,7 @@ export const pageContentStyle = style({
 });
 
 export const subtitleStyle = style([
-  baseFontStyle.title,
+  baseFontStyle.xlarge,
   {
     display: 'flex',
     alignItems: 'center',
@@ -40,9 +38,10 @@ export const subtitleStyle = style([
   },
 ]);
 
-export const textStyle = style([
-  baseFontStyle.medium,
+export const answerContentStyle = style([
+  baseFontStyle.small,
   {
+    overflowY: 'scroll',
     color: COLOR.TITLEACTIVE,
   },
 ]);
@@ -60,19 +59,18 @@ export const keywordListStyle = style({
 });
 
 export const contentStyle = style({
-  'boxSizing': 'border-box',
+  boxSizing: 'border-box',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'start',
+  justifyContent: 'start',
+  gap: '1.5rem',
 
-  'display': 'flex',
-  'flexDirection': 'column',
-  'alignItems': 'start',
-  'justifyContent': 'start',
-  'gap': '1.5rem',
+  width: '100%',
+  height: '60vh',
+  padding: '1rem 2rem',
 
-  'width': '100%',
-  'height': '60vh',
-  'padding': '2rem',
-
-  'overflowY': 'scroll',
+  overflowY: 'scroll',
 
   '@media': {
     'screen and (max-width: 1100px)': {

@@ -18,6 +18,7 @@ const tagStyle = css`
   width: 56px;
   height: 24px;
 
+  color: black;
   background: #fff1cd;
   border-radius: 10px;
 

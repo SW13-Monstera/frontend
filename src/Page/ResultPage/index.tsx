@@ -15,7 +15,7 @@ import {
   pageContentStyle,
   pageStyle,
   subtitleStyle,
-  textStyle,
+  answerContentStyle,
 } from './style.css';
 
 function ResultPage() {
@@ -49,13 +49,13 @@ function ResultPage() {
                   />
                 ))}
               </ul>
-              <p className={textStyle}>{scoringResult.answer}</p>
+              <div className={answerContentStyle}>{scoringResult.answer}</div>
             </div>
           </TextBox>
           <TextBox>
             <div className={contentStyle}>
               <h3 className={subtitleStyle}>모범 답안</h3>
-              <p className={textStyle}>{problemData.answer}</p>
+              <p className={answerContentStyle}>{problemData.answer}</p>
             </div>
           </TextBox>
         </div>

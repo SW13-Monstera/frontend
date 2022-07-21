@@ -2,6 +2,7 @@
 
 import { css } from '@emotion/react';
 import { ChangeEvent, useState } from 'react';
+import { INPUT_TYPE } from '../../../constants/input';
 import { IDropdownElement } from '../../../types/util';
 
 interface IDropdownComponentProps extends IDropdownElement {
@@ -18,7 +19,7 @@ function DropdownElement({ id, name, handleCheckedTags }: IDropdownComponentProp
 
   return (
     <li css={dropdownContentElementStyle}>
-      <input type='checkbox' name={name} id={id} onChange={checkHandler} />
+      <input type={INPUT_TYPE.CHECKBOX} name={name} id={id} onChange={checkHandler} />
       <label htmlFor={id}>{name}</label>
     </li>
   );

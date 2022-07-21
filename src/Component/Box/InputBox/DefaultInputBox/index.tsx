@@ -1,14 +1,14 @@
+import { IInputBox } from '../../../../types/box';
 import { defaultInputBoxStyle, inputBoxClass } from './style.css';
 
-interface IInputBox {
-  id: string;
-  placeholder?: string;
-  children?: JSX.Element | string;
-}
-
-function DefaultInputBox({ id, placeholder, children }: IInputBox) {
+function DefaultInputBox({ id, placeholder, type, children }: IInputBox) {
   return (
-    <input id={id} placeholder={placeholder} className={`${inputBoxClass} ${defaultInputBoxStyle}`}>
+    <input
+      id={id}
+      placeholder={placeholder}
+      type={type}
+      className={`${inputBoxClass} ${defaultInputBoxStyle}`}
+    >
       {children}
     </input>
   );

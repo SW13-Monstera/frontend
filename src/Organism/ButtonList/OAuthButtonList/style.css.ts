@@ -7,7 +7,12 @@ export const oauthButtonListStyle = style({
   gap: '1.5rem',
 });
 
-export const oAuthImgStyle = style({
-  width: '2.5rem',
-  height: '2.5rem',
+export const oAuthGithubImgStyle = style({
+  width: '3.5rem',
+  height: '3.5rem',
+});
+
+export const oAuthGoogleImgStyle = style({
+  width: '2rem',
+  height: '2rem',
 });

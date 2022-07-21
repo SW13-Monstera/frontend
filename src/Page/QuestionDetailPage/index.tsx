@@ -1,26 +1,31 @@
 import Header from '../../Template/Header';
 import Split from 'react-split';
 import {
+  themeLightClass,
   pageStyle,
   topStyle,
   descStyle,
   titleTagStyle,
   questionContentStyle,
   splitStyle,
-  questionDescStyle,
-  problemDescTitleStyle,
+  contentWrapperStyle,
+  contentTitleStyle,
   problemDescContentStyle,
   buttonListStyle,
+  themeDarkClass,
+  answerInputContentStyle,
 } from './style.css';
 import './gutter.css';
-import AnswerInput from '../../Component/Box/InputBox/AnswerInputBox';
 import { Link, useLocation } from 'react-router-dom';
 import { listData } from '../../data';
 import Tag from '../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { IProblemIdLinkState } from '../../types/problem';
+import { ReactComponent as SunIcon } from '../../assets/icons/sun.svg';
+import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
 import { useAuthStore } from '../../hooks/useStore';
+import { useState } from 'react';
 import baseFontStyle from '../../styles/font.css';
 
 function QuestionDetailPage() {
@@ -28,11 +33,16 @@ function QuestionDetailPage() {
   const problemData = listData[state.problemId];
 
   const { isLogin } = useAuthStore();
+  const [isDark, setIsDark] = useState(false);
+
+  function toggleDarkMode() {
+    setIsDark((prev) => !prev);
+  }
 
   return (
     <>
       <Header />
-      <main className={pageStyle}>
+      <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
         <div className={topStyle}>
           <div className={descStyle}>
             <div className={titleTagStyle}>
@@ -48,7 +58,7 @@ function QuestionDetailPage() {
             </div>
           </div>
 
-          <div>토글 버튼</div>
+          <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
         </div>
         <div className={questionContentStyle}>
           <Split
@@ -63,11 +73,20 @@ function QuestionDetailPage() {
             cursor='col-resize'
             className={splitStyle}
           >
-            <div className={questionDescStyle}>
-              <div className={problemDescTitleStyle}>문제 설명</div>
+            <div className={contentWrapperStyle}>
+              <div className={contentTitleStyle}>문제 설명</div>
               <div className={problemDescContentStyle}>{problemData.desc}</div>
             </div>
-            <AnswerInput />
+            <div className={contentWrapperStyle}>
+              <label htmlFor='answer' className={contentTitleStyle}>
+                답안 작성
+              </label>
+              <textarea
+                id='answer'
+                placeholder='답변을 입력해주세요'
+                className={answerInputContentStyle}
+              ></textarea>
+            </div>
           </Split>
         </div>
 

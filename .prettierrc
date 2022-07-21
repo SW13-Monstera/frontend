@@ -5,7 +5,7 @@
   "semi": true,
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "quoteProps": "consistent",
+  "quoteProps": "as-needed",
   "trailingComma": "all",
   "bracketSpacing": true,
   "arrowParens": "always",
