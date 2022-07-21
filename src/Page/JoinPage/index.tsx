@@ -25,7 +25,7 @@ function JoinPage() {
           <DefaultInputBox
             id='password-confirm'
             placeholder='비밀번호를 다시 한번 입력해주세요'
-            type='password'
+            type={INPUT_TYPE.PASSWORD}
           />
           <label htmlFor='nickname'>닉네임</label>
           <DefaultInputBox id='nickname' placeholder='닉네임을 입력해주세요'></DefaultInputBox>
