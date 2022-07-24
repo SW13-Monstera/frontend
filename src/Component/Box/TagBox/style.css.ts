@@ -1,30 +1,33 @@
 import { style } from '@vanilla-extract/css';
+import baseFontStyle from '../../../styles/font.css';
 
-export const tagStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
+export const tagStyle = style([
+  baseFontStyle.xsmall,
+  {
+    boxSizing: 'border-box',
 
-  width: '56px',
-  height: '24px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
 
-  color: 'black',
-  background: '#fff1cd',
-  borderRadius: '10px',
+    width: '56px',
+    height: '24px',
 
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '0.5rem',
+    color: 'black',
+    background: '#fff1cd',
+    borderRadius: '10px',
 
-  textAlign: 'center',
+    textAlign: 'center',
 
-  padding: '0.0313rem',
+    padding: '0.0313rem',
 
-  '@media': {
-    'screen and (max-width: 600px)': {
-      width: '56px',
-      height: '20px',
+    whiteSpace: 'nowrap',
+
+    '@media': {
+      'screen and (max-width: 600px)': {
+        width: '48px',
+        height: '20px',
+      },
     },
   },
-});
+]);
