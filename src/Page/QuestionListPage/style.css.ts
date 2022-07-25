@@ -71,20 +71,20 @@ export const checkedTagListStyle = style({
 });
 
 export const questionListStyle = style({
-  'boxSizing': 'border-box',
+  boxSizing: 'border-box',
 
-  'display': 'grid',
-  'gridTemplateColumns': 'repeat(3, 1fr)',
-  'gap': '10px',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(3, 1fr)',
+  gap: '10px',
 
-  'width': '65%',
-  'marginLeft': '18.75rem',
+  width: '65%',
+  marginLeft: '18.75rem',
 
   '@media': {
-    'screen and (min-width: 1600px)': {
+    'screen and (max-width: 1600px)': {
       gridTemplateColumns: 'repeat(2, 1fr)',
     },
-    'screen and (min-width: 1100px)': {
+    'screen and (max-width: 1100px)': {
       gridTemplateColumns: 'repeat(1, 1fr)',
     },
   },

@@ -19,7 +19,7 @@ export const [buttonThemeClass, vars] = createTheme({
     },
     large: {
       width: '31.5rem',
-      height: '4.375rem',
+      height: '4.65rem',
     },
     icon: {
       length: '3.125rem',
