@@ -35,7 +35,7 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
         {isOpen ? <UpIcon css={downIconStyle} /> : <DownIcon css={downIconStyle} />}
       </button>
       <div css={dropDownContentStyle(isOpen)}>
-        <ul>
+        <ul css={dropDownListStyle}>
           {elements.map((e) => (
             <DropdownElement
               id={e.id}
@@ -83,8 +83,6 @@ const dropDownContentStyle = (isSelected: boolean) => css`
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   gap: 50%;
 
   visibility: ${isSelected ? 'visible' : 'hidden'};
@@ -103,6 +101,13 @@ const dropDownContentStyle = (isSelected: boolean) => css`
   filter: drop-shadow(0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25));
 
   z-index: 1;
+`;
+
+const dropDownListStyle = css`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 const downIconStyle = css`
