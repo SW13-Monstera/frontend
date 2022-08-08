@@ -1,7 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { MainPage, QuestionListPage, QuestionDetailPage, ResultPage } from './Page';
-import JoinPage from './Page/JoinPage';
-import NicknamePage from './Page/NicknamePage';
+import {
+  MainPage,
+  QuestionListPage,
+  QuestionDetailPage,
+  ResultPage,
+  NicknamePage,
+  JoinPage,
+} from './Page';
 
 function Router() {
   return (

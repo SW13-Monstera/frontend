@@ -3,6 +3,7 @@
 import { css } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { ReactComponent as DownIcon } from '../../../assets/icons/down-arrow-icon.svg';
+import { ReactComponent as UpIcon } from '../../../assets/icons/up-arrow-icon.svg';
 import DropdownElement from './DropdownElement';
 import listenOutsideClick from '../listenOutsideClick';
 import { BUTTON_TYPE } from '../../../types/button';
@@ -31,10 +32,10 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
     <div css={dropDownStyle} ref={menuRef}>
       <button css={dropdownBoxStyle} onClick={onClickDropdown} type={BUTTON_TYPE.BUTTON}>
         <p>{name} 선택</p>
-        <DownIcon css={downIconStyle} />
+        {isOpen ? <UpIcon css={downIconStyle} /> : <DownIcon css={downIconStyle} />}
       </button>
       <div css={dropDownContentStyle(isOpen)}>
-        <ul>
+        <ul css={dropDownListStyle}>
           {elements.map((e) => (
             <DropdownElement
               id={e.id}
@@ -82,8 +83,6 @@ const dropDownContentStyle = (isSelected: boolean) => css`
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   gap: 50%;
 
   visibility: ${isSelected ? 'visible' : 'hidden'};
@@ -104,8 +103,15 @@ const dropDownContentStyle = (isSelected: boolean) => css`
   z-index: 1;
 `;
 
+const dropDownListStyle = css`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+`;
+
 const downIconStyle = css`
-  width: 1.5rem;
+  width: 0.5rem;
 `;
 
 export default Dropdown;

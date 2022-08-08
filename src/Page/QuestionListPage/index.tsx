@@ -17,6 +17,7 @@ import {
   pageMainStyle,
   questionListStyle,
 } from './style.css';
+import { Footer } from '../../Template';
 
 function QuestionListPage() {
   const { checkedTags, handleCheckedTags } = useCheckedTagsStore();
@@ -61,6 +62,7 @@ function QuestionListPage() {
           ))}
         </div>
       </main>
+      <Footer />
     </>
   );
 }
