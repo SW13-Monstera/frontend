@@ -11,7 +11,7 @@ export type TOAuth = typeof OAUTH[keyof typeof OAUTH];
 
 function OAuthButton({ oAuth, children }: IOAuthButton) {
   return (
-    <button className={oauthButtonThemeStyle[oAuth]} type={BUTTON_TYPE.SUBMIT}>
+    <button className={oauthButtonThemeStyle[oAuth]} type={BUTTON_TYPE.BUTTON}>
       {children}
     </button>
   );

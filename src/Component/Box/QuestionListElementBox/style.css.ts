@@ -20,10 +20,10 @@ export const textBoxStyle = style({
 });
 
 export const textBoxMainStyle = style({
-  'boxSizing': 'border-box',
+  boxSizing: 'border-box',
 
-  'display': 'flex',
-  'flexDirection': 'column',
+  display: 'flex',
+  flexDirection: 'column',
 
   '@media': {
     'screen and (min-width: 600px)': {
@@ -41,5 +41,21 @@ export const detailWrapperStyle = style([
     '@media': { 'screen and (max-width: 600px)': { display: 'none' } },
   },
 ]);
+
+export const titleStyle = style({
+  fontFamily: 'Inter',
+  fontStyle: 'normal',
+  fontWeight: '600',
+  fontSize: '1.5rem',
+  lineHeight: '1.5rem',
+});
+
+export const detailStyle = style({
+  fontFamily: 'Inter',
+  fontStyle: 'italic',
+  fontWeight: '300',
+  fontSize: '0.75rem',
+  lineHeight: '1rem',
+});
 
 export const tagListStyle = style({ display: 'flex', gap: '0.125rem' });

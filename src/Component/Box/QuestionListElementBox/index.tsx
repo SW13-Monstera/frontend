@@ -3,12 +3,13 @@ import TagBox from '../TagBox';
 import { IProblem } from '../../../types/problem';
 import { detailWrapperStyle, tagListStyle, textBoxMainStyle, textBoxStyle } from './style.css';
 import baseFontStyle from '../../../styles/font.css';
+import { URLWithParam } from '../../../constants/url';
 
-function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id }: IProblem) {
+function QuestionListElementBox({ title, numberSolved, averageScore, tagList }: IProblem) {
   return (
     <>
       <div className={textBoxStyle}>
-        <Link to={`/list/${id}`} state={{ problemId: id }}>
+        <Link to={URLWithParam.LONG_PROBLEM_DETAIL('1')}>
           <div className={textBoxMainStyle}>
             <p className={baseFontStyle.medium}>{title}</p>
             <ul className={tagListStyle}>
@@ -18,7 +19,7 @@ function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id
             </ul>
           </div>
           <div className={detailWrapperStyle}>
-            <p>푼 사람 수 : {numberSolved} 명</p>
+            <p className={baseFontStyle.small}>푼 사람 수 : {numberSolved} 명</p>
             <p>평균 점수 : {averageScore} 점</p>
           </div>
         </Link>
