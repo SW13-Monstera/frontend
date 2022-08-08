@@ -16,12 +16,11 @@ import {
   answerInputContentStyle,
 } from './style.css';
 import './gutter.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { listData } from '../../data';
 import Tag from '../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
-import { IProblemIdLinkState } from '../../types/problem';
 import { ReactComponent as SunIcon } from '../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
 import { useAuthStore } from '../../hooks/useStore';
@@ -29,8 +28,8 @@ import { useState } from 'react';
 import baseFontStyle from '../../styles/font.css';
 
 function QuestionDetailPage() {
-  const state = useLocation().state as IProblemIdLinkState;
-  const problemData = listData[state.problemId];
+  const { id } = useParams();
+  const problemData = listData[parseInt(id!)];
 
   const { isLogin } = useAuthStore();
   const [isDark, setIsDark] = useState(false);

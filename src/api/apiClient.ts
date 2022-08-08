@@ -28,9 +28,9 @@ apiClient.interceptors.response.use(
     if (status === 401) {
       authApiWrapper.refresh();
     } else if (status === 400 || status === 500) {
-      location.reload();
+      //   location.reload();
     } else if (status !== 200) {
-      window.location.replace('/');
+      //   window.location.replace('/');
     }
     return Promise.reject(err);
   },

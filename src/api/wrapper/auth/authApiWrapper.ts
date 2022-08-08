@@ -1,19 +1,7 @@
 import apiClient from '../../apiClient';
 import { API_URL } from '../../../constants/apiUrl';
 import { USER_INFO } from '../../../constants/localStorage';
-
-interface ILoginRequest {
-  email: string;
-  password: string;
-}
-
-interface ILoginResponse {
-  id: string;
-  username: string;
-  email: string;
-  role: string;
-  accessToken: string;
-}
+import { IJoinRequest, ILoginRequest } from '../../../types/auth';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
@@ -37,5 +25,10 @@ export const authApiWrapper = {
         const json = JSON.parse(localStorage.getItem(USER_INFO)!);
         localStorage.setItem(USER_INFO, { ...json, accessToken: response.data.accessToken });
       });
+  },
+
+  join: (data: IJoinRequest) => {
+    console.log(data);
+    return apiClient.post(API_URL.JOIN, data);
   },
 };
