@@ -3,6 +3,7 @@
 import { css } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { ReactComponent as DownIcon } from '../../../assets/icons/down-arrow-icon.svg';
+import { ReactComponent as UpIcon } from '../../../assets/icons/up-arrow-icon.svg';
 import DropdownElement from './DropdownElement';
 import listenOutsideClick from '../listenOutsideClick';
 import { BUTTON_TYPE } from '../../../types/button';
@@ -31,7 +32,7 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
     <div css={dropDownStyle} ref={menuRef}>
       <button css={dropdownBoxStyle} onClick={onClickDropdown} type={BUTTON_TYPE.BUTTON}>
         <p>{name} 선택</p>
-        <DownIcon css={downIconStyle} />
+        {isOpen ? <UpIcon css={downIconStyle} /> : <DownIcon css={downIconStyle} />}
       </button>
       <div css={dropDownContentStyle(isOpen)}>
         <ul>
@@ -105,7 +106,7 @@ const dropDownContentStyle = (isSelected: boolean) => css`
 `;
 
 const downIconStyle = css`
-  width: 1.5rem;
+  width: 0.5rem;
 `;
 
 export default Dropdown;
