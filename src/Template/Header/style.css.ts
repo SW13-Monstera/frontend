@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
 export const headerStyle = style([
@@ -6,15 +7,20 @@ export const headerStyle = style([
   {
     boxSizing: 'border-box',
 
+    position: 'sticky',
+    left: '0px',
+    top: '0px',
+
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
 
     width: '100%',
     height: '10%',
+    paddingTop: '1rem',
 
-    color: '#ffffff',
-    backgroundColor: 'black',
+    color: COLOR.WHITE,
+    backgroundColor: COLOR.TITLEACTIVE,
   },
 ]);
 

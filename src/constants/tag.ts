@@ -21,6 +21,23 @@ const TAGLIST = [
     ],
   },
   {
+    name: '문제 유형',
+    elements: [
+      {
+        id: 'long',
+        name: '서술형',
+      },
+      {
+        id: 'short',
+        name: '단답형',
+      },
+      {
+        id: 'multiple',
+        name: '객관식',
+      },
+    ],
+  },
+  {
     name: '풀이 여부',
     elements: [
       {

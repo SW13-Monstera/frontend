@@ -1,12 +1,11 @@
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
-import Header from '../../Template/Header';
+import { PageTemplate } from '../../Template';
 
 function MainPage() {
   return (
-    <>
-      <Header />
+    <PageTemplate>
       <DefaultSlider />
-    </>
+    </PageTemplate>
   );
 }
 export default MainPage;
