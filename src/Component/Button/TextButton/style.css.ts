@@ -15,7 +15,7 @@ export const textButtonStyle = style([
     transitionDuration: '1s',
     transitionTimingFunction: 'ease-out',
 
-    ':hover': { filter: 'brightness(120%)' },
+    ':hover': { filter: 'brightness(90%)' },
   },
 ]);
 
