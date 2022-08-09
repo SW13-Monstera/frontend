@@ -4,10 +4,8 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { listData } from '../../data';
 import { useCheckedTagsStore } from '../../hooks/useStore';
 import Header from '../../Template/Header';
-import { IProblem } from '../../types/problem';
 import {
   asideStyle,
   checkedTagListStyle,
@@ -18,9 +16,19 @@ import {
   questionListStyle,
 } from './style.css';
 import { Footer } from '../../Template';
+import { useEffect, useState } from 'react';
+import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
+import { IProblemListResponseData } from '../../types/api/problem';
 
 function QuestionListPage() {
+  const [problemList, setProblemList] = useState<IProblemListResponseData[]>([]);
   const { checkedTags, handleCheckedTags } = useCheckedTagsStore();
+
+  useEffect(() => {
+    problemApiWrapper.problemList().then((res) => {
+      setProblemList(res.data);
+    });
+  }, []);
 
   return (
     <>
@@ -50,14 +58,14 @@ function QuestionListPage() {
         </aside>
 
         <div className={questionListStyle}>
-          {listData.map((e: IProblem) => (
+          {problemList.map((problem: IProblemListResponseData) => (
             <QuestionListElementBox
-              title={e.title}
-              numberSolved={e.numberSolved}
-              averageScore={e.averageScore}
-              tagList={e.tagList}
-              key={e.id}
-              id={e.id}
+              title={problem.title}
+              numberSolved={problem.totalSolved}
+              averageScore={problem.avgScore}
+              tagList={problem.tags}
+              key={problem.id}
+              id={problem.id}
             />
           ))}
         </div>
