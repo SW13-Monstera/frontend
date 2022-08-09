@@ -6,4 +6,9 @@ const API_URL = {
   PROBLEM_LIST: '/v1/problems',
 };
 
-export { API_URL };
+const GITHUB_API_URL = {
+  GITHUB_LOGIN: `/oauth/authorize`,
+  GITHUB_REDIRECT: `/oauth/access_token`,
+};
+
+export { API_URL, GITHUB_API_URL };

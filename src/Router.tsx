@@ -7,6 +7,7 @@ import {
   ResultPage,
   NicknamePage,
   JoinPage,
+  CallbackPage,
 } from './Page';
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
         <Route path={URL.LONG_PROBLEM_RESULT} element={<ResultPage />} />
         <Route path={URL.JOIN} element={<JoinPage />} />
         <Route path={URL.NICKNAME} element={<NicknamePage />} />
+        <Route path={URL.CALLBACK} element={<CallbackPage />} />
       </Routes>
     </BrowserRouter>
   );

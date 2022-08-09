@@ -5,10 +5,12 @@ import { IJoinRequest, ILoginRequest } from '../../../types/auth';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
-    return apiClient.post(API_URL.LOGIN, data).then((response) => {
-      apiClient.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
-      return response.data;
-    });
+    return apiClient
+      .post(API_URL.LOGIN, data)
+      .then((response: { data: { accessToken: string } }) => {
+        apiClient.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
+        return response.data;
+      });
   },
 
   refresh: () => {
@@ -20,7 +22,7 @@ export const authApiWrapper = {
           Authorization: `Bearer ${JSON.parse(localStorage.getItem(USER_INFO)!).accessToken}`,
         },
       })
-      .then((response) => {
+      .then((response: { data: { accessToken: string } }) => {
         apiClient.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
         const json = JSON.parse(localStorage.getItem(USER_INFO)!);
         localStorage.setItem(USER_INFO, { ...json, accessToken: response.data.accessToken });
@@ -28,7 +30,14 @@ export const authApiWrapper = {
   },
 
   join: (data: IJoinRequest) => {
-    console.log(data);
     return apiClient.post(API_URL.JOIN, data);
+  },
+
+  githubLogin: () => {
+    return apiClient.get()
+  },
+
+  githubRedirect: (code: string) => {
+    return apiClient.post(API_URL.GITHUB_REDIRECT(code));
   },
 };

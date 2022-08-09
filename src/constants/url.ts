@@ -7,6 +7,7 @@ const URL = {
   LONG_PROBLEM_RESULT: '/problem/long/result/:id',
   SHORT_PROBLEM_DETAIL: '/problem/short/:id',
   SHORT_PROBLEM_RESULT: '/problem/short/result/:id',
+  CALLBACK: '/callback',
 };
 
 const URLWithParam = {
