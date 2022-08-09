@@ -5,12 +5,10 @@ import { IJoinRequest, ILoginRequest } from '../../../types/auth';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
-    return apiClient
-      .post(API_URL.LOGIN, data)
-      .then((response: { data: { accessToken: string } }) => {
-        apiClient.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
-        return response.data;
-      });
+    return apiClient.post(API_URL.LOGIN, data).then((res: { data: { accessToken: string } }) => {
+      apiClient.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`;
+      return res.data;
+    });
   },
 
   refresh: () => {
@@ -32,12 +30,7 @@ export const authApiWrapper = {
   join: (data: IJoinRequest) => {
     return apiClient.post(API_URL.JOIN, data);
   },
-
-  githubLogin: () => {
-    return apiClient.get()
-  },
-
-  githubRedirect: (code: string) => {
-    return apiClient.post(API_URL.GITHUB_REDIRECT(code));
+  getUserInfo: () => {
+    return apiClient.get(API_URL.USER_INFO);
   },
 };

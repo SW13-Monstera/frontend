@@ -10,6 +10,7 @@ import logo from '../../assets/images/csbroker.png';
 import { headerStyle, logoStyle, menuStyle, navStyle } from './style.css';
 import { COLOR } from '../../constants/color';
 import { ICON } from '../../constants/icon';
+import { URL } from '../../constants/url';
 
 function Header() {
   const { isLogin } = useAuthStore();
@@ -18,11 +19,11 @@ function Header() {
   return (
     <header className={headerStyle}>
       <LoginModal isModalOpen={isLoginModalOpen} closeModal={closeLoginModal}></LoginModal>
-      <Link to='/'>
+      <Link to={URL.MAIN}>
         <img src={logo} className={logoStyle} />
       </Link>
       <div className={navStyle}>
-        <Link to='/list'>모든 문제</Link>
+        <Link to={URL.PROBLEM_LIST}>모든 문제</Link>
       </div>
       <div className={menuStyle}>
         {isLogin ? (
@@ -44,7 +45,7 @@ function Header() {
             >
               로그인
             </TransparentButton>
-            <Link to='/join'>
+            <Link to={URL.JOIN}>
               <TransparentButton
                 type={BUTTON_TYPE.BUTTON}
                 theme={BUTTON_THEME.PRIMARY}

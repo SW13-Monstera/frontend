@@ -7,8 +7,11 @@ import HorizontalOAuthButtonList from '../../Organism/ButtonList/HorizontalOAuth
 import { INPUT_TYPE } from '../../constants/input';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { IJoinRequest } from '../../types/auth';
+import { useNavigate } from 'react-router-dom';
+import { URL } from '../../constants/url';
 
 function JoinPage() {
+  const navigate = useNavigate();
   function handleJoin() {
     const joinForm = document.getElementById('join-form') as HTMLFormElement;
     const formData = new FormData(joinForm);
@@ -17,8 +20,8 @@ function JoinPage() {
       password: formData.get('password')?.toString() || '',
       username: formData.get('nickname')?.toString() || '',
     };
-    console.log(data);
     authApiWrapper.join(data);
+    navigate(URL.MAIN);
   }
 
   return (

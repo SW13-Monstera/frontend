@@ -1,4 +1,4 @@
-import { githubOAuthApiWrapper } from '../../../api/oauth/githubOAuthApiWrapper';
+import { API_URL } from '../../../constants/apiUrl';
 import { BUTTON_TYPE, IButton } from '../../../types/button';
 import { oauthButtonThemeStyle } from './style.css';
 
@@ -10,21 +10,19 @@ export const OAUTH = { GITHUB: 'github', GOOGLE: 'google' } as const;
 
 export type TOAuth = typeof OAUTH[keyof typeof OAUTH];
 
-const VITE_GITHUB_CLIENT_ID = '';
-
 function OAuthButton({ oAuth, children }: IOAuthButton) {
-  function loginGithubOAuth() {
-    const code = githubOAuthApiWrapper.githubLogin();
-    console.log(code);
-  }
+  const REDIRECT_URL = `${
+    import.meta.env.VITE_API_BASE_URL
+  }/oauth2/authorization/${oAuth}?redirect_uri=${import.meta.env.VITE_APP_URL}/oauth/redirect`;
+
+  // const REDIRECT_URL =
+  //   'https://dev.api.csbroker.io/oauth2/authorization/github?redirect_uri=http://localhost:3000/oauth/redirect';
   return (
-    <button
-      className={oauthButtonThemeStyle[oAuth]}
-      type={BUTTON_TYPE.SUBMIT}
-      onClick={loginGithubOAuth}
-    >
-      {children}
-    </button>
+    <a href={REDIRECT_URL}>
+      <button className={oauthButtonThemeStyle[oAuth]} type={BUTTON_TYPE.SUBMIT}>
+        {children}
+      </button>
+    </a>
   );
 }
 

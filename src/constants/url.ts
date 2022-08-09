@@ -2,12 +2,12 @@ const URL = {
   MAIN: '/',
   JOIN: '/join',
   NICKNAME: '/join/nickname',
-  PROBLEM_LIST: '/problem/long',
+  PROBLEM_LIST: '/problem',
   LONG_PROBLEM_DETAIL: '/problem/long/:id',
   LONG_PROBLEM_RESULT: '/problem/long/result/:id',
   SHORT_PROBLEM_DETAIL: '/problem/short/:id',
   SHORT_PROBLEM_RESULT: '/problem/short/result/:id',
-  CALLBACK: '/callback',
+  OAUTH_CALLBACK: '/oauth/redirect',
 };
 
 const URLWithParam = {
