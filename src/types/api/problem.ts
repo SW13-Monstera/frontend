@@ -12,6 +12,7 @@ export interface IProblemRequestParam {
   isSolved?: boolean | null;
   page?: number;
   size?: number;
+  type?: string;
 }
 
 export interface IProblemDetailResponseData {

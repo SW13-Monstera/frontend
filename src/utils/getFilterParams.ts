@@ -12,16 +12,19 @@ export const getFilterParams = (checkedTags: Set<ITag>) => {
 
   const categoryTagIds = TAGLIST.find((e) => e.name === '카테고리')?.elements.map((e) => e.id);
   const solveTagIds = TAGLIST.find((e) => e.name === '풀이 여부')?.elements.map((e) => e.id);
+  const typeIds = TAGLIST.find((e) => e.name === '문제 유형')?.elements.map((e) => e.id);
 
   const isSolved = checkedTagsArray.filter(({ id }) => solveTagIds?.includes(id));
   const isSolvedParam = isSolved.length === 1 ? isSolvedMap[isSolved[0].id] : null;
   const query = (document.getElementById('search-problem') as HTMLInputElement).value;
   const tags = checkedTagsArray.filter(({ id }) => categoryTagIds?.includes(id)).map((e) => e.id);
+  const type = checkedTagsArray.filter(({ id }) => typeIds?.includes(id)).map((e) => e.id);
 
   const params: IProblemRequestParam = {
     isSolved: isSolvedParam,
     tags: tags.join(','),
     query: query,
+    type: type.join(','),
   };
 
   return params;
