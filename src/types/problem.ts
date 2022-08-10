@@ -15,6 +15,9 @@ interface IProblemIdLinkState {
   problemId: number;
 }
 
+interface ITag {
+  id: string;
+  name: string;
+}
 
-
-export type { IProblem, IProblemIdLinkState };
+export type { IProblem, IProblemIdLinkState, ITag };

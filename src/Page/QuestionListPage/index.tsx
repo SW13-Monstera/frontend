@@ -4,7 +4,7 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { useCheckedTagsStore } from '../../hooks/useStore';
+import { useAuthStore, useCheckedTagsStore } from '../../hooks/useStore';
 import Header from '../../Template/Header';
 import {
   asideStyle,
@@ -19,16 +19,27 @@ import { Footer } from '../../Template';
 import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { IProblemListResponseData } from '../../types/api/problem';
+import { getFilterParams } from '../../utils/getFilterParams';
 
 function QuestionListPage() {
   const [problemList, setProblemList] = useState<IProblemListResponseData[]>([]);
   const { checkedTags, handleCheckedTags } = useCheckedTagsStore();
+  const [page, setPage] = useState(0);
+  const { isLogin } = useAuthStore();
 
-  useEffect(() => {
-    problemApiWrapper.problemList().then((res) => {
+  function handleSearchInput() {
+    const params = { ...getFilterParams(checkedTags), page: page };
+    problemApiWrapper.problemList(params).then((res) => {
       setProblemList(res.data);
     });
-  }, []);
+  }
+
+  useEffect(() => {
+    const params = { ...getFilterParams(checkedTags), page: page };
+    problemApiWrapper.problemList(params).then((res) => {
+      setProblemList(res.data);
+    });
+  }, [checkedTags]);
 
   return (
     <>
@@ -36,22 +47,31 @@ function QuestionListPage() {
       <DefaultSlider />
       <main className={pageMainStyle}>
         <aside className={asideStyle}>
-          <SearchInputBox />
+          <SearchInputBox handleSearchInput={handleSearchInput} />
           <div className={filterStyle}>
             <div className={filterTitleStyle}>필터</div>
             <div className={dropdownListStyle}>
-              {TAGLIST.map((tagtype) => (
-                <Dropdown
-                  name={tagtype.name}
-                  elements={tagtype.elements}
-                  handleCheckedTags={handleCheckedTags}
-                  key={tagtype.name}
-                />
-              ))}
+              {isLogin
+                ? TAGLIST.map((tagtype) => (
+                    <Dropdown
+                      name={tagtype.name}
+                      elements={tagtype.elements}
+                      handleCheckedTags={handleCheckedTags}
+                      key={tagtype.name}
+                    />
+                  ))
+                : TAGLIST.filter((e) => e.name !== '풀이 여부').map((tagtype) => (
+                    <Dropdown
+                      name={tagtype.name}
+                      elements={tagtype.elements}
+                      handleCheckedTags={handleCheckedTags}
+                      key={tagtype.name}
+                    />
+                  ))}
             </div>
             <ul className={checkedTagListStyle}>
-              {[...checkedTags].map((tagName) => (
-                <TagBox name={tagName} key={tagName} />
+              {[...checkedTags].map((tag) => (
+                <TagBox name={tag.name} key={tag.id} />
               ))}
             </ul>
           </div>
@@ -70,7 +90,7 @@ function QuestionListPage() {
           ))}
         </div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

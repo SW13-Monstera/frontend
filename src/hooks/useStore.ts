@@ -1,8 +1,20 @@
 import create from 'zustand';
 
+interface ITag {
+  id: string;
+  name: string;
+}
+
+const tags: ITag[] = [
+  { id: 'db', name: '데이터베이스' },
+  { id: 'os', name: '운영체제' },
+  { id: 'nt', name: '네트워크' },
+  { id: 'ds', name: '자료구조' },
+];
+
 interface ICheckedTags {
-  checkedTags: Set<string>;
-  handleCheckedTags: (name: string, isChecked: boolean) => void;
+  checkedTags: Set<ITag>;
+  handleCheckedTags: (tag: ITag, isChecked: boolean) => void;
 }
 
 interface IAuth {
@@ -11,12 +23,12 @@ interface IAuth {
 }
 
 const useCheckedTagsStore = create<ICheckedTags>((set) => ({
-  checkedTags: new Set<string>(),
-  handleCheckedTags: (name: string, isChecked: boolean) =>
+  checkedTags: new Set<ITag>(),
+  handleCheckedTags: (tag: ITag, isChecked: boolean) =>
     set((state: ICheckedTags) => ({
       checkedTags: isChecked
-        ? new Set([...state.checkedTags, name])
-        : new Set([...state.checkedTags].filter((curName) => curName !== name)),
+        ? new Set([...state.checkedTags, tag])
+        : new Set([...state.checkedTags].filter((currTag) => currTag.id !== tag.id)),
     })),
 }));
 
