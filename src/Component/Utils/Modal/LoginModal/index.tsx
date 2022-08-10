@@ -15,7 +15,6 @@ interface IModal {
 
 function LoginModal({ isModalOpen, closeModal }: IModal) {
   const { setIsLogin } = useAuthStore();
-  const {} = useUserInfoStore();
 
   const handleSubmit = () => {
     authApiWrapper

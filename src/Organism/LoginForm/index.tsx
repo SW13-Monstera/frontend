@@ -8,11 +8,11 @@ import { INPUT_TYPE } from '../../constants/input';
 
 interface ILoginForm {
   closeModal: () => void;
-  handleSubmit: (event: any) => void;
+  handleSubmit: (event: MouseEvent) => void;
 }
 
 function LoginForm({ closeModal, handleSubmit }: ILoginForm) {
-  function handleLogin(event: any) {
+  function handleLogin(event: MouseEvent) {
     closeModal();
     handleSubmit(event);
   }

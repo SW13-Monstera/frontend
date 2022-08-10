@@ -3,7 +3,7 @@ export interface IButton {
   type?: TButtonType;
   theme?: TButtonTheme;
   size?: TButtonSize;
-  onClick?: (event: any) => void;
+  onClick?: (event: MouseEvent) => void;
 }
 
 export interface IButtonDetail extends IButton {

@@ -5,13 +5,6 @@ interface ITag {
   name: string;
 }
 
-const tags: ITag[] = [
-  { id: 'db', name: '데이터베이스' },
-  { id: 'os', name: '운영체제' },
-  { id: 'nt', name: '네트워크' },
-  { id: 'ds', name: '자료구조' },
-];
-
 interface ICheckedTags {
   checkedTags: Set<ITag>;
   handleCheckedTags: (tag: ITag, isChecked: boolean) => void;

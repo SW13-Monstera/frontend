@@ -1,4 +1,3 @@
-import { API_URL } from '../../../constants/apiUrl';
 import { BUTTON_TYPE, IButton } from '../../../types/button';
 import { oauthButtonThemeStyle } from './style.css';
 
@@ -15,8 +14,6 @@ function OAuthButton({ oAuth, children }: IOAuthButton) {
     import.meta.env.VITE_API_BASE_URL
   }/oauth2/authorization/${oAuth}?redirect_uri=${import.meta.env.VITE_APP_URL}/oauth/redirect`;
 
-  // const REDIRECT_URL =
-  //   'https://dev.api.csbroker.io/oauth2/authorization/github?redirect_uri=http://localhost:3000/oauth/redirect';
   return (
     <a href={REDIRECT_URL}>
       <button className={oauthButtonThemeStyle[oAuth]} type={BUTTON_TYPE.SUBMIT}>

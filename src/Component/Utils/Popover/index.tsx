@@ -1,4 +1,4 @@
-import { Popover, Typography } from '@mui/material';
+import { Popover } from '@mui/material';
 
 interface ICustomPopover {
   id: string | undefined;
