@@ -6,6 +6,9 @@ const API_URL = {
   PROBLEM_LIST: '/v1/problems',
   OAUTH_LOGIN: (oauth: string) => `/oauth2/authorization/${oauth}`,
   USER_INFO: '/v1/auth/info',
+  UPDATE_USER: `/v1/users`,
+  USER_LIST: '/v1/users',
+  USER_DETAIL: (user_id: string) => `/v1/users/${user_id}`,
 };
 
 export { API_URL };
