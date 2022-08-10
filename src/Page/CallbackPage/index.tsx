@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 
 const CallbackPage = () => {
-  const { token } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    if(!token) return;
-    authApiWrapper.getUserInfo().then((res) => {
-      
-    })
+    const token = searchParams.get('token');
+    if (!token) return;
+    // authApiWrapper.getUserInfo().then((res) => {
+    // });
   }, []);
 
   return <div>CallbackPage</div>;
