@@ -17,19 +17,21 @@ import {
 } from './style.css';
 import './gutter.css';
 import { Link, useParams } from 'react-router-dom';
-import { listData } from '../../data';
 import Tag from '../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { ReactComponent as SunIcon } from '../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
 import { useAuthStore } from '../../hooks/useStore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import baseFontStyle from '../../styles/font.css';
+import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
+import { URL, URLWithParam } from '../../constants/url';
+import { IProblemDetailResponseData } from '../../types/api/problem';
 
 function QuestionDetailPage() {
   const { id } = useParams();
-  const problemData = listData[parseInt(id!)];
+  const [data, setData] = useState<IProblemDetailResponseData>();
 
   const { isLogin } = useAuthStore();
   const [isDark, setIsDark] = useState(false);
@@ -38,6 +40,15 @@ function QuestionDetailPage() {
     setIsDark((prev) => !prev);
   }
 
+  function handleSubmit() {}
+
+  useEffect(() => {
+    if (!id) return;
+    problemApiWrapper.problemDetail(id).then((res) => {
+      setData(res.data);
+    });
+  }, []);
+
   return (
     <>
       <Header />
@@ -45,15 +56,15 @@ function QuestionDetailPage() {
         <div className={topStyle}>
           <div className={descStyle}>
             <div className={titleTagStyle}>
-              <h1 className={baseFontStyle.title}>{problemData.title}</h1>
+              <h1 className={baseFontStyle.title}>{data?.title}</h1>
               <ul>
-                {problemData.tagList.map((tagName) => (
+                {data?.tags.map((tagName) => (
                   <Tag name={tagName} key={tagName} />
                 ))}
               </ul>
             </div>
             <div className={baseFontStyle.medium}>
-              {`제출 : ${problemData.numberSolved}, 평균 점수 : ${problemData.averageScore}점, 최고점 : ${problemData.highestScore}점 , 최저점 : ${problemData.lowestScore}점`}
+              {`제출 : ${data?.totalSolved}, 평균 점수 : ${data?.avgScore}점, 최고점 : ${data?.topScore}점 , 최저점 : ${data?.bottomScore}점`}
             </div>
           </div>
 
@@ -74,7 +85,7 @@ function QuestionDetailPage() {
           >
             <div className={contentWrapperStyle}>
               <div className={contentTitleStyle}>문제 설명</div>
-              <div className={problemDescContentStyle}>{problemData.desc}</div>
+              <div className={problemDescContentStyle}>{data?.description}</div>
             </div>
             <div className={contentWrapperStyle}>
               <label htmlFor='answer' className={contentTitleStyle}>
@@ -91,11 +102,12 @@ function QuestionDetailPage() {
 
         <div className={buttonListStyle}>
           {isLogin ? (
-            <Link to={`/result/${problemData.id}`} state={{ problemId: problemData.id }}>
+            <Link to={URLWithParam.LONG_PROBLEM_RESULT(id!)}>
               <TextButton
                 type={BUTTON_TYPE.SUBMIT}
                 theme={BUTTON_THEME.PRIMARY}
                 size={BUTTON_SIZE.MEDIUM}
+                onClick={handleSubmit}
               >
                 제출하기
               </TextButton>
@@ -109,7 +121,7 @@ function QuestionDetailPage() {
               로그인
             </TextButton>
           )}
-          <Link to='/list'>
+          <Link to={URL.PROBLEM_LIST}>
             <TextButton
               type={BUTTON_TYPE.BUTTON}
               theme={BUTTON_THEME.SECONDARY}

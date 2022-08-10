@@ -13,3 +13,14 @@ export interface IProblemRequestParam {
   page?: number;
   size?: number;
 }
+
+export interface IProblemDetailResponseData {
+  id: number;
+  title: string;
+  tags: string[];
+  description: string;
+  avgScore: number;
+  topScore: number;
+  bottomScore: number;
+  totalSolved: number;
+}

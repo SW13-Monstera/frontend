@@ -6,4 +6,7 @@ export const problemApiWrapper = {
   problemList: (params: IProblemRequestParam) => {
     return apiClient.get(API_URL.PROBLEM_LIST, { params: params });
   },
+  problemDetail: (problem_id: string) => {
+    return apiClient.get(API_URL.PROBLEM_DETAIL(parseInt(problem_id)));
+  },
 };
