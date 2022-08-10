@@ -28,12 +28,13 @@ import baseFontStyle from '../../styles/font.css';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { URL, URLWithParam } from '../../constants/url';
 import { IProblemDetailResponseData } from '../../types/api/problem';
+import { USER_INFO } from '../../constants/localStorage';
 
 function QuestionDetailPage() {
   const { id } = useParams();
+  const { isLogin, setIsLogin } = useAuthStore();
   const [data, setData] = useState<IProblemDetailResponseData>();
 
-  const { isLogin } = useAuthStore();
   const [isDark, setIsDark] = useState(false);
 
   function toggleDarkMode() {

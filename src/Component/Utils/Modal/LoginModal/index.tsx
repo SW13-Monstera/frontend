@@ -24,7 +24,7 @@ function LoginModal({ isModalOpen, closeModal }: IModal) {
       })
       .then((response) => {
         localStorage.setItem(USER_INFO, JSON.stringify(response));
-        setIsLogin();
+        setIsLogin(true);
       });
   };
 

@@ -30,7 +30,11 @@ export const authApiWrapper = {
   join: (data: IJoinRequest) => {
     return apiClient.post(API_URL.JOIN, data);
   },
-  getUserInfo: () => {
-    return apiClient.get(API_URL.USER_INFO);
+  getUserInfo: (token: string) => {
+    return apiClient.get(API_URL.USER_INFO, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   },
 };
