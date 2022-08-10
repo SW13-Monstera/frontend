@@ -3,7 +3,7 @@ import AlarmIcon from '../../Icon/AlarmIcon';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { useAuthStore } from '../../hooks/useStore';
-import { IconButton, TransparentButton } from '../../Component/Button';
+import { IconButton, TextButton, TransparentButton } from '../../Component/Button';
 import useLoginModal from '../../hooks/useLoginModal';
 import LoginModal from '../../Component/Utils/Modal/LoginModal';
 import logo from '../../assets/images/csbroker.png';
@@ -11,10 +11,33 @@ import { headerStyle, logoStyle, menuStyle, navStyle } from './style.css';
 import { COLOR } from '../../constants/color';
 import { ICON } from '../../constants/icon';
 import { URL } from '../../constants/url';
+import CustomPopover from '../../Component/Utils/Popover';
+import { usePopover } from '../../hooks/usePopover';
+import { Typography } from '@mui/material';
+import { USER_INFO } from '../../constants/localStorage';
 
 function Header() {
-  const { isLogin } = useAuthStore();
+  const { isLogin, setIsLogin } = useAuthStore();
   const { isLoginModalOpen, openLoginModal, closeLoginModal } = useLoginModal();
+  const {
+    anchorEl: alarmAnchorEl,
+    handleClick: handleAlarmClick,
+    handleClose: handleAlarmClose,
+    id: alarmId,
+    open: alarmOpen,
+  } = usePopover();
+  const {
+    anchorEl: mypageAnchorEl,
+    handleClick: handleMypageClick,
+    handleClose: handleMypageClose,
+    id: mypageId,
+    open: mypageOpen,
+  } = usePopover();
+
+  function handleLogout() {
+    localStorage.removeItem(USER_INFO);
+    setIsLogin(false);
+  }
 
   return (
     <header className={headerStyle}>
@@ -28,12 +51,36 @@ function Header() {
       <div className={menuStyle}>
         {isLogin ? (
           <>
-            <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
+            <IconButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.PRIMARY}
+              onClick={handleAlarmClick}
+            >
               <AlarmIcon fill={COLOR.WHITE} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
             </IconButton>
-            <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
+            <CustomPopover
+              id={alarmId}
+              open={alarmOpen}
+              anchorEl={alarmAnchorEl}
+              handleClose={handleAlarmClose}
+            >
+              <Typography sx={{ p: 2 }}>확인하지 않은 알림이 없습니다.</Typography>
+            </CustomPopover>
+            <IconButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.PRIMARY}
+              onClick={handleMypageClick}
+            >
               <MyPageIcon fill={COLOR.WHITE} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
             </IconButton>
+            <CustomPopover
+              id={mypageId}
+              open={mypageOpen}
+              anchorEl={mypageAnchorEl}
+              handleClose={handleMypageClose}
+            >
+              <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
+            </CustomPopover>
           </>
         ) : (
           <>

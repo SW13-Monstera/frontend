@@ -12,9 +12,15 @@ export const transparentButtonStyle = style([
     width: 'fit-content',
     height: 'fit-content',
 
-    color: COLOR.WHITE,
+    color: 'inherit',
     background: 'transparent',
 
     whiteSpace: 'nowrap',
+
+    padding: '1rem',
+
+    ':hover': {
+      color: COLOR.GRAY,
+    },
   },
 ]);
