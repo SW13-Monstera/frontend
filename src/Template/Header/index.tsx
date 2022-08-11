@@ -3,7 +3,7 @@ import AlarmIcon from '../../Icon/AlarmIcon';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { useAuthStore } from '../../hooks/useStore';
-import { IconButton, TextButton, TransparentButton } from '../../Component/Button';
+import { IconButton, TransparentButton } from '../../Component/Button';
 import useLoginModal from '../../hooks/useLoginModal';
 import LoginModal from '../../Component/Utils/Modal/LoginModal';
 import logo from '../../assets/images/csbroker.png';

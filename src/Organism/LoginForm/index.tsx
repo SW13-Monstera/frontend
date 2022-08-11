@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
 import { loginFormContentStyle, loginFormStyle, logoStyle } from './style.css';
 import { TextButton } from '../../Component/Button';
