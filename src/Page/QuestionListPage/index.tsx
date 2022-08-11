@@ -68,7 +68,7 @@ function QuestionListPage() {
             </div>
             <ul className={checkedTagListStyle}>
               {[...checkedTags].map((tag) => (
-                <TagBox name={tag.name} key={tag.id} />
+                <TagBox tagId={tag.id} key={tag.id} />
               ))}
             </ul>
           </div>
@@ -78,11 +78,11 @@ function QuestionListPage() {
           {problemList.map((problem: IProblemListResponseData) => (
             <QuestionListElementBox
               title={problem.title}
-              numberSolved={problem.totalSolved}
-              averageScore={problem.avgScore}
+              numberSolved={problem.totalSolved ?? 0}
+              averageScore={problem.avgScore ?? 0}
               tagList={problem.tags}
               key={problem.id}
-              id={problem.id}
+              id={problem.id.toString()}
             />
           ))}
         </div>

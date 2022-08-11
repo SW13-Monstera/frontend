@@ -14,6 +14,7 @@ import {
   buttonListStyle,
   themeDarkClass,
   answerInputContentStyle,
+  tagListStyle,
 } from './style.css';
 import './gutter.css';
 import { Link, useParams } from 'react-router-dom';
@@ -61,14 +62,16 @@ function QuestionDetailPage() {
               <div className={descStyle}>
                 <div className={titleTagStyle}>
                   <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul>
-                    {data?.tags.map((tagName) => (
-                      <Tag name={tagName} key={tagName} />
+                  <ul className={tagListStyle}>
+                    {data?.tags.map((tagId) => (
+                      <Tag tagId={tagId} key={tagId} />
                     ))}
                   </ul>
                 </div>
                 <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved}, 평균 점수 : ${data?.avgScore}점, 최고점 : ${data?.topScore}점 , 최저점 : ${data?.bottomScore}점`}
+                  {`제출 : ${data?.totalSolved ?? 0}, 평균 점수 : ${
+                    data?.avgScore ?? 0
+                  }점, 최고점 : ${data?.topScore ?? 0}점 , 최저점 : ${data?.bottomScore ?? 0}점`}
                 </div>
               </div>
 
