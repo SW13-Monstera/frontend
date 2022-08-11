@@ -13,6 +13,7 @@ export interface IProblemRequestParam {
   page?: number;
   size?: number;
   type?: string;
+  isGradable?: boolean | null;
 }
 
 export interface IProblemDetailResponseData {
