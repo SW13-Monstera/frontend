@@ -1,3 +1,5 @@
+import { MouseEvent } from 'react';
+
 export interface IButton {
   children: JSX.Element | string;
   type?: TButtonType;
