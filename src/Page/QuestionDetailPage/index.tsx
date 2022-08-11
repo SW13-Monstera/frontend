@@ -52,89 +52,95 @@ function QuestionDetailPage() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
-        <div className={topStyle}>
-          <div className={descStyle}>
-            <div className={titleTagStyle}>
-              <h1 className={baseFontStyle.title}>{data?.title}</h1>
-              <ul>
-                {data?.tags.map((tagName) => (
-                  <Tag name={tagName} key={tagName} />
-                ))}
-              </ul>
-            </div>
-            <div className={baseFontStyle.medium}>
-              {`제출 : ${data?.totalSolved}, 평균 점수 : ${data?.avgScore}점, 최고점 : ${data?.topScore}점 , 최저점 : ${data?.bottomScore}점`}
-            </div>
-          </div>
+    <div>
+      {data ? (
+        <>
+          <Header />
+          <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
+            <div className={topStyle}>
+              <div className={descStyle}>
+                <div className={titleTagStyle}>
+                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
+                  <ul>
+                    {data?.tags.map((tagName) => (
+                      <Tag name={tagName} key={tagName} />
+                    ))}
+                  </ul>
+                </div>
+                <div className={baseFontStyle.medium}>
+                  {`제출 : ${data?.totalSolved}, 평균 점수 : ${data?.avgScore}점, 최고점 : ${data?.topScore}점 , 최저점 : ${data?.bottomScore}점`}
+                </div>
+              </div>
 
-          <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
-        </div>
-        <div className={questionContentStyle}>
-          <Split
-            sizes={[25, 75]}
-            minSize={100}
-            expandToMin={false}
-            gutterSize={10}
-            gutterAlign='center'
-            snapOffset={30}
-            dragInterval={1}
-            direction='horizontal'
-            cursor='col-resize'
-            className={splitStyle}
-          >
-            <div className={contentWrapperStyle}>
-              <div className={contentTitleStyle}>문제 설명</div>
-              <div className={problemDescContentStyle}>{data?.description}</div>
+              <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
-            <div className={contentWrapperStyle}>
-              <label htmlFor='answer' className={contentTitleStyle}>
-                답안 작성
-              </label>
-              <textarea
-                id='answer'
-                placeholder='답변을 입력해주세요'
-                className={answerInputContentStyle}
-              ></textarea>
-            </div>
-          </Split>
-        </div>
-
-        <div className={buttonListStyle}>
-          {isLogin ? (
-            <Link to={URLWithParam.LONG_PROBLEM_RESULT(id!)}>
-              <TextButton
-                type={BUTTON_TYPE.SUBMIT}
-                theme={BUTTON_THEME.PRIMARY}
-                size={BUTTON_SIZE.MEDIUM}
-                onClick={handleSubmit}
+            <div className={questionContentStyle}>
+              <Split
+                sizes={[25, 75]}
+                minSize={100}
+                expandToMin={false}
+                gutterSize={10}
+                gutterAlign='center'
+                snapOffset={30}
+                dragInterval={1}
+                direction='horizontal'
+                cursor='col-resize'
+                className={splitStyle}
               >
-                제출하기
-              </TextButton>
-            </Link>
-          ) : (
-            <TextButton
-              type={BUTTON_TYPE.SUBMIT}
-              theme={BUTTON_THEME.PRIMARY}
-              size={BUTTON_SIZE.MEDIUM}
-            >
-              로그인
-            </TextButton>
-          )}
-          <Link to={URL.PROBLEM_LIST}>
-            <TextButton
-              type={BUTTON_TYPE.BUTTON}
-              theme={BUTTON_THEME.SECONDARY}
-              size={BUTTON_SIZE.MEDIUM}
-            >
-              돌아가기
-            </TextButton>
-          </Link>
-        </div>
-      </main>
-    </>
+                <div className={contentWrapperStyle}>
+                  <div className={contentTitleStyle}>문제 설명</div>
+                  <div className={problemDescContentStyle}>{data?.description}</div>
+                </div>
+                <div className={contentWrapperStyle}>
+                  <label htmlFor='answer' className={contentTitleStyle}>
+                    답안 작성
+                  </label>
+                  <textarea
+                    id='answer'
+                    placeholder='답변을 입력해주세요'
+                    className={answerInputContentStyle}
+                  ></textarea>
+                </div>
+              </Split>
+            </div>
+
+            <div className={buttonListStyle}>
+              {isLogin ? (
+                <Link to={URLWithParam.LONG_PROBLEM_RESULT(id!)}>
+                  <TextButton
+                    type={BUTTON_TYPE.SUBMIT}
+                    theme={BUTTON_THEME.PRIMARY}
+                    size={BUTTON_SIZE.MEDIUM}
+                    onClick={handleSubmit}
+                  >
+                    제출하기
+                  </TextButton>
+                </Link>
+              ) : (
+                <TextButton
+                  type={BUTTON_TYPE.SUBMIT}
+                  theme={BUTTON_THEME.PRIMARY}
+                  size={BUTTON_SIZE.MEDIUM}
+                >
+                  로그인
+                </TextButton>
+              )}
+              <Link to={URL.PROBLEM_LIST}>
+                <TextButton
+                  type={BUTTON_TYPE.BUTTON}
+                  theme={BUTTON_THEME.SECONDARY}
+                  size={BUTTON_SIZE.MEDIUM}
+                >
+                  돌아가기
+                </TextButton>
+              </Link>
+            </div>
+          </main>
+        </>
+      ) : (
+        <></>
+      )}
+    </div>
   );
 }
 export default QuestionDetailPage;

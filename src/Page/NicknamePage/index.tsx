@@ -12,8 +12,11 @@ function NicknamePage() {
   const navigate = useNavigate();
 
   function handleNickname() {
+    const usernameValue = (document.getElementById('nickname') as HTMLInputElement)?.value;
+    if (!usernameValue) return;
+
     const data: IUpdateUserRequest = {
-      username: (document.getElementById('nickname') as HTMLInputElement).value,
+      username: usernameValue,
     };
     userApiWrapper.updateUser(data);
     navigate(URL.MAIN);

@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import { authApiWrapper } from '../../../../api/wrapper/auth/authApiWrapper';
 import { USER_INFO } from '../../../../constants/localStorage';
-import { useAuthStore, useUserInfoStore } from '../../../../hooks/useStore';
+import { useAuthStore } from '../../../../hooks/useStore';
 import LoginForm from '../../../../Organism/LoginForm';
 import { modalStyle } from './style.css';
 
@@ -17,10 +17,15 @@ function LoginModal({ isModalOpen, closeModal }: IModal) {
   const { setIsLogin } = useAuthStore();
 
   const handleSubmit = () => {
+    const emailValue = (document.getElementById('email') as HTMLInputElement)?.value;
+    const passwordValue = (document.getElementById('password') as HTMLInputElement)?.value;
+
+    if (!emailValue || !passwordValue) return;
+
     authApiWrapper
       .login({
-        email: (document.getElementById('email') as HTMLInputElement)?.value || '',
-        password: (document.getElementById('password') as HTMLInputElement)?.value || '',
+        email: emailValue,
+        password: passwordValue,
       })
       .then((response) => {
         localStorage.setItem(USER_INFO, JSON.stringify(response));

@@ -12,14 +12,23 @@ import { URL } from '../../constants/url';
 
 function JoinPage() {
   const navigate = useNavigate();
+
   function handleJoin() {
     const joinForm = document.getElementById('join-form') as HTMLFormElement;
     const formData = new FormData(joinForm);
+
+    const emailValue = formData.get('email')?.toString();
+    const passwordValue = formData.get('password')?.toString();
+    const usernameValue = formData.get('nickname')?.toString();
+
+    if (!emailValue || !passwordValue || !usernameValue) return;
+
     const data: IJoinRequest = {
-      email: formData.get('email')?.toString() || '',
-      password: formData.get('password')?.toString() || '',
-      username: formData.get('nickname')?.toString() || '',
+      email: emailValue,
+      password: passwordValue,
+      username: usernameValue,
     };
+
     authApiWrapper.join(data);
     navigate(URL.MAIN);
   }
