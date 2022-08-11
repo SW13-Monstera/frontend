@@ -135,3 +135,8 @@ export const buttonListStyle = style({
   alignSelf: 'flex-end',
   gap: '1rem',
 });
+
+export const tagListStyle = style({
+  display: 'flex',
+  gap: '0.25rem',
+});

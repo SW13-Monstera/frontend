@@ -3,10 +3,11 @@
 import { css } from '@emotion/react';
 import { ChangeEvent, useState } from 'react';
 import { INPUT_TYPE } from '../../../constants/input';
+import { ITag } from '../../../types/problem';
 import { IDropdownElement } from '../../../types/util';
 
 interface IDropdownComponentProps extends IDropdownElement {
-  handleCheckedTags: (name: string, isChecked: boolean) => void;
+  handleCheckedTags: (tag: ITag, isChecked: boolean) => void;
 }
 
 function DropdownElement({ id, name, handleCheckedTags }: IDropdownComponentProps) {
@@ -14,7 +15,7 @@ function DropdownElement({ id, name, handleCheckedTags }: IDropdownComponentProp
 
   function checkHandler({ target }: ChangeEvent<HTMLInputElement>) {
     setIsChecked(!isChecked);
-    handleCheckedTags(target.name, target.checked);
+    handleCheckedTags({ id: target.id, name: target.name }, target.checked);
   }
 
   return (

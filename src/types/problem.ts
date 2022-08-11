@@ -1,5 +1,5 @@
 interface IProblem {
-  id: number;
+  id: string;
   title: string;
   tagList: string[];
   numberSolved?: number;
@@ -15,4 +15,9 @@ interface IProblemIdLinkState {
   problemId: number;
 }
 
-export type { IProblem, IProblemIdLinkState };
+interface ITag {
+  id: string;
+  name: string;
+}
+
+export type { IProblem, IProblemIdLinkState, ITag };

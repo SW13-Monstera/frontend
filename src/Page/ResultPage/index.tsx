@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import KeywordBox from '../../Component/Box/KeywordBox';
 import TextBox from '../../Component/Box/TextBox';
 import TextButton from '../../Component/Button/TextButton';
@@ -7,7 +7,6 @@ import { listData } from '../../data';
 import { scoringResult } from '../../data/scoringResult';
 import Header from '../../Template/Header';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import { IProblemIdLinkState } from '../../types/problem';
 import {
   buttonListStyle,
   contentStyle,
@@ -17,10 +16,12 @@ import {
   subtitleStyle,
   answerContentStyle,
 } from './style.css';
+import { URL, URLWithParam } from '../../constants/url';
 
 function ResultPage() {
-  const state = useLocation().state as IProblemIdLinkState;
-  const problemData = listData[state.problemId];
+  const { id } = useParams();
+  if (!id) return <></>;
+  const problemData = listData[parseInt(id) ?? 0];
 
   return (
     <>
@@ -60,7 +61,7 @@ function ResultPage() {
           </TextBox>
         </div>
         <div className={buttonListStyle}>
-          <Link to={`/list/${problemData.id}`} state={{ problemId: problemData.id }}>
+          <Link to={URLWithParam.LONG_PROBLEM_DETAIL(id)} state={{ problemId: problemData.id }}>
             <TextButton
               type={BUTTON_TYPE.BUTTON}
               theme={BUTTON_THEME.PRIMARY}
@@ -69,7 +70,7 @@ function ResultPage() {
               다시 풀기
             </TextButton>
           </Link>
-          <Link to='/list'>
+          <Link to={URL.PROBLEM_LIST}>
             <TextButton
               type={BUTTON_TYPE.BUTTON}
               theme={BUTTON_THEME.SECONDARY}

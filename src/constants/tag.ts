@@ -1,9 +1,16 @@
-const TAGLIST = [
+import { ITag } from '../types/problem';
+
+interface ITagListElement {
+  name: string;
+  elements: ITag[];
+}
+
+const TAGLIST: ITagListElement[] = [
   {
     name: '카테고리',
     elements: [
       {
-        id: 'nt',
+        id: 'network',
         name: '네트워크',
       },
       {

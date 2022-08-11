@@ -1,9 +1,11 @@
+import { MouseEventHandler } from 'react';
+
 export interface IButton {
   children: JSX.Element | string;
   type?: TButtonType;
   theme?: TButtonTheme;
   size?: TButtonSize;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface IButtonDetail extends IButton {

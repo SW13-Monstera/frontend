@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 import { Header, Footer } from '../';
+import { USER_INFO } from '../../constants/localStorage';
+import { useAuthStore } from '../../hooks/useStore';
 import { mainStyle } from './style.css';
 
 interface IPageTemplate {
@@ -6,6 +9,14 @@ interface IPageTemplate {
 }
 
 function PageTemplate({ children }: IPageTemplate) {
+  const { setIsLogin } = useAuthStore();
+
+  useEffect(() => {
+    if (localStorage.getItem(USER_INFO)) {
+      setIsLogin(true);
+    }
+  }, []);
+
   return (
     <>
       <Header />

@@ -3,8 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --mode development",
+    "build:dev": "tsc && vite build --mode development",
+    "build": "tsc && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint 'src/**/*.ts'",
     "lint-diff": "eslint $(git diff --name-only --diff-filter=duxb origin/$BASE origin/$HEAD | grep -E '\\.((j|t)sx?)$' | xargs)"
@@ -13,6 +14,7 @@
     "@emotion/react": "^11.9.3",
     "@vanilla-extract/css": "^1.7.2",
     "@vanilla-extract/vite-plugin": "^3.2.1",
+    "axios": "^0.27.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-material-ui-carousel": "^3.4.2",

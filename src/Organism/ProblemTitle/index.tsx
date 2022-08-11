@@ -17,8 +17,8 @@ function ProblemTitle({
         <div className={titleTagStyle}>
           <h1 className={baseFontStyle.title}>{title}</h1>
           <ul>
-            {tagList.map((tagName) => (
-              <TagBox name={tagName} key={tagName} />
+            {tagList.map((tagId) => (
+              <TagBox tagId={tagId} key={tagId} />
             ))}
           </ul>
         </div>

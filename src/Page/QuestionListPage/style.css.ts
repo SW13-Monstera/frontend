@@ -2,14 +2,8 @@ import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
-export const pageMainStyle = style({
-  boxSizing: 'border-box',
-
-  display: 'flex',
-
-  width: '100%',
-  height: '100%',
-  padding: '2.5rem',
+export const mainWrapperStyle = style({
+  padding: '1rem 0 0 1rem',
 });
 
 export const asideStyle = style({
@@ -22,6 +16,8 @@ export const asideStyle = style({
 
   width: '15.625rem',
   height: '12.5rem',
+
+  padding: '1rem 0 0 1rem',
 });
 
 export const filterStyle = style({
@@ -78,7 +74,9 @@ export const questionListStyle = style({
   gap: '10px',
 
   width: '65%',
-  marginLeft: '18.75rem',
+  marginLeft: '16rem',
+
+  padding: '1rem 0 0 1rem',
 
   '@media': {
     'screen and (max-width: 1600px)': {

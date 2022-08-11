@@ -4,66 +4,90 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { listData } from '../../data';
-import { useCheckedTagsStore } from '../../hooks/useStore';
-import Header from '../../Template/Header';
-import { IProblem } from '../../types/problem';
+import { useAuthStore, useCheckedTagsStore } from '../../hooks/useStore';
 import {
   asideStyle,
   checkedTagListStyle,
   dropdownListStyle,
   filterStyle,
   filterTitleStyle,
-  pageMainStyle,
   questionListStyle,
 } from './style.css';
-import { Footer } from '../../Template';
+import { PageTemplate } from '../../Template';
+import { useEffect, useState } from 'react';
+import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
+import { IProblemListResponseData } from '../../types/api/problem';
+import { getFilterParams } from '../../utils/getFilterParams';
 
 function QuestionListPage() {
+  const [problemList, setProblemList] = useState<IProblemListResponseData[]>([]);
   const { checkedTags, handleCheckedTags } = useCheckedTagsStore();
+  const [page, setPage] = useState(0);
+  const { isLogin } = useAuthStore();
+
+  function handleSearchInput() {
+    const params = { ...getFilterParams(checkedTags), page: page };
+    problemApiWrapper.problemList(params).then((res) => {
+      setProblemList(res.data);
+    });
+  }
+
+  useEffect(() => {
+    const params = { ...getFilterParams(checkedTags), page: page };
+    problemApiWrapper.problemList(params).then((res) => {
+      setProblemList(res.data);
+    });
+  }, [checkedTags]);
 
   return (
-    <>
-      <Header />
-      <DefaultSlider />
-      <main className={pageMainStyle}>
+    <PageTemplate>
+      <div>
+        <DefaultSlider />
         <aside className={asideStyle}>
-          <SearchInputBox />
+          <SearchInputBox handleSearchInput={handleSearchInput} />
           <div className={filterStyle}>
             <div className={filterTitleStyle}>필터</div>
             <div className={dropdownListStyle}>
-              {TAGLIST.map((tagtype) => (
-                <Dropdown
-                  name={tagtype.name}
-                  elements={tagtype.elements}
-                  handleCheckedTags={handleCheckedTags}
-                  key={tagtype.name}
-                />
-              ))}
+              {isLogin
+                ? TAGLIST.map((tagtype) => (
+                    <Dropdown
+                      name={tagtype.name}
+                      elements={tagtype.elements}
+                      handleCheckedTags={handleCheckedTags}
+                      key={tagtype.name}
+                    />
+                  ))
+                : TAGLIST.filter((e) => e.name !== '풀이 여부').map((tagtype) => (
+                    <Dropdown
+                      name={tagtype.name}
+                      elements={tagtype.elements}
+                      handleCheckedTags={handleCheckedTags}
+                      key={tagtype.name}
+                    />
+                  ))}
             </div>
             <ul className={checkedTagListStyle}>
-              {[...checkedTags].map((tagName) => (
-                <TagBox name={tagName} key={tagName} />
+              {[...checkedTags].map((tag) => (
+                <TagBox tagId={tag.id} key={tag.id} />
               ))}
             </ul>
           </div>
         </aside>
 
         <div className={questionListStyle}>
-          {listData.map((e: IProblem) => (
+          {problemList.map((problem: IProblemListResponseData) => (
             <QuestionListElementBox
-              title={e.title}
-              numberSolved={e.numberSolved}
-              averageScore={e.averageScore}
-              tagList={e.tagList}
-              key={e.id}
-              id={e.id}
+              title={problem.title}
+              numberSolved={problem.totalSolved ?? 0}
+              averageScore={problem.avgScore ?? 0}
+              tagList={problem.tags}
+              key={problem.id}
+              id={problem.id.toString()}
             />
           ))}
         </div>
-      </main>
-      <Footer />
-    </>
+      </div>
+    </PageTemplate>
   );
 }
 
