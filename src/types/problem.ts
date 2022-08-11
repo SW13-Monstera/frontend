@@ -1,5 +1,5 @@
 interface IProblem {
-  id: number;
+  id: string;
   title: string;
   tagList: string[];
   numberSolved?: number;
