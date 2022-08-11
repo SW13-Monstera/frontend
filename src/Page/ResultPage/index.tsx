@@ -20,7 +20,7 @@ import { URL, URLWithParam } from '../../constants/url';
 
 function ResultPage() {
   const { id } = useParams();
-  if (!id) return;
+  if (!id) return <></>;
   const problemData = listData[parseInt(id) ?? 0];
 
   return (
