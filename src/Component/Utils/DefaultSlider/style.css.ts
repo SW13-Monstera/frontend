@@ -12,6 +12,7 @@ export const sliderContainerStyle = style({
   overflow: 'hidden',
   color: COLOR.WHITE,
   backgroundColor: COLOR.TITLEACTIVE,
+  marginTop: '0px',
 });
 
 export const slideStyle = style({

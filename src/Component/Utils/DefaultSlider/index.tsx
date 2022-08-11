@@ -3,12 +3,12 @@ import { sliderContainerStyle, slideStyle } from './style.css';
 
 const items = [
   {
-    name: 'Random Name #1',
-    description: 'Probably the most random thing you have ever seen!',
+    name: '🧑‍💻 Computer Science 지식을 학습해요!',
+    description: '크왕과 함께라면 할 수 있어요',
   },
   {
-    name: 'Random Name #2',
-    description: 'Hello World!',
+    name: '🧠 딥러닝 기초를 다져봐요!',
+    description: 'Play boy와 함께라면 할 수 있어요',
   },
 ];
 

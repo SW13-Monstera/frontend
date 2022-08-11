@@ -9,7 +9,7 @@ const API_URL = {
 
 const API_URL_WITH_PARAMS = {
   USER_DETAIL: (user_id: string) => `/v1/users/${user_id}`,
-  PROBLEM_DETAIL: (problem_id: number) => `/v1/problems/${problem_id}`,
+  PROBLEM_DETAIL: (problem_id: string) => `/v1/problems/${problem_id}`,
   UPDATE_USER: (user_id: string) => `/v1/users/${user_id}`,
 };
 
