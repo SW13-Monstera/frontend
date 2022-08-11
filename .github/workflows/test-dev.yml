@@ -30,9 +30,9 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: Run build
+      - name: Run build:dev
         if: ${{always()}}
-        run: npm run build
+        run: npm run build:dev
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
