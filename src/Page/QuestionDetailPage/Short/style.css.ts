@@ -1,6 +1,6 @@
 import { createThemeContract, createTheme, style, keyframes } from '@vanilla-extract/css';
-import { COLOR } from '../../constants/color';
-import baseFontStyle from '../../styles/font.css';
+import { COLOR } from '../../../constants/color';
+import baseFontStyle from '../../../styles/font.css';
 
 export const vars = createThemeContract({
   backgroundColor: null,
@@ -122,7 +122,8 @@ export const answerInputContentStyle = style({
   display: 'flex',
 
   width: '100%',
-  height: '100%',
+
+  padding: '1rem',
 
   color: vars.textColor,
   backgroundColor: vars.backgroundColor,

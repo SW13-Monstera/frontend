@@ -1,4 +1,4 @@
-import Header from '../../Template/Header';
+import Header from '../../../Template/Header';
 import Split from 'react-split';
 import {
   themeLightClass,
@@ -13,36 +13,48 @@ import {
   problemDescContentStyle,
   buttonListStyle,
   themeDarkClass,
-  answerInputContentStyle,
+  choiceListStyle,
+  choiceWrapperStyle,
+  choiceCheckboxStyle,
   tagListStyle,
 } from './style.css';
-import './gutter.css';
+import '../gutter.css';
 import { Link, useParams } from 'react-router-dom';
-import Tag from '../../Component/Box/TagBox';
-import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import TextButton from '../../Component/Button/TextButton';
-import { ReactComponent as SunIcon } from '../../assets/icons/sun.svg';
-import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
-import { useAuthStore } from '../../hooks/useStore';
+import Tag from '../../../Component/Box/TagBox';
+import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
+import TextButton from '../../../Component/Button/TextButton';
+import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
+import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
+import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
-import baseFontStyle from '../../styles/font.css';
-import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
-import { URL, URLWithParam } from '../../constants/url';
-import { IProblemDetailResponseData } from '../../types/api/problem';
+import baseFontStyle from '../../../styles/font.css';
+import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
+import { URL, URLWithParam } from '../../../constants/url';
+import { IProblemDetailResponseData } from '../../../types/api/problem';
 
-function QuestionDetailPage() {
+const choices = [
+  { id: 0, content: '선택지1' },
+  { id: 1, content: '선택지2' },
+  { id: 2, content: '선택지3' },
+];
+
+export function MultipleQuestionDetailPage() {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
   const [data, setData] = useState<IProblemDetailResponseData>();
 
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   function toggleDarkMode() {
     setIsDark((prev) => !prev);
   }
 
   function handleSubmit() {
-    return;
+    const choices: boolean[] = [];
+    const checkboxes = document.querySelectorAll(
+      'input[type="checkbox"]',
+    ) as NodeListOf<HTMLInputElement>;
+    checkboxes.forEach((e) => choices.push(e.checked));
   }
 
   useEffect(() => {
@@ -96,20 +108,31 @@ function QuestionDetailPage() {
                 </div>
                 <div className={contentWrapperStyle}>
                   <label htmlFor='answer' className={contentTitleStyle}>
-                    답안 작성
+                    답안 선택
                   </label>
-                  <textarea
-                    id='answer'
-                    placeholder='답변을 입력해주세요'
-                    className={answerInputContentStyle}
-                  ></textarea>
+                  <div className={choiceListStyle}>
+                    {choices.map((choice) => (
+                      <label
+                        htmlFor={choice.id.toString()}
+                        className={choiceWrapperStyle}
+                        key={choice.id}
+                      >
+                        <input
+                          type='checkbox'
+                          id={choice.id.toString()}
+                          className={choiceCheckboxStyle}
+                        />
+                        {choice.content}
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </Split>
             </div>
 
             <div className={buttonListStyle}>
               {isLogin ? (
-                <Link to={URLWithParam.LONG_PROBLEM_RESULT(id!)}>
+                <Link to={URLWithParam.MULTIPLE_PROBLEM_RESULT(id!)}>
                   <TextButton
                     type={BUTTON_TYPE.SUBMIT}
                     theme={BUTTON_THEME.PRIMARY}
@@ -146,4 +169,3 @@ function QuestionDetailPage() {
     </div>
   );
 }
-export default QuestionDetailPage;
