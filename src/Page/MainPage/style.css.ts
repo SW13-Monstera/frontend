@@ -7,7 +7,7 @@ export const pageWrapperStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
 
-  padding: '5rem',
+  padding: '4.4rem',
 });
 
 export const logoTitleStyle = style({

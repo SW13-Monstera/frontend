@@ -3,7 +3,7 @@ import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
 export const footerStyle = style([
-  baseFontStyle.medium,
+  baseFontStyle.xsmall,
   {
     boxSizing: 'border-box',
 
@@ -13,12 +13,13 @@ export const footerStyle = style([
     left: '0px',
 
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: '0.5rem',
 
     width: '100%',
     height: '10%',
-    paddingBottom: '1rem',
+    padding: '1.5rem',
 
     color: COLOR.WHITE,
     backgroundColor: COLOR.TITLEACTIVE,
