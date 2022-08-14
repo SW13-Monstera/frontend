@@ -19,9 +19,6 @@ export const searchInputBoxStyle = style({
 
 export const inputTextBoxStyle = style({
   width: '100%',
-
-  margin: '0.3125rem',
-
   border: 'none',
 });
 

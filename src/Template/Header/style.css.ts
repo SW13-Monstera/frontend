@@ -21,6 +21,8 @@ export const headerStyle = style([
 
     color: COLOR.WHITE,
     backgroundColor: COLOR.TITLEACTIVE,
+
+    zIndex: 1,
   },
 ]);
 

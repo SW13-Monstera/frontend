@@ -2,13 +2,16 @@ import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
-export const mainWrapperStyle = style({
-  padding: '1rem 0 0 1rem',
+export const listPageWrapperStyle = style({
+  marginBottom: '5rem',
+});
+
+export const listPageMainWrapperStyle = style({
+  display: 'flex',
 });
 
 export const asideStyle = style({
   boxSizing: 'border-box',
-  position: 'fixed',
 
   display: 'flex',
   flexDirection: 'column',
@@ -74,7 +77,7 @@ export const questionListStyle = style({
   gap: '10px',
 
   width: '65%',
-  marginLeft: '16rem',
+  marginLeft: '1rem',
 
   padding: '1rem 0 0 1rem',
 
