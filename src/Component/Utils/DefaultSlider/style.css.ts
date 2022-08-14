@@ -8,7 +8,6 @@ export const sliderContainerStyle = style({
   justifyContent: 'center',
   width: '100%',
   height: '30vh',
-  margin: 'auto',
   overflow: 'hidden',
   color: COLOR.WHITE,
   backgroundColor: COLOR.TITLEACTIVE,
