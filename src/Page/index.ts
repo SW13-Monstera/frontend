@@ -1,6 +1,8 @@
 import MainPage from './MainPage';
-import QuestionDetailPage from './QuestionDetailPage';
 import QuestionListPage from './QuestionListPage';
+import { LongQuestionDetailPage } from './QuestionDetailPage/Long';
+import { ShortQuestionDetailPage } from './QuestionDetailPage/Short';
+import { MultipleQuestionDetailPage } from './QuestionDetailPage/Multiple';
 import ResultPage from './ResultPage';
 import NicknamePage from './NicknamePage';
 import JoinPage from './JoinPage';
@@ -9,7 +11,9 @@ import CallbackPage from './CallbackPage';
 export {
   MainPage,
   QuestionListPage,
-  QuestionDetailPage,
+  LongQuestionDetailPage,
+  ShortQuestionDetailPage,
+  MultipleQuestionDetailPage,
   ResultPage,
   CallbackPage,
   NicknamePage,
