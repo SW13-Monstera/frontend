@@ -1,13 +1,14 @@
 import { columnBoxStyle, rowBoxStyle } from './style.css';
 
 interface IBox {
-  children: JSX.Element | string;
+  children: React.ReactNode;
+  className?: string;
 }
 
-export const RowBox = ({ children }: IBox) => {
-  return <div className={rowBoxStyle}>{children}</div>;
+export const RowBox = ({ children, className }: IBox) => {
+  return <div className={`${rowBoxStyle} ${className}`}>{children}</div>;
 };
 
-export const ColumnBox = ({ children }: IBox) => {
-  return <div className={columnBoxStyle}>{children}</div>;
+export const ColumnBox = ({ children, className }: IBox) => {
+  return <div className={`${columnBoxStyle} ${className}`}>{children}</div>;
 };

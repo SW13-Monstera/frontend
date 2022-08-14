@@ -6,6 +6,8 @@ import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
 import { useAuthStore, useCheckedTagsStore } from '../../hooks/useStore';
 import {
+  listPageWrapperStyle,
+  listPageMainWrapperStyle,
   asideStyle,
   checkedTagListStyle,
   dropdownListStyle,
@@ -26,7 +28,8 @@ function QuestionListPage() {
   const { isLogin } = useAuthStore();
 
   function handleSearchInput() {
-    const params = { ...getFilterParams(checkedTags), page: page };
+    const query = (document.getElementById('search-problem') as HTMLInputElement).value;
+    const params = { ...getFilterParams(checkedTags), page: page, query: query };
     problemApiWrapper.problemList(params).then((res) => {
       setProblemList(res.data);
     });
@@ -41,50 +44,52 @@ function QuestionListPage() {
 
   return (
     <PageTemplate>
-      <div>
+      <div className={listPageWrapperStyle}>
         <DefaultSlider />
-        <aside className={asideStyle}>
-          <SearchInputBox handleSearchInput={handleSearchInput} />
-          <div className={filterStyle}>
-            <div className={filterTitleStyle}>필터</div>
-            <div className={dropdownListStyle}>
-              {isLogin
-                ? TAGLIST.map((tagtype) => (
-                    <Dropdown
-                      name={tagtype.name}
-                      elements={tagtype.elements}
-                      handleCheckedTags={handleCheckedTags}
-                      key={tagtype.name}
-                    />
-                  ))
-                : TAGLIST.filter((e) => e.name !== '풀이 여부').map((tagtype) => (
-                    <Dropdown
-                      name={tagtype.name}
-                      elements={tagtype.elements}
-                      handleCheckedTags={handleCheckedTags}
-                      key={tagtype.name}
-                    />
-                  ))}
+        <div className={listPageMainWrapperStyle}>
+          <aside className={asideStyle}>
+            <SearchInputBox handleSearchInput={handleSearchInput} />
+            <div className={filterStyle}>
+              <div className={filterTitleStyle}>필터</div>
+              <div className={dropdownListStyle}>
+                {isLogin
+                  ? TAGLIST.map((tagtype) => (
+                      <Dropdown
+                        name={tagtype.name}
+                        elements={tagtype.elements}
+                        handleCheckedTags={handleCheckedTags}
+                        key={tagtype.name}
+                      />
+                    ))
+                  : TAGLIST.filter((e) => e.name !== '풀이 여부').map((tagtype) => (
+                      <Dropdown
+                        name={tagtype.name}
+                        elements={tagtype.elements}
+                        handleCheckedTags={handleCheckedTags}
+                        key={tagtype.name}
+                      />
+                    ))}
+              </div>
+              <ul className={checkedTagListStyle}>
+                {[...checkedTags].map((tag) => (
+                  <TagBox tagId={tag.id} key={tag.id} />
+                ))}
+              </ul>
             </div>
-            <ul className={checkedTagListStyle}>
-              {[...checkedTags].map((tag) => (
-                <TagBox tagId={tag.id} key={tag.id} />
-              ))}
-            </ul>
-          </div>
-        </aside>
+          </aside>
 
-        <div className={questionListStyle}>
-          {problemList.map((problem: IProblemListResponseData) => (
-            <QuestionListElementBox
-              title={problem.title}
-              numberSolved={problem.totalSolved ?? 0}
-              averageScore={problem.avgScore ?? 0}
-              tagList={problem.tags}
-              key={problem.id}
-              id={problem.id.toString()}
-            />
-          ))}
+          <div className={questionListStyle}>
+            {problemList.map((problem: IProblemListResponseData) => (
+              <QuestionListElementBox
+                title={problem.title}
+                numberSolved={problem.totalSolved ?? 0}
+                averageScore={problem.avgScore ?? 0}
+                tagList={problem.tags}
+                key={problem.id}
+                id={problem.id.toString()}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </PageTemplate>
