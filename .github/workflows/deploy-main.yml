@@ -1,9 +1,9 @@
-name: 'test-dev'
+name: 'deploy-main'
 
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   test:
@@ -30,15 +30,15 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: Run build:dev
+      - name: Run build
         if: ${{always()}}
-        run: npm run build:dev
+        run: npm run build
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: './dist'
-          production-branch: dev
+          production-branch: main
           github-token: ${{ github.token }}
           deploy-message: 'Deploy from GitHub Actions'
           enable-pull-request-comment: false
@@ -46,5 +46,5 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_DEV }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
