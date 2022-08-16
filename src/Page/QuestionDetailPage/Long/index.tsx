@@ -29,7 +29,7 @@ import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrappe
 import { URL, URLWithParam } from '../../../constants/url';
 import { IProblemDetailResponseData } from '../../../types/api/problem';
 import TagBox from '../../../Component/Box/TagBox';
-import { TAG_MAP_BY_ID } from '../../../constants/tag';
+import { getTagById } from '../../../utils/getTagbyId';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
@@ -65,9 +65,8 @@ export function LongQuestionDetailPage() {
                   <h1 className={baseFontStyle.title}>{data?.title}</h1>
                   <ul className={tagListStyle}>
                     {data?.tags.map((tagId) => {
-                      const tagValue = TAG_MAP_BY_ID.get(tagId);
-                      if (!tagValue) return;
-                      return <TagBox key={tagId} name={tagValue?.name} color={tagValue?.color} />;
+                      const { name, color } = getTagById(tagId);
+                      return <TagBox key={tagId} name={name} color={color} />;
                     })}
                   </ul>
                 </div>

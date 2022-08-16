@@ -31,7 +31,7 @@ import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URL, URLWithParam } from '../../../constants/url';
 import { IProblemDetailResponseData } from '../../../types/api/problem';
-import { TAG_MAP_BY_ID } from '../../../constants/tag';
+import { getTagById } from '../../../utils/getTagbyId';
 
 const choices = [
   { id: 0, content: '선택지1' },
@@ -77,9 +77,8 @@ export function MultipleQuestionDetailPage() {
                   <h1 className={baseFontStyle.title}>{data?.title}</h1>
                   <ul className={tagListStyle}>
                     {data?.tags.map((tagId) => {
-                      const tagValue = TAG_MAP_BY_ID.get(tagId);
-                      if (!tagValue) return;
-                      return <TagBox key={tagId} name={tagValue?.name} color={tagValue?.color} />;
+                      const { name, color } = getTagById(tagId);
+                      return <TagBox key={tagId} name={name} color={color} />;
                     })}
                   </ul>
                 </div>

@@ -2,7 +2,7 @@ import { IProblem } from '../../types/problem';
 import TagBox from '../../Component/Box/TagBox';
 import { descStyle, titleTagStyle, topStyle } from './style.css';
 import baseFontStyle from '../../styles/font.css';
-import { TAG_MAP_BY_ID } from '../../constants/tag';
+import { getTagById } from '../../utils/getTagbyId';
 
 function ProblemTitle({
   title,
@@ -20,9 +20,8 @@ function ProblemTitle({
           <ul>
             {tagList.map((tagId) => {
               {
-                const tagValue = TAG_MAP_BY_ID.get(tagId);
-                if (!tagValue) return;
-                return <TagBox name={tagValue?.name} color={tagValue?.color} key={tagId} />;
+                const { name, color } = getTagById(tagId);
+                return <TagBox name={name} color={color} key={tagId} />;
               }
             })}
           </ul>
