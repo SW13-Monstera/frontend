@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import AlarmIcon from '../../Icon/AlarmIcon';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
@@ -18,6 +18,7 @@ import { USER_INFO } from '../../constants/localStorage';
 import { Divider } from '../../Component/Divider';
 
 function Header() {
+  const navigate = useNavigate();
   const { isLogin, setIsLogin } = useAuthStore();
   const { isLoginModalOpen, openLoginModal, closeLoginModal } = useLoginModal();
   const {
@@ -34,6 +35,10 @@ function Header() {
     id: mypageId,
     open: mypageOpen,
   } = usePopover();
+
+  function handleNicknamePage() {
+    navigate(URL.NICKNAME);
+  }
 
   function handleLogout() {
     localStorage.removeItem(USER_INFO);
@@ -81,7 +86,7 @@ function Header() {
               handleClose={handleMypageClose}
             >
               <>
-                <TransparentButton onClick={handleLogout}>마이 페이지</TransparentButton>
+                <TransparentButton onClick={handleNicknamePage}>닉네임 설정</TransparentButton>
                 <Divider />
                 <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
               </>

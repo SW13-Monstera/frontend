@@ -16,7 +16,7 @@ const CallbackPage = () => {
     if (!token) return;
     authApiWrapper.getUserInfo(token).then((res) => {
       localStorage.setItem(USER_INFO, JSON.stringify({ ...res.data, accessToken: token }));
-      navigate(URL.NICKNAME);
+      navigate(URL.MAIN);
       setIsLogin(true);
       setUserInfo(res.data);
     });
