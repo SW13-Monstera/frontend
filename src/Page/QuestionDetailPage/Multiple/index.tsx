@@ -77,11 +77,9 @@ export function MultipleQuestionDetailPage() {
                   <h1 className={baseFontStyle.title}>{data?.title}</h1>
                   <ul className={tagListStyle}>
                     {data?.tags.map((tagId) => {
-                      {
-                        const tagValue = TAG_MAP_BY_ID.get(tagId);
-                        if (!tagValue) return;
-                        return <TagBox key={tagId} name={tagValue?.name} color={tagValue?.color} />;
-                      }
+                      const tagValue = TAG_MAP_BY_ID.get(tagId);
+                      if (!tagValue) return;
+                      return <TagBox key={tagId} name={tagValue?.name} color={tagValue?.color} />;
                     })}
                   </ul>
                 </div>

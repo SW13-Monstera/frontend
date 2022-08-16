@@ -15,17 +15,15 @@ function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id
             <p className={baseFontStyle.medium}>{title}</p>
             <ul className={tagListStyle}>
               {tagList.map((tagId) => {
-                {
-                  const tagValue = TAG_MAP_BY_ID.get(tagId);
-                  if (!tagValue) return;
-                  return (
-                    <TagBox
-                      name={tagValue?.name ?? ''}
-                      color={tagValue?.color ?? 'color1'}
-                      key={tagId}
-                    />
-                  );
-                }
+                const tagValue = TAG_MAP_BY_ID.get(tagId);
+                if (!tagValue) return;
+                return (
+                  <TagBox
+                    name={tagValue?.name ?? ''}
+                    color={tagValue?.color ?? 'color1'}
+                    key={tagId}
+                  />
+                );
               })}
             </ul>
           </div>
