@@ -1,3 +1,5 @@
+import { ITagBox } from './tag';
+
 interface IProblem {
   id: string;
   title: string;
@@ -15,9 +17,8 @@ interface IProblemIdLinkState {
   problemId: number;
 }
 
-interface ITag {
+interface ITag extends ITagBox {
   id: string;
-  name: string;
 }
 
 export type { IProblem, IProblemIdLinkState, ITag };

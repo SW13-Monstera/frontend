@@ -8,7 +8,6 @@ import DropdownElement from './DropdownElement';
 import listenOutsideClick from '../listenOutsideClick';
 import { BUTTON_TYPE } from '../../../types/button';
 import { IDropdownElement } from '../../../types/util';
-import { ITag } from '../../../types/problem';
 
 interface ITagType {
   name: string;
@@ -16,7 +15,7 @@ interface ITagType {
 }
 
 interface IDropdownProps extends ITagType {
-  handleCheckedTags: (tag: ITag, isChecked: boolean) => void;
+  handleCheckedTags: (id: string, isChecked: boolean) => void;
 }
 
 function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {

@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { IProblemListResponseData } from '../../types/api/problem';
 import { getFilterParams } from '../../utils/getFilterParams';
+import { getTagById } from '../../utils/getTagbyId';
 
 function QuestionListPage() {
   const [problemList, setProblemList] = useState<IProblemListResponseData[]>([]);
@@ -71,9 +72,10 @@ function QuestionListPage() {
                     ))}
               </div>
               <ul className={checkedTagListStyle}>
-                {[...checkedTags].map((tag) => (
-                  <TagBox tagId={tag.id} key={tag.id} />
-                ))}
+                {[...checkedTags].map((tag) => {
+                  const { name, color } = getTagById(tag.id);
+                  return <TagBox key={tag.id} name={name} color={color} />;
+                })}
               </ul>
             </div>
           </aside>

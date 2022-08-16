@@ -55,6 +55,8 @@ export const dropdownListStyle = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: '0.625rem',
+
+  width: '100%',
 });
 
 export const checkedTagListStyle = style({

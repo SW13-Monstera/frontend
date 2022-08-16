@@ -1,16 +1,9 @@
-import { TAGLIST } from '../../../constants';
-import { tagStyle } from './style.css';
+import { ITagBox } from '../../../types/tag';
+import { tagBoxColorStyle, tagStyle } from './style.css';
 
-interface ITagBox {
-  tagId: string;
-}
-
-const category = TAGLIST.find((e) => e.name === '카테고리');
-
-function TagBox({ tagId }: ITagBox) {
-  const name = category?.elements.find((e) => e.id === tagId)?.name ?? '';
+function TagBox({ name, color }: ITagBox) {
   return (
-    <li className={tagStyle}>
+    <li className={`${tagStyle} ${tagBoxColorStyle[color]}`}>
       <div>{name}</div>
     </li>
   );

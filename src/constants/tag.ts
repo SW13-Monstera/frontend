@@ -1,4 +1,5 @@
 import { ITag } from '../types/problem';
+import { ITagBox } from '../types/tag';
 
 interface ITagListElement {
   name: string;
@@ -12,18 +13,22 @@ const TAGLIST: ITagListElement[] = [
       {
         id: 'network',
         name: '네트워크',
+        color: 'color1',
       },
       {
         id: 'os',
         name: '운영체제',
+        color: 'color1',
       },
       {
         id: 'db',
         name: '데이터베이스',
+        color: 'color1',
       },
       {
         id: 'ds',
         name: '자료구조',
+        color: 'color1',
       },
     ],
   },
@@ -33,14 +38,17 @@ const TAGLIST: ITagListElement[] = [
       {
         id: 'long',
         name: '서술형',
+        color: 'color2',
       },
       {
         id: 'short',
         name: '단답형',
+        color: 'color2',
       },
       {
         id: 'multiple',
         name: '객관식',
+        color: 'color2',
       },
     ],
   },
@@ -50,10 +58,12 @@ const TAGLIST: ITagListElement[] = [
       {
         id: 'solved',
         name: '푼 문제',
+        color: 'color3',
       },
       {
         id: 'unsolved',
         name: '안 푼 문제',
+        color: 'color3',
       },
     ],
   },
@@ -63,13 +73,22 @@ const TAGLIST: ITagListElement[] = [
       {
         id: 'gradeable',
         name: '채점 가능',
+        color: 'color4',
       },
       {
         id: 'ungradable',
         name: '채점 불가능',
+        color: 'color4',
       },
     ],
   },
 ];
 
-export { TAGLIST };
+const TAG_MAP_BY_ID: Map<string, ITagBox> = new Map();
+TAGLIST.map((tagType) =>
+  tagType.elements.map((tagElement) =>
+    TAG_MAP_BY_ID.set(tagElement.id, { name: tagElement.name, color: tagElement.color }),
+  ),
+);
+
+export { TAGLIST, TAG_MAP_BY_ID };

@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import baseFontStyle from '../../../styles/font.css';
 
 export const tagStyle = style([
@@ -10,7 +10,8 @@ export const tagStyle = style([
     alignItems: 'center',
     justifyContent: 'center',
 
-    width: '56px',
+    width: 'fit-content',
+    maxWidth: '62px',
     height: '24px',
 
     color: 'black',
@@ -19,15 +20,23 @@ export const tagStyle = style([
 
     textAlign: 'center',
 
-    padding: '0.0313rem',
+    margin: '0 0.5rem',
+    padding: '0.6rem',
 
     whiteSpace: 'nowrap',
 
     '@media': {
       'screen and (max-width: 600px)': {
-        width: '48px',
+        width: '60px',
         height: '20px',
       },
     },
   },
 ]);
+
+export const tagBoxColorStyle = styleVariants({
+  color1: [{ backgroundColor: '#FFDED5' }],
+  color2: [{ backgroundColor: '#FCE38A' }],
+  color3: [{ backgroundColor: '#EAFFD0' }],
+  color4: [{ backgroundColor: '#95E1D3' }],
+});
