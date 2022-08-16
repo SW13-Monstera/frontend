@@ -3,25 +3,30 @@
 import { css } from '@emotion/react';
 import { ChangeEvent, useState } from 'react';
 import { INPUT_TYPE } from '../../../constants/input';
-import { ITag } from '../../../types/problem';
+import { TAG_MAP_BY_ID } from '../../../constants/tag';
 import { IDropdownElement } from '../../../types/util';
 
 interface IDropdownComponentProps extends IDropdownElement {
-  handleCheckedTags: (tag: ITag, isChecked: boolean) => void;
+  handleCheckedTags: (tagId: string, isChecked: boolean) => void;
 }
 
-function DropdownElement({ id, name, handleCheckedTags }: IDropdownComponentProps) {
+function DropdownElement({ id, handleCheckedTags }: IDropdownComponentProps) {
   const [isChecked, setIsChecked] = useState(false);
 
   function checkHandler({ target }: ChangeEvent<HTMLInputElement>) {
     setIsChecked(!isChecked);
-    handleCheckedTags({ id: target.id, name: target.name }, target.checked);
+    handleCheckedTags(target.id, target.checked);
   }
 
   return (
     <li css={dropdownContentElementStyle}>
-      <input type={INPUT_TYPE.CHECKBOX} name={name} id={id} onChange={checkHandler} />
-      <label htmlFor={id}>{name}</label>
+      <input
+        type={INPUT_TYPE.CHECKBOX}
+        name={TAG_MAP_BY_ID.get(id)?.name}
+        id={id}
+        onChange={checkHandler}
+      />
+      <label htmlFor={id}>{TAG_MAP_BY_ID.get(id)?.name}</label>
     </li>
   );
 }

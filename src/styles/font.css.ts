@@ -40,7 +40,7 @@ const baseFontStyle = styleVariants({
     fontFamily: 'inherit',
     fontStyle: 'normal',
     fontWeight: '400',
-    fontSize: '0.75rem',
+    fontSize: '0.65rem',
     lineHeight: '0.9375rem',
   }, //태그 등
 });
