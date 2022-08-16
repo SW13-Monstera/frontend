@@ -15,6 +15,7 @@ import CustomPopover from '../../Component/Utils/Popover';
 import { usePopover } from '../../hooks/usePopover';
 import { Typography } from '@mui/material';
 import { USER_INFO } from '../../constants/localStorage';
+import { Divider } from '../../Component/Divider';
 
 function Header() {
   const { isLogin, setIsLogin } = useAuthStore();
@@ -79,7 +80,11 @@ function Header() {
               anchorEl={mypageAnchorEl}
               handleClose={handleMypageClose}
             >
-              <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
+              <>
+                <TransparentButton onClick={handleLogout}>마이 페이지</TransparentButton>
+                <Divider />
+                <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
+              </>
             </CustomPopover>
           </>
         ) : (
