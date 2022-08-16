@@ -19,10 +19,8 @@ function ProblemTitle({
           <h1 className={baseFontStyle.title}>{title}</h1>
           <ul>
             {tagList.map((tagId) => {
-              {
-                const { name, color } = getTagById(tagId);
-                return <TagBox name={name} color={color} key={tagId} />;
-              }
+              const { name, color } = getTagById(tagId);
+              return <TagBox name={name} color={color} key={tagId} />;
             })}
           </ul>
         </div>
