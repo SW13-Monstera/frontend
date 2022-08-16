@@ -4,6 +4,7 @@ import { IProblem } from '../../../types/problem';
 import { detailWrapperStyle, tagListStyle, textBoxMainStyle, textBoxStyle } from './style.css';
 import baseFontStyle from '../../../styles/font.css';
 import { URLWithParam } from '../../../constants/url';
+import { TAG_MAP_BY_ID } from '../../../constants/tag';
 
 function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id }: IProblem) {
   return (
@@ -13,9 +14,18 @@ function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id
           <div className={textBoxMainStyle}>
             <p className={baseFontStyle.medium}>{title}</p>
             <ul className={tagListStyle}>
-              {tagList.map((tagId) => (
-                <TagBox tagId={tagId} key={tagId} />
-              ))}
+              {tagList.map((tagId) => {
+                {
+                  const tagElement = TAG_MAP_BY_ID.get(tagId);
+                  return (
+                    <TagBox
+                      name={tagElement?.name ?? ''}
+                      color={tagElement?.color ?? 'color1'}
+                      key={tagId}
+                    />
+                  );
+                }
+              })}
             </ul>
           </div>
           <div className={detailWrapperStyle}>

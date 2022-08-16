@@ -1,6 +1,6 @@
+import { ITagState } from './../types/tag';
 import { TAGLIST } from '../constants';
 import { IProblemRequestParam } from '../types/api/problem';
-import { ITag } from '../types/problem';
 
 const isSolvedMap: Record<string, boolean> = {
   solved: true,
@@ -12,7 +12,7 @@ const isGradableMap: Record<string, boolean> = {
   ungradable: false,
 };
 
-export const getFilterParams = (checkedTags: Set<ITag>) => {
+export const getFilterParams = (checkedTags: Set<ITagState>) => {
   const checkedTagsArray = Array.from(checkedTags);
 
   const categoryTagIds = TAGLIST.find((e) => e.name === '카테고리')?.elements.map((e) => e.id);

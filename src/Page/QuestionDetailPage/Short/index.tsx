@@ -18,7 +18,7 @@ import {
 } from './style.css';
 import '../gutter.css';
 import { Link, useParams } from 'react-router-dom';
-import Tag from '../../../Component/Box/TagBox';
+import TagBox from '../../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
 import TextButton from '../../../Component/Button/TextButton';
 import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
@@ -29,6 +29,7 @@ import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URL, URLWithParam } from '../../../constants/url';
 import { IProblemDetailResponseData } from '../../../types/api/problem';
+import { TAG_MAP_BY_ID } from '../../../constants/tag';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
@@ -63,9 +64,18 @@ export function ShortQuestionDetailPage() {
                 <div className={titleTagStyle}>
                   <h1 className={baseFontStyle.title}>{data?.title}</h1>
                   <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => (
-                      <Tag tagId={tagId} key={tagId} />
-                    ))}
+                    {data?.tags.map((tagId) => {
+                      {
+                        const tagElement = TAG_MAP_BY_ID.get(tagId);
+                        return (
+                          <TagBox
+                            name={tagElement?.name ?? ''}
+                            color={tagElement?.color ?? 'color1'}
+                            key={tagId}
+                          />
+                        );
+                      }
+                    })}
                   </ul>
                 </div>
                 <div className={baseFontStyle.medium}>
