@@ -14,8 +14,8 @@ import { URL } from '../../constants/url';
 import CustomPopover from '../../Component/Utils/Popover';
 import { usePopover } from '../../hooks/usePopover';
 import { Typography } from '@mui/material';
-import { USER_INFO } from '../../constants/localStorage';
 import { Divider } from '../../Component/Divider';
+import { removeUserInfo } from '../../utils/userInfo';
 
 function Header() {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ function Header() {
   }
 
   function handleLogout() {
-    localStorage.removeItem(USER_INFO);
+    removeUserInfo();
     setIsLogin(false);
   }
 
