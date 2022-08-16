@@ -66,14 +66,9 @@ export function ShortQuestionDetailPage() {
                   <ul className={tagListStyle}>
                     {data?.tags.map((tagId) => {
                       {
-                        const tagElement = TAG_MAP_BY_ID.get(tagId);
-                        return (
-                          <TagBox
-                            name={tagElement?.name ?? ''}
-                            color={tagElement?.color ?? 'color1'}
-                            key={tagId}
-                          />
-                        );
+                        const tagValue = TAG_MAP_BY_ID.get(tagId);
+                        if (!tagValue) return;
+                        return <TagBox key={tagId} name={tagValue?.name} color={tagValue?.color} />;
                       }
                     })}
                   </ul>

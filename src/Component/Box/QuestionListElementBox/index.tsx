@@ -16,11 +16,12 @@ function QuestionListElementBox({ title, numberSolved, averageScore, tagList, id
             <ul className={tagListStyle}>
               {tagList.map((tagId) => {
                 {
-                  const tagElement = TAG_MAP_BY_ID.get(tagId);
+                  const tagValue = TAG_MAP_BY_ID.get(tagId);
+                  if (!tagValue) return;
                   return (
                     <TagBox
-                      name={tagElement?.name ?? ''}
-                      color={tagElement?.color ?? 'color1'}
+                      name={tagValue?.name ?? ''}
+                      color={tagValue?.color ?? 'color1'}
                       key={tagId}
                     />
                   );

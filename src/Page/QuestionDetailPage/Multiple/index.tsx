@@ -20,7 +20,7 @@ import {
 } from './style.css';
 import '../gutter.css';
 import { Link, useParams } from 'react-router-dom';
-import Tag from '../../../Component/Box/TagBox';
+import TagBox from '../../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
 import TextButton from '../../../Component/Button/TextButton';
 import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
@@ -78,14 +78,9 @@ export function MultipleQuestionDetailPage() {
                   <ul className={tagListStyle}>
                     {data?.tags.map((tagId) => {
                       {
-                        const tagElement = TAG_MAP_BY_ID.get(tagId);
-                        return (
-                          <Tag
-                            name={tagElement?.name ?? ''}
-                            color={tagElement?.color ?? 'color1'}
-                            key={tagId}
-                          />
-                        );
+                        const tagValue = TAG_MAP_BY_ID.get(tagId);
+                        if (!tagValue) return;
+                        return <TagBox key={tagId} name={tagValue?.name} color={tagValue?.color} />;
                       }
                     })}
                   </ul>
