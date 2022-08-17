@@ -6,6 +6,7 @@ export interface IButton {
   theme?: TButtonTheme;
   size?: TButtonSize;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
 }
 
 export interface IButtonDetail extends IButton {
@@ -21,6 +22,6 @@ export const BUTTON_THEME = { PRIMARY: 'primary', SECONDARY: 'secondary' } as co
 
 export type TButtonTheme = typeof BUTTON_THEME[keyof typeof BUTTON_THEME];
 
-export const BUTTON_SIZE = { LARGE: 'large', MEDIUM: 'medium' } as const;
+export const BUTTON_SIZE = { LARGE: 'large', MEDIUM: 'medium', SMALL: 'small' } as const;
 
 export type TButtonSize = typeof BUTTON_SIZE[keyof typeof BUTTON_SIZE];

@@ -31,6 +31,7 @@ export const textButtonThemeStyle = styleVariants({
 });
 
 export const textButtonSizeStyle = styleVariants({
+  small: [{ width: vars.size.small.width, height: vars.size.small.height }],
   medium: [{ width: vars.size.medium.width, height: vars.size.medium.height }],
   large: [{ width: vars.size.large.width, height: vars.size.large.height }],
 });

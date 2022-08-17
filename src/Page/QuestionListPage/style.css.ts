@@ -41,6 +41,15 @@ export const filterStyle = style({
   padding: '1.25rem',
 });
 
+export const filterTitleWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: '100%',
+
+  padding: '0 0.5rem',
+});
+
 export const filterTitleStyle = style([
   baseFontStyle.medium,
   {
@@ -92,3 +101,11 @@ export const questionListStyle = style({
     },
   },
 });
+
+export const resetButtonStyle = style([
+  baseFontStyle.xsmall,
+  {
+    padding: 0,
+    alignSelf: 'end',
+  },
+]);

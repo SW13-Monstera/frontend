@@ -1,21 +1,20 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { INPUT_TYPE } from '../../../constants/input';
 import { TAG_MAP_BY_ID } from '../../../constants/tag';
 import { IDropdownElement } from '../../../types/util';
+import { resetSearchProblemInput } from '../../../utils/resetSearchProblemInputs';
 
 interface IDropdownComponentProps extends IDropdownElement {
   handleCheckedTags: (tagId: string, isChecked: boolean) => void;
 }
 
 function DropdownElement({ id, handleCheckedTags }: IDropdownComponentProps) {
-  const [isChecked, setIsChecked] = useState(false);
-
   function checkHandler({ target }: ChangeEvent<HTMLInputElement>) {
-    setIsChecked(!isChecked);
     handleCheckedTags(target.id, target.checked);
+    resetSearchProblemInput();
   }
 
   return (
