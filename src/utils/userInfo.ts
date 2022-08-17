@@ -10,9 +10,9 @@ export const setUserInfo = (userInfo: IUserInfo) => {
   }
 };
 
-export const getUserInfo = (): IUserInfo => {
+export const getUserInfo = (): IUserInfo | undefined => {
   const userInfoString = localStorage.getItem(USER_INFO);
-  if (!userInfoString) throw new Error('userinfo not found');
+  if (!userInfoString) return undefined;
 
   try {
     const userInfo = JSON.parse(userInfoString);

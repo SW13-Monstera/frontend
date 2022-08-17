@@ -12,27 +12,31 @@ const isGradableMap: Record<string, boolean> = {
   ungradable: false,
 };
 
-export const getFilterParams = (checkedTags: Set<ITagState>) => {
-  const checkedTagsArray = Array.from(checkedTags);
+const isTagSelected = (checkedTags: ITagState[], array: string[]) => {
+  return checkedTags.filter((e) => array.includes(e.id) && e.isChecked).map((e) => e.id);
+};
 
+export const getFilterParams = (checkedTags: ITagState[]) => {
   const categoryTagIds = TAGLIST.find((e) => e.name === '카테고리')?.elements.map((e) => e.id);
-  const solveTagIds = TAGLIST.find((e) => e.name === '풀이 여부')?.elements.map((e) => e.id);
   const typeIds = TAGLIST.find((e) => e.name === '문제 유형')?.elements.map((e) => e.id);
+  const solveTagIds = TAGLIST.find((e) => e.name === '풀이 여부')?.elements.map((e) => e.id);
   const gradableIds = TAGLIST.find((e) => e.name === '채점 가능 여부')?.elements.map((e) => e.id);
 
-  const isSolved = checkedTagsArray.filter(({ id }) => solveTagIds?.includes(id));
-  const isSolvedParam = isSolved.length === 1 ? isSolvedMap[isSolved[0].id] : null;
+  if (!categoryTagIds || !solveTagIds || !typeIds || !gradableIds) return;
+
   const query = (document.getElementById('search-problem') as HTMLInputElement).value;
-  const tags = checkedTagsArray.filter(({ id }) => categoryTagIds?.includes(id)).map((e) => e.id);
-  const type = checkedTagsArray.filter(({ id }) => typeIds?.includes(id)).map((e) => e.id);
-  const isGradable = checkedTagsArray.filter(({ id }) => gradableIds?.includes(id));
-  const isGradableParam = isGradable.length === 1 ? isGradableMap[isGradable[0].id] : null;
+  const tags = isTagSelected(checkedTags, categoryTagIds);
+  const type = isTagSelected(checkedTags, typeIds);
+  const isSolved = isTagSelected(checkedTags, solveTagIds);
+  const isSolvedParam = isSolved.length === 1 ? isSolvedMap[isSolved[0]] : null;
+  const isGradable = isTagSelected(checkedTags, gradableIds);
+  const isGradableParam = isGradable.length === 1 ? isGradableMap[isGradable[0]] : null;
 
   const params: IProblemRequestParam = {
-    isSolved: isSolvedParam,
-    tags: tags.join(','),
     query: query,
+    tags: tags.join(','),
     type: type.join(','),
+    isSolved: isSolvedParam,
     isGradable: isGradableParam,
   };
 

@@ -2,7 +2,7 @@ import create from 'zustand';
 import { ITagState } from '../types/tag';
 
 interface ICheckedTags {
-  checkedTags: Set<ITagState>;
+  checkedTags: ITagState[];
   handleCheckedTags: (id: string, isChecked: boolean) => void;
 }
 
@@ -24,13 +24,13 @@ interface IUserInfoStore {
 }
 
 const useCheckedTagsStore = create<ICheckedTags>((set) => ({
-  checkedTags: new Set<ITagState>(),
+  checkedTags: [],
   handleCheckedTags: (id: string, isChecked: boolean) =>
-    set((state: ICheckedTags) => ({
-      checkedTags: new Set([
-        ...[...state.checkedTags].filter((tag) => tag.id !== id),
-        { id: id, isChecked: isChecked },
-      ]),
+    set((state) => ({
+      ...state,
+      checkedTags: state.checkedTags.map((tag) => tag.id).includes(id)
+        ? state.checkedTags.map((tag) => (tag.id === id ? { id, isChecked } : tag))
+        : [...state.checkedTags, { id, isChecked }],
     })),
 }));
 
