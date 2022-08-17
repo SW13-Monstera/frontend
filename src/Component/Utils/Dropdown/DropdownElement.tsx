@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { INPUT_TYPE } from '../../../constants/input';
 import { TAG_MAP_BY_ID } from '../../../constants/tag';
 import { IDropdownElement } from '../../../types/util';
