@@ -72,10 +72,12 @@ function QuestionListPage() {
                     ))}
               </div>
               <ul className={checkedTagListStyle}>
-                {[...checkedTags].map((tag) => {
-                  const { name, color } = getTagById(tag.id);
-                  return <TagBox key={tag.id} name={name} color={color} />;
-                })}
+                {[...checkedTags]
+                  .filter((tag) => tag.isChecked)
+                  .map((tag) => {
+                    const { name, color } = getTagById(tag.id);
+                    return <TagBox key={tag.id} name={name} color={color} />;
+                  })}
               </ul>
             </div>
           </aside>
