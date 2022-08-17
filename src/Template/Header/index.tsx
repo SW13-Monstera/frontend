@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import AlarmIcon from '../../Icon/AlarmIcon';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
@@ -14,9 +14,11 @@ import { URL } from '../../constants/url';
 import CustomPopover from '../../Component/Utils/Popover';
 import { usePopover } from '../../hooks/usePopover';
 import { Typography } from '@mui/material';
-import { USER_INFO } from '../../constants/localStorage';
+import { Divider } from '../../Component/Divider';
+import { removeUserInfo } from '../../utils/userInfo';
 
 function Header() {
+  const navigate = useNavigate();
   const { isLogin, setIsLogin } = useAuthStore();
   const { isLoginModalOpen, openLoginModal, closeLoginModal } = useLoginModal();
   const {
@@ -34,8 +36,12 @@ function Header() {
     open: mypageOpen,
   } = usePopover();
 
+  function handleNicknamePage() {
+    navigate(URL.NICKNAME);
+  }
+
   function handleLogout() {
-    localStorage.removeItem(USER_INFO);
+    removeUserInfo();
     setIsLogin(false);
   }
 
@@ -79,7 +85,11 @@ function Header() {
               anchorEl={mypageAnchorEl}
               handleClose={handleMypageClose}
             >
-              <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
+              <>
+                <TransparentButton onClick={handleNicknamePage}>닉네임 설정</TransparentButton>
+                <Divider />
+                <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
+              </>
             </CustomPopover>
           </>
         ) : (

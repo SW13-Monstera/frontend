@@ -1,29 +1,31 @@
+import { setUserInfo } from './../../../utils/userInfo';
 import apiClient from '../../apiClient';
 import { API_URL } from '../../../constants/apiUrl';
-import { USER_INFO } from '../../../constants/localStorage';
-import { IJoinRequest, ILoginRequest } from '../../../types/auth';
+import { IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
+import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
+import { getUserInfo } from '../../../utils/userInfo';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
-    return apiClient.post(API_URL.LOGIN, data).then((res: { data: { accessToken: string } }) => {
-      apiClient.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`;
+    return apiClient.post(API_URL.LOGIN, data).then((res: { data: IUserInfo }) => {
+      apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
       return res.data;
     });
   },
 
   refresh: () => {
-    if (!localStorage.getItem(USER_INFO)) return new Error('localstorage.userInfo not found');
+    const userInfo = getUserInfo();
+    if (!userInfo) return new Error('localstorage.userInfo not found');
 
     apiClient
       .get(API_URL.REFRESH, {
         headers: {
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem(USER_INFO)!).accessToken}`,
+          Authorization: BEARER_TOKEN(userInfo.accessToken),
         },
       })
-      .then((response: { data: { accessToken: string } }) => {
-        apiClient.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
-        const json = JSON.parse(localStorage.getItem(USER_INFO)!);
-        localStorage.setItem(USER_INFO, { ...json, accessToken: response.data.accessToken });
+      .then((res: { data: { accessToken: string } }) => {
+        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
+        setUserInfo({ ...userInfo, accessToken: res.data.accessToken });
       });
   },
 
@@ -33,7 +35,7 @@ export const authApiWrapper = {
   getUserInfo: (token: string) => {
     return apiClient.get(API_URL.USER_INFO, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: BEARER_TOKEN(token),
       },
     });
   },
