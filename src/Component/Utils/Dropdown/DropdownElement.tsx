@@ -5,6 +5,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { INPUT_TYPE } from '../../../constants/input';
 import { TAG_MAP_BY_ID } from '../../../constants/tag';
 import { IDropdownElement } from '../../../types/util';
+import { resetSearchProblemInput } from '../../../utils/resetSearchProblemInputs';
 
 interface IDropdownComponentProps extends IDropdownElement {
   handleCheckedTags: (tagId: string, isChecked: boolean) => void;
@@ -13,6 +14,7 @@ interface IDropdownComponentProps extends IDropdownElement {
 function DropdownElement({ id, handleCheckedTags }: IDropdownComponentProps) {
   function checkHandler({ target }: ChangeEvent<HTMLInputElement>) {
     handleCheckedTags(target.id, target.checked);
+    resetSearchProblemInput();
   }
 
   return (

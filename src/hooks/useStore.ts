@@ -4,6 +4,7 @@ import { ITagState } from '../types/tag';
 interface ICheckedTags {
   checkedTags: ITagState[];
   handleCheckedTags: (id: string, isChecked: boolean) => void;
+  resetCheckedTags: (resetCheckboxes: () => void) => void;
 }
 
 interface IAuth {
@@ -25,13 +26,18 @@ interface IUserInfoStore {
 
 const useCheckedTagsStore = create<ICheckedTags>((set) => ({
   checkedTags: [],
-  handleCheckedTags: (id: string, isChecked: boolean) =>
+  handleCheckedTags: (id: string, isChecked: boolean) => {
     set((state) => ({
       ...state,
       checkedTags: state.checkedTags.map((tag) => tag.id).includes(id)
         ? state.checkedTags.map((tag) => (tag.id === id ? { id, isChecked } : tag))
         : [...state.checkedTags, { id, isChecked }],
-    })),
+    }));
+  },
+  resetCheckedTags: (resetCheckboxes: () => void) => {
+    resetCheckboxes();
+    return set({ checkedTags: [] });
+  },
 }));
 
 const useAuthStore = create<IAuth>((set) => ({

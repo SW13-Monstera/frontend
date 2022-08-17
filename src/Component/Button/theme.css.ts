@@ -13,6 +13,10 @@ export const [buttonThemeClass, vars] = createTheme({
     secondary: { back: COLOR.GRAY, text: COLOR.TITLEACTIVE },
   },
   size: {
+    small: {
+      width: '3.5rem',
+      height: '2rem',
+    },
     medium: {
       width: '9.25rem',
       height: '4.125rem',

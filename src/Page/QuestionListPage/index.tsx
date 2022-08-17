@@ -14,6 +14,8 @@ import {
   filterStyle,
   filterTitleStyle,
   questionListStyle,
+  resetButtonStyle,
+  filterTitleWrapperStyle,
 } from './style.css';
 import { PageTemplate } from '../../Template';
 import { useEffect, useState } from 'react';
@@ -21,10 +23,13 @@ import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { IProblemListResponseData } from '../../types/api/problem';
 import { getFilterParams } from '../../utils/getFilterParams';
 import { getTagById } from '../../utils/getTagbyId';
+import { TextButton } from '../../Component/Button';
+import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
 
 function QuestionListPage() {
   const [problemList, setProblemList] = useState<IProblemListResponseData[]>([]);
-  const { checkedTags, handleCheckedTags } = useCheckedTagsStore();
+  const { checkedTags, handleCheckedTags, resetCheckedTags } = useCheckedTagsStore();
   const [page, setPage] = useState(0);
   const { isLogin } = useAuthStore();
 
@@ -34,6 +39,7 @@ function QuestionListPage() {
     problemApiWrapper.problemList(params).then((res) => {
       setProblemList(res.data);
     });
+    resetCheckedTags(resetCheckboxes);
   }
 
   useEffect(() => {
@@ -51,7 +57,21 @@ function QuestionListPage() {
           <aside className={asideStyle}>
             <SearchInputBox handleSearchInput={handleSearchInput} />
             <div className={filterStyle}>
-              <div className={filterTitleStyle}>필터</div>
+              <div className={filterTitleWrapperStyle}>
+                <div className={filterTitleStyle}>문제 검색</div>
+                <TextButton
+                  type={BUTTON_TYPE.BUTTON}
+                  className={resetButtonStyle}
+                  onClick={() => {
+                    resetCheckedTags(resetCheckboxes);
+                    resetSearchProblemInput();
+                  }}
+                  theme={BUTTON_THEME.SECONDARY}
+                  size={BUTTON_SIZE.SMALL}
+                >
+                  초기화
+                </TextButton>
+              </div>
               <div className={dropdownListStyle}>
                 {isLogin
                   ? TAGLIST.map((tagtype) => (
