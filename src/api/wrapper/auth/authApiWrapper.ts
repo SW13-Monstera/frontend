@@ -4,13 +4,20 @@ import { API_URL } from '../../../constants/apiUrl';
 import { IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
 import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo } from '../../../utils/userInfo';
+import { toast } from 'react-toastify';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
-    return apiClient.post(API_URL.LOGIN, data).then((res: { data: IUserInfo }) => {
-      apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
-      return res.data;
-    });
+    return apiClient.post(API_URL.LOGIN, data).then(
+      (res: { data: IUserInfo }) => {
+        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
+        return res.data;
+      },
+      (err) => {
+        toast('로그인 실패');
+        throw new Error('로그인 실패');
+      },
+    );
   },
 
   refresh: () => {
