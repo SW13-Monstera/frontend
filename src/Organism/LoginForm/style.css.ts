@@ -17,5 +17,5 @@ export const loginFormContentStyle = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '0.25rem',
+  gap: '1rem',
 });

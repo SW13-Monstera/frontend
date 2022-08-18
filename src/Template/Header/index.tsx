@@ -4,8 +4,6 @@ import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { useAuthStore } from '../../hooks/useStore';
 import { IconButton, TransparentButton } from '../../Component/Button';
-import useLoginModal from '../../hooks/useLoginModal';
-import LoginModal from '../../Component/Utils/Modal/LoginModal';
 import logo from '../../assets/images/csbroker.png';
 import { headerStyle, logoStyle, menuStyle, navStyle } from './style.css';
 import { COLOR } from '../../constants/color';
@@ -20,7 +18,7 @@ import { removeUserInfo } from '../../utils/userInfo';
 function Header() {
   const navigate = useNavigate();
   const { isLogin, setIsLogin } = useAuthStore();
-  const { isLoginModalOpen, openLoginModal, closeLoginModal } = useLoginModal();
+
   const {
     anchorEl: alarmAnchorEl,
     handleClick: handleAlarmClick,
@@ -47,7 +45,6 @@ function Header() {
 
   return (
     <header className={headerStyle}>
-      <LoginModal isModalOpen={isLoginModalOpen} closeModal={closeLoginModal}></LoginModal>
       <Link to={URL.MAIN}>
         <img src={logo} className={logoStyle} />
       </Link>
@@ -94,14 +91,15 @@ function Header() {
           </>
         ) : (
           <>
-            <TransparentButton
-              type={BUTTON_TYPE.BUTTON}
-              onClick={openLoginModal}
-              theme={BUTTON_THEME.PRIMARY}
-              size={BUTTON_SIZE.MEDIUM}
-            >
-              로그인
-            </TransparentButton>
+            <Link to={URL.LOGIN}>
+              <TransparentButton
+                type={BUTTON_TYPE.BUTTON}
+                theme={BUTTON_THEME.PRIMARY}
+                size={BUTTON_SIZE.MEDIUM}
+              >
+                로그인
+              </TransparentButton>
+            </Link>
             <Link to={URL.JOIN}>
               <TransparentButton
                 type={BUTTON_TYPE.BUTTON}

@@ -22,15 +22,19 @@ function LoginModal({ isModalOpen, closeModal }: IModal) {
 
     if (!emailValue || !passwordValue) return;
 
-    authApiWrapper
+    return authApiWrapper
       .login({
         email: emailValue,
         password: passwordValue,
       })
-      .then((res) => {
-        setUserInfo(res);
-        setIsLogin(true);
-      });
+      .then(
+        (res) => {
+          setUserInfo(res);
+          setIsLogin(true);
+          return true;
+        },
+        (err) => false,
+      );
   };
 
   return (

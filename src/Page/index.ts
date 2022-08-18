@@ -7,6 +7,7 @@ import ResultPage from './ResultPage';
 import NicknamePage from './NicknamePage';
 import JoinPage from './JoinPage';
 import CallbackPage from './CallbackPage';
+import { LoginPage } from './LoginPage';
 
 export {
   MainPage,
@@ -18,4 +19,5 @@ export {
   CallbackPage,
   NicknamePage,
   JoinPage,
+  LoginPage,
 };
