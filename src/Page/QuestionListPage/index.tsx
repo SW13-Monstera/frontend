@@ -29,6 +29,7 @@ import { getTagById } from '../../utils/getTagbyId';
 import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
+import { Pagination } from '../../Component/Pagination';
 
 function QuestionListPage() {
   const [problemList, setProblemList] = useState<IProblemListResponseDataContents[]>([]);
@@ -50,7 +51,7 @@ function QuestionListPage() {
     problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
       setProblemList(data.contents);
     });
-  }, [checkedTags]);
+  }, [checkedTags, page]);
 
   return (
     <PageTemplate>
@@ -118,6 +119,7 @@ function QuestionListPage() {
             ))}
           </div>
         </div>
+        <Pagination count={problemList.length} page={page} setPage={setPage} />
       </div>
     </PageTemplate>
   );
