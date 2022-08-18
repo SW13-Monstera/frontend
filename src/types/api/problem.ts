@@ -1,3 +1,5 @@
+import { TProblemType } from '../problem';
+
 export interface IProblemRequestParam {
   query?: string;
   tags?: string;
@@ -40,7 +42,7 @@ export interface IProblemListResponseDataContents {
   tags: string[];
   avgScore: number;
   totalSolved: number;
-  type: string;
+  type: TProblemType;
 }
 
 export interface IProblemListResponseData {

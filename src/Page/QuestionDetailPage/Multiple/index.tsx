@@ -30,7 +30,10 @@ import { useEffect, useState } from 'react';
 import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URL, URLWithParam } from '../../../constants/url';
-import { ILongProblemDetailResponseData } from '../../../types/api/problem';
+import {
+  IMultipleProblemDetailResponseData,
+  IShortProblemDetailResponseData,
+} from '../../../types/api/problem';
 import { getTagById } from '../../../utils/getTagbyId';
 
 const choices = [
@@ -42,7 +45,7 @@ const choices = [
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
-  const [data, setData] = useState<ILongProblemDetailResponseData>();
+  const [data, setData] = useState<IMultipleProblemDetailResponseData>();
 
   const [isDark, setIsDark] = useState(true);
 
@@ -60,8 +63,8 @@ export function MultipleQuestionDetailPage() {
 
   useEffect(() => {
     if (!id) return;
-    problemApiWrapper.problemDetail(id).then((res) => {
-      setData(res.data);
+    problemApiWrapper.multipleProblemDetail(id).then((data) => {
+      setData(data);
     });
   }, []);
 
@@ -83,9 +86,9 @@ export function MultipleQuestionDetailPage() {
                   </ul>
                 </div>
                 <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 평균 점수 : ${
-                    data?.avgScore ?? 0
-                  }점, 최고점 : ${data?.topScore ?? 0}점 , 최저점 : ${data?.bottomScore ?? 0}점`}
+                  {`제출 : ${data?.totalSolved ?? 0}, 맞은 사람 수 : ${
+                    data?.correctCnt ?? 0
+                  }명, 틀린 사람 수 : ${data?.wrongCnt ?? 0}명`}
                 </div>
               </div>
 
@@ -113,7 +116,7 @@ export function MultipleQuestionDetailPage() {
                     답안 선택
                   </label>
                   <div className={choiceListStyle}>
-                    {choices.map((choice) => (
+                    {data.choices.map((choice) => (
                       <label
                         htmlFor={choice.id.toString()}
                         className={choiceWrapperStyle}

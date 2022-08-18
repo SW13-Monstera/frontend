@@ -118,6 +118,7 @@ function QuestionListPage() {
                   averageScore={problem.avgScore ?? 0}
                   tagList={problem.tags}
                   key={problem.id}
+                  type={problem.type}
                   id={problem.id.toString()}
                 />
               ))}

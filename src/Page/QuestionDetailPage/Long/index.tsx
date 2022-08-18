@@ -48,8 +48,8 @@ export function LongQuestionDetailPage() {
 
   useEffect(() => {
     if (!id) return;
-    problemApiWrapper.problemDetail(id).then((res) => {
-      setData(res.data);
+    problemApiWrapper.longProblemDetail(id).then((data) => {
+      setData(data);
     });
   }, []);
 
