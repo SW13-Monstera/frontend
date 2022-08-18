@@ -35,13 +35,14 @@ function QuestionListPage() {
   const [problemList, setProblemList] = useState<IProblemListResponseDataContents[]>([]);
   const { checkedTags, handleCheckedTags, resetCheckedTags } = useCheckedTagsStore();
   const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const { isLogin } = useAuthStore();
 
   function handleSearchInput() {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
     const params = { ...getFilterParams(checkedTags), page: page, query: query };
-    problemApiWrapper.problemList(params).then((res) => {
-      setProblemList(res.data);
+    problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
+      setProblemList(data.contents);
     });
     resetCheckedTags(resetCheckboxes);
   }
@@ -50,6 +51,7 @@ function QuestionListPage() {
     const params = { ...getFilterParams(checkedTags), page: page };
     problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
       setProblemList(data.contents);
+      setTotalPages(data.totalPages);
     });
   }, [checkedTags, page]);
 
@@ -119,7 +121,7 @@ function QuestionListPage() {
             ))}
           </div>
         </div>
-        <Pagination count={problemList.length} page={page} setPage={setPage} />
+        <Pagination totalPages={totalPages} page={page} setPage={setPage} />
       </div>
     </PageTemplate>
   );

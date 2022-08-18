@@ -6,21 +6,19 @@ import { COLOR } from '../../constants/color';
 import { paginationIsSelectedButtonStyle, paginationWrapperStyle } from './style.css';
 
 interface IPagination {
-  count: number;
+  totalPages: number;
   page: number;
   setPage: (currPage: number) => void;
   size?: number;
 }
 
-export const Pagination = ({ count, page, setPage, size = 20 }: IPagination) => {
-  const numPages = Math.ceil(count / size);
-
+export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
   const movePrevPage = () => {
     if (page <= 0) return;
     setPage(page - 1);
   };
   const moveNextPage = () => {
-    if (page > numPages - 1) return;
+    if (page > totalPages - 1) return;
     setPage(page + 1);
   };
 
@@ -29,7 +27,7 @@ export const Pagination = ({ count, page, setPage, size = 20 }: IPagination) => 
       <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} onClick={movePrevPage}>
         <LeftArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
       </IconButton>
-      {Array(numPages)
+      {Array(totalPages)
         .fill(null)
         .map((_, idx) =>
           page === idx ? (
