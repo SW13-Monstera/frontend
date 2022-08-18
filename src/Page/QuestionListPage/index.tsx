@@ -16,6 +16,7 @@ import {
   questionListStyle,
   resetButtonStyle,
   filterTitleWrapperStyle,
+  questionListWrapperStyle,
 } from './style.css';
 import { PageTemplate } from '../../Template';
 import { useEffect, useState } from 'react';
@@ -108,20 +109,22 @@ function QuestionListPage() {
             </div>
           </aside>
 
-          <div className={questionListStyle}>
-            {problemList.map((problem: IProblemListResponseDataContents) => (
-              <QuestionListElementBox
-                title={problem.title}
-                numberSolved={problem.totalSolved ?? 0}
-                averageScore={problem.avgScore ?? 0}
-                tagList={problem.tags}
-                key={problem.id}
-                id={problem.id.toString()}
-              />
-            ))}
+          <div className={questionListWrapperStyle}>
+            <div className={questionListStyle}>
+              {problemList.map((problem: IProblemListResponseDataContents) => (
+                <QuestionListElementBox
+                  title={problem.title}
+                  numberSolved={problem.totalSolved ?? 0}
+                  averageScore={problem.avgScore ?? 0}
+                  tagList={problem.tags}
+                  key={problem.id}
+                  id={problem.id.toString()}
+                />
+              ))}
+            </div>
+            <Pagination totalPages={totalPages} page={page} setPage={setPage} />
           </div>
         </div>
-        <Pagination totalPages={totalPages} page={page} setPage={setPage} />
       </div>
     </PageTemplate>
   );

@@ -4,6 +4,7 @@ import { LeftArrowIcon } from '../../Icon/LeftArrowIcon';
 import { RightArrowIcon } from '../../Icon/RightArrowIcon';
 import { COLOR } from '../../constants/color';
 import { paginationIsSelectedButtonStyle, paginationWrapperStyle } from './style.css';
+import { MouseEventHandler } from 'react';
 
 interface IPagination {
   totalPages: number;
@@ -21,6 +22,10 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
     if (page > totalPages - 1) return;
     setPage(page + 1);
   };
+  const changePage: MouseEventHandler<HTMLButtonElement> = (event) => {
+    const eventTarget = event.target as HTMLButtonElement;
+    setPage(parseInt(eventTarget.innerText) - 1);
+  };
 
   return (
     <div className={paginationWrapperStyle}>
@@ -31,11 +36,19 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
         .fill(null)
         .map((_, idx) =>
           page === idx ? (
-            <button key={idx} className={paginationIsSelectedButtonStyle['selected']}>
+            <button
+              key={idx}
+              className={paginationIsSelectedButtonStyle['selected']}
+              id={`page-button-${idx}`}
+            >
               {idx + 1}
             </button>
           ) : (
-            <button key={idx} className={paginationIsSelectedButtonStyle['default']}>
+            <button
+              key={idx}
+              className={paginationIsSelectedButtonStyle['default']}
+              onClick={changePage}
+            >
               {idx + 1}
             </button>
           ),
