@@ -19,12 +19,12 @@ export function LoginPage() {
       toast('이메일은 필수항목입니다.');
       return;
     }
-    if (!passwordValue) {
-      toast('비밀번호는 필수항목입니다.');
-      return;
-    }
     if (!validateEmail(emailValue)) {
       toast('이메일 형식이 올바르지 않습니다.');
+      return;
+    }
+    if (!passwordValue) {
+      toast('비밀번호는 필수항목입니다.');
       return;
     }
 
