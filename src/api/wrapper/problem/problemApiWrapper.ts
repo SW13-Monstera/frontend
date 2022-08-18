@@ -15,7 +15,10 @@ export const problemApiWrapper = {
       if (!userInfo) throw new Error('userinfo not found');
       config.headers = { Authorization: BEARER_TOKEN(userInfo.accessToken) };
     }
-    return apiClient.get(API_URL.PROBLEM_LIST, config);
+    return apiClient.get(API_URL.PROBLEM_LIST, config).then(
+      (res) => res.data,
+      (err) => {},
+    );
   },
   problemDetail: (problem_id: string) => {
     return apiClient.get(API_URL_WITH_PARAMS.PROBLEM_DETAIL(problem_id));

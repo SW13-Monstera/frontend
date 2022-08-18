@@ -30,7 +30,7 @@ import { useEffect, useState } from 'react';
 import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URL, URLWithParam } from '../../../constants/url';
-import { IProblemDetailResponseData } from '../../../types/api/problem';
+import { ILongProblemDetailResponseData } from '../../../types/api/problem';
 import { getTagById } from '../../../utils/getTagbyId';
 
 const choices = [
@@ -42,7 +42,7 @@ const choices = [
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
-  const [data, setData] = useState<IProblemDetailResponseData>();
+  const [data, setData] = useState<ILongProblemDetailResponseData>();
 
   const [isDark, setIsDark] = useState(true);
 

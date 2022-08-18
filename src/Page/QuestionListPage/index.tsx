@@ -20,7 +20,10 @@ import {
 import { PageTemplate } from '../../Template';
 import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
-import { IProblemListResponseData } from '../../types/api/problem';
+import {
+  IProblemListResponseData,
+  IProblemListResponseDataContents,
+} from '../../types/api/problem';
 import { getFilterParams } from '../../utils/getFilterParams';
 import { getTagById } from '../../utils/getTagbyId';
 import { TextButton } from '../../Component/Button';
@@ -28,7 +31,7 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
 
 function QuestionListPage() {
-  const [problemList, setProblemList] = useState<IProblemListResponseData[]>([]);
+  const [problemList, setProblemList] = useState<IProblemListResponseDataContents[]>([]);
   const { checkedTags, handleCheckedTags, resetCheckedTags } = useCheckedTagsStore();
   const [page, setPage] = useState(0);
   const { isLogin } = useAuthStore();
@@ -44,8 +47,8 @@ function QuestionListPage() {
 
   useEffect(() => {
     const params = { ...getFilterParams(checkedTags), page: page };
-    problemApiWrapper.problemList(params).then((res) => {
-      setProblemList(res.data);
+    problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
+      setProblemList(data.contents);
     });
   }, [checkedTags]);
 
@@ -103,7 +106,7 @@ function QuestionListPage() {
           </aside>
 
           <div className={questionListStyle}>
-            {problemList.map((problem: IProblemListResponseData) => (
+            {problemList.map((problem: IProblemListResponseDataContents) => (
               <QuestionListElementBox
                 title={problem.title}
                 numberSolved={problem.totalSolved ?? 0}
