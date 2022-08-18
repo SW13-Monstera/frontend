@@ -3,7 +3,11 @@ import { IconButton } from '../Button';
 import { LeftArrowIcon } from '../../Icon/LeftArrowIcon';
 import { RightArrowIcon } from '../../Icon/RightArrowIcon';
 import { COLOR } from '../../constants/color';
-import { paginationIsSelectedButtonStyle, paginationWrapperStyle } from './style.css';
+import {
+  dotdotdotStyle,
+  paginationIsSelectedButtonStyle,
+  paginationWrapperStyle,
+} from './style.css';
 import { MouseEventHandler } from 'react';
 
 interface IPagination {
@@ -47,6 +51,7 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
   };
   const createPageList = (totalPages: number, currPage: number) => {
     const pageList = [];
+
     for (let i = 0; i < totalPages; i++) {
       if (
         i === 0 ||
@@ -56,11 +61,15 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
       ) {
         pageList.push(i);
       } else {
-        pageList.push(null);
+        if (pageList[i - 1] !== null && pageList[i - 1] !== -1) {
+          pageList.push(null);
+        } else {
+          pageList.push(-1);
+        }
       }
     }
 
-    return pageList;
+    return pageList.filter((e) => e !== -1);
   };
 
   return (
@@ -74,11 +83,13 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
             .map((_, idx) => (
               <PageButton num={idx} isCurrentPage={page === idx} key={idx} onClick={changePage} />
             ))
-        : createPageList(totalPages, page).map((num) =>
+        : createPageList(totalPages, page).map((num, idx) =>
             num !== null ? (
               <PageButton num={num} isCurrentPage={page === num} key={num} onClick={changePage} />
             ) : (
-              <>🐛</>
+              <div className={dotdotdotStyle} key={`${num}${idx}`}>
+                ...
+              </div>
             ),
           )}
       <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} onClick={moveNextPage}>

@@ -27,3 +27,5 @@ export const paginationIsSelectedButtonStyle = styleVariants({
   default: [paginationButtonStyle, { color: COLOR.TITLEACTIVE }],
   selected: [paginationButtonStyle, { color: COLOR.ERROR }],
 });
+
+export const dotdotdotStyle = style({ cursor: 'default' });
