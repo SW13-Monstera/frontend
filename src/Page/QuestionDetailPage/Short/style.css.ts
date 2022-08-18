@@ -69,9 +69,11 @@ export const titleTagStyle = style({
 
 export const questionContentStyle = style({
   display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
   height: '60vh',
   background: vars.contentBackgroundColor,
-  padding: ' 0 1.5rem',
+  padding: '2rem',
   borderRadius: '10px',
 });
 
@@ -90,6 +92,18 @@ export const contentWrapperStyle = style({
   padding: '1.5rem 0',
 });
 
+export const answerInputWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  gap: '2rem',
+
+  width: '100%',
+  alignSelf: 'flex-end',
+
+  padding: '1.5rem 0',
+});
+
 export const contentTitleStyle = style([
   baseFontStyle.xlarge,
   {
@@ -97,8 +111,15 @@ export const contentTitleStyle = style([
   },
 ]);
 
+export const answerInputTitleStyle = style([
+  baseFontStyle.medium,
+  {
+    color: vars.textColor,
+  },
+]);
+
 export const problemDescContentStyle = style([
-  baseFontStyle.small,
+  baseFontStyle.medium,
   {
     overflowY: 'scroll',
     color: vars.textColor,
@@ -118,16 +139,20 @@ export const answerInputStyle = style({
   flexDirection: 'column',
 });
 
-export const answerInputContentStyle = style({
-  display: 'flex',
+export const answerInputContentStyle = style([
+  baseFontStyle.medium,
+  {
+    display: 'flex',
 
-  width: '100%',
+    width: '60%',
 
-  padding: '1rem',
+    padding: '2rem 1rem',
 
-  color: vars.textColor,
-  backgroundColor: vars.backgroundColor,
-});
+    color: vars.textColor,
+    backgroundColor: vars.backgroundColor,
+    borderRadius: '20px',
+  },
+]);
 
 export const buttonListStyle = style({
   display: 'flex',
@@ -140,4 +165,16 @@ export const buttonListStyle = style({
 export const tagListStyle = style({
   display: 'flex',
   gap: '0.25rem',
+});
+
+export const answerLengthButtonStyle = style({});
+export const answerLengthOpenStyle = style({
+  visibility: 'visible',
+});
+export const answerLengthNotOpenStyle = style({
+  visibility: 'hidden',
+});
+
+export const hintWrapperStyle = style({
+  alignSelf: 'flex-end',
 });

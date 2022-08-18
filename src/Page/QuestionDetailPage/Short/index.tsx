@@ -1,5 +1,4 @@
 import Header from '../../../Template/Header';
-import Split from 'react-split';
 import {
   themeLightClass,
   pageStyle,
@@ -7,7 +6,6 @@ import {
   descStyle,
   titleTagStyle,
   questionContentStyle,
-  splitStyle,
   contentWrapperStyle,
   contentTitleStyle,
   problemDescContentStyle,
@@ -15,6 +13,12 @@ import {
   themeDarkClass,
   answerInputContentStyle,
   tagListStyle,
+  answerInputWrapperStyle,
+  answerInputTitleStyle,
+  answerLengthButtonStyle,
+  answerLengthOpenStyle,
+  answerLengthNotOpenStyle,
+  hintWrapperStyle,
 } from './style.css';
 import '../gutter.css';
 import { Link, useParams } from 'react-router-dom';
@@ -27,14 +31,19 @@ import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
 import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
-import { URL, URLWithParam } from '../../../constants/url';
+import { URL } from '../../../constants/url';
 import { IShortProblemDetailResponseData } from '../../../types/api/problem';
 import { getTagById } from '../../../utils/getTagbyId';
+import { ReactComponent as DownIcon } from '../../../assets/icons/down-arrow-icon.svg';
+import { ReactComponent as UpIcon } from '../../../assets/icons/up-arrow-icon.svg';
+import { TransparentButton } from '../../../Component/Button';
+import { COLOR } from '../../../constants/color';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
   const [data, setData] = useState<IShortProblemDetailResponseData>();
+  const [isHintOpen, setIsHintOpen] = useState(false);
 
   const [isDark, setIsDark] = useState(true);
 
@@ -46,6 +55,13 @@ export function ShortQuestionDetailPage() {
     if (!id) return;
     const data = (document.getElementById('answer') as HTMLInputElement).value;
     problemApiWrapper.shortProblemResult(id, data);
+  }
+
+  function showHint() {
+    setIsHintOpen(true);
+    setTimeout(() => {
+      setIsHintOpen(false);
+    }, 2000);
   }
 
   useEffect(() => {
@@ -75,41 +91,34 @@ export function ShortQuestionDetailPage() {
                 <div className={baseFontStyle.medium}>
                   {`제출 : ${data?.totalSolved ?? 0}, 맞은 사람 수 : ${
                     data?.correctCnt ?? 0
-                  }명, 틀린 사람 수 : ${data?.wrongCnt ?? 0}명, 정답 글자 수: ${
-                    data.answerLength
-                  }자`}
+                  }명, 틀린 사람 수 : ${data?.wrongCnt ?? 0}명`}
                 </div>
               </div>
               <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
             <div className={questionContentStyle}>
-              <Split
-                sizes={[25, 75]}
-                minSize={100}
-                expandToMin={false}
-                gutterSize={10}
-                gutterAlign='center'
-                snapOffset={30}
-                dragInterval={1}
-                direction='horizontal'
-                cursor='col-resize'
-                className={splitStyle}
-              >
-                <div className={contentWrapperStyle}>
-                  <div className={contentTitleStyle}>문제 설명</div>
-                  <div className={problemDescContentStyle}>{data?.description}</div>
+              <div className={contentWrapperStyle}>
+                <div className={contentTitleStyle}>문제 설명</div>
+                <div className={problemDescContentStyle}>{data?.description}</div>
+              </div>
+              <div className={answerInputWrapperStyle}>
+                <label htmlFor='answer' className={answerInputTitleStyle}>
+                  정답 입력
+                </label>
+                <input
+                  id='answer'
+                  placeholder='답변을 입력해주세요'
+                  className={answerInputContentStyle}
+                ></input>
+              </div>
+              <div className={hintWrapperStyle}>
+                <TransparentButton className={answerLengthButtonStyle} onClick={showHint}>
+                  힌트 보기
+                </TransparentButton>
+                <div className={isHintOpen ? answerLengthOpenStyle : answerLengthNotOpenStyle}>
+                  정답은 {data.answerLength}글자
                 </div>
-                <div className={contentWrapperStyle}>
-                  <label htmlFor='answer' className={contentTitleStyle}>
-                    답안 작성
-                  </label>
-                  <input
-                    id='answer'
-                    placeholder='답변을 입력해주세요'
-                    className={answerInputContentStyle}
-                  ></input>
-                </div>
-              </Split>
+              </div>
             </div>
 
             <div className={buttonListStyle}>
