@@ -43,7 +43,9 @@ export function ShortQuestionDetailPage() {
   }
 
   function handleSubmit() {
-    return;
+    if (!id) return;
+    const data = (document.getElementById('answer') as HTMLInputElement).value;
+    problemApiWrapper.shortProblemResult(id, data);
   }
 
   useEffect(() => {
@@ -73,10 +75,11 @@ export function ShortQuestionDetailPage() {
                 <div className={baseFontStyle.medium}>
                   {`제출 : ${data?.totalSolved ?? 0}, 맞은 사람 수 : ${
                     data?.correctCnt ?? 0
-                  }명, 틀린 사람 수 : ${data?.wrongCnt ?? 0}명, 정답 글자 수: ${data.answerLength}자`}
+                  }명, 틀린 사람 수 : ${data?.wrongCnt ?? 0}명, 정답 글자 수: ${
+                    data.answerLength
+                  }자`}
                 </div>
               </div>
-
               <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
             <div className={questionContentStyle}>
@@ -111,16 +114,14 @@ export function ShortQuestionDetailPage() {
 
             <div className={buttonListStyle}>
               {isLogin ? (
-                <Link to={URLWithParam.SHORT_PROBLEM_RESULT(id!)}>
-                  <TextButton
-                    type={BUTTON_TYPE.SUBMIT}
-                    theme={BUTTON_THEME.PRIMARY}
-                    size={BUTTON_SIZE.MEDIUM}
-                    onClick={handleSubmit}
-                  >
-                    제출하기
-                  </TextButton>
-                </Link>
+                <TextButton
+                  type={BUTTON_TYPE.SUBMIT}
+                  theme={BUTTON_THEME.PRIMARY}
+                  size={BUTTON_SIZE.MEDIUM}
+                  onClick={handleSubmit}
+                >
+                  제출하기
+                </TextButton>
               ) : (
                 <TextButton
                   type={BUTTON_TYPE.SUBMIT}

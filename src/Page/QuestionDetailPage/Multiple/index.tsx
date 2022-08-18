@@ -54,11 +54,13 @@ export function MultipleQuestionDetailPage() {
   }
 
   function handleSubmit() {
-    const choices: boolean[] = [];
+    if (!id) return;
+    const answerIds: number[] = [];
     const checkboxes = document.querySelectorAll(
       'input[type="checkbox"]',
     ) as NodeListOf<HTMLInputElement>;
-    checkboxes.forEach((e) => choices.push(e.checked));
+    checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
+    problemApiWrapper.multipleProblemResult(id, answerIds);
   }
 
   useEffect(() => {
@@ -137,16 +139,14 @@ export function MultipleQuestionDetailPage() {
 
             <div className={buttonListStyle}>
               {isLogin ? (
-                <Link to={URLWithParam.MULTIPLE_PROBLEM_RESULT(id!)}>
-                  <TextButton
-                    type={BUTTON_TYPE.SUBMIT}
-                    theme={BUTTON_THEME.PRIMARY}
-                    size={BUTTON_SIZE.MEDIUM}
-                    onClick={handleSubmit}
-                  >
-                    제출하기
-                  </TextButton>
-                </Link>
+                <TextButton
+                  type={BUTTON_TYPE.SUBMIT}
+                  theme={BUTTON_THEME.PRIMARY}
+                  size={BUTTON_SIZE.MEDIUM}
+                  onClick={handleSubmit}
+                >
+                  제출하기
+                </TextButton>
               ) : (
                 <TextButton
                   type={BUTTON_TYPE.SUBMIT}
