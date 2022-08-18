@@ -13,6 +13,25 @@ interface IPagination {
   size?: number;
 }
 
+interface IPageButton {
+  num: number;
+  isCurrentPage: boolean;
+  onClick: any;
+}
+
+const PageButton = ({ num, isCurrentPage, onClick }: IPageButton) => {
+  return (
+    <button
+      key={num}
+      className={paginationIsSelectedButtonStyle[isCurrentPage ? 'selected' : 'default']}
+      id={`page-button-${num}`}
+      onClick={onClick}
+    >
+      {num + 1}
+    </button>
+  );
+};
+
 export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
   const movePrevPage = () => {
     if (page <= 0) return;
@@ -26,33 +45,42 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
     const eventTarget = event.target as HTMLButtonElement;
     setPage(parseInt(eventTarget.innerText) - 1);
   };
+  const createPageList = (totalPages: number, currPage: number) => {
+    const pageList = [];
+    for (let i = 0; i < totalPages; i++) {
+      if (
+        i === 0 ||
+        i === totalPages - 1 ||
+        i === currPage ||
+        (i >= currPage - 1 && i <= currPage + 1)
+      ) {
+        pageList.push(i);
+      } else {
+        pageList.push(null);
+      }
+    }
+
+    return pageList;
+  };
 
   return (
     <div className={paginationWrapperStyle}>
       <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} onClick={movePrevPage}>
         <LeftArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
       </IconButton>
-      {Array(totalPages)
-        .fill(null)
-        .map((_, idx) =>
-          page === idx ? (
-            <button
-              key={idx}
-              className={paginationIsSelectedButtonStyle['selected']}
-              id={`page-button-${idx}`}
-            >
-              {idx + 1}
-            </button>
-          ) : (
-            <button
-              key={idx}
-              className={paginationIsSelectedButtonStyle['default']}
-              onClick={changePage}
-            >
-              {idx + 1}
-            </button>
-          ),
-        )}
+      {totalPages <= 5
+        ? Array(totalPages)
+            .fill(null)
+            .map((_, idx) => (
+              <PageButton num={idx} isCurrentPage={page === idx} key={idx} onClick={changePage} />
+            ))
+        : createPageList(totalPages, page).map((num) =>
+            num !== null ? (
+              <PageButton num={num} isCurrentPage={page === num} key={num} onClick={changePage} />
+            ) : (
+              <>🐛</>
+            ),
+          )}
       <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} onClick={moveNextPage}>
         <RightArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
       </IconButton>

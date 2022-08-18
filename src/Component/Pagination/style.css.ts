@@ -6,13 +6,21 @@ export const paginationWrapperStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  gap: '1rem',
 
   padding: '2rem',
 });
 
 export const paginationButtonStyle = style([
   baseFontStyle.medium,
-  { width: '50px', height: '30px' },
+  {
+    width: '40px',
+    height: '40px',
+    borderRadius: '10px',
+    ':hover': {
+      backgroundColor: COLOR.OFFWHITE,
+    },
+  },
 ]);
 
 export const paginationIsSelectedButtonStyle = styleVariants({
