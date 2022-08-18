@@ -52,12 +52,12 @@ export const problemApiWrapper = {
   },
   shortProblemResult: (problem_id: string, answer: string) => {
     return apiClient
-      .post(API_URL_WITH_PARAMS.LONG_PROBLEM_RESULT(problem_id), { answer: answer })
+      .post(API_URL_WITH_PARAMS.SHORT_PROBLEM_RESULT(problem_id), { answer: answer })
       .then((res: { data: IShortProblemResultData }) => res.data);
   },
   multipleProblemResult: (problem_id: string, answerIds: number[]) => {
     return apiClient
-      .post(API_URL_WITH_PARAMS.LONG_PROBLEM_RESULT(problem_id), { answerIds: answerIds })
+      .post(API_URL_WITH_PARAMS.MULTIPLE_PROBLEM_RESULT(problem_id), { answerIds: answerIds })
       .then((res: { data: IMultipletProblemResultData }) => res.data);
   },
 };
