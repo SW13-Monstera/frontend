@@ -17,7 +17,9 @@ export const problemApiWrapper = {
     }
     return apiClient.get(API_URL.PROBLEM_LIST, config).then(
       (res) => res.data,
-      (err) => {},
+      (err) => {
+        throw new Error('문제 목록 불러오기 실패');
+      },
     );
   },
   problemDetail: (problem_id: string) => {
