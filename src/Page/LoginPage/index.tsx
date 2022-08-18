@@ -1,4 +1,3 @@
-import Modal from 'react-modal';
 import { toast } from 'react-toastify';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { useAuthStore } from '../../hooks/useStore';

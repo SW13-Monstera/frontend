@@ -1,12 +1,10 @@
 import { MouseEvent } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
-import { loginFormContentStyle, loginFormStyle, logoStyle } from './style.css';
+import { loginFormContentStyle, loginFormStyle } from './style.css';
 import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import HorizontalOAuthButtonList from '../ButtonList/HorizontalOAuthButtonList';
-import CSBroker from '../../assets/images/csbroker.png';
 import { INPUT_TYPE } from '../../constants/input';
-import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 
