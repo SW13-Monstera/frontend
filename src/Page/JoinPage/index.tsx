@@ -9,6 +9,7 @@ import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { IJoinRequest } from '../../types/auth';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
+import { toast } from 'react-toastify';
 
 function JoinPage() {
   const navigate = useNavigate();
@@ -21,7 +22,18 @@ function JoinPage() {
     const passwordValue = formData.get('password')?.toString();
     const usernameValue = formData.get('nickname')?.toString();
 
-    if (!emailValue || !passwordValue || !usernameValue) return;
+    if (!emailValue) {
+      toast('이메일은 필수항목입니다.');
+      return;
+    }
+    if (!passwordValue) {
+      toast('비밀번호는 필수항목입니다.');
+      return;
+    }
+    if (!usernameValue) {
+      toast('닉네임은 필수항목입니다.');
+      return;
+    }
 
     const data: IJoinRequest = {
       email: emailValue,
@@ -67,7 +79,7 @@ function JoinPage() {
             name='nickname'
           ></DefaultInputBox>
           <TextButton
-            type={BUTTON_TYPE.SUBMIT}
+            type={BUTTON_TYPE.BUTTON}
             theme={BUTTON_THEME.PRIMARY}
             size={BUTTON_SIZE.LARGE}
             onClick={handleJoin}

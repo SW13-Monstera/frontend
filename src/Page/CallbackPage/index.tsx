@@ -15,7 +15,7 @@ const CallbackPage = () => {
     const token = searchParams.get('token');
 
     if (!token) return;
-    authApiWrapper.getUserInfo(token).then((res) => {
+    authApiWrapper.getUserData(token).then((res) => {
       setUserInfo({ ...res.data, accessToken: token });
       navigate(URL.MAIN);
       setIsLogin(true);

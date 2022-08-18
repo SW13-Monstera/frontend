@@ -37,9 +37,16 @@ export const authApiWrapper = {
   },
 
   join: (data: IJoinRequest) => {
-    return apiClient.post(API_URL.JOIN, data);
+    apiClient.post(API_URL.JOIN, data).then(
+      (res) => res,
+      (err) => {
+        toast('회원가입 실패');
+        throw new Error('회원가입 실패');
+      },
+    );
   },
-  getUserInfo: (token: string) => {
+
+  getUserData: (token: string) => {
     return apiClient.get(API_URL.USER_INFO, {
       headers: {
         Authorization: BEARER_TOKEN(token),
