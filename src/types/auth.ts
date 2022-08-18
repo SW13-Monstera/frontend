@@ -18,3 +18,9 @@ export interface IUserInfo {
   role: typeof ROLES;
   username: string;
 }
+
+export interface IParsedToken {
+  ROLE: string;
+  exp: number;
+  sub: string;
+}

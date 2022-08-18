@@ -1,26 +1,32 @@
 import { MouseEvent } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
-import { loginFormContentStyle, loginFormStyle, logoStyle } from './style.css';
+import { loginFormContentStyle, loginFormStyle } from './style.css';
 import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import HorizontalOAuthButtonList from '../ButtonList/HorizontalOAuthButtonList';
-import CSBroker from '../../assets/images/csbroker.png';
 import { INPUT_TYPE } from '../../constants/input';
+import { useNavigate } from 'react-router-dom';
+import { URL } from '../../constants/url';
 
 interface ILoginForm {
-  closeModal: () => void;
-  handleSubmit: (event: MouseEvent) => void;
+  closeModal?: () => void;
+  handleSubmit: (event: MouseEvent) => Promise<boolean> | undefined;
 }
 
-function LoginForm({ closeModal, handleSubmit }: ILoginForm) {
+function LoginForm({ handleSubmit }: ILoginForm) {
+  const navigate = useNavigate();
+
   function handleLogin(event: MouseEvent) {
-    closeModal();
-    handleSubmit(event);
+    event.preventDefault();
+    handleSubmit(event)?.then((isLoginSuccess) => {
+      if (isLoginSuccess) {
+        navigate(URL.MAIN);
+      }
+    });
   }
 
   return (
     <div className={loginFormStyle}>
-      <img src={CSBroker} alt='logo' className={logoStyle} />
       <form className={loginFormContentStyle}>
         <label htmlFor='email'>이메일</label>
         <DefaultInputBox

@@ -4,13 +4,20 @@ import { API_URL } from '../../../constants/apiUrl';
 import { IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
 import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo } from '../../../utils/userInfo';
+import { toast } from 'react-toastify';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
-    return apiClient.post(API_URL.LOGIN, data).then((res: { data: IUserInfo }) => {
-      apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
-      return res.data;
-    });
+    return apiClient.post(API_URL.LOGIN, data).then(
+      (res: { data: IUserInfo }) => {
+        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
+        return res.data;
+      },
+      (err) => {
+        toast('로그인 실패');
+        throw new Error('로그인 실패');
+      },
+    );
   },
 
   refresh: () => {
@@ -24,15 +31,23 @@ export const authApiWrapper = {
         },
       })
       .then((res: { data: { accessToken: string } }) => {
-        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
-        setUserInfo({ ...userInfo, accessToken: res.data.accessToken });
+        const newAccessToken = res.data.accessToken;
+        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
+        setUserInfo({ ...userInfo, accessToken: newAccessToken });
       });
   },
 
   join: (data: IJoinRequest) => {
-    return apiClient.post(API_URL.JOIN, data);
+    apiClient.post(API_URL.JOIN, data).then(
+      (res) => res,
+      (err) => {
+        toast('회원가입 실패');
+        throw new Error('회원가입 실패');
+      },
+    );
   },
-  getUserInfo: (token: string) => {
+
+  getUserData: (token: string) => {
     return apiClient.get(API_URL.USER_INFO, {
       headers: {
         Authorization: BEARER_TOKEN(token),

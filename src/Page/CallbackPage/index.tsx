@@ -2,22 +2,24 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { URL } from '../../constants/url';
-import { useAuthStore, useUserInfoStore } from '../../hooks/useStore';
+import { useAuthStore, useUserDataStore } from '../../hooks/useStore';
+import { setUserInfo } from '../../utils/userInfo';
 
 const CallbackPage = () => {
   const { setIsLogin } = useAuthStore();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { setUserInfo } = useUserInfoStore();
+  const { setUserData } = useUserDataStore();
 
   useEffect(() => {
     const token = searchParams.get('token');
+
     if (!token) return;
-    authApiWrapper.getUserInfo(token).then((res) => {
+    authApiWrapper.getUserData(token).then((res) => {
       setUserInfo({ ...res.data, accessToken: token });
       navigate(URL.MAIN);
       setIsLogin(true);
-      setUserInfo(res.data);
+      setUserData(res.data);
     });
   }, []);
 

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { parseJwt } from '../utils/parseJwt';
+import { getUserInfo } from '../utils/userInfo';
 import { authApiWrapper } from './wrapper/auth/authApiWrapper';
 
 const apiClient = axios.create({
@@ -7,12 +9,21 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.response.use(
-  (res) => res.data,
+  (res) => {
+    const userInfo = getUserInfo();
+    if (userInfo) {
+      const { exp } = parseJwt(userInfo.accessToken);
+      if (Date.now() >= exp * 1000) {
+        authApiWrapper.refresh();
+      }
+    }
+    return res.data;
+  },
   (err) => {
     const { status } = err.response;
 
     if (status === 401) {
-      authApiWrapper.refresh();
+      // authApiWrapper.refresh();
     } else if (status === 400 || status === 500) {
       //   location.reload();
     } else if (status !== 200) {

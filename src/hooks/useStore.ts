@@ -12,16 +12,16 @@ interface IAuth {
   setIsLogin: (loginState: boolean) => void;
 }
 
-interface IUserInfo {
+interface IUserData {
   id: string;
   username: string;
   email: string;
   role: string;
 }
 
-interface IUserInfoStore {
-  userInfo: IUserInfo;
-  setUserInfo: (userInfo: IUserInfo) => void;
+interface IUserDataStore {
+  userData: IUserData;
+  setUserData: (userInfo: IUserData) => void;
 }
 
 const useCheckedTagsStore = create<ICheckedTags>((set) => ({
@@ -45,9 +45,9 @@ const useAuthStore = create<IAuth>((set) => ({
   setIsLogin: (loginState: boolean) => set((state) => ({ ...state, isLogin: loginState })),
 }));
 
-const useUserInfoStore = create<IUserInfoStore>((set) => ({
-  userInfo: { id: '', username: '', email: '', role: '' },
-  setUserInfo: (newUserInfo: IUserInfo) => set({ userInfo: newUserInfo }),
+const useUserDataStore = create<IUserDataStore>((set) => ({
+  userData: { id: '', username: '', email: '', role: '' },
+  setUserData: (newUserData: IUserData) => set({ userData: newUserData }),
 }));
 
-export { useCheckedTagsStore, useAuthStore, useUserInfoStore };
+export { useCheckedTagsStore, useAuthStore, useUserDataStore };

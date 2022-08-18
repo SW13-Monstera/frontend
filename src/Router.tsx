@@ -10,6 +10,7 @@ import {
   CallbackPage,
   ShortQuestionDetailPage,
   MultipleQuestionDetailPage,
+  LoginPage,
 } from './Page';
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
         <Route path={URL.MULTIPLE_PROBLEM_DETAIL} element={<MultipleQuestionDetailPage />} />
         <Route path={URL.MULTIPLE__PROBLEM_RESULT} element={<ResultPage />} />
         <Route path={URL.JOIN} element={<JoinPage />} />
+        <Route path={URL.LOGIN} element={<LoginPage />} />
         <Route path={URL.NICKNAME} element={<NicknamePage />} />
         <Route path={URL.OAUTH_CALLBACK} element={<CallbackPage />} />
       </Routes>

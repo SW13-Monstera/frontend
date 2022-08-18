@@ -13,16 +13,19 @@ import { CountUpBox } from '../../Component/Box/CountUpBox';
 import { QuestionListElementBox } from '../../Component/Box';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useEffect, useState } from 'react';
-import { IProblemListResponseData } from '../../types/api/problem';
+import {
+  IProblemListResponseData,
+  IProblemListResponseDataContents,
+} from '../../types/api/problem';
 import { ColumnBox } from '../../Component/Box/CustomBox';
 
 function MainPage() {
-  const [problems, setProblems] = useState<IProblemListResponseData[]>([]);
+  const [problems, setProblems] = useState<IProblemListResponseDataContents[]>([]);
 
   function getProblemList() {
     const params = { page: 0, size: 4 };
-    problemApiWrapper.problemList(params).then((res) => {
-      setProblems(res.data);
+    problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
+      setProblems(data.contents);
     });
   }
 

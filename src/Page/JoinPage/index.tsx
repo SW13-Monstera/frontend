@@ -9,19 +9,44 @@ import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { IJoinRequest } from '../../types/auth';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
+import { toast } from 'react-toastify';
+import { MouseEvent } from 'react';
+import { validateEmail } from '../../utils/validateEmail';
 
 function JoinPage() {
   const navigate = useNavigate();
 
-  function handleJoin() {
+  function handleJoin(event: MouseEvent) {
+    event.preventDefault();
+
     const joinForm = document.getElementById('join-form') as HTMLFormElement;
     const formData = new FormData(joinForm);
 
     const emailValue = formData.get('email')?.toString();
     const passwordValue = formData.get('password')?.toString();
+    const passwordComfirmValue = formData.get('password-confirm')?.toString();
     const usernameValue = formData.get('nickname')?.toString();
 
-    if (!emailValue || !passwordValue || !usernameValue) return;
+    if (!emailValue) {
+      toast('이메일은 필수항목입니다.');
+      return;
+    }
+    if (!validateEmail(emailValue)) {
+      toast('이메일 형식이 올바르지 않습니다.');
+      return;
+    }
+    if (!passwordValue) {
+      toast('비밀번호는 필수항목입니다.');
+      return;
+    }
+    if (passwordValue !== passwordComfirmValue) {
+      toast('비밀번호가 일치하지 않습니다.');
+      return;
+    }
+    if (!usernameValue) {
+      toast('닉네임은 필수항목입니다.');
+      return;
+    }
 
     const data: IJoinRequest = {
       email: emailValue,

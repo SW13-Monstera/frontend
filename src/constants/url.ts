@@ -1,6 +1,7 @@
 const URL = {
   MAIN: '/',
   JOIN: '/join',
+  LOGIN: '/login',
   NICKNAME: '/join/nickname',
   PROBLEM_LIST: '/problem',
   LONG_PROBLEM_DETAIL: '/problem/long/:id',
