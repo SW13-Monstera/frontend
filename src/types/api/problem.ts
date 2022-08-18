@@ -24,9 +24,27 @@ export interface ILongProblemDetailResponseData extends IProblemDetailResponseDa
   bottomScore: number;
 }
 
+export interface ILongProblemResultData extends ILongProblemDetailResponseData {
+  gradingHistoryId: number;
+  problemId: number;
+  score: number;
+  keywords: IkeywordResult[];
+  userAnswer: string;
+  standardAnswer: string;
+}
+
 export interface IShortProblemDetailResponseData extends IProblemDetailResponseData {
   correctCnt: number;
   wrongCnt: number;
+  answerLength: number;
+}
+
+export interface IShortProblemResultData extends IShortProblemDetailResponseData {
+  gradingHistoryId: number;
+  problemId: number;
+  score: number;
+  userAnswer: string;
+  isAnswer: boolean;
   answerLength: number;
 }
 
@@ -34,6 +52,14 @@ export interface IMultipleProblemDetailResponseData extends IProblemDetailRespon
   correctCnt: number;
   wrongCnt: number;
   choices: IChoice[];
+}
+
+export interface IMultipletProblemResultData extends IMultipleProblemDetailResponseData {
+  gradingHistoryId: number;
+  problemId: number;
+  score: number;
+  userAnswerIds: number[];
+  isAnswer: boolean;
 }
 
 export interface IProblemListResponseDataContents {
@@ -57,4 +83,11 @@ export interface IProblemListResponseData {
 export interface IChoice {
   id: number;
   content: string;
+}
+
+export interface IkeywordResult {
+  id: number;
+  content: string;
+  isExist: boolean;
+  idx: number[];
 }

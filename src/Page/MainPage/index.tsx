@@ -60,6 +60,7 @@ function MainPage() {
                   tagList={problem.tags}
                   numberSolved={problem.totalSolved}
                   averageScore={problem.avgScore}
+                  type={problem.type}
                 />
               ))}
             </div>

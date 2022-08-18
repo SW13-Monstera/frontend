@@ -6,6 +6,9 @@ import {
   ILongProblemDetailResponseData,
   IShortProblemDetailResponseData,
   IMultipleProblemDetailResponseData,
+  ILongProblemResultData,
+  IShortProblemResultData,
+  IMultipletProblemResultData,
 } from '../../../types/api/problem';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { AxiosRequestConfig } from 'axios';
@@ -41,5 +44,20 @@ export const problemApiWrapper = {
     return apiClient
       .get(API_URL_WITH_PARAMS.MULTIPLE_PROBLEM_DETAIL(problem_id))
       .then((res: { data: IMultipleProblemDetailResponseData }) => res.data);
+  },
+  longProblemResult: (problem_id: string, answer: string) => {
+    return apiClient
+      .post(API_URL_WITH_PARAMS.LONG_PROBLEM_RESULT(problem_id), answer)
+      .then((res: { data: ILongProblemResultData }) => res.data);
+  },
+  shortProblemResult: (problem_id: string, answer: string) => {
+    return apiClient
+      .post(API_URL_WITH_PARAMS.LONG_PROBLEM_RESULT(problem_id), answer)
+      .then((res: { data: IShortProblemResultData }) => res.data);
+  },
+  multipleProblemResult: (problem_id: string, answerIds: number[]) => {
+    return apiClient
+      .post(API_URL_WITH_PARAMS.LONG_PROBLEM_RESULT(problem_id), answerIds)
+      .then((res: { data: IMultipletProblemResultData }) => res.data);
   },
 };

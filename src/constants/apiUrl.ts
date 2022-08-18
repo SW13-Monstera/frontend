@@ -12,6 +12,9 @@ const API_URL_WITH_PARAMS = {
   LONG_PROBLEM_DETAIL: (problem_id: string) => `/v1/problems/long/${problem_id}`,
   SHORT_PROBLEM_DETAIL: (problem_id: string) => `/v1/problems/short/${problem_id}`,
   MULTIPLE_PROBLEM_DETAIL: (problem_id: string) => `/v1/problems/multiple/${problem_id}`,
+  LONG_PROBLEM_RESULT: (problem_id: string) => `/v1/problems/long/${problem_id}/grade`,
+  SHORT_PROBLEM_RESULT: (problem_id: string) => `/v1/problems/short/${problem_id}/grade`,
+  MULTIPLE_PROBLEM_RESULT: (problem_id: string) => `/v1/problems/multiple/${problem_id}/grade`,
   UPDATE_USER: (user_id: string) => `/v1/users/${user_id}`,
 };
 
