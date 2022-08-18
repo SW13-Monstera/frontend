@@ -31,8 +31,9 @@ export const authApiWrapper = {
         },
       })
       .then((res: { data: { accessToken: string } }) => {
-        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
-        setUserInfo({ ...userInfo, accessToken: res.data.accessToken });
+        const newAccessToken = res.data.accessToken;
+        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
+        setUserInfo({ ...userInfo, accessToken: newAccessToken });
       });
   },
 
