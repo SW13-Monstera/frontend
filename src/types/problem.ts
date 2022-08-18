@@ -4,7 +4,7 @@ interface IProblem {
   id: string;
   title: string;
   tagList: string[];
-  type: TProblemType;
+  type?: TProblemType;
   numberSolved?: number;
   averageScore?: number;
   highestScore?: number;
