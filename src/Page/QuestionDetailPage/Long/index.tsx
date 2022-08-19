@@ -5,7 +5,6 @@ import {
   pageStyle,
   topStyle,
   descStyle,
-  titleTagStyle,
   questionContentStyle,
   splitStyle,
   contentWrapperStyle,
@@ -14,7 +13,6 @@ import {
   buttonListStyle,
   themeDarkClass,
   answerInputContentStyle,
-  tagListStyle,
 } from './style.css';
 import '../gutter.css';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -24,12 +22,10 @@ import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
 import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
-import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URL, URLWithParam } from '../../../constants/url';
 import { ILongProblemDetailResponseData, ILongProblemResultData } from '../../../types/api/problem';
-import TagBox from '../../../Component/Box/TagBox';
-import { getTagById } from '../../../utils/getTagbyId';
+import ProblemTitle from '../../../Organism/ProblemTitle';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
@@ -50,9 +46,6 @@ export function LongQuestionDetailPage() {
     problemApiWrapper.longProblemResult(id, answer).then((data) => {
       setResult(data);
     });
-    // .then(() => {
-    //   navigate(URLWithParam.LONG_PROBLEM_RESULT(id), { state: result });
-    // });
   }
 
   useEffect(() => {
@@ -67,6 +60,8 @@ export function LongQuestionDetailPage() {
     navigate(URLWithParam.LONG_PROBLEM_RESULT(id), { state: result });
   }, [result]);
 
+  if (!id) return <></>;
+
   return (
     <div>
       {data ? (
@@ -75,22 +70,16 @@ export function LongQuestionDetailPage() {
           <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
             <div className={topStyle}>
               <div className={descStyle}>
-                <div className={titleTagStyle}>
-                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => {
-                      const { name, color } = getTagById(tagId);
-                      return <TagBox key={tagId} name={name} color={color} />;
-                    })}
-                  </ul>
-                </div>
-                <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 평균 점수 : ${
-                    data?.avgScore ?? 0
-                  }점, 최고점 : ${data?.topScore ?? 0}점 , 최저점 : ${data?.bottomScore ?? 0}점`}
-                </div>
+                <ProblemTitle
+                  id={id}
+                  title={data.title}
+                  tags={data.tags}
+                  totalSolved={data.totalSolved}
+                  avgScore={data.avgScore}
+                  topScore={data.topScore}
+                  bottomScore={data.bottomScore}
+                />
               </div>
-
               <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
             <div className={questionContentStyle}>

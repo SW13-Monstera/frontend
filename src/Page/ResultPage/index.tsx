@@ -1,10 +1,8 @@
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import KeywordBox from '../../Component/Box/KeywordBox';
 import TextBox from '../../Component/Box/TextBox';
 import TextButton from '../../Component/Button/TextButton';
 import ProblemTitle from '../../Organism/ProblemTitle';
-import { listData } from '../../data';
-import { scoringResult } from '../../data/scoringResult';
 import Header from '../../Template/Header';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import {
@@ -24,10 +22,7 @@ function ResultPage() {
   const {
     title,
     tags,
-    description,
     totalSolved,
-    gradingHistoryId,
-    score,
     avgScore,
     topScore,
     bottomScore,
@@ -35,7 +30,7 @@ function ResultPage() {
     userAnswer,
     standardAnswer,
   } = useLocation().state as ILongProblemResultData;
-  if (!id) return;
+  if (!id) return <></>;
 
   return (
     <>
@@ -44,11 +39,11 @@ function ResultPage() {
         <ProblemTitle
           id={id}
           title={title}
-          numberSolved={totalSolved}
-          averageScore={avgScore}
-          highestScore={topScore}
-          lowestScore={bottomScore}
-          tagList={tags}
+          totalSolved={totalSolved}
+          avgScore={avgScore}
+          topScore={topScore}
+          bottomScore={bottomScore}
+          tags={tags}
           answer={userAnswer}
         />
         <div className={pageContentStyle}>
@@ -71,7 +66,7 @@ function ResultPage() {
           </TextBox>
         </div>
         <div className={buttonListStyle}>
-          <Link to={URLWithParam.LONG_PROBLEM_DETAIL(id)} state={{ problemId: id }}>
+          <Link to={URLWithParam.LONG_PROBLEM_DETAIL(id.toString())} state={{ problemId: id }}>
             <TextButton
               type={BUTTON_TYPE.BUTTON}
               theme={BUTTON_THEME.PRIMARY}

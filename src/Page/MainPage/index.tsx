@@ -55,11 +55,11 @@ function MainPage() {
               {problems.map((problem) => (
                 <QuestionListElementBox
                   key={problem.id.toString()}
-                  id={problem.id.toString()}
+                  id={problem.id}
                   title={problem.title}
-                  tagList={problem.tags}
-                  numberSolved={problem.totalSolved}
-                  averageScore={problem.avgScore}
+                  tags={problem.tags}
+                  totalSolved={problem.totalSolved}
+                  avgScore={problem.avgScore}
                   type={problem.type}
                 />
               ))}
