@@ -2,50 +2,51 @@ import Header from '../../../Template/Header';
 import {
   themeLightClass,
   pageStyle,
-  topStyle,
   descStyle,
-  titleTagStyle,
   questionContentStyle,
   contentWrapperStyle,
   contentTitleStyle,
   problemDescContentStyle,
   buttonListStyle,
   themeDarkClass,
-  answerInputContentStyle,
-  tagListStyle,
   answerInputWrapperStyle,
   answerInputTitleStyle,
   answerLengthButtonStyle,
   answerLengthOpenStyle,
   answerLengthNotOpenStyle,
   hintWrapperStyle,
+  answerInputScoredStyle,
+  topStyle,
 } from './style.css';
 import '../gutter.css';
 import { Link, useParams } from 'react-router-dom';
-import TagBox from '../../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
 import TextButton from '../../../Component/Button/TextButton';
 import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
 import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
-import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URL } from '../../../constants/url';
-import { IShortProblemDetailResponseData } from '../../../types/api/problem';
-import { getTagById } from '../../../utils/getTagbyId';
-import { ReactComponent as DownIcon } from '../../../assets/icons/down-arrow-icon.svg';
-import { ReactComponent as UpIcon } from '../../../assets/icons/up-arrow-icon.svg';
+import {
+  IShortProblemDetailResponseData,
+  IShortProblemResultData,
+} from '../../../types/api/problem';
 import { TransparentButton } from '../../../Component/Button';
+import { XIcon } from '../../../Icon/XIcon';
 import { COLOR } from '../../../constants/color';
+import { OIcon } from '../../../Icon/OIcon';
+import ProblemTitle from '../../../Organism/ProblemTitle';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
+  const [isDark, setIsDark] = useState(true);
   const [data, setData] = useState<IShortProblemDetailResponseData>();
   const [isHintOpen, setIsHintOpen] = useState(false);
-
-  const [isDark, setIsDark] = useState(true);
+  const [result, setResult] = useState<IShortProblemResultData | null>(null);
+  const [isAnswer, setIsAnswer] = useState(false);
+  const [isGraded, setIsGraded] = useState(false);
 
   function toggleDarkMode() {
     setIsDark((prev) => !prev);
@@ -54,7 +55,7 @@ export function ShortQuestionDetailPage() {
   function handleSubmit() {
     if (!id) return;
     const data = (document.getElementById('answer') as HTMLInputElement).value;
-    problemApiWrapper.shortProblemResult(id, data);
+    problemApiWrapper.shortProblemResult(id, data).then((data) => setResult(data));
   }
 
   function showHint() {
@@ -71,6 +72,17 @@ export function ShortQuestionDetailPage() {
     });
   }, []);
 
+  useEffect(() => {
+    if (!result) return;
+    setIsAnswer(result.isAnswer);
+    setIsGraded(true);
+    setTimeout(() => {
+      setIsGraded(false);
+      (document.getElementById('answer') as HTMLInputElement).value = '';
+    }, 1000);
+  }, [result]);
+
+  if (!id) return <></>;
   return (
     <div>
       {data ? (
@@ -79,20 +91,14 @@ export function ShortQuestionDetailPage() {
           <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
             <div className={topStyle}>
               <div className={descStyle}>
-                <div className={titleTagStyle}>
-                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => {
-                      const { name, color } = getTagById(tagId);
-                      return <TagBox key={tagId} name={name} color={color} />;
-                    })}
-                  </ul>
-                </div>
-                <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 맞은 사람 수 : ${
-                    data?.correctCnt ?? 0
-                  }명, 틀린 사람 수 : ${data?.wrongCnt ?? 0}명`}
-                </div>
+                <ProblemTitle
+                  id={id}
+                  title={data.title}
+                  tags={data.tags}
+                  totalSolved={data.totalSolved}
+                  correctCnt={data.correctCnt}
+                  wrongCnt={data.wrongCnt}
+                />
               </div>
               <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
@@ -108,8 +114,20 @@ export function ShortQuestionDetailPage() {
                 <input
                   id='answer'
                   placeholder='답변을 입력해주세요'
-                  className={answerInputContentStyle}
+                  className={
+                    answerInputScoredStyle[isGraded ? (isAnswer ? 'correct' : 'wrong') : 'default']
+                  }
+                  autoComplete='off'
                 ></input>
+                {isGraded ? (
+                  isAnswer ? (
+                    <OIcon fill={COLOR.CORRECT} width='3rem' height='3rem' />
+                  ) : (
+                    <XIcon fill={COLOR.ERROR} width='3rem' height='3rem' />
+                  )
+                ) : (
+                  <></>
+                )}
               </div>
               <div className={hintWrapperStyle}>
                 <TransparentButton className={answerLengthButtonStyle} onClick={showHint}>
