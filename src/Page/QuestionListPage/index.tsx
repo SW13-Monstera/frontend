@@ -16,6 +16,7 @@ import {
   questionListStyle,
   resetButtonStyle,
   filterTitleWrapperStyle,
+  questionListWrapperStyle,
 } from './style.css';
 import { PageTemplate } from '../../Template';
 import { useEffect, useState } from 'react';
@@ -29,18 +30,20 @@ import { getTagById } from '../../utils/getTagbyId';
 import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
+import { Pagination } from '../../Component/Pagination';
 
 function QuestionListPage() {
   const [problemList, setProblemList] = useState<IProblemListResponseDataContents[]>([]);
   const { checkedTags, handleCheckedTags, resetCheckedTags } = useCheckedTagsStore();
   const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const { isLogin } = useAuthStore();
 
   function handleSearchInput() {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
     const params = { ...getFilterParams(checkedTags), page: page, query: query };
-    problemApiWrapper.problemList(params).then((res) => {
-      setProblemList(res.data);
+    problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
+      setProblemList(data.contents);
     });
     resetCheckedTags(resetCheckboxes);
   }
@@ -49,8 +52,9 @@ function QuestionListPage() {
     const params = { ...getFilterParams(checkedTags), page: page };
     problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
       setProblemList(data.contents);
+      setTotalPages(data.totalPages);
     });
-  }, [checkedTags]);
+  }, [checkedTags, page]);
 
   return (
     <PageTemplate>
@@ -105,17 +109,20 @@ function QuestionListPage() {
             </div>
           </aside>
 
-          <div className={questionListStyle}>
-            {problemList.map((problem: IProblemListResponseDataContents) => (
-              <QuestionListElementBox
-                title={problem.title}
-                numberSolved={problem.totalSolved ?? 0}
-                averageScore={problem.avgScore ?? 0}
-                tagList={problem.tags}
-                key={problem.id}
-                id={problem.id.toString()}
-              />
-            ))}
+          <div className={questionListWrapperStyle}>
+            <div className={questionListStyle}>
+              {problemList.map((problem: IProblemListResponseDataContents) => (
+                <QuestionListElementBox
+                  title={problem.title}
+                  numberSolved={problem.totalSolved ?? 0}
+                  averageScore={problem.avgScore ?? 0}
+                  tagList={problem.tags}
+                  key={problem.id}
+                  id={problem.id.toString()}
+                />
+              ))}
+            </div>
+            <Pagination totalPages={totalPages} page={page} setPage={setPage} />
           </div>
         </div>
       </div>

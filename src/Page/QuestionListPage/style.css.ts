@@ -17,7 +17,7 @@ export const asideStyle = style({
   flexDirection: 'column',
   gap: '1.25rem',
 
-  width: '15.625rem',
+  width: '20rem',
   height: '12.5rem',
 
   padding: '1rem 0 0 1rem',
@@ -80,6 +80,15 @@ export const checkedTagListStyle = style({
   justifyItems: 'center',
 });
 
+export const questionListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  width: '100%',
+});
+
 export const questionListStyle = style({
   boxSizing: 'border-box',
 
@@ -87,10 +96,9 @@ export const questionListStyle = style({
   gridTemplateColumns: 'repeat(3, 1fr)',
   gap: '10px',
 
-  width: '65%',
-  marginLeft: '1rem',
+  width: '80%',
 
-  padding: '1rem 0 0 1rem',
+  paddingTop: '1rem',
 
   '@media': {
     'screen and (max-width: 1600px)': {
