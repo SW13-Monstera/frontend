@@ -1,4 +1,10 @@
-import { createThemeContract, createTheme, style, keyframes } from '@vanilla-extract/css';
+import {
+  createThemeContract,
+  createTheme,
+  style,
+  keyframes,
+  styleVariants,
+} from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
 
@@ -139,6 +145,11 @@ export const answerInputStyle = style({
   flexDirection: 'column',
 });
 
+const vibration = keyframes({
+  from: { transform: 'rotate(1deg)' },
+  to: { transform: 'rotate(-1deg)' },
+});
+
 export const answerInputContentStyle = style([
   baseFontStyle.medium,
   {
@@ -153,6 +164,21 @@ export const answerInputContentStyle = style([
     borderRadius: '20px',
   },
 ]);
+
+export const answerInputScoredStyle = styleVariants({
+  correct: [answerInputContentStyle, { border: '3px solid green', color: COLOR.CORRECT }],
+  wrong: [
+    answerInputContentStyle,
+    {
+      border: '3px solid red',
+      color: COLOR.ERROR,
+      animationName: vibration,
+      animationDuration: '.1s',
+      animationIterationCount: 10,
+    },
+  ],
+  default: [answerInputContentStyle, {}],
+});
 
 export const buttonListStyle = style({
   display: 'flex',
