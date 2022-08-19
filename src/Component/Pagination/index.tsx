@@ -42,7 +42,7 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
     setPage(page - 1);
   };
   const moveNextPage = () => {
-    if (page > totalPages - 1) return;
+    if (page >= totalPages - 1) return;
     setPage(page + 1);
   };
   const changePage: MouseEventHandler<HTMLButtonElement> = (event) => {
