@@ -16,6 +16,7 @@ export interface IProblemDetailResponseData {
   tags: string[];
   description: string;
   totalSolved: number;
+  type: TProblemType;
 }
 
 export interface ILongProblemDetailResponseData extends IProblemDetailResponseData {
