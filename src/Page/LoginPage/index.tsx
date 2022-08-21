@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { useAuthStore } from '../../hooks/useStore';
 import LoginForm from '../../Organism/LoginForm';
-import { PageTemplate } from '../../Template';
+import { Header } from '../../Template';
 import { setUserInfo } from '../../utils/userInfo';
 import { validateEmail } from '../../utils/validateEmail';
 import { pageTitleStyle, pageWrapperStyle } from './style.css';
@@ -43,11 +43,12 @@ export function LoginPage() {
   };
 
   return (
-    <PageTemplate>
+    <>
+      <Header />
       <div className={pageWrapperStyle}>
         <div className={pageTitleStyle}>로그인</div>
         <LoginForm handleSubmit={handleSubmit} />
       </div>
-    </PageTemplate>
+    </>
   );
 }
