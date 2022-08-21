@@ -48,5 +48,6 @@ export const problemDetailStyle = style([
   baseFontStyle.medium,
   {
     display: 'flex',
+    gap: '1rem',
   },
 ]);
