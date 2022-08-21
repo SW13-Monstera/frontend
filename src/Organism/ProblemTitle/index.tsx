@@ -13,15 +13,6 @@ interface IProblemDetail {
   wrongCnt: string;
 }
 
-const problemDetails: Record<keyof IProblemDetail, string> = {
-  totalSolved: 'totalSolved',
-  avgScore: 'avgScore',
-  topScore: 'topScore',
-  bottomScore: 'bottomScore',
-  correctCnt: 'correctCnt',
-  wrongCnt: 'wrongCnt',
-};
-
 const problemDetailMap: Record<keyof IProblemDetail, (num: number | undefined) => string | null> = {
   totalSolved: (num: number | undefined) => (num ? `제출: ${num}회` : null),
   avgScore: (num: number | undefined) => (num ? `평균 점수: ${num.toFixed(2)}점` : null),
@@ -45,15 +36,15 @@ function ProblemTitle(props: IProblem) {
           </ul>
         </div>
         <div className={problemDetailStyle}>
-          {Object.entries(props)
-            .filter((e) => Object.keys(problemDetailMap).includes(e[0]) && e[1])
-            .map((e) => (
-              <div key={`${e[0]}${e[1]}`}>
-                {Object.entries(problemDetailMap).map(([key, value]) =>
-                  key === e[0] ? <span key={e[0]}>{value(e[1])}</span> : '',
-                )}
-              </div>
-            ))}
+          {Object.entries(props).map(([propKey, propValue]) =>
+            Object.entries(problemDetailMap).map(([detailKey, detailValue]) =>
+              propKey === detailKey && propValue ? (
+                <span key={propKey}>{detailValue(propValue)}</span>
+              ) : (
+                ''
+              ),
+            ),
+          )}
         </div>
       </div>
     </div>
