@@ -5,7 +5,6 @@ import {
   pageStyle,
   topStyle,
   descStyle,
-  titleTagStyle,
   questionContentStyle,
   splitStyle,
   contentWrapperStyle,
@@ -16,32 +15,19 @@ import {
   choiceListStyle,
   choiceWrapperStyle,
   choiceCheckboxStyle,
-  tagListStyle,
 } from './style.css';
 import '../gutter.css';
 import { Link, useParams } from 'react-router-dom';
-import TagBox from '../../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
 import TextButton from '../../../Component/Button/TextButton';
 import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
 import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
-import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
-import { URL, URLWithParam } from '../../../constants/url';
-import {
-  IMultipleProblemDetailResponseData,
-  IShortProblemDetailResponseData,
-} from '../../../types/api/problem';
-import { getTagById } from '../../../utils/getTagbyId';
+import { URL } from '../../../constants/url';
+import { IMultipleProblemDetailResponseData } from '../../../types/api/problem';
 import ProblemTitle from '../../../Organism/ProblemTitle';
-
-const choices = [
-  { id: 0, content: '선택지1' },
-  { id: 1, content: '선택지2' },
-  { id: 2, content: '선택지3' },
-];
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
