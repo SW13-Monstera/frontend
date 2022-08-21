@@ -83,6 +83,7 @@ export function ShortQuestionDetailPage() {
   }, [result]);
 
   if (!id) return <></>;
+
   return (
     <div>
       {data ? (

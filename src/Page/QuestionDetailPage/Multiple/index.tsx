@@ -35,6 +35,7 @@ import {
   IShortProblemDetailResponseData,
 } from '../../../types/api/problem';
 import { getTagById } from '../../../utils/getTagbyId';
+import ProblemTitle from '../../../Organism/ProblemTitle';
 
 const choices = [
   { id: 0, content: '선택지1' },
@@ -70,6 +71,8 @@ export function MultipleQuestionDetailPage() {
     });
   }, []);
 
+  if (!id) return <></>;
+
   return (
     <div>
       {data ? (
@@ -78,22 +81,15 @@ export function MultipleQuestionDetailPage() {
           <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
             <div className={topStyle}>
               <div className={descStyle}>
-                <div className={titleTagStyle}>
-                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => {
-                      const { name, color } = getTagById(tagId);
-                      return <TagBox key={tagId} name={name} color={color} />;
-                    })}
-                  </ul>
-                </div>
-                <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 맞은 사람 수 : ${
-                    data?.correctCnt ?? 0
-                  }명, 틀린 사람 수 : ${data?.wrongCnt ?? 0}명`}
-                </div>
+                <ProblemTitle
+                  id={id}
+                  title={data.title}
+                  tags={data.tags}
+                  totalSolved={data.totalSolved}
+                  correctCnt={data.correctCnt}
+                  wrongCnt={data.wrongCnt}
+                />
               </div>
-
               <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
             <div className={questionContentStyle}>
