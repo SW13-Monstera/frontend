@@ -32,7 +32,7 @@ interface IProblemDetailResponseData
 type TPartialProblemDetailResponseData = Partial<IProblemDetailResponseData>;
 
 interface IProblemDetailPageTemplate {
-  data: TPartialProblemDetailResponseData | null;
+  data: TPartialProblemDetailResponseData | undefined;
   handleSubmit: () => void;
   children?: React.ReactNode;
 }

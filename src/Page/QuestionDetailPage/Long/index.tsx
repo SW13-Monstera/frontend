@@ -13,11 +13,14 @@ import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrappe
 import { URLWithParam } from '../../../constants/url';
 import { ILongProblemDetailResponseData, ILongProblemResultData } from '../../../types/api/problem';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
+import { useQuery } from 'react-query';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [data, setData] = useState<ILongProblemDetailResponseData | null>(null);
+  const { data } = useQuery<ILongProblemDetailResponseData>('longProblemDetail', () =>
+    problemApiWrapper.longProblemDetail(id!),
+  );
   const [result, setResult] = useState<ILongProblemResultData | null>(null);
 
   function handleSubmit() {
@@ -27,13 +30,6 @@ export function LongQuestionDetailPage() {
       setResult(data);
     });
   }
-
-  useEffect(() => {
-    if (!id) return;
-    problemApiWrapper.longProblemDetail(id).then((data) => {
-      setData(data);
-    });
-  }, []);
 
   useEffect(() => {
     if (!id || !result) return;

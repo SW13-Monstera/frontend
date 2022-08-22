@@ -12,7 +12,7 @@ import {
 } from './style.css';
 import '../gutter.css';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import {
   IShortProblemDetailResponseData,
@@ -24,10 +24,13 @@ import { OIcon } from '../../../Icon/OIcon';
 import { COLOR } from '../../../constants/color';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
 import { useGradeResult } from '../../../hooks/useGradeResult';
+import { useQuery } from 'react-query';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
-  const [data, setData] = useState<IShortProblemDetailResponseData | null>(null);
+  const { data } = useQuery<IShortProblemDetailResponseData>('shortProblemDetail', () =>
+    problemApiWrapper.shortProblemDetail(id!),
+  );
   const [isHintOpen, setIsHintOpen] = useState(false);
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
 
@@ -48,13 +51,6 @@ export function ShortQuestionDetailPage() {
       setIsHintOpen(false);
     }, 2000);
   }
-
-  useEffect(() => {
-    if (!id) return;
-    problemApiWrapper.shortProblemDetail(id).then((data) => {
-      setData(data);
-    });
-  }, []);
 
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>

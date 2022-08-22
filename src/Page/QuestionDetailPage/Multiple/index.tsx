@@ -1,6 +1,6 @@
 import '../../../styles/gutter.css';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import {
   IMultipleProblemDetailResponseData,
@@ -22,10 +22,13 @@ import { useGradeResult } from '../../../hooks/useGradeResult';
 import { COLOR } from '../../../constants/color';
 import { XIcon } from '../../../Icon/XIcon';
 import { OIcon } from '../../../Icon/OIcon';
+import { useQuery } from 'react-query';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
-  const [data, setData] = useState<IMultipleProblemDetailResponseData | null>(null);
+  const { data } = useQuery<IMultipleProblemDetailResponseData>('multipleProblemDetail', () =>
+    problemApiWrapper.multipleProblemDetail(id!),
+  );
   const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
 
   const resetInput = () => {
@@ -44,13 +47,6 @@ export function MultipleQuestionDetailPage() {
     checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
     problemApiWrapper.multipleProblemResult(id, answerIds).then((data) => setResult(data));
   }
-
-  useEffect(() => {
-    if (!id) return;
-    problemApiWrapper.multipleProblemDetail(id).then((data) => {
-      setData(data);
-    });
-  }, []);
 
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
