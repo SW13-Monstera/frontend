@@ -4,7 +4,7 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { useAuthStore, useCheckedTagsStore } from '../../hooks/useStore';
+import { useAuthStore } from '../../hooks/useStore';
 import {
   listPageWrapperStyle,
   listPageMainWrapperStyle,
@@ -31,22 +31,36 @@ import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
 import { Pagination } from '../../Component/Pagination';
+import { ITagState } from '../../types/tag';
 
 function QuestionListPage() {
   const [problemList, setProblemList] = useState<IProblemListResponseDataContents[]>([]);
-  const { checkedTags, handleCheckedTags, resetCheckedTags } = useCheckedTagsStore();
+  const [checkedTags, setCheckedTags] = useState<ITagState[]>([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const { isLogin } = useAuthStore();
 
-  function handleSearchInput() {
+  const handleCheckedTags = (id: string, isChecked: boolean) => {
+    setCheckedTags((prev) =>
+      prev.map((tag) => tag.id).includes(id)
+        ? prev.map((tag) => (tag.id === id ? { id, isChecked } : tag))
+        : [...prev, { id, isChecked }],
+    );
+  };
+
+  const resetCheckedTags = () => {
+    resetCheckboxes();
+    setCheckedTags([]);
+  };
+
+  const handleSearchInput = () => {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
     const params = { ...getFilterParams(checkedTags), page: page, query: query };
     problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
       setProblemList(data.contents);
     });
-    resetCheckedTags(resetCheckboxes);
-  }
+    resetCheckedTags();
+  };
 
   useEffect(() => {
     const params = { ...getFilterParams(checkedTags), page: page };
@@ -70,7 +84,7 @@ function QuestionListPage() {
                   type={BUTTON_TYPE.BUTTON}
                   className={resetButtonStyle}
                   onClick={() => {
-                    resetCheckedTags(resetCheckboxes);
+                    resetCheckedTags();
                     resetSearchProblemInput();
                   }}
                   theme={BUTTON_THEME.SECONDARY}
