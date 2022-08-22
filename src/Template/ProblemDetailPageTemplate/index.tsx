@@ -34,9 +34,6 @@ type TPartialProblemDetailResponseData = Partial<IProblemDetailResponseData>;
 interface IProblemDetailPageTemplate {
   data: TPartialProblemDetailResponseData | null;
   handleSubmit: () => void;
-  GradeIcon?: React.ReactNode;
-  HintElement?: React.ReactNode;
-  inputClassName?: string;
   children?: ReactElement;
 }
 
@@ -78,7 +75,6 @@ export const ProblemDetailPageTemplate = ({
               <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
             <div className={questionContentStyle}>{children}</div>
-
             <div className={buttonListStyle}>
               {isLogin ? (
                 <TextButton

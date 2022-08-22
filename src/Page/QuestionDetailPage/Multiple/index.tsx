@@ -43,13 +43,7 @@ export function MultipleQuestionDetailPage() {
   if (!id) return <></>;
 
   return (
-    <ProblemDetailPageTemplate
-      data={data}
-      handleSubmit={handleSubmit}
-      GradeIcon={undefined}
-      HintElement={undefined}
-      inputClassName={''}
-    >
+    <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
       <Split
         sizes={[25, 75]}
         minSize={100}
