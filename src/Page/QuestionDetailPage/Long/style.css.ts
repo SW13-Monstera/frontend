@@ -78,6 +78,7 @@ export const questionContentStyle = style({
 export const splitStyle = style({
   display: 'flex',
   width: '100%',
+  height: '100% ',
 });
 
 export const contentWrapperStyle = style({
@@ -87,7 +88,7 @@ export const contentWrapperStyle = style({
   justifyContent: 'flex-start',
   gap: '2rem',
 
-  padding: '1.5rem 0',
+  padding: '2rem',
 });
 
 export const contentTitleStyle = style([

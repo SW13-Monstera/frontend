@@ -79,7 +79,6 @@ export const questionContentStyle = style({
   gap: '2rem',
   height: '60vh',
   background: vars.contentBackgroundColor,
-  padding: '2rem',
   borderRadius: '10px',
 });
 

@@ -1,4 +1,10 @@
-import { createThemeContract, createTheme, style, keyframes } from '@vanilla-extract/css';
+import {
+  createThemeContract,
+  createTheme,
+  style,
+  keyframes,
+  styleVariants,
+} from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
 
@@ -78,6 +84,7 @@ export const questionContentStyle = style({
 export const splitStyle = style({
   display: 'flex',
   width: '100%',
+  height: '100% ',
 });
 
 export const contentWrapperStyle = style({
@@ -86,8 +93,7 @@ export const contentWrapperStyle = style({
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
   gap: '2rem',
-
-  padding: '1.5rem 0',
+  padding: '2rem',
 });
 
 export const contentTitleStyle = style([
@@ -180,4 +186,21 @@ export const choiceCheckboxStyle = style({
   borderRadius: '10px',
 
   background: 'inherit',
+});
+
+export const gradeResultStyle = style([
+  baseFontStyle.xlarge,
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem',
+
+    alignSelf: 'flex-end',
+  },
+]);
+
+export const gradeResultScoredStyle = styleVariants({
+  correct: [gradeResultStyle, { color: COLOR.CORRECT }],
+  wrong: [gradeResultStyle, { color: COLOR.ERROR }],
 });
