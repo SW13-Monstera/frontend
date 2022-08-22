@@ -86,13 +86,15 @@ export const ProblemDetailPageTemplate = ({
                   제출하기
                 </TextButton>
               ) : (
-                <TextButton
-                  type={BUTTON_TYPE.SUBMIT}
-                  theme={BUTTON_THEME.PRIMARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                >
-                  로그인
-                </TextButton>
+                <Link to={URL.LOGIN}>
+                  <TextButton
+                    type={BUTTON_TYPE.SUBMIT}
+                    theme={BUTTON_THEME.PRIMARY}
+                    size={BUTTON_SIZE.MEDIUM}
+                  >
+                    로그인
+                  </TextButton>
+                </Link>
               )}
               <Link to={URL.PROBLEM_LIST}>
                 <TextButton
