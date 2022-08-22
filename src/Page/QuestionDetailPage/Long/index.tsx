@@ -8,7 +8,6 @@ import {
 } from './style.css';
 import '../gutter.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URLWithParam } from '../../../constants/url';
@@ -18,15 +17,8 @@ import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTe
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isLogin } = useAuthStore();
   const [data, setData] = useState<ILongProblemDetailResponseData | null>(null);
   const [result, setResult] = useState<ILongProblemResultData | null>(null);
-
-  const [isDark, setIsDark] = useState(true);
-
-  function toggleDarkMode() {
-    setIsDark((prev) => !prev);
-  }
 
   function handleSubmit() {
     if (!id) return;

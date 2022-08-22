@@ -12,7 +12,6 @@ import {
 } from './style.css';
 import '../gutter.css';
 import { useParams } from 'react-router-dom';
-import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import {
@@ -27,17 +26,11 @@ import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTe
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
-  const { isLogin } = useAuthStore();
-  const [isDark, setIsDark] = useState(true);
   const [data, setData] = useState<IShortProblemDetailResponseData | null>(null);
   const [isHintOpen, setIsHintOpen] = useState(false);
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
   const [isAnswer, setIsAnswer] = useState(false);
   const [isGraded, setIsGraded] = useState(false);
-
-  function toggleDarkMode() {
-    setIsDark((prev) => !prev);
-  }
 
   function handleSubmit() {
     if (!id) return;
