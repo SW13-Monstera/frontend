@@ -14,14 +14,26 @@ import {
   choiceWrapperStyle,
   contentTitleStyle,
   contentWrapperStyle,
+  gradeResultScoredStyle,
   problemDescContentStyle,
   splitStyle,
 } from './style.css';
+import { useGradeResult } from '../../../hooks/useGradeResult';
+import { COLOR } from '../../../constants/color';
+import { XIcon } from '../../../Icon/XIcon';
+import { OIcon } from '../../../Icon/OIcon';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
   const [data, setData] = useState<IMultipleProblemDetailResponseData | null>(null);
   const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
+
+  const resetInput = () => {
+    (document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>).forEach(
+      (e) => (e.checked = false),
+    );
+  };
+  const { isAnswer, isGraded } = useGradeResult(result, resetInput);
 
   function handleSubmit() {
     if (!id) return;
@@ -30,7 +42,7 @@ export function MultipleQuestionDetailPage() {
       'input[type="checkbox"]',
     ) as NodeListOf<HTMLInputElement>;
     checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
-    problemApiWrapper.multipleProblemResult(id, answerIds);
+    problemApiWrapper.multipleProblemResult(id, answerIds).then((data) => setResult(data));
   }
 
   useEffect(() => {
@@ -39,8 +51,6 @@ export function MultipleQuestionDetailPage() {
       setData(data);
     });
   }, []);
-
-  if (!id) return <></>;
 
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
@@ -72,6 +82,21 @@ export function MultipleQuestionDetailPage() {
               </label>
             ))}
           </div>
+          {isGraded ? (
+            isAnswer ? (
+              <div className={gradeResultScoredStyle.correct}>
+                <div>정답입니다</div>
+                <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
+              </div>
+            ) : (
+              <div className={gradeResultScoredStyle.wrong}>
+                <div>오답입니다</div>
+                <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
+              </div>
+            )
+          ) : (
+            <></>
+          )}
         </div>
       </Split>
     </ProblemDetailPageTemplate>
