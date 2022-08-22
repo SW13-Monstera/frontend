@@ -28,8 +28,10 @@ import { useQuery } from 'react-query';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
-  const { data } = useQuery<IShortProblemDetailResponseData>('shortProblemDetail', () =>
-    problemApiWrapper.shortProblemDetail(id!),
+  const { data } = useQuery<IShortProblemDetailResponseData>(
+    'shortProblemDetail',
+    () => problemApiWrapper.shortProblemDetail(id!),
+    { refetchOnWindowFocus: false },
   );
   const [isHintOpen, setIsHintOpen] = useState(false);
   const [result, setResult] = useState<IShortProblemResultData | null>(null);

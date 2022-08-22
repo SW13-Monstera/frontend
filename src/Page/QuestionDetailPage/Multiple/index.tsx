@@ -26,8 +26,10 @@ import { useQuery } from 'react-query';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
-  const { data } = useQuery<IMultipleProblemDetailResponseData>('multipleProblemDetail', () =>
-    problemApiWrapper.multipleProblemDetail(id!),
+  const { data } = useQuery<IMultipleProblemDetailResponseData>(
+    'multipleProblemDetail',
+    () => problemApiWrapper.multipleProblemDetail(id!),
+    { refetchOnWindowFocus: false },
   );
   const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
 

@@ -18,8 +18,10 @@ import { useQuery } from 'react-query';
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data } = useQuery<ILongProblemDetailResponseData>('longProblemDetail', () =>
-    problemApiWrapper.longProblemDetail(id!),
+  const { data } = useQuery<ILongProblemDetailResponseData>(
+    'longProblemDetail',
+    () => problemApiWrapper.longProblemDetail(id!),
+    { refetchOnWindowFocus: false },
   );
   const [result, setResult] = useState<ILongProblemResultData | null>(null);
 
