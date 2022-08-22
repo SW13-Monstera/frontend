@@ -19,18 +19,18 @@ import {
 import { ColumnBox } from '../../Component/Box/CustomBox';
 import { useQuery } from 'react-query';
 
+const getProblemList = () => {
+  const params = { page: 0, size: 4 };
+  return problemApiWrapper
+    .problemList(params)
+    .then((data: IProblemListResponseData) => data.contents);
+};
+
 function MainPage() {
   const { data: problems } = useQuery<IProblemListResponseDataContents[]>(
     'problemListMain',
     getProblemList,
   );
-
-  function getProblemList() {
-    const params = { page: 0, size: 4 };
-    return problemApiWrapper
-      .problemList(params)
-      .then((data: IProblemListResponseData) => data.contents);
-  }
 
   return (
     <PageTemplate>
