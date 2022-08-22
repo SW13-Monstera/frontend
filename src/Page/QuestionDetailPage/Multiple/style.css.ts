@@ -104,7 +104,7 @@ export const contentTitleStyle = style([
 ]);
 
 export const problemDescContentStyle = style([
-  baseFontStyle.small,
+  baseFontStyle.medium,
   {
     overflowY: 'scroll',
     color: vars.textColor,
@@ -153,6 +153,8 @@ export const choiceListStyle = style({
   gap: '1rem',
 
   width: '100%',
+
+  overflowY: 'scroll',
 });
 
 export const choiceWrapperStyle = style([

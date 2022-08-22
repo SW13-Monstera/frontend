@@ -53,7 +53,7 @@ export function MultipleQuestionDetailPage() {
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
       <Split
-        sizes={[25, 75]}
+        sizes={[35, 65]}
         minSize={100}
         expandToMin={false}
         gutterSize={10}

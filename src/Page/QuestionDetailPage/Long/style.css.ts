@@ -99,7 +99,7 @@ export const contentTitleStyle = style([
 ]);
 
 export const problemDescContentStyle = style([
-  baseFontStyle.small,
+  baseFontStyle.medium,
   {
     overflowY: 'scroll',
     color: vars.textColor,
