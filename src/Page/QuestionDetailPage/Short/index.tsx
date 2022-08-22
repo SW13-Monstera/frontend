@@ -23,14 +23,18 @@ import { XIcon } from '../../../Icon/XIcon';
 import { COLOR } from '../../../constants/color';
 import { OIcon } from '../../../Icon/OIcon';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
+import { useGradeResult } from '../../../hooks/useGradeResult';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
   const [data, setData] = useState<IShortProblemDetailResponseData | null>(null);
   const [isHintOpen, setIsHintOpen] = useState(false);
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
-  const [isAnswer, setIsAnswer] = useState(false);
-  const [isGraded, setIsGraded] = useState(false);
+
+  const resetInput = () => {
+    (document.getElementById('answer') as HTMLInputElement).value = '';
+  };
+  const { isAnswer, isGraded } = useGradeResult(result, resetInput);
 
   function handleSubmit() {
     if (!id) return;
@@ -51,16 +55,6 @@ export function ShortQuestionDetailPage() {
       setData(data);
     });
   }, []);
-
-  useEffect(() => {
-    if (!result) return;
-    setIsAnswer(result.isAnswer);
-    setIsGraded(true);
-    setTimeout(() => {
-      setIsGraded(false);
-      (document.getElementById('answer') as HTMLInputElement).value = '';
-    }, 1000);
-  }, [result]);
 
   if (!id) return <></>;
 
