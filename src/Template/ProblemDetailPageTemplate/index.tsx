@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { useState } from 'react';
 import {
   themeLightClass,
   pageStyle,
@@ -34,7 +34,7 @@ type TPartialProblemDetailResponseData = Partial<IProblemDetailResponseData>;
 interface IProblemDetailPageTemplate {
   data: TPartialProblemDetailResponseData | null;
   handleSubmit: () => void;
-  children?: ReactElement;
+  children?: React.ReactNode;
 }
 
 export const ProblemDetailPageTemplate = ({
