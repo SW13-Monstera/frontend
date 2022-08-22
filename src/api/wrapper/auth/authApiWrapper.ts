@@ -22,9 +22,9 @@ export const authApiWrapper = {
 
   refresh: () => {
     const userInfo = getUserInfo();
-    if (!userInfo) return new Error('localstorage.userInfo not found');
+    if (!userInfo) return;
 
-    apiClient
+    return apiClient
       .get(API_URL.REFRESH, {
         headers: {
           Authorization: BEARER_TOKEN(userInfo.accessToken),
@@ -34,6 +34,7 @@ export const authApiWrapper = {
         const newAccessToken = res.data.accessToken;
         apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
         setUserInfo({ ...userInfo, accessToken: newAccessToken });
+        return res.data.accessToken;
       });
   },
 
