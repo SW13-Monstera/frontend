@@ -20,8 +20,8 @@ import {
 } from '../../../types/api/problem';
 import { TransparentButton } from '../../../Component/Button';
 import { XIcon } from '../../../Icon/XIcon';
-import { COLOR } from '../../../constants/color';
 import { OIcon } from '../../../Icon/OIcon';
+import { COLOR } from '../../../constants/color';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
 import { useGradeResult } from '../../../hooks/useGradeResult';
 
@@ -55,8 +55,6 @@ export function ShortQuestionDetailPage() {
       setData(data);
     });
   }, []);
-
-  if (!id) return <></>;
 
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>

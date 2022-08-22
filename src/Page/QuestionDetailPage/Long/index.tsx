@@ -40,8 +40,6 @@ export function LongQuestionDetailPage() {
     navigate(URLWithParam.LONG_PROBLEM_RESULT(id), { state: result });
   }, [result]);
 
-  if (!id) return <></>;
-
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
       <Split
