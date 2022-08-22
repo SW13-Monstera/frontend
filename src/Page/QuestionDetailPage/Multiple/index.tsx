@@ -26,14 +26,17 @@ import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URL } from '../../../constants/url';
-import { IMultipleProblemDetailResponseData } from '../../../types/api/problem';
+import {
+  IMultipleProblemDetailResponseData,
+  IMultipleProblemResultData,
+} from '../../../types/api/problem';
 import ProblemTitle from '../../../Organism/ProblemTitle';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
   const [data, setData] = useState<IMultipleProblemDetailResponseData>();
-
+  const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
   const [isDark, setIsDark] = useState(true);
 
   function toggleDarkMode() {

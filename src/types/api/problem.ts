@@ -55,7 +55,7 @@ export interface IMultipleProblemDetailResponseData extends IProblemDetailRespon
   choices: IChoice[];
 }
 
-export interface IMultipletProblemResultData extends IMultipleProblemDetailResponseData {
+export interface IMultipleProblemResultData extends IMultipleProblemDetailResponseData {
   gradingHistoryId: number;
   problemId: number;
   score: number;
