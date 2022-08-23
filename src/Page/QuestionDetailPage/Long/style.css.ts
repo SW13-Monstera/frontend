@@ -19,5 +19,8 @@ export const answerInputContentStyle = style([
 
     color: vars.textColor,
     backgroundColor: vars.backgroundColor,
+
+    borderRadius: '20px',
+    padding: '2rem',
   },
 ]);
