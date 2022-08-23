@@ -66,8 +66,16 @@ function QuestionListPage() {
   };
 
   useEffect(() => {
+    if (page === 0) {
+      setParams({ ...getFilterParams(checkedTags), page: page });
+    } else {
+      setPage(0);
+    }
+  }, [checkedTags]);
+
+  useEffect(() => {
     setParams({ ...getFilterParams(checkedTags), page: page });
-  }, [checkedTags, page]);
+  }, [page]);
 
   return (
     <PageTemplate>
