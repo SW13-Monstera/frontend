@@ -12,7 +12,7 @@ const apiClient = axios.create({
 apiClient.interceptors.response.use(
   (res) => res.data,
   (err) => {
-    const { config, status } = err;
+    const { config, status } = err.response;
 
     const originalRequest = config;
 
