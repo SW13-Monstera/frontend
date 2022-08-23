@@ -7,9 +7,9 @@ import { URLWithParam } from '../../../constants/url';
 import { getTagById } from '../../../utils/getTagbyId';
 
 const URLByType: Record<TProblemType, (id: number) => string> = {
-  long: (id: number) => URLWithParam.LONG_PROBLEM_DETAIL(id.toString()),
-  short: (id: number) => URLWithParam.SHORT_PROBLEM_DETAIL(id.toString()),
-  multiple: (id: number) => URLWithParam.MULTIPLE_PROBLEM_DETAIL(id.toString()),
+  long: (id: number) => URLWithParam.LONG_PROBLEM_DETAIL(id),
+  short: (id: number) => URLWithParam.SHORT_PROBLEM_DETAIL(id),
+  multiple: (id: number) => URLWithParam.MULTIPLE_PROBLEM_DETAIL(id),
 };
 
 function QuestionListElementBox({ title, totalSolved, tags, id, type }: IQuestionListElementBox) {

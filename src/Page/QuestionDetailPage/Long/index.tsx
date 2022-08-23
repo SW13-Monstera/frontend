@@ -35,7 +35,7 @@ export function LongQuestionDetailPage() {
 
   useEffect(() => {
     if (!id || !result) return;
-    navigate(URLWithParam.LONG_PROBLEM_RESULT(id), { state: result });
+    navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), { state: result });
   }, [result]);
 
   return (
