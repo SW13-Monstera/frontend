@@ -1,4 +1,4 @@
-import { style, keyframes } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import baseFontStyle from '../../../styles/font.css';
 import { vars } from '../baseStyle.css';
 
