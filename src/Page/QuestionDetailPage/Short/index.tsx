@@ -4,7 +4,6 @@ import {
   problemDescContentStyle,
   answerInputWrapperStyle,
   answerInputTitleStyle,
-  answerLengthButtonStyle,
   answerLengthOpenStyle,
   answerLengthNotOpenStyle,
   hintWrapperStyle,
@@ -83,9 +82,7 @@ export function ShortQuestionDetailPage() {
         )}
       </div>
       <div className={hintWrapperStyle}>
-        <TransparentButton className={answerLengthButtonStyle} onClick={showHint}>
-          힌트 보기
-        </TransparentButton>
+        <TransparentButton onClick={showHint}>힌트 보기</TransparentButton>
         <div className={isHintOpen ? answerLengthOpenStyle : answerLengthNotOpenStyle}>
           정답은 {data?.answerLength}글자
         </div>

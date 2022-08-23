@@ -1,13 +1,5 @@
 import { useState } from 'react';
-import {
-  themeLightClass,
-  pageStyle,
-  descStyle,
-  questionContentStyle,
-  buttonListStyle,
-  themeDarkClass,
-  topStyle,
-} from './style.css';
+import { pageStyle, descStyle, questionContentStyle, buttonListStyle, topStyle } from './style.css';
 import '../../styles/gutter.css';
 import { Link, useParams } from 'react-router-dom';
 import Header from '../../Template/Header';
@@ -19,6 +11,7 @@ import { URL } from '../../constants/url';
 import ProblemTitle from '../../Organism/ProblemTitle';
 import { useAuthStore } from '../../hooks/useStore';
 import { IProblemDetailPageTemplate } from '../../types/problem';
+import { themeDarkClass, themeLightClass } from '../../Page/QuestionDetailPage/baseStyle.css';
 
 export const ProblemDetailPageTemplate = ({
   data,
