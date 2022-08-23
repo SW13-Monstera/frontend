@@ -119,15 +119,18 @@ export const answerInputStyle = style({
   flexDirection: 'column',
 });
 
-export const answerInputContentStyle = style({
-  display: 'flex',
+export const answerInputContentStyle = style([
+  baseFontStyle.medium,
+  {
+    display: 'flex',
 
-  width: '100%',
-  height: '100%',
+    width: '100%',
+    height: '100%',
 
-  color: vars.textColor,
-  backgroundColor: vars.backgroundColor,
-});
+    color: vars.textColor,
+    backgroundColor: vars.backgroundColor,
+  },
+]);
 
 export const buttonListStyle = style({
   display: 'flex',

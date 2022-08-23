@@ -1,3 +1,8 @@
+import {
+  ILongProblemDetailResponseData,
+  IMultipleProblemDetailResponseData,
+  IShortProblemDetailResponseData,
+} from './api/problem';
 import { ITagBox } from './tag';
 
 interface IProblem {
@@ -36,4 +41,25 @@ interface ITag extends ITagBox {
 const PROBLEM_TYPE = { LONG: 'long', SHORT: 'short', MULTIPLE: 'multiple' } as const;
 type TProblemType = typeof PROBLEM_TYPE[keyof typeof PROBLEM_TYPE];
 
-export type { IProblem, IProblemIdLinkState, ITag, TProblemType, IQuestionListElementBox };
+interface IProblemDetailResponseData
+  extends IShortProblemDetailResponseData,
+    IMultipleProblemDetailResponseData,
+    ILongProblemDetailResponseData {}
+
+type TPartialProblemDetailResponseData = Partial<IProblemDetailResponseData>;
+
+interface IProblemDetailPageTemplate {
+  data: TPartialProblemDetailResponseData | undefined;
+  handleSubmit: () => void;
+  children?: React.ReactNode;
+}
+
+export type {
+  IProblem,
+  IProblemIdLinkState,
+  ITag,
+  TProblemType,
+  IQuestionListElementBox,
+  IProblemDetailPageTemplate,
+  TPartialProblemDetailResponseData,
+};

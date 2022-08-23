@@ -18,24 +18,7 @@ import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
 import { URL } from '../../constants/url';
 import ProblemTitle from '../../Organism/ProblemTitle';
 import { useAuthStore } from '../../hooks/useStore';
-import {
-  ILongProblemDetailResponseData,
-  IMultipleProblemDetailResponseData,
-  IShortProblemDetailResponseData,
-} from '../../types/api/problem';
-
-interface IProblemDetailResponseData
-  extends IShortProblemDetailResponseData,
-    IMultipleProblemDetailResponseData,
-    ILongProblemDetailResponseData {}
-
-type TPartialProblemDetailResponseData = Partial<IProblemDetailResponseData>;
-
-interface IProblemDetailPageTemplate {
-  data: TPartialProblemDetailResponseData | undefined;
-  handleSubmit: () => void;
-  children?: React.ReactNode;
-}
+import { IProblemDetailPageTemplate } from '../../types/problem';
 
 export const ProblemDetailPageTemplate = ({
   data,
