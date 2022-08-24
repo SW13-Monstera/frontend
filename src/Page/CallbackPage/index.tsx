@@ -20,7 +20,7 @@ const CallbackPage = () => {
     authApiWrapper.getUserData(token).then((res) => {
       apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(token);
       setUserInfo({ ...res.data, accessToken: token });
-      navigate(-1);
+      navigate(URL.MAIN);
       setIsLogin(true);
       setUserData(res.data);
     });
