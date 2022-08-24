@@ -1,13 +1,5 @@
 import { useState } from 'react';
-import {
-  themeLightClass,
-  pageStyle,
-  descStyle,
-  questionContentStyle,
-  buttonListStyle,
-  themeDarkClass,
-  topStyle,
-} from './style.css';
+import { pageStyle, descStyle, questionContentStyle, buttonListStyle, topStyle } from './style.css';
 import '../../styles/gutter.css';
 import { Link, useParams } from 'react-router-dom';
 import Header from '../../Template/Header';
@@ -18,24 +10,8 @@ import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
 import { URL } from '../../constants/url';
 import ProblemTitle from '../../Organism/ProblemTitle';
 import { useAuthStore } from '../../hooks/useStore';
-import {
-  ILongProblemDetailResponseData,
-  IMultipleProblemDetailResponseData,
-  IShortProblemDetailResponseData,
-} from '../../types/api/problem';
-
-interface IProblemDetailResponseData
-  extends IShortProblemDetailResponseData,
-    IMultipleProblemDetailResponseData,
-    ILongProblemDetailResponseData {}
-
-type TPartialProblemDetailResponseData = Partial<IProblemDetailResponseData>;
-
-interface IProblemDetailPageTemplate {
-  data: TPartialProblemDetailResponseData | null;
-  handleSubmit: () => void;
-  children?: React.ReactNode;
-}
+import { IProblemDetailPageTemplate } from '../../types/problem';
+import { themeDarkClass, themeLightClass } from '../../Page/QuestionDetailPage/baseStyle.css';
 
 export const ProblemDetailPageTemplate = ({
   data,
@@ -86,13 +62,15 @@ export const ProblemDetailPageTemplate = ({
                   제출하기
                 </TextButton>
               ) : (
-                <TextButton
-                  type={BUTTON_TYPE.SUBMIT}
-                  theme={BUTTON_THEME.PRIMARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                >
-                  로그인
-                </TextButton>
+                <Link to={URL.LOGIN}>
+                  <TextButton
+                    type={BUTTON_TYPE.SUBMIT}
+                    theme={BUTTON_THEME.PRIMARY}
+                    size={BUTTON_SIZE.MEDIUM}
+                  >
+                    로그인
+                  </TextButton>
+                </Link>
               )}
               <Link to={URL.PROBLEM_LIST}>
                 <TextButton

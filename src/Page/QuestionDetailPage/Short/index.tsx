@@ -4,7 +4,6 @@ import {
   problemDescContentStyle,
   answerInputWrapperStyle,
   answerInputTitleStyle,
-  answerLengthButtonStyle,
   answerLengthOpenStyle,
   answerLengthNotOpenStyle,
   hintWrapperStyle,
@@ -12,7 +11,7 @@ import {
 } from './style.css';
 import '../gutter.css';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import {
   IShortProblemDetailResponseData,
@@ -24,10 +23,15 @@ import { OIcon } from '../../../Icon/OIcon';
 import { COLOR } from '../../../constants/color';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
 import { useGradeResult } from '../../../hooks/useGradeResult';
+import { useQuery } from 'react-query';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
-  const [data, setData] = useState<IShortProblemDetailResponseData | null>(null);
+  const { data } = useQuery<IShortProblemDetailResponseData>(
+    'shortProblemDetail',
+    () => problemApiWrapper.shortProblemDetail(id!),
+    { refetchOnWindowFocus: false },
+  );
   const [isHintOpen, setIsHintOpen] = useState(false);
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
 
@@ -48,13 +52,6 @@ export function ShortQuestionDetailPage() {
       setIsHintOpen(false);
     }, 2000);
   }
-
-  useEffect(() => {
-    if (!id) return;
-    problemApiWrapper.shortProblemDetail(id).then((data) => {
-      setData(data);
-    });
-  }, []);
 
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
@@ -85,9 +82,7 @@ export function ShortQuestionDetailPage() {
         )}
       </div>
       <div className={hintWrapperStyle}>
-        <TransparentButton className={answerLengthButtonStyle} onClick={showHint}>
-          힌트 보기
-        </TransparentButton>
+        <TransparentButton onClick={showHint}>힌트 보기</TransparentButton>
         <div className={isHintOpen ? answerLengthOpenStyle : answerLengthNotOpenStyle}>
           정답은 {data?.answerLength}글자
         </div>

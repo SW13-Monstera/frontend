@@ -51,7 +51,7 @@ function ResultPage() {
             <div className={contentStyle}>
               <h3 className={subtitleStyle}>내 답안</h3>
               <ul className={keywordListStyle}>
-                {keywords?.map(({ id, content, isExist, idx }) => (
+                {keywords?.map(({ id, content, isExist }) => (
                   <KeywordBox name={content} isIncluded={isExist} key={id} />
                 ))}
               </ul>
@@ -66,7 +66,7 @@ function ResultPage() {
           </TextBox>
         </div>
         <div className={buttonListStyle}>
-          <Link to={URLWithParam.LONG_PROBLEM_DETAIL(id.toString())} state={{ problemId: id }}>
+          <Link to={URLWithParam.LONG_PROBLEM_DETAIL(parseInt(id))} state={{ problemId: id }}>
             <TextButton
               type={BUTTON_TYPE.BUTTON}
               theme={BUTTON_THEME.PRIMARY}

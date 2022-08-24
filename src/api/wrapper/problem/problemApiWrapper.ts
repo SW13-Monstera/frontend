@@ -14,11 +14,11 @@ import { BEARER_TOKEN } from '../../../constants/api';
 import { AxiosRequestConfig } from 'axios';
 
 export const problemApiWrapper = {
-  problemList: (params: IProblemRequestParam) => {
-    const config: AxiosRequestConfig<any> = {
+  problemList: (params?: IProblemRequestParam) => {
+    const config: AxiosRequestConfig<IProblemRequestParam> = {
       params: params,
     };
-    if (params.isSolved) {
+    if (params?.isSolved) {
       const userInfo = getUserInfo();
       if (!userInfo) throw new Error('userinfo not found');
       config.headers = { Authorization: BEARER_TOKEN(userInfo.accessToken) };

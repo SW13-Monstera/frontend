@@ -5,6 +5,7 @@ import { IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
 import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo } from '../../../utils/userInfo';
 import { toast } from 'react-toastify';
+import { setLogout } from '../../../utils/setLogout';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
@@ -22,19 +23,31 @@ export const authApiWrapper = {
 
   refresh: () => {
     const userInfo = getUserInfo();
-    if (!userInfo) return new Error('localstorage.userInfo not found');
+    if (!userInfo) return;
 
-    apiClient
+    return apiClient
       .get(API_URL.REFRESH, {
         headers: {
           Authorization: BEARER_TOKEN(userInfo.accessToken),
         },
       })
-      .then((res: { data: { accessToken: string } }) => {
-        const newAccessToken = res.data.accessToken;
-        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
-        setUserInfo({ ...userInfo, accessToken: newAccessToken });
-      });
+      .then(
+        (res: { data: { accessToken: string } }) => {
+          const newAccessToken = res.data.accessToken;
+          apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
+          setUserInfo({ ...userInfo, accessToken: newAccessToken });
+          return res.data.accessToken;
+        },
+        (err) => {
+          setLogout();
+          toast('다시 로그인 해주세요.');
+
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+          return err;
+        },
+      );
   },
 
   join: (data: IJoinRequest) => {

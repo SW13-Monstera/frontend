@@ -4,7 +4,7 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { useAuthStore, useCheckedTagsStore } from '../../hooks/useStore';
+import { useAuthStore } from '../../hooks/useStore';
 import {
   listPageWrapperStyle,
   listPageMainWrapperStyle,
@@ -24,6 +24,7 @@ import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import {
   IProblemListResponseData,
   IProblemListResponseDataContents,
+  IProblemRequestParam,
 } from '../../types/api/problem';
 import { getFilterParams } from '../../utils/getFilterParams';
 import { getTagById } from '../../utils/getTagbyId';
@@ -31,30 +32,50 @@ import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
 import { Pagination } from '../../Component/Pagination';
+import { ITagState } from '../../types/tag';
+import { useQuery } from 'react-query';
 
 function QuestionListPage() {
-  const [problemList, setProblemList] = useState<IProblemListResponseDataContents[]>([]);
-  const { checkedTags, handleCheckedTags, resetCheckedTags } = useCheckedTagsStore();
+  const [params, setParams] = useState<IProblemRequestParam>();
+  const { data } = useQuery<IProblemListResponseData>(
+    ['problemList', params],
+    () => problemApiWrapper.problemList(params),
+    { enabled: !!params },
+  );
+  const [checkedTags, setCheckedTags] = useState<ITagState[]>([]);
   const [page, setPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
   const { isLogin } = useAuthStore();
 
-  function handleSearchInput() {
+  const handleCheckedTags = (id: string, isChecked: boolean) => {
+    setCheckedTags((prev) =>
+      prev.map((tag) => tag.id).includes(id)
+        ? prev.map((tag) => (tag.id === id ? { id, isChecked } : tag))
+        : [...prev, { id, isChecked }],
+    );
+  };
+
+  const resetCheckedTags = () => {
+    resetCheckboxes();
+    setCheckedTags([]);
+  };
+
+  const handleSearchInput = () => {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
-    const params = { ...getFilterParams(checkedTags), page: page, query: query };
-    problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
-      setProblemList(data.contents);
-    });
-    resetCheckedTags(resetCheckboxes);
-  }
+    setParams({ ...getFilterParams(checkedTags), page: page, query: query });
+    resetCheckedTags();
+  };
 
   useEffect(() => {
-    const params = { ...getFilterParams(checkedTags), page: page };
-    problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
-      setProblemList(data.contents);
-      setTotalPages(data.totalPages);
-    });
-  }, [checkedTags, page]);
+    if (page === 0) {
+      setParams({ ...getFilterParams(checkedTags), page: page });
+    } else {
+      setPage(0);
+    }
+  }, [checkedTags]);
+
+  useEffect(() => {
+    setParams({ ...getFilterParams(checkedTags), page: page });
+  }, [page]);
 
   return (
     <PageTemplate>
@@ -70,7 +91,7 @@ function QuestionListPage() {
                   type={BUTTON_TYPE.BUTTON}
                   className={resetButtonStyle}
                   onClick={() => {
-                    resetCheckedTags(resetCheckboxes);
+                    resetCheckedTags();
                     resetSearchProblemInput();
                   }}
                   theme={BUTTON_THEME.SECONDARY}
@@ -111,7 +132,7 @@ function QuestionListPage() {
 
           <div className={questionListWrapperStyle}>
             <div className={questionListStyle}>
-              {problemList.map((problem: IProblemListResponseDataContents) => (
+              {data?.contents?.map((problem: IProblemListResponseDataContents) => (
                 <QuestionListElementBox
                   title={problem.title}
                   totalSolved={problem.totalSolved ?? 0}
@@ -122,7 +143,7 @@ function QuestionListPage() {
                 />
               ))}
             </div>
-            <Pagination totalPages={totalPages} page={page} setPage={setPage} />
+            <Pagination totalPages={data?.totalPages ?? 0} page={page} setPage={setPage} />
           </div>
         </div>
       </div>

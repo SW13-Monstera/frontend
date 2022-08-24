@@ -6,7 +6,6 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import HorizontalOAuthButtonList from '../ButtonList/HorizontalOAuthButtonList';
 import { INPUT_TYPE } from '../../constants/input';
 import { useNavigate } from 'react-router-dom';
-import { URL } from '../../constants/url';
 
 interface ILoginForm {
   closeModal?: () => void;
@@ -20,7 +19,7 @@ function LoginForm({ handleSubmit }: ILoginForm) {
     event.preventDefault();
     handleSubmit(event)?.then((isLoginSuccess) => {
       if (isLoginSuccess) {
-        navigate(URL.MAIN);
+        navigate(-1);
       }
     });
   }

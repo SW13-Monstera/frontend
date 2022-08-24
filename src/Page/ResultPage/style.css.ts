@@ -41,7 +41,7 @@ export const subtitleStyle = style([
 export const answerContentStyle = style([
   baseFontStyle.small,
   {
-    overflowY: 'scroll',
+    overflow: 'auto',
     color: COLOR.TITLEACTIVE,
   },
 ]);
@@ -70,7 +70,7 @@ export const contentStyle = style({
   height: '60vh',
   padding: '1rem 2rem',
 
-  overflowY: 'scroll',
+  overflow: 'auto',
 
   '@media': {
     'screen and (max-width: 1100px)': {

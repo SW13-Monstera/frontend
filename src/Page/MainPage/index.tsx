@@ -12,26 +12,25 @@ import {
 import { CountUpBox } from '../../Component/Box/CountUpBox';
 import { QuestionListElementBox } from '../../Component/Box';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
-import { useEffect, useState } from 'react';
 import {
   IProblemListResponseData,
   IProblemListResponseDataContents,
 } from '../../types/api/problem';
 import { ColumnBox } from '../../Component/Box/CustomBox';
+import { useQuery } from 'react-query';
+
+const getProblemList = () => {
+  const params = { page: 0, size: 4 };
+  return problemApiWrapper
+    .problemList(params)
+    .then((data: IProblemListResponseData) => data.contents);
+};
 
 function MainPage() {
-  const [problems, setProblems] = useState<IProblemListResponseDataContents[]>([]);
-
-  function getProblemList() {
-    const params = { page: 0, size: 4 };
-    problemApiWrapper.problemList(params).then((data: IProblemListResponseData) => {
-      setProblems(data.contents);
-    });
-  }
-
-  useEffect(() => {
-    getProblemList();
-  }, []);
+  const { data: problems } = useQuery<IProblemListResponseDataContents[]>(
+    'problemListMain',
+    getProblemList,
+  );
 
   return (
     <PageTemplate>
@@ -52,7 +51,7 @@ function MainPage() {
           <ColumnBox>
             <div className={problemListTitleStyle}>오늘의 문제</div>
             <div className={problemListWrapperStyle}>
-              {problems.map((problem) => (
+              {problems?.map((problem) => (
                 <QuestionListElementBox
                   key={problem.id.toString()}
                   id={problem.id}
