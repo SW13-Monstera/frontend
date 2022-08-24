@@ -1,6 +1,6 @@
 import { IProblem } from '../../types/problem';
 import TagBox from '../../Component/Box/TagBox';
-import { descStyle, problemDetailStyle, titleTagStyle, topStyle } from './style.css';
+import { descStyle, problemDetailStyle, titleTagStyle, topStyle, tagListStyle } from './style.css';
 import baseFontStyle from '../../styles/font.css';
 import { getTagById } from '../../utils/getTagbyId';
 import { isNumberNotEmpty } from '../../utils/isNumberNotEmpty';
@@ -33,7 +33,7 @@ function ProblemTitle(props: IProblem) {
       <div className={descStyle}>
         <div className={titleTagStyle}>
           <h1 className={baseFontStyle.title}>{props.title}</h1>
-          <ul>
+          <ul className={tagListStyle}>
             {props.tags.map((tagId) => {
               const { name, color } = getTagById(tagId);
               return <TagBox name={name} color={color} key={tagId} />;

@@ -44,6 +44,10 @@ export const titleTagStyle = style({
   gap: '1.5rem',
 });
 
+export const tagListStyle = style({
+  display: 'flex',
+});
+
 export const problemDetailStyle = style([
   baseFontStyle.medium,
   {

@@ -8,7 +8,7 @@ import {
   IMultipleProblemDetailResponseData,
   ILongProblemResultData,
   IShortProblemResultData,
-  IMultipletProblemResultData,
+  IMultipleProblemResultData,
 } from '../../../types/api/problem';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { AxiosRequestConfig } from 'axios';
@@ -58,6 +58,6 @@ export const problemApiWrapper = {
   multipleProblemResult: (problem_id: string, answerIds: number[]) => {
     return apiClient
       .post(API_URL_WITH_PARAMS.MULTIPLE_PROBLEM_RESULT(problem_id), { answerIds: answerIds })
-      .then((res: { data: IMultipletProblemResultData }) => res.data);
+      .then((res: { data: IMultipleProblemResultData }) => res.data);
   },
 };

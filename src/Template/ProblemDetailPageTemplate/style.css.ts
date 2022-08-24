@@ -5,8 +5,8 @@ import {
   keyframes,
   styleVariants,
 } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
-import baseFontStyle from '../../../styles/font.css';
+import { COLOR } from '../../constants/color';
+import baseFontStyle from '../../styles/font.css';
 
 export const vars = createThemeContract({
   backgroundColor: null,
@@ -79,14 +79,12 @@ export const questionContentStyle = style({
   gap: '2rem',
   height: '60vh',
   background: vars.contentBackgroundColor,
-  padding: '2rem',
   borderRadius: '10px',
 });
 
 export const splitStyle = style({
   display: 'flex',
   width: '100%',
-  height: '100% ',
 });
 
 export const contentWrapperStyle = style({
@@ -96,7 +94,7 @@ export const contentWrapperStyle = style({
   justifyContent: 'flex-start',
   gap: '2rem',
 
-  padding: '2rem',
+  padding: '1.5rem 0',
 });
 
 export const answerInputWrapperStyle = style({
@@ -108,7 +106,7 @@ export const answerInputWrapperStyle = style({
   width: '100%',
   alignSelf: 'flex-end',
 
-  padding: '1.5rem',
+  padding: '1.5rem 0',
 });
 
 export const contentTitleStyle = style([
@@ -204,5 +202,4 @@ export const answerLengthNotOpenStyle = style({
 
 export const hintWrapperStyle = style({
   alignSelf: 'flex-end',
-  padding: '1.5rem',
 });
