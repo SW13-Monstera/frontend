@@ -2,6 +2,7 @@ const COLOR = {
   PRIMARY: '#4682DB', //서비스 서브 컬러
   HIGHLIGHT: '#FFF1CD', // 하이라이트 컬러
   ERROR: '#FF6D6D', // 오류 및 삭제에 사용
+  CORRECT: '#0EBD0A', //정답 표시
   TITLEACTIVE: '#000000', // 각종 타이틀 및 텍스트에 사용
   GRAY: '#D9D9D9', // border, placeholder에 사용
   DARKGRAY: '#121212',

@@ -20,7 +20,7 @@ interface IPagination {
 interface IPageButton {
   num: number;
   isCurrentPage: boolean;
-  onClick: any;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const PageButton = ({ num, isCurrentPage, onClick }: IPageButton) => {
@@ -68,7 +68,6 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
         }
       }
     }
-
     return pageList.filter((e) => e !== -1);
   };
 

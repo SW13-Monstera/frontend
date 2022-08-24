@@ -14,6 +14,8 @@ import { usePopover } from '../../hooks/usePopover';
 import { Typography } from '@mui/material';
 import { Divider } from '../../Component/Divider';
 import { removeUserInfo } from '../../utils/userInfo';
+import { AUTHORIZTION } from '../../constants/api';
+import apiClient from '../../api/apiClient';
 
 function Header() {
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ function Header() {
   function handleLogout() {
     removeUserInfo();
     setIsLogin(false);
+    delete apiClient.defaults.headers.common[AUTHORIZTION];
   }
 
   return (

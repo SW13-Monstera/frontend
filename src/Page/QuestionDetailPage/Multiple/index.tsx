@@ -5,7 +5,6 @@ import {
   pageStyle,
   topStyle,
   descStyle,
-  titleTagStyle,
   questionContentStyle,
   splitStyle,
   contentWrapperStyle,
@@ -16,33 +15,24 @@ import {
   choiceListStyle,
   choiceWrapperStyle,
   choiceCheckboxStyle,
-  tagListStyle,
 } from './style.css';
 import '../gutter.css';
 import { Link, useParams } from 'react-router-dom';
-import TagBox from '../../../Component/Box/TagBox';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
 import TextButton from '../../../Component/Button/TextButton';
 import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
 import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
-import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
-import { URL, URLWithParam } from '../../../constants/url';
-import { ILongProblemDetailResponseData } from '../../../types/api/problem';
-import { getTagById } from '../../../utils/getTagbyId';
-
-const choices = [
-  { id: 0, content: '선택지1' },
-  { id: 1, content: '선택지2' },
-  { id: 2, content: '선택지3' },
-];
+import { URL } from '../../../constants/url';
+import { IMultipleProblemDetailResponseData } from '../../../types/api/problem';
+import ProblemTitle from '../../../Organism/ProblemTitle';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
-  const [data, setData] = useState<ILongProblemDetailResponseData>();
+  const [data, setData] = useState<IMultipleProblemDetailResponseData>();
 
   const [isDark, setIsDark] = useState(true);
 
@@ -51,19 +41,23 @@ export function MultipleQuestionDetailPage() {
   }
 
   function handleSubmit() {
-    const choices: boolean[] = [];
+    if (!id) return;
+    const answerIds: number[] = [];
     const checkboxes = document.querySelectorAll(
       'input[type="checkbox"]',
     ) as NodeListOf<HTMLInputElement>;
-    checkboxes.forEach((e) => choices.push(e.checked));
+    checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
+    problemApiWrapper.multipleProblemResult(id, answerIds);
   }
 
   useEffect(() => {
     if (!id) return;
-    problemApiWrapper.problemDetail(id).then((res) => {
-      setData(res.data);
+    problemApiWrapper.multipleProblemDetail(id).then((data) => {
+      setData(data);
     });
   }, []);
+
+  if (!id) return <></>;
 
   return (
     <div>
@@ -73,22 +67,15 @@ export function MultipleQuestionDetailPage() {
           <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
             <div className={topStyle}>
               <div className={descStyle}>
-                <div className={titleTagStyle}>
-                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => {
-                      const { name, color } = getTagById(tagId);
-                      return <TagBox key={tagId} name={name} color={color} />;
-                    })}
-                  </ul>
-                </div>
-                <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 평균 점수 : ${
-                    data?.avgScore ?? 0
-                  }점, 최고점 : ${data?.topScore ?? 0}점 , 최저점 : ${data?.bottomScore ?? 0}점`}
-                </div>
+                <ProblemTitle
+                  id={id}
+                  title={data.title}
+                  tags={data.tags}
+                  totalSolved={data.totalSolved}
+                  correctCnt={data.correctCnt}
+                  wrongCnt={data.wrongCnt}
+                />
               </div>
-
               <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
             <div className={questionContentStyle}>
@@ -113,7 +100,7 @@ export function MultipleQuestionDetailPage() {
                     답안 선택
                   </label>
                   <div className={choiceListStyle}>
-                    {choices.map((choice) => (
+                    {data.choices.map((choice) => (
                       <label
                         htmlFor={choice.id.toString()}
                         className={choiceWrapperStyle}
@@ -134,16 +121,14 @@ export function MultipleQuestionDetailPage() {
 
             <div className={buttonListStyle}>
               {isLogin ? (
-                <Link to={URLWithParam.MULTIPLE_PROBLEM_RESULT(id!)}>
-                  <TextButton
-                    type={BUTTON_TYPE.SUBMIT}
-                    theme={BUTTON_THEME.PRIMARY}
-                    size={BUTTON_SIZE.MEDIUM}
-                    onClick={handleSubmit}
-                  >
-                    제출하기
-                  </TextButton>
-                </Link>
+                <TextButton
+                  type={BUTTON_TYPE.SUBMIT}
+                  theme={BUTTON_THEME.PRIMARY}
+                  size={BUTTON_SIZE.MEDIUM}
+                  onClick={handleSubmit}
+                >
+                  제출하기
+                </TextButton>
               ) : (
                 <TextButton
                   type={BUTTON_TYPE.SUBMIT}

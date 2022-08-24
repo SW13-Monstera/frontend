@@ -1,7 +1,15 @@
 import { getUserInfo } from './../../../utils/userInfo';
 import apiClient from '../../apiClient';
 import { API_URL, API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
-import { IProblemRequestParam } from '../../../types/api/problem';
+import {
+  IProblemRequestParam,
+  ILongProblemDetailResponseData,
+  IShortProblemDetailResponseData,
+  IMultipleProblemDetailResponseData,
+  ILongProblemResultData,
+  IShortProblemResultData,
+  IMultipletProblemResultData,
+} from '../../../types/api/problem';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { AxiosRequestConfig } from 'axios';
 
@@ -22,7 +30,34 @@ export const problemApiWrapper = {
       },
     );
   },
-  problemDetail: (problem_id: string) => {
-    return apiClient.get(API_URL_WITH_PARAMS.PROBLEM_DETAIL(problem_id));
+  longProblemDetail: (problem_id: string) => {
+    return apiClient
+      .get(API_URL_WITH_PARAMS.LONG_PROBLEM_DETAIL(problem_id))
+      .then((res: { data: ILongProblemDetailResponseData }) => res.data);
+  },
+  shortProblemDetail: (problem_id: string) => {
+    return apiClient
+      .get(API_URL_WITH_PARAMS.SHORT_PROBLEM_DETAIL(problem_id))
+      .then((res: { data: IShortProblemDetailResponseData }) => res.data);
+  },
+  multipleProblemDetail: (problem_id: string) => {
+    return apiClient
+      .get(API_URL_WITH_PARAMS.MULTIPLE_PROBLEM_DETAIL(problem_id))
+      .then((res: { data: IMultipleProblemDetailResponseData }) => res.data);
+  },
+  longProblemResult: (problem_id: string, answer: string) => {
+    return apiClient
+      .post(API_URL_WITH_PARAMS.LONG_PROBLEM_RESULT(problem_id), { answer: answer })
+      .then((res: { data: ILongProblemResultData }) => res.data);
+  },
+  shortProblemResult: (problem_id: string, answer: string) => {
+    return apiClient
+      .post(API_URL_WITH_PARAMS.SHORT_PROBLEM_RESULT(problem_id), { answer: answer })
+      .then((res: { data: IShortProblemResultData }) => res.data);
+  },
+  multipleProblemResult: (problem_id: string, answerIds: number[]) => {
+    return apiClient
+      .post(API_URL_WITH_PARAMS.MULTIPLE_PROBLEM_RESULT(problem_id), { answerIds: answerIds })
+      .then((res: { data: IMultipletProblemResultData }) => res.data);
   },
 };

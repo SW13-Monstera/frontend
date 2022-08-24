@@ -5,7 +5,6 @@ import {
   pageStyle,
   topStyle,
   descStyle,
-  titleTagStyle,
   questionContentStyle,
   splitStyle,
   contentWrapperStyle,
@@ -14,27 +13,26 @@ import {
   buttonListStyle,
   themeDarkClass,
   answerInputContentStyle,
-  tagListStyle,
 } from './style.css';
 import '../gutter.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
 import TextButton from '../../../Component/Button/TextButton';
 import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
 import { useAuthStore } from '../../../hooks/useStore';
 import { useEffect, useState } from 'react';
-import baseFontStyle from '../../../styles/font.css';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { URL, URLWithParam } from '../../../constants/url';
-import { ILongProblemDetailResponseData } from '../../../types/api/problem';
-import TagBox from '../../../Component/Box/TagBox';
-import { getTagById } from '../../../utils/getTagbyId';
+import { ILongProblemDetailResponseData, ILongProblemResultData } from '../../../types/api/problem';
+import ProblemTitle from '../../../Organism/ProblemTitle';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { isLogin } = useAuthStore();
   const [data, setData] = useState<ILongProblemDetailResponseData>();
+  const [result, setResult] = useState<ILongProblemResultData | null>(null);
 
   const [isDark, setIsDark] = useState(true);
 
@@ -43,15 +41,26 @@ export function LongQuestionDetailPage() {
   }
 
   function handleSubmit() {
-    return;
+    if (!id) return;
+    const answer = (document.getElementById('answer') as HTMLTextAreaElement).value;
+    problemApiWrapper.longProblemResult(id, answer).then((data) => {
+      setResult(data);
+    });
   }
 
   useEffect(() => {
     if (!id) return;
-    problemApiWrapper.problemDetail(id).then((res) => {
-      setData(res.data);
+    problemApiWrapper.longProblemDetail(id).then((data) => {
+      setData(data);
     });
   }, []);
+
+  useEffect(() => {
+    if (!id || !result) return;
+    navigate(URLWithParam.LONG_PROBLEM_RESULT(id), { state: result });
+  }, [result]);
+
+  if (!id) return <></>;
 
   return (
     <div>
@@ -61,22 +70,16 @@ export function LongQuestionDetailPage() {
           <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
             <div className={topStyle}>
               <div className={descStyle}>
-                <div className={titleTagStyle}>
-                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => {
-                      const { name, color } = getTagById(tagId);
-                      return <TagBox key={tagId} name={name} color={color} />;
-                    })}
-                  </ul>
-                </div>
-                <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 평균 점수 : ${
-                    data?.avgScore ?? 0
-                  }점, 최고점 : ${data?.topScore ?? 0}점 , 최저점 : ${data?.bottomScore ?? 0}점`}
-                </div>
+                <ProblemTitle
+                  id={id}
+                  title={data.title}
+                  tags={data.tags}
+                  totalSolved={data.totalSolved}
+                  avgScore={data.avgScore}
+                  topScore={data.topScore}
+                  bottomScore={data.bottomScore}
+                />
               </div>
-
               <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
             </div>
             <div className={questionContentStyle}>
@@ -111,16 +114,14 @@ export function LongQuestionDetailPage() {
 
             <div className={buttonListStyle}>
               {isLogin ? (
-                <Link to={URLWithParam.LONG_PROBLEM_RESULT(id!)}>
-                  <TextButton
-                    type={BUTTON_TYPE.SUBMIT}
-                    theme={BUTTON_THEME.PRIMARY}
-                    size={BUTTON_SIZE.MEDIUM}
-                    onClick={handleSubmit}
-                  >
-                    제출하기
-                  </TextButton>
-                </Link>
+                <TextButton
+                  type={BUTTON_TYPE.SUBMIT}
+                  theme={BUTTON_THEME.PRIMARY}
+                  size={BUTTON_SIZE.MEDIUM}
+                  onClick={handleSubmit}
+                >
+                  제출하기
+                </TextButton>
               ) : (
                 <TextButton
                   type={BUTTON_TYPE.SUBMIT}

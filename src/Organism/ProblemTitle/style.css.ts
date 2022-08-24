@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css';
+import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
@@ -42,3 +43,11 @@ export const titleTagStyle = style({
   justifyContent: 'center',
   gap: '1.5rem',
 });
+
+export const problemDetailStyle = style([
+  baseFontStyle.medium,
+  {
+    display: 'flex',
+    gap: '1rem',
+  },
+]);

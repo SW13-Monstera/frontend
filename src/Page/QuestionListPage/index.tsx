@@ -114,11 +114,11 @@ function QuestionListPage() {
               {problemList.map((problem: IProblemListResponseDataContents) => (
                 <QuestionListElementBox
                   title={problem.title}
-                  numberSolved={problem.totalSolved ?? 0}
-                  averageScore={problem.avgScore ?? 0}
-                  tagList={problem.tags}
+                  totalSolved={problem.totalSolved ?? 0}
+                  tags={problem.tags}
                   key={problem.id}
-                  id={problem.id.toString()}
+                  type={problem.type}
+                  id={problem.id}
                 />
               ))}
             </div>

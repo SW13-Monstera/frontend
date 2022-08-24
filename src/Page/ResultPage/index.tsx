@@ -1,10 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import KeywordBox from '../../Component/Box/KeywordBox';
 import TextBox from '../../Component/Box/TextBox';
 import TextButton from '../../Component/Button/TextButton';
 import ProblemTitle from '../../Organism/ProblemTitle';
-import { listData } from '../../data';
-import { scoringResult } from '../../data/scoringResult';
 import Header from '../../Template/Header';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import {
@@ -17,51 +15,58 @@ import {
   answerContentStyle,
 } from './style.css';
 import { URL, URLWithParam } from '../../constants/url';
+import { ILongProblemResultData } from '../../types/api/problem';
 
 function ResultPage() {
   const { id } = useParams();
+  const {
+    title,
+    tags,
+    totalSolved,
+    avgScore,
+    topScore,
+    bottomScore,
+    keywords,
+    userAnswer,
+    standardAnswer,
+  } = useLocation().state as ILongProblemResultData;
   if (!id) return <></>;
-  const problemData = listData[parseInt(id) ?? 0];
 
   return (
     <>
       <Header />
       <div className={pageStyle}>
         <ProblemTitle
-          id={problemData.id}
-          title={problemData.title}
-          numberSolved={problemData.numberSolved}
-          averageScore={problemData.averageScore}
-          highestScore={problemData.highestScore}
-          lowestScore={problemData.lowestScore}
-          tagList={problemData.tagList}
-          answer={problemData.answer}
+          id={id}
+          title={title}
+          totalSolved={totalSolved}
+          avgScore={avgScore}
+          topScore={topScore}
+          bottomScore={bottomScore}
+          tags={tags}
+          answer={userAnswer}
         />
         <div className={pageContentStyle}>
           <TextBox>
             <div className={contentStyle}>
               <h3 className={subtitleStyle}>내 답안</h3>
               <ul className={keywordListStyle}>
-                {problemData.keywordList?.map((keyword) => (
-                  <KeywordBox
-                    name={keyword}
-                    isIncluded={scoringResult.keywordList.includes(keyword)}
-                    key={keyword}
-                  />
+                {keywords?.map(({ id, content, isExist, idx }) => (
+                  <KeywordBox name={content} isIncluded={isExist} key={id} />
                 ))}
               </ul>
-              <div className={answerContentStyle}>{scoringResult.answer}</div>
+              <div className={answerContentStyle}>{userAnswer}</div>
             </div>
           </TextBox>
           <TextBox>
             <div className={contentStyle}>
               <h3 className={subtitleStyle}>모범 답안</h3>
-              <p className={answerContentStyle}>{problemData.answer}</p>
+              <p className={answerContentStyle}>{standardAnswer}</p>
             </div>
           </TextBox>
         </div>
         <div className={buttonListStyle}>
-          <Link to={URLWithParam.LONG_PROBLEM_DETAIL(id)} state={{ problemId: problemData.id }}>
+          <Link to={URLWithParam.LONG_PROBLEM_DETAIL(id.toString())} state={{ problemId: id }}>
             <TextButton
               type={BUTTON_TYPE.BUTTON}
               theme={BUTTON_THEME.PRIMARY}
