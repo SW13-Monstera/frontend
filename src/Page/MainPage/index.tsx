@@ -39,9 +39,9 @@ function MainPage() {
         <div className={pageWrapperStyle}>
           <img src={logo} className={logoTitleStyle}></img>
           <div className={descriptionStyle}>
-            Computer Science 문제를 풀고 <br />
-            AI 기반 문장 유사도 평가 기법을 채점받아 <br />
-            스스로의 CS 역량을 평가할 수 있는 곳입니다.
+            AI 기반 서술형 채점 기법을 통해 <br />
+            다양한 유형의 Computer Science 문제를 풀고 <br />
+            스스로 CS 지식을 학습할 수 있는 사이트입니다.
           </div>
           <div className={statisticsWrapperStyle}>
             <CountUpBox title='전체 문제 수' number={250} />
