@@ -8,6 +8,7 @@ import NicknamePage from './NicknamePage';
 import JoinPage from './JoinPage';
 import CallbackPage from './CallbackPage';
 import { LoginPage } from './LoginPage';
+import { ErrorPage } from './ErrorPage';
 
 export {
   MainPage,
@@ -20,4 +21,5 @@ export {
   NicknamePage,
   JoinPage,
   LoginPage,
+  ErrorPage,
 };
