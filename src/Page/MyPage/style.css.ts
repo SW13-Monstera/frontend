@@ -5,3 +5,10 @@ export const pageWrapperStyle = style({
 
   padding: '3rem',
 });
+
+export const colorLabelListStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'start',
+  gap: '1rem',
+});
