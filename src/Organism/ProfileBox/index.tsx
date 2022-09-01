@@ -1,11 +1,29 @@
 import { boxStyle, imageStyle, imageWrapperStyle } from './style.css';
-import mockData from '../../mock/mypage.json';
 import { Divider } from '../../Component/Divider';
 import { ProfileLabel } from '../../Component/Utils/ProfileLabel';
 import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME } from '../../types/button';
 
-export const ProfileBox = () => {
+interface IProfileBox {
+  profileData: IProfileData;
+}
+
+interface IProfileData {
+  nickname: string;
+  imageUrl: string;
+  rank: number;
+  score: number;
+  githubUrl: string;
+  linkedinUrl: string;
+  email: string;
+  major: string;
+  job: string;
+  jobObjective: string;
+  coreTech: string[];
+  statistics: any;
+}
+
+export const ProfileBox = ({ profileData }: IProfileBox) => {
   const {
     nickname,
     imageUrl,
@@ -19,10 +37,7 @@ export const ProfileBox = () => {
     jobObjective,
     coreTech,
     statistics,
-    correctProblems,
-    wrongProblems,
-    partialProblems,
-  } = mockData;
+  } = profileData;
   return (
     <div className={boxStyle}>
       <div>
