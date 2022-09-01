@@ -54,6 +54,12 @@ interface IProblemDetailPageTemplate {
   children?: React.ReactNode;
 }
 
+export interface IMypageProblem {
+  id: number;
+  title: string;
+  type: string;
+}
+
 export type {
   IProblem,
   IProblemIdLinkState,
