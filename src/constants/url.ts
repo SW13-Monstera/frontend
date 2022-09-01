@@ -3,6 +3,7 @@ const URL = {
   JOIN: '/join',
   LOGIN: '/login',
   NICKNAME: '/join/nickname',
+  MYPAGE: '/mypage',
   PROBLEM_LIST: '/problem',
   LONG_PROBLEM_DETAIL: '/problem/long/:id',
   LONG_PROBLEM_RESULT: '/problem/long/result/:id',
