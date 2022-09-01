@@ -5,6 +5,7 @@ import baseFontStyle from '../../../styles/font.css';
 export const oauthJoinWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
+  width: '100%',
 });
 
 export const oauthJoinStyle = style([
@@ -14,6 +15,8 @@ export const oauthJoinStyle = style([
     justifyContent: 'flex-start',
     alignItems: 'center',
     gap: '10px',
+
+    width: '100%',
 
     color: COLOR.GRAY,
 

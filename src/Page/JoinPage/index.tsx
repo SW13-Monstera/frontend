@@ -99,9 +99,8 @@ function JoinPage() {
           >
             회원가입
           </TextButton>
+          <HorizontalOAuthButtonList>간편 회원가입</HorizontalOAuthButtonList>
         </form>
-
-        <HorizontalOAuthButtonList>간편 회원가입</HorizontalOAuthButtonList>
       </div>
     </>
   );
