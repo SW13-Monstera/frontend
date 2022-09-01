@@ -1,5 +1,6 @@
 {
   "nickname": "Big Jo",
+  "imageUrl": "https://cdn.pixabay.com/photo/2022/08/28/18/03/dog-7417233_1280.jpg",
   "rank": 13,
   "score": 1322,
   "githubUrl": "https://github.com/Kim-Hyunjo",
@@ -7,10 +8,10 @@
   "email": "mjw@playboy.com",
   "major": "나노 신소재 공학과",
   "job": "학생",
-  "job objective": "웹 프론트엔드",
-  "core tech": ["React", "JS", "TS"],
+  "jobObjective": "웹 프론트엔드",
+  "coreTech": ["React", "JS", "TS"],
   "statistics": { "OS": 25, "DB": 25, "Data Structure": 25, "Network": 25 },
-  "correct problems": [{ "id": 443, "title": "쿠키와 세션" }],
-  "wrong problems": [{ "id": 413, "title": "네트워크 저장소" }],
-  "partial problems": [{ "id": 449, "title": "Queue" }]
+  "correctProblems": [{ "id": 443, "title": "쿠키와 세션" }],
+  "wrongProblems": [{ "id": 413, "title": "네트워크 저장소" }],
+  "partialProblems": [{ "id": 449, "title": "Queue" }]
 }
