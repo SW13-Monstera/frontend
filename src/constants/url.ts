@@ -11,6 +11,7 @@ const URL = {
   MULTIPLE_PROBLEM_DETAIL: '/problem/multiple/:id',
   MULTIPLE__PROBLEM_RESULT: '/problem/multiple/result/:id',
   OAUTH_CALLBACK: '/oauth/redirect',
+  ERROR: '/error',
 };
 
 const URLWithParam = {

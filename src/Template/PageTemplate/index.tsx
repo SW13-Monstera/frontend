@@ -2,7 +2,7 @@ import { Header, Footer } from '../';
 import { mainStyle } from './style.css';
 
 interface IPageTemplate {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 function PageTemplate({ children }: IPageTemplate) {
