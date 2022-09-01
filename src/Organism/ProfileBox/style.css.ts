@@ -128,3 +128,8 @@ export const linkButtonByDomainStyle = styleVariants({
   linkedin: [linkButtonStyle],
   github: [linkButtonStyle, { backgroundColor: '#000000' }],
 });
+
+export const coreTechListStyle = style({
+  display: 'flex',
+  gap: '0.2rem',
+});

@@ -2,7 +2,7 @@ import { nameStyle, profileLabelStyle, valueStyle } from './style.css';
 
 interface IProfileLabel {
   name: string;
-  value: string;
+  value: string | React.ReactNode;
 }
 
 export const ProfileLabel = ({ name, value }: IProfileLabel) => {

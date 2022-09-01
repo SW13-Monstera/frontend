@@ -2,6 +2,7 @@ import {
   barChartElementStyle,
   barChartStyle,
   boxStyle,
+  coreTechListStyle,
   editButtonStyle,
   imageStyle,
   imageWrapperStyle,
@@ -21,6 +22,8 @@ import { BUTTON_SIZE, BUTTON_THEME } from '../../types/button';
 import { COLOR } from '../../constants/color';
 import linkedinLogo from '../../assets/images/linkedin.png';
 import githubLogo from '../../assets/icons/github.svg';
+import { TagBox } from '../../Component/Box';
+import { TechTagBox } from '../../Component/Box/TechTagBox';
 
 const CATEGORY_COLOR_MAP = [
   { category: 'OS', color: COLOR.POINT1 },
@@ -91,6 +94,16 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
         <ProfileLabel name={'전공'} value={major} />
         <ProfileLabel name={'직업'} value={job} />
         <ProfileLabel name={'희망직무'} value={jobObjective} />
+        <ProfileLabel
+          name={'주요 기술'}
+          value={
+            <div className={coreTechListStyle}>
+              {coreTech.map((e) => (
+                <TechTagBox name={e} />
+              ))}
+            </div>
+          }
+        />
       </div>
       <Divider />
       <div className={section3Style}>

@@ -12,6 +12,7 @@ const COLOR = {
   POINT2: '#FDF9EB', // 포인트 컬러 2
   POINT3: '#EBFDEE', // 포인트 컬러 3
   POINT4: '#F9EBFD', // 포인트 컬러 4
+  TAG1: '#fff1cd', //태그 컬러 1
 };
 
 export { COLOR };
