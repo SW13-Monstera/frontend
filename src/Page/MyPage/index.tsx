@@ -2,7 +2,12 @@ import { ColorLabel } from '../../Component/Utils/ColorLabel';
 import { COLOR } from '../../constants/color';
 import { ProfileBox } from '../../Organism/ProfileBox';
 import { PageTemplate } from '../../Template';
-import { colorLabelListStyle, pageWrapperStyle, rightSideWrapperStyle } from './style.css';
+import {
+  colorLabelListStyle,
+  pageTitleStyle,
+  pageWrapperStyle,
+  rightSideWrapperStyle,
+} from './style.css';
 import mockData from '../../mock/mypage.json';
 import { ProblemListBox } from '../../Component/Box/ProblemListBox';
 
@@ -34,22 +39,25 @@ export const MyPage = () => {
   return (
     <PageTemplate>
       <div className={pageWrapperStyle}>
-        <ProfileBox
-          profileData={{
-            nickname,
-            imageUrl,
-            rank,
-            score,
-            githubUrl,
-            linkedinUrl,
-            email,
-            major,
-            job,
-            jobObjective,
-            coreTech,
-            statistics,
-          }}
-        />
+        <div>
+          <h2 className={pageTitleStyle}>마이 페이지</h2>
+          <ProfileBox
+            profileData={{
+              nickname,
+              imageUrl,
+              rank,
+              score,
+              githubUrl,
+              linkedinUrl,
+              email,
+              major,
+              job,
+              jobObjective,
+              coreTech,
+              statistics,
+            }}
+          />
+        </div>
         <div className={rightSideWrapperStyle}>
           <div className={colorLabelListStyle}>
             {colorLabelList.map((e) => (

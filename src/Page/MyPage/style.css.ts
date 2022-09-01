@@ -1,11 +1,20 @@
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../constants/color';
+import baseFontStyle from '../../styles/font.css';
 
 export const pageWrapperStyle = style({
   display: 'flex',
 
   padding: '3rem',
 });
+
+export const pageTitleStyle = style([
+  baseFontStyle.xlarge,
+  {
+    fontWeight: 'bold',
+    marginBottom: '1rem',
+    paddingLeft: '0.7rem',
+  },
+]);
 
 export const rightSideWrapperStyle = style({
   display: 'flex',
