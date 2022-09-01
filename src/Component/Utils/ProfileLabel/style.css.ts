@@ -13,6 +13,7 @@ export const profileLabelStyle = style([
 ]);
 
 export const nameStyle = style({
+  width: '5rem',
   color: COLOR.GRAY,
 });
 

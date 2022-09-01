@@ -1,4 +1,14 @@
-import { boxStyle, imageStyle, imageWrapperStyle } from './style.css';
+import {
+  boxStyle,
+  editButtonStyle,
+  imageStyle,
+  imageWrapperStyle,
+  labelTitleStyle,
+  section1DataStyle,
+  section1NumericDataStyle,
+  section1Style,
+  section2Style,
+} from './style.css';
 import { Divider } from '../../Component/Divider';
 import { ProfileLabel } from '../../Component/Utils/ProfileLabel';
 import { TextButton } from '../../Component/Button';
@@ -40,25 +50,35 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
   } = profileData;
   return (
     <div className={boxStyle}>
-      <div>
+      <div className={section1Style}>
         <div className={imageWrapperStyle}>
           <img src={imageUrl} className={imageStyle} />
         </div>
-        <div>{nickname}</div>
-        <div>{rank}위</div>
-        <div>{score}점</div>
+        <div className={section1DataStyle}>
+          <div>{nickname}</div>
+          <div className={section1NumericDataStyle}>
+            <div>{rank}위 </div>
+            <div>{score}점</div>
+          </div>
+        </div>
       </div>
       <Divider />
-      <div>
+      <div className={section2Style}>
         <ProfileLabel name={'이메일'} value={email} />
         <ProfileLabel name={'전공'} value={major} />
         <ProfileLabel name={'직업'} value={job} />
         <ProfileLabel name={'희망직무'} value={jobObjective} />
       </div>
       <Divider />
-      <div>통계</div>
+      <div>
+        <div className={labelTitleStyle}>통계</div>
+      </div>
       <Divider />
-      <TextButton theme={BUTTON_THEME.PRIMARY} size={BUTTON_SIZE.MEDIUM}>
+      <TextButton
+        theme={BUTTON_THEME.SECONDARY}
+        size={BUTTON_SIZE.LARGE_MEDIUM}
+        className={editButtonStyle}
+      >
         프로필 수정하기
       </TextButton>
     </div>
