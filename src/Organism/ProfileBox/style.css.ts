@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
@@ -29,6 +29,8 @@ export const section2Style = style({
 });
 export const section3Style = style({
   display: 'flex',
+  flexDirection: 'column',
+  gap: '0.5rem',
 });
 
 export const imageWrapperStyle = style({
@@ -75,3 +77,54 @@ export const editButtonStyle = style([
     padding: '0.5rem',
   },
 ]);
+
+export const barChartStyle = style([
+  baseFontStyle.xsmall,
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+]);
+
+export const barChartElementWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+export const barChartElementStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  position: 'relative',
+
+  height: '2rem',
+  padding: '1rem',
+
+  cursor: 'pointer',
+
+  ':hover': {
+    transform: 'scale(1.2)',
+    transition: 'all 0.2s linear',
+    zIndex: 1,
+  },
+});
+
+export const linkButtonListStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5rem',
+});
+
+export const linkButtonStyle = style({
+  width: '25px',
+  height: '25px',
+  borderRadius: '3px',
+});
+
+export const linkButtonByDomainStyle = styleVariants({
+  linkedin: [linkButtonStyle],
+  github: [linkButtonStyle, { backgroundColor: '#000000' }],
+});

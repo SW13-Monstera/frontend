@@ -10,7 +10,12 @@
   "job": "학생",
   "jobObjective": "웹 프론트엔드",
   "coreTech": ["React", "JS", "TS"],
-  "statistics": { "OS": 25, "DB": 25, "Data Structure": 25, "Network": 25 },
+  "statistics": [
+    { "label": "OS", "value": 25 },
+    { "label": "DB", "value": 25 },
+    { "label": "Data Structure", "value": 25 },
+    { "label": "Network", "value": 25 }
+  ],
   "correctProblems": [
     { "id": 443, "title": "쿠키와 세션", "type": "long" },
     { "id": 443, "title": "쿠키와 세션", "type": "long" },
