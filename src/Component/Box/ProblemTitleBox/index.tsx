@@ -13,7 +13,7 @@ export const ProblemTitleBox = ({ id, title, type }: IProblemTitleBox) => {
   const url =
     type === 'long'
       ? URLWithParam.LONG_PROBLEM_DETAIL(id)
-      : 'short'
+      : type === 'short'
       ? URLWithParam.SHORT_PROBLEM_DETAIL(id)
       : URLWithParam.MULTIPLE_PROBLEM_DETAIL(id);
   return (

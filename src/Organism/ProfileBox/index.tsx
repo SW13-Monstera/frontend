@@ -22,7 +22,6 @@ import { BUTTON_SIZE, BUTTON_THEME } from '../../types/button';
 import { COLOR } from '../../constants/color';
 import linkedinLogo from '../../assets/images/linkedin.png';
 import githubLogo from '../../assets/icons/github.svg';
-import { TagBox } from '../../Component/Box';
 import { TechTagBox } from '../../Component/Box/TechTagBox';
 
 const CATEGORY_COLOR_MAP = [
@@ -97,11 +96,11 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
         <ProfileLabel
           name={'주요 기술'}
           value={
-            <div className={coreTechListStyle}>
+            <ul className={coreTechListStyle}>
               {coreTech.map((e) => (
-                <TechTagBox name={e} />
+                <TechTagBox name={e} key={e} />
               ))}
-            </div>
+            </ul>
           }
         />
       </div>
@@ -110,7 +109,12 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
         <div className={labelTitleStyle}>통계</div>
         <div className={barChartStyle}>
           {statistics.map((e, idx) => (
-            <div className='tooltip' title={`${e.value}%`} style={{ width: `${e.value}%` }}>
+            <div
+              className='tooltip'
+              title={`${e.value}%`}
+              style={{ width: `${e.value}%` }}
+              key={e.label}
+            >
               <div
                 className={barChartElementStyle}
                 style={{
