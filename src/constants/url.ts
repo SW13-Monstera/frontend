@@ -4,6 +4,7 @@ const URL = {
   LOGIN: '/login',
   NICKNAME: '/join/nickname',
   MYPAGE: '/mypage',
+  USER_DATA_EDIT: '/mypage/edit',
   PROBLEM_LIST: '/problem',
   LONG_PROBLEM_DETAIL: '/problem/long/:id',
   LONG_PROBLEM_RESULT: '/problem/long/result/:id',

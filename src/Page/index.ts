@@ -10,6 +10,7 @@ import CallbackPage from './CallbackPage';
 import { LoginPage } from './LoginPage';
 import { ErrorPage } from './ErrorPage';
 import { MyPage } from './MyPage';
+import { UserDataEditPage } from './UserDataEditPage';
 
 export {
   MainPage,
@@ -24,4 +25,5 @@ export {
   LoginPage,
   ErrorPage,
   MyPage,
+  UserDataEditPage,
 };
