@@ -78,40 +78,6 @@ export const editButtonStyle = style([
   },
 ]);
 
-export const barChartStyle = style([
-  baseFontStyle.xsmall,
-  {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-]);
-
-export const barChartElementWrapperStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-});
-
-export const barChartElementStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-
-  position: 'relative',
-
-  height: '2rem',
-  padding: '1rem',
-
-  cursor: 'pointer',
-
-  ':hover': {
-    transform: 'scale(1.2)',
-    transition: 'all 0.2s linear',
-    zIndex: 1,
-  },
-});
-
 export const linkButtonListStyle = style({
   display: 'flex',
   alignItems: 'center',
@@ -132,4 +98,12 @@ export const linkButtonByDomainStyle = styleVariants({
 export const coreTechListStyle = style({
   display: 'flex',
   gap: '0.2rem',
+});
+
+export const chartWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '88%',
+  alignSelf: 'center',
 });

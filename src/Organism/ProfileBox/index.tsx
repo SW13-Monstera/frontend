@@ -1,7 +1,6 @@
 import {
-  barChartElementStyle,
-  barChartStyle,
   boxStyle,
+  chartWrapperStyle,
   coreTechListStyle,
   editButtonStyle,
   imageStyle,
@@ -23,6 +22,8 @@ import { COLOR } from '../../constants/color';
 import linkedinLogo from '../../assets/images/linkedin.png';
 import githubLogo from '../../assets/icons/github.svg';
 import { TechTagBox } from '../../Component/Box/TechTagBox';
+import { DoughnutChart } from '../../Component/Chart/DoughnutChart';
+import { createCategoryChartData } from '../../utils/createChartData';
 
 const CATEGORY_COLOR_MAP = [
   { category: 'OS', color: COLOR.POINT1 },
@@ -107,31 +108,8 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
       <Divider />
       <div className={section3Style}>
         <div className={labelTitleStyle}>통계</div>
-        <div className={barChartStyle}>
-          {statistics.map((e, idx) => (
-            <div
-              className='tooltip'
-              title={`${e.value}%`}
-              style={{ width: `${e.value}%` }}
-              key={e.label}
-            >
-              <div
-                className={barChartElementStyle}
-                style={{
-                  backgroundColor: CATEGORY_COLOR_MAP.find((mapEl) => mapEl.category === e.label)
-                    ?.color,
-                  borderRadius:
-                    idx === 0
-                      ? '10px 0 0 10px'
-                      : idx === statistics.length - 1
-                      ? '0 10px 10px 0'
-                      : '0',
-                }}
-              >
-                {e.label}
-              </div>
-            </div>
-          ))}
+        <div className={chartWrapperStyle}>
+          <DoughnutChart data={createCategoryChartData(statistics.map((e) => e.value))} />
         </div>
       </div>
       <Divider />
