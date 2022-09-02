@@ -22,6 +22,11 @@ export const BUTTON_THEME = { PRIMARY: 'primary', SECONDARY: 'secondary' } as co
 
 export type TButtonTheme = typeof BUTTON_THEME[keyof typeof BUTTON_THEME];
 
-export const BUTTON_SIZE = { LARGE: 'large', MEDIUM: 'medium', SMALL: 'small' } as const;
+export const BUTTON_SIZE = {
+  LARGE: 'large',
+  LARGE_MEDIUM: 'largeMedium',
+  MEDIUM: 'medium',
+  SMALL: 'small',
+} as const;
 
 export type TButtonSize = typeof BUTTON_SIZE[keyof typeof BUTTON_SIZE];

@@ -1,3 +1,4 @@
+import { PROBLEM_TYPE } from '../constants/problem';
 import {
   ILongProblemDetailResponseData,
   IMultipleProblemDetailResponseData,
@@ -38,7 +39,6 @@ interface ITag extends ITagBox {
   id: string;
 }
 
-const PROBLEM_TYPE = { LONG: 'long', SHORT: 'short', MULTIPLE: 'multiple' } as const;
 type TProblemType = typeof PROBLEM_TYPE[keyof typeof PROBLEM_TYPE];
 
 interface IProblemDetailResponseData
@@ -52,6 +52,12 @@ interface IProblemDetailPageTemplate {
   data: TPartialProblemDetailResponseData | undefined;
   handleSubmit: () => void;
   children?: React.ReactNode;
+}
+
+export interface IMypageProblem {
+  id: number;
+  title: string;
+  type: string;
 }
 
 export type {

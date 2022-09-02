@@ -28,6 +28,10 @@ export const [buttonThemeClass, vars] = createTheme({
     icon: {
       length: '3.125rem',
     },
+    largeMedium: {
+      width: '29rem',
+      height: '4rem',
+    },
   },
   border: {
     radius: '10px',

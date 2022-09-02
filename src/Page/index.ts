@@ -9,6 +9,7 @@ import JoinPage from './JoinPage';
 import CallbackPage from './CallbackPage';
 import { LoginPage } from './LoginPage';
 import { ErrorPage } from './ErrorPage';
+import { MyPage } from './MyPage';
 
 export {
   MainPage,
@@ -22,4 +23,5 @@ export {
   JoinPage,
   LoginPage,
   ErrorPage,
+  MyPage,
 };

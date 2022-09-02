@@ -34,10 +34,6 @@ function Header() {
     open: mypageOpen,
   } = usePopover();
 
-  function handleNicknamePage() {
-    navigate(URL.NICKNAME);
-  }
-
   function handleLogout() {
     setLogout();
     setIsLogin(false);
@@ -83,7 +79,21 @@ function Header() {
               handleClose={handleMypageClose}
             >
               <>
-                <TransparentButton onClick={handleNicknamePage}>닉네임 설정</TransparentButton>
+                <TransparentButton
+                  onClick={() => {
+                    navigate(URL.MYPAGE);
+                  }}
+                >
+                  마이 페이지
+                </TransparentButton>
+                <Divider />
+                <TransparentButton
+                  onClick={() => {
+                    navigate(URL.NICKNAME);
+                  }}
+                >
+                  닉네임 설정
+                </TransparentButton>
                 <Divider />
                 <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
               </>
