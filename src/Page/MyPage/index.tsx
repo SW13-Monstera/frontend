@@ -10,12 +10,7 @@ import {
 } from './style.css';
 import mockData from '../../mock/mypage.json';
 import { ProblemListBox } from '../../Component/Box/ProblemListBox';
-
-const colorLabelList = [
-  { color: COLOR.POINT1, name: '서술형', type: 'long' },
-  { color: COLOR.POINT2, name: '단답형', type: 'short' },
-  { color: COLOR.POINT3, name: '객관식', type: 'multiple' },
-];
+import { COLOR_LABEL_LIST } from '../../constants/colorLabel';
 
 export const MyPage = () => {
   const {
@@ -60,7 +55,7 @@ export const MyPage = () => {
         </div>
         <div className={rightSideWrapperStyle}>
           <div className={colorLabelListStyle}>
-            {colorLabelList.map((e) => (
+            {COLOR_LABEL_LIST.map((e) => (
               <ColorLabel color={e.color} name={e.name} key={e.name} />
             ))}
           </div>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { COLOR_LABEL_LIST } from '../../../constants/colorLabel';
+import { PROBLEM_TYPE } from '../../../constants/problem';
 import { URLWithParam } from '../../../constants/url';
 import { problemTitleBoxStyle, textStyle } from './style.css';
 
@@ -11,9 +12,9 @@ interface IProblemTitleBox {
 
 export const ProblemTitleBox = ({ id, title, type }: IProblemTitleBox) => {
   const url =
-    type === 'long'
+    type === PROBLEM_TYPE.LONG
       ? URLWithParam.LONG_PROBLEM_DETAIL(id)
-      : type === 'short'
+      : type === PROBLEM_TYPE.SHORT
       ? URLWithParam.SHORT_PROBLEM_DETAIL(id)
       : URLWithParam.MULTIPLE_PROBLEM_DETAIL(id);
   return (

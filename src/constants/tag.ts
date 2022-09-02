@@ -1,5 +1,6 @@
 import { ITag } from '../types/problem';
 import { ITagBox } from '../types/tag';
+import { PROBLEM_TYPE } from './problem';
 
 interface ITagListElement {
   name: string;
@@ -36,17 +37,17 @@ const TAGLIST: ITagListElement[] = [
     name: '문제 유형',
     elements: [
       {
-        id: 'long',
+        id: PROBLEM_TYPE.LONG,
         name: '서술형',
         color: 'color2',
       },
       {
-        id: 'short',
+        id: PROBLEM_TYPE.SHORT,
         name: '단답형',
         color: 'color2',
       },
       {
-        id: 'multiple',
+        id: PROBLEM_TYPE.MULTIPLE,
         name: '객관식',
         color: 'color2',
       },
