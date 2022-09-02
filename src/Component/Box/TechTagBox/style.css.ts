@@ -12,8 +12,7 @@ export const tagStyle = style([
     justifyContent: 'center',
 
     width: 'fit-content',
-    maxWidth: '62px',
-    height: '24px',
+    height: '1.5rem',
 
     color: 'black',
     background: COLOR.TAG1,
@@ -21,15 +20,8 @@ export const tagStyle = style([
 
     textAlign: 'center',
 
-    padding: '0.6rem',
+    padding: '0.5rem',
 
     whiteSpace: 'nowrap',
-
-    '@media': {
-      'screen and (max-width: 600px)': {
-        width: '60px',
-        height: '20px',
-      },
-    },
   },
 ]);

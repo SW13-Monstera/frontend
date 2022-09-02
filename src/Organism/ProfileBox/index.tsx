@@ -46,7 +46,7 @@ interface IProfileData {
   email: string;
   major: string;
   job: string;
-  jobObjective: string;
+  jobObjective: string[];
   coreTech: string[];
   statistics: any[];
 }
@@ -93,13 +93,22 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
         <ProfileLabel name={'이메일'} value={email} />
         <ProfileLabel name={'전공'} value={major} />
         <ProfileLabel name={'직업'} value={job} />
-        <ProfileLabel name={'희망직무'} value={jobObjective} />
+        <ProfileLabel
+          name={'희망직무'}
+          value={
+            <ul className={coreTechListStyle}>
+              {jobObjective.map((e) => (
+                <TechTagBox name={e} key={e} color={COLOR.TAG1} />
+              ))}
+            </ul>
+          }
+        />
         <ProfileLabel
           name={'주요 기술'}
           value={
             <ul className={coreTechListStyle}>
               {coreTech.map((e) => (
-                <TechTagBox name={e} key={e} />
+                <TechTagBox name={e} key={e} color={COLOR.TAG2} />
               ))}
             </ul>
           }
