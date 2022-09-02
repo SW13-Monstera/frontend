@@ -22,7 +22,7 @@ export const ProblemTitleBox = ({ id, title, type }: IProblemTitleBox) => {
         style={{ backgroundColor: COLOR_LABEL_LIST.find((e) => e.type === type)?.color }}
         className={problemTitleBoxStyle}
       >
-        <span className={textStyle}> {title}</span>
+        <span className={textStyle}>{title}</span>
       </div>
     </Link>
   );
