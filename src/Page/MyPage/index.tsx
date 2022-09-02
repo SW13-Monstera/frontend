@@ -1,5 +1,4 @@
 import { ColorLabel } from '../../Component/Utils/ColorLabel';
-import { COLOR } from '../../constants/color';
 import { ProfileBox } from '../../Organism/ProfileBox';
 import { PageTemplate } from '../../Template';
 import {
