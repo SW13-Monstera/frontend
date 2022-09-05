@@ -12,9 +12,27 @@ import {
   urlWrapperStyle,
 } from './style.css';
 import { CORE_TECH, JOB, JOB_OBJECTIVE } from '../../constants/userDataEdit';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+
+const MAJOR_OPEN_API_KEY = '3da82601ae4e70ae3be5112a07bf35c5';
+const MAJOR_OPEN_API_URL = 'https://www.career.go.kr/cnet/openapi/getOpenApi.json';
 
 export const UserDataEditPage = () => {
   const submit = () => {};
+  const { data } = useQuery('majors', () =>
+    axios
+      .get(MAJOR_OPEN_API_URL, {
+        params: {
+          apiKey: MAJOR_OPEN_API_KEY,
+          svcType: 'api',
+          svcCode: 'MAJOR',
+          gubun: 'univ_list',
+          contentType: 'json',
+        },
+      })
+      .then((res) => res.data),
+  );
 
   const isPasswordConfirmed = (password1: string, password2: string) => password1 === password2;
 
