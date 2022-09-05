@@ -12,7 +12,7 @@ export const [inputBoxClass, inputVars] = createTheme({
 });
 
 export const defaultInputBoxStyle = style([
-  baseFontStyle.xlarge,
+  baseFontStyle.medium,
   {
     display: 'flex',
     alignItems: 'center',
