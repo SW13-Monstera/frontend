@@ -27,13 +27,6 @@ import { createCategoryChartData } from '../../utils/createChartData';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 
-const CATEGORY_COLOR_MAP = [
-  { category: 'OS', color: COLOR.POINT1 },
-  { category: 'DB', color: COLOR.POINT2 },
-  { category: 'Data Structure', color: COLOR.POINT3 },
-  { category: 'Network', color: COLOR.POINT4 },
-];
-
 interface IProfileBox {
   profileData: IProfileData;
 }
