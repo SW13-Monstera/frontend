@@ -10,21 +10,23 @@ import {
   dropDownListStyle,
   checkedTagListStyle,
 } from './style.css';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, MouseEvent } from 'react';
 import DropdownElement from '../../../Utils/Dropdown/DropdownElement';
 import { ITagState } from '../../../../types/tag';
 import TagBox from '../../TagBox';
 import listenOutsideClick from '../../../../utils/listenOutsideClick';
+import { IDropdownElement } from '../../../../types/util';
 
 interface ISearchDropdownInputBox {
   id: string;
-  elements: any[];
+  elements: IDropdownElement[];
 }
 
 export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox) {
   const [isOpen, setIsOpen] = useState(false);
   const [checkedTags, setCheckedTags] = useState<ITagState[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
+  const [filteredElements, setfilteredElements] = useState<IDropdownElement[]>(elements);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -38,6 +40,15 @@ export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox
     );
   };
 
+  const search = () => {
+    const inputValue = (document.getElementById(id) as HTMLInputElement).value;
+    const searchResult = elements.filter((e) =>
+      e.name.toLowerCase().includes(inputValue.toLowerCase()),
+    );
+    setfilteredElements(searchResult);
+    setIsOpen(true);
+  };
+
   useEffect(listenOutsideClick(menuRef, setIsOpen), []);
 
   return (
@@ -49,6 +60,7 @@ export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox
           className={inputTextBoxStyle}
           type={INPUT_TYPE.SEARCH}
           id={id}
+          onChange={search}
         ></input>
         <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
           <SearchIcon className={searchButtonStyle} />
@@ -56,7 +68,7 @@ export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox
       </div>
       <div className={dropDownContentStyle} style={{ visibility: isOpen ? 'visible' : 'hidden' }}>
         <ul className={dropDownListStyle}>
-          {elements.map((e) => (
+          {filteredElements.map((e) => (
             <DropdownElement
               id={e.id}
               name={e.name}

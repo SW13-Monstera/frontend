@@ -1,10 +1,15 @@
 import { ITag } from '../types/problem';
 import { ITagBox } from '../types/tag';
+import { IDropdownElement } from '../types/util';
 import { PROBLEM_TYPE } from './problem';
+
+interface IDropdownElementWithColor extends IDropdownElement {
+  color: string;
+}
 
 interface ITagListElement {
   name: string;
-  elements: ITag[];
+  elements: IDropdownElementWithColor[];
 }
 
 const TAGLIST: ITagListElement[] = [
