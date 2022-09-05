@@ -14,14 +14,17 @@ import {
 import { CORE_TECH, JOB, JOB_OBJECTIVE } from '../../constants/userDataEdit';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { createMajorList } from '../../utils/createMajorList';
+import { IMajorListElement } from '../../types/api/major';
+import { IDropdownElement } from '../../types/util';
 
 const MAJOR_OPEN_API_KEY = '3da82601ae4e70ae3be5112a07bf35c5';
 const MAJOR_OPEN_API_URL = 'https://www.career.go.kr/cnet/openapi/getOpenApi.json';
 
 export const UserDataEditPage = () => {
-  const submit = () => {};
-  const { data } = useQuery('majors', () =>
-    axios
+  const getMajorList = (searchTitle?: string | null) => {
+    return axios
       .get(MAJOR_OPEN_API_URL, {
         params: {
           apiKey: MAJOR_OPEN_API_KEY,
@@ -29,10 +32,23 @@ export const UserDataEditPage = () => {
           svcCode: 'MAJOR',
           gubun: 'univ_list',
           contentType: 'json',
+          perPage: 5,
+          searchTitle: searchTitle,
         },
       })
-      .then((res) => res.data),
+      .then((res) => res.data.dataSearch.content);
+  };
+
+  const submit = () => {};
+  const [majorSearchTitle, setMajorSearchTItle] = useState<string | null>(null);
+  const { data: majorData } = useQuery<IMajorListElement[]>(['majors', majorSearchTitle], () =>
+    getMajorList(majorSearchTitle),
   );
+  const [majorList, setMajorList] = useState<IDropdownElement[]>([]);
+
+  useEffect(() => {
+    setMajorList(createMajorList(majorData));
+  }, [majorData]);
 
   const isPasswordConfirmed = (password1: string, password2: string) => password1 === password2;
 
@@ -58,7 +74,7 @@ export const UserDataEditPage = () => {
             type={INPUT_TYPE.PASSWORD}
           />
           <label htmlFor='major'>전공</label>
-          <SearchDropdownInputBox id='major' elements={[]} />
+          <SearchDropdownInputBox id='major' elements={majorList} />
           <label htmlFor='job'>직업</label>
           <SearchDropdownInputBox id='job' elements={JOB} />
           <label htmlFor='core-tect'>주요 기술</label>

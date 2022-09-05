@@ -51,6 +51,10 @@ export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox
 
   useEffect(listenOutsideClick(menuRef, setIsOpen), []);
 
+  useEffect(() => {
+    setfilteredElements(elements);
+  }, [elements]);
+
   return (
     <div ref={menuRef}>
       <div className={searchInputBoxStyle} onClick={toggleDropdown}>
