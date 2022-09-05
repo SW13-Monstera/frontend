@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import { ReactComponent as DownIcon } from '../../../assets/icons/down-arrow-icon.svg';
 import { ReactComponent as UpIcon } from '../../../assets/icons/up-arrow-icon.svg';
 import DropdownElement from './DropdownElement';
-import listenOutsideClick from '../listenOutsideClick';
 import { BUTTON_TYPE } from '../../../types/button';
 import { IDropdownElement } from '../../../types/util';
+import listenOutsideClick from '../../../utils/listenOutsideClick';
 
 interface ITagType {
   name: string;
@@ -15,7 +15,7 @@ interface ITagType {
 }
 
 interface IDropdownProps extends ITagType {
-  handleCheckedTags: (id: string, isChecked: boolean) => void;
+  handleCheckedTags: (id: string, name: string, isChecked: boolean) => void;
 }
 
 function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
