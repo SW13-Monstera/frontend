@@ -38,12 +38,16 @@ export const urlWrapperStyle = style([
   },
 ]);
 
-export const urlPrefixStyle = style({});
+export const urlPrefixStyle = style({
+  color: COLOR.GRAY,
+  cursor: 'default',
+});
 
 export const urlInputStyle = style([
   baseFontStyle.small,
   {
     width: '100%',
     height: '100%',
+    borderBottom: `1px solid ${COLOR.GRAY}`,
   },
 ]);
