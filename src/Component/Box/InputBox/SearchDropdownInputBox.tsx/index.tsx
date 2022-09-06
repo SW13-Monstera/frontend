@@ -10,7 +10,7 @@ import {
   dropDownListStyle,
   checkedTagListStyle,
 } from './style.css';
-import { useEffect, useRef, useState, MouseEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import DropdownElement from '../../../Utils/Dropdown/DropdownElement';
 import { ITagState } from '../../../../types/tag';
 import TagBox from '../../TagBox';

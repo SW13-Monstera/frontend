@@ -41,7 +41,9 @@ export const UserDataEditPage = () => {
       .then((res) => res.data.dataSearch.content);
   };
 
-  const submit = () => {};
+  const submit = () => {
+    return;
+  };
   const [majorSearchTitle, setMajorSearchTitle] = useState<string | null>(null);
   const { data: majorData } = useQuery<IMajorListElement[]>(['majors', majorSearchTitle], () =>
     getMajorList(majorSearchTitle),
