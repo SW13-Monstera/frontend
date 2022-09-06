@@ -6,7 +6,6 @@ import { useAuthStore } from './hooks/useStore';
 import { useEffect } from 'react';
 import { getUserInfo } from './utils/userInfo';
 import { setTokenHeader } from './api/setTokenHeader';
-
 function App() {
   const { setIsLogin } = useAuthStore();
 

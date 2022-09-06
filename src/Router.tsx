@@ -15,6 +15,7 @@ import {
   MyPage,
   UserDataEditPage,
 } from './Page';
+import { RouteChangeTracker } from './RouteChangeTracker';
 
 function Router() {
   return (
@@ -34,6 +35,7 @@ function Router() {
         <Route path={URL.OAUTH_CALLBACK} element={<CallbackPage />} />
         <Route path={URL.ERROR} element={<ErrorPage />} />
       </Routes>
+      <RouteChangeTracker />
     </BrowserRouter>
   );
 }

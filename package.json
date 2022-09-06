@@ -20,6 +20,7 @@
     "react-chartjs-2": "^4.3.1",
     "react-countup": "^6.3.0",
     "react-dom": "^18.0.0",
+    "react-ga": "^3.3.1",
     "react-material-ui-carousel": "^3.4.2",
     "react-modal": "^3.15.1",
     "react-query": "^3.39.2",
