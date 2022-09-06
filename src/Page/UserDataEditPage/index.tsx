@@ -18,6 +18,8 @@ import { useEffect, useState } from 'react';
 import { createMajorList } from '../../utils/createMajorList';
 import { IMajorListElement } from '../../types/api/major';
 import { IDropdownElement } from '../../types/util';
+import { WarningMessage } from '../../Component/Message/WarningMessage';
+import { isPasswordConfirmed } from '../../utils/isPasswordConfirmed';
 
 const MAJOR_OPEN_API_KEY = '3da82601ae4e70ae3be5112a07bf35c5';
 const MAJOR_OPEN_API_URL = 'https://www.career.go.kr/cnet/openapi/getOpenApi.json';
@@ -45,17 +47,28 @@ export const UserDataEditPage = () => {
     getMajorList(majorSearchTitle),
   );
   const [majorList, setMajorList] = useState<IDropdownElement[]>([]);
+  const [isPasswordConfirmWarningShown, setIsPasswordConfirmWarningShown] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const searchMajor = () => {
     const majorInputValue = (document.getElementById('major') as HTMLInputElement).value;
     setMajorSearchTitle(majorInputValue);
   };
 
+  const confirmPassword = () => {
+    const password = (document.getElementById('password') as HTMLInputElement)?.value;
+    const passwordConfirm = (document.getElementById('password-confirm') as HTMLInputElement)
+      ?.value;
+    if (passwordConfirm) {
+      const result = isPasswordConfirmed(password, passwordConfirm);
+      setIsPasswordConfirmWarningShown(!result);
+      setIsFormValid(result);
+    }
+  };
+
   useEffect(() => {
     setMajorList(createMajorList(majorData));
   }, [majorData]);
-
-  const isPasswordConfirmed = (password1: string, password2: string) => password1 === password2;
 
   return (
     <PageTemplate>
@@ -77,7 +90,11 @@ export const UserDataEditPage = () => {
             name='password-confirm'
             placeholder='비밀번호를 다시 한번 입력해주세요'
             type={INPUT_TYPE.PASSWORD}
+            onChange={confirmPassword}
           />
+          <WarningMessage isShown={isPasswordConfirmWarningShown}>
+            비밀번호가 일치하지 않습니다.
+          </WarningMessage>
           <label htmlFor='major'>전공</label>
           <SearchDropdownInputBox id='major' elements={majorList} searchWithAPI={searchMajor} />
           <label htmlFor='job'>직업</label>
@@ -101,6 +118,7 @@ export const UserDataEditPage = () => {
             size={BUTTON_SIZE.LARGE}
             type={BUTTON_TYPE.SUBMIT}
             onClick={submit}
+            isActivated={isFormValid}
           >
             수정
           </TextButton>
