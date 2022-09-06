@@ -1,9 +1,10 @@
 export interface ITagBox {
   name: string;
-  color: 'color1' | 'color2' | 'color3' | 'color4';
+  color?: string;
 }
 
 export interface ITagState {
   id: string;
+  name: string;
   isChecked: boolean;
 }

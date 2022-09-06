@@ -24,13 +24,8 @@ import githubLogo from '../../assets/icons/github.svg';
 import { TechTagBox } from '../../Component/Box/TechTagBox';
 import { DoughnutChart } from '../../Component/Chart/DoughnutChart';
 import { createCategoryChartData } from '../../utils/createChartData';
-
-const CATEGORY_COLOR_MAP = [
-  { category: 'OS', color: COLOR.POINT1 },
-  { category: 'DB', color: COLOR.POINT2 },
-  { category: 'Data Structure', color: COLOR.POINT3 },
-  { category: 'Network', color: COLOR.POINT4 },
-];
+import { useNavigate } from 'react-router-dom';
+import { URL } from '../../constants/url';
 
 interface IProfileBox {
   profileData: IProfileData;
@@ -52,6 +47,7 @@ interface IProfileData {
 }
 
 export const ProfileBox = ({ profileData }: IProfileBox) => {
+  const navigate = useNavigate();
   const {
     nickname,
     imageUrl,
@@ -126,6 +122,9 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
         theme={BUTTON_THEME.SECONDARY}
         size={BUTTON_SIZE.LARGE_MEDIUM}
         className={editButtonStyle}
+        onClick={() => {
+          navigate(URL.USER_DATA_EDIT);
+        }}
       >
         프로필 수정하기
       </TextButton>

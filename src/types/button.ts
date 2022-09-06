@@ -12,6 +12,7 @@ export interface IButton {
 export interface IButtonDetail extends IButton {
   theme: TButtonTheme;
   size: TButtonSize;
+  isActivated?: boolean;
 }
 
 export const BUTTON_TYPE = { SUBMIT: 'submit', BUTTON: 'button', RESET: 'reset' } as const;

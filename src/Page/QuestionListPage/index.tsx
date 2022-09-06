@@ -46,11 +46,11 @@ function QuestionListPage() {
   const [page, setPage] = useState(0);
   const { isLogin } = useAuthStore();
 
-  const handleCheckedTags = (id: string, isChecked: boolean) => {
+  const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {
     setCheckedTags((prev) =>
       prev.map((tag) => tag.id).includes(id)
-        ? prev.map((tag) => (tag.id === id ? { id, isChecked } : tag))
-        : [...prev, { id, isChecked }],
+        ? prev.map((tag) => (tag.id === id ? { id, isChecked, name } : tag))
+        : [...prev, { id, isChecked, name }],
     );
   };
 
