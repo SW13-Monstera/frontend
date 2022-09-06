@@ -65,7 +65,7 @@ export const descStyle = style({
 
 export const titleStyle = style({
   width: '15rem',
-  height: '4rem',
+  height: '3rem',
 });
 
 export const titleTagStyle = style({
@@ -88,6 +88,11 @@ export const problemDetailStyle = style([
     gap: '1rem',
 
     width: '25rem',
-    height: '2rem',
+    height: '1.75rem',
   },
 ]);
+
+export const skeletonScoreStyle = style({
+  width: '2rem',
+  height: '5rem',
+});

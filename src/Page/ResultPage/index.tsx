@@ -13,6 +13,8 @@ import {
   pageStyle,
   subtitleStyle,
   answerContentStyle,
+  scoreStyle,
+  scoreWrapperStyle,
 } from './style.css';
 import { URL, URLWithParam } from '../../constants/url';
 import { ILongProblemResultData } from '../../types/api/problem';
@@ -73,6 +75,11 @@ function ResultPage() {
           </TextBox>
         </div>
         <div className={buttonListStyle}>
+          <div className={scoreWrapperStyle}>
+            <div>내 점수:</div>
+            <div className={scoreStyle}>{result?.score}점</div>
+          </div>
+
           <Link to={URLWithParam.LONG_PROBLEM_DETAIL(parseInt(id))} state={{ problemId: id }}>
             <TextButton
               type={BUTTON_TYPE.BUTTON}

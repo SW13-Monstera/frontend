@@ -8,6 +8,7 @@ import {
   line3Style,
   textButtonStyle,
   titleStyle,
+  skeletonScoreStyle,
 } from './style.css';
 import { skeletonKeyframeAnimation } from '../skeletonKeyframeAnimation.css';
 import { TextBox } from '../../Box';
@@ -16,6 +17,8 @@ import {
   contentStyle,
   pageContentStyle,
   pageStyle,
+  scoreStyle,
+  scoreWrapperStyle,
   subtitleStyle,
 } from '../../../Page/ResultPage/style.css';
 import { Header } from '../../../Template';
@@ -74,6 +77,10 @@ export const SkeletonLongProblemResultPage = () => {
           </TextBox>
         </div>
         <div className={buttonListStyle}>
+          <div className={scoreWrapperStyle}>
+            <div>내 점수:</div>
+            <div className={`${scoreStyle} ${skeletonScoreStyle}`}></div>
+          </div>
           <SkeletonTextButton />
           <SkeletonTextButton />
         </div>
