@@ -19,27 +19,26 @@ import { ILongProblemResultData } from '../../types/api/problem';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useMutation } from 'react-query';
 import { useEffect } from 'react';
+import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
 
 function ResultPage() {
   const { id } = useParams();
   const userAnswer = useLocation().state as string;
-
-  if (!id) return <></>;
 
   function handleSubmit() {
     if (!id) throw new Error('invalid id');
     return problemApiWrapper.longProblemResult(id, userAnswer);
   }
 
-  const {
-    data: result,
-    isLoading,
-    mutate,
-  } = useMutation<ILongProblemResultData>(handleSubmit);
+  const { data: result, isLoading, mutate } = useMutation<ILongProblemResultData>(handleSubmit);
 
   useEffect(() => {
     mutate();
   }, []);
+
+  if (!id) return <></>;
+  if (isLoading) return <SkeletonLongProblemResultPage />;
+
   return (
     <>
       <Header />
