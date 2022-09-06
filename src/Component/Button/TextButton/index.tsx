@@ -9,7 +9,7 @@ function TextButton({
   onClick,
   children,
   className,
-  isActivated,
+  isActivated = true,
 }: IButtonDetail) {
   return (
     <button

@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import baseFontStyle from '../../../styles/font.css';
 
 export const tagStyle = style([
@@ -33,10 +33,3 @@ export const tagStyle = style([
     },
   },
 ]);
-
-export const tagBoxColorStyle = styleVariants({
-  color1: [{ backgroundColor: '#FFDED5' }],
-  color2: [{ backgroundColor: '#FCE38A' }],
-  color3: [{ backgroundColor: '#EAFFD0' }],
-  color4: [{ backgroundColor: '#95E1D3' }],
-});
