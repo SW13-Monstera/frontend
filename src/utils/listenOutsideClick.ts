@@ -5,16 +5,14 @@ export default function listenOutsideClick( //menuRef가 가르키는 dom요소(
   menuRef: RefObject<HTMLDivElement>,
   setIsOpen: (isOpen: boolean) => void,
 ) {
-  return () => {
-    if (!menuRef.current) return;
+  if (!menuRef.current) return;
 
-    [EVENT.CLICK, EVENT.TOUCHSTART].forEach((e) => {
-      document.addEventListener(e, (event) => {
-        const curr = menuRef.current;
-        const target = event.target;
-        if (curr?.contains(target as Node)) return;
-        setIsOpen(false);
-      });
+  [EVENT.CLICK, EVENT.TOUCHSTART].forEach((e) => {
+    document.addEventListener(e, (event) => {
+      const curr = menuRef.current;
+      const target = event.target;
+      if (curr?.contains(target as Node)) return;
+      setIsOpen(false);
     });
-  };
+  });
 }

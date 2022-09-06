@@ -26,7 +26,7 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
     setIsOpen(!isOpen);
   }
 
-  useEffect(listenOutsideClick(menuRef, setIsOpen), []);
+  useEffect(() => listenOutsideClick(menuRef, setIsOpen), []);
 
   return (
     <div css={dropDownStyle} ref={menuRef}>

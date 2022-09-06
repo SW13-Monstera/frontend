@@ -54,7 +54,7 @@ export function SearchDropdownInputBox({ id, elements, searchWithAPI }: ISearchD
     document.getElementById(id)?.focus();
   };
 
-  useEffect(listenOutsideClick(menuRef, setIsOpen), []);
+  useEffect(() => listenOutsideClick(menuRef, setIsOpen), []);
 
   useEffect(() => {
     setfilteredElements(elements);

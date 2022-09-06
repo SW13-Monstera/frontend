@@ -19,17 +19,13 @@ import { createMajorList } from '../../utils/createMajorList';
 import { IMajorListElement } from '../../types/api/major';
 import { IDropdownElement } from '../../types/util';
 import { WarningMessage } from '../../Component/Message/WarningMessage';
-import { isPasswordConfirmed } from '../../utils/isPasswordConfirmed';
-
-const MAJOR_OPEN_API_KEY = '3da82601ae4e70ae3be5112a07bf35c5';
-const MAJOR_OPEN_API_URL = 'https://www.career.go.kr/cnet/openapi/getOpenApi.json';
 
 export const UserDataEditPage = () => {
   const getMajorList = (searchTitle?: string | null) => {
     return axios
-      .get(MAJOR_OPEN_API_URL, {
+      .get(import.meta.env.VITE_MAJOR_OPEN_API_URL, {
         params: {
-          apiKey: MAJOR_OPEN_API_KEY,
+          apiKey: import.meta.env.VITE_MAJOR_OPEN_API_KEY,
           svcType: 'api',
           svcCode: 'MAJOR',
           gubun: 'univ_list',
@@ -62,7 +58,7 @@ export const UserDataEditPage = () => {
     const passwordConfirm = (document.getElementById('password-confirm') as HTMLInputElement)
       ?.value;
     if (passwordConfirm) {
-      const result = isPasswordConfirmed(password, passwordConfirm);
+      const result = password === passwordConfirm;
       setIsPasswordConfirmWarningShown(!result);
       setIsFormValid(result);
     }
