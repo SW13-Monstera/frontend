@@ -1,4 +1,3 @@
-import { ITag } from '../types/problem';
 import { ITagBox } from '../types/tag';
 import { IDropdownElement } from '../types/util';
 import { PROBLEM_TYPE } from './problem';
