@@ -19,7 +19,6 @@ import { createMajorList } from '../../utils/createMajorList';
 import { IMajorListElement } from '../../types/api/major';
 import { IDropdownElement } from '../../types/util';
 import { WarningMessage } from '../../Component/Message/WarningMessage';
-import { isPasswordConfirmed } from '../../utils/isPasswordConfirmed';
 
 export const UserDataEditPage = () => {
   const getMajorList = (searchTitle?: string | null) => {
@@ -59,7 +58,7 @@ export const UserDataEditPage = () => {
     const passwordConfirm = (document.getElementById('password-confirm') as HTMLInputElement)
       ?.value;
     if (passwordConfirm) {
-      const result = isPasswordConfirmed(password, passwordConfirm);
+      const result = password === passwordConfirm;
       setIsPasswordConfirmWarningShown(!result);
       setIsFormValid(result);
     }
