@@ -1,12 +1,11 @@
 import { contentTitleStyle, answerInputContentStyle } from './style.css';
 import '../gutter.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
-import { URLWithParam } from '../../../constants/url';
-import { ILongProblemDetailResponseData, ILongProblemResultData } from '../../../types/api/problem';
+import { ILongProblemDetailResponseData } from '../../../types/api/problem';
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
+import { URLWithParam } from '../../../constants/url';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
@@ -16,20 +15,12 @@ export function LongQuestionDetailPage() {
     () => problemApiWrapper.longProblemDetail(id!),
     { refetchOnWindowFocus: false },
   );
-  const [result, setResult] = useState<ILongProblemResultData | null>(null);
 
-  function handleSubmit() {
-    if (!id) return;
+  const handleSubmit = () => {
+    if (!id) throw new Error('invalid id');
     const answer = (document.getElementById('answer') as HTMLTextAreaElement).value;
-    problemApiWrapper.longProblemResult(id, answer).then((data) => {
-      setResult(data);
-    });
-  }
-
-  useEffect(() => {
-    if (!id || !result) return;
-    navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), { state: result });
-  }, [result]);
+    navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), { state: answer });
+  };
 
   return (
     <SplitProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>

@@ -15,8 +15,8 @@ import { themeDarkClass, themeLightClass } from '../../Page/QuestionDetailPage/b
 
 export const ProblemDetailPageTemplate = ({
   data,
-  handleSubmit,
   children,
+  handleSubmit,
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
   const { isLogin } = useAuthStore();

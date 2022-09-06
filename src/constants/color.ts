@@ -5,6 +5,7 @@ const COLOR = {
   CORRECT: '#0EBD0A', //정답 표시
   TITLEACTIVE: '#000000', // 각종 타이틀 및 텍스트에 사용
   GRAY: '#D9D9D9', // border, placeholder에 사용
+  GRAY2: '#BBBBBB', // skeleton UI gradient에 사용
   DARKGRAY: '#121212',
   WHITE: '#FFFFFF', // 기본 배경색, 텍스트 등에 사용되는 흰색
   OFFWHITE: '#F5F5F5', // 서브 배경색
