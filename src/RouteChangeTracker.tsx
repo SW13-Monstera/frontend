@@ -7,7 +7,7 @@ export const RouteChangeTracker = () => {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    if (!window.location.href.includes('localhost')) {
+    if (!window.location.href.includes('csbroker.io')) {
       ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID);
     }
     setInitialized(true);
