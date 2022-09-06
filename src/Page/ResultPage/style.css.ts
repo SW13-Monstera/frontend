@@ -88,3 +88,18 @@ export const buttonListStyle = style({
   alignSelf: 'flex-end',
   gap: '1rem',
 });
+
+export const scoreWrapperStyle = style([
+  baseFontStyle.xlarge,
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem',
+    marginRight: '2rem',
+  },
+]);
+
+export const scoreStyle = style({
+  fontWeight: 'bold',
+});

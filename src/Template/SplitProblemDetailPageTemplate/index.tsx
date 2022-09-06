@@ -10,8 +10,8 @@ import { IProblemDetailPageTemplate } from '../../types/problem';
 
 export const SplitProblemDetailPageTemplate = ({
   data,
-  handleSubmit,
   children,
+  handleSubmit,
 }: IProblemDetailPageTemplate) => {
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
