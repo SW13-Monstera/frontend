@@ -1,7 +1,6 @@
 import {
   descStyle,
   problemDetailStyle,
-  titleTagStyle,
   topStyle,
   line1Style,
   line2Style,
