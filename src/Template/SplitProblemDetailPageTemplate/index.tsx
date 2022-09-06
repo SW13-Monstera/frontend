@@ -8,13 +8,9 @@ import {
 } from './style.css';
 import { IProblemDetailPageTemplate } from '../../types/problem';
 
-export const SplitProblemDetailPageTemplate = ({
-  data,
-  handleSubmit,
-  children,
-}: IProblemDetailPageTemplate) => {
+export const SplitProblemDetailPageTemplate = ({ data, children }: IProblemDetailPageTemplate) => {
   return (
-    <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
+    <ProblemDetailPageTemplate data={data}>
       <Split
         sizes={[35, 65]}
         minSize={100}

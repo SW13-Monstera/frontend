@@ -1,29 +1,31 @@
 import { useState } from 'react';
 import { pageStyle, descStyle, questionContentStyle, buttonListStyle, topStyle } from './style.css';
 import '../../styles/gutter.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Header from '../../Template/Header';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { ReactComponent as SunIcon } from '../../assets/icons/sun.svg';
 import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
-import { URL } from '../../constants/url';
+import { URL, URLWithParam } from '../../constants/url';
 import ProblemTitle from '../../Organism/ProblemTitle';
 import { useAuthStore } from '../../hooks/useStore';
 import { IProblemDetailPageTemplate } from '../../types/problem';
 import { themeDarkClass, themeLightClass } from '../../Page/QuestionDetailPage/baseStyle.css';
 
-export const ProblemDetailPageTemplate = ({
-  data,
-  handleSubmit,
-  children,
-}: IProblemDetailPageTemplate) => {
+export const ProblemDetailPageTemplate = ({ data, children }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
   const [isDark, setIsDark] = useState(true);
+  const navigate = useNavigate();
 
   const toggleDarkMode = () => {
     setIsDark((prev) => !prev);
+  };
+  const navigateToResultPage = () => {
+    if (!id) throw new Error('invalid id');
+    const answer = (document.getElementById('answer') as HTMLTextAreaElement).value;
+    navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), { state: answer });
   };
 
   if (!id) return <></>;
@@ -57,7 +59,7 @@ export const ProblemDetailPageTemplate = ({
                   type={BUTTON_TYPE.SUBMIT}
                   theme={BUTTON_THEME.PRIMARY}
                   size={BUTTON_SIZE.MEDIUM}
-                  onClick={handleSubmit}
+                  onClick={navigateToResultPage}
                 >
                   제출하기
                 </TextButton>
