@@ -20,9 +20,10 @@ import { IDropdownElement } from '../../../../types/util';
 interface ISearchDropdownInputBox {
   id: string;
   elements: IDropdownElement[];
+  searchWithAPI?: () => void;
 }
 
-export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox) {
+export function SearchDropdownInputBox({ id, elements, searchWithAPI }: ISearchDropdownInputBox) {
   const [isOpen, setIsOpen] = useState(false);
   const [checkedTags, setCheckedTags] = useState<ITagState[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -49,6 +50,10 @@ export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox
     setIsOpen(true);
   };
 
+  const focusOnInput = () => {
+    document.getElementById(id)?.focus();
+  };
+
   useEffect(listenOutsideClick(menuRef, setIsOpen), []);
 
   useEffect(() => {
@@ -56,7 +61,7 @@ export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox
   }, [elements]);
 
   return (
-    <div ref={menuRef}>
+    <div ref={menuRef} onClick={focusOnInput}>
       <div className={searchInputBoxStyle} onClick={toggleDropdown}>
         <label htmlFor='id'></label>
         <input
@@ -64,7 +69,7 @@ export function SearchDropdownInputBox({ id, elements }: ISearchDropdownInputBox
           className={inputTextBoxStyle}
           type={INPUT_TYPE.SEARCH}
           id={id}
-          onChange={search}
+          onChange={searchWithAPI ?? search}
         ></input>
         <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
           <SearchIcon className={searchButtonStyle} />

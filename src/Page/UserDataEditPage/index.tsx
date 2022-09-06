@@ -32,7 +32,7 @@ export const UserDataEditPage = () => {
           svcCode: 'MAJOR',
           gubun: 'univ_list',
           contentType: 'json',
-          perPage: 5,
+          perPage: 7,
           searchTitle: searchTitle,
         },
       })
@@ -40,11 +40,16 @@ export const UserDataEditPage = () => {
   };
 
   const submit = () => {};
-  const [majorSearchTitle, setMajorSearchTItle] = useState<string | null>(null);
+  const [majorSearchTitle, setMajorSearchTitle] = useState<string | null>(null);
   const { data: majorData } = useQuery<IMajorListElement[]>(['majors', majorSearchTitle], () =>
     getMajorList(majorSearchTitle),
   );
   const [majorList, setMajorList] = useState<IDropdownElement[]>([]);
+
+  const searchMajor = () => {
+    const majorInputValue = (document.getElementById('major') as HTMLInputElement).value;
+    setMajorSearchTitle(majorInputValue);
+  };
 
   useEffect(() => {
     setMajorList(createMajorList(majorData));
@@ -74,7 +79,7 @@ export const UserDataEditPage = () => {
             type={INPUT_TYPE.PASSWORD}
           />
           <label htmlFor='major'>전공</label>
-          <SearchDropdownInputBox id='major' elements={majorList} />
+          <SearchDropdownInputBox id='major' elements={majorList} searchWithAPI={searchMajor} />
           <label htmlFor='job'>직업</label>
           <SearchDropdownInputBox id='job' elements={JOB} />
           <label htmlFor='core-tect'>주요 기술</label>
