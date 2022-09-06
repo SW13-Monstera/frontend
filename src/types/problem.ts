@@ -51,6 +51,7 @@ type TPartialProblemDetailResponseData = Partial<IProblemDetailResponseData>;
 interface IProblemDetailPageTemplate {
   data: TPartialProblemDetailResponseData | undefined;
   children?: React.ReactNode;
+  handleSubmit: () => void;
 }
 
 export interface IMypageProblem {
