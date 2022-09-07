@@ -22,6 +22,7 @@ import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useMutation } from 'react-query';
 import { useEffect } from 'react';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
+import { MarkdownBox } from '../../Component/Box/MarkdownBox';
 
 function ResultPage() {
   const { id } = useParams();
@@ -70,7 +71,9 @@ function ResultPage() {
           <TextBox>
             <div className={contentStyle}>
               <h3 className={subtitleStyle}>모범 답안</h3>
-              <p className={answerContentStyle}>{result?.standardAnswer}</p>
+              <div className={answerContentStyle}>
+                <MarkdownBox>{result?.standardAnswer}</MarkdownBox>
+              </div>
             </div>
           </TextBox>
         </div>
