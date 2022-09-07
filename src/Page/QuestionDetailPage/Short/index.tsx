@@ -4,10 +4,8 @@ import {
   problemDescContentStyle,
   answerInputWrapperStyle,
   answerInputTitleStyle,
-  answerLengthOpenStyle,
-  answerLengthNotOpenStyle,
-  hintWrapperStyle,
   answerInputScoredStyle,
+  scoreStyle,
 } from './style.css';
 import '../gutter.css';
 import { useParams } from 'react-router-dom';
@@ -17,7 +15,6 @@ import {
   IShortProblemDetailResponseData,
   IShortProblemResultData,
 } from '../../../types/api/problem';
-import { TransparentButton } from '../../../Component/Button';
 import { XIcon } from '../../../Icon/XIcon';
 import { OIcon } from '../../../Icon/OIcon';
 import { COLOR } from '../../../constants/color';
@@ -33,7 +30,6 @@ export function ShortQuestionDetailPage() {
     () => problemApiWrapper.shortProblemDetail(id!),
     { refetchOnWindowFocus: false },
   );
-  const [isHintOpen, setIsHintOpen] = useState(false);
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
 
   const resetInput = () => {
@@ -45,13 +41,6 @@ export function ShortQuestionDetailPage() {
     if (!id) return;
     const data = (document.getElementById('answer') as HTMLInputElement).value;
     problemApiWrapper.shortProblemResult(id, data).then((data) => setResult(data));
-  }
-
-  function showHint() {
-    setIsHintOpen(true);
-    setTimeout(() => {
-      setIsHintOpen(false);
-    }, 2000);
   }
 
   return (
@@ -84,12 +73,7 @@ export function ShortQuestionDetailPage() {
           <></>
         )}
       </div>
-      <div className={hintWrapperStyle}>
-        <TransparentButton onClick={showHint}>힌트 보기</TransparentButton>
-        <div className={isHintOpen ? answerLengthOpenStyle : answerLengthNotOpenStyle}>
-          정답은 {data?.answerLength}글자
-        </div>
-      </div>
+      <div className={scoreStyle}>{isGraded ? `내 점수: ${result?.score}점` : ''}</div>
     </ProblemDetailPageTemplate>
   );
 }

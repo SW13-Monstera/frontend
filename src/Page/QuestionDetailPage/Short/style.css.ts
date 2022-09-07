@@ -99,7 +99,10 @@ export const answerLengthNotOpenStyle = style({
   visibility: 'hidden',
 });
 
-export const hintWrapperStyle = style({
-  alignSelf: 'flex-end',
-  padding: '1.5rem',
-});
+export const scoreStyle = style([
+  baseFontStyle.large,
+  {
+    alignSelf: 'flex-end',
+    padding: '1.5rem',
+  },
+]);

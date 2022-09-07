@@ -11,10 +11,6 @@ export const useGradeResult = (result: TResult | null, resetInput: () => void) =
     if (!result) return;
     setIsAnswer(result.isAnswer);
     setIsGraded(true);
-    setTimeout(() => {
-      setIsGraded(false);
-      resetInput();
-    }, 1000);
   }, [result]);
 
   return { isAnswer, isGraded };
