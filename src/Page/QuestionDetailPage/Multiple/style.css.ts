@@ -69,3 +69,11 @@ export const gradeResultScoredStyle = styleVariants({
   correct: [gradeResultStyle, { color: COLOR.CORRECT }],
   wrong: [gradeResultStyle, { color: COLOR.ERROR }],
 });
+
+export const scoreStyle = style([
+  baseFontStyle.large,
+  {
+    alignSelf: 'flex-end',
+    padding: '1.5rem',
+  },
+]);

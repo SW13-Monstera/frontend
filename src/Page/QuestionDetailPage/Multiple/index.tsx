@@ -12,6 +12,7 @@ import {
   choiceWrapperStyle,
   contentTitleStyle,
   gradeResultScoredStyle,
+  scoreStyle,
 } from './style.css';
 import { useGradeResult } from '../../../hooks/useGradeResult';
 import { COLOR } from '../../../constants/color';
@@ -74,6 +75,7 @@ export function MultipleQuestionDetailPage() {
       ) : (
         <></>
       )}
+      <div className={scoreStyle}>{isGraded ? `내 점수: ${result?.score}점` : ''}</div>
     </SplitProblemDetailPageTemplate>
   );
 }
