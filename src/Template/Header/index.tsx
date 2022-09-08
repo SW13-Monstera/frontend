@@ -5,7 +5,13 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { useAuthStore } from '../../hooks/useStore';
 import { IconButton, TransparentButton } from '../../Component/Button';
 import logo from '../../assets/images/csbroker.png';
-import { headerStyle, logoStyle, menuStyle, navStyle } from './style.css';
+import {
+  headerStyle,
+  leftSideWrapperStyle,
+  logoStyle,
+  menuStyle,
+  problemListButtonStyle,
+} from './style.css';
 import { COLOR } from '../../constants/color';
 import { ICON } from '../../constants/icon';
 import { URL } from '../../constants/url';
@@ -14,6 +20,7 @@ import { usePopover } from '../../hooks/usePopover';
 import { Typography } from '@mui/material';
 import { Divider } from '../../Component/Divider';
 import { setLogout } from '../../utils/setLogout';
+import { RightArrowIcon } from '../../Icon/RightArrowIcon';
 
 function Header() {
   const navigate = useNavigate();
@@ -41,11 +48,23 @@ function Header() {
 
   return (
     <header className={headerStyle}>
-      <Link to={URL.MAIN}>
-        <img src={logo} className={logoStyle} />
-      </Link>
-      <div className={navStyle}>
-        <Link to={URL.PROBLEM_LIST}>모든 문제</Link>
+      <div className={leftSideWrapperStyle}>
+        <img
+          src={logo}
+          className={logoStyle}
+          onClick={() => {
+            navigate(URL.MAIN);
+          }}
+        />
+        <button
+          className={problemListButtonStyle}
+          onClick={() => {
+            navigate(URL.PROBLEM_LIST);
+          }}
+        >
+          <span>모든문제 바로가기</span>
+          <RightArrowIcon fill={COLOR.PRIMARY} width='10px' height='10px' />
+        </button>
       </div>
       <div className={menuStyle}>
         {isLogin ? (
