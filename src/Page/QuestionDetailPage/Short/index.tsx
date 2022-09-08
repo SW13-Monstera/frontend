@@ -19,7 +19,6 @@ import { XIcon } from '../../../Icon/XIcon';
 import { OIcon } from '../../../Icon/OIcon';
 import { COLOR } from '../../../constants/color';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
-import { useGradeResult } from '../../../hooks/useGradeResult';
 import { useQuery } from 'react-query';
 import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
 
@@ -35,7 +34,10 @@ export function ShortQuestionDetailPage() {
   const resetInput = () => {
     (document.getElementById('answer') as HTMLInputElement).value = '';
   };
-  const { isAnswer, isGraded } = useGradeResult(result, resetInput);
+  const resetResult = () => {
+    resetInput();
+    setResult(null);
+  };
 
   function handleSubmit() {
     if (!id) return;
@@ -59,12 +61,13 @@ export function ShortQuestionDetailPage() {
           id='answer'
           placeholder='답변을 입력해주세요'
           className={
-            answerInputScoredStyle[isGraded ? (isAnswer ? 'correct' : 'wrong') : 'default']
+            answerInputScoredStyle[result ? (result?.isAnswer ? 'correct' : 'wrong') : 'default']
           }
           autoComplete='off'
+          onFocus={resetResult}
         ></input>
-        {isGraded ? (
-          isAnswer ? (
+        {result ? (
+          result.isAnswer ? (
             <OIcon fill={COLOR.CORRECT} width='3rem' height='3rem' />
           ) : (
             <XIcon fill={COLOR.ERROR} width='3rem' height='3rem' />
@@ -73,7 +76,7 @@ export function ShortQuestionDetailPage() {
           <></>
         )}
       </div>
-      <div className={scoreStyle}>{isGraded ? `내 점수: ${result?.score}점` : ''}</div>
+      <div className={scoreStyle}>{result ? `내 점수: ${result?.score}점` : ''}</div>
     </ProblemDetailPageTemplate>
   );
 }
