@@ -24,6 +24,7 @@ import { COLOR } from '../../../constants/color';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
 import { useGradeResult } from '../../../hooks/useGradeResult';
 import { useQuery } from 'react-query';
+import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
@@ -57,7 +58,9 @@ export function ShortQuestionDetailPage() {
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
       <div className={contentWrapperStyle}>
         <div className={contentTitleStyle}>문제 설명</div>
-        <div className={problemDescContentStyle}>{data?.description}</div>
+        <div className={problemDescContentStyle}>
+          <MarkdownBox>{data?.description}</MarkdownBox>
+        </div>
       </div>
       <div className={answerInputWrapperStyle}>
         <label htmlFor='answer' className={answerInputTitleStyle}>

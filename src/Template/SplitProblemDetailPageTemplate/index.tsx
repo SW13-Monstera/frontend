@@ -7,6 +7,7 @@ import {
   splitStyle,
 } from './style.css';
 import { IProblemDetailPageTemplate } from '../../types/problem';
+import { MarkdownBox } from '../../Component/Box/MarkdownBox';
 
 export const SplitProblemDetailPageTemplate = ({
   data,
@@ -29,7 +30,9 @@ export const SplitProblemDetailPageTemplate = ({
       >
         <div className={contentWrapperStyle}>
           <div className={contentTitleStyle}>문제 설명</div>
-          <div className={problemDescContentStyle}>{data?.description}</div>
+          <div className={problemDescContentStyle}>
+            <MarkdownBox>{data?.description}</MarkdownBox>
+          </div>
         </div>
         <div className={contentWrapperStyle}>{children}</div>
       </Split>

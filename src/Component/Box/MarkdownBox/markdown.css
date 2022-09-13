@@ -1,0 +1,7 @@
+.markdown a:hover {
+  text-decoration: underline;
+}
+
+.markdown a {
+  color: #4682db;
+}
