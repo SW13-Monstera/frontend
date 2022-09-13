@@ -51,7 +51,6 @@ export const titleTagStyle = style({
 export const questionContentStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '2rem',
   height: '60vh',
   background: vars.contentBackgroundColor,
   borderRadius: '10px',

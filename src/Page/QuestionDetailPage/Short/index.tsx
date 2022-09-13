@@ -4,10 +4,8 @@ import {
   problemDescContentStyle,
   answerInputWrapperStyle,
   answerInputTitleStyle,
-  answerLengthOpenStyle,
-  answerLengthNotOpenStyle,
-  hintWrapperStyle,
   answerInputScoredStyle,
+  scoreStyle,
 } from './style.css';
 import '../gutter.css';
 import { useParams } from 'react-router-dom';
@@ -17,12 +15,10 @@ import {
   IShortProblemDetailResponseData,
   IShortProblemResultData,
 } from '../../../types/api/problem';
-import { TransparentButton } from '../../../Component/Button';
 import { XIcon } from '../../../Icon/XIcon';
 import { OIcon } from '../../../Icon/OIcon';
 import { COLOR } from '../../../constants/color';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
-import { useGradeResult } from '../../../hooks/useGradeResult';
 import { useQuery } from 'react-query';
 import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
 
@@ -33,25 +29,20 @@ export function ShortQuestionDetailPage() {
     () => problemApiWrapper.shortProblemDetail(id!),
     { refetchOnWindowFocus: false },
   );
-  const [isHintOpen, setIsHintOpen] = useState(false);
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
 
   const resetInput = () => {
     (document.getElementById('answer') as HTMLInputElement).value = '';
   };
-  const { isAnswer, isGraded } = useGradeResult(result, resetInput);
+  const resetResult = () => {
+    resetInput();
+    setResult(null);
+  };
 
   function handleSubmit() {
     if (!id) return;
     const data = (document.getElementById('answer') as HTMLInputElement).value;
     problemApiWrapper.shortProblemResult(id, data).then((data) => setResult(data));
-  }
-
-  function showHint() {
-    setIsHintOpen(true);
-    setTimeout(() => {
-      setIsHintOpen(false);
-    }, 2000);
   }
 
   return (
@@ -70,12 +61,13 @@ export function ShortQuestionDetailPage() {
           id='answer'
           placeholder='답변을 입력해주세요'
           className={
-            answerInputScoredStyle[isGraded ? (isAnswer ? 'correct' : 'wrong') : 'default']
+            answerInputScoredStyle[result ? (result?.isAnswer ? 'correct' : 'wrong') : 'default']
           }
           autoComplete='off'
+          onFocus={resetResult}
         ></input>
-        {isGraded ? (
-          isAnswer ? (
+        {result ? (
+          result.isAnswer ? (
             <OIcon fill={COLOR.CORRECT} width='3rem' height='3rem' />
           ) : (
             <XIcon fill={COLOR.ERROR} width='3rem' height='3rem' />
@@ -84,12 +76,7 @@ export function ShortQuestionDetailPage() {
           <></>
         )}
       </div>
-      <div className={hintWrapperStyle}>
-        <TransparentButton onClick={showHint}>힌트 보기</TransparentButton>
-        <div className={isHintOpen ? answerLengthOpenStyle : answerLengthNotOpenStyle}>
-          정답은 {data?.answerLength}글자
-        </div>
-      </div>
+      <div className={scoreStyle}>{result ? `내 점수: ${result?.score}점` : ''}</div>
     </ProblemDetailPageTemplate>
   );
 }

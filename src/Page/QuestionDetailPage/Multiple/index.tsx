@@ -12,13 +12,16 @@ import {
   choiceWrapperStyle,
   contentTitleStyle,
   gradeResultScoredStyle,
+  resultWrapperStyle,
+  scoreStyle,
+  wrongGradeResultWrapperStyle,
 } from './style.css';
-import { useGradeResult } from '../../../hooks/useGradeResult';
 import { COLOR } from '../../../constants/color';
 import { XIcon } from '../../../Icon/XIcon';
 import { OIcon } from '../../../Icon/OIcon';
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
+import { TransparentButton } from '../../../Component/Button';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
@@ -34,7 +37,12 @@ export function MultipleQuestionDetailPage() {
       (e) => (e.checked = false),
     );
   };
-  const { isAnswer, isGraded } = useGradeResult(result, resetInput);
+
+  const resetResult = () => {
+    if (!result) return;
+    resetInput();
+    setResult(null);
+  };
 
   function handleSubmit() {
     if (!id) return;
@@ -59,21 +67,27 @@ export function MultipleQuestionDetailPage() {
           </label>
         ))}
       </div>
-      {isGraded ? (
-        isAnswer ? (
-          <div className={gradeResultScoredStyle.correct}>
-            <div>정답입니다</div>
-            <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
-          </div>
+      <div className={resultWrapperStyle}>
+        {result ? (
+          result.isAnswer ? (
+            <div className={gradeResultScoredStyle.correct}>
+              <div>정답입니다</div>
+              <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
+            </div>
+          ) : (
+            <div className={wrongGradeResultWrapperStyle}>
+              <div className={gradeResultScoredStyle.wrong}>
+                <div>오답입니다</div>
+                <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
+              </div>
+              <TransparentButton onClick={resetResult}>다시 풀기</TransparentButton>
+            </div>
+          )
         ) : (
-          <div className={gradeResultScoredStyle.wrong}>
-            <div>오답입니다</div>
-            <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
-          </div>
-        )
-      ) : (
-        <></>
-      )}
+          <></>
+        )}
+        <div className={scoreStyle}>{result ? `내 점수: ${result?.score}점` : ''}</div>
+      </div>
     </SplitProblemDetailPageTemplate>
   );
 }

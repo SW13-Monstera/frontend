@@ -60,7 +60,6 @@ export const gradeResultStyle = style([
     alignItems: 'center',
     justifyContent: 'center',
     gap: '1rem',
-
     alignSelf: 'flex-end',
   },
 ]);
@@ -68,4 +67,30 @@ export const gradeResultStyle = style([
 export const gradeResultScoredStyle = styleVariants({
   correct: [gradeResultStyle, { color: COLOR.CORRECT }],
   wrong: [gradeResultStyle, { color: COLOR.ERROR }],
+});
+
+export const wrongGradeResultWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  alignSelf: 'flex-end',
+  gap: '0.5rem',
+});
+
+export const scoreStyle = style([
+  baseFontStyle.large,
+  {
+    alignSelf: 'flex-end',
+    justifySelf: 'flex-end',
+  },
+]);
+
+export const resultWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignSelf: 'flex-end',
+  alignItems: 'flex-end',
+
+  gap: '10rem',
 });

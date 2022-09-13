@@ -26,17 +26,11 @@ export const headerStyle = style([
   },
 ]);
 
-export const navStyle = style([
-  baseFontStyle.large,
-  {
-    boxSizing: 'border-box',
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '2.5rem',
-  },
-]);
+export const leftSideWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
 
 export const menuStyle = style({
   boxSizing: 'border-box',
@@ -57,4 +51,24 @@ export const iconButtonStyle = style({
   stroke: 'white',
 });
 
-export const logoStyle = style({ width: '12rem', padding: '2rem' });
+export const logoStyle = style({ width: '12rem', padding: '2rem', cursor: 'pointer' });
+
+export const problemListButtonStyle = style([
+  baseFontStyle.small,
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '0.5rem',
+    textAlign: 'center',
+    width: 'fit-content',
+    height: '2.5rem',
+    color: COLOR.WHITE,
+    backgroundColor: COLOR.TITLEACTIVE,
+    border: `1.5px solid ${COLOR.WHITE}`,
+    borderRadius: '8px',
+    padding: '0.5rem 1.2rem',
+    fontWeight: 'bold',
+    ':hover': { filter: 'brightness(90%)' },
+  },
+]);
