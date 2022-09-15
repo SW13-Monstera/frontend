@@ -37,7 +37,7 @@ export const BUTTON_SIZE = {
 export type TButtonSize = typeof BUTTON_SIZE[keyof typeof BUTTON_SIZE];
 
 export interface ICustomButton {
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   type?: TButtonType;
   children?: React.ReactNode;
   className?: string;

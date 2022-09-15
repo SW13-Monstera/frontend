@@ -5,7 +5,7 @@ import { textButtonSizeStyle, textButtonThemeStyle, unactivatedStyle } from './s
 interface ITextButton extends ICustomButton {
   theme: TButtonTheme;
   size: TButtonSize;
-  isActivated: boolean;
+  isActivated?: boolean;
   className?: string;
 }
 
