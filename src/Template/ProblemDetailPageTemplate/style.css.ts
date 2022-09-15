@@ -56,10 +56,15 @@ export const questionContentStyle = style({
   borderRadius: '10px',
 });
 
+export const buttonListWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+
 export const buttonListStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  alignSelf: 'flex-end',
   gap: '1rem',
 });
