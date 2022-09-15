@@ -19,7 +19,11 @@ export const BUTTON_TYPE = { SUBMIT: 'submit', BUTTON: 'button', RESET: 'reset' 
 
 export type TButtonType = typeof BUTTON_TYPE[keyof typeof BUTTON_TYPE];
 
-export const BUTTON_THEME = { PRIMARY: 'primary', SECONDARY: 'secondary' } as const;
+export const BUTTON_THEME = {
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+  TERTIARY: 'tertiary',
+} as const;
 
 export type TButtonTheme = typeof BUTTON_THEME[keyof typeof BUTTON_THEME];
 
@@ -31,3 +35,10 @@ export const BUTTON_SIZE = {
 } as const;
 
 export type TButtonSize = typeof BUTTON_SIZE[keyof typeof BUTTON_SIZE];
+
+export interface ICustomButton {
+  onClick?: () => void;
+  type?: TButtonType;
+  children?: React.ReactNode;
+  className?: string;
+}

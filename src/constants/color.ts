@@ -1,5 +1,5 @@
 const COLOR = {
-  PRIMARY: '#4682DB', //서비스 서브 컬러
+  PRIMARY: '#2A7AF3', //서비스 서브 컬러
   HIGHLIGHT: '#FFF1CD', // 하이라이트 컬러
   ERROR: '#FF6D6D', // 오류 및 삭제에 사용
   CORRECT: '#0EBD0A', //정답 표시
@@ -14,7 +14,23 @@ const COLOR = {
   POINT3: '#EBFDEE', // 포인트 컬러 3
   POINT4: '#F9EBFD', // 포인트 컬러 4
   TAG1: '#FFF1CD', //태그 컬러 1
-  TAG2: '#FFDDDD', //태그 컬러 2
+  TAG2: '#FFDDDD', //태그 컬러 2,
+  TRANSPARENT: 'transparent', //투명
+  TEXT: {
+    '1': '#111111',
+    '2': '#222222',
+    '3': '#AAAAAA',
+    '5': '#555555',
+    '7': '#777777',
+    '8': '#808B9A',
+    '9': '#999999',
+  },
+  DARK: {
+    '0': '#0D0D0D',
+    '1': '#1A1A1A',
+    '2': '#2A2A2A',
+    '3': '#3A3A3A',
+  },
 };
 
 export { COLOR };
