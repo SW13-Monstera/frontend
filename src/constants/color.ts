@@ -31,6 +31,18 @@ const COLOR = {
     '2': '#2A2A2A',
     '3': '#3A3A3A',
   },
+  BACKGROUND: {
+    PURPLE: '#EDEBFD',
+    BLUE: '#F4F8FE',
+    F3: '#F3F3F3',
+    ORANGE: '#FDF9EB',
+    GREEN: '#EBFDEE',
+    F8: '#F8F8F8',
+    PINK: '#F9EBFD',
+    RED: '#FEEFEF',
+    FA: '#FAFAFA',
+    F0: '#F0F0F0',
+  },
 };
 
 export { COLOR };

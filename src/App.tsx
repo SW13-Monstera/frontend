@@ -10,6 +10,7 @@ function App() {
   const { setIsLogin } = useAuthStore();
 
   useEffect(() => {
+    console.log(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     const userInfo = getUserInfo();
     if (userInfo) {
       setIsLogin(true);

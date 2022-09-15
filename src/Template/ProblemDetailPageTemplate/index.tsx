@@ -26,6 +26,7 @@ export const ProblemDetailPageTemplate = ({
   data,
   children,
   handleSubmit,
+  isResult = false,
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
@@ -87,14 +88,25 @@ export const ProblemDetailPageTemplate = ({
                     돌아가기
                   </TextButton>
                   {isLogin ? (
-                    <TextButton
-                      type={BUTTON_TYPE.SUBMIT}
-                      theme={BUTTON_THEME.PRIMARY}
-                      size={BUTTON_SIZE.MEDIUM}
-                      onClick={handleSubmit}
-                    >
-                      제출하기
-                    </TextButton>
+                    isResult ? (
+                      <TextButton
+                        type={BUTTON_TYPE.SUBMIT}
+                        theme={BUTTON_THEME.PRIMARY}
+                        size={BUTTON_SIZE.MEDIUM}
+                        onClick={() => navigate(-1)}
+                      >
+                        다시풀기
+                      </TextButton>
+                    ) : (
+                      <TextButton
+                        type={BUTTON_TYPE.SUBMIT}
+                        theme={BUTTON_THEME.PRIMARY}
+                        size={BUTTON_SIZE.MEDIUM}
+                        onClick={handleSubmit}
+                      >
+                        제출하기
+                      </TextButton>
+                    )
                   ) : (
                     <TextButton
                       type={BUTTON_TYPE.SUBMIT}
