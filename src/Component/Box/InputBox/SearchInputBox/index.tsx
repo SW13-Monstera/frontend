@@ -1,9 +1,10 @@
-import { ReactComponent as SearchIcon } from '../../../../assets/icons/search-icon.svg';
 import { INPUT_TYPE } from '../../../../constants/input';
 import { BUTTON_TYPE } from '../../../../types/button';
 import IconButton from '../../../Button/IconButton';
-import { searchInputBoxStyle, inputTextBoxStyle, searchButtonStyle } from './style.css';
+import { searchInputBoxStyle, inputTextBoxStyle } from './style.css';
 import { KeyboardEvent } from 'react';
+import { SearchIcon } from '../../../../Icon/SearchIcon';
+import { themeColors } from '../../../../styles/theme.css';
 
 interface ISearchInputBox {
   handleSearchInput: () => void;
@@ -27,7 +28,7 @@ function SearchInputBox({ handleSearchInput }: ISearchInputBox) {
         onKeyDown={onKeyDown}
       ></input>
       <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleSearchInput}>
-        <SearchIcon className={searchButtonStyle} />
+        <SearchIcon width='1.2rem' height='1.2rem' fill={themeColors.text[1]} />
       </IconButton>
     </form>
   );
