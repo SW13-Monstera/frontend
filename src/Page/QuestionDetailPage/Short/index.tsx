@@ -2,14 +2,16 @@ import {
   contentWrapperStyle,
   contentTitleStyle,
   problemDescContentStyle,
-  answerInputWrapperStyle,
-  answerInputTitleStyle,
-  answerInputScoredStyle,
   scoreStyle,
+  scoreLabelStyle,
+  scoreValueStyle,
+  answerInputContentStyle,
+  resultAnswerStyle,
+  resultWrapperStyle,
 } from './style.css';
 import '../gutter.css';
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, KeyboardEvent } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import {
   IShortProblemDetailResponseData,
@@ -22,6 +24,7 @@ import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTe
 import { useQuery } from 'react-query';
 import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
 import { MetaTag } from '../../utils/MetaTag';
+import { scoreWrapperStyle } from '../../ResultPage/style.css';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
@@ -32,22 +35,25 @@ export function ShortQuestionDetailPage() {
   );
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
 
-  const resetInput = () => {
-    (document.getElementById('answer') as HTMLInputElement).value = '';
-  };
   const resetResult = () => {
-    resetInput();
     setResult(null);
   };
 
+  function onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSubmit();
+    }
+  }
+
   function handleSubmit() {
     if (!id) return;
-    const data = (document.getElementById('answer') as HTMLInputElement).value;
+    const data = (document.getElementById('answer') as HTMLInputElement).value.trim();
     problemApiWrapper.shortProblemResult(id, data).then((data) => setResult(data));
   }
 
   return (
-    <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
+    <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit} isResult={result != null}>
       <MetaTag
         title={`CS Broker - ${data?.title}`}
         description={`${data?.title}에 관한 단답형 문제입니다. 답안 작성 후 제출하기 버튼을 눌러주세요.`}
@@ -59,30 +65,40 @@ export function ShortQuestionDetailPage() {
           <MarkdownBox>{data?.description}</MarkdownBox>
         </div>
       </div>
-      <div className={answerInputWrapperStyle}>
-        <label htmlFor='answer' className={answerInputTitleStyle}>
-          정답 입력
-        </label>
-        <input
-          id='answer'
-          placeholder='답변을 입력해주세요'
-          className={
-            answerInputScoredStyle[result ? (result?.isAnswer ? 'correct' : 'wrong') : 'default']
-          }
-          autoComplete='off'
-          onFocus={resetResult}
-        ></input>
-        {result ? (
-          result.isAnswer ? (
-            <OIcon fill={COLOR.CORRECT} width='3rem' height='3rem' />
+      <div className={resultWrapperStyle}>
+        <div className={scoreStyle}>
+          {result ? (
+            <>
+              <div className={scoreLabelStyle}>내 점수</div>
+              <div className={scoreValueStyle}>{result.score}점</div>
+            </>
           ) : (
-            <XIcon fill={COLOR.ERROR} width='3rem' height='3rem' />
-          )
+            ''
+          )}
+        </div>
+        {result ? (
+          <button
+            className={result?.isAnswer ? resultAnswerStyle['correct'] : resultAnswerStyle['wrong']}
+            onClick={resetResult}
+          >
+            {result.isAnswer ? (
+              <OIcon fill={COLOR.GREEN} width='1.5rem' height='1.5rem' />
+            ) : (
+              <XIcon fill={COLOR.RED} width='1.5rem' height='1.5rem' />
+            )}
+            <div>{result.userAnswer}</div>
+          </button>
         ) : (
-          <></>
+          <input
+            id='answer'
+            placeholder={`답변을 "${data?.isEnglish ? '영어로' : '한글로'}" 입력해주세요`}
+            className={answerInputContentStyle}
+            autoComplete='off'
+            onFocus={resetResult}
+            onKeyDown={onKeyDown}
+          ></input>
         )}
       </div>
-      <div className={scoreStyle}>{result ? `내 점수: ${result?.score}점` : ''}</div>
     </ProblemDetailPageTemplate>
   );
 }
