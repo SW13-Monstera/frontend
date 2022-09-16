@@ -1,9 +1,9 @@
 import { ITagBox } from '../../../types/tag';
-import { tagStyle } from './style.css';
+import { tagColorStyle } from './style.css';
 
-function TagBox({ name, color }: ITagBox) {
+function TagBox({ name, color = 'color1' }: ITagBox) {
   return (
-    <li className={tagStyle} style={{ backgroundColor: color }}>
+    <li className={tagColorStyle[color]}>
       <div>{name}</div>
     </li>
   );

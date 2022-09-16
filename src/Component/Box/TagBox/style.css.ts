@@ -1,35 +1,41 @@
-import { style } from '@vanilla-extract/css';
-import baseFontStyle from '../../../styles/font.css';
+import { style, styleVariants } from '@vanilla-extract/css';
+import { COLOR } from '../../../constants/color';
 
-export const tagStyle = style([
-  baseFontStyle.xsmall,
-  {
-    boxSizing: 'border-box',
+const tagBaseStyle = style({
+  boxSizing: 'border-box',
 
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 
-    width: 'fit-content',
-    maxWidth: '62px',
-    height: '24px',
+  width: 'fit-content',
+  height: '1.625rem',
 
-    color: 'black',
-    background: '#fff1cd',
-    borderRadius: '10px',
+  color: 'black',
+  background: '#fff1cd',
+  borderRadius: '16px',
 
-    textAlign: 'center',
+  fontWeight: '500',
+  fontSize: '1rem',
+  lineHeight: '1.125rem',
 
-    margin: '0 0.5rem',
-    padding: '0.6rem',
+  textAlign: 'center',
 
-    whiteSpace: 'nowrap',
+  padding: '.25rem .75rem',
 
-    '@media': {
-      'screen and (max-width: 600px)': {
-        width: '60px',
-        height: '20px',
-      },
+  whiteSpace: 'nowrap',
+
+  '@media': {
+    'screen and (max-width: 600px)': {
+      width: '60px',
+      height: '20px',
     },
   },
-]);
+});
+
+export const tagColorStyle = styleVariants({
+  color1: [tagBaseStyle, { backgroundColor: COLOR.BACKGROUND.PURPLE, color: COLOR.PURPLE }],
+  color2: [tagBaseStyle, { backgroundColor: COLOR.BACKGROUND.PINK, color: COLOR.PINK }],
+  color3: [tagBaseStyle, { backgroundColor: COLOR.BACKGROUND.ORANGE, color: COLOR.ORANGE }],
+  color4: [tagBaseStyle, { backgroundColor: COLOR.BACKGROUND.GREEN, color: COLOR.GREEN }],
+});

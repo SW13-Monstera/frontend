@@ -16,6 +16,8 @@ export const problemListButtonBaseStyle = style({
   fontWeight: '700',
   fontSize: '1rem',
   lineHeight: '1.25rem',
+
+  whiteSpace: 'nowrap',
   ':hover': { filter: 'brightness(90%)' },
 });
 

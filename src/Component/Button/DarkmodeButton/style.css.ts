@@ -20,4 +20,5 @@ export const darkmodeButtonContentStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: '.5rem',
+  whiteSpace: 'nowrap',
 });
