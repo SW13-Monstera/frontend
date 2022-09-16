@@ -23,6 +23,8 @@ export const ProblemDetailPageTemplate = ({
   children,
   handleSubmit,
   isResult = false,
+  resetResult = () => {},
+  isResultPage = false,
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
@@ -83,7 +85,9 @@ export const ProblemDetailPageTemplate = ({
                         type={BUTTON_TYPE.SUBMIT}
                         theme={BUTTON_THEME.PRIMARY}
                         size={BUTTON_SIZE.MEDIUM}
-                        onClick={() => navigate(-1)}
+                        onClick={() => {
+                          isResultPage ? navigate(-1) : resetResult();
+                        }}
                       >
                         다시풀기
                       </TextButton>

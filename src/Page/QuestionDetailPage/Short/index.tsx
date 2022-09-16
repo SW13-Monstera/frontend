@@ -50,7 +50,12 @@ export function ShortQuestionDetailPage() {
   }
 
   return (
-    <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit} isResult={result != null}>
+    <ProblemDetailPageTemplate
+      data={data}
+      handleSubmit={handleSubmit}
+      isResult={result != null}
+      resetResult={resetResult}
+    >
       <MetaTag
         title={`CS Broker - ${data?.title}`}
         description={`${data?.title}에 관한 단답형 문제입니다. 답안 작성 후 제출하기 버튼을 눌러주세요.`}
@@ -63,19 +68,23 @@ export function ShortQuestionDetailPage() {
         </div>
       </div>
       <div className={resultWrapperStyle}>
-        {result ? <MyScoreBox score={result.score} /> : ''}
         {result ? (
-          <button
-            className={result?.isAnswer ? resultAnswerStyle['correct'] : resultAnswerStyle['wrong']}
-            onClick={resetResult}
-          >
-            {result.isAnswer ? (
-              <OIcon fill={COLOR.GREEN} width='1.5rem' height='1.5rem' />
-            ) : (
-              <XIcon fill={COLOR.RED} width='1.5rem' height='1.5rem' />
-            )}
-            <div>{result.userAnswer}</div>
-          </button>
+          <>
+            <MyScoreBox score={result.score} />
+            <button
+              className={
+                result?.isAnswer ? resultAnswerStyle['correct'] : resultAnswerStyle['wrong']
+              }
+              onClick={resetResult}
+            >
+              {result.isAnswer ? (
+                <OIcon fill={COLOR.GREEN} width='1.5rem' height='1.5rem' />
+              ) : (
+                <XIcon fill={COLOR.RED} width='1.5rem' height='1.5rem' />
+              )}
+              <div>{result.userAnswer}</div>
+            </button>
+          </>
         ) : (
           <input
             id='answer'

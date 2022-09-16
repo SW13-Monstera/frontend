@@ -13,9 +13,18 @@ export const SplitProblemDetailPageTemplate = ({
   data,
   children,
   handleSubmit,
+  isResult,
+  resetResult,
+  isResultPage,
 }: IProblemDetailPageTemplate) => {
   return (
-    <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
+    <ProblemDetailPageTemplate
+      data={data}
+      handleSubmit={handleSubmit}
+      isResult={isResult}
+      resetResult={resetResult}
+      isResultPage={isResultPage}
+    >
       <Split
         sizes={[35, 65]}
         minSize={100}

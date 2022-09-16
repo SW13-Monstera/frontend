@@ -38,7 +38,7 @@ export default function ResultPage() {
   return (
     <>
       <MetaTag title='CS Broker - 채점 결과' />
-      <ProblemDetailPageTemplate data={result} isResult={true}>
+      <ProblemDetailPageTemplate data={result} isResult={true} isResultPage={true}>
         <div className={pageContentStyle}>
           <TextBox>
             <div className={contentStyle}>

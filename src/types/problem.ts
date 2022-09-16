@@ -53,6 +53,8 @@ interface IProblemDetailPageTemplate {
   children?: React.ReactNode;
   handleSubmit?: () => void;
   isResult?: boolean;
+  resetResult?: () => void;
+  isResultPage?: boolean;
 }
 
 export interface IMypageProblem {

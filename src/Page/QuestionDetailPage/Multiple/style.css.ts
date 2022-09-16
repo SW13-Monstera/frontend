@@ -1,3 +1,4 @@
+import { themeColors } from './../../../styles/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
@@ -16,8 +17,15 @@ export const choiceListStyle = style({
   gap: '1rem',
 
   width: '100%',
+  height: '75%',
 
   overflow: 'auto',
+
+  fontWeight: '400',
+  fontSize: '1.25rem',
+  lineHeight: '1.8125rem',
+
+  color: themeColors.text[5],
 });
 
 export const choiceWrapperStyle = style([
@@ -31,11 +39,8 @@ export const choiceWrapperStyle = style([
     borderRadius: '10px',
     backgroundColor: vars.backgroundColor,
     cursor: 'pointer',
-
-    ':hover': {
-      border: '1px solid',
-      borderColor: COLOR.GRAY,
-    },
+    border: `1px solid ${themeColors.line.d}`,
+    ':hover': { filter: 'brightness(90%)' },
   },
 ]);
 
@@ -65,32 +70,14 @@ export const gradeResultStyle = style([
 ]);
 
 export const gradeResultScoredStyle = styleVariants({
-  correct: [gradeResultStyle, { color: COLOR.CORRECT }],
-  wrong: [gradeResultStyle, { color: COLOR.ERROR }],
+  correct: [gradeResultStyle, { color: COLOR.GREEN }],
+  wrong: [gradeResultStyle, { color: COLOR.RED }],
 });
-
-export const wrongGradeResultWrapperStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-end',
-  justifyContent: 'center',
-  alignSelf: 'flex-end',
-  gap: '0.5rem',
-});
-
-export const scoreStyle = style([
-  baseFontStyle.large,
-  {
-    alignSelf: 'flex-end',
-    justifySelf: 'flex-end',
-  },
-]);
 
 export const resultWrapperStyle = style({
   display: 'flex',
-  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '1rem',
   alignSelf: 'flex-end',
-  alignItems: 'flex-end',
-
-  gap: '10rem',
 });

@@ -1,14 +1,16 @@
 import { scoreLabelStyle, scoreStyle, scoreValueStyle } from './style.css';
 
 interface IMyScoreBox {
-  score: number;
+  score: number | undefined;
 }
 
 export const MyScoreBox = ({ score }: IMyScoreBox) => {
-  return (
+  return score != null ? (
     <div className={scoreStyle}>
       <div className={scoreLabelStyle}>내 점수</div>
       <div className={scoreValueStyle}>{score}점</div>
     </div>
+  ) : (
+    <></>
   );
 };
