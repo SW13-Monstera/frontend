@@ -22,6 +22,7 @@ import { OIcon } from '../../../Icon/OIcon';
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
 import { TransparentButton } from '../../../Component/Button';
+import { MetaTag } from '../../utils/MetaTag';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
@@ -56,6 +57,11 @@ export function MultipleQuestionDetailPage() {
 
   return (
     <SplitProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
+      <MetaTag
+        title={`CS Broker - ${data?.title}`}
+        description={`${data?.title}에 관한 객관식 문제입니다. 모든 정답을 선택한 후 제출하기 버튼을 눌러주세요.`}
+        keywords={`${data?.tags.join(', ')}, ${data?.title}, 객관식`}
+      />
       <label htmlFor='answer' className={contentTitleStyle}>
         답안 선택
       </label>

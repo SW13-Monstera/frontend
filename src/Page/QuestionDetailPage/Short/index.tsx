@@ -21,6 +21,7 @@ import { COLOR } from '../../../constants/color';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
 import { useQuery } from 'react-query';
 import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
+import { MetaTag } from '../../utils/MetaTag';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
@@ -47,6 +48,11 @@ export function ShortQuestionDetailPage() {
 
   return (
     <ProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
+      <MetaTag
+        title={`CS Broker - ${data?.title}`}
+        description={`${data?.title}에 관한 단답형 문제입니다. 답안 작성 후 제출하기 버튼을 눌러주세요.`}
+        keywords={`${data?.tags.join(', ')}, ${data?.title}, 단답형`}
+      />
       <div className={contentWrapperStyle}>
         <div className={contentTitleStyle}>문제 설명</div>
         <div className={problemDescContentStyle}>

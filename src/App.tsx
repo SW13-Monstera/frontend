@@ -6,11 +6,12 @@ import { useAuthStore } from './hooks/useStore';
 import { useEffect } from 'react';
 import { getUserInfo } from './utils/userInfo';
 import { setTokenHeader } from './api/setTokenHeader';
+import { Helmet } from 'react-helmet-async';
+
 function App() {
   const { setIsLogin } = useAuthStore();
 
   useEffect(() => {
-    console.log(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     const userInfo = getUserInfo();
     if (userInfo) {
       setIsLogin(true);
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <div className={`App ${appStyle}`}>
+      <Helmet></Helmet>
       <ToastContainer />
       <Router />
     </div>

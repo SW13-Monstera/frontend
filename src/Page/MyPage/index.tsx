@@ -10,6 +10,7 @@ import {
 import mockData from '../../mock/mypage.json';
 import { ProblemListBox } from '../../Component/Box/ProblemListBox';
 import { COLOR_LABEL_LIST } from '../../constants/colorLabel';
+import { MetaTag } from '../utils/MetaTag';
 
 export const MyPage = () => {
   const {
@@ -32,6 +33,7 @@ export const MyPage = () => {
 
   return (
     <PageTemplate>
+      <MetaTag title='CS Broker - 마이페이지' />
       <div className={pageWrapperStyle}>
         <div>
           <h2 className={pageTitleStyle}>마이 페이지</h2>

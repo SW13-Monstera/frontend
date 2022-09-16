@@ -34,6 +34,7 @@ import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearc
 import { Pagination } from '../../Component/Pagination';
 import { ITagState } from '../../types/tag';
 import { useQuery } from 'react-query';
+import { MetaTag } from '../utils/MetaTag';
 
 function QuestionListPage() {
   const [params, setParams] = useState<IProblemRequestParam>();
@@ -79,6 +80,13 @@ function QuestionListPage() {
 
   return (
     <PageTemplate>
+      <MetaTag
+        title='CS Broker - 문제 목록'
+        description='Computer Science 문제를 풀고
+AI 기반 문장 유사도 평가 기법을 채점받아
+스스로의 CS 역량을 평가할 수 있는 곳입니다.'
+        keywords='computer science, database, operating system, data structure, network, developer, '
+      />
       <div className={listPageWrapperStyle}>
         <DefaultSlider />
         <div className={listPageMainWrapperStyle}>

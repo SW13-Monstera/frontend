@@ -18,6 +18,7 @@ import {
 } from '../../types/api/problem';
 import { ColumnBox } from '../../Component/Box/CustomBox';
 import { useQuery } from 'react-query';
+import { MetaTag } from '../utils/MetaTag';
 
 const getProblemList = () => {
   const params = { page: 0, size: 4 };
@@ -34,6 +35,13 @@ function MainPage() {
 
   return (
     <PageTemplate>
+      <MetaTag
+        title='CS Broker'
+        description='Computer Science 문제를 풀고
+AI 기반 문장 유사도 평가 기법을 채점받아
+스스로의 CS 역량을 평가할 수 있는 곳입니다.'
+        keywords='computer science, database, operating system, data structure, network, developer, '
+      />
       <>
         <DefaultSlider />
         <div className={pageWrapperStyle}>

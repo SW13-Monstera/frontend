@@ -19,6 +19,7 @@ import { createMajorList } from '../../utils/createMajorList';
 import { IMajorListElement } from '../../types/api/major';
 import { IDropdownElement } from '../../types/util';
 import { WarningMessage } from '../../Component/Message/WarningMessage';
+import { MetaTag } from '../utils/MetaTag';
 
 export const UserDataEditPage = () => {
   const getMajorList = (searchTitle?: string | null) => {
@@ -70,6 +71,7 @@ export const UserDataEditPage = () => {
 
   return (
     <PageTemplate>
+      <MetaTag title='CS Broker - 정보 수정' />
       <div className={pageWrapperStyle}>
         <h1>정보수정</h1>
         <form className={formWrapperStyle}>

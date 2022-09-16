@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
 import { MarkdownBox } from '../../Component/Box/MarkdownBox';
 import { ProblemDetailPageTemplate } from '../../Template/ProblemDetailPageTemplate';
+import { MetaTag } from '../utils/MetaTag';
 
 export default function ResultPage() {
   const { id } = useParams();
@@ -36,6 +37,7 @@ export default function ResultPage() {
 
   return (
     <>
+      <MetaTag title='CS Broker - 채점 결과' />
       <ProblemDetailPageTemplate data={result} isResult={true}>
         <div className={pageContentStyle}>
           <TextBox>
