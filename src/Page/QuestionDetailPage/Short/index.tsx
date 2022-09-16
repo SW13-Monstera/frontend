@@ -2,9 +2,6 @@ import {
   contentWrapperStyle,
   contentTitleStyle,
   problemDescContentStyle,
-  scoreStyle,
-  scoreLabelStyle,
-  scoreValueStyle,
   answerInputContentStyle,
   resultAnswerStyle,
   resultWrapperStyle,
@@ -24,7 +21,7 @@ import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTe
 import { useQuery } from 'react-query';
 import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
 import { MetaTag } from '../../utils/MetaTag';
-import { scoreWrapperStyle } from '../../ResultPage/style.css';
+import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
@@ -66,16 +63,7 @@ export function ShortQuestionDetailPage() {
         </div>
       </div>
       <div className={resultWrapperStyle}>
-        <div className={scoreStyle}>
-          {result ? (
-            <>
-              <div className={scoreLabelStyle}>내 점수</div>
-              <div className={scoreValueStyle}>{result.score}점</div>
-            </>
-          ) : (
-            ''
-          )}
-        </div>
+        {result ? <MyScoreBox score={result.score} /> : ''}
         {result ? (
           <button
             className={result?.isAnswer ? resultAnswerStyle['correct'] : resultAnswerStyle['wrong']}
