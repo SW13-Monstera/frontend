@@ -8,5 +8,7 @@ export const mainStyle = style({
 
   width: '100%',
   height: 'auto',
-  minHeight: '80%',
+  minHeight: `51rem`,
+
+  flex: 1,
 });

@@ -1,16 +1,12 @@
-import { IButton } from '../../../types/button';
+import { ICustomButton } from '../../../types/button';
+import { CustomButton } from '../CustomButton';
 import { buttonThemeClass } from '../theme.css';
-import { iconButtonStyle } from './style.css';
 
-function IconButton({ type, children, onClick, className }: IButton) {
+function IconButton({ type, children, onClick, className }: ICustomButton) {
   return (
-    <button
-      type={type}
-      className={`${buttonThemeClass} ${iconButtonStyle} ${className}`}
-      onClick={onClick}
-    >
+    <CustomButton type={type} className={`${buttonThemeClass} ${className}`} onClick={onClick}>
       {children}
-    </button>
+    </CustomButton>
   );
 }
 export default IconButton;

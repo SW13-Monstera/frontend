@@ -1,6 +1,6 @@
 import { ReactComponent as SearchIcon } from '../../../../assets/icons/search-icon.svg';
 import { INPUT_TYPE } from '../../../../constants/input';
-import { BUTTON_THEME, BUTTON_TYPE } from '../../../../types/button';
+import { BUTTON_TYPE } from '../../../../types/button';
 import IconButton from '../../../Button/IconButton';
 import { searchInputBoxStyle, inputTextBoxStyle, searchButtonStyle } from './style.css';
 import { KeyboardEvent } from 'react';
@@ -26,11 +26,7 @@ function SearchInputBox({ handleSearchInput }: ISearchInputBox) {
         id='search-problem'
         onKeyDown={onKeyDown}
       ></input>
-      <IconButton
-        type={BUTTON_TYPE.BUTTON}
-        theme={BUTTON_THEME.PRIMARY}
-        onClick={handleSearchInput}
-      >
+      <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleSearchInput}>
         <SearchIcon className={searchButtonStyle} />
       </IconButton>
     </form>

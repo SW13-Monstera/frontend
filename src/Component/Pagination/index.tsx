@@ -1,4 +1,4 @@
-import { BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import { BUTTON_TYPE } from '../../types/button';
 import { IconButton } from '../Button';
 import { LeftArrowIcon } from '../../Icon/LeftArrowIcon';
 import { RightArrowIcon } from '../../Icon/RightArrowIcon';
@@ -73,7 +73,7 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
 
   return (
     <div className={paginationWrapperStyle}>
-      <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} onClick={movePrevPage}>
+      <IconButton type={BUTTON_TYPE.BUTTON} onClick={movePrevPage}>
         <LeftArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
       </IconButton>
       {totalPages <= 5
@@ -91,7 +91,7 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
               </div>
             ),
           )}
-      <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} onClick={moveNextPage}>
+      <IconButton type={BUTTON_TYPE.BUTTON} onClick={moveNextPage}>
         <RightArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
       </IconButton>
     </div>

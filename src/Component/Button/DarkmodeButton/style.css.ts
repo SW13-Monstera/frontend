@@ -14,3 +14,10 @@ export const darkmodeButtonStyle = style({
   border: `1px solid ${themeColors.line.d}`,
   borderRadius: '24px',
 });
+
+export const darkmodeButtonContentStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '.5rem',
+});

@@ -1,6 +1,6 @@
 import { ReactComponent as SearchIcon } from '../../../../assets/icons/search-icon.svg';
 import { INPUT_TYPE } from '../../../../constants/input';
-import { BUTTON_THEME, BUTTON_TYPE } from '../../../../types/button';
+import { BUTTON_TYPE } from '../../../../types/button';
 import IconButton from '../../../Button/IconButton';
 import {
   searchInputBoxStyle,
@@ -71,7 +71,7 @@ export function SearchDropdownInputBox({ id, elements, searchWithAPI }: ISearchD
           id={id}
           onChange={searchWithAPI ?? search}
         ></input>
-        <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
+        <IconButton type={BUTTON_TYPE.BUTTON}>
           <SearchIcon className={searchButtonStyle} />
         </IconButton>
       </div>
