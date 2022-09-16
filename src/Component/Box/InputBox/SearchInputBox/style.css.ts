@@ -15,7 +15,7 @@ export const searchInputBoxStyle = style({
 
   color: themeColors.text[1],
   backgroundColor: themeColors.background.FF,
-  boxShadow: `0 0 8px ${themeColors.shadow}`,
+  boxShadow: `0 0 8px ${themeColors.shadow[1]}`,
   borderRadius: '8px',
 });
 

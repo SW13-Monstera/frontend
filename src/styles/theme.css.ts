@@ -14,7 +14,10 @@ export const themeColors = createThemeContract({
     d: null,
     e: null,
   },
-  shadow: null,
+  shadow: {
+    '1': null,
+    '2': null,
+  },
 });
 
 export const lightTheme = createTheme(themeColors, {
@@ -36,7 +39,10 @@ export const lightTheme = createTheme(themeColors, {
     d: COLOR.LINE.d,
     e: COLOR.LINE.e,
   },
-  shadow: 'rgba(0, 0, 0, 0.16)',
+  shadow: {
+    '1': 'rgba(0, 0, 0, 0.16)',
+    '2': 'rgba(0, 0, 0, 0.08)',
+  },
 });
 
 export const darkTheme = createTheme(themeColors, {
@@ -58,5 +64,8 @@ export const darkTheme = createTheme(themeColors, {
     d: COLOR.DARK[3],
     e: COLOR.DARK[2],
   },
-  shadow: 'rgba(255, 255, 255, 0.32);',
+  shadow: {
+    '1': 'rgba(255, 255, 255, 0.32)',
+    '2': 'rgba(255, 255, 255, 0.16)',
+  },
 });

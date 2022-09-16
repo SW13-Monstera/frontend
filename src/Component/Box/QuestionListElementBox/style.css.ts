@@ -15,7 +15,7 @@ export const textBoxStyle = style({
 
   color: themeColors.text[1],
   background: themeColors.background.FF,
-  boxShadow: `0px 0px 4px ${themeColors.shadow}`,
+  boxShadow: `0px 0px 4px ${themeColors.shadow[1]}`,
   borderRadius: '8px',
 });
 

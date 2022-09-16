@@ -28,13 +28,14 @@ import {
 } from '../../types/api/problem';
 import { getFilterParams } from '../../utils/getFilterParams';
 import { getTagById } from '../../utils/getTagbyId';
-import { TextButton } from '../../Component/Button';
-import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import { BUTTON_TYPE } from '../../types/button';
 import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
 import { Pagination } from '../../Component/Pagination';
 import { ITagState } from '../../types/tag';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
+import { RefreshIcon } from '../../Icon/RefreshIcon';
+import { COLOR } from '../../constants/color';
 
 function QuestionListPage() {
   const [params, setParams] = useState<IProblemRequestParam>();
@@ -95,18 +96,17 @@ AI 기반 문장 유사도 평가 기법을 채점받아
             <div className={filterStyle}>
               <div className={filterTitleWrapperStyle}>
                 <div className={filterTitleStyle}>문제 검색</div>
-                <TextButton
+                <button
                   type={BUTTON_TYPE.BUTTON}
                   className={resetButtonStyle}
                   onClick={() => {
                     resetCheckedTags();
                     resetSearchProblemInput();
                   }}
-                  theme={BUTTON_THEME.SECONDARY}
-                  size={BUTTON_SIZE.SMALL}
                 >
-                  초기화
-                </TextButton>
+                  <div>초기화</div>
+                  <RefreshIcon width='1.125rem' height='1.125rem' fill={COLOR.TEXT[7]} />
+                </button>
               </div>
               <div className={dropdownListStyle}>
                 {isLogin

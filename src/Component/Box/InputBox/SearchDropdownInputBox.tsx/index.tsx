@@ -11,11 +11,11 @@ import {
   checkedTagListStyle,
 } from './style.css';
 import { useEffect, useRef, useState } from 'react';
-import DropdownElement from '../../../Utils/Dropdown/DropdownElement';
 import { ITagState } from '../../../../types/tag';
 import TagBox from '../../TagBox';
 import listenOutsideClick from '../../../../utils/listenOutsideClick';
 import { IDropdownElement } from '../../../../types/util';
+import { DropdownElement } from '../../../Utils/DropdownElement';
 
 interface ISearchDropdownInputBox {
   id: string;
