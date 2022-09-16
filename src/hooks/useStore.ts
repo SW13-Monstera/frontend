@@ -7,7 +7,7 @@ interface IAuth {
 
 interface IDarkMode {
   isDark: boolean;
-  setIsDark: (darkModeState: boolean) => void;
+  toggleIsDark: () => void;
 }
 
 interface IUserData {
@@ -34,7 +34,7 @@ const useUserDataStore = create<IUserDataStore>((set) => ({
 
 const useDarkModeStore = create<IDarkMode>((set) => ({
   isDark: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
-  setIsDark: (darkModeState: boolean) => set((state) => ({ ...state, isDark: darkModeState })),
+  toggleIsDark: () => set((state) => ({ ...state, isDark: !state.isDark })),
 }));
 
 export { useAuthStore, useUserDataStore, useDarkModeStore };

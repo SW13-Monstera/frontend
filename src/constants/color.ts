@@ -16,6 +16,11 @@ const COLOR = {
   TAG1: '#FFF1CD', //태그 컬러 1
   TAG2: '#FFDDDD', //태그 컬러 2,
   TRANSPARENT: 'transparent', //투명
+  PURPLE: '#1D24D7',
+  PINK: '#BE57C7',
+  ORANGE: '#EC882C',
+  GREEN: '#29AE2E',
+  RED: '#EE4242',
   TEXT: {
     '1': '#111111',
     '2': '#222222',
@@ -42,6 +47,11 @@ const COLOR = {
     RED: '#FEEFEF',
     FA: '#FAFAFA',
     F0: '#F0F0F0',
+  },
+  LINE: {
+    e: '#EEEEEE',
+    d: '#DDDDDD',
+    c: '#CCCCCC',
   },
 };
 

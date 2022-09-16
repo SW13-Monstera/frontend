@@ -40,7 +40,6 @@ export const menuStyle = style({
   justifyContent: 'right',
   gap: '1rem',
 
-  width: '10%',
   padding: '1rem',
 });
 

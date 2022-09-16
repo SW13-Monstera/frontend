@@ -1,38 +1,54 @@
 import { COLOR } from '../constants/color';
-
 import { createTheme, createThemeContract } from '@vanilla-extract/css';
 
-const colors = createThemeContract({
+export const themeColors = createThemeContract({
   background: {
-    '1': null,
-    '2': null,
-    '3': null,
+    FF: null,
+    FA: null,
+    F0: null,
+    F8: null,
   },
-  text: { '1': null, '2': null, '3': null },
+  text: { '1': null, '9': null, '2': null, '5': null },
+  line: {
+    d: null,
+    e: null,
+  },
 });
 
-export const [lightTheme, lightVars] = createTheme(colors, {
+export const lightTheme = createTheme(themeColors, {
   background: {
-    '1': COLOR.WHITE,
-    '2': COLOR.WHITE,
-    '3': COLOR.WHITE,
+    FF: COLOR.WHITE,
+    FA: COLOR.BACKGROUND.FA,
+    F0: COLOR.BACKGROUND.F0,
+    F8: COLOR.BACKGROUND.F8,
   },
   text: {
     '1': COLOR.TEXT[1],
-    '2': COLOR.WHITE,
-    '3': COLOR.WHITE,
+    '9': COLOR.TEXT[9],
+    '2': COLOR.TEXT[2],
+    '5': COLOR.TEXT[5],
+  },
+  line: {
+    d: COLOR.LINE.d,
+    e: COLOR.LINE.e,
   },
 });
 
-export const [darkTheme, darkVars] = createTheme(colors, {
+export const darkTheme = createTheme(themeColors, {
   background: {
-    '1': COLOR.DARK[0],
-    '2': COLOR.WHITE,
-    '3': COLOR.WHITE,
+    FF: COLOR.DARK[0],
+    FA: COLOR.DARK[2],
+    F0: COLOR.DARK[1],
+    F8: COLOR.DARK[1],
   },
   text: {
     '1': COLOR.WHITE,
+    '9': COLOR.WHITE,
     '2': COLOR.WHITE,
-    '3': COLOR.WHITE,
+    '5': COLOR.TEXT[5],
+  },
+  line: {
+    d: COLOR.DARK[3],
+    e: COLOR.DARK[2],
   },
 });

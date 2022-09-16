@@ -21,6 +21,7 @@ import { Typography } from '@mui/material';
 import { Divider } from '../../Component/Divider';
 import { setLogout } from '../../utils/setLogout';
 import { RightArrowIcon } from '../../Icon/RightArrowIcon';
+import { DarkmodeButton } from '../../Component/Button/DarkmodeButton';
 
 function Header() {
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ function Header() {
         </button>
       </div>
       <div className={menuStyle}>
+        <DarkmodeButton />
         {isLogin ? (
           <>
             <IconButton
