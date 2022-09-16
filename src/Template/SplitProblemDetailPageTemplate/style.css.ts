@@ -1,24 +1,5 @@
-import { createThemeContract, createTheme, style } from '@vanilla-extract/css';
-import { COLOR } from '../../constants/color';
-import baseFontStyle from '../../styles/font.css';
-
-export const vars = createThemeContract({
-  backgroundColor: null,
-  contentBackgroundColor: null,
-  textColor: null,
-});
-
-export const themeLightClass = createTheme(vars, {
-  backgroundColor: COLOR.WHITE,
-  contentBackgroundColor: COLOR.OFFWHITE,
-  textColor: COLOR.TITLEACTIVE,
-});
-
-export const themeDarkClass = createTheme(vars, {
-  backgroundColor: COLOR.TITLEACTIVE,
-  contentBackgroundColor: COLOR.DARKGRAY,
-  textColor: COLOR.WHITE,
-});
+import { themeColors } from './../../styles/theme.css';
+import { style } from '@vanilla-extract/css';
 
 export const splitStyle = style({
   display: 'flex',
@@ -31,22 +12,22 @@ export const contentWrapperStyle = style({
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
-  gap: '2rem',
+  gap: '1.5rem',
 
   padding: '2rem',
 });
 
-export const contentTitleStyle = style([
-  baseFontStyle.xlarge,
-  {
-    color: vars.textColor,
-  },
-]);
+export const contentTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '1.5rem',
+  lineHeight: '2.1875rem',
+  color: themeColors.text[2],
+});
 
-export const problemDescContentStyle = style([
-  baseFontStyle.medium,
-  {
-    overflow: 'auto',
-    color: vars.textColor,
-  },
-]);
+export const problemDescContentStyle = style({
+  fontWeight: '400',
+  fontSize: '1.25rem',
+  lineHeight: '1.8125rem',
+  color: themeColors.text[5],
+  overflowY: 'hidden',
+});

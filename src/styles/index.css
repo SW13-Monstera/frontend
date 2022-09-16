@@ -10,7 +10,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 660px) {
   html {
     font-size: 10px;
   }

@@ -13,9 +13,8 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { URL } from '../../constants/url';
 import ProblemTitle from '../../Organism/ProblemTitle';
-import { useAuthStore, useDarkModeStore } from '../../hooks/useStore';
+import { useAuthStore } from '../../hooks/useStore';
 import { IProblemDetailPageTemplate } from '../../types/problem';
-import { themeDarkClass, themeLightClass } from '../../Page/QuestionDetailPage/baseStyle.css';
 import useModal from '../../hooks/useModal';
 import { CustomModal } from '../../Component/Utils/Modal/CustomModal';
 
@@ -27,7 +26,6 @@ export const ProblemDetailPageTemplate = ({
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
-  const { isDark } = useDarkModeStore();
   const { isModalOpen, openModal, closeModal } = useModal();
   const navigate = useNavigate();
 
@@ -42,7 +40,7 @@ export const ProblemDetailPageTemplate = ({
         {data ? (
           <>
             <Header />
-            <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
+            <main className={pageStyle}>
               <div className={topStyle}>
                 <div className={descStyle}>
                   <ProblemTitle

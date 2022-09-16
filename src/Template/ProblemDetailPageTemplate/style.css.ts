@@ -1,10 +1,5 @@
-import { style, keyframes } from '@vanilla-extract/css';
-import { vars } from '../../Page/QuestionDetailPage/baseStyle.css';
-
-const spread = keyframes({
-  '0%': { backgroundColor: 'inherit' },
-  '100%': { backgroundColor: vars.backgroundColor },
-});
+import { themeColors } from './../../styles/theme.css';
+import { style } from '@vanilla-extract/css';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
@@ -15,14 +10,8 @@ export const pageStyle = style({
   justifyContent: 'flex-start',
   alignItems: 'stretch',
   gap: '1.5rem',
-
   width: '100%',
 
-  color: vars.textColor,
-  backgroundColor: vars.backgroundColor,
-
-  transition: 'background-color 0.2s',
-  animation: spread,
   padding: '3rem',
 });
 
@@ -52,8 +41,9 @@ export const questionContentStyle = style({
   display: 'flex',
   flexDirection: 'column',
   height: '60vh',
-  background: vars.contentBackgroundColor,
-  borderRadius: '10px',
+  background: themeColors.background.FA,
+  border: `1px solid ${themeColors.line.d}`,
+  borderRadius: '8px',
 });
 
 export const buttonListWrapperStyle = style({

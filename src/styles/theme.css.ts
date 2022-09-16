@@ -49,7 +49,7 @@ export const darkTheme = createTheme(themeColors, {
     '1': COLOR.WHITE,
     '9': COLOR.WHITE,
     '2': COLOR.WHITE,
-    '5': COLOR.TEXT[5],
+    '5': COLOR.LINE.c,
     '3': COLOR.TEXT[9],
   },
   line: {

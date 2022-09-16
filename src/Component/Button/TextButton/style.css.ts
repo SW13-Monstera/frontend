@@ -7,15 +7,6 @@ export const textButtonStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
 
-  width: '107px',
-  height: '48px',
-
-  borderRadius: '.5rem',
-
-  fontWeight: '700',
-  fontSize: '1rem',
-  lineHeight: '1.5rem',
-
   transitionProperty: 'background-color, color',
   transitionDuration: '1s',
   transitionTimingFunction: 'ease-out',
@@ -31,7 +22,7 @@ export const textButtonThemeStyle = styleVariants({
     {
       backgroundColor: COLOR.TRANSPARENT,
       color: COLOR.PRIMARY,
-      border: `.0625rem solid ${COLOR.PRIMARY}`,
+      border: `1px solid ${COLOR.PRIMARY}`,
     },
   ],
 });
@@ -39,24 +30,25 @@ export const textButtonThemeStyle = styleVariants({
 export const textButtonSizeStyle = styleVariants({
   medium: [
     {
-      width: '107px',
-      height: '48px',
+      width: '6.6875rem',
+      height: '3rem',
       fontWeight: '700',
-      fontSize: '16px',
-      lineHeight: '24px',
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+      borderRadius: '8px',
     },
   ],
-  large: [{ width: '504px', height: '74.4px' }],
   small: [
     {
-      width: '93px',
-      height: '35px',
+      width: '5.8125rem',
+      height: '2.1875rem',
       fontWeight: '700',
-      fontSize: '16px',
-      lineHeight: '19px',
-      borderRadius: '2.5rem',
+      fontSize: '1rem',
+      lineHeight: '1.1875rem',
+      borderRadius: '40px',
     },
   ],
+  large: [{ width: '31.5rem', height: '4.65rem' }],
   largeMedium: [{ width: vars.size.largeMedium.width, height: vars.size.largeMedium.height }],
 });
 

@@ -3,7 +3,11 @@ import { DARK_MODE } from '../../../constants/localStorage';
 import { useDarkModeStore } from '../../../hooks/useStore';
 import { MoonIcon } from '../../../Icon/MoonIcon';
 import { SunIcon } from '../../../Icon/SunIcon';
-import { darkmodeButtonContentStyle, darkmodeButtonStyle } from './style.css';
+import {
+  darkmodeButtonContentStyle,
+  darkmodeButtonStyle,
+  darkmodeButtonTextStyle,
+} from './style.css';
 
 export const DarkmodeButton = () => {
   const { isDark, toggleIsDark } = useDarkModeStore();
@@ -18,12 +22,12 @@ export const DarkmodeButton = () => {
         {isDark ? (
           <>
             <SunIcon width='16px' height='16px' />
-            <span>라이트 모드로 보기</span>
+            <span className={darkmodeButtonTextStyle}>라이트 모드로 보기</span>
           </>
         ) : (
           <>
             <MoonIcon width='16px' height='16px' />
-            <span> 다크 모드로 보기</span>
+            <span className={darkmodeButtonTextStyle}> 다크 모드로 보기</span>
           </>
         )}
       </span>
