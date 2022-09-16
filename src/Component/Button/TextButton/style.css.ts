@@ -7,14 +7,14 @@ export const textButtonStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
 
-  width: '6.6875rem',
-  height: '3rem',
+  width: '107px',
+  height: '48px',
 
-  borderRadius: '8px',
+  borderRadius: '.5rem',
 
   fontWeight: '700',
-  fontSize: '16px',
-  lineHeight: '24px',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
 
   transitionProperty: 'background-color, color',
   transitionDuration: '1s',
@@ -31,15 +31,32 @@ export const textButtonThemeStyle = styleVariants({
     {
       backgroundColor: COLOR.TRANSPARENT,
       color: COLOR.PRIMARY,
-      border: `1px solid ${COLOR.PRIMARY}`,
+      border: `.0625rem solid ${COLOR.PRIMARY}`,
     },
   ],
 });
 
 export const textButtonSizeStyle = styleVariants({
-  medium: [{ width: '6.6875rem', height: '3rem' }],
-  large: [{ width: '31.5rem', height: '4.65rem' }],
-  small: [{ width: vars.size.medium.width, height: vars.size.medium.height }],
+  medium: [
+    {
+      width: '107px',
+      height: '48px',
+      fontWeight: '700',
+      fontSize: '16px',
+      lineHeight: '24px',
+    },
+  ],
+  large: [{ width: '504px', height: '74.4px' }],
+  small: [
+    {
+      width: '93px',
+      height: '35px',
+      fontWeight: '700',
+      fontSize: '16px',
+      lineHeight: '19px',
+      borderRadius: '2.5rem',
+    },
+  ],
   largeMedium: [{ width: vars.size.largeMedium.width, height: vars.size.largeMedium.height }],
 });
 

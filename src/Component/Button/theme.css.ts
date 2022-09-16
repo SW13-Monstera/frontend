@@ -14,8 +14,8 @@ export const [buttonThemeClass, vars] = createTheme({
   },
   size: {
     small: {
-      width: '3.5rem',
-      height: '2rem',
+      width: '5.8125rem',
+      height: '2.1875rem',
     },
     medium: {
       width: '9.25rem',

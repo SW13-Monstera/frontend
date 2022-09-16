@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   pageStyle,
   descStyle,
@@ -12,11 +11,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../../Template/Header';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
-import { ReactComponent as SunIcon } from '../../assets/icons/sun.svg';
-import { ReactComponent as MoonIcon } from '../../assets/icons/moon.svg';
 import { URL } from '../../constants/url';
 import ProblemTitle from '../../Organism/ProblemTitle';
-import { useAuthStore } from '../../hooks/useStore';
+import { useAuthStore, useDarkModeStore } from '../../hooks/useStore';
 import { IProblemDetailPageTemplate } from '../../types/problem';
 import { themeDarkClass, themeLightClass } from '../../Page/QuestionDetailPage/baseStyle.css';
 import useModal from '../../hooks/useModal';
@@ -30,13 +27,9 @@ export const ProblemDetailPageTemplate = ({
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
-  const [isDark, setIsDark] = useState(true);
+  const { isDark } = useDarkModeStore();
   const { isModalOpen, openModal, closeModal } = useModal();
   const navigate = useNavigate();
-
-  const toggleDarkMode = () => {
-    setIsDark((prev) => !prev);
-  };
 
   if (!id) return <></>;
 
@@ -64,7 +57,6 @@ export const ProblemDetailPageTemplate = ({
                     wrongCnt={data.wrongCnt}
                   />
                 </div>
-                <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
               </div>
               <div className={questionContentStyle}>{children}</div>
               <div className={buttonListWrapperStyle}>

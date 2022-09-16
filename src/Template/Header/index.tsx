@@ -1,11 +1,12 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import AlarmIcon from '../../Icon/AlarmIcon';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { useAuthStore } from '../../hooks/useStore';
-import { IconButton, TransparentButton } from '../../Component/Button';
+import { IconButton, TextButton, TransparentButton } from '../../Component/Button';
 import logo from '../../assets/images/csbroker.png';
 import {
+  buttonListWrapperBeforeLoginStyle,
   headerStyle,
   iconButtonListWrapperStyle,
   leftSideWrapperStyle,
@@ -105,26 +106,28 @@ function Header() {
             </CustomPopover>
           </div>
         ) : (
-          <>
-            <Link to={URL.LOGIN}>
-              <TransparentButton
-                type={BUTTON_TYPE.BUTTON}
-                theme={BUTTON_THEME.PRIMARY}
-                size={BUTTON_SIZE.MEDIUM}
-              >
-                로그인
-              </TransparentButton>
-            </Link>
-            <Link to={URL.JOIN}>
-              <TransparentButton
-                type={BUTTON_TYPE.BUTTON}
-                theme={BUTTON_THEME.PRIMARY}
-                size={BUTTON_SIZE.MEDIUM}
-              >
-                회원가입
-              </TransparentButton>
-            </Link>
-          </>
+          <div className={buttonListWrapperBeforeLoginStyle}>
+            <TextButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.SECONDARY}
+              size={BUTTON_SIZE.SMALL}
+              onClick={() => {
+                navigate(URL.LOGIN);
+              }}
+            >
+              로그인
+            </TextButton>
+            <TextButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.PRIMARY}
+              size={BUTTON_SIZE.SMALL}
+              onClick={() => {
+                navigate(URL.JOIN);
+              }}
+            >
+              회원가입
+            </TextButton>
+          </div>
         )}
       </div>
       <Outlet />

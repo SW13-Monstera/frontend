@@ -48,6 +48,13 @@ export const iconButtonStyle = style({
 
 export const logoStyle = style({ width: '12rem', padding: '2rem', cursor: 'pointer' });
 
+export const buttonListWrapperBeforeLoginStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '1rem',
+});
+
 export const iconButtonListWrapperStyle = style({
   display: 'flex',
   alignItems: 'center',
