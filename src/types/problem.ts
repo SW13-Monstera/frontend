@@ -28,7 +28,7 @@ interface IQuestionListElementBox {
   tags: string[];
   type: TProblemType;
   totalSolved: number;
-  avgScore?: number;
+  avgScore: number;
 }
 
 interface IProblemIdLinkState {
