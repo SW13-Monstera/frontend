@@ -35,7 +35,9 @@ function ProblemStatisticsBox({ label, value, unit }: IProblemStatisticsBox) {
     <div className={detailWrapperStyle}>
       <div className={detailStyle}>
         <div className={detailLabelStyle}>{label}</div>
-        <div className={detailValueStyle}>{`${formatNumber(value) ?? 0}${unit}`} </div>
+        <div className={detailValueStyle}>
+          {`${value != null ? formatNumber(value) : 0} ${unit}`}
+        </div>
       </div>
     </div>
   );

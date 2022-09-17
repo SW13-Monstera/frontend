@@ -8,7 +8,7 @@ const spread = keyframes({
 
 export const appStyle = style({
   boxSizing: 'border-box',
-  height: '100vh',
+  height: '100%',
   backgroundColor: themeColors.background.FF,
   color: themeColors.text[1],
   transition: 'background-color 0.2s',
