@@ -69,7 +69,7 @@ export const detailValueStyle = style({
   color: themeColors.text[2],
 });
 
-export const tagListStyle = style({ display: 'flex', gap: '0.125rem' });
+export const tagListStyle = style({ display: 'flex', gap: '.5rem' });
 
 export const problemStatisticsWrapperStyle = style({
   gap: '7.8125rem',

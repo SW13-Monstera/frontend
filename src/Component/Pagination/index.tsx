@@ -9,6 +9,7 @@ import {
   paginationWrapperStyle,
 } from './style.css';
 import { MouseEventHandler } from 'react';
+import { ArrowRightIcon } from '../../Icon/ArrowRightIcon';
 
 interface IPagination {
   totalPages: number;
@@ -74,7 +75,9 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
   return (
     <div className={paginationWrapperStyle}>
       <IconButton type={BUTTON_TYPE.BUTTON} onClick={movePrevPage}>
-        <LeftArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
+        <div style={{ transform: 'rotate(180deg)' }}>
+          <ArrowRightIcon fill={COLOR.TITLEACTIVE} width='1rem' height='1rem' />
+        </div>
       </IconButton>
       {totalPages <= 5
         ? Array(totalPages)
@@ -92,7 +95,7 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
             ),
           )}
       <IconButton type={BUTTON_TYPE.BUTTON} onClick={moveNextPage}>
-        <RightArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
+        <ArrowRightIcon fill={COLOR.TITLEACTIVE} width='1rem' height='1rem' />
       </IconButton>
     </div>
   );

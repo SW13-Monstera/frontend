@@ -17,6 +17,7 @@ function App() {
   useEffect(() => {
     const userInfo = getUserInfo();
     const darkModePreference = localStorage.getItem(DARK_MODE);
+    history.scrollRestoration = 'auto';
     if (userInfo) {
       setIsLogin(true);
       setTokenHeader();
