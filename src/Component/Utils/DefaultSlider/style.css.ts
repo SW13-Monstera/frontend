@@ -12,6 +12,7 @@ export const sliderContainerStyle = style({
   color: themeColors.text[1],
   backgroundColor: themeColors.background.F0,
   marginTop: '0px',
+  zIndex: 0,
 });
 
 export const slideStyle = style({
