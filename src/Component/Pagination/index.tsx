@@ -1,7 +1,5 @@
 import { BUTTON_TYPE } from '../../types/button';
 import { IconButton } from '../Button';
-import { LeftArrowIcon } from '../../Icon/LeftArrowIcon';
-import { RightArrowIcon } from '../../Icon/RightArrowIcon';
 import { COLOR } from '../../constants/color';
 import {
   dotdotdotStyle,
