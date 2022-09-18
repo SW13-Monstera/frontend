@@ -1,7 +1,6 @@
 import { themeColors } from './../../styles/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
-import baseFontStyle from '../../styles/font.css';
 
 export const paginationWrapperStyle = style({
   display: 'flex',

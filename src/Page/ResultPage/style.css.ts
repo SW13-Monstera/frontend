@@ -1,5 +1,5 @@
+import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
@@ -34,7 +34,7 @@ export const subtitleStyle = style([
     display: 'flex',
     alignItems: 'center',
 
-    color: COLOR.TITLEACTIVE,
+    color: themeColors.text[1],
   },
 ]);
 
@@ -42,7 +42,7 @@ export const answerContentStyle = style([
   baseFontStyle.small,
   {
     overflow: 'auto',
-    color: COLOR.TITLEACTIVE,
+    color: themeColors.text[1],
   },
 ]);
 

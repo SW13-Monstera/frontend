@@ -8,7 +8,6 @@ import {
 } from './style.css';
 import '../../styles/gutter.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../../Template/Header';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { URL } from '../../constants/url';
@@ -17,13 +16,16 @@ import { useAuthStore } from '../../hooks/useStore';
 import { IProblemDetailPageTemplate } from '../../types/problem';
 import useModal from '../../hooks/useModal';
 import { CustomModal } from '../../Component/Utils/Modal/CustomModal';
+import PageTemplate from '../PageTemplate';
 
 export const ProblemDetailPageTemplate = ({
   data,
   children,
   handleSubmit,
   isResult = false,
-  resetResult = () => {},
+  resetResult = () => {
+    return;
+  },
   isResultPage = false,
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
@@ -40,8 +42,7 @@ export const ProblemDetailPageTemplate = ({
       </CustomModal>
       <div>
         {data ? (
-          <>
-            <Header />
+          <PageTemplate>
             <main className={pageStyle}>
               <div className={topStyle}>
                 <div className={descStyle}>
@@ -116,7 +117,7 @@ export const ProblemDetailPageTemplate = ({
                 </div>
               </div>
             </main>
-          </>
+          </PageTemplate>
         ) : (
           <></>
         )}

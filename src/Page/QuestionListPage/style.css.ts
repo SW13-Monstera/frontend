@@ -1,7 +1,6 @@
 import { themeColors } from './../../styles/theme.css';
 import { keyframes, style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
-import baseFontStyle from '../../styles/font.css';
 
 export const listPageWrapperStyle = style({
   marginBottom: '5rem',

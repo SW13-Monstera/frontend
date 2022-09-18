@@ -1,6 +1,5 @@
 import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
 export const footerStyle = style([
