@@ -1,5 +1,5 @@
+import { themeColors } from './../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
 
 export const profileLabelStyle = style([
@@ -14,9 +14,9 @@ export const profileLabelStyle = style([
 
 export const nameStyle = style({
   width: '5rem',
-  color: COLOR.GRAY,
+  color: themeColors.text[3],
 });
 
 export const valueStyle = style({
-  color: COLOR.TITLEACTIVE,
+  color: themeColors.text[1],
 });

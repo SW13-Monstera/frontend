@@ -1,5 +1,5 @@
+import { themeColors } from './../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
 
 export const statisticsBoxStyle = style([
@@ -9,7 +9,7 @@ export const statisticsBoxStyle = style([
     alignItems: 'center',
     justifyContent: 'center',
     gap: '0.5rem',
-    background: COLOR.OFFWHITE,
+    background: themeColors.background.F3,
     borderRadius: '10px',
 
     padding: '1rem',
