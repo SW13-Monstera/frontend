@@ -1,5 +1,5 @@
+import { themeColors } from './../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
 
 export const sliderContainerStyle = style({
   display: 'flex',
@@ -9,10 +9,9 @@ export const sliderContainerStyle = style({
   width: '100%',
   height: '30vh',
   overflow: 'hidden',
-  color: COLOR.WHITE,
-  backgroundColor: COLOR.TITLEACTIVE,
+  color: themeColors.text[1],
+  backgroundColor: themeColors.background.F0,
   marginTop: '0px',
-  zIndex: -1,
 });
 
 export const slideStyle = style({
