@@ -48,8 +48,14 @@ export const textButtonSizeStyle = styleVariants({
       borderRadius: '40px',
     },
   ],
-  large: [{ width: '31.5rem', height: '4.65rem' }],
-  largeMedium: [{ width: vars.size.largeMedium.width, height: vars.size.largeMedium.height }],
+  large: [{ width: '31.5rem', height: '4.65rem', borderRadius: '8px' }],
+  largeMedium: [
+    {
+      width: vars.size.largeMedium.width,
+      height: vars.size.largeMedium.height,
+      borderRadius: '8px',
+    },
+  ],
 });
 
 export const unactivatedStyle = style({

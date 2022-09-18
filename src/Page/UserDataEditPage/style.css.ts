@@ -49,5 +49,6 @@ export const urlInputStyle = style([
     width: '100%',
     height: '100%',
     borderBottom: `1px solid ${COLOR.GRAY}`,
+    borderRadius: '8px',
   },
 ]);
