@@ -16,15 +16,19 @@ function App() {
 
   useEffect(() => {
     const userInfo = getUserInfo();
-    const darkModePreference = localStorage.getItem(DARK_MODE);
-    history.scrollRestoration = 'auto';
     if (userInfo) {
       setIsLogin(true);
       setTokenHeader();
     }
-    if (darkModePreference) {
-      setIsDark(darkModePreference === 'true');
+
+    const darkModePreference = localStorage.getItem(DARK_MODE);
+    if (darkModePreference !== null) {
+      setIsDark(JSON.parse(darkModePreference));
+    } else {
+      setIsDark(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
+
+    history.scrollRestoration = 'auto';
   }, []);
 
   return (

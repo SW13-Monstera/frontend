@@ -34,7 +34,7 @@ const useUserDataStore = create<IUserDataStore>((set) => ({
 }));
 
 const useDarkModeStore = create<IDarkMode>((set) => ({
-  isDark: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+  isDark: false,
   toggleIsDark: () => set((state) => ({ ...state, isDark: !state.isDark })),
   setIsDark: (isDarkState: boolean) => set((state) => ({ ...state, isDark: isDarkState })),
 }));
