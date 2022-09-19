@@ -8,6 +8,7 @@ import {
   statisticsWrapperStyle,
   problemListWrapperStyle,
   problemListTitleStyle,
+  strongDescriptionStyle,
 } from './style.css';
 import { CountUpBox } from '../../Component/Box/CountUpBox';
 import { QuestionListElementBox } from '../../Component/Box';
@@ -48,7 +49,8 @@ AI 기반 문장 유사도 평가 기법을 채점받아
           <img src={logo} className={logoTitleStyle}></img>
           <div className={descriptionStyle}>
             AI 기반 서술형 채점 기법을 통해 <br />
-            다양한 유형의 Computer Science 문제를 풀고 <br />
+            다양한 유형의 <strong className={strongDescriptionStyle}>Computer Science</strong>{' '}
+            문제를 풀고 <br />
             스스로 CS 지식을 학습할 수 있는 사이트입니다.
           </div>
           <div className={statisticsWrapperStyle}>

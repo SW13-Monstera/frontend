@@ -1,6 +1,5 @@
-import { themeColors } from './../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import baseFontStyle from '../../../styles/font.css';
+import { COLOR } from '../../../constants/color';
 
 export const statisticsBoxStyle = style([
   {
@@ -9,11 +8,29 @@ export const statisticsBoxStyle = style([
     alignItems: 'center',
     justifyContent: 'center',
     gap: '0.5rem',
-    background: themeColors.background.F3,
-    borderRadius: '10px',
 
+    width: '30%',
+    minWidth: 'fit-content',
+    height: '10rem',
+
+    background: COLOR.BACKGROUND.BLUE,
+    color: COLOR.PRIMARY,
+    borderRadius: '10px',
     padding: '1rem',
   },
 ]);
 
-export const statisticsNumberStyle = style([baseFontStyle.xlarge]);
+export const statisticsLabelStyle = style({
+  fontWeight: '400',
+  fontSize: '1.25rem',
+  lineHeight: '1.5rem',
+  color: COLOR.TEXT[8],
+  whiteSpace: 'nowrap',
+});
+
+export const statisticsNumberStyle = style({
+  fontWeight: '900',
+  fontSize: '2.5rem',
+  lineHeight: '2.5rem',
+  color: COLOR.PRIMARY,
+});

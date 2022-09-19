@@ -1,6 +1,11 @@
 import { themeColors } from './../../../styles/theme.css';
-import { style } from '@vanilla-extract/css';
+import { keyframes, style } from '@vanilla-extract/css';
 import baseFontStyle from '../../../styles/font.css';
+
+const spreadBoxShadow = keyframes({
+  '0%': { boxShadow: `0px 0px 4px ${themeColors.shadow[1]}` },
+  '100%': { boxShadow: `4px 8px 24px  ${themeColors.shadow[1]}` },
+});
 
 export const textBoxStyle = style({
   display: 'flex',
@@ -17,6 +22,12 @@ export const textBoxStyle = style({
   background: themeColors.background.FF,
   boxShadow: `0px 0px 4px ${themeColors.shadow[1]}`,
   borderRadius: '8px',
+  transition: 'box-shadow .3s',
+  animation: spreadBoxShadow,
+
+  ':hover': {
+    boxShadow: `4px 8px 24px  ${themeColors.shadow[1]}`,
+  },
 });
 
 export const textBoxMainStyle = style({

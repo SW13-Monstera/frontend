@@ -1,5 +1,5 @@
 import { themeColors } from './../../styles/theme.css';
-import { keyframes, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 
 export const listPageWrapperStyle = style({
@@ -109,11 +109,6 @@ export const questionListStyle = style({
       gridTemplateColumns: 'repeat(1, 1fr)',
     },
   },
-});
-
-const rotateKeyframe = keyframes({
-  '0%': { transform: 'rotate( 0deg )' },
-  '100%': { transform: 'rotate( 45deg )' },
 });
 
 export const resetButtonStyle = style({

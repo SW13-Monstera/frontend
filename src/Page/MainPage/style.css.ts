@@ -1,4 +1,6 @@
+import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
+import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
 
 export const pageWrapperStyle = style({
@@ -14,18 +16,22 @@ export const logoTitleStyle = style({
   width: '20rem',
 });
 
-export const descriptionStyle = style([
-  baseFontStyle.medium,
-  {
-    padding: '3rem',
-    textAlign: 'center',
-  },
-]);
+export const descriptionStyle = style({
+  padding: '3rem',
+  textAlign: 'center',
+  fontWeight: '500',
+  fontSize: '1.125rem',
+  lineHeight: '1.5rem',
+  color: themeColors.text[5],
+});
 
 export const statisticsWrapperStyle = style([
   {
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     gap: '2rem',
+    width: '70%',
   },
 ]);
 
@@ -40,4 +46,11 @@ export const problemListWrapperStyle = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: '1rem',
+});
+
+export const strongDescriptionStyle = style({
+  fontWeight: '500',
+  fontSize: '1.125rem',
+  lineHeight: '1.5rem',
+  color: COLOR.PRIMARY,
 });
