@@ -5,7 +5,7 @@ interface IMyScoreBox {
 }
 
 export const MyScoreBox = ({ score }: IMyScoreBox) => {
-  return score != null ? (
+  return score !== null && score !== undefined ? (
     <div className={scoreStyle}>
       <div className={scoreLabelStyle}>내 점수</div>
       <div className={scoreValueStyle}>{score}점</div>

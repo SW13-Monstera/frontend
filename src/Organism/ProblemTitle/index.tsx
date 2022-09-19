@@ -33,17 +33,23 @@ const problemDetailMap: Record<
   (num: string | undefined) => IProblemDetailDescription | null
 > = {
   totalSolved: (num: string | undefined) =>
-    num != null ? { label: '제출', value: num, unit: null } : null,
+    num !== null && num !== undefined ? { label: '제출', value: num, unit: null } : null,
   avgScore: (num: string | undefined) =>
-    num != null ? { label: '평균 점수', value: parseFloat(num).toFixed(2), unit: '점' } : null,
+    num !== null && num !== undefined
+      ? { label: '평균 점수', value: parseFloat(num).toFixed(2), unit: '점' }
+      : null,
   topScore: (num: string | undefined) =>
-    num != null ? { label: '최고점', value: parseFloat(num).toFixed(2), unit: '점' } : null,
+    num !== null && num !== undefined
+      ? { label: '최고점', value: parseFloat(num).toFixed(2), unit: '점' }
+      : null,
   bottomScore: (num: string | undefined) =>
-    num != null ? { label: '최저점', value: parseFloat(num).toFixed(2), unit: '점' } : null,
+    num !== null && num !== undefined
+      ? { label: '최저점', value: parseFloat(num).toFixed(2), unit: '점' }
+      : null,
   correctCnt: (num: string | undefined) =>
-    num != null ? { label: '맞은 사람 수', value: num, unit: '명' } : null,
+    num !== null && num !== undefined ? { label: '맞은 사람 수', value: num, unit: '명' } : null,
   wrongCnt: (num: string | undefined) =>
-    num != null ? { label: '틀린 사람 수', value: num, unit: '명' } : null,
+    num !== null && num !== undefined ? { label: '틀린 사람 수', value: num, unit: '명' } : null,
 };
 
 function ProblemTitle(props: IProblem) {
@@ -53,7 +59,7 @@ function ProblemTitle(props: IProblem) {
         <h1 className={baseFontStyle.title}>{props.title}</h1>
         <ul className={tagListStyle}>
           {props.tags.map((tagId) => {
-            const { name, color} = getTagById(tagId);
+            const { name, color } = getTagById(tagId);
             return <TagBox name={name} color={color} key={tagId} />;
           })}
         </ul>
@@ -62,7 +68,7 @@ function ProblemTitle(props: IProblem) {
         {Object.entries(props).map(([propKey, propValue]) =>
           Object.entries(problemDetailMap).map(([detailKey, detailValue]) => {
             const descriptionValue = detailValue(propValue);
-            return propKey === detailKey && propValue != null ? (
+            return propKey === detailKey && propValue !== null && propValue !== undefined ? (
               <RowBox key={propKey} className={problemDescriptionElementWrapperStyle}>
                 <div className={problemDescriptionLabelStyle}>{descriptionValue?.label}</div>
                 <div className={problemDescriptionValueStyle}>{`${descriptionValue?.value}${

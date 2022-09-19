@@ -57,7 +57,7 @@ export function MultipleQuestionDetailPage() {
     <SplitProblemDetailPageTemplate
       data={data}
       handleSubmit={handleSubmit}
-      isResult={result != null}
+      isResult={result !== null && result !== undefined}
       resetResult={resetResult}
     >
       <MetaTag
