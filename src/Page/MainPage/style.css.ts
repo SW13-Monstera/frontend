@@ -32,6 +32,7 @@ export const statisticsWrapperStyle = style([
     justifyContent: 'center',
     gap: '2rem',
     width: '70%',
+    whiteSpace: 'nowrap',
   },
 ]);
 
@@ -43,8 +44,7 @@ export const problemListTitleStyle = style([
 ]);
 
 export const problemListWrapperStyle = style({
-  display: 'grid',
-  gridTemplateColumns: 'repeat(2, 1fr)',
+  display: 'flex',
   gap: '1rem',
 });
 

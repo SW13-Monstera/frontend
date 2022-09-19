@@ -20,9 +20,10 @@ import {
 import { ColumnBox } from '../../Component/Box/CustomBox';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
+import { HorizontalScrollMenu } from '../../Component/Utils/HorizontalScrollMenu';
 
 const getProblemList = () => {
-  const params = { page: 0, size: 4 };
+  const params = { page: 0, size: 10 };
   return problemApiWrapper
     .problemList(params)
     .then((data: IProblemListResponseData) => data.contents);
@@ -60,6 +61,21 @@ AI 기반 문장 유사도 평가 기법을 채점받아
           </div>
           <ColumnBox>
             <div className={problemListTitleStyle}>오늘의 문제</div>
+            <HorizontalScrollMenu>
+              {problems?.map((problem) => (
+                <QuestionListElementBox
+                  key={problem.id.toString()}
+                  id={problem.id}
+                  itemId={problem.id}
+                  title={problem.title}
+                  tags={problem.tags}
+                  totalSolved={problem.totalSolved}
+                  avgScore={problem.avgScore}
+                  type={problem.type}
+                  isColumn={true}
+                />
+              ))}
+            </HorizontalScrollMenu>
             <div className={problemListWrapperStyle}>
               {problems?.map((problem) => (
                 <QuestionListElementBox
@@ -70,6 +86,8 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                   totalSolved={problem.totalSolved}
                   avgScore={problem.avgScore}
                   type={problem.type}
+                  isColumn={true}
+                  itemId={problem.id}
                 />
               ))}
             </div>

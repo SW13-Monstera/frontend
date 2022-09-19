@@ -1,5 +1,5 @@
 import { themeColors } from './../../../styles/theme.css';
-import { keyframes, style } from '@vanilla-extract/css';
+import { keyframes, style, styleVariants } from '@vanilla-extract/css';
 import baseFontStyle from '../../../styles/font.css';
 
 const spreadBoxShadow = keyframes({
@@ -61,7 +61,7 @@ export const titleStyle = style({
 export const detailStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
+  alignItems: 'start',
   justifyContent: 'center',
   gap: '.25rem',
 });
@@ -82,6 +82,13 @@ export const detailValueStyle = style({
 
 export const tagListStyle = style({ display: 'flex', gap: '.5rem' });
 
-export const problemStatisticsWrapperStyle = style({
-  gap: '7.8125rem',
+export const problemStatisticsWrapperBaseStyle = style({
+  display: 'flex',
+  alignItems: 'start',
+  justifyContent: 'start',
+});
+
+export const problemStatisticsWrapperStyle = styleVariants({
+  row: [problemStatisticsWrapperBaseStyle, { gap: '7.8125rem' }],
+  column: [problemStatisticsWrapperBaseStyle, { gap: '1.5rem' }],
 });

@@ -29,6 +29,8 @@ interface IQuestionListElementBox {
   type: TProblemType;
   totalSolved: number;
   avgScore: number;
+  isColumn?: boolean;
+  itemId: number;
 }
 
 interface IProblemIdLinkState {
