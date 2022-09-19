@@ -6,6 +6,7 @@ import { ILongProblemDetailResponseData } from '../../../types/api/problem';
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
 import { URLWithParam } from '../../../constants/url';
+import { MetaTag } from '../../utils/MetaTag';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
@@ -24,6 +25,11 @@ export function LongQuestionDetailPage() {
 
   return (
     <SplitProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
+      <MetaTag
+        title={`CS Broker - ${data?.title}`}
+        description={`${data?.title}에 관한 서술형 문제입니다. 답안 작성 후 제출하기 버튼을 눌러주세요.`}
+        keywords={`${data?.tags.join(', ')}, ${data?.title}, 서술형`}
+      />
       <label htmlFor='answer' className={contentTitleStyle}>
         답안 작성
       </label>

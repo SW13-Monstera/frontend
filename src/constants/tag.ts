@@ -3,7 +3,7 @@ import { IDropdownElement } from '../types/util';
 import { PROBLEM_TYPE } from './problem';
 
 interface IDropdownElementWithColor extends IDropdownElement {
-  color: string;
+  color: 'color1' | 'color2' | 'color3' | 'color4';
 }
 
 interface ITagListElement {
@@ -92,7 +92,10 @@ const TAGLIST: ITagListElement[] = [
 const TAG_MAP_BY_ID: Map<string, ITagBox> = new Map();
 TAGLIST.map((tagType) =>
   tagType.elements.map((tagElement) =>
-    TAG_MAP_BY_ID.set(tagElement.id, { name: tagElement.name, color: tagElement.color }),
+    TAG_MAP_BY_ID.set(tagElement.id, {
+      name: tagElement.name,
+      color: tagElement.color ?? 'color1',
+    }),
   ),
 );
 

@@ -6,6 +6,7 @@ import { URL } from '../../constants/url';
 import { PageTemplate } from '../../Template';
 import { BUTTON_SIZE, BUTTON_THEME } from '../../types/button';
 import { pageWrapperStyle } from '../MainPage/style.css';
+import { MetaTag } from '../utils/MetaTag';
 
 export const ErrorPage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export const ErrorPage = () => {
 
   return (
     <>
+      <MetaTag title='오류 발생' />
       <PageTemplate>
         <div className={pageWrapperStyle}>
           <TextButton

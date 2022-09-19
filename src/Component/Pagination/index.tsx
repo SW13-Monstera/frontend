@@ -1,7 +1,5 @@
-import { BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import { BUTTON_TYPE } from '../../types/button';
 import { IconButton } from '../Button';
-import { LeftArrowIcon } from '../../Icon/LeftArrowIcon';
-import { RightArrowIcon } from '../../Icon/RightArrowIcon';
 import { COLOR } from '../../constants/color';
 import {
   dotdotdotStyle,
@@ -9,6 +7,7 @@ import {
   paginationWrapperStyle,
 } from './style.css';
 import { MouseEventHandler } from 'react';
+import { ArrowRightIcon } from '../../Icon/ArrowRightIcon';
 
 interface IPagination {
   totalPages: number;
@@ -73,8 +72,10 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
 
   return (
     <div className={paginationWrapperStyle}>
-      <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} onClick={movePrevPage}>
-        <LeftArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
+      <IconButton type={BUTTON_TYPE.BUTTON} onClick={movePrevPage}>
+        <div style={{ transform: 'rotate(180deg)' }}>
+          <ArrowRightIcon fill={COLOR.TITLEACTIVE} width='1rem' height='1rem' />
+        </div>
       </IconButton>
       {totalPages <= 5
         ? Array(totalPages)
@@ -91,8 +92,8 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
               </div>
             ),
           )}
-      <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY} onClick={moveNextPage}>
-        <RightArrowIcon fill={COLOR.TITLEACTIVE} width='20px' height='20px' />
+      <IconButton type={BUTTON_TYPE.BUTTON} onClick={moveNextPage}>
+        <ArrowRightIcon fill={COLOR.TITLEACTIVE} width='1rem' height='1rem' />
       </IconButton>
     </div>
   );

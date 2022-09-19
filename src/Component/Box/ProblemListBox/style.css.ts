@@ -1,12 +1,12 @@
+import { themeColors } from './../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
 
 export const problemListWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
 
-  backgroundColor: COLOR.OFFWHITE,
+  backgroundColor: themeColors.background.F3,
   borderRadius: '20px',
 
   padding: '2rem',

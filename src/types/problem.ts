@@ -28,7 +28,7 @@ interface IQuestionListElementBox {
   tags: string[];
   type: TProblemType;
   totalSolved: number;
-  avgScore?: number;
+  avgScore: number;
 }
 
 interface IProblemIdLinkState {
@@ -51,7 +51,10 @@ type TPartialProblemDetailResponseData = Partial<IProblemDetailResponseData>;
 interface IProblemDetailPageTemplate {
   data: TPartialProblemDetailResponseData | undefined;
   children?: React.ReactNode;
-  handleSubmit: () => void;
+  handleSubmit?: () => void;
+  isResult?: boolean;
+  resetResult?: () => void;
+  isResultPage?: boolean;
 }
 
 export interface IMypageProblem {

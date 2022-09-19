@@ -38,6 +38,7 @@ export interface IShortProblemDetailResponseData extends IProblemDetailResponseD
   correctCnt: number;
   wrongCnt: number;
   answerLength: number;
+  isEnglish: boolean;
 }
 
 export interface IShortProblemResultData extends IShortProblemDetailResponseData {

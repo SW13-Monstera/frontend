@@ -5,3 +5,7 @@
 .markdown a {
   color: #4682db;
 }
+
+.markdown p {
+  margin: 0 0 1.25rem 0;
+}

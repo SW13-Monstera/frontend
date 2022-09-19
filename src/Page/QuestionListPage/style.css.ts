@@ -1,6 +1,6 @@
-import { style } from '@vanilla-extract/css';
+import { themeColors } from './../../styles/theme.css';
+import { keyframes, style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
-import baseFontStyle from '../../styles/font.css';
 
 export const listPageWrapperStyle = style({
   marginBottom: '5rem',
@@ -34,11 +34,10 @@ export const filterStyle = style({
   width: '100%',
   height: 'fit-content',
 
-  background: COLOR.OFFWHITE,
-  border: `1px solid ${COLOR.GRAY}`,
-  borderRadius: '10px',
+  background: themeColors.background.F8,
+  borderRadius: '8px',
 
-  padding: '1.25rem',
+  padding: '1.125rem 1.5rem',
 });
 
 export const filterTitleWrapperStyle = style({
@@ -50,12 +49,14 @@ export const filterTitleWrapperStyle = style({
   padding: '0 0.5rem',
 });
 
-export const filterTitleStyle = style([
-  baseFontStyle.medium,
-  {
-    color: COLOR.TITLEACTIVE,
-  },
-]);
+export const filterTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '18px',
+  lineHeight: '24px',
+
+  color: themeColors.text[2],
+  whiteSpace: 'nowrap',
+});
 
 export const dropdownListStyle = style({
   boxSizing: 'border-box',
@@ -110,10 +111,18 @@ export const questionListStyle = style({
   },
 });
 
-export const resetButtonStyle = style([
-  baseFontStyle.xsmall,
-  {
-    padding: 0,
-    alignSelf: 'end',
-  },
-]);
+const rotateKeyframe = keyframes({
+  '0%': { transform: 'rotate( 0deg )' },
+  '100%': { transform: 'rotate( 45deg )' },
+});
+
+export const resetButtonStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '.25rem',
+  fontWeight: '500',
+  fontSize: '.875rem',
+  lineHeight: '1.5rem',
+  color: COLOR.TEXT[7],
+});

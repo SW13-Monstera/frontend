@@ -1,3 +1,4 @@
+import { themeColors } from './../../styles/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
@@ -5,7 +6,7 @@ import baseFontStyle from '../../styles/font.css';
 export const boxStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: COLOR.OFFWHITE,
+  backgroundColor: themeColors.background.F3,
   gap: '1rem',
 
   width: '32rem',
@@ -67,7 +68,7 @@ export const section1NumericDataStyle = style({
 export const labelTitleStyle = style([
   baseFontStyle.medium,
   {
-    color: COLOR.GRAY,
+    color: themeColors.text[1],
   },
 ]);
 
@@ -92,7 +93,7 @@ export const linkButtonStyle = style({
 
 export const linkButtonByDomainStyle = styleVariants({
   linkedin: [linkButtonStyle],
-  github: [linkButtonStyle, { backgroundColor: '#000000' }],
+  github: [linkButtonStyle, { backgroundColor: COLOR.TITLEACTIVE }],
 });
 
 export const coreTechListStyle = style({

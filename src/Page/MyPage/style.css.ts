@@ -20,7 +20,6 @@ export const rightSideWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-
   marginLeft: '3rem',
 });
 

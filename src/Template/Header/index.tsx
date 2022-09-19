@@ -1,16 +1,17 @@
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import AlarmIcon from '../../Icon/AlarmIcon';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { useAuthStore } from '../../hooks/useStore';
-import { IconButton, TransparentButton } from '../../Component/Button';
+import { IconButton, TextButton, TransparentButton } from '../../Component/Button';
 import logo from '../../assets/images/csbroker.png';
 import {
+  buttonListWrapperBeforeLoginStyle,
   headerStyle,
+  iconButtonListWrapperStyle,
   leftSideWrapperStyle,
   logoStyle,
   menuStyle,
-  problemListButtonStyle,
 } from './style.css';
 import { COLOR } from '../../constants/color';
 import { ICON } from '../../constants/icon';
@@ -20,7 +21,8 @@ import { usePopover } from '../../hooks/usePopover';
 import { Typography } from '@mui/material';
 import { Divider } from '../../Component/Divider';
 import { setLogout } from '../../utils/setLogout';
-import { RightArrowIcon } from '../../Icon/RightArrowIcon';
+import { DarkmodeButton } from '../../Component/Button/DarkmodeButton';
+import { NavigateProblemListButton } from '../../Component/Button/NavigateProblemListButton';
 
 function Header() {
   const navigate = useNavigate();
@@ -56,25 +58,14 @@ function Header() {
             navigate(URL.MAIN);
           }}
         />
-        <button
-          className={problemListButtonStyle}
-          onClick={() => {
-            navigate(URL.PROBLEM_LIST);
-          }}
-        >
-          <span>모든문제 바로가기</span>
-          <RightArrowIcon fill={COLOR.PRIMARY} width='10px' height='10px' />
-        </button>
+        <NavigateProblemListButton />
       </div>
       <div className={menuStyle}>
+        <DarkmodeButton />
         {isLogin ? (
-          <>
-            <IconButton
-              type={BUTTON_TYPE.BUTTON}
-              theme={BUTTON_THEME.PRIMARY}
-              onClick={handleAlarmClick}
-            >
-              <AlarmIcon fill={COLOR.WHITE} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
+          <div className={iconButtonListWrapperStyle}>
+            <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleAlarmClick}>
+              <AlarmIcon fill={COLOR.TEXT[5]} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
             </IconButton>
             <CustomPopover
               id={alarmId}
@@ -84,12 +75,8 @@ function Header() {
             >
               <Typography sx={{ p: 2 }}>확인하지 않은 알림이 없습니다.</Typography>
             </CustomPopover>
-            <IconButton
-              type={BUTTON_TYPE.BUTTON}
-              theme={BUTTON_THEME.PRIMARY}
-              onClick={handleMypageClick}
-            >
-              <MyPageIcon fill={COLOR.WHITE} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
+            <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleMypageClick}>
+              <MyPageIcon fill={COLOR.PRIMARY} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
             </IconButton>
             <CustomPopover
               id={mypageId}
@@ -117,28 +104,30 @@ function Header() {
                 <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
               </>
             </CustomPopover>
-          </>
+          </div>
         ) : (
-          <>
-            <Link to={URL.LOGIN}>
-              <TransparentButton
-                type={BUTTON_TYPE.BUTTON}
-                theme={BUTTON_THEME.PRIMARY}
-                size={BUTTON_SIZE.MEDIUM}
-              >
-                로그인
-              </TransparentButton>
-            </Link>
-            <Link to={URL.JOIN}>
-              <TransparentButton
-                type={BUTTON_TYPE.BUTTON}
-                theme={BUTTON_THEME.PRIMARY}
-                size={BUTTON_SIZE.MEDIUM}
-              >
-                회원가입
-              </TransparentButton>
-            </Link>
-          </>
+          <div className={buttonListWrapperBeforeLoginStyle}>
+            <TextButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.SECONDARY}
+              size={BUTTON_SIZE.SMALL}
+              onClick={() => {
+                navigate(URL.LOGIN);
+              }}
+            >
+              로그인
+            </TextButton>
+            <TextButton
+              type={BUTTON_TYPE.BUTTON}
+              theme={BUTTON_THEME.PRIMARY}
+              size={BUTTON_SIZE.SMALL}
+              onClick={() => {
+                navigate(URL.JOIN);
+              }}
+            >
+              회원가입
+            </TextButton>
+          </div>
         )}
       </div>
       <Outlet />

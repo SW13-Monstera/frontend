@@ -5,6 +5,12 @@ interface IAuth {
   setIsLogin: (loginState: boolean) => void;
 }
 
+interface IDarkMode {
+  isDark: boolean;
+  toggleIsDark: () => void;
+  setIsDark: (isDarkState: boolean) => void;
+}
+
 interface IUserData {
   id: string;
   username: string;
@@ -27,4 +33,10 @@ const useUserDataStore = create<IUserDataStore>((set) => ({
   setUserData: (newUserData: IUserData) => set({ userData: newUserData }),
 }));
 
-export { useAuthStore, useUserDataStore };
+const useDarkModeStore = create<IDarkMode>((set) => ({
+  isDark: false,
+  toggleIsDark: () => set((state) => ({ ...state, isDark: !state.isDark })),
+  setIsDark: (isDarkState: boolean) => set((state) => ({ ...state, isDark: isDarkState })),
+}));
+
+export { useAuthStore, useUserDataStore, useDarkModeStore };

@@ -1,12 +1,6 @@
+import { themeColors } from './../../../styles/theme.css';
 import { style, keyframes, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
-import baseFontStyle from '../../../styles/font.css';
-import { vars } from '../baseStyle.css';
-
-const spread = keyframes({
-  '0%': { backgroundColor: 'inherit' },
-  '100%': { backgroundColor: vars.backgroundColor },
-});
 
 export const contentWrapperStyle = style({
   display: 'flex',
@@ -18,73 +12,60 @@ export const contentWrapperStyle = style({
   padding: '2rem',
 });
 
-export const answerInputWrapperStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  gap: '2rem',
-
-  width: '100%',
-  alignSelf: 'flex-end',
-
-  padding: '1.5rem',
+export const contentTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '1.5rem',
+  lineHeight: '2.1875rem',
+  color: themeColors.text[2],
 });
 
-export const contentTitleStyle = style([
-  baseFontStyle.xlarge,
-  {
-    color: vars.textColor,
-  },
-]);
-
-export const answerInputTitleStyle = style([
-  baseFontStyle.medium,
-  {
-    color: vars.textColor,
-  },
-]);
-
-export const problemDescContentStyle = style([
-  baseFontStyle.medium,
-  {
-    overflow: 'auto',
-    color: vars.textColor,
-  },
-]);
+export const problemDescContentStyle = style({
+  overflow: 'auto',
+  fontWeight: '400',
+  fontSize: '1.25rem',
+  lineHeight: '1.8125rem',
+  color: themeColors.text[5],
+});
 
 const vibration = keyframes({
   from: { transform: 'rotate(1deg)' },
   to: { transform: 'rotate(-1deg)' },
 });
 
-export const answerInputContentStyle = style([
-  baseFontStyle.medium,
-  {
-    display: 'flex',
+export const resultWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '2.5rem',
+  alignSelf: 'flex-end',
+  margin: '1.5rem',
+});
 
-    width: '60%',
+export const answerInputContentStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 
-    padding: '2rem 1rem',
+  width: '17.5rem',
+  height: '4rem',
 
-    color: vars.textColor,
-    backgroundColor: vars.backgroundColor,
-    borderRadius: '20px',
+  padding: '2rem 1rem',
+
+  color: themeColors.text[5],
+  background: themeColors.line.e,
+  border: `1px solid ${themeColors.line.d}`,
+  borderRadius: '8px',
+
+  fontWeight: '500',
+  fontSize: '1.5rem',
+  lineHeight: '1rem',
+
+  '::placeholder': {
+    fontWeight: '400',
+    fontSize: '1rem',
+    lineHeight: '4rem',
+    verticalAlign: 'middle',
   },
-]);
-
-export const answerInputScoredStyle = styleVariants({
-  correct: [answerInputContentStyle, { border: '3px solid green', color: COLOR.CORRECT }],
-  wrong: [
-    answerInputContentStyle,
-    {
-      border: '3px solid red',
-      color: COLOR.ERROR,
-      animationName: vibration,
-      animationDuration: '.1s',
-      animationIterationCount: 10,
-    },
-  ],
-  default: [answerInputContentStyle, {}],
 });
 
 export const tagListStyle = style({
@@ -92,17 +73,38 @@ export const tagListStyle = style({
   gap: '0.25rem',
 });
 
-export const answerLengthOpenStyle = style({
-  visibility: 'visible',
-});
-export const answerLengthNotOpenStyle = style({
-  visibility: 'hidden',
+export const resultBoxWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '.625rem',
+
+  width: 'fit-content',
+  minWidth: '12rem',
+  maxWidth: '17.5rem',
+  height: '4rem',
+
+  padding: '2rem 1rem',
+
+  fontWeight: '700',
+  fontSize: '1.5rem',
+  lineHeight: '1.5rem',
+
+  borderRadius: '8px',
+
+  ':hover': { filter: 'brightness(102%)' },
 });
 
-export const scoreStyle = style([
-  baseFontStyle.large,
-  {
-    alignSelf: 'flex-end',
-    padding: '1.5rem',
-  },
-]);
+export const resultAnswerStyle = styleVariants({
+  correct: [resultBoxWrapperStyle, { color: COLOR.GREEN, backgroundColor: COLOR.BACKGROUND.GREEN }],
+  wrong: [
+    resultBoxWrapperStyle,
+    {
+      color: COLOR.RED,
+      backgroundColor: COLOR.BACKGROUND.RED,
+      animationName: vibration,
+      animationDuration: '.1s',
+      animationIterationCount: 10,
+    },
+  ],
+});

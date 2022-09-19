@@ -1,3 +1,4 @@
+import { themeColors } from './../../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../../../constants/color';
 
@@ -18,6 +19,9 @@ export const searchInputBoxStyle = style({
   padding: '0 1.25rem',
 
   cursor: 'pointer',
+
+  color: COLOR.TITLEACTIVE,
+  background: COLOR.WHITE,
 });
 
 export const inputTextBoxStyle = style({
@@ -36,7 +40,7 @@ export const dropDownContentStyle = style({
 
   padding: '1rem',
 
-  backgroundColor: COLOR.WHITE,
+  backgroundColor: themeColors.background.FF,
   borderRadius: '20px',
 
   filter: 'drop-shadow(0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25))',

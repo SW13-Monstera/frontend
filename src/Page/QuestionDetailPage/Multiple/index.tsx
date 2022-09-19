@@ -13,15 +13,14 @@ import {
   contentTitleStyle,
   gradeResultScoredStyle,
   resultWrapperStyle,
-  scoreStyle,
-  wrongGradeResultWrapperStyle,
 } from './style.css';
 import { COLOR } from '../../../constants/color';
 import { XIcon } from '../../../Icon/XIcon';
 import { OIcon } from '../../../Icon/OIcon';
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
-import { TransparentButton } from '../../../Component/Button';
+import { MetaTag } from '../../utils/MetaTag';
+import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
@@ -55,7 +54,17 @@ export function MultipleQuestionDetailPage() {
   }
 
   return (
-    <SplitProblemDetailPageTemplate data={data} handleSubmit={handleSubmit}>
+    <SplitProblemDetailPageTemplate
+      data={data}
+      handleSubmit={handleSubmit}
+      isResult={result !== null && result !== undefined}
+      resetResult={resetResult}
+    >
+      <MetaTag
+        title={`CS Broker - ${data?.title}`}
+        description={`${data?.title}에 관한 객관식 문제입니다. 모든 정답을 선택한 후 제출하기 버튼을 눌러주세요.`}
+        keywords={`${data?.tags.join(', ')}, ${data?.title}, 객관식`}
+      />
       <label htmlFor='answer' className={contentTitleStyle}>
         답안 선택
       </label>
@@ -68,6 +77,7 @@ export function MultipleQuestionDetailPage() {
         ))}
       </div>
       <div className={resultWrapperStyle}>
+        <MyScoreBox score={result?.score} />
         {result ? (
           result.isAnswer ? (
             <div className={gradeResultScoredStyle.correct}>
@@ -75,18 +85,14 @@ export function MultipleQuestionDetailPage() {
               <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
             </div>
           ) : (
-            <div className={wrongGradeResultWrapperStyle}>
-              <div className={gradeResultScoredStyle.wrong}>
-                <div>오답입니다</div>
-                <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
-              </div>
-              <TransparentButton onClick={resetResult}>다시 풀기</TransparentButton>
+            <div className={gradeResultScoredStyle.wrong}>
+              <div>오답입니다</div>
+              <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
             </div>
           )
         ) : (
           <></>
         )}
-        <div className={scoreStyle}>{result ? `내 점수: ${result?.score}점` : ''}</div>
       </div>
     </SplitProblemDetailPageTemplate>
   );

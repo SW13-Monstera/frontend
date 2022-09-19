@@ -1,6 +1,13 @@
-import { IButtonDetail } from '../../../types/button';
-import { buttonThemeClass } from '../theme.css';
-import { textButtonSizeStyle, textButtonThemeStyle } from './style.css';
+import { ICustomButton, TButtonSize, TButtonTheme } from '../../../types/button';
+import { CustomButton } from '../CustomButton';
+import { textButtonSizeStyle, textButtonThemeStyle, unactivatedStyle } from './style.css';
+
+interface ITextButton extends ICustomButton {
+  theme: TButtonTheme;
+  size: TButtonSize;
+  isActivated?: boolean;
+  className?: string;
+}
 
 function TextButton({
   type,
@@ -10,16 +17,17 @@ function TextButton({
   children,
   className,
   isActivated = true,
-}: IButtonDetail) {
+}: ITextButton) {
   return (
-    <button
+    <CustomButton
       type={type}
       onClick={onClick}
-      className={`${buttonThemeClass} ${textButtonThemeStyle[theme]} ${textButtonSizeStyle[size]} ${className}`}
-      style={{ cursor: isActivated ? 'pointer' : 'not-allowed' }}
+      className={`${className} ${textButtonThemeStyle[theme]} ${textButtonSizeStyle[size]} ${
+        !isActivated ? unactivatedStyle : ''
+      }`}
     >
       {children}
-    </button>
+    </CustomButton>
   );
 }
 export default TextButton;

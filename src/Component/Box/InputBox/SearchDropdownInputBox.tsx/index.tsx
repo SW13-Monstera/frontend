@@ -1,6 +1,6 @@
 import { ReactComponent as SearchIcon } from '../../../../assets/icons/search-icon.svg';
 import { INPUT_TYPE } from '../../../../constants/input';
-import { BUTTON_THEME, BUTTON_TYPE } from '../../../../types/button';
+import { BUTTON_TYPE } from '../../../../types/button';
 import IconButton from '../../../Button/IconButton';
 import {
   searchInputBoxStyle,
@@ -11,11 +11,11 @@ import {
   checkedTagListStyle,
 } from './style.css';
 import { useEffect, useRef, useState } from 'react';
-import DropdownElement from '../../../Utils/Dropdown/DropdownElement';
 import { ITagState } from '../../../../types/tag';
 import TagBox from '../../TagBox';
 import listenOutsideClick from '../../../../utils/listenOutsideClick';
 import { IDropdownElement } from '../../../../types/util';
+import { DropdownElement } from '../../../Utils/DropdownElement';
 
 interface ISearchDropdownInputBox {
   id: string;
@@ -71,7 +71,7 @@ export function SearchDropdownInputBox({ id, elements, searchWithAPI }: ISearchD
           id={id}
           onChange={searchWithAPI ?? search}
         ></input>
-        <IconButton type={BUTTON_TYPE.BUTTON} theme={BUTTON_THEME.PRIMARY}>
+        <IconButton type={BUTTON_TYPE.BUTTON}>
           <SearchIcon className={searchButtonStyle} />
         </IconButton>
       </div>

@@ -1,13 +1,17 @@
-/** @jsxImportSource @emotion/react */
-
-import { css } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { ReactComponent as DownIcon } from '../../../assets/icons/down-arrow-icon.svg';
 import { ReactComponent as UpIcon } from '../../../assets/icons/up-arrow-icon.svg';
-import DropdownElement from './DropdownElement';
 import { BUTTON_TYPE } from '../../../types/button';
 import { IDropdownElement } from '../../../types/util';
 import listenOutsideClick from '../../../utils/listenOutsideClick';
+import { DropdownElement } from '../DropdownElement';
+import {
+  downIconStyle,
+  dropdownBoxStyle,
+  dropdownContentVisibilityStyle,
+  dropDownListStyle,
+  dropDownStyle,
+} from './style.css';
 
 interface ITagType {
   name: string;
@@ -29,13 +33,13 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
   useEffect(() => listenOutsideClick(menuRef, setIsOpen), []);
 
   return (
-    <div css={dropDownStyle} ref={menuRef}>
-      <button css={dropdownBoxStyle} onClick={onClickDropdown} type={BUTTON_TYPE.BUTTON}>
+    <div className={dropDownStyle} ref={menuRef}>
+      <button className={dropdownBoxStyle} onClick={onClickDropdown} type={BUTTON_TYPE.BUTTON}>
         <p>{name} 선택</p>
-        {isOpen ? <UpIcon css={downIconStyle} /> : <DownIcon css={downIconStyle} />}
+        {isOpen ? <UpIcon className={downIconStyle} /> : <DownIcon className={downIconStyle} />}
       </button>
-      <div css={dropDownContentStyle(isOpen)}>
-        <ul css={dropDownListStyle}>
+      <div className={dropdownContentVisibilityStyle[isOpen ? 'visible' : 'hidden']}>
+        <ul className={dropDownListStyle}>
           {elements.map((e) => (
             <DropdownElement
               id={e.id}
@@ -49,69 +53,5 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
     </div>
   );
 }
-
-const dropDownStyle = css`
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;
-`;
-
-const dropdownBoxStyle = css`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  width: 100%;
-  height: 4.6306rem;
-
-  background: #ffffff;
-  border: 0.0625rem solid #d8d8d8;
-  border-radius: 0.625rem;
-
-  padding: 0.625rem;
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5rem;
-
-  cursor: pointer;
-`;
-const dropDownContentStyle = (isSelected: boolean) => css`
-  position: absolute;
-
-  display: flex;
-  flex-direction: column;
-  gap: 50%;
-
-  visibility: ${isSelected ? 'visible' : 'hidden'};
-
-  width: 100%;
-
-  background: #ffffff;
-  border-radius: 0.625rem;
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.25rem;
-
-  filter: drop-shadow(0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25));
-
-  z-index: 1;
-`;
-
-const dropDownListStyle = css`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-`;
-
-const downIconStyle = css`
-  width: 0.5rem;
-`;
 
 export default Dropdown;

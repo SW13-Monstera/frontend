@@ -1,5 +1,5 @@
+import { themeColors } from './../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
 
 export const textBoxStyle = style({
   boxSizing: 'border-box',
@@ -8,8 +8,8 @@ export const textBoxStyle = style({
   alignItems: 'start',
   justifyContent: 'center',
 
-  color: COLOR.TITLEACTIVE,
-  backgroundColor: COLOR.OFFWHITE,
+  color: themeColors.text[1],
+  backgroundColor: themeColors.background.F3,
   borderRadius: '10px',
 
   width: '100%',

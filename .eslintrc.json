@@ -24,7 +24,7 @@
     "jsx-quotes": ["error", "prefer-single"],
     "no-duplicate-imports": "error",
     "block-scoped-var": "error",
-    "eqeqeq": "error",
+    "eqeqeq": "warn",
     "no-var": "error",
     "prefer-const": "error",
     "eol-last": "error",

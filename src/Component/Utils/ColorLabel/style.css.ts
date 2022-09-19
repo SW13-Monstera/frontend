@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
+import { themeColors } from '../../../styles/theme.css';
 
 export const labelWrapperStyle = style({
   display: 'flex',
@@ -18,6 +18,6 @@ export const circleStyle = style({
 export const nameStyle = style([
   baseFontStyle.xsmall,
   {
-    color: COLOR.TITLEACTIVE,
+    color: themeColors.text[2],
   },
 ]);
