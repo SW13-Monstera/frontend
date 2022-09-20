@@ -1,6 +1,5 @@
 import { BUTTON_TYPE } from '../../types/button';
 import { IconButton } from '../Button';
-import { COLOR } from '../../constants/color';
 import {
   dotdotdotStyle,
   paginationIsSelectedButtonStyle,
