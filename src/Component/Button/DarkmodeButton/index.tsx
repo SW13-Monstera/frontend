@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { DARK_MODE } from '../../../constants/localStorage';
 import { useDarkModeStore } from '../../../hooks/useStore';
 import { MoonIcon } from '../../../Icon/MoonIcon';
@@ -12,12 +11,13 @@ import {
 export const DarkmodeButton = () => {
   const { isDark, toggleIsDark } = useDarkModeStore();
 
-  useEffect(() => {
-    localStorage.setItem(DARK_MODE, JSON.stringify(isDark));
-  }, [isDark]);
+  const onDarkmodeButtonClick = () => {
+    localStorage.setItem(DARK_MODE, JSON.stringify(!isDark));
+    toggleIsDark();
+  };
 
   return (
-    <button type='button' onClick={toggleIsDark} className={darkmodeButtonStyle}>
+    <button type='button' onClick={onDarkmodeButtonClick} className={darkmodeButtonStyle}>
       <span className={darkmodeButtonContentStyle}>
         {isDark ? (
           <>
