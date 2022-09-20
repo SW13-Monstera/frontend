@@ -2,9 +2,10 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import AlarmIcon from '../../Icon/AlarmIcon';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import { useAuthStore } from '../../hooks/useStore';
+import { useAuthStore, useDarkModeStore } from '../../hooks/useStore';
 import { IconButton, TextButton, TransparentButton } from '../../Component/Button';
 import logo from '../../assets/images/csbroker.png';
+import logoWhite from '../../assets/images/csbroker-white.png';
 import {
   buttonListWrapperBeforeLoginStyle,
   headerStyle,
@@ -27,6 +28,7 @@ import { NavigateProblemListButton } from '../../Component/Button/NavigateProble
 function Header() {
   const navigate = useNavigate();
   const { isLogin, setIsLogin } = useAuthStore();
+  const { isDark } = useDarkModeStore();
 
   const {
     anchorEl: alarmAnchorEl,
@@ -52,7 +54,7 @@ function Header() {
     <header className={headerStyle}>
       <div className={leftSideWrapperStyle}>
         <img
-          src={logo}
+          src={isDark ? logoWhite : logo}
           className={logoStyle}
           onClick={() => {
             navigate(URL.MAIN);

@@ -14,7 +14,6 @@ export const headerStyle = style({
 
   width: '100%',
   height: '5rem',
-  paddingTop: '1rem',
 
   backgroundColor: themeColors.background.FF,
   borderBottom: `1px solid ${themeColors.line.e}`,
