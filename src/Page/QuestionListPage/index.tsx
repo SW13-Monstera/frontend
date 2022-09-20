@@ -139,7 +139,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                   .filter((tag) => tag.isChecked)
                   .map((tag) => {
                     const { name, color } = getTagById(tag.id);
-                    return <TagBox key={tag.id} name={name} color={color} />;
+                    return <TagBox key={tag.id} id={tag.id} name={name} color={color} isFilter />;
                   })}
               </ul>
             </div>

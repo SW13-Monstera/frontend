@@ -74,7 +74,7 @@ export const checkedTagListStyle = style({
 
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))',
-  gridGap: '0.2rem',
+  gridGap: '0.5rem',
 
   width: '100%',
 
