@@ -31,7 +31,7 @@ export const menuStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'right',
-  gap: '0.016%',
+  gap: '10%',
 
   padding: '1rem',
 });
