@@ -3,7 +3,7 @@ import baseFontStyle from '../../styles/font.css';
 
 export const pageWrapperStyle = style({
   display: 'flex',
-
+  flexDirection: 'column',
   padding: '3rem',
 });
 
@@ -16,11 +16,22 @@ export const pageTitleStyle = style([
   },
 ]);
 
+export const pageContentWrapperStyle = style({
+  display: 'flex',
+  gap: '2rem',
+  '@media': {
+    'screen and (max-width: 1000px)': {
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  },
+});
+
 export const rightSideWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  marginLeft: '3rem',
 });
 
 export const colorLabelListStyle = style({
@@ -30,4 +41,8 @@ export const colorLabelListStyle = style({
   gap: '1rem',
 
   alignSelf: 'end',
+});
+
+export const problemStatsWrapperStyle = style({
+  gap: '1rem',
 });
