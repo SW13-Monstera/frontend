@@ -5,6 +5,7 @@ const API_URL = {
   PROBLEM_LIST: '/v1/problems',
   USER_INFO: '/v1/auth/info',
   USER_LIST: '/v1/users',
+  STATS: 'v1/stats',
 };
 
 const API_URL_WITH_PARAMS = {

@@ -3,7 +3,7 @@ import { statisticsBoxStyle, statisticsLabelStyle, statisticsNumberStyle } from 
 
 interface ICountUpBox {
   title: string;
-  number: number;
+  number: number | undefined;
 }
 
 export const CountUpBox = ({ title, number }: ICountUpBox) => {
@@ -11,7 +11,7 @@ export const CountUpBox = ({ title, number }: ICountUpBox) => {
     <div className={statisticsBoxStyle}>
       <div className={statisticsLabelStyle}>{title}</div>
       <div className={statisticsNumberStyle}>
-        <CountUp end={number} duration={0.7} />
+        <CountUp end={number ?? 0} duration={0.7} />
       </div>
     </div>
   );
