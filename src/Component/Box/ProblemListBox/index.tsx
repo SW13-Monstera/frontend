@@ -1,7 +1,7 @@
 import { IMypageProblem } from '../../../types/problem';
 import { ProblemTitleBox } from '../ProblemTitleBox';
 import {
-  problemListElementsrStyle,
+  problemListElementsStyle,
   problemListTitleStyle,
   problemListWrapperStyle,
 } from './style.css';
@@ -18,7 +18,7 @@ export const ProblemListBox = ({ problems, title }: IProblemListBox) => {
         <div>{title}</div>
         <div>{problems.length}개</div>
       </div>
-      <ul className={problemListElementsrStyle}>
+      <ul className={problemListElementsStyle}>
         {problems.map((e) => (
           <li key={e.id}>
             <ProblemTitleBox id={e.id} title={e.title} type={e.type} />
