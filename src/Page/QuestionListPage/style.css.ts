@@ -51,8 +51,8 @@ export const filterTitleWrapperStyle = style({
 
 export const filterTitleStyle = style({
   fontWeight: '700',
-  fontSize: '18px',
-  lineHeight: '24px',
+  fontSize: '1.125rem',
+  lineHeight: '1.5rem',
 
   color: themeColors.text[2],
   whiteSpace: 'nowrap',
@@ -109,6 +109,10 @@ export const questionListStyle = style({
       gridTemplateColumns: 'repeat(1, 1fr)',
     },
   },
+});
+
+export const resetButtonTextStyle = style({
+  '@media': { 'screen and (max-width: 660px)': { display: 'none' } },
 });
 
 export const resetButtonStyle = style({

@@ -17,6 +17,7 @@ import {
   resetButtonStyle,
   filterTitleWrapperStyle,
   questionListWrapperStyle,
+  resetButtonTextStyle,
 } from './style.css';
 import { PageTemplate } from '../../Template';
 import { useEffect, useState } from 'react';
@@ -110,7 +111,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                     resetSearchProblemInput();
                   }}
                 >
-                  <div>초기화</div>
+                  <div className={resetButtonTextStyle}>초기화</div>
                   <RefreshIcon width='1.125rem' height='1.125rem' fill={COLOR.TEXT[7]} />
                 </button>
               </div>

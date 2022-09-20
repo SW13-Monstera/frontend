@@ -22,6 +22,12 @@ export const dropdownBoxStyle = style({
   borderRadius: '4px',
 
   padding: '.5rem .75rem',
+
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+
+  whiteSpace: 'nowrap',
 });
 
 export const dropDownContentStyle = style({
@@ -33,10 +39,6 @@ export const dropDownContentStyle = style({
 
   width: '100%',
   padding: '.375rem .75rem',
-
-  fontWeight: '400',
-  fontSize: '1rem',
-  lineHeight: '1.5rem',
 
   background: themeColors.background.FF,
   boxShadow: `0px 2px 16px ${themeColors.shadow[1]}`,
