@@ -6,6 +6,7 @@ import {
   detailStyle,
   detailValueStyle,
   detailWrapperStyle,
+  dividerStyle,
   problemStatisticsWrapperStyle,
   tagListStyle,
   textBoxMainStyle,
@@ -51,7 +52,6 @@ function QuestionListElementBox({
   id,
   type,
   isColumn,
-  itemId
 }: IQuestionListElementBox) {
   return (
     <>
@@ -70,7 +70,7 @@ function QuestionListElementBox({
             </ul>
             <p className={titleStyle}>{title}</p>
           </div>
-          <Divider />
+          <Divider className={dividerStyle} />
           {isColumn ? (
             <ColumnBox className={problemStatisticsWrapperStyle.column}>
               <ProblemStatisticsBox label='푼사람수' value={totalSolved} unit='명' />

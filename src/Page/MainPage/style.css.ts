@@ -36,17 +36,23 @@ export const statisticsWrapperStyle = style([
   },
 ]);
 
+export const problemListWrapperStyle = style({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  gap: '1rem',
+  alignItems: 'center',
+  justifyContent: 'center',
+  '@media': {
+    'screen and (max-width: 950px)': { gridTemplateColumns: 'repeat(2, 1fr)' },
+  },
+});
+
 export const problemListTitleStyle = style([
   baseFontStyle.large,
   {
     padding: '2rem',
   },
 ]);
-
-export const problemListWrapperStyle = style({
-  display: 'flex',
-  gap: '1rem',
-});
 
 export const strongDescriptionStyle = style({
   fontWeight: '500',

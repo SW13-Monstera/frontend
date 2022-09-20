@@ -1,14 +1,15 @@
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { PageTemplate } from '../../Template';
-import logo from '../../assets/images/csbroker.png';
+import logo from '../../assets/images/csbroker-main.png';
+import logoWhite from '../../assets/images/csbroker-white-main.png';
 import {
   pageWrapperStyle,
   logoTitleStyle,
   descriptionStyle,
   statisticsWrapperStyle,
-  problemListWrapperStyle,
   problemListTitleStyle,
   strongDescriptionStyle,
+  problemListWrapperStyle,
 } from './style.css';
 import { CountUpBox } from '../../Component/Box/CountUpBox';
 import { QuestionListElementBox } from '../../Component/Box';
@@ -20,10 +21,10 @@ import {
 import { ColumnBox } from '../../Component/Box/CustomBox';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
-import { HorizontalScrollMenu } from '../../Component/Utils/HorizontalScrollMenu';
+import { useDarkModeStore } from '../../hooks/useStore';
 
 const getProblemList = () => {
-  const params = { page: 0, size: 10 };
+  const params = { page: 0, size: 4 };
   return problemApiWrapper
     .problemList(params)
     .then((data: IProblemListResponseData) => data.contents);
@@ -35,6 +36,7 @@ function MainPage() {
     getProblemList,
   );
 
+  const { isDark } = useDarkModeStore();
   return (
     <PageTemplate>
       <MetaTag
@@ -47,7 +49,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
       <>
         <DefaultSlider />
         <div className={pageWrapperStyle}>
-          <img src={logo} className={logoTitleStyle}></img>
+          <img src={isDark ? logoWhite : logo} className={logoTitleStyle}></img>
           <div className={descriptionStyle}>
             AI 기반 서술형 채점 기법을 통해 <br />
             다양한 유형의 <strong className={strongDescriptionStyle}>Computer Science</strong>{' '}
@@ -59,23 +61,8 @@ AI 기반 문장 유사도 평가 기법을 채점받아
             <CountUpBox title='채점 가능한 문제 수' number={115} />
             <CountUpBox title='전체 사용자 수' number={320} />
           </div>
-          <ColumnBox>
+          <ColumnBox className={problemListWrapperStyle}>
             <div className={problemListTitleStyle}>오늘의 문제</div>
-            <HorizontalScrollMenu>
-              {problems?.map((problem) => (
-                <QuestionListElementBox
-                  key={problem.id.toString()}
-                  id={problem.id}
-                  itemId={problem.id}
-                  title={problem.title}
-                  tags={problem.tags}
-                  totalSolved={problem.totalSolved}
-                  avgScore={problem.avgScore}
-                  type={problem.type}
-                  isColumn={true}
-                />
-              ))}
-            </HorizontalScrollMenu>
             <div className={problemListWrapperStyle}>
               {problems?.map((problem) => (
                 <QuestionListElementBox
@@ -87,7 +74,6 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                   avgScore={problem.avgScore}
                   type={problem.type}
                   isColumn={true}
-                  itemId={problem.id}
                 />
               ))}
             </div>

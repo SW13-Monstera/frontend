@@ -36,8 +36,7 @@ export const textBoxMainStyle = style({
 
   '@media': {
     'screen and (max-width: 600px)': {
-      flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: 'start',
       justifyContent: 'space-between',
       gap: '1rem',
     },
@@ -56,6 +55,10 @@ export const titleStyle = style({
   fontSize: '1.125rem',
   lineHeight: '1.5rem',
   color: themeColors.text[1],
+});
+
+export const dividerStyle = style({
+  '@media': { 'screen and (max-width: 600px)': { display: 'none' } },
 });
 
 export const detailStyle = style({
