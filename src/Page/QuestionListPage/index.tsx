@@ -18,6 +18,8 @@ import {
   filterTitleWrapperStyle,
   questionListWrapperStyle,
   resetButtonTextStyle,
+  checkedTagListWrapperStyle,
+  checkedTagListTitleIsShownStyle,
 } from './style.css';
 import { PageTemplate } from '../../Template';
 import { useEffect, useState } from 'react';
@@ -134,14 +136,21 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                       />
                     ))}
               </div>
-              <ul className={checkedTagListStyle}>
-                {[...checkedTags]
-                  .filter((tag) => tag.isChecked)
-                  .map((tag) => {
-                    const { name, color } = getTagById(tag.id);
-                    return <TagBox key={tag.id} id={tag.id} name={name} color={color} isFilter />;
-                  })}
-              </ul>
+              <div className={checkedTagListWrapperStyle}>
+                <div
+                  className={checkedTagListTitleIsShownStyle[checkedTags.length ? 'true' : 'false']}
+                >
+                  선택된 필터
+                </div>
+                <ul className={checkedTagListStyle}>
+                  {[...checkedTags]
+                    .filter((tag) => tag.isChecked)
+                    .map((tag) => {
+                      const { name, color } = getTagById(tag.id);
+                      return <TagBox key={tag.id} id={tag.id} name={name} color={color} isFilter />;
+                    })}
+                </ul>
+              </div>
             </div>
           </aside>
 

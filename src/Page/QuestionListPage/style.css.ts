@@ -1,5 +1,5 @@
 import { themeColors } from './../../styles/theme.css';
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 
 export const listPageWrapperStyle = style({
@@ -8,6 +8,9 @@ export const listPageWrapperStyle = style({
 
 export const listPageMainWrapperStyle = style({
   display: 'flex',
+  justifyContent: 'center',
+  gap: '1.3125rem',
+  padding: '0 5rem',
 });
 
 export const asideStyle = style({
@@ -17,7 +20,8 @@ export const asideStyle = style({
   flexDirection: 'column',
   gap: '1.25rem',
 
-  width: '20rem',
+  width: '40%',
+  minWidth: '15rem',
   height: '12.5rem',
 
   padding: '1rem 0 0 1rem',
@@ -69,16 +73,30 @@ export const dropdownListStyle = style({
   width: '100%',
 });
 
-export const checkedTagListStyle = style({
-  boxSizing: 'border-box',
-
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(60px, 1fr))',
-  gridGap: '0.5rem',
-
+export const checkedTagListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
   width: '100%',
+});
 
-  justifyItems: 'center',
+export const checkedTagListTitleStyle = style({
+  fontWeight: '500',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+  color: themeColors.text[1],
+});
+
+export const checkedTagListTitleIsShownStyle = styleVariants({
+  true: [checkedTagListTitleStyle],
+  false: [checkedTagListTitleStyle, { display: 'none' }],
+});
+
+export const checkedTagListStyle = style({
+  display: 'flex',
+  gap: '.5rem',
+  width: '100%',
+  overflowX: 'auto',
 });
 
 export const questionListWrapperStyle = style({
@@ -97,7 +115,7 @@ export const questionListStyle = style({
   gridTemplateColumns: 'repeat(3, 1fr)',
   gap: '10px',
 
-  width: '80%',
+  width: '100%',
 
   paddingTop: '1rem',
 
