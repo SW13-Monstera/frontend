@@ -41,7 +41,7 @@ function QuestionListPage() {
   const [params, setParams] = useState<IProblemRequestParam>();
   const { data } = useQuery<IProblemListResponseData>(
     ['problemList', params],
-    () => problemApiWrapper.problemList(params),
+    () => problemApiWrapper.problemList({ ...params, size: 12 }),
     { enabled: !!params },
   );
   const [checkedTags, setCheckedTags] = useState<ITagState[]>([]);

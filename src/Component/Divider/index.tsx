@@ -1,5 +1,9 @@
 import { horizontalLineStyle } from './style.css';
 
-export const Divider = () => {
-  return <div className={horizontalLineStyle} />;
+interface IDivider {
+  className?: string;
+}
+
+export const Divider = ({ className }: IDivider) => {
+  return <div className={`${horizontalLineStyle} ${className}`} />;
 };

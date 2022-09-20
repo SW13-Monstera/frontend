@@ -6,6 +6,7 @@ import {
   detailStyle,
   detailValueStyle,
   detailWrapperStyle,
+  dividerStyle,
   problemStatisticsWrapperStyle,
   tagListStyle,
   textBoxMainStyle,
@@ -16,7 +17,7 @@ import { URLWithParam } from '../../../constants/url';
 import { getTagById } from '../../../utils/getTagbyId';
 import { Divider } from '../../Divider';
 import { formatNumber } from '../../../utils/formatNumber';
-import { RowBox } from '../CustomBox';
+import { ColumnBox, RowBox } from '../CustomBox';
 
 interface IProblemStatisticsBox {
   label: string;
@@ -50,11 +51,12 @@ function QuestionListElementBox({
   tags,
   id,
   type,
+  isColumn,
 }: IQuestionListElementBox) {
   return (
     <>
       <Link to={URLByType[type](id)}>
-        <div className={textBoxStyle}>
+        <div className={textBoxStyle} id={`element-${id}`}>
           <div className={textBoxMainStyle}>
             <ul className={tagListStyle}>
               {tags.map((tagId) => {
@@ -68,11 +70,18 @@ function QuestionListElementBox({
             </ul>
             <p className={titleStyle}>{title}</p>
           </div>
-          <Divider />
-          <RowBox className={problemStatisticsWrapperStyle}>
-            <ProblemStatisticsBox label='푼사람수' value={totalSolved} unit='명' />
-            <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
-          </RowBox>
+          <Divider className={dividerStyle} />
+          {isColumn ? (
+            <ColumnBox className={problemStatisticsWrapperStyle.column}>
+              <ProblemStatisticsBox label='푼사람수' value={totalSolved} unit='명' />
+              <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
+            </ColumnBox>
+          ) : (
+            <RowBox className={problemStatisticsWrapperStyle.row}>
+              <ProblemStatisticsBox label='푼사람수' value={totalSolved} unit='명' />
+              <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
+            </RowBox>
+          )}
         </div>
       </Link>
       <Outlet />

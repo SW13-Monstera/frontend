@@ -6,7 +6,6 @@ import {
   resultAnswerStyle,
   resultWrapperStyle,
 } from './style.css';
-import '../gutter.css';
 import { useParams } from 'react-router-dom';
 import { useState, KeyboardEvent } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';

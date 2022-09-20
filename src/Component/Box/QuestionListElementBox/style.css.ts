@@ -1,6 +1,11 @@
 import { themeColors } from './../../../styles/theme.css';
-import { style } from '@vanilla-extract/css';
+import { keyframes, style, styleVariants } from '@vanilla-extract/css';
 import baseFontStyle from '../../../styles/font.css';
+
+const spreadBoxShadow = keyframes({
+  '0%': { boxShadow: `0px 0px 4px ${themeColors.shadow[1]}` },
+  '100%': { boxShadow: `4px 8px 24px  ${themeColors.shadow[1]}` },
+});
 
 export const textBoxStyle = style({
   display: 'flex',
@@ -17,6 +22,12 @@ export const textBoxStyle = style({
   background: themeColors.background.FF,
   boxShadow: `0px 0px 4px ${themeColors.shadow[1]}`,
   borderRadius: '8px',
+  transition: 'box-shadow .3s',
+  animation: spreadBoxShadow,
+
+  ':hover': {
+    boxShadow: `4px 8px 24px  ${themeColors.shadow[1]}`,
+  },
 });
 
 export const textBoxMainStyle = style({
@@ -25,8 +36,7 @@ export const textBoxMainStyle = style({
 
   '@media': {
     'screen and (max-width: 600px)': {
-      flexDirection: 'row',
-      alignItems: 'center',
+      alignItems: 'start',
       justifyContent: 'space-between',
       gap: '1rem',
     },
@@ -47,10 +57,14 @@ export const titleStyle = style({
   color: themeColors.text[1],
 });
 
+export const dividerStyle = style({
+  '@media': { 'screen and (max-width: 600px)': { display: 'none' } },
+});
+
 export const detailStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
+  alignItems: 'start',
   justifyContent: 'center',
   gap: '.25rem',
 });
@@ -71,6 +85,13 @@ export const detailValueStyle = style({
 
 export const tagListStyle = style({ display: 'flex', gap: '.5rem' });
 
-export const problemStatisticsWrapperStyle = style({
-  gap: '7.8125rem',
+export const problemStatisticsWrapperBaseStyle = style({
+  display: 'flex',
+  alignItems: 'start',
+  justifyContent: 'start',
+});
+
+export const problemStatisticsWrapperStyle = styleVariants({
+  row: [problemStatisticsWrapperBaseStyle, { gap: '7.8125rem' }],
+  column: [problemStatisticsWrapperBaseStyle, { gap: '1.5rem' }],
 });

@@ -6,7 +6,6 @@ import {
   topStyle,
   buttonListWrapperStyle,
 } from './style.css';
-import '../../styles/gutter.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';

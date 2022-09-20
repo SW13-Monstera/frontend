@@ -24,8 +24,16 @@ function App() {
     const darkModePreference = localStorage.getItem(DARK_MODE);
     if (darkModePreference !== null) {
       setIsDark(JSON.parse(darkModePreference));
+      localStorage.setItem(DARK_MODE, darkModePreference);
     } else {
       setIsDark(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+      localStorage.setItem(
+        DARK_MODE,
+        JSON.stringify(
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+        ),
+      );
     }
 
     history.scrollRestoration = 'auto';

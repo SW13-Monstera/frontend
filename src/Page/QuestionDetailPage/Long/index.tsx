@@ -1,5 +1,4 @@
 import { contentTitleStyle, answerInputContentStyle } from './style.css';
-import '../gutter.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { ILongProblemDetailResponseData } from '../../../types/api/problem';

@@ -1,17 +1,17 @@
 import CountUp from 'react-countup';
-import { statisticsBoxStyle, statisticsNumberStyle } from './style.css';
+import { statisticsBoxStyle, statisticsLabelStyle, statisticsNumberStyle } from './style.css';
 
 interface ICountUpBox {
   title: string;
-  number: number;
+  number: number | undefined;
 }
 
 export const CountUpBox = ({ title, number }: ICountUpBox) => {
   return (
     <div className={statisticsBoxStyle}>
-      <div>{title}</div>
+      <div className={statisticsLabelStyle}>{title}</div>
       <div className={statisticsNumberStyle}>
-        <CountUp end={number} duration={0.7} />
+        <CountUp end={number ?? 0} duration={0.7} />
       </div>
     </div>
   );
