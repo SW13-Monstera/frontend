@@ -4,7 +4,7 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { useAuthStore } from '../../hooks/useStore';
+import { useAuthStore, useCheckedTagStore } from '../../hooks/useStore';
 import {
   listPageWrapperStyle,
   listPageMainWrapperStyle,
@@ -36,6 +36,7 @@ import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
 import { RefreshIcon } from '../../Icon/RefreshIcon';
 import { COLOR } from '../../constants/color';
+import { CHECKED_TAGS } from '../../constants/localStorage';
 
 function QuestionListPage() {
   const [params, setParams] = useState<IProblemRequestParam>();
@@ -44,21 +45,26 @@ function QuestionListPage() {
     () => problemApiWrapper.problemList({ ...params, size: 12 }),
     { enabled: !!params },
   );
-  const [checkedTags, setCheckedTags] = useState<ITagState[]>([]);
+  const { checkedTags, setCheckedTags } = useCheckedTagStore();
   const [page, setPage] = useState(0);
   const { isLogin } = useAuthStore();
 
+  const setCheckedTagsSync = (newCheckedTags: ITagState[]) => {
+    setCheckedTags(newCheckedTags);
+    localStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
+  };
+
   const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {
-    setCheckedTags((prev) =>
-      prev.map((tag) => tag.id).includes(id)
-        ? prev.map((tag) => (tag.id === id ? { id, isChecked, name } : tag))
-        : [...prev, { id, isChecked, name }],
+    setCheckedTagsSync(
+      checkedTags.map((tag: { id: any }) => tag.id).includes(id)
+        ? checkedTags.map((tag) => (tag.id === id ? { id, isChecked, name } : tag))
+        : [...checkedTags, { id, isChecked, name }],
     );
   };
 
   const resetCheckedTags = () => {
     resetCheckboxes();
-    setCheckedTags([]);
+    setCheckedTagsSync([]);
   };
 
   const handleSearchInput = () => {

@@ -1,4 +1,7 @@
+import { CHECKED_TAGS } from './../constants/localStorage';
 import create from 'zustand';
+import { ITag } from '../types/problem';
+import { ITagState } from '../types/tag';
 
 interface IAuth {
   isLogin: boolean;
@@ -23,6 +26,11 @@ interface IUserDataStore {
   setUserData: (userInfo: IUserData) => void;
 }
 
+interface ITagStore {
+  checkedTags: ITagState[];
+  setCheckedTags: (tagState: ITagState[]) => void;
+}
+
 const useAuthStore = create<IAuth>((set) => ({
   isLogin: false,
   setIsLogin: (loginState: boolean) => set((state) => ({ ...state, isLogin: loginState })),
@@ -39,4 +47,11 @@ const useDarkModeStore = create<IDarkMode>((set) => ({
   setIsDark: (isDarkState: boolean) => set((state) => ({ ...state, isDark: isDarkState })),
 }));
 
-export { useAuthStore, useUserDataStore, useDarkModeStore };
+const useCheckedTagStore = create<ITagStore>((set) => ({
+  checkedTags: localStorage.getItem(CHECKED_TAGS)
+    ? JSON.parse(localStorage.getItem(CHECKED_TAGS)!)
+    : [],
+  setCheckedTags: (tagState: ITagState[]) => set((state) => ({ ...state, checkedTags: tagState })),
+}));
+
+export { useAuthStore, useUserDataStore, useDarkModeStore, useCheckedTagStore };
