@@ -1,5 +1,6 @@
 import { ITagBox } from '../types/tag';
 import { IDropdownElement } from '../types/util';
+import { DB, DS, NETWORK, OS } from './category';
 import { PROBLEM_TYPE } from './problem';
 
 interface IDropdownElementWithColor extends IDropdownElement {
@@ -16,22 +17,22 @@ const TAGLIST: ITagListElement[] = [
     name: '카테고리',
     elements: [
       {
-        id: 'network',
+        id: NETWORK,
         name: '네트워크',
         color: 'color1',
       },
       {
-        id: 'os',
+        id: OS,
         name: '운영체제',
         color: 'color1',
       },
       {
-        id: 'db',
+        id: DB,
         name: '데이터베이스',
         color: 'color1',
       },
       {
-        id: 'ds',
+        id: DS,
         name: '자료구조',
         color: 'color1',
       },
