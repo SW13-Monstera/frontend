@@ -1,4 +1,3 @@
-import '../../../styles/gutter.css';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';

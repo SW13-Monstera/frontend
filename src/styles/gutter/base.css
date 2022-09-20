@@ -5,11 +5,15 @@
   margin: 0 1rem 0 1rem;
 }
 
-.gutter:hover {
-  background-color: gray;
-}
-
 .gutter.gutter-horizontal {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
   cursor: col-resize;
+}
+
+.gutter.gutter-dark {
+  border-right: 2px solid #3a3a3a;
+}
+
+.gutter.gutter-light {
+  border-right: 2px solid #dddddd;
 }
