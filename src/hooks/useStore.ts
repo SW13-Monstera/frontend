@@ -1,6 +1,5 @@
 import { CHECKED_TAGS } from './../constants/localStorage';
 import create from 'zustand';
-import { ITag } from '../types/problem';
 import { ITagState } from '../types/tag';
 
 interface IAuth {
