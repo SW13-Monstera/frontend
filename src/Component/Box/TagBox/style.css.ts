@@ -7,6 +7,7 @@ const tagBaseStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  gap: '.25rem',
 
   width: 'fit-content',
   height: '1.625rem',
@@ -24,13 +25,6 @@ const tagBaseStyle = style({
   padding: '.25rem .75rem',
 
   whiteSpace: 'nowrap',
-
-  '@media': {
-    'screen and (max-width: 600px)': {
-      width: '60px',
-      height: '20px',
-    },
-  },
 });
 
 export const tagColorStyle = styleVariants({
@@ -38,4 +32,24 @@ export const tagColorStyle = styleVariants({
   color2: [tagBaseStyle, { backgroundColor: COLOR.BACKGROUND.PINK, color: COLOR.PINK }],
   color3: [tagBaseStyle, { backgroundColor: COLOR.BACKGROUND.ORANGE, color: COLOR.ORANGE }],
   color4: [tagBaseStyle, { backgroundColor: COLOR.BACKGROUND.GREEN, color: COLOR.GREEN }],
+});
+
+export const filterTagStyle = style({
+  fontWeight: '500',
+  fontSize: '.75rem',
+  lineHeight: '1.125rem',
+});
+
+export const deleteButtonStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  width: '100%',
+  height: '100%',
+});
+
+export const deleteButtonIsShownStyle = styleVariants({
+  true: [deleteButtonStyle, {}],
+  false: [deleteButtonStyle, { display: 'none' }],
 });

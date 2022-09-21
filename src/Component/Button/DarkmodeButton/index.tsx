@@ -21,12 +21,12 @@ export const DarkmodeButton = () => {
       <span className={darkmodeButtonContentStyle}>
         {isDark ? (
           <>
-            <SunIcon width='16px' height='16px' />
+            <SunIcon width='1rem' height='1rem' />
             <span className={darkmodeButtonTextStyle}>라이트 모드로 보기</span>
           </>
         ) : (
           <>
-            <MoonIcon width='16px' height='16px' />
+            <MoonIcon width='1rem' height='1rem' />
             <span className={darkmodeButtonTextStyle}> 다크 모드로 보기</span>
           </>
         )}

@@ -2,8 +2,6 @@ import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const headerStyle = style({
-  boxSizing: 'border-box',
-
   position: 'sticky',
   left: '0px',
   top: '0px',
@@ -33,7 +31,7 @@ export const menuStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'right',
-  gap: '2rem',
+  gap: '10%',
 
   padding: '1rem',
 });
@@ -51,7 +49,7 @@ export const buttonListWrapperBeforeLoginStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '1rem',
+  gap: '0.0083%',
 });
 
 export const iconButtonListWrapperStyle = style({

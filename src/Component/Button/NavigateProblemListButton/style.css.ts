@@ -25,3 +25,7 @@ export const problemListButtonStyle = styleVariants({
   light: [problemListButtonBaseStyle, { backgroundColor: COLOR.DARK[1] }],
   dark: [problemListButtonBaseStyle, { backgroundColor: COLOR.PRIMARY }],
 });
+
+export const mobileNotShownStyle = style({
+  '@media': { 'screen and (max-width: 600px)': { display: 'none' } },
+});

@@ -4,7 +4,7 @@ import { URL } from '../../../constants/url';
 import { useDarkModeStore } from '../../../hooks/useStore';
 import { RightArrowWithLineIcon } from '../../../Icon/RightArrowWithLineIcon';
 import { CustomButton } from '../CustomButton';
-import { problemListButtonStyle } from './style.css';
+import { problemListButtonStyle, mobileNotShownStyle } from './style.css';
 
 export const NavigateProblemListButton = () => {
   const { isDark } = useDarkModeStore();
@@ -17,11 +17,12 @@ export const NavigateProblemListButton = () => {
         navigate(URL.PROBLEM_LIST);
       }}
     >
-      <span>모든문제 바로가기</span>
+      <span>모든문제</span>
+      <span className={mobileNotShownStyle}>바로가기</span>
       <RightArrowWithLineIcon
         fill={isDark ? COLOR.WHITE : COLOR.PRIMARY}
-        width='20px'
-        height='20px'
+        width='1.25rem'
+        height='1.25rem'
       />
     </CustomButton>
   );

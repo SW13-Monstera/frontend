@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ReactComponent as DownIcon } from '../../../assets/icons/down-arrow-icon.svg';
 import { ReactComponent as UpIcon } from '../../../assets/icons/up-arrow-icon.svg';
+import { useCheckedTagStore } from '../../../hooks/useStore';
 import { BUTTON_TYPE } from '../../../types/button';
 import { IDropdownElement } from '../../../types/util';
 import listenOutsideClick from '../../../utils/listenOutsideClick';
@@ -25,6 +26,7 @@ interface IDropdownProps extends ITagType {
 function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { checkedTags } = useCheckedTagStore();
 
   function onClickDropdown() {
     setIsOpen(!isOpen);
@@ -46,6 +48,10 @@ function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
               name={e.name}
               handleCheckedTags={handleCheckedTags}
               key={`${e.id}${e.name}`}
+              isChecked={checkedTags
+                .filter((e) => e.isChecked)
+                .map((e) => e.id)
+                .includes(e.id)}
             />
           ))}
         </ul>
