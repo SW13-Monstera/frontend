@@ -26,13 +26,14 @@ import { DoughnutChart } from '../../Component/Chart/DoughnutChart';
 import { createCategoryChartData } from '../../utils/createChartData';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
+import { IChartElement } from '../../types/chart';
 
 interface IProfileBox {
   profileData: IProfileData;
 }
 
 interface IProfileData {
-  nickname: string;
+  username: string;
   imageUrl: string;
   rank: number;
   score: number;
@@ -41,15 +42,15 @@ interface IProfileData {
   email: string;
   major: string;
   job: string;
-  jobObjective: string[];
-  coreTech: string[];
-  statistics: any[];
+  jobObjective: string;
+  techs: string[];
+  statistics: IChartElement[];
 }
 
 export const ProfileBox = ({ profileData }: IProfileBox) => {
   const navigate = useNavigate();
   const {
-    nickname,
+    username,
     imageUrl,
     rank,
     score,
@@ -59,9 +60,10 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
     major,
     job,
     jobObjective,
-    coreTech,
+    techs,
     statistics,
   } = profileData;
+
   return (
     <div className={boxStyle}>
       <div className={section1Style}>
@@ -69,44 +71,46 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
           <img src={imageUrl} className={imageStyle} />
         </div>
         <div className={section1DataStyle}>
-          <div>{nickname}</div>
+          <div>{username}</div>
           <div className={section1NumericDataStyle}>
             <div>{rank}위 </div>
             <div>{score}점</div>
           </div>
           <div className={linkButtonListStyle}>
-            <a className={linkButtonByDomainStyle.linkedin} href={linkedinUrl} role='button'>
-              <img src={linkedinLogo} width='25px' height='25px' />
-            </a>
-            <a className={linkButtonByDomainStyle.github} href={githubUrl} role='button'>
-              <img src={githubLogo} width='25px' height='25px' />
-            </a>
+            {linkedinUrl && (
+              <a className={linkButtonByDomainStyle.linkedin} href={linkedinUrl} role='button'>
+                <img src={linkedinLogo} width='25px' height='25px' />
+              </a>
+            )}
+            {githubUrl && (
+              <a className={linkButtonByDomainStyle.github} href={githubUrl} role='button'>
+                <img src={githubLogo} width='25px' height='25px' />
+              </a>
+            )}
           </div>
         </div>
       </div>
       <Divider />
       <div className={section2Style}>
         <ProfileLabel name={'이메일'} value={email} />
-        <ProfileLabel name={'전공'} value={major} />
-        <ProfileLabel name={'직업'} value={job} />
+        <ProfileLabel name={'전공'} value={major === null ? '선택 안 함' : major} />
+        <ProfileLabel name={'직업'} value={job === null ? '선택 안 함' : job} />
         <ProfileLabel
           name={'희망직무'}
-          value={
-            <ul className={coreTechListStyle}>
-              {jobObjective.map((e) => (
-                <TechTagBox name={e} key={e} color={COLOR.TAG1} />
-              ))}
-            </ul>
-          }
+          value={jobObjective === null ? '선택 안 함' : jobObjective}
         />
         <ProfileLabel
           name={'주요 기술'}
           value={
-            <ul className={coreTechListStyle}>
-              {coreTech.map((e) => (
-                <TechTagBox name={e} key={e} color={COLOR.TAG2} />
-              ))}
-            </ul>
+            techs.length === 0 ? (
+              '선택 안 함'
+            ) : (
+              <ul className={coreTechListStyle}>
+                {techs.map((e) => (
+                  <TechTagBox name={e} key={e} color={COLOR.TAG2} />
+                ))}
+              </ul>
+            )
           }
         />
       </div>
@@ -114,7 +118,7 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
       <div className={section3Style}>
         <div className={labelTitleStyle}>통계</div>
         <div className={chartWrapperStyle}>
-          <DoughnutChart data={createCategoryChartData(statistics.map((e) => e.value))} />
+          <DoughnutChart data={createCategoryChartData(statistics)} />
         </div>
       </div>
       <Divider />

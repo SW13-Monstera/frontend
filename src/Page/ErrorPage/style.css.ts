@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-const pageWrapperStyle = style({
+export const pageWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

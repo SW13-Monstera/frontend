@@ -17,6 +17,8 @@ const API_URL_WITH_PARAMS = {
   SHORT_PROBLEM_RESULT: (problem_id: string) => `/v1/problems/short/${problem_id}/grade`,
   MULTIPLE_PROBLEM_RESULT: (problem_id: string) => `/v1/problems/multiple/${problem_id}/grade`,
   UPDATE_USER: (user_id: string) => `/v1/users/${user_id}`,
+  USER_STATS: (user_id: string) => `/v1/users/${user_id}/stats`,
+  USER_INFO: (user_id: string) => `/v1/users/${user_id}`,
 };
 
 export { API_URL, API_URL_WITH_PARAMS };

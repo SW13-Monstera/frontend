@@ -9,11 +9,12 @@ export const boxStyle = style({
   backgroundColor: themeColors.background.F3,
   gap: '1rem',
 
-  width: '32rem',
+  width: '85%',
   height: 'fit-content',
 
   borderRadius: '20px',
 
+  marginTop: '2rem',
   padding: '2rem',
 });
 
