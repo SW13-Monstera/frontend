@@ -1,6 +1,7 @@
 import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import baseFontStyle from '../../styles/font.css';
+import { COLOR } from '../../constants/color';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
@@ -38,24 +39,30 @@ export const subtitleStyle = style([
   },
 ]);
 
-export const answerContentStyle = style([
-  baseFontStyle.small,
+export const answerContentStyle = style({
+  overflow: 'auto',
+  textAlign: 'start',
+  fontWeight: '400',
+  fontSize: '1.25rem',
+  lineHeight: '1.8125rem',
+  color: themeColors.text[5],
+});
+
+export const standardAnswerContentStyle = style([
+  answerContentStyle,
   {
-    overflow: 'auto',
-    color: themeColors.text[1],
+    height: '300px',
+    padding: '1.5rem 1rem',
   },
 ]);
 
 export const keywordListStyle = style({
-  boxSizing: 'border-box',
-
-  display: 'grid',
-  gridAutoFlow: 'column',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(6.875rem, 1fr))',
-  gridGap: '0.2rem',
-
-  justifyItems: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'start',
   gap: '0.9375rem',
+  width: '100%',
+  overflowX: 'auto',
 });
 
 export const contentStyle = style({
@@ -67,10 +74,7 @@ export const contentStyle = style({
   gap: '1.5rem',
 
   width: '100%',
-  height: '60vh',
-  padding: '1rem 2rem',
-
-  overflow: 'auto',
+  height: '100%',
 
   '@media': {
     'screen and (max-width: 1100px)': {
@@ -78,6 +82,13 @@ export const contentStyle = style({
     },
   },
 });
+
+export const standardAnswerStyle = style([
+  contentStyle,
+  {
+    padding: '1rem',
+  },
+]);
 
 export const buttonListStyle = style({
   boxSizing: 'border-box',
@@ -100,6 +111,33 @@ export const scoreWrapperStyle = style([
   },
 ]);
 
-export const scoreStyle = style({
-  fontWeight: 'bold',
+export const myScoreStyle = style({
+  alignSelf: 'end',
 });
+
+export const numberLineChartWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '4rem',
+  width: '100%',
+  height: '13.4375rem',
+
+  background: '#F8FAFD',
+  borderRadius: '24px',
+
+  padding: '2rem 1.5rem',
+});
+
+export const numberLineChartTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '1.5rem',
+  lineHeight: '2.1875rem',
+  color: themeColors.text[2],
+});
+
+export const numberLineChartStrongTitleStyle = style([
+  numberLineChartTitleStyle,
+  {
+    color: COLOR.PRIMARY,
+  },
+]);

@@ -1,25 +1,22 @@
 import { ProblemDetailPageTemplate } from '../ProblemDetailPageTemplate';
 import Split from 'react-split';
-import {
-  contentTitleStyle,
-  contentWrapperStyle,
-  problemDescContentStyle,
-  splitStyle,
-} from './style.css';
-import { IProblemDetailPageTemplate } from '../../types/problem';
-import { MarkdownBox } from '../../Component/Box/MarkdownBox';
+import { contentWrapperStyle, splitStyle } from './style.css';
+import { ISplitProblemDetailPageTemplate } from '../../types/problem';
 import { useDarkModeStore } from '../../hooks/useStore';
 import { useEffect } from 'react';
 import '../../styles/gutter/base.css';
 
 export const SplitProblemDetailPageTemplate = ({
   data,
-  children,
+  leftSideContent,
+  rightSideContent,
+  bottomContent,
   handleSubmit,
   isResult,
   resetResult,
   isResultPage,
-}: IProblemDetailPageTemplate) => {
+  sizes = [35, 65],
+}: ISplitProblemDetailPageTemplate) => {
   const { isDark } = useDarkModeStore();
 
   useEffect(() => {
@@ -38,9 +35,10 @@ export const SplitProblemDetailPageTemplate = ({
       isResult={isResult}
       resetResult={resetResult}
       isResultPage={isResultPage}
+      bottomContent={bottomContent}
     >
       <Split
-        sizes={[35, 65]}
+        sizes={sizes}
         minSize={100}
         expandToMin={false}
         gutter={() => {
@@ -56,13 +54,8 @@ export const SplitProblemDetailPageTemplate = ({
         cursor='col-resize'
         className={splitStyle}
       >
-        <div className={contentWrapperStyle}>
-          <div className={contentTitleStyle}>문제 설명</div>
-          <div className={problemDescContentStyle}>
-            <MarkdownBox>{data?.description}</MarkdownBox>
-          </div>
-        </div>
-        <div className={contentWrapperStyle}>{children}</div>
+        <div className={contentWrapperStyle}>{leftSideContent}</div>
+        <div className={contentWrapperStyle}>{rightSideContent}</div>
       </Split>
     </ProblemDetailPageTemplate>
   );

@@ -59,3 +59,7 @@ export const buttonListStyle = style({
   justifyContent: 'center',
   gap: '1rem',
 });
+
+export const bottomContentStyle = style({
+  padding: '2rem',
+});

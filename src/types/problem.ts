@@ -56,6 +56,13 @@ interface IProblemDetailPageTemplate {
   isResult?: boolean;
   resetResult?: () => void;
   isResultPage?: boolean;
+  bottomContent?: React.ReactNode;
+}
+
+interface ISplitProblemDetailPageTemplate extends IProblemDetailPageTemplate {
+  leftSideContent?: React.ReactNode;
+  rightSideContent?: React.ReactNode;
+  sizes?: number[];
 }
 
 export interface IMypageProblem {
@@ -72,4 +79,5 @@ export type {
   IQuestionListElementBox,
   IProblemDetailPageTemplate,
   TPartialProblemDetailResponseData,
+  ISplitProblemDetailPageTemplate,
 };

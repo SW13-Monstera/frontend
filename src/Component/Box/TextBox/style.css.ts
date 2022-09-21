@@ -6,7 +6,7 @@ export const textBoxStyle = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
-  justifyContent: 'center',
+  justifyContent: 'start',
 
   color: themeColors.text[1],
   backgroundColor: themeColors.background.F3,
@@ -14,4 +14,6 @@ export const textBoxStyle = style({
 
   width: '100%',
   height: '100%',
+
+  overflow: 'auto',
 });

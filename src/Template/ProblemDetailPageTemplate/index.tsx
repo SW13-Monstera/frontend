@@ -5,6 +5,7 @@ import {
   buttonListStyle,
   topStyle,
   buttonListWrapperStyle,
+  bottomContentStyle,
 } from './style.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
@@ -21,6 +22,7 @@ export const ProblemDetailPageTemplate = ({
   data,
   children,
   handleSubmit,
+  bottomContent,
   isResult = false,
   resetResult = () => {
     return;
@@ -116,6 +118,7 @@ export const ProblemDetailPageTemplate = ({
                 </div>
               </div>
             </main>
+            <div className={bottomContentStyle}>{bottomContent}</div>
           </PageTemplate>
         ) : (
           <></>
