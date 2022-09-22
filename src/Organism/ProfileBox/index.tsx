@@ -27,6 +27,7 @@ import { createCategoryChartData } from '../../utils/createChartData';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 import { IChartElement } from '../../types/chart';
+import csbrokerLogo from '../../favicon.svg'
 
 interface IProfileBox {
   profileData: IProfileData;
@@ -34,7 +35,7 @@ interface IProfileBox {
 
 interface IProfileData {
   username: string;
-  imageUrl: string;
+  profileImgUrl: string;
   rank: number;
   score: number;
   githubUrl: string;
@@ -51,7 +52,7 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
   const navigate = useNavigate();
   const {
     username,
-    imageUrl,
+    profileImgUrl,
     rank,
     score,
     githubUrl,
@@ -68,7 +69,7 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
     <div className={boxStyle}>
       <div className={section1Style}>
         <div className={imageWrapperStyle}>
-          <img src={imageUrl} className={imageStyle} />
+          <img src={profileImgUrl === null ? csbrokerLogo : profileImgUrl} className={imageStyle} />
         </div>
         <div className={section1DataStyle}>
           <div>{username}</div>

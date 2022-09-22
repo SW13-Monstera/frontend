@@ -9,7 +9,6 @@ import {
   problemStatsWrapperStyle,
   rightSideWrapperStyle,
 } from './style.css';
-import mockData from '../../mock/mypage.json';
 import { ProblemListBox } from '../../Component/Box/ProblemListBox';
 import { COLOR_LABEL_LIST } from '../../constants/colorLabel';
 import { MetaTag } from '../utils/MetaTag';
@@ -31,6 +30,8 @@ interface IProblemStatsData {
   wrongAnsweredProblem: IMypageProblem[];
   partialAnsweredProblem: IMypageProblem[];
   count: ITags;
+  rank: number;
+  score: number;
 }
 
 interface IProfileData {
@@ -44,6 +45,7 @@ interface IProfileData {
   techs: string[];
   githubUrl: string;
   linkedinUrl: string;
+  profileImgUrl: string;
 }
 
 export const MyPage = () => {
@@ -78,8 +80,6 @@ export const MyPage = () => {
     return [];
   };
 
-  const { imageUrl, rank, score } = mockData;
-
   return (
     <PageTemplate>
       <MetaTag title='CS Broker - 마이페이지' />
@@ -90,9 +90,8 @@ export const MyPage = () => {
             <ProfileBox
               profileData={{
                 ...profileData,
-                imageUrl,
-                rank,
-                score,
+                rank: problemStatsData.rank,
+                score: problemStatsData.score,
                 statistics: getStatistics(),
               }}
             />
