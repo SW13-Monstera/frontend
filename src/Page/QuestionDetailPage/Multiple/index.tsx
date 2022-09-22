@@ -20,6 +20,7 @@ import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
 import { MetaTag } from '../../utils/MetaTag';
 import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
+import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
@@ -49,50 +50,68 @@ export function MultipleQuestionDetailPage() {
       'input[type="checkbox"]',
     ) as NodeListOf<HTMLInputElement>;
     checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
-    problemApiWrapper.multipleProblemResult(id, answerIds).then((data) => setResult(data));
+    problemApiWrapper.multipleProblemResult(id, answerIds).then((data) => {
+      setResult(data);
+      refetch();
+    });
   }
 
   return (
-    <SplitProblemDetailPageTemplate
-      data={data}
-      handleSubmit={handleSubmit}
-      isResult={result !== null && result !== undefined}
-      resetResult={resetResult}
-    >
+    <>
       <MetaTag
         title={`CS Broker - ${data?.title}`}
         description={`${data?.title}에 관한 객관식 문제입니다. 모든 정답을 선택한 후 제출하기 버튼을 눌러주세요.`}
         keywords={`${data?.tags.join(', ')}, ${data?.title}, 객관식`}
       />
-      <label htmlFor='answer' className={contentTitleStyle}>
-        답안 선택
-      </label>
-      <div className={choiceListStyle}>
-        {data?.choices.map((choice) => (
-          <label htmlFor={choice.id.toString()} className={choiceWrapperStyle} key={choice.id}>
-            <input type='checkbox' id={choice.id.toString()} className={choiceCheckboxStyle} />
-            {choice.content}
-          </label>
-        ))}
-      </div>
-      <div className={resultWrapperStyle}>
-        <MyScoreBox score={result?.score} />
-        {result ? (
-          result.isAnswer ? (
-            <div className={gradeResultScoredStyle.correct}>
-              <div>정답입니다</div>
-              <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
+
+      <SplitProblemDetailPageTemplate
+        data={data}
+        handleSubmit={handleSubmit}
+        isResult={result !== null && result !== undefined}
+        resetResult={resetResult}
+        leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
+        rightSideContent={
+          <>
+            <label htmlFor='answer' className={contentTitleStyle}>
+              답안 선택
+            </label>
+            <div className={choiceListStyle}>
+              {data?.choices.map((choice) => (
+                <label
+                  htmlFor={choice.id.toString()}
+                  className={choiceWrapperStyle}
+                  key={choice.id}
+                >
+                  <input
+                    type='checkbox'
+                    id={choice.id.toString()}
+                    className={choiceCheckboxStyle}
+                  />
+                  {choice.content}
+                </label>
+              ))}
             </div>
-          ) : (
-            <div className={gradeResultScoredStyle.wrong}>
-              <div>오답입니다</div>
-              <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
+            <div className={resultWrapperStyle}>
+              <MyScoreBox score={result?.score} />
+              {result ? (
+                result.isAnswer ? (
+                  <div className={gradeResultScoredStyle.correct}>
+                    <div>정답입니다</div>
+                    <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
+                  </div>
+                ) : (
+                  <div className={gradeResultScoredStyle.wrong}>
+                    <div>오답입니다</div>
+                    <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
+                  </div>
+                )
+              ) : (
+                <></>
+              )}
             </div>
-          )
-        ) : (
-          <></>
-        )}
-      </div>
-    </SplitProblemDetailPageTemplate>
+          </>
+        }
+      ></SplitProblemDetailPageTemplate>
+    </>
   );
 }

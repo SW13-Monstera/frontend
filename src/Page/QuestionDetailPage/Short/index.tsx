@@ -45,8 +45,10 @@ export function ShortQuestionDetailPage() {
   function handleSubmit() {
     if (!id) return;
     const answer = (document.getElementById('answer') as HTMLInputElement).value.trim();
-    problemApiWrapper.shortProblemResult(id, answer).then((data) => setResult(data));
-    refetch().then((res) => console.log(res.data));
+    problemApiWrapper.shortProblemResult(id, answer).then((data) => {
+      setResult(data);
+      refetch();
+    });
   }
 
   return (
