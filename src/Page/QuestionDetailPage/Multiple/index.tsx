@@ -23,7 +23,7 @@ import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
-  const { data } = useQuery<IMultipleProblemDetailResponseData>(
+  const { data, refetch } = useQuery<IMultipleProblemDetailResponseData>(
     'multipleProblemDetail',
     () => problemApiWrapper.multipleProblemDetail(id!),
     { refetchOnWindowFocus: false },

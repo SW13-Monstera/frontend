@@ -11,7 +11,7 @@ import { answerInputContentStyle, contentTitleStyle } from './style.css';
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data } = useQuery<ILongProblemDetailResponseData>(
+  const { data, refetch } = useQuery<ILongProblemDetailResponseData>(
     'longProblemDetail',
     () => problemApiWrapper.longProblemDetail(id!),
     { refetchOnWindowFocus: false },
@@ -21,6 +21,7 @@ export function LongQuestionDetailPage() {
     if (!id) throw new Error('invalid id');
     const answer = (document.getElementById('answer') as HTMLTextAreaElement).value;
     navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), { state: answer });
+    refetch();
   };
 
   return (
