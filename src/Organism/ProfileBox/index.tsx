@@ -28,6 +28,9 @@ import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 import { IChartElement } from '../../types/chart';
 import csbrokerLogo from '../../favicon.svg'
+import { useCallback, useRef, useState } from 'react';
+import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { toast } from 'react-toastify';
 
 interface IProfileBox {
   profileData: IProfileData;
@@ -65,11 +68,36 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
     statistics,
   } = profileData;
 
+  const inputRef = useRef<HTMLInputElement| null>(null);
+  const [imgUrl, setImgUrl] = useState<string | null>(profileImgUrl);
+
+  const onUploadImage = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', e.target.files[0]);
+
+    commonApiWrapper.uploadImg(formData).then((res) => {
+      toast('업로드가 완료되었습니다.');
+      setImgUrl(res);
+    });
+  }, []);
+
+  const onUploadImageButtonClick = useCallback(() => {
+    if (!inputRef.current) {
+      return;
+    }
+    inputRef.current.click();
+  }, []);
+
   return (
     <div className={boxStyle}>
       <div className={section1Style}>
         <div className={imageWrapperStyle}>
-          <img src={profileImgUrl === null ? csbrokerLogo : profileImgUrl} className={imageStyle} />
+          <input type='file' accept='image/*' ref={inputRef} onChange={onUploadImage} style = {{display:'none'}}/>
+          <img src={imgUrl === null ? csbrokerLogo : imgUrl} className={imageStyle} onClick={onUploadImageButtonClick}/>
         </div>
         <div className={section1DataStyle}>
           <div>{username}</div>

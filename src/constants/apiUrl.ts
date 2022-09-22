@@ -6,6 +6,7 @@ const API_URL = {
   USER_INFO: '/v1/auth/info',
   USER_LIST: '/v1/users',
   STATS: 'v1/stats',
+  UPLOAD_IMG: 'v1/upload/image',
 };
 
 const API_URL_WITH_PARAMS = {
