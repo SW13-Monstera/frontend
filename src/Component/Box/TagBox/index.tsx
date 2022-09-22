@@ -3,6 +3,7 @@ import { deleteButtonIsShownStyle, filterTagStyle, tagColorStyle } from './style
 import { XIcon } from '../../../Icon/XIcon';
 import { COLOR } from '../../../constants/color';
 import { useCheckedTagStore } from '../../../hooks/useStore';
+import { CHECKED_TAGS } from '../../../constants/localStorage';
 
 const COLOR_MAP = {
   color1: COLOR.PURPLE,
@@ -15,7 +16,9 @@ function TagBox({ id, name, color = 'color1', isFilter = false }: ITagBox) {
   const { checkedTags, setCheckedTags } = useCheckedTagStore();
 
   const onDeleteButtonClick = () => {
-    setCheckedTags(checkedTags.filter((e) => e.id !== id));
+    const newCheckedTags = checkedTags.filter((e) => e.id !== id);
+    setCheckedTags(newCheckedTags);
+    localStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
   };
 
   return (

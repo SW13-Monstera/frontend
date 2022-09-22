@@ -59,7 +59,7 @@ function QuestionListPage() {
 
   const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {
     setCheckedTagsSync(
-      checkedTags.map((tag: { id: any }) => tag.id).includes(id)
+      checkedTags.map((tag: { id: string }) => tag.id).includes(id)
         ? checkedTags.map((tag) => (tag.id === id ? { id, isChecked, name } : tag))
         : [...checkedTags, { id, isChecked, name }],
     );
