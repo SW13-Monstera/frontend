@@ -54,7 +54,7 @@ function QuestionListPage() {
 
   const setCheckedTagsSync = (newCheckedTags: ITagState[]) => {
     setCheckedTags(newCheckedTags);
-    localStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
+    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
   };
 
   const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {

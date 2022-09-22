@@ -18,7 +18,7 @@ function TagBox({ id, name, color = 'color1', isFilter = false }: ITagBox) {
   const onDeleteButtonClick = () => {
     const newCheckedTags = checkedTags.filter((e) => e.id !== id);
     setCheckedTags(newCheckedTags);
-    localStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
+    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
   };
 
   return (
