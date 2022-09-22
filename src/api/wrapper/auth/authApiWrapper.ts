@@ -5,13 +5,13 @@ import { IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
 import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo } from '../../../utils/userInfo';
 import { toast } from 'react-toastify';
-import { setLogout } from '../../../utils/setLogout';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
     return apiClient.post(API_URL.LOGIN, data).then(
       (res: { data: IUserInfo }) => {
         apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
+        setUserInfo(res.data);
         return res.data;
       },
       (err) => {
@@ -39,13 +39,7 @@ export const authApiWrapper = {
           return res.data.accessToken;
         },
         (err) => {
-          setLogout();
-          toast('다시 로그인 해주세요.');
-
-          setTimeout(() => {
-            location.reload();
-          }, 1000);
-          return err;
+          return;
         },
       );
   },

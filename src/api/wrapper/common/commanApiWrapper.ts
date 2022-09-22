@@ -4,7 +4,7 @@ import { ICommonStats } from '../../../types/api/common';
 
 export const commonApiWrapper = {
   stats: () => {
-    return apiClient.get(API_URL.STATS).then((res: { data: ICommonStats }) => {
+    return apiClient.get(API_URL.STATS, {}).then((res: { data: ICommonStats }) => {
       return res.data;
     });
   },
