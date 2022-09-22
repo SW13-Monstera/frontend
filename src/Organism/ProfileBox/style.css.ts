@@ -107,5 +107,7 @@ export const chartWrapperStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
   width: '88%',
+  maxWidth: '50rem',
+  maxHeight: '50rem',
   alignSelf: 'center',
 });
