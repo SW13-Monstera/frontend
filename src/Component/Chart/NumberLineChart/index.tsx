@@ -1,14 +1,14 @@
-import { CSSProperties } from 'react';
-import { COLOR } from '../../../constants/color';
 import { formatNumber } from '../../../utils/formatNumber';
 import { SpeechBubbleBox } from '../../Box/SpeechBubbleBox';
 import {
   numberCircleMarkColorStyle,
   numberCircleMarkSpeechBubble,
   numberCircleMarkWrapper,
-  numberCirleMarkContentStyle,
   numberLineValueWrapperStyle,
   numberLineWrapperStyle,
+  numberMarkTextLabelStyle,
+  numberMarkTextStyle,
+  speechBubbleTextWrapperStyle,
 } from './style.css';
 
 interface INumberLineChart {
@@ -18,61 +18,63 @@ interface INumberLineChart {
   avgScore: number | undefined;
 }
 
-interface INumberCircleMark {
-  score: number | undefined;
-  style: CSSProperties | undefined;
-  compareToAverage: 'bigger' | 'same' | 'smaller';
-  color: string;
-  className?: string;
-}
-
 interface INumberMark {
-  score: number | undefined;
-  max: number;
-  avg: number | undefined;
-  color: string;
+  score: number;
+  averageScore: number;
   className?: string;
+  isAverage?: boolean;
+  maxScore: number;
 }
 
-const NumberCircleMark = ({
-  color,
-  score,
-  compareToAverage,
+const NumberMark = ({
+  score = 0,
+  averageScore = 0,
+  maxScore = 0,
   className,
-  style,
-}: INumberCircleMark) => {
+  isAverage = false,
+}: INumberMark) => {
+  const style = { left: `${(score ?? 0 / maxScore) * 10}%` };
+  const compareToAverage =
+    score > averageScore ? 'bigger' : score === averageScore ? 'same' : 'smaller';
   return (
     <div className={`${numberCircleMarkWrapper} ${className}`} style={style}>
       <div className={numberCircleMarkSpeechBubble}>
-        <SpeechBubbleBox color={color}>{`내점수 ${formatNumber(score)}점`}</SpeechBubbleBox>
+        <SpeechBubbleBox compareToAverage={compareToAverage}>
+          <p className={speechBubbleTextWrapperStyle}>
+            {isAverage ? (
+              <>
+                <span className={numberMarkTextLabelStyle[compareToAverage]}>{`평균점수 `}</span>
+                <span className={numberMarkTextStyle}>{`${formatNumber(score)}점`}</span>
+              </>
+            ) : (
+              <>
+                <span className={numberMarkTextLabelStyle[compareToAverage]}>{`내점수 `}</span>
+                <span className={numberMarkTextStyle}>{`${formatNumber(score)}점`}</span>
+              </>
+            )}
+          </p>
+        </SpeechBubbleBox>
       </div>
       <div className={numberCircleMarkColorStyle[compareToAverage]}></div>
     </div>
   );
 };
 
-const NumberMark = ({ score = 0, max, avg = 0, color }: INumberMark) => {
-  return (
-    <NumberCircleMark
-      score={score}
-      style={{ left: `${(score ?? 0 / max) * 10}%` }}
-      compareToAverage={score > avg ? 'bigger' : score === avg ? 'same' : 'smaller'}
-      color={color}
-      className={numberCirleMarkContentStyle}
-    />
-  );
-};
-
-export const NumberLineChart = ({ myScore, avgScore, max = 10, min = 0 }: INumberLineChart) => {
+export const NumberLineChart = ({ myScore, avgScore, max = 5, min = 0 }: INumberLineChart) => {
   return (
     <div>
+      <div className={numberLineWrapperStyle}>
+        <NumberMark score={myScore ?? 0} maxScore={max} averageScore={avgScore ?? 0} />
+        <NumberMark
+          score={avgScore ?? 0}
+          maxScore={max}
+          averageScore={avgScore ?? 0}
+          isAverage={true}
+        />
+      </div>
       <div className={numberLineValueWrapperStyle}>
         <div>{min}점</div>
         <div>{max}점</div>
-      </div>
-      <div className={numberLineWrapperStyle}>
-        <NumberMark score={myScore} max={max} avg={avgScore} color={COLOR.PRIMARY} />
-        <NumberMark score={avgScore} max={max} avg={avgScore} color={COLOR.GRAY} />
       </div>
     </div>
   );

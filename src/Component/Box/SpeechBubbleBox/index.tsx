@@ -1,10 +1,13 @@
-import { speechBubbleStyle } from './style.css';
+import { speechBubbleColorStyle } from './style.css';
+
+const COMPARE_TO_AVERAGE = { same: 'same', bigger: 'bigger', smaller: 'smaller' };
+type TCompareToAverage = keyof typeof COMPARE_TO_AVERAGE;
 
 interface ISpeechBubbleBox {
-  color?: string;
+  compareToAverage?: TCompareToAverage;
   children?: React.ReactNode;
 }
 
-export const SpeechBubbleBox = ({ color, children }: ISpeechBubbleBox) => {
-  return <div className={speechBubbleStyle}>{children}</div>;
+export const SpeechBubbleBox = ({ compareToAverage, children }: ISpeechBubbleBox) => {
+  return <div className={speechBubbleColorStyle[compareToAverage ?? 'same']}>{children}</div>;
 };

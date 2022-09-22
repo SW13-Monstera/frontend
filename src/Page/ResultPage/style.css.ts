@@ -118,7 +118,7 @@ export const myScoreStyle = style({
 export const numberLineChartWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '4rem',
+  gap: '5rem',
   width: '100%',
   height: '13.4375rem',
 

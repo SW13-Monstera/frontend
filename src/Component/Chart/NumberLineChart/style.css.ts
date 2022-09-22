@@ -1,14 +1,16 @@
 import { themeColors } from './../../../styles/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
+import { COLOR } from '../../../constants/color';
 
 export const numberLineValueWrapperStyle = style({
   position: 'relative',
   display: 'flex',
   justifyContent: 'space-between',
-  paddingBottom: '1rem',
+  paddingTop: '1rem',
 });
 
 export const numberLineWrapperStyle = style({
+  position: 'relative',
   display: 'flex',
   alignItems: 'center',
   width: '100%',
@@ -31,7 +33,21 @@ export const numberCircleMarkColorStyle = styleVariants({
   smaller: [numberCircleMarkStyle, { boxShadow: '0px 0px 16px #EB564C' }],
 });
 
+export const numberMarkTextStyle = style({
+  fontWeight: '700',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+  color: COLOR.WHITE,
+});
+
+export const numberMarkTextLabelStyle = styleVariants({
+  same: [numberMarkTextStyle, { fontWeight: '400', color: COLOR.LINE.c }],
+  bigger: [numberMarkTextStyle, { fontWeight: '400', color: COLOR.BACKGROUND.RED }],
+  smaller: [numberMarkTextStyle, { fontWeight: '400', color: COLOR.BACKGROUND.BLUE }],
+});
+
 export const numberCircleMarkWrapper = style({
+  position: 'absolute',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -40,10 +56,17 @@ export const numberCircleMarkWrapper = style({
 
 export const numberCircleMarkSpeechBubble = style({
   position: 'absolute',
-  height: '100px',
+  height: '6.25rem',
   display: 'flex',
   alignItems: 'start',
   justifyContent: 'center',
 });
 
-export const numberCirleMarkContentStyle = style({});
+export const speechBubbleTextWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '.3rem',
+  whiteSpace: 'nowrap',
+  margin: 0,
+});
