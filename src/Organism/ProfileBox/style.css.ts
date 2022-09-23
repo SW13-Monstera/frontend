@@ -51,7 +51,7 @@ export const imageStyle = style({
   display: 'inline',
   margin: '0 auto',
   height: '100%',
-  width: 'auto',
+  width:'100%',
 });
 
 export const imageUploadBackgroundStyle = style({

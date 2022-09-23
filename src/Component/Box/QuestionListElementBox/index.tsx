@@ -47,7 +47,7 @@ function ProblemStatisticsBox({ label, value, unit }: IProblemStatisticsBox) {
 function QuestionListElementBox({
   title,
   avgScore,
-  totalSolved,
+  totalSubmission,
   tags,
   id,
   type,
@@ -73,12 +73,12 @@ function QuestionListElementBox({
           <Divider className={dividerStyle} />
           {isColumn ? (
             <ColumnBox className={problemStatisticsWrapperStyle.column}>
-              <ProblemStatisticsBox label='제출 사람수' value={totalSolved} unit='명' />
+              <ProblemStatisticsBox label='제출' value={totalSubmission} unit='' />
               <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
             </ColumnBox>
           ) : (
             <RowBox className={problemStatisticsWrapperStyle.row}>
-              <ProblemStatisticsBox label='제출 사람수' value={totalSolved} unit='명' />
+              <ProblemStatisticsBox label='제출' value={totalSubmission} unit='' />
               <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
             </RowBox>
           )}

@@ -51,12 +51,12 @@ export const ProblemDetailPageTemplate = ({
                     id={id}
                     title={data.title ?? ''}
                     tags={data.tags ?? []}
-                    totalSolved={data.totalSolved}
+                    totalSubmission={data.totalSubmission}
                     avgScore={data.avgScore}
                     topScore={data.topScore}
                     bottomScore={data.bottomScore}
-                    correctCnt={data.correctCnt}
-                    wrongCnt={data.wrongCnt}
+                    correctSubmission={data.correctSubmission}
+                    correctUserCnt={data.correctUserCnt}
                   />
                 </div>
               </div>

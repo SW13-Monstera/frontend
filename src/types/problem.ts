@@ -11,15 +11,15 @@ interface IProblem {
   title: string;
   tags: string[];
   type?: TProblemType;
-  totalSolved?: number;
+  totalSubmission?: number;
   avgScore?: number;
   topScore?: number;
   bottomScore?: number;
   desc?: string;
   keywordList?: string[];
   answer?: string;
-  correctCnt?: number;
-  wrongCnt?: number;
+  correctSubmission?: number;
+  correctUserCnt?: number;
 }
 
 interface IQuestionListElementBox {
@@ -27,7 +27,7 @@ interface IQuestionListElementBox {
   title: string;
   tags: string[];
   type: TProblemType;
-  totalSolved: number;
+  totalSubmission: number;
   avgScore: number;
   isColumn?: boolean;
 }
