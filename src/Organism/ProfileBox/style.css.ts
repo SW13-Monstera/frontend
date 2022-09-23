@@ -131,8 +131,8 @@ export const linkButtonListStyle = style({
 });
 
 export const linkButtonStyle = style({
-  width: '25px',
-  height: '25px',
+  width: '30px',
+  height: '30px',
   borderRadius: '3px',
 });
 

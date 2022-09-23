@@ -1,7 +1,15 @@
 import { IInputBox } from '../../../../types/box';
 import { defaultInputBoxStyle, inputBoxClass } from './style.css';
 
-function DefaultInputBox({ id, placeholder, type, children, name, onChange }: IInputBox) {
+function DefaultInputBox({
+  id,
+  placeholder,
+  type,
+  children,
+  name,
+  onChange,
+  defaultValue,
+}: IInputBox) {
   return (
     <input
       id={id}
@@ -10,6 +18,7 @@ function DefaultInputBox({ id, placeholder, type, children, name, onChange }: II
       type={type}
       className={`${inputBoxClass} ${defaultInputBoxStyle}`}
       onChange={onChange}
+      defaultValue={defaultValue}
     >
       {children}
     </input>

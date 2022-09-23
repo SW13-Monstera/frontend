@@ -76,6 +76,12 @@ function QuestionListPage() {
     resetCheckedTags();
   };
 
+  const onDeleteButtonClick = (id: string) => {
+    const newCheckedTags = checkedTags.filter((e) => e.id !== id);
+    setCheckedTags(newCheckedTags);
+    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
+  };
+
   useEffect(() => {
     if (page === 0) {
       setParams({ ...getFilterParams(checkedTags), page: page });
@@ -151,7 +157,18 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                     .filter((tag) => tag.isChecked)
                     .map((tag) => {
                       const { name, color } = getTagById(tag.id);
-                      return <TagBox key={tag.id} id={tag.id} name={name} color={color} isFilter />;
+                      return (
+                        <TagBox
+                          key={tag.id}
+                          id={tag.id}
+                          name={name}
+                          color={color}
+                          isFilter
+                          onDeleteButtonClick={() => {
+                            onDeleteButtonClick(tag.id);
+                          }}
+                        />
+                      );
                     })}
                 </ul>
               </div>

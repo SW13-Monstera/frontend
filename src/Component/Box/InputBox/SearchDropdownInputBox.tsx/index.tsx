@@ -8,37 +8,61 @@ import {
   searchButtonStyle,
   dropDownContentStyle,
   dropDownListStyle,
-  checkedTagListStyle,
 } from './style.css';
 import { useEffect, useRef, useState } from 'react';
-import { ITagState } from '../../../../types/tag';
-import TagBox from '../../TagBox';
 import listenOutsideClick from '../../../../utils/listenOutsideClick';
 import { IDropdownElement } from '../../../../types/util';
 import { DropdownElement } from '../../../Utils/DropdownElement';
+
+interface ICheckedValue {
+  name: string;
+  isChecked: boolean;
+}
 
 interface ISearchDropdownInputBox {
   id: string;
   elements: IDropdownElement[];
   searchWithAPI?: () => void;
+  defaultValue?: string | string[];
+  maxCnt?: number;
 }
 
-export function SearchDropdownInputBox({ id, elements, searchWithAPI }: ISearchDropdownInputBox) {
+export function SearchDropdownInputBox({
+  id,
+  elements,
+  searchWithAPI,
+  defaultValue = '',
+  maxCnt = 1,
+}: ISearchDropdownInputBox) {
   const [isOpen, setIsOpen] = useState(false);
-  const [checkedTags, setCheckedTags] = useState<ITagState[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
   const [filteredElements, setfilteredElements] = useState<IDropdownElement[]>(elements);
+  const [checkedValues, setCheckedValues] = useState<ICheckedValue[]>(
+    typeof defaultValue === 'string'
+      ? [{ name: defaultValue, isChecked: true }]
+      : defaultValue.map((e) => ({ name: e, isChecked: true } as ICheckedValue)),
+  );
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {
-    setCheckedTags((prev) =>
-      prev.map((tag) => tag.id).includes(id)
-        ? prev.map((tag) => (tag.id === id ? { id, isChecked, name } : tag))
-        : [...prev, { id, isChecked, name }],
-    );
+  const handleCheckedTags = (tagId: string, name: string, isChecked: boolean) => {
+    // if (checkedValues.length >= maxCnt) return;
+    if (isChecked) {
+      // if (checkedValues.length >= maxCnt && !checkedValues.map((e) => e.name).includes(name))
+      //   return;
+      setCheckedValues((prev) => [...prev, { name, isChecked }]);
+    } else {
+      // if (checkedValues.length + 1 >= maxCnt) return;
+      setCheckedValues((prev) => prev.filter((e) => e.name !== name));
+    }
+    // console.log(isChecked);
+    // setCheckedValues((prev) =>
+    //   prev.map((tag) => tag.name).includes(name)
+    //     ? prev.map((tag) => (tag.name === name ? { isChecked, name } : tag))
+    //     : [...prev, { isChecked, name }],
+    // );
   };
 
   const search = () => {
@@ -61,7 +85,7 @@ export function SearchDropdownInputBox({ id, elements, searchWithAPI }: ISearchD
   }, [elements]);
 
   return (
-    <div ref={menuRef} onClick={focusOnInput}>
+    <div ref={menuRef} onClick={focusOnInput} id={id}>
       <div className={searchInputBoxStyle} onClick={toggleDropdown}>
         <label htmlFor='id'></label>
         <input
@@ -70,6 +94,7 @@ export function SearchDropdownInputBox({ id, elements, searchWithAPI }: ISearchD
           type={INPUT_TYPE.SEARCH}
           id={id}
           onChange={searchWithAPI ?? search}
+          value={checkedValues.map((e) => e.name).join(', ')}
         ></input>
         <IconButton type={BUTTON_TYPE.BUTTON}>
           <SearchIcon className={searchButtonStyle} />
@@ -77,23 +102,19 @@ export function SearchDropdownInputBox({ id, elements, searchWithAPI }: ISearchD
       </div>
       <div className={dropDownContentStyle} style={{ visibility: isOpen ? 'visible' : 'hidden' }}>
         <ul className={dropDownListStyle}>
-          {filteredElements.map((e) => (
+          {filteredElements.slice(0, 7).map((e) => (
             <DropdownElement
               id={e.id}
               name={e.name}
               handleCheckedTags={handleCheckedTags}
               key={`${e.id}${e.name}`}
+              isChecked={
+                checkedValues.filter((value) => value.isChecked && value.name === e.name).length > 0
+              }
             />
           ))}
         </ul>
       </div>
-      <ul className={checkedTagListStyle}>
-        {[...checkedTags]
-          .filter((tag) => tag.isChecked)
-          .map((tag) => {
-            return <TagBox key={tag.id} name={tag.name} />;
-          })}
-      </ul>
     </div>
   );
 }

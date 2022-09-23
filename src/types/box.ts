@@ -5,4 +5,5 @@ export interface IInputBox {
   placeholder?: string;
   children?: JSX.Element | string;
   onChange?: () => void;
+  defaultValue?: string;
 }

@@ -124,12 +124,12 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
           <div className={linkButtonListStyle}>
             {linkedinUrl && (
               <a className={linkButtonByDomainStyle.linkedin} href={linkedinUrl} role='button'>
-                <img src={linkedinLogo} width='1.5625rem' height='1.5625rem' />
+                <img src={linkedinLogo} width='30px' height='30px' />
               </a>
             )}
             {githubUrl && (
               <a className={linkButtonByDomainStyle.github} href={githubUrl} role='button'>
-                <img src={githubLogo} width='1.5625rem' height='1.5625rem' />
+                <img src={githubLogo} width='30px' height='30px' />
               </a>
             )}
           </div>

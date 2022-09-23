@@ -18,6 +18,8 @@ import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
 import { IMypageProblem } from '../../types/problem';
 import { DB, DS, NETWORK, OS } from '../../constants/category';
 import { ColumnBox } from '../../Component/Box/CustomBox';
+import { IProfileData } from '../../types/api/user';
+import { useQuery } from 'react-query';
 
 interface ITags {
   os: number;
@@ -35,31 +37,18 @@ interface IProblemStatsData {
   score: number;
 }
 
-interface IProfileData {
-  id: string;
-  email: string;
-  username: string;
-  role: string;
-  major: string;
-  job: string;
-  jobObjective: string;
-  techs: string[];
-  githubUrl: string;
-  linkedinUrl: string;
-  profileImgUrl: string;
-}
-
 export const MyPage = () => {
   const [problemStatsData, setProblemStatsData] = useState<IProblemStatsData>();
-  const [profileData, setProfileData] = useState<IProfileData>();
+
+  const { data: profileData } = useQuery<IProfileData>(
+    'getUserInfoData',
+    () => userApiWrapper.getUserInfoData(),
+    { refetchOnWindowFocus: false },
+  );
 
   useEffect(() => {
     userApiWrapper.getStats().then((res: IProblemStatsData) => {
       setProblemStatsData(res);
-    });
-
-    userApiWrapper.getUserInfo().then((res: IProfileData) => {
-      setProfileData(res);
     });
   }, []);
 

@@ -1,6 +1,6 @@
 import apiClient from '../../apiClient';
 import { API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
-import { IUpdateUserRequest } from '../../../types/api/user';
+import { IProfileData, IUpdateUserRequest } from '../../../types/api/user';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo, setUserInfo } from '../../../utils/userInfo';
 import { toast } from 'react-toastify';
@@ -8,14 +8,16 @@ import { toast } from 'react-toastify';
 export const userApiWrapper = {
   updateUser: (data: IUpdateUserRequest) => {
     const userInfo = getUserInfo();
-    if (!userInfo) return;
+    if (!userInfo) throw new Error('invalid id');
 
-    apiClient
-      .put(API_URL_WITH_PARAMS.UPDATE_USER(userInfo.id), data, {
-        headers: { Authorization: BEARER_TOKEN(userInfo.accessToken) },
-      })
-      .then((res) => {
-        setUserInfo({ ...res.data, accessToken: userInfo.accessToken });
+    return apiClient
+      .put(API_URL_WITH_PARAMS.UPDATE_USER(userInfo.id), data)
+      .then((res: { data: IProfileData }) => {
+        setUserInfo({
+          ...userInfo,
+          username: res.data.username,
+        });
+        return res.data;
       });
   },
 
@@ -40,7 +42,7 @@ export const userApiWrapper = {
       );
   },
 
-  getUserInfo: () => {
+  getUserInfoData: () => {
     const userInfo = getUserInfo();
 
     if (!userInfo) {

@@ -60,6 +60,8 @@ export const checkedTagListStyle = style({
   alignItems: 'start',
   justifyContent: 'start',
   gap: '0.1rem',
+});
 
-  padding: '0.5rem 0',
+export const tagBoxStyle = style({
+  marginBottom: '.5rem',
 });
