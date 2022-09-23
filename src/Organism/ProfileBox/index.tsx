@@ -13,6 +13,7 @@ import {
   section1Style,
   section2Style,
   section3Style,
+  imageUploadBackgroundStyle,
 } from './style.css';
 import { Divider } from '../../Component/Divider';
 import { ProfileLabel } from '../../Component/Utils/ProfileLabel';
@@ -27,6 +28,7 @@ import { createCategoryChartData } from '../../utils/createChartData';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 import { IChartElement } from '../../types/chart';
+import { UploadIcon } from '../../Icon/UploadIcon';
 
 interface IProfileBox {
   profileData: IProfileData;
@@ -69,6 +71,9 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
       <div className={section1Style}>
         <div className={imageWrapperStyle}>
           <img src={imageUrl} className={imageStyle} />
+          <div className={imageUploadBackgroundStyle}>
+            <UploadIcon width='2rem' height='2rem' fill={COLOR.WHITE} />
+          </div>
         </div>
         <div className={section1DataStyle}>
           <div>{username}</div>
@@ -79,12 +84,12 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
           <div className={linkButtonListStyle}>
             {linkedinUrl && (
               <a className={linkButtonByDomainStyle.linkedin} href={linkedinUrl} role='button'>
-                <img src={linkedinLogo} width='25px' height='25px' />
+                <img src={linkedinLogo} width='1.5625rem' height='1.5625rem' />
               </a>
             )}
             {githubUrl && (
               <a className={linkButtonByDomainStyle.github} href={githubUrl} role='button'>
-                <img src={githubLogo} width='25px' height='25px' />
+                <img src={githubLogo} width='1.5625rem' height='1.5625rem' />
               </a>
             )}
           </div>

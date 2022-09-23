@@ -9,19 +9,12 @@ export const boxStyle = style({
   backgroundColor: themeColors.background.F3,
   gap: '1rem',
 
-  width: '35%',
+  width: '100%',
   height: 'fit-content',
 
   borderRadius: '20px',
 
-  marginTop: '2rem',
   padding: '2rem',
-
-  '@media': {
-    'screen and (max-width: 1000px)': {
-      width: '88%',
-    },
-  },
 });
 
 export const section1Style = style({
@@ -42,18 +35,57 @@ export const section3Style = style({
 });
 
 export const imageWrapperStyle = style({
-  width: '100px',
-  height: '100px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '7rem',
+  height: '7rem',
   position: 'relative',
   overflow: 'hidden',
   borderRadius: '50%',
+  cursor: 'pointer',
 });
 
 export const imageStyle = style({
+  position: 'absolute',
   display: 'inline',
   margin: '0 auto',
   height: '100%',
   width: 'auto',
+});
+
+export const imageUploadBackgroundStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  overflow: 'hidden',
+  borderRadius: '50%',
+  backgroundColor: COLOR.TITLEACTIVE,
+  opacity: '0%',
+  transition: '.3s linear',
+  color: COLOR.WHITE,
+  fontSize: '1.5rem',
+  fontWeight: 700,
+  ':hover': {
+    opacity: '30%',
+  },
+});
+
+export const imageUploadButtonStyle = style({
+  position: 'absolute',
+
+  borderRadius: '50%',
+  textAlign: 'center',
+  opacity: '0',
+  transform: 'scale(2)',
+  transition: 'all .3s linear',
+  ':hover': {
+    opacity: '1',
+    transform: 'scale(1)',
+  },
 });
 
 export const section1DataStyle = style([

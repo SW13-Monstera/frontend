@@ -3,6 +3,7 @@ import { ProfileBox } from '../../Organism/ProfileBox';
 import { PageTemplate } from '../../Template';
 import {
   colorLabelListStyle,
+  leftSideWrapperStyle,
   pageContentWrapperStyle,
   pageTitleStyle,
   pageWrapperStyle,
@@ -74,7 +75,6 @@ export const MyPage = () => {
         { name: NETWORK, value: ((problemStatsData.count.network ?? 0) / sum) * 100 },
       ];
     }
-
     return [];
   };
 
@@ -84,19 +84,21 @@ export const MyPage = () => {
     <PageTemplate>
       <MetaTag title='CS Broker - 마이페이지' />
       <div className={pageWrapperStyle}>
-        <h2 className={pageTitleStyle}>마이 페이지</h2>
         <div className={pageContentWrapperStyle}>
-          {profileData && problemStatsData ? (
-            <ProfileBox
-              profileData={{
-                ...profileData,
-                imageUrl,
-                rank,
-                score,
-                statistics: getStatistics(),
-              }}
-            />
-          ) : null}
+          <div className={leftSideWrapperStyle}>
+            <h2 className={pageTitleStyle}>마이 페이지</h2>
+            {profileData && problemStatsData ? (
+              <ProfileBox
+                profileData={{
+                  ...profileData,
+                  imageUrl,
+                  rank,
+                  score,
+                  statistics: getStatistics(),
+                }}
+              />
+            ) : null}
+          </div>
           <div className={rightSideWrapperStyle}>
             <div className={colorLabelListStyle}>
               {COLOR_LABEL_LIST.map((e) => (

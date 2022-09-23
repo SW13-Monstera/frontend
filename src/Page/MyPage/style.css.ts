@@ -29,11 +29,23 @@ export const pageContentWrapperStyle = style({
   },
 });
 
+export const leftSideWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '35%',
+  '@media': {
+    'screen and (max-width: 1000px)': {
+      width: '88%',
+    },
+  },
+});
+
 export const rightSideWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
   width: '45%',
+  marginTop: '0.8rem',
   '@media': {
     'screen and (max-width: 1000px)': {
       width: '100%',
