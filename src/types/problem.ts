@@ -20,6 +20,7 @@ interface IProblem {
   answer?: string;
   correctSubmission?: number;
   correctUserCnt?: number;
+  isSolved: boolean;
 }
 
 interface IQuestionListElementBox {

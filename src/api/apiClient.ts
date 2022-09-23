@@ -9,6 +9,16 @@ const apiClient = axios.create({
   withCredentials: true,
 });
 
+apiClient.interceptors.request.use(
+  (config) => {
+    const userInfo = getUserInfo();
+    if (userInfo) {
+      config.headers[AUTHORIZTION] = BEARER_TOKEN(userInfo.accessToken);
+    }
+    return config
+  }
+)
+
 apiClient.interceptors.response.use(
   (res) => res.data,
   (err) => {

@@ -55,6 +55,7 @@ export const ProblemDetailPageTemplate = ({
                     bottomScore={data.bottomScore}
                     correctSubmission={data.correctSubmission}
                     correctUserCnt={data.correctUserCnt}
+                    isSolved={data.isSolved ?? false}
                   />
                 </div>
               </div>

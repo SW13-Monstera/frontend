@@ -9,6 +9,8 @@ const tagBaseStyle = style({
   justifyContent: 'center',
   gap: '.25rem',
 
+  marginRight: '0.2rem',
+
   width: 'fit-content',
   height: '1.625rem',
 

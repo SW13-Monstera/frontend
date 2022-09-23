@@ -62,6 +62,9 @@ function ProblemTitle(props: IProblem) {
             const { name, color } = getTagById(tagId);
             return <TagBox name={name} color={color} key={tagId} />;
           })}
+          {
+            props.isSolved ? <TagBox name={'푼 문제'} color={'color3'} key={'solved'} /> : <TagBox name={'안 푼 문제'} color={'color3'} key={'solved'} />
+          }
         </ul>
       </div>
       <div className={problemDetailStyle}>
