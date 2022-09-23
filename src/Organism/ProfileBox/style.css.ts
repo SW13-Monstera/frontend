@@ -44,6 +44,10 @@ export const imageWrapperStyle = style({
   overflow: 'hidden',
   borderRadius: '50%',
   cursor: 'pointer',
+  transition: '.3s linear',
+  // ':hover': {
+  //   filter: 'brightness(70%)',
+  // },
 });
 
 export const imageStyle = style({
@@ -51,7 +55,7 @@ export const imageStyle = style({
   display: 'inline',
   margin: '0 auto',
   height: '100%',
-  width:'100%',
+  width: '100%',
 });
 
 export const imageUploadBackgroundStyle = style({
@@ -69,6 +73,8 @@ export const imageUploadBackgroundStyle = style({
   color: COLOR.WHITE,
   fontSize: '1.5rem',
   fontWeight: 700,
+  zIndex: 1,
+  cursor: 'pointer',
   ':hover': {
     opacity: '30%',
   },

@@ -98,11 +98,11 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
     <div className={boxStyle}>
       <div className={section1Style}>
         <div className={imageWrapperStyle}>
-          <img src={imgUrl} className={imageStyle} />
-          <div className={imageUploadBackgroundStyle}>
+          <label htmlFor='profile-image' className={imageUploadBackgroundStyle}>
             <UploadIcon width='2rem' height='2rem' fill={COLOR.WHITE} />
-          </div>
+          </label>
           <input
+            id='profile-image'
             type='file'
             accept='image/*'
             ref={inputRef}
