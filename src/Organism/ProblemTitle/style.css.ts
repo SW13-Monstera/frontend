@@ -22,6 +22,7 @@ export const titleTagStyle = style({
 
 export const tagListStyle = style({
   display: 'flex',
+  gap: '.2rem',
 });
 
 export const problemDetailStyle = style({
