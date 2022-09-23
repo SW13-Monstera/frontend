@@ -3,13 +3,13 @@ import { ProfileBox } from '../../Organism/ProfileBox';
 import { PageTemplate } from '../../Template';
 import {
   colorLabelListStyle,
+  leftSideWrapperStyle,
   pageContentWrapperStyle,
   pageTitleStyle,
   pageWrapperStyle,
   problemStatsWrapperStyle,
   rightSideWrapperStyle,
 } from './style.css';
-import mockData from '../../mock/mypage.json';
 import { ProblemListBox } from '../../Component/Box/ProblemListBox';
 import { COLOR_LABEL_LIST } from '../../constants/colorLabel';
 import { MetaTag } from '../utils/MetaTag';
@@ -18,6 +18,8 @@ import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
 import { IMypageProblem } from '../../types/problem';
 import { DB, DS, NETWORK, OS } from '../../constants/category';
 import { ColumnBox } from '../../Component/Box/CustomBox';
+import { IProfileData } from '../../types/api/user';
+import { useQuery } from 'react-query';
 
 interface ITags {
   os: number;
@@ -31,32 +33,22 @@ interface IProblemStatsData {
   wrongAnsweredProblem: IMypageProblem[];
   partialAnsweredProblem: IMypageProblem[];
   count: ITags;
-}
-
-interface IProfileData {
-  id: string;
-  email: string;
-  username: string;
-  role: string;
-  major: string;
-  job: string;
-  jobObjective: string;
-  techs: string[];
-  githubUrl: string;
-  linkedinUrl: string;
+  rank: number;
+  score: number;
 }
 
 export const MyPage = () => {
   const [problemStatsData, setProblemStatsData] = useState<IProblemStatsData>();
-  const [profileData, setProfileData] = useState<IProfileData>();
+
+  const { data: profileData } = useQuery<IProfileData>(
+    'getUserInfoData',
+    () => userApiWrapper.getUserInfoData(),
+    { refetchOnWindowFocus: false },
+  );
 
   useEffect(() => {
     userApiWrapper.getStats().then((res: IProblemStatsData) => {
       setProblemStatsData(res);
-    });
-
-    userApiWrapper.getUserInfo().then((res: IProfileData) => {
-      setProfileData(res);
     });
   }, []);
 
@@ -74,29 +66,27 @@ export const MyPage = () => {
         { name: NETWORK, value: ((problemStatsData.count.network ?? 0) / sum) * 100 },
       ];
     }
-
     return [];
   };
-
-  const { imageUrl, rank, score } = mockData;
 
   return (
     <PageTemplate>
       <MetaTag title='CS Broker - 마이페이지' />
       <div className={pageWrapperStyle}>
-        <h2 className={pageTitleStyle}>마이 페이지</h2>
         <div className={pageContentWrapperStyle}>
-          {profileData && problemStatsData ? (
-            <ProfileBox
-              profileData={{
-                ...profileData,
-                imageUrl,
-                rank,
-                score,
-                statistics: getStatistics(),
-              }}
-            />
-          ) : null}
+          <div className={leftSideWrapperStyle}>
+            <h2 className={pageTitleStyle}>마이 페이지</h2>
+            {profileData && problemStatsData ? (
+              <ProfileBox
+                profileData={{
+                  ...profileData,
+                  rank: problemStatsData.rank,
+                  score: problemStatsData.score,
+                  statistics: getStatistics(),
+                }}
+              />
+            ) : null}
+          </div>
           <div className={rightSideWrapperStyle}>
             <div className={colorLabelListStyle}>
               {COLOR_LABEL_LIST.map((e) => (

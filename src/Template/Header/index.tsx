@@ -1,5 +1,4 @@
 import { Outlet, useNavigate } from 'react-router-dom';
-import AlarmIcon from '../../Icon/AlarmIcon';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { useAuthStore, useDarkModeStore } from '../../hooks/useStore';
@@ -24,6 +23,7 @@ import { Divider } from '../../Component/Divider';
 import { setLogout } from '../../utils/setLogout';
 import { DarkmodeButton } from '../../Component/Button/DarkmodeButton';
 import { NavigateProblemListButton } from '../../Component/Button/NavigateProblemListButton';
+import AlarmIcon from '../../Icon/AlarmIcon';
 
 function Header() {
   const navigate = useNavigate();

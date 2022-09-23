@@ -47,8 +47,8 @@ const useDarkModeStore = create<IDarkMode>((set) => ({
 }));
 
 const useCheckedTagStore = create<ITagStore>((set) => ({
-  checkedTags: localStorage.getItem(CHECKED_TAGS)
-    ? JSON.parse(localStorage.getItem(CHECKED_TAGS)!)
+  checkedTags: sessionStorage.getItem(CHECKED_TAGS)
+    ? JSON.parse(sessionStorage.getItem(CHECKED_TAGS)!)
     : [],
   setCheckedTags: (tagState: ITagState[]) => set((state) => ({ ...state, checkedTags: tagState })),
 }));

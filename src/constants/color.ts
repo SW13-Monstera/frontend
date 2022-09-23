@@ -42,6 +42,8 @@ const COLOR = {
     F3: '#F3F3F3',
     ORANGE: '#FDF9EB',
     GREEN: '#EBFDEE',
+    LIGHT_BLUE: '#EFF5FD',
+    ALICE_BLUE: '#F8FAFD',
     F8: '#F8F8F8',
     PINK: '#F9EBFD',
     RED: '#FEEFEF',

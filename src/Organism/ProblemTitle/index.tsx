@@ -14,12 +14,12 @@ import { getTagById } from '../../utils/getTagbyId';
 import { RowBox } from '../../Component/Box/CustomBox';
 
 interface IProblemDetail {
-  totalSolved: string;
+  totalSubmission: string;
   avgScore: string;
   topScore: string;
   bottomScore: string;
-  correctCnt: string;
-  wrongCnt: string;
+  correctSubmission: string;
+  correctUserCnt: string;
 }
 
 interface IProblemDetailDescription {
@@ -32,7 +32,7 @@ const problemDetailMap: Record<
   keyof IProblemDetail,
   (num: string | undefined) => IProblemDetailDescription | null
 > = {
-  totalSolved: (num: string | undefined) =>
+  totalSubmission: (num: string | undefined) =>
     num !== null && num !== undefined ? { label: '제출', value: num, unit: null } : null,
   avgScore: (num: string | undefined) =>
     num !== null && num !== undefined
@@ -46,10 +46,10 @@ const problemDetailMap: Record<
     num !== null && num !== undefined
       ? { label: '최저점', value: parseFloat(num).toFixed(2), unit: '점' }
       : null,
-  correctCnt: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '맞은 사람 수', value: num, unit: '명' } : null,
-  wrongCnt: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '틀린 사람 수', value: num, unit: '명' } : null,
+  correctSubmission: (num: string | undefined) =>
+    num !== null && num !== undefined ? { label: '정답', value: num, unit: '' } : null,
+  correctUserCnt: (num: string | undefined) =>
+    num !== null && num !== undefined ? { label: '맞힌 사람 수', value: num, unit: '명' } : null,
 };
 
 function ProblemTitle(props: IProblem) {
@@ -62,6 +62,9 @@ function ProblemTitle(props: IProblem) {
             const { name, color } = getTagById(tagId);
             return <TagBox name={name} color={color} key={tagId} />;
           })}
+          {
+            props.isSolved ? <TagBox name={'푼 문제'} color={'color3'} key={'solved'} /> : <TagBox name={'안 푼 문제'} color={'color3'} key={'solved'} />
+          }
         </ul>
       </div>
       <div className={problemDetailStyle}>

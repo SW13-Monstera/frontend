@@ -16,7 +16,6 @@ import {
   contentStyle,
   pageContentStyle,
   pageStyle,
-  scoreStyle,
   scoreWrapperStyle,
   subtitleStyle,
 } from '../../../Page/ResultPage/style.css';
@@ -78,7 +77,7 @@ export const SkeletonLongProblemResultPage = () => {
         <div className={buttonListStyle}>
           <div className={scoreWrapperStyle}>
             <div>내 점수:</div>
-            <div className={`${scoreStyle} ${skeletonScoreStyle}`}></div>
+            <div className={skeletonScoreStyle}></div>
           </div>
           <SkeletonTextButton />
           <SkeletonTextButton />

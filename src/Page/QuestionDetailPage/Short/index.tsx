@@ -24,7 +24,7 @@ import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
-  const { data } = useQuery<IShortProblemDetailResponseData>(
+  const { data, refetch } = useQuery<IShortProblemDetailResponseData>(
     'shortProblemDetail',
     () => problemApiWrapper.shortProblemDetail(id!),
     { refetchOnWindowFocus: false },
@@ -44,8 +44,11 @@ export function ShortQuestionDetailPage() {
 
   function handleSubmit() {
     if (!id) return;
-    const data = (document.getElementById('answer') as HTMLInputElement).value.trim();
-    problemApiWrapper.shortProblemResult(id, data).then((data) => setResult(data));
+    const answer = (document.getElementById('answer') as HTMLInputElement).value.trim();
+    problemApiWrapper.shortProblemResult(id, answer).then((data) => {
+      setResult(data);
+      refetch();
+    });
   }
 
   return (

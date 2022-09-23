@@ -5,6 +5,7 @@ import {
   buttonListStyle,
   topStyle,
   buttonListWrapperStyle,
+  bottomContentStyle,
 } from './style.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
@@ -21,6 +22,7 @@ export const ProblemDetailPageTemplate = ({
   data,
   children,
   handleSubmit,
+  bottomContent,
   isResult = false,
   resetResult = () => {
     return;
@@ -49,12 +51,13 @@ export const ProblemDetailPageTemplate = ({
                     id={id}
                     title={data.title ?? ''}
                     tags={data.tags ?? []}
-                    totalSolved={data.totalSolved}
+                    totalSubmission={data.totalSubmission}
                     avgScore={data.avgScore}
                     topScore={data.topScore}
                     bottomScore={data.bottomScore}
-                    correctCnt={data.correctCnt}
-                    wrongCnt={data.wrongCnt}
+                    correctSubmission={data.correctSubmission}
+                    correctUserCnt={data.correctUserCnt}
+                    isSolved={data.isSolved ?? false}
                   />
                 </div>
               </div>
@@ -65,6 +68,7 @@ export const ProblemDetailPageTemplate = ({
                   theme={BUTTON_THEME.TERTIARY}
                   size={BUTTON_SIZE.MEDIUM}
                   onClick={openModal}
+                  isActivated={false}
                 >
                   제출기록
                 </TextButton>
@@ -116,6 +120,7 @@ export const ProblemDetailPageTemplate = ({
                 </div>
               </div>
             </main>
+            <div className={bottomContentStyle}>{bottomContent}</div>
           </PageTemplate>
         ) : (
           <></>

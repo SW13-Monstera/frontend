@@ -54,12 +54,12 @@ function QuestionListPage() {
 
   const setCheckedTagsSync = (newCheckedTags: ITagState[]) => {
     setCheckedTags(newCheckedTags);
-    localStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
+    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
   };
 
   const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {
     setCheckedTagsSync(
-      checkedTags.map((tag: { id: any }) => tag.id).includes(id)
+      checkedTags.map((tag: { id: string }) => tag.id).includes(id)
         ? checkedTags.map((tag) => (tag.id === id ? { id, isChecked, name } : tag))
         : [...checkedTags, { id, isChecked, name }],
     );
@@ -74,6 +74,12 @@ function QuestionListPage() {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
     setParams({ ...getFilterParams(checkedTags), page: page, query: query });
     resetCheckedTags();
+  };
+
+  const onDeleteButtonClick = (id: string) => {
+    const newCheckedTags = checkedTags.filter((e) => e.id !== id);
+    setCheckedTags(newCheckedTags);
+    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
   };
 
   useEffect(() => {
@@ -138,7 +144,11 @@ AI 기반 문장 유사도 평가 기법을 채점받아
               </div>
               <div className={checkedTagListWrapperStyle}>
                 <div
-                  className={checkedTagListTitleIsShownStyle[checkedTags.length ? 'true' : 'false']}
+                  className={
+                    checkedTagListTitleIsShownStyle[
+                      checkedTags.filter((e) => e.isChecked).length ? 'true' : 'false'
+                    ]
+                  }
                 >
                   선택된 필터
                 </div>
@@ -147,7 +157,18 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                     .filter((tag) => tag.isChecked)
                     .map((tag) => {
                       const { name, color } = getTagById(tag.id);
-                      return <TagBox key={tag.id} id={tag.id} name={name} color={color} isFilter />;
+                      return (
+                        <TagBox
+                          key={tag.id}
+                          id={tag.id}
+                          name={name}
+                          color={color}
+                          isFilter
+                          onDeleteButtonClick={() => {
+                            onDeleteButtonClick(tag.id);
+                          }}
+                        />
+                      );
                     })}
                 </ul>
               </div>
@@ -159,7 +180,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
               {data?.contents?.map((problem: IProblemListResponseDataContents) => (
                 <QuestionListElementBox
                   title={problem.title}
-                  totalSolved={problem.totalSolved ?? 0}
+                  totalSubmission={problem.totalSubmission ?? 0}
                   avgScore={problem.avgScore}
                   tags={problem.tags}
                   key={problem.id}

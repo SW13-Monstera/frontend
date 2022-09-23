@@ -77,7 +77,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                   id={problem.id}
                   title={problem.title}
                   tags={problem.tags}
-                  totalSolved={problem.totalSolved}
+                  totalSubmission={problem.totalSubmission}
                   avgScore={problem.avgScore}
                   type={problem.type}
                   isColumn={true}

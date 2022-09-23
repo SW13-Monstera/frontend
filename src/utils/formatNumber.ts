@@ -1,3 +1,3 @@
-export const formatNumber = (num: number) => {
-  return num.toLocaleString('ko-KR', { maximumFractionDigits: 2 });
+export const formatNumber = (num: number | undefined) => {
+  return num?.toLocaleString('ko-KR', { maximumFractionDigits: 2 });
 };

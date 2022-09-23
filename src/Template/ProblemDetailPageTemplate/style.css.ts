@@ -28,6 +28,7 @@ export const descStyle = style({
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
+  width: '100%',
 });
 
 export const titleTagStyle = style({
@@ -58,4 +59,8 @@ export const buttonListStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: '1rem',
+});
+
+export const bottomContentStyle = style({
+  padding: '2rem',
 });

@@ -15,8 +15,9 @@ export interface IProblemDetailResponseData {
   title: string;
   tags: string[];
   description: string;
-  totalSolved: number;
+  totalSubmission: number;
   type: TProblemType;
+  isSolved: boolean;
 }
 
 export interface ILongProblemDetailResponseData extends IProblemDetailResponseData {
@@ -35,8 +36,8 @@ export interface ILongProblemResultData extends ILongProblemDetailResponseData {
 }
 
 export interface IShortProblemDetailResponseData extends IProblemDetailResponseData {
-  correctCnt: number;
-  wrongCnt: number;
+  correctSubmission: number;
+  correctUserCnt: number;
   answerLength: number;
   isEnglish: boolean;
 }
@@ -51,8 +52,8 @@ export interface IShortProblemResultData extends IShortProblemDetailResponseData
 }
 
 export interface IMultipleProblemDetailResponseData extends IProblemDetailResponseData {
-  correctCnt: number;
-  wrongCnt: number;
+  correctSubmission: number;
+  correctUserCnt: number;
   choices: IChoice[];
 }
 
@@ -69,7 +70,7 @@ export interface IProblemListResponseDataContents {
   title: string;
   tags: string[];
   avgScore: number;
-  totalSolved: number;
+  totalSubmission: number;
   type: TProblemType;
 }
 

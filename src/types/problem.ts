@@ -11,15 +11,16 @@ interface IProblem {
   title: string;
   tags: string[];
   type?: TProblemType;
-  totalSolved?: number;
+  totalSubmission?: number;
   avgScore?: number;
   topScore?: number;
   bottomScore?: number;
   desc?: string;
   keywordList?: string[];
   answer?: string;
-  correctCnt?: number;
-  wrongCnt?: number;
+  correctSubmission?: number;
+  correctUserCnt?: number;
+  isSolved: boolean;
 }
 
 interface IQuestionListElementBox {
@@ -27,7 +28,7 @@ interface IQuestionListElementBox {
   title: string;
   tags: string[];
   type: TProblemType;
-  totalSolved: number;
+  totalSubmission: number;
   avgScore: number;
   isColumn?: boolean;
 }
@@ -56,6 +57,13 @@ interface IProblemDetailPageTemplate {
   isResult?: boolean;
   resetResult?: () => void;
   isResultPage?: boolean;
+  bottomContent?: React.ReactNode;
+}
+
+interface ISplitProblemDetailPageTemplate extends IProblemDetailPageTemplate {
+  leftSideContent?: React.ReactNode;
+  rightSideContent?: React.ReactNode;
+  sizes?: number[];
 }
 
 export interface IMypageProblem {
@@ -72,4 +80,5 @@ export type {
   IQuestionListElementBox,
   IProblemDetailPageTemplate,
   TPartialProblemDetailResponseData,
+  ISplitProblemDetailPageTemplate,
 };

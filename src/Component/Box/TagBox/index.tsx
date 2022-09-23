@@ -2,7 +2,6 @@ import { ITagBox } from '../../../types/tag';
 import { deleteButtonIsShownStyle, filterTagStyle, tagColorStyle } from './style.css';
 import { XIcon } from '../../../Icon/XIcon';
 import { COLOR } from '../../../constants/color';
-import { useCheckedTagStore } from '../../../hooks/useStore';
 
 const COLOR_MAP = {
   color1: COLOR.PURPLE,
@@ -11,16 +10,16 @@ const COLOR_MAP = {
   color4: COLOR.GREEN,
 };
 
-function TagBox({ id, name, color = 'color1', isFilter = false }: ITagBox) {
-  const { checkedTags, setCheckedTags } = useCheckedTagStore();
-
-  const onDeleteButtonClick = () => {
-    setCheckedTags(checkedTags.filter((e) => e.id !== id));
-  };
-
+function TagBox({
+  name,
+  color = 'color1',
+  isFilter = false,
+  onDeleteButtonClick,
+  className,
+}: ITagBox) {
   return (
-    <li className={`${tagColorStyle[color]} ${isFilter ? filterTagStyle : ''}`}>
-      <div>{name}</div>
+    <li className={`${tagColorStyle[color]} ${isFilter ? filterTagStyle : ''} ${className}`}>
+      <div className='tag'>{name}</div>
       <button
         className={deleteButtonIsShownStyle[isFilter ? 'true' : 'false']}
         onClick={onDeleteButtonClick}
