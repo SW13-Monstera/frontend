@@ -159,7 +159,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
               {data?.contents?.map((problem: IProblemListResponseDataContents) => (
                 <QuestionListElementBox
                   title={problem.title}
-                  totalSolved={problem.totalSolved ?? 0}
+                  totalSubmission={problem.totalSubmission ?? 0}
                   avgScore={problem.avgScore}
                   tags={problem.tags}
                   key={problem.id}
