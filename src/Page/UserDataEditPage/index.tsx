@@ -1,5 +1,4 @@
 import { DefaultInputBox } from '../../Component/Box';
-import { SearchDropdownInputBox } from '../../Component/Box/InputBox/SearchDropdownInputBox.tsx';
 import { TextButton } from '../../Component/Button';
 import { PageTemplate } from '../../Template';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
@@ -10,7 +9,6 @@ import {
   urlPrefixStyle,
   urlWrapperStyle,
 } from './style.css';
-import { JOB, JOB_OBJECTIVE } from '../../constants/userDataEdit';
 import { useMutation, useQuery } from 'react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -116,28 +114,6 @@ export const UserDataEditPage = () => {
             name='username'
             placeholder='닉네임을 입력해주세요'
             defaultValue={profileData?.username}
-          />
-          <label htmlFor='major'>전공 (최대 1개)</label>
-          <SearchDropdownInputBox
-            id='major'
-            elements={majorList}
-            searchWithAPI={searchMajor}
-            defaultValue={profileData?.major}
-          />
-          <label htmlFor='job'>직업 (최대 1개)</label>
-          <SearchDropdownInputBox id='job' elements={JOB} defaultValue={profileData?.job} />
-          <label htmlFor='core-tect'>주요 기술 (최대 3개)</label>
-          <SearchDropdownInputBox
-            id='core-tect'
-            searchWithAPI={searchCoreTech}
-            elements={coreTech}
-            defaultValue={profileData?.techs}
-          />
-          <label htmlFor='job-objective'>희망 직무 (최대 1개)</label>
-          <SearchDropdownInputBox
-            id='job-objective'
-            elements={JOB_OBJECTIVE}
-            defaultValue={profileData?.jobObjective}
           />
           <label htmlFor='github-url'>Github</label>
           <div className={urlWrapperStyle}>

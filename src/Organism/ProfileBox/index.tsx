@@ -1,7 +1,6 @@
 import {
   boxStyle,
   chartWrapperStyle,
-  coreTechListStyle,
   editButtonStyle,
   imageStyle,
   imageWrapperStyle,
@@ -22,7 +21,6 @@ import { BUTTON_SIZE, BUTTON_THEME } from '../../types/button';
 import { COLOR } from '../../constants/color';
 import linkedinLogo from '../../assets/images/linkedin.png';
 import githubLogo from '../../assets/icons/github.svg';
-import { TechTagBox } from '../../Component/Box/TechTagBox';
 import { DoughnutChart } from '../../Component/Chart/DoughnutChart';
 import { createCategoryChartData } from '../../utils/createChartData';
 import { useNavigate } from 'react-router-dom';
@@ -138,29 +136,12 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
       <Divider />
       <div className={section2Style}>
         <ProfileLabel name={'이메일'} value={email} />
-        <ProfileLabel name={'전공'} value={major === null ? '선택 안 함' : major} />
-        <ProfileLabel name={'직업'} value={job === null ? '선택 안 함' : job} />
-        <ProfileLabel
-          name={'희망직무'}
-          value={jobObjective === null ? '선택 안 함' : jobObjective}
-        />
-        <ProfileLabel
-          name={'주요 기술'}
-          value={
-            techs.length === 0 ? (
-              '선택 안 함'
-            ) : (
-              <ul className={coreTechListStyle}>
-                {techs.map((e) => (
-                  <TechTagBox name={e} key={e} color={COLOR.TAG2} />
-                ))}
-              </ul>
-            )
-          }
-        />
       </div>
       <Divider />
-      <div className={section3Style}>
+      <div
+        className={section3Style}
+        style={{ display: statistics.every((e) => isNaN(e.value)) ? 'none' : 'block' }}
+      >
         <div className={labelTitleStyle}>통계</div>
         <div className={chartWrapperStyle}>
           <DoughnutChart data={createCategoryChartData(statistics)} />

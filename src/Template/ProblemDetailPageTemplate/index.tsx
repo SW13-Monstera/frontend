@@ -68,6 +68,7 @@ export const ProblemDetailPageTemplate = ({
                   theme={BUTTON_THEME.TERTIARY}
                   size={BUTTON_SIZE.MEDIUM}
                   onClick={openModal}
+                  isActivated={false}
                 >
                   제출기록
                 </TextButton>

@@ -21,7 +21,13 @@ function TextButton({
   return (
     <CustomButton
       type={type}
-      onClick={onClick}
+      onClick={
+        isActivated
+          ? onClick
+          : () => {
+              return;
+            }
+      }
       className={`${className} ${textButtonThemeStyle[theme]} ${textButtonSizeStyle[size]} ${
         !isActivated ? unactivatedStyle : ''
       }`}
