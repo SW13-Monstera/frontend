@@ -29,7 +29,7 @@ interface INumberMark {
 const NumberMark = ({
   score = 0,
   averageScore = 0,
-  maxScore = 0,
+  maxScore,
   className,
   isAverage = false,
 }: INumberMark) => {
@@ -43,12 +43,12 @@ const NumberMark = ({
           <p className={speechBubbleTextWrapperStyle}>
             {isAverage ? (
               <>
-                <span className={numberMarkTextLabelStyle[compareToAverage]}>{`평균점수 `}</span>
+                <span className={numberMarkTextLabelStyle[compareToAverage]}>{'평균점수 '}</span>
                 <span className={numberMarkTextStyle}>{`${formatNumber(score)}점`}</span>
               </>
             ) : (
               <>
-                <span className={numberMarkTextLabelStyle[compareToAverage]}>{`내점수 `}</span>
+                <span className={numberMarkTextLabelStyle[compareToAverage]}>{'내점수 '}</span>
                 <span className={numberMarkTextStyle}>{`${formatNumber(score)}점`}</span>
               </>
             )}
@@ -60,7 +60,7 @@ const NumberMark = ({
   );
 };
 
-export const NumberLineChart = ({ myScore, avgScore, max = 5, min = 0 }: INumberLineChart) => {
+export const NumberLineChart = ({ myScore, avgScore, max = 10, min = 0 }: INumberLineChart) => {
   return (
     <div>
       <div className={numberLineWrapperStyle}>

@@ -18,6 +18,7 @@ export const pageTitleStyle = style([
 
 export const pageContentWrapperStyle = style({
   display: 'flex',
+  justifyContent: 'center',
   gap: '2rem',
   '@media': {
     'screen and (max-width: 1000px)': {
@@ -32,6 +33,12 @@ export const rightSideWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+  width: '45%',
+  '@media': {
+    'screen and (max-width: 1000px)': {
+      width: '100%',
+    },
+  },
 });
 
 export const colorLabelListStyle = style({

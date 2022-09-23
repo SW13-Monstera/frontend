@@ -138,7 +138,11 @@ AI 기반 문장 유사도 평가 기법을 채점받아
               </div>
               <div className={checkedTagListWrapperStyle}>
                 <div
-                  className={checkedTagListTitleIsShownStyle[checkedTags.length ? 'true' : 'false']}
+                  className={
+                    checkedTagListTitleIsShownStyle[
+                      checkedTags.filter((e) => e.isChecked).length ? 'true' : 'false'
+                    ]
+                  }
                 >
                   선택된 필터
                 </div>

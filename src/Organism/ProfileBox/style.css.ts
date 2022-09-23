@@ -9,13 +9,19 @@ export const boxStyle = style({
   backgroundColor: themeColors.background.F3,
   gap: '1rem',
 
-  width: '85%',
+  width: '35%',
   height: 'fit-content',
 
   borderRadius: '20px',
 
   marginTop: '2rem',
   padding: '2rem',
+
+  '@media': {
+    'screen and (max-width: 1000px)': {
+      width: '88%',
+    },
+  },
 });
 
 export const section1Style = style({
@@ -106,7 +112,7 @@ export const chartWrapperStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '88%',
+  width: '70%',
   maxWidth: '50rem',
   maxHeight: '50rem',
   alignSelf: 'center',

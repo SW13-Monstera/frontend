@@ -15,11 +15,13 @@ import { RowBox } from '../../Component/Box/CustomBox';
 
 interface IProblemDetail {
   totalSolved: string;
+  totalSolvedCnt: string;
   avgScore: string;
   topScore: string;
   bottomScore: string;
   correctCnt: string;
   wrongCnt: string;
+  correctUserCnt: string;
 }
 
 interface IProblemDetailDescription {
@@ -32,8 +34,10 @@ const problemDetailMap: Record<
   keyof IProblemDetail,
   (num: string | undefined) => IProblemDetailDescription | null
 > = {
-  totalSolved: (num: string | undefined) =>
+  totalSolvedCnt: (num: string | undefined) =>
     num !== null && num !== undefined ? { label: '제출', value: num, unit: null } : null,
+  totalSolved: (num: string | undefined) =>
+    num !== null && num !== undefined ? { label: '제출한 사람 수', value: num, unit: null } : null,
   avgScore: (num: string | undefined) =>
     num !== null && num !== undefined
       ? { label: '평균 점수', value: parseFloat(num).toFixed(2), unit: '점' }
@@ -47,9 +51,11 @@ const problemDetailMap: Record<
       ? { label: '최저점', value: parseFloat(num).toFixed(2), unit: '점' }
       : null,
   correctCnt: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '맞은 사람 수', value: num, unit: '명' } : null,
+    num !== null && num !== undefined ? { label: '정답 수', value: num, unit: null } : null,
   wrongCnt: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '틀린 사람 수', value: num, unit: '명' } : null,
+    num !== null && num !== undefined ? { label: '오답 수', value: num, unit: null } : null,
+  correctUserCnt: (num: string | undefined) =>
+    num !== null && num !== undefined ? { label: '맞힌 사람', value: num, unit: '명' } : null,
 };
 
 function ProblemTitle(props: IProblem) {
