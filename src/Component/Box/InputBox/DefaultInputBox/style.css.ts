@@ -1,3 +1,4 @@
+import { themeColors } from './../../../../styles/theme.css';
 import { createTheme, style } from '@vanilla-extract/css';
 import { COLOR } from '../../../../constants/color';
 import baseFontStyle from '../../../../styles/font.css';
@@ -20,8 +21,8 @@ export const defaultInputBoxStyle = style([
     width: inputVars.size.medium.width,
     height: inputVars.size.medium.height,
 
-    color: COLOR.TITLEACTIVE,
-    background: COLOR.WHITE,
+    color: themeColors.text[1],
+    background: themeColors.background.FF,
     border: '1px solid #D9D9D9',
     borderRadius: '10px',
 
