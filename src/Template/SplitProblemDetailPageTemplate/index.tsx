@@ -1,6 +1,6 @@
 import { ProblemDetailPageTemplate } from '../ProblemDetailPageTemplate';
 import Split from 'react-split';
-import { contentWrapperStyle, splitStyle } from './style.css';
+import { contentWrapperSideStyle, splitStyle } from './style.css';
 import { ISplitProblemDetailPageTemplate } from '../../types/problem';
 import { useDarkModeStore } from '../../hooks/useStore';
 import { useEffect } from 'react';
@@ -54,8 +54,8 @@ export const SplitProblemDetailPageTemplate = ({
         cursor='col-resize'
         className={splitStyle}
       >
-        <div className={contentWrapperStyle}>{leftSideContent}</div>
-        <div className={contentWrapperStyle}>{rightSideContent}</div>
+        <div className={contentWrapperSideStyle.left}>{leftSideContent}</div>
+        <div className={contentWrapperSideStyle.right}>{rightSideContent}</div>
       </Split>
     </ProblemDetailPageTemplate>
   );

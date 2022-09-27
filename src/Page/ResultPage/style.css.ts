@@ -51,16 +51,16 @@ export const answerContentStyle = style({
 export const standardAnswerContentStyle = style([
   answerContentStyle,
   {
-    height: '300px',
     padding: '1.5rem 1rem',
   },
 ]);
 
 export const keywordListStyle = style({
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'start',
   justifyContent: 'start',
   gap: '0.9375rem',
+  flexWrap: 'wrap',
   width: '100%',
   overflowX: 'auto',
 });
