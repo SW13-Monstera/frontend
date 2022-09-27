@@ -22,10 +22,11 @@ import { SplitProblemDetailPageTemplate } from '../../Template/SplitProblemDetai
 import { TextBox } from '../../Component/Box';
 import { MyScoreBox } from '../../Component/Box/MyScoreBox';
 import { NumberLineChart } from '../../Component/Chart/NumberLineChart';
+import { ILongProblemResultLocationState } from '../../types/problem';
 
 export default function ResultPage() {
   const { id } = useParams();
-  const userAnswer = useLocation().state as string;
+  const { userAnswer, title } = useLocation().state as ILongProblemResultLocationState;
 
   function handleSubmit() {
     if (!id) throw new Error('invalid id');
@@ -39,7 +40,10 @@ export default function ResultPage() {
   }, []);
 
   if (!id) return <></>;
-  if (isLoading) return <SkeletonLongProblemResultPage />;
+  if (isLoading)
+    return (
+      <SkeletonLongProblemResultPage title={title} userAnswer={userAnswer} id={id} tags={[]} />
+    );
 
   return (
     <>

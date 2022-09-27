@@ -7,6 +7,7 @@ import { URLWithParam } from '../../../constants/url';
 import { MetaTag } from '../../utils/MetaTag';
 import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
 import { answerInputContentStyle, contentTitleStyle } from './style.css';
+import { ILongProblemResultLocationState } from '../../../types/problem';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
@@ -20,7 +21,9 @@ export function LongQuestionDetailPage() {
   const handleSubmit = () => {
     if (!id) throw new Error('invalid id');
     const answer = (document.getElementById('answer') as HTMLTextAreaElement).value;
-    navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), { state: answer });
+    navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), {
+      state: { userAnswer: answer, title: data?.title } as ILongProblemResultLocationState,
+    });
     refetch();
   };
 

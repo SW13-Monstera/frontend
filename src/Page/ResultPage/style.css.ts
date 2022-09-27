@@ -16,7 +16,6 @@ export const pageStyle = style({
 });
 
 export const pageContentStyle = style({
-  boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'start',
   justifyContent: 'space-between',
@@ -76,11 +75,7 @@ export const contentStyle = style({
   width: '100%',
   height: '100%',
 
-  '@media': {
-    'screen and (max-width: 1100px)': {
-      height: 'fit-content',
-    },
-  },
+  padding: '2rem',
 });
 
 export const standardAnswerStyle = style([

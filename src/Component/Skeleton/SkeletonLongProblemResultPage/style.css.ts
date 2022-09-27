@@ -1,4 +1,5 @@
-import { style } from '@vanilla-extract/css';
+import { themeColors } from './../../../styles/theme.css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
 import { vars } from '../../Button/theme.css';
@@ -17,6 +18,22 @@ export const pageStyle = style({
   padding: '3rem',
 });
 
+export const skeletonContentStyle = style({
+  display: 'flex',
+  flexDirection: 'row',
+  width: '100%',
+  height: '50vh',
+  border: '1px solid #DDDDDD',
+  borderRadius: '8px',
+
+  '@media': {
+    'screen and (max-width: 1100px)': {
+      flexDirection: 'column',
+      height: '100%',
+    },
+  },
+});
+
 export const topStyle = style({
   boxSizing: 'border-box',
 
@@ -28,22 +45,15 @@ export const topStyle = style({
   padding: '0.5rem',
 });
 
-export const line1Style = style({
-  width: '10rem',
-  height: '2.5rem',
+export const lineStyle = style({
+  height: '1rem',
   backgroundColor: COLOR.GRAY,
+  borderRadius: '8px',
 });
 
-export const line2Style = style({
-  width: '12rem',
-  height: '2.5rem',
-  backgroundColor: COLOR.GRAY,
-});
-
-export const line3Style = style({
-  width: '15rem',
-  height: '2.5rem',
-  backgroundColor: COLOR.GRAY,
+export const lineLengthStyle = styleVariants({
+  default: [lineStyle, { width: '100%' }],
+  last: [lineStyle, { width: '45%' }],
 });
 
 export const textButtonStyle = style({
@@ -52,15 +62,13 @@ export const textButtonStyle = style({
 });
 
 export const descStyle = style({
-  boxSizing: 'border-box',
-
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
   gap: '1rem',
 
-  width: '10rem',
+  width: '100%',
 });
 
 export const titleStyle = style({
@@ -92,7 +100,15 @@ export const problemDetailStyle = style([
   },
 ]);
 
+export const skeletonContentWrapperStyle = style({
+  width: '100%',
+  height: '100%',
+  backgroundColor: themeColors.background.FF,
+});
+
 export const skeletonScoreStyle = style({
   width: '2rem',
-  height: '5rem',
+  height: '2rem',
+  backgroundColor: COLOR.GRAY,
+  borderRadius: '8px',
 });
