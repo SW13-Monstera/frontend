@@ -2,26 +2,24 @@ import {
   descStyle,
   problemDetailStyle,
   topStyle,
-  line1Style,
-  line2Style,
-  line3Style,
   textButtonStyle,
   titleStyle,
-  skeletonScoreStyle,
+  skeletonContentStyle,
+  lineLengthStyle,
+  skeletonContentWrapperStyle,
 } from './style.css';
 import { skeletonKeyframeAnimation } from '../skeletonKeyframeAnimation.css';
-import { TextBox } from '../../Box';
 import {
   buttonListStyle,
   contentStyle,
-  pageContentStyle,
   pageStyle,
-  scoreWrapperStyle,
   subtitleStyle,
 } from '../../../Page/ResultPage/style.css';
-import { Header } from '../../../Template';
+import { PageTemplate } from '../../../Template';
 import { textButtonSizeStyle } from '../../Button/TextButton/style.css';
 import { buttonThemeClass } from '../../Button/theme.css';
+import { ILongProblemResultLocationState } from '../../../types/problem';
+import ProblemTitle from '../../../Organism/ProblemTitle';
 
 export const SkeletonProblemTitle = () => {
   return (
@@ -37,11 +35,15 @@ export const SkeletonProblemTitle = () => {
 export const SkeletonMultipleText = () => {
   return (
     <div className={descStyle}>
-      <div className={`${line1Style} ${skeletonKeyframeAnimation}`}></div>
-      <div className={`${line2Style} ${skeletonKeyframeAnimation}`}></div>
-      <div className={`${line1Style} ${skeletonKeyframeAnimation}`}></div>
-      <div className={`${line2Style} ${skeletonKeyframeAnimation}`}></div>
-      <div className={`${line3Style} ${skeletonKeyframeAnimation}`}></div>
+      {Array(8)
+        .fill(0)
+        .map((_, idx) => (
+          <div
+            className={`${lineLengthStyle.default} ${skeletonKeyframeAnimation}`}
+            key={idx}
+          ></div>
+        ))}
+      <div className={`${lineLengthStyle.last} ${skeletonKeyframeAnimation}`}></div>
     </div>
   );
 };
@@ -54,35 +56,35 @@ export const SkeletonTextButton = () => {
   );
 };
 
-export const SkeletonLongProblemResultPage = () => {
+export const SkeletonLongProblemResultPage = ({
+  title,
+  userAnswer,
+  id,
+  tags,
+}: ILongProblemResultLocationState) => {
   return (
-    <>
-      <Header />
+    <PageTemplate>
       <div className={pageStyle}>
-        <SkeletonProblemTitle />
-        <div className={pageContentStyle}>
-          <TextBox>
+        <ProblemTitle title={title} id={''} tags={[]} isSolved={true} />
+        <div className={skeletonContentStyle}>
+          <div className={skeletonContentWrapperStyle}>
             <div className={contentStyle}>
               <h3 className={subtitleStyle}>내 답안</h3>
-              <SkeletonMultipleText />
+              <div>{userAnswer}</div>
             </div>
-          </TextBox>
-          <TextBox>
+          </div>
+          <div className={skeletonContentWrapperStyle}>
             <div className={contentStyle}>
               <h3 className={subtitleStyle}>모범 답안</h3>
               <SkeletonMultipleText />
             </div>
-          </TextBox>
+          </div>
         </div>
         <div className={buttonListStyle}>
-          <div className={scoreWrapperStyle}>
-            <div>내 점수:</div>
-            <div className={skeletonScoreStyle}></div>
-          </div>
           <SkeletonTextButton />
           <SkeletonTextButton />
         </div>
       </div>
-    </>
+    </PageTemplate>
   );
 };

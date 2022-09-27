@@ -1,4 +1,3 @@
-import { themeColors } from './../../../styles/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
 
@@ -15,7 +14,7 @@ export const numberLineWrapperStyle = style({
   alignItems: 'center',
   width: '100%',
   height: '0.75rem',
-  background: themeColors.line.d,
+  background: COLOR.LINE.d,
   borderRadius: '8px',
 });
 
@@ -24,7 +23,7 @@ export const numberCircleMarkStyle = style({
   width: '1.3125rem',
   height: '1.3125rem',
   borderRadius: '50%',
-  backgroundColor: themeColors.background.FF,
+  backgroundColor: COLOR.WHITE,
 });
 
 export const numberCircleMarkColorStyle = styleVariants({

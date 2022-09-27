@@ -16,7 +16,6 @@ export const pageStyle = style({
 });
 
 export const pageContentStyle = style({
-  boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'start',
   justifyContent: 'space-between',
@@ -51,16 +50,16 @@ export const answerContentStyle = style({
 export const standardAnswerContentStyle = style([
   answerContentStyle,
   {
-    height: '300px',
     padding: '1.5rem 1rem',
   },
 ]);
 
 export const keywordListStyle = style({
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'start',
   justifyContent: 'start',
   gap: '0.9375rem',
+  flexWrap: 'wrap',
   width: '100%',
   overflowX: 'auto',
 });
@@ -76,11 +75,7 @@ export const contentStyle = style({
   width: '100%',
   height: '100%',
 
-  '@media': {
-    'screen and (max-width: 1100px)': {
-      height: 'fit-content',
-    },
-  },
+  padding: '2rem',
 });
 
 export const standardAnswerStyle = style([
@@ -124,6 +119,7 @@ export const numberLineChartWrapperStyle = style({
 
   background: '#F8FAFD',
   borderRadius: '24px',
+  color: COLOR.TITLEACTIVE,
 
   padding: '2rem 1.5rem',
 });
@@ -132,7 +128,7 @@ export const numberLineChartTitleStyle = style({
   fontWeight: '700',
   fontSize: '1.5rem',
   lineHeight: '2.1875rem',
-  color: themeColors.text[2],
+  color: COLOR.TITLEACTIVE,
 });
 
 export const numberLineChartStrongTitleStyle = style([

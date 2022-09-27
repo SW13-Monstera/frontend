@@ -140,7 +140,7 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
       <Divider />
       <div
         className={section3Style}
-        style={{ display: statistics.every((e) => isNaN(e.value)) ? 'none' : 'block' }}
+        style={{ display: statistics.every((e) => isNaN(e.value)) ? 'none' : 'flex' }}
       >
         <div className={labelTitleStyle}>통계</div>
         <div className={chartWrapperStyle}>

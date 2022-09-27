@@ -1,3 +1,4 @@
+import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
@@ -25,7 +26,7 @@ export const urlWrapperStyle = style([
   {
     display: 'flex',
     alignItems: 'center',
-    gap: '1rem',
+    gap: '.3rem',
 
     width: '100%',
     height: '4rem',
@@ -48,7 +49,9 @@ export const urlInputStyle = style([
   {
     width: '100%',
     height: '100%',
-    borderBottom: `1px solid ${COLOR.GRAY}`,
+    backgroundColor: themeColors.background.F3,
+    color: themeColors.text[1],
     borderRadius: '8px',
+    paddingLeft: '.5rem',
   },
 ]);

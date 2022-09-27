@@ -1,5 +1,5 @@
 import { themeColors } from './../../styles/theme.css';
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 
 export const splitStyle = style({
   display: 'flex',
@@ -14,7 +14,12 @@ export const contentWrapperStyle = style({
   justifyContent: 'flex-start',
   gap: '1.5rem',
 
-  padding: '2rem',
+  padding: '2rem 0 2rem 2rem',
+});
+
+export const contentWrapperSideStyle = styleVariants({
+  left: [contentWrapperStyle, { padding: '2rem 0 2rem 2rem' }],
+  right: [contentWrapperStyle, { padding: '2rem 2rem 2rem 0' }],
 });
 
 export const contentTitleStyle = style({

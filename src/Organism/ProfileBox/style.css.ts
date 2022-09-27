@@ -31,6 +31,8 @@ export const section2Style = style({
 export const section3Style = style({
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
   gap: '0.5rem',
 });
 
@@ -45,9 +47,6 @@ export const imageWrapperStyle = style({
   borderRadius: '50%',
   cursor: 'pointer',
   transition: '.3s linear',
-  // ':hover': {
-  //   filter: 'brightness(70%)',
-  // },
 });
 
 export const imageStyle = style({
@@ -113,7 +112,8 @@ export const section1NumericDataStyle = style({
 export const labelTitleStyle = style([
   baseFontStyle.medium,
   {
-    color: themeColors.text[1],
+    color: themeColors.text[3],
+    alignSelf: 'start',
   },
 ]);
 

@@ -20,7 +20,7 @@ interface IProblem {
   answer?: string;
   correctSubmission?: number;
   correctUserCnt?: number;
-  isSolved: boolean;
+  isSolved?: boolean;
 }
 
 interface IQuestionListElementBox {
@@ -70,6 +70,13 @@ export interface IMypageProblem {
   id: number;
   title: string;
   type: string;
+}
+
+export interface ILongProblemResultLocationState {
+  userAnswer: string;
+  title: string;
+  id: string;
+  tags: string[];
 }
 
 export type {

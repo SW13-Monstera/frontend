@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import Router from './Router';
+import Router from './Router/Router';
 import { appStyle } from './styles/App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuthStore, useDarkModeStore } from './hooks/useStore';

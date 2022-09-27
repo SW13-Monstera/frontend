@@ -20,7 +20,7 @@ export const asideStyle = style({
   flexDirection: 'column',
   gap: '1.25rem',
 
-  width: '40%',
+  width: '20%',
   minWidth: '15rem',
   height: '12.5rem',
 
@@ -105,7 +105,7 @@ export const questionListWrapperStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
 
-  width: '100%',
+  width: '70%',
 });
 
 export const questionListStyle = style({
@@ -113,7 +113,8 @@ export const questionListStyle = style({
 
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gap: '10px',
+  rowGap: '1.25rem',
+  columnGap: '1.5rem',
 
   width: '100%',
 
