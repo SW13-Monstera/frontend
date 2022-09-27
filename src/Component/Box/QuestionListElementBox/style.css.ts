@@ -93,5 +93,5 @@ export const problemStatisticsWrapperBaseStyle = style({
 
 export const problemStatisticsWrapperStyle = styleVariants({
   row: [problemStatisticsWrapperBaseStyle, { gap: '7.8125rem' }],
-  column: [problemStatisticsWrapperBaseStyle, { gap: '1.5rem' }],
+  column: [problemStatisticsWrapperBaseStyle, { flexDirection: 'column', gap: '1.5rem' }],
 });

@@ -17,7 +17,7 @@ import { URLWithParam } from '../../../constants/url';
 import { getTagById } from '../../../utils/getTagbyId';
 import { Divider } from '../../Divider';
 import { formatNumber } from '../../../utils/formatNumber';
-import { ColumnBox, RowBox } from '../CustomBox';
+import { RowBox } from '../CustomBox';
 
 interface IProblemStatisticsBox {
   label: string;
@@ -72,10 +72,10 @@ function QuestionListElementBox({
           </div>
           <Divider className={dividerStyle} />
           {isColumn ? (
-            <ColumnBox className={problemStatisticsWrapperStyle.column}>
+            <div className={problemStatisticsWrapperStyle.column}>
               <ProblemStatisticsBox label='제출' value={totalSubmission} unit='' />
               <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
-            </ColumnBox>
+            </div>
           ) : (
             <RowBox className={problemStatisticsWrapperStyle.row}>
               <ProblemStatisticsBox label='제출' value={totalSubmission} unit='' />
