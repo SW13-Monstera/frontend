@@ -13,18 +13,6 @@ interface IDarkMode {
   setIsDark: (isDarkState: boolean) => void;
 }
 
-interface IUserData {
-  id: string;
-  username: string;
-  email: string;
-  role: string;
-}
-
-interface IUserDataStore {
-  userData: IUserData;
-  setUserData: (userInfo: IUserData) => void;
-}
-
 interface ITagStore {
   checkedTags: ITagState[];
   setCheckedTags: (tagState: ITagState[]) => void;
@@ -33,11 +21,6 @@ interface ITagStore {
 const useAuthStore = create<IAuth>((set) => ({
   isLogin: false,
   setIsLogin: (loginState: boolean) => set((state) => ({ ...state, isLogin: loginState })),
-}));
-
-const useUserDataStore = create<IUserDataStore>((set) => ({
-  userData: { id: '', username: '', email: '', role: '' },
-  setUserData: (newUserData: IUserData) => set({ userData: newUserData }),
 }));
 
 const useDarkModeStore = create<IDarkMode>((set) => ({
@@ -53,4 +36,4 @@ const useCheckedTagStore = create<ITagStore>((set) => ({
   setCheckedTags: (tagState: ITagState[]) => set((state) => ({ ...state, checkedTags: tagState })),
 }));
 
-export { useAuthStore, useUserDataStore, useDarkModeStore, useCheckedTagStore };
+export { useAuthStore, useDarkModeStore, useCheckedTagStore };
