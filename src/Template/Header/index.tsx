@@ -96,14 +96,6 @@ function Header() {
                   마이 페이지
                 </TransparentButton>
                 <Divider />
-                <TransparentButton
-                  onClick={() => {
-                    navigate(URL.NICKNAME);
-                  }}
-                >
-                  닉네임 설정
-                </TransparentButton>
-                <Divider />
                 <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>
               </>
             </CustomPopover>

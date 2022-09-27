@@ -2,7 +2,6 @@ const URL = {
   MAIN: '/',
   JOIN: '/join',
   LOGIN: '/login',
-  NICKNAME: '/join/nickname',
   MYPAGE: '/mypage',
   USER_DATA_EDIT: '/mypage/edit',
   PROBLEM_LIST: '/problem',
