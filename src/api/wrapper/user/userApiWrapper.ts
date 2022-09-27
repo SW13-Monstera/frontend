@@ -23,7 +23,6 @@ export const userApiWrapper = {
 
   getStats: () => {
     const userInfo = getUserInfo();
-    const tmp = '';
     if (!userInfo) {
       toast('통계 조회 실패');
       throw new Error('통계 조회 실패');

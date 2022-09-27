@@ -9,7 +9,7 @@ export const mainStyle = style({
 
   width: '100%',
   height: 'auto',
-  minHeight: `calc(100vh - 11.5rem - 5rem)`,
+  minHeight: 'calc(100vh - 11.5rem - 5rem)',
 
   backgroundColor: themeColors.background.FF,
 
