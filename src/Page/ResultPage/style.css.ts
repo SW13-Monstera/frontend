@@ -119,6 +119,7 @@ export const numberLineChartWrapperStyle = style({
 
   background: '#F8FAFD',
   borderRadius: '24px',
+  color: COLOR.TITLEACTIVE,
 
   padding: '2rem 1.5rem',
 });
@@ -127,7 +128,7 @@ export const numberLineChartTitleStyle = style({
   fontWeight: '700',
   fontSize: '1.5rem',
   lineHeight: '2.1875rem',
-  color: themeColors.text[2],
+  color: COLOR.TITLEACTIVE,
 });
 
 export const numberLineChartStrongTitleStyle = style([
