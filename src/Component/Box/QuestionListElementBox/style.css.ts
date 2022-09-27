@@ -19,7 +19,7 @@ export const textBoxStyle = style({
   padding: '1rem 1.5rem',
 
   color: themeColors.text[1],
-  background: themeColors.background.FF,
+  background: themeColors.background.FFLight,
   boxShadow: `0px 0px 4px ${themeColors.shadow[1]}`,
   borderRadius: '8px',
   transition: 'box-shadow .3s',
