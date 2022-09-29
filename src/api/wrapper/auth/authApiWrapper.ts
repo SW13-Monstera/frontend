@@ -33,10 +33,10 @@ export const authApiWrapper = {
       })
       .then(
         (res: { data: { accessToken: string } }) => {
-          const newAccessToken = res.data.accessToken;
+          const newAccessToken = res.data?.accessToken;
           apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
           setUserInfo({ ...userInfo, accessToken: newAccessToken });
-          return res.data.accessToken;
+          return res.data?.accessToken;
         },
         (err) => {
           return;
