@@ -42,10 +42,11 @@ export const questionContentStyle = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  minHeight: '60vh',
+  height: '100%',
   background: themeColors.background.FA,
   border: `1px solid ${themeColors.line.d}`,
   borderRadius: '8px',
+  minHeight: '50vh',
 });
 
 export const buttonListWrapperStyle = style({
