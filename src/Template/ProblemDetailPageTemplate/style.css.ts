@@ -42,7 +42,7 @@ export const questionContentStyle = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
-  height: '60vh',
+  minHeight: '60vh',
   background: themeColors.background.FA,
   border: `1px solid ${themeColors.line.d}`,
   borderRadius: '8px',
