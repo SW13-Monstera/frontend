@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { ToastContainer } from 'react-toastify';
 import Router from './Router/Router';
 import { appStyle } from './styles/App.css';
@@ -13,6 +14,12 @@ import { DARK_MODE } from './constants/localStorage';
 function App() {
   const { setIsLogin } = useAuthStore();
   const { isDark, setIsDark } = useDarkModeStore();
+
+  if (import.meta.env.PROD) {
+    console.log = () => {};
+    console.error = () => {};
+    console.warn = () => {};
+  }
 
   useEffect(() => {
     const userInfo = getUserInfo();
