@@ -24,6 +24,8 @@ import { setLogout } from '../../utils/setLogout';
 import { DarkmodeButton } from '../../Component/Button/DarkmodeButton';
 import { NavigateProblemListButton } from '../../Component/Button/NavigateProblemListButton';
 import AlarmIcon from '../../Icon/AlarmIcon';
+import { useEffect } from 'react';
+import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 
 function Header() {
   const navigate = useNavigate();
@@ -50,6 +52,10 @@ function Header() {
     setIsLogin(false);
     navigate(URL.MAIN);
   }
+
+  useEffect(() => {
+    authApiWrapper.refresh();
+  }, []);
 
   return (
     <header className={headerStyle}>
