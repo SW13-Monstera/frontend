@@ -6,12 +6,20 @@ import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDe
 import { URLWithParam } from '../../../constants/url';
 import { MetaTag } from '../../utils/MetaTag';
 import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
-import { answerInputContentStyle, contentTitleStyle } from './style.css';
+import {
+  answerInputContentStyle,
+  charCntWarningStyle,
+  charCntWrapperStyle,
+  contentTitleStyle,
+  hiddenStyle,
+} from './style.css';
 import { ILongProblemResultLocationState } from '../../../types/problem';
+import { useState } from 'react';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [charCount, setCharCount] = useState(0);
   const { data, refetch } = useQuery<ILongProblemDetailResponseData>(
     'longProblemDetail',
     () => problemApiWrapper.longProblemDetail(id!),
@@ -27,6 +35,10 @@ export function LongQuestionDetailPage() {
     refetch();
   };
 
+  const onTextAreaChange = (event: any) => {
+    setCharCount(event.target.value.length ?? 0);
+  };
+
   return (
     <>
       <MetaTag
@@ -37,6 +49,7 @@ export function LongQuestionDetailPage() {
       <SplitProblemDetailPageTemplate
         data={data}
         handleSubmit={handleSubmit}
+        isSubmittable={charCount >= 10}
         leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
         rightSideContent={
           <>
@@ -47,7 +60,16 @@ export function LongQuestionDetailPage() {
               id='answer'
               placeholder='답변을 입력해주세요'
               className={answerInputContentStyle}
+              minLength={10}
+              maxLength={300}
+              onKeyUp={onTextAreaChange}
             ></textarea>
+            <div className={charCntWrapperStyle}>
+              <div>{charCount}/300</div>
+              <div className={`${charCntWarningStyle} ${charCount >= 10 ? hiddenStyle : ''}`}>
+                답변을 10자 이상 작성해주세요.
+              </div>
+            </div>
           </>
         }
       />

@@ -28,6 +28,7 @@ export const ProblemDetailPageTemplate = ({
     return;
   },
   isResultPage = false,
+  isSubmittable = false,
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
@@ -101,6 +102,7 @@ export const ProblemDetailPageTemplate = ({
                         theme={BUTTON_THEME.PRIMARY}
                         size={BUTTON_SIZE.MEDIUM}
                         onClick={handleSubmit}
+                        isActivated={isSubmittable}
                       >
                         제출하기
                       </TextButton>
