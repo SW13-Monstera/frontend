@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { ToastContainer } from 'react-toastify';
 import Router from './Router/Router';
 import { appStyle } from './styles/App.css';
@@ -9,11 +10,16 @@ import { setTokenHeader } from './api/setTokenHeader';
 import { Helmet } from 'react-helmet-async';
 import { darkTheme, lightTheme } from './styles/theme.css';
 import { DARK_MODE } from './constants/localStorage';
-import { authApiWrapper } from './api/wrapper/auth/authApiWrapper';
 
 function App() {
   const { setIsLogin } = useAuthStore();
   const { isDark, setIsDark } = useDarkModeStore();
+
+  if (import.meta.env.PROD) {
+    console.log = () => {};
+    console.error = () => {};
+    console.warn = () => {};
+  }
 
   useEffect(() => {
     const userInfo = getUserInfo();
@@ -38,7 +44,6 @@ function App() {
     }
 
     history.scrollRestoration = 'auto';
-    authApiWrapper.refresh();
   }, []);
 
   return (

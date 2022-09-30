@@ -15,6 +15,7 @@ export const SplitProblemDetailPageTemplate = ({
   isResult,
   resetResult,
   isResultPage,
+  isSubmittable = false,
   sizes = [35, 65],
 }: ISplitProblemDetailPageTemplate) => {
   const { isDark } = useDarkModeStore();
@@ -36,6 +37,7 @@ export const SplitProblemDetailPageTemplate = ({
       resetResult={resetResult}
       isResultPage={isResultPage}
       bottomContent={bottomContent}
+      isSubmittable={isSubmittable}
     >
       <Split
         sizes={sizes}

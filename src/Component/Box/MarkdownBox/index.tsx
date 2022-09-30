@@ -13,6 +13,9 @@ export const MarkdownBox = ({ children }: IMarkdownBox) => {
       className='markdown'
       rehypePlugins={[rehypeHighlight]}
       remarkPlugins={[remarkGfm]}
+      components={{
+        img: ({ node, ...props }) => <img style={{ maxWidth: '100%' }} {...props} alt='' />,
+      }}
     >
       {children ?? ''}
     </ReactMarkdown>

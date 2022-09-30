@@ -1,11 +1,11 @@
 import {
-  pageStyle,
   descStyle,
   questionContentStyle,
   buttonListStyle,
   topStyle,
   buttonListWrapperStyle,
   bottomContentStyle,
+  pageStyle,
 } from './style.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
@@ -28,6 +28,7 @@ export const ProblemDetailPageTemplate = ({
     return;
   },
   isResultPage = false,
+  isSubmittable = false,
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
   const { isLogin } = useAuthStore();
@@ -44,7 +45,7 @@ export const ProblemDetailPageTemplate = ({
       <div>
         {data ? (
           <PageTemplate>
-            <main className={pageStyle}>
+            <div className={pageStyle}>
               <div className={topStyle}>
                 <div className={descStyle}>
                   <ProblemTitle
@@ -101,6 +102,7 @@ export const ProblemDetailPageTemplate = ({
                         theme={BUTTON_THEME.PRIMARY}
                         size={BUTTON_SIZE.MEDIUM}
                         onClick={handleSubmit}
+                        isActivated={isSubmittable}
                       >
                         제출하기
                       </TextButton>
@@ -119,7 +121,7 @@ export const ProblemDetailPageTemplate = ({
                   )}
                 </div>
               </div>
-            </main>
+            </div>
             <div className={bottomContentStyle}>{bottomContent}</div>
           </PageTemplate>
         ) : (

@@ -45,6 +45,7 @@ export const answerContentStyle = style({
   fontSize: '1.25rem',
   lineHeight: '1.8125rem',
   color: themeColors.text[5],
+  wordBreak: 'break-all',
 });
 
 export const standardAnswerContentStyle = style([

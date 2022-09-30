@@ -122,8 +122,10 @@ export const UserDataEditPage = () => {
               className={urlInputStyle}
               id='github-url'
               defaultValue={
-                profileData?.githubUrl.match(reGithub)
-                  ? profileData.githubUrl.split('https://www.github.com/')[1]
+                profileData?.githubUrl
+                  ? profileData?.githubUrl.match(reGithub)
+                    ? profileData.githubUrl.split('https://www.github.com/')[1]
+                    : ''
                   : ''
               }
             />
@@ -135,8 +137,10 @@ export const UserDataEditPage = () => {
               className={urlInputStyle}
               id='linkedin-url'
               defaultValue={
-                profileData?.linkedinUrl.match(reLinkedIn)
-                  ? profileData.linkedinUrl.split('https://www.linkedin.com/')[1]
+                profileData?.linkedinUrl
+                  ? profileData?.linkedinUrl.match(reLinkedIn)
+                    ? profileData.linkedinUrl.split('https://www.linkedin.com/')[1]
+                    : ''
                   : ''
               }
             />

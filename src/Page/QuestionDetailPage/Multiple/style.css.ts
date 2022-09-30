@@ -17,7 +17,8 @@ export const choiceListStyle = style({
   gap: '1rem',
 
   width: '100%',
-  height: '75%',
+  height: 'fit-content',
+  minHeight: '75%',
 
   overflow: 'auto',
 

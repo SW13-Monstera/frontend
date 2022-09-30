@@ -58,12 +58,14 @@ interface IProblemDetailPageTemplate {
   resetResult?: () => void;
   isResultPage?: boolean;
   bottomContent?: React.ReactNode;
+  isSubmittable?: boolean;
 }
 
 interface ISplitProblemDetailPageTemplate extends IProblemDetailPageTemplate {
   leftSideContent?: React.ReactNode;
   rightSideContent?: React.ReactNode;
   sizes?: number[];
+  isSubmittable?: boolean;
 }
 
 export interface IMypageProblem {
