@@ -13,6 +13,7 @@ const URL = {
   MULTIPLE__PROBLEM_RESULT: '/problem/multiple/result/:id',
   OAUTH_CALLBACK: '/oauth/redirect',
   ERROR: '/error',
+  PAGE_NOT_FOUND: '/pagenotfound',
 };
 
 const URLWithParam = {

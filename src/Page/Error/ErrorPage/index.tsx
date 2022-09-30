@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { TextButton } from '../../Component/Button';
-import { URL } from '../../constants/url';
-import { PageTemplate } from '../../Template';
-import { BUTTON_SIZE, BUTTON_THEME } from '../../types/button';
-import { pageWrapperStyle } from '../MainPage/style.css';
-import { MetaTag } from '../utils/MetaTag';
+import { TextButton } from '../../../Component/Button';
+import { URL } from '../../../constants/url';
+import { PageTemplate } from '../../../Template';
+import { BUTTON_SIZE, BUTTON_THEME } from '../../../types/button';
+import { pageWrapperStyle } from '../../MainPage/style.css';
+import { MetaTag } from '../../utils/MetaTag';
 
 export const ErrorPage = () => {
   const navigate = useNavigate();

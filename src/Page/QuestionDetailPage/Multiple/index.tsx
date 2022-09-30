@@ -69,6 +69,7 @@ export function MultipleQuestionDetailPage() {
         handleSubmit={handleSubmit}
         isResult={result !== null && result !== undefined}
         resetResult={resetResult}
+        isSubmittable={true}
         leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
         rightSideContent={
           <>

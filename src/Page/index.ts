@@ -7,7 +7,7 @@ import ResultPage from './ResultPage';
 import JoinPage from './JoinPage';
 import CallbackPage from './CallbackPage';
 import { LoginPage } from './LoginPage';
-import { ErrorPage } from './ErrorPage';
+import { ErrorPage } from './Error/ErrorPage';
 import { MyPage } from './MyPage';
 import { UserDataEditPage } from './UserDataEditPage';
 

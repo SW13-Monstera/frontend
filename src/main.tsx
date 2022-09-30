@@ -7,6 +7,7 @@ import './styles/normailize.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import ReactGA from 'react-ga';
 import { HelmetProvider } from 'react-helmet-async';
+import { ErrorBoundary } from './ErrorBoundary';
 
 ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID);
 
@@ -19,7 +20,9 @@ ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
-        <App />
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
       </HelmetProvider>
     </QueryClientProvider>
   </React.StrictMode>,

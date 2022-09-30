@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 import { AUTHORIZTION, BEARER_TOKEN } from '../constants/api';
+import { URL } from '../constants/url';
 import { getUserInfo } from '../utils/userInfo';
 
 const apiClient = axios.create({
@@ -17,7 +19,12 @@ apiClient.interceptors.request.use((config) => {
 
 apiClient.interceptors.response.use(
   (res) => res.data,
-  (err) => err,
+  (err) => {
+    const { status } = err.response;
+    if (status === 404) {
+      Navigate({ to: URL.PAGE_NOT_FOUND });
+    }
+  },
 );
 
 export default apiClient;
