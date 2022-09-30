@@ -57,6 +57,7 @@ export function ShortQuestionDetailPage() {
       handleSubmit={handleSubmit}
       isResult={result !== null && result !== undefined}
       resetResult={resetResult}
+      isSubmittable={true}
     >
       <MetaTag
         title={`CS Broker - ${data?.title}`}
