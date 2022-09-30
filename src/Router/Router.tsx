@@ -38,7 +38,8 @@ function Router() {
         <Route path={URL.MULTIPLE_PROBLEM_DETAIL} element={<MultipleQuestionDetailPage />} />
         <Route path={URL.LOGIN} element={<LoginPage />} />
         <Route path={URL.OAUTH_CALLBACK} element={<CallbackPage />} />
-        <Route path={URL.ERROR} element={<ErrorPage />} />
+        <Route path={URL.ERROR} element={<ErrorPage />} />s
+        <Route path={URL.PAGE_NOT_FOUND} element={<PageNotFoundPage />} />
         <Route path='*' element={<PageNotFoundPage />} />
       </Routes>
       <RouteChangeTracker />
