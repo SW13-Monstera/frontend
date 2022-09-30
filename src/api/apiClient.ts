@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Navigate } from 'react-router-dom';
 import { AUTHORIZTION, BEARER_TOKEN } from '../constants/api';
 import { URL } from '../constants/url';
 import { getUserInfo } from '../utils/userInfo';
@@ -21,7 +22,7 @@ apiClient.interceptors.response.use(
   (err) => {
     const { status } = err.response;
     if (status === 404) {
-      history.pushState({}, '', URL.PAGE_NOT_FOUND);
+      Navigate({ to: URL.PAGE_NOT_FOUND });
     }
   },
 );
