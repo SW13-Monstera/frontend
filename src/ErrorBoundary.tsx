@@ -16,7 +16,7 @@ export class ErrorBoundary extends React.Component<any, IErrorBoundaryState> {
 
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      return <h1>문제가 발생했어요.</h1>;
     }
 
     return this.props.children;
