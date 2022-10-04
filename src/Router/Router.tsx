@@ -13,6 +13,8 @@ import {
   ErrorPage,
   MyPage,
   UserDataEditPage,
+  ChangePasswordEmailPage,
+  ChangePasswordPage,
 } from '../Page';
 import { RouteChangeTracker } from './RouteChangeTracker';
 import { ProtectedLayout } from './ProtectedLayout';
@@ -30,6 +32,8 @@ function Router() {
         </Route>
         <Route element={<PublicLayout />}>
           <Route path={URL.JOIN} element={<JoinPage />} />
+          <Route path={URL.SEND_CHANGE_PASSWORD_EMAIL} element={<ChangePasswordEmailPage />} />
+          <Route path={URL.CHANGE_PASSWORD} element={<ChangePasswordPage />} />
         </Route>
         <Route path={URL.MAIN} element={<MainPage />} />
         <Route path={URL.PROBLEM_LIST} element={<QuestionListPage />} />

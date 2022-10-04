@@ -1,5 +1,5 @@
 import apiClient from '../../apiClient';
-import { API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
+import { API_URL, API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
 import { IProfileData, IUpdateUserRequest } from '../../../types/api/user';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo, setUserInfo } from '../../../utils/userInfo';
@@ -60,5 +60,13 @@ export const userApiWrapper = {
           throw new Error('유저 조회 실패');
         },
       );
+  },
+
+  sendChangePasswordEmail: (email: string) => {
+    return apiClient.post(API_URL.SEND_CHANGE_PASSWORD_EMAIL, email);
+  },
+
+  changePassword: () => {
+    apiClient.put(API_URL.CHANGE_PASSWORD);
   },
 };
