@@ -7,6 +7,7 @@ export const problemTitleBoxStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
 
+  width: '9rem',
   height: '2rem',
 
   padding: '0 1rem',

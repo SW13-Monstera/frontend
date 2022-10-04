@@ -21,7 +21,7 @@ export const pageContentWrapperStyle = style({
   justifyContent: 'center',
   gap: '2rem',
   '@media': {
-    'screen and (max-width: 1000px)': {
+    'screen and (max-width: 1300px)': {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
@@ -34,7 +34,7 @@ export const leftSideWrapperStyle = style({
   flexDirection: 'column',
   width: '35%',
   '@media': {
-    'screen and (max-width: 1000px)': {
+    'screen and (max-width: 1300px)': {
       width: '88%',
     },
   },
@@ -47,8 +47,8 @@ export const rightSideWrapperStyle = style({
   width: '45%',
   marginTop: '0.8rem',
   '@media': {
-    'screen and (max-width: 1000px)': {
-      width: '100%',
+    'screen and (max-width: 1300px)': {
+      width: '88%',
     },
   },
 });
@@ -63,5 +63,6 @@ export const colorLabelListStyle = style({
 });
 
 export const problemStatsWrapperStyle = style({
+  alignItems: 'flex-start',
   gap: '1rem',
 });

@@ -10,6 +10,7 @@ export const statisticsBoxStyle = style([
     gap: '0.5rem',
 
     width: '30%',
+    maxWidth: '25rem',
     minWidth: 'fit-content',
     height: '10rem',
 
