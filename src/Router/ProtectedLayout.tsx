@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { URL } from '../constants/url';
-import { useAuthStore } from '../hooks/useStore';
+import { getUserInfo } from '../utils/userInfo';
 
 export const ProtectedLayout = () => {
-  const { isLogin } = useAuthStore();
+  const userInfo = getUserInfo();
 
-  return isLogin ? <Outlet /> : <Navigate to={URL.LOGIN} />;
+  return userInfo ? <Outlet /> : <Navigate to={URL.LOGIN} />;
 };
