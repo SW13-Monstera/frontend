@@ -117,6 +117,10 @@ export const labelTitleStyle = style([
   },
 ]);
 
+export const editButtonListStyle = style({
+  gap: '1rem',
+});
+
 export const editButtonStyle = style([
   baseFontStyle.medium,
   {

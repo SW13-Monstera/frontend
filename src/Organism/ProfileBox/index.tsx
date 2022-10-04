@@ -13,6 +13,7 @@ import {
   section2Style,
   section3Style,
   imageUploadBackgroundStyle,
+  editButtonListStyle,
 } from './style.css';
 import { Divider } from '../../Component/Divider';
 import { ProfileLabel } from '../../Component/Utils/ProfileLabel';
@@ -31,6 +32,7 @@ import csbrokerLogo from '../../favicon.svg';
 import { useCallback, useRef, useState } from 'react';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { toast } from 'react-toastify';
+import { RowBox } from '../../Component/Box/CustomBox';
 
 interface IProfileBox {
   profileData: IProfileData;
@@ -148,16 +150,28 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
         </div>
       </div>
       <Divider />
-      <TextButton
-        theme={BUTTON_THEME.SECONDARY}
-        size={BUTTON_SIZE.LARGE_MEDIUM}
-        className={editButtonStyle}
-        onClick={() => {
-          navigate(URL.USER_DATA_EDIT);
-        }}
-      >
-        프로필 수정하기
-      </TextButton>
+      <RowBox className={editButtonListStyle}>
+        <TextButton
+          theme={BUTTON_THEME.PRIMARY}
+          size={BUTTON_SIZE.LARGE_MEDIUM}
+          className={editButtonStyle}
+          onClick={() => {
+            navigate(URL.USER_DATA_EDIT);
+          }}
+        >
+          프로필 수정하기
+        </TextButton>
+        <TextButton
+          theme={BUTTON_THEME.TERTIARY}
+          size={BUTTON_SIZE.LARGE_MEDIUM}
+          className={editButtonStyle}
+          onClick={() => {
+            navigate(URL.CHANGE_PASSWORD_WITH_LOGIN);
+          }}
+        >
+          비밀번호 수정하기
+        </TextButton>
+      </RowBox>
     </div>
   );
 };
