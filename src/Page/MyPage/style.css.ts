@@ -48,7 +48,7 @@ export const rightSideWrapperStyle = style({
   marginTop: '0.8rem',
   '@media': {
     'screen and (max-width: 1000px)': {
-      width: '100%',
+      width: '88%',
     },
   },
 });
