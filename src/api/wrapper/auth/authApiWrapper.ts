@@ -33,7 +33,7 @@ export const authApiWrapper = {
       })
       .then(
         (res: { data: { accessToken: string } }) => {
-          if (res.data) {
+          if (res && res.data && res.data.accessToken) {
             const newAccessToken = res.data.accessToken;
             apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
             setUserInfo({ ...userInfo, accessToken: newAccessToken });
