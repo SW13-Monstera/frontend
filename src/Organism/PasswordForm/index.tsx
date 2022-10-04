@@ -3,7 +3,6 @@ import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
 import { INPUT_TYPE } from '../../constants/input';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import { titleStyle } from './style.css';
 
 interface IPasswordForm {
   submitNewPassword: (newpassword: string) => void;
@@ -27,9 +26,6 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
 
   return (
     <>
-      <div className={titleStyle}>
-        <p>비밀번호 변경</p>
-      </div>
       <label htmlFor='password'>비밀번호</label>
       <DefaultInputBox
         id='password'

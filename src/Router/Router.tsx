@@ -14,12 +14,13 @@ import {
   MyPage,
   UserDataEditPage,
   ChangePasswordEmailPage,
-  ChangePasswordPage,
+  ChangePasswordWithLoginPage,
+  ChangePasswordWithoutLoginPage,
+  PageNotFoundPage,
 } from '../Page';
 import { RouteChangeTracker } from './RouteChangeTracker';
 import { ProtectedLayout } from './ProtectedLayout';
 import { PublicLayout } from './PublicLayout';
-import { PageNotFoundPage } from '../Page/Error/PageNotFoundPage';
 
 function Router() {
   return (
@@ -29,11 +30,12 @@ function Router() {
           <Route path={URL.MYPAGE} element={<MyPage />} />
           <Route path={URL.USER_DATA_EDIT} element={<UserDataEditPage />} />
           <Route path={URL.LONG_PROBLEM_RESULT} element={<ResultPage />} />
+          <Route path={URL.CHANGE_PASSWORD_WITH_LOGIN} element={<ChangePasswordWithLoginPage />} />
         </Route>
         <Route element={<PublicLayout />}>
           <Route path={URL.JOIN} element={<JoinPage />} />
           <Route path={URL.SEND_CHANGE_PASSWORD_EMAIL} element={<ChangePasswordEmailPage />} />
-          <Route path={URL.CHANGE_PASSWORD} element={<ChangePasswordPage />} />
+          <Route path={URL.CHANGE_PASSWORD} element={<ChangePasswordWithoutLoginPage />} />
         </Route>
         <Route path={URL.MAIN} element={<MainPage />} />
         <Route path={URL.PROBLEM_LIST} element={<QuestionListPage />} />
