@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useState, MouseEvent } from 'react';
+import { useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import {
   IMultipleProblemDetailResponseData,
