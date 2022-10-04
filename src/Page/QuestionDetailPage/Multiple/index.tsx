@@ -76,7 +76,7 @@ export function MultipleQuestionDetailPage() {
             <label htmlFor='answer' className={contentTitleStyle}>
               답안 선택
             </label>
-            <div className={choiceListStyle}>
+            <div className={choiceListStyle} onClick={resetResult}>
               {data?.choices.map((choice) => (
                 <label
                   htmlFor={choice.id.toString()}
