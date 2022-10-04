@@ -14,7 +14,8 @@ import {
   hiddenStyle,
 } from './style.css';
 import { ILongProblemResultLocationState } from '../../../types/problem';
-import { useState } from 'react';
+import { useState, KeyboardEvent } from 'react';
+import { LONG_PROBLEM_ANSWER } from '../../../constants/localStorage';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
@@ -35,8 +36,11 @@ export function LongQuestionDetailPage() {
     refetch();
   };
 
-  const onTextAreaChange = (event: any) => {
-    setCharCount(event.target.value.length ?? 0);
+  const onTextAreaChange = (event: KeyboardEvent) => {
+    const element = event.target as HTMLTextAreaElement;
+    setCharCount(element.value.length ?? 0);
+    if (!id) return;
+    localStorage.setItem(LONG_PROBLEM_ANSWER(id), element.value);
   };
 
   return (
