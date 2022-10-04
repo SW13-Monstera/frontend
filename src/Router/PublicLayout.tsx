@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { URL } from '../constants/url';
-import { useAuthStore } from '../hooks/useStore';
+import { getUserInfo } from '../utils/userInfo';
 
 export const PublicLayout = () => {
-  const { isLogin } = useAuthStore();
+  const userInfo = getUserInfo();
 
-  return !isLogin ? <Outlet /> : <Navigate to={URL.MAIN} />;
+  return !userInfo ? <Outlet /> : <Navigate to={URL.MAIN} />;
 };
