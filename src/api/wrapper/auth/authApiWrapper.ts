@@ -1,7 +1,7 @@
 import { setUserInfo } from './../../../utils/userInfo';
 import apiClient from '../../apiClient';
 import { API_URL } from '../../../constants/apiUrl';
-import { IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
+import { IChangePassword, IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
 import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo } from '../../../utils/userInfo';
 import { toast } from 'react-toastify';
@@ -61,5 +61,12 @@ export const authApiWrapper = {
         Authorization: BEARER_TOKEN(token),
       },
     });
+  },
+  sendChangePasswordEmail: (email: string) => {
+    return apiClient.post(API_URL.SEND_CHANGE_PASSWORD_EMAIL, { email: email });
+  },
+
+  changePassword: (data: IChangePassword) => {
+    apiClient.put(API_URL.CHANGE_PASSWORD, data);
   },
 };

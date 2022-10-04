@@ -6,4 +6,6 @@ export interface IInputBox {
   children?: JSX.Element | string;
   onChange?: () => void;
   defaultValue?: string;
+  isWarning?: boolean;
+  warningMessage?: string;
 }

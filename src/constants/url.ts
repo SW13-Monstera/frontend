@@ -3,7 +3,7 @@ const URL = {
   JOIN: '/join',
   LOGIN: '/login',
   SEND_CHANGE_PASSWORD_EMAIL: '/change-password-email',
-  CHANGE_PASSWORD: '/change-password',
+  CHANGE_PASSWORD: '/password-change/:code',
   MYPAGE: '/mypage',
   USER_DATA_EDIT: '/mypage/edit',
   PROBLEM_LIST: '/problem',

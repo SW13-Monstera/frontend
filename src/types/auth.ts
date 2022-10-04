@@ -24,3 +24,8 @@ export interface IParsedToken {
   exp: number;
   sub: string;
 }
+
+export interface IChangePassword {
+  code: string;
+  password: string;
+}

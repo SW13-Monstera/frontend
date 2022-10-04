@@ -61,12 +61,4 @@ export const userApiWrapper = {
         },
       );
   },
-
-  sendChangePasswordEmail: (email: string) => {
-    return apiClient.post(API_URL.SEND_CHANGE_PASSWORD_EMAIL, email);
-  },
-
-  changePassword: () => {
-    apiClient.put(API_URL.CHANGE_PASSWORD);
-  },
 };
