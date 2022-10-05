@@ -51,6 +51,7 @@ function Header() {
     setLogout();
     setIsLogin(false);
     navigate(URL.MAIN);
+    localStorage.clear();
   }
 
   useEffect(() => {

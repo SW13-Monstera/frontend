@@ -21,6 +21,7 @@ import { localStorageWithExpiry } from '../../../utils/localstorage';
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [userAnswer, setUserAnswer] = useState(
     localStorageWithExpiry.getItem(LONG_PROBLEM_ANSWER(id!)) ?? '',
   );
@@ -32,20 +33,18 @@ export function LongQuestionDetailPage() {
 
   const handleSubmit = () => {
     if (!id) throw new Error('invalid id');
+    localStorage.removeItem(LONG_PROBLEM_ANSWER(id));
     navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), {
       state: { userAnswer: userAnswer, title: data?.title } as ILongProblemResultLocationState,
     });
     refetch();
-    localStorage.removeItem(LONG_PROBLEM_ANSWER(id));
   };
 
   const onTextAreaChange = (event: KeyboardEvent) => {
     const userAnswerValue = (event.target as HTMLTextAreaElement).value;
     setUserAnswer(userAnswerValue);
     if (!id) return;
-    setTimeout(() => {
-      localStorageWithExpiry.setItem(LONG_PROBLEM_ANSWER(id), userAnswerValue);
-    }, 1500);
+    localStorageWithExpiry.setItem(LONG_PROBLEM_ANSWER(id), userAnswerValue);
   };
 
   return (
