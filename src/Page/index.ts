@@ -11,7 +11,9 @@ import { ErrorPage } from './Error/ErrorPage';
 import { MyPage } from './MyPage';
 import { UserDataEditPage } from './UserDataEditPage';
 import { ChangePasswordEmailPage } from './ChangePasswordEmailPage';
-import { ChangePasswordPage } from './ChangePasswordPage';
+import { ChangePasswordWithoutLoginPage } from './ChangePasswordPageWithoutLogin';
+import { ChangePasswordWithLoginPage } from './ChangePasswordPageWithLogin';
+import { PageNotFoundPage } from './Error/PageNotFoundPage';
 
 export {
   MainPage,
@@ -27,5 +29,7 @@ export {
   MyPage,
   UserDataEditPage,
   ChangePasswordEmailPage,
-  ChangePasswordPage,
+  ChangePasswordWithoutLoginPage,
+  ChangePasswordWithLoginPage,
+  PageNotFoundPage,
 };
