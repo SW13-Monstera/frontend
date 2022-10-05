@@ -24,7 +24,7 @@ interface ISearchDropdownInputBox {
   elements: IDropdownElement[];
   searchWithAPI?: () => void;
   defaultValue?: string | string[];
-  maxCnt?: number;
+  isMultiple?: boolean;
 }
 
 export function SearchDropdownInputBox({
@@ -32,7 +32,7 @@ export function SearchDropdownInputBox({
   elements,
   searchWithAPI,
   defaultValue = '',
-  maxCnt = 1,
+  isMultiple = false,
 }: ISearchDropdownInputBox) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -111,6 +111,7 @@ export function SearchDropdownInputBox({
               isChecked={
                 checkedValues.filter((value) => value.isChecked && value.name === e.name).length > 0
               }
+              isCheckbox={isMultiple}
             />
           ))}
         </ul>

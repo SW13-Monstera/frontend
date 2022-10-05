@@ -11,6 +11,12 @@ export const [inputBoxClass, inputVars] = createTheme({
   },
 });
 
+export const defaultInputStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
+});
+
 export const defaultInputBoxStyle = style({
   display: 'flex',
   alignItems: 'center',

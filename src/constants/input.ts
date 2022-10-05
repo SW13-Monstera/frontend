@@ -4,4 +4,5 @@ export const INPUT_TYPE = {
   PASSWORD: 'password',
   SEARCH: 'search',
   CHECKBOX: 'checkbox',
+  RADIO: 'radio',
 };

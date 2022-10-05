@@ -66,32 +66,32 @@ function JoinPage() {
         <div className={pageStyle}>
           <h1 className={titleStyle}>회원가입</h1>
           <form className={inputListStyle} id='join-form'>
-            <label htmlFor='email'>이메일</label>
             <DefaultInputBox
               id='email'
               placeholder='이메일을 입력해주세요'
               type={INPUT_TYPE.EMAIL}
               name='email'
+              label='이메일'
             />
-            <label htmlFor='password'>비밀번호</label>
             <DefaultInputBox
               id='password'
               placeholder='비밀번호를 입력해주세요'
               type={INPUT_TYPE.PASSWORD}
               name='password'
+              label='비밀번호'
             />
-            <label htmlFor='password-confirm'>비밀번호 확인</label>
             <DefaultInputBox
               id='password-confirm'
               placeholder='비밀번호를 다시 한번 입력해주세요'
               type={INPUT_TYPE.PASSWORD}
               name='password-confirm'
+              label='비밀번호 확인'
             />
-            <label htmlFor='nickname'>닉네임</label>
             <DefaultInputBox
               id='nickname'
               placeholder='닉네임을 입력해주세요'
               name='nickname'
+              label='닉네임'
             ></DefaultInputBox>
             <TextButton
               type={BUTTON_TYPE.SUBMIT}

@@ -1,5 +1,5 @@
 import { IInputBox } from '../../../../types/box';
-import { defaultInputBoxStyle, inputBoxClass, warningStyle } from './style.css';
+import { defaultInputBoxStyle, defaultInputStyle, inputBoxClass, warningStyle } from './style.css';
 
 function DefaultInputBox({
   id,
@@ -7,13 +7,15 @@ function DefaultInputBox({
   type,
   children,
   name,
+  label,
   isWarning = false,
   warningMessage = '',
   onChange,
   defaultValue,
 }: IInputBox) {
   return (
-    <div>
+    <div className={defaultInputStyle}>
+      <label htmlFor={id}>{label}</label>
       <input
         id={id}
         name={name}

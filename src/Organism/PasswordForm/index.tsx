@@ -26,20 +26,20 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
 
   return (
     <>
-      <label htmlFor='password'>비밀번호</label>
       <DefaultInputBox
         id='password'
         placeholder='비밀번호를 입력해주세요'
         type={INPUT_TYPE.PASSWORD}
         name='password'
+        label='비밀번호'
         onChange={configureIsPasswordSame}
       />
-      <label htmlFor='password-confirm'>비밀번호 확인</label>
       <DefaultInputBox
         id='password-confirm'
         placeholder='비밀번호를 다시 한번 입력해주세요'
         type={INPUT_TYPE.PASSWORD}
         name='password-confirm'
+        label='비밀번호 확인'
         onChange={configureIsPasswordSame}
         isWarning={!isPasswordSame}
         warningMessage='비밀번호가 일치하지 않습니다.'

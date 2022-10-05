@@ -36,6 +36,7 @@ export function ChangePasswordEmailPage() {
           id='email'
           placeholder='이메일을 입력해주세요'
           name='email'
+          label=''
         ></DefaultInputBox>
         <TextButton
           type={BUTTON_TYPE.SUBMIT}

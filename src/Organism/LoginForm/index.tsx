@@ -28,19 +28,19 @@ function LoginForm({ handleSubmit }: ILoginForm) {
   return (
     <div className={loginFormStyle}>
       <form className={loginFormContentStyle}>
-        <label htmlFor='email'>이메일</label>
         <DefaultInputBox
           id='email'
           name='email'
           placeholder='이메일을 입력해주세요'
           type={INPUT_TYPE.EMAIL}
+          label='이메일'
         />
-        <label htmlFor='pw'>비밀번호</label>
         <DefaultInputBox
           id='password'
           name='password'
           placeholder='비밀번호를 입력해주세요'
           type={INPUT_TYPE.PASSWORD}
+          label='비밀번호'
         />
         <TextButton
           theme={BUTTON_THEME.PRIMARY}

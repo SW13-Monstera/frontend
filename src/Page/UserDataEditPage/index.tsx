@@ -9,56 +9,25 @@ import {
   urlPrefixStyle,
   urlWrapperStyle,
 } from './style.css';
-import { useMutation, useQuery } from 'react-query';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { createMajorList } from '../../utils/createMajorList';
-import { IMajorListElement } from '../../types/api/major';
-import { IDropdownElement } from '../../types/util';
+import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
 import { IProfileData, IUpdateUserRequest } from '../../types/api/user';
 import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
-import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
+import { reGithub, reLinkedIn } from '../../utils/regex';
 
 export const UserDataEditPage = () => {
   const navigate = useNavigate();
-  const getMajorList = (searchTitle?: string | null) => {
-    return axios
-      .get(import.meta.env.VITE_MAJOR_OPEN_API_URL, {
-        params: {
-          apiKey: import.meta.env.VITE_MAJOR_OPEN_API_KEY,
-          svcType: 'api',
-          svcCode: 'MAJOR',
-          gubun: 'univ_list',
-          contentType: 'json',
-          perPage: 7,
-          searchTitle: searchTitle,
-        },
-      })
-      .then((res) => res.data.dataSearch.content);
-  };
-
-  const getCoreTech = (searchTitle: string | null) => {
-    return commonApiWrapper
-      .getCoreTech(searchTitle === null ? '' : searchTitle)
-      .then((res) => setCoreTech(res));
-  };
-
   const { data: profileData } = useQuery<IProfileData>(
     'getUserInfoData',
     () => userApiWrapper.getUserInfoData(),
     { refetchOnWindowFocus: false },
   );
+
   const submitProfileData = () => {
     const data: IUpdateUserRequest = {
       username: (document.getElementById('username') as HTMLTextAreaElement).value ?? null,
-      major: (document.querySelector('#major .tag') as HTMLDivElement)?.innerText ?? null,
-      job: (document.querySelector('#job .tag') as HTMLDivElement)?.innerText ?? null,
-      jobObjective:
-        (document.querySelector('#job-objective .tag') as HTMLDivElement)?.innerText ?? null,
-      techs: [],
       githubUrl:
         'https://www.github.com/' +
           (document.getElementById('github-url') as HTMLTextAreaElement).value ?? null,
@@ -67,40 +36,9 @@ export const UserDataEditPage = () => {
           (document.getElementById('linkedin-url') as HTMLTextAreaElement).value ?? null,
       profileImgUrl: profileData?.profileImgUrl,
     };
+    userApiWrapper.updateUser(data);
     navigate(URL.MYPAGE);
-    return userApiWrapper.updateUser(data);
   };
-
-  const { mutate } = useMutation<IProfileData>(submitProfileData);
-  const [majorSearchTitle, setMajorSearchTitle] = useState<string | null>(null);
-  const [coreTechSearchTitle, setCoreTechSearchTitle] = useState<string | null>(null);
-
-  const { data: majorData } = useQuery<IMajorListElement[]>(['majors', majorSearchTitle], () =>
-    getMajorList(majorSearchTitle),
-  );
-  const { data: coreTechData } = useQuery<IMajorListElement[]>(
-    ['coreTech', coreTechSearchTitle],
-    () => getMajorList(majorSearchTitle),
-  );
-  const [majorList, setMajorList] = useState<IDropdownElement[]>([]);
-  const [coreTech, setCoreTech] = useState<IDropdownElement[]>([]);
-
-  const searchMajor = () => {
-    const majorInputValue = (document.getElementById('major') as HTMLInputElement).value;
-    setMajorSearchTitle(majorInputValue);
-  };
-  const searchCoreTech = () => {
-    const coreTechInputValue = (document.getElementById('core-tech') as HTMLInputElement).value;
-    setCoreTechSearchTitle(coreTechInputValue);
-  };
-
-  const reGithub = /https:\/\/www.github.com\/(.+)/;
-
-  const reLinkedIn = /https:\/\/www.linkedin.com\/(.+)/;
-
-  useEffect(() => {
-    setMajorList(createMajorList(majorData));
-  }, [majorData]);
 
   return (
     <PageTemplate>
@@ -108,12 +46,12 @@ export const UserDataEditPage = () => {
       <div className={pageWrapperStyle}>
         <h1>정보수정</h1>
         <form className={formWrapperStyle}>
-          <label htmlFor='username'>닉네임</label>
           <DefaultInputBox
             id='username'
             name='username'
             placeholder='닉네임을 입력해주세요'
             defaultValue={profileData?.username}
+            label='닉네임'
           />
           <label htmlFor='github-url'>Github</label>
           <div className={urlWrapperStyle}>
@@ -150,7 +88,7 @@ export const UserDataEditPage = () => {
             size={BUTTON_SIZE.LARGE}
             type={BUTTON_TYPE.BUTTON}
             onClick={() => {
-              mutate();
+              submitProfileData();
             }}
           >
             수정
