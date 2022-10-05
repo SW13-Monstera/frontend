@@ -16,12 +16,13 @@ import {
 import { ILongProblemResultLocationState } from '../../../types/problem';
 import { useState, KeyboardEvent } from 'react';
 import { LONG_PROBLEM_ANSWER } from '../../../constants/localStorage';
+import { localStorageWithExpiry } from '../../../utils/localstorage';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [userAnswer, setUserAnswer] = useState(
-    localStorage.getItem(LONG_PROBLEM_ANSWER(id!)) ?? '',
+    localStorageWithExpiry.getItem(LONG_PROBLEM_ANSWER(id!)) ?? '',
   );
   const { data, refetch } = useQuery<ILongProblemDetailResponseData>(
     'longProblemDetail',
@@ -43,7 +44,7 @@ export function LongQuestionDetailPage() {
     setUserAnswer(userAnswerValue);
     if (!id) return;
     setTimeout(() => {
-      localStorage.setItem(LONG_PROBLEM_ANSWER(id), userAnswerValue);
+      localStorageWithExpiry.setItem(LONG_PROBLEM_ANSWER(id), userAnswerValue);
     }, 1500);
   };
 
