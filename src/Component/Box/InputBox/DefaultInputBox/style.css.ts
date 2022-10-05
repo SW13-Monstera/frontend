@@ -27,7 +27,7 @@ export const defaultInputBoxStyle = style({
   color: themeColors.text[1],
   background: themeColors.background.FF,
   border: '1px solid #D9D9D9',
-  borderRadius: '10px',
+  borderRadius: '8px',
 
   padding: '0 1rem',
 

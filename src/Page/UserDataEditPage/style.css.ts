@@ -16,7 +16,7 @@ export const formWrapperStyle = style({
   flexDirection: 'column',
   alignItems: 'start',
   justifyContent: 'center',
-  gap: '1rem',
+  gap: '2rem',
 
   width: '31.25rem',
 });

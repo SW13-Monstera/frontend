@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 import { reGithub, reLinkedIn } from '../../utils/regex';
 import { UrlInputBox } from '../../Component/Box/InputBox/UrlInputBox';
+import { DefaultSelect } from '../../Component/Utils/DefaultSelect';
 
 export const UserDataEditPage = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ export const UserDataEditPage = () => {
             defaultValue={profileData?.username}
             label='닉네임'
           />
+          <DefaultSelect label='전공' options={[]} defaultValue={[]} />
           <UrlInputBox
             id='github-url'
             label='Github'
