@@ -2,13 +2,7 @@ import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
 import { PageTemplate } from '../../Template';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import {
-  formWrapperStyle,
-  pageWrapperStyle,
-  urlInputStyle,
-  urlPrefixStyle,
-  urlWrapperStyle,
-} from './style.css';
+import { formWrapperStyle, pageWrapperStyle } from './style.css';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
 import { IProfileData, IUpdateUserRequest } from '../../types/api/user';
@@ -16,6 +10,7 @@ import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 import { reGithub, reLinkedIn } from '../../utils/regex';
+import { UrlInputBox } from '../../Component/Box/InputBox/UrlInputBox';
 
 export const UserDataEditPage = () => {
   const navigate = useNavigate();
@@ -53,36 +48,20 @@ export const UserDataEditPage = () => {
             defaultValue={profileData?.username}
             label='닉네임'
           />
-          <label htmlFor='github-url'>Github</label>
-          <div className={urlWrapperStyle}>
-            <span className={urlPrefixStyle}>github.com/</span>
-            <input
-              className={urlInputStyle}
-              id='github-url'
-              defaultValue={
-                profileData?.githubUrl
-                  ? profileData?.githubUrl.match(reGithub)
-                    ? profileData.githubUrl.split('https://www.github.com/')[1]
-                    : ''
-                  : ''
-              }
-            />
-          </div>
-          <label htmlFor='linkedin-url'>Linkedin</label>
-          <div className={urlWrapperStyle}>
-            <span className={urlPrefixStyle}>linkedin.com/</span>
-            <input
-              className={urlInputStyle}
-              id='linkedin-url'
-              defaultValue={
-                profileData?.linkedinUrl
-                  ? profileData?.linkedinUrl.match(reLinkedIn)
-                    ? profileData.linkedinUrl.split('https://www.linkedin.com/')[1]
-                    : ''
-                  : ''
-              }
-            />
-          </div>
+          <UrlInputBox
+            id='github-url'
+            label='Github'
+            value={profileData?.githubUrl ?? ''}
+            prefix='github.com/'
+            regex={reGithub}
+          />
+          <UrlInputBox
+            id='linkedin-url'
+            label='Linkedin'
+            value={profileData?.linkedinUrl ?? ''}
+            prefix='linkedin.com/'
+            regex={reLinkedIn}
+          />
           <TextButton
             theme={BUTTON_THEME.PRIMARY}
             size={BUTTON_SIZE.LARGE}
