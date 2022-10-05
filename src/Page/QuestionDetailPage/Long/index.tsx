@@ -20,7 +20,9 @@ import { LONG_PROBLEM_ANSWER } from '../../../constants/localStorage';
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [charCount, setCharCount] = useState(0);
+  const [userAnswer, setUserAnswer] = useState(
+    localStorage.getItem(LONG_PROBLEM_ANSWER(id!)) ?? '',
+  );
   const { data, refetch } = useQuery<ILongProblemDetailResponseData>(
     'longProblemDetail',
     () => problemApiWrapper.longProblemDetail(id!),
@@ -29,18 +31,20 @@ export function LongQuestionDetailPage() {
 
   const handleSubmit = () => {
     if (!id) throw new Error('invalid id');
-    const answer = (document.getElementById('answer') as HTMLTextAreaElement).value;
     navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), {
-      state: { userAnswer: answer, title: data?.title } as ILongProblemResultLocationState,
+      state: { userAnswer: userAnswer, title: data?.title } as ILongProblemResultLocationState,
     });
     refetch();
+    localStorage.removeItem(LONG_PROBLEM_ANSWER(id));
   };
 
   const onTextAreaChange = (event: KeyboardEvent) => {
-    const element = event.target as HTMLTextAreaElement;
-    setCharCount(element.value.length ?? 0);
+    const userAnswerValue = (event.target as HTMLTextAreaElement).value;
+    setUserAnswer(userAnswerValue);
     if (!id) return;
-    localStorage.setItem(LONG_PROBLEM_ANSWER(id), element.value);
+    setTimeout(() => {
+      localStorage.setItem(LONG_PROBLEM_ANSWER(id), userAnswerValue);
+    }, 1500);
   };
 
   return (
@@ -53,7 +57,7 @@ export function LongQuestionDetailPage() {
       <SplitProblemDetailPageTemplate
         data={data}
         handleSubmit={handleSubmit}
-        isSubmittable={charCount >= 10}
+        isSubmittable={userAnswer?.length >= 10}
         leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
         rightSideContent={
           <>
@@ -67,10 +71,13 @@ export function LongQuestionDetailPage() {
               minLength={10}
               maxLength={300}
               onKeyUp={onTextAreaChange}
+              defaultValue={userAnswer ?? undefined}
             ></textarea>
             <div className={charCntWrapperStyle}>
-              <div>{charCount}/300</div>
-              <div className={`${charCntWarningStyle} ${charCount >= 10 ? hiddenStyle : ''}`}>
+              <div>{userAnswer?.length}/300</div>
+              <div
+                className={`${charCntWarningStyle} ${userAnswer?.length >= 10 ? hiddenStyle : ''}`}
+              >
                 답변을 10자 이상 작성해주세요.
               </div>
             </div>
