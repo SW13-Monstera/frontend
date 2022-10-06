@@ -25,22 +25,44 @@ export const UserDataEditPage = () => {
     () => userApiWrapper.getUserInfoData(),
     { refetchOnWindowFocus: false, staleTime: 10000 },
   );
-  const { data: techs } = useQuery<IOption[]>(
-    'getTechs',
-    () => commonApiWrapper.getCoreTech('').then((e) => createOptions(e)),
-    {
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-    },
-  );
-  const { data: majors } = useQuery<IOption[]>(
-    'getMajors',
-    () => commonApiWrapper.getMajor('').then((e) => createOptions(e)),
-    {
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-    },
-  );
+  // const { data: techs } = useQuery<IOption[]>(
+  //   'getTechs',
+  //   () => commonApiWrapper.getCoreTech('').then((e) => createOptions(e)),
+  //   {
+  //     refetchOnWindowFocus: false,
+  //     staleTime: Infinity,
+  //   },
+  // );
+  // const { data: majors } = useQuery<IOption[]>(
+  //   'getMajors',
+  //   () => commonApiWrapper.getMajor('').then((e) => createOptions(e)),
+  //   {
+  //     refetchOnWindowFocus: false,
+  //     staleTime: Infinity,
+  //   },
+  // );
+
+
+  const loadMajorOptions = (inputValue: string, callback: (options: IOption[]) => void) => {
+    commonApiWrapper.getMajor(inputValue).then((e) => {
+      callback(createOptions(e))
+    })
+  }
+
+  const loadTechOptions = (inputValue: string, callback: (options: IOption[]) => void) => {
+    commonApiWrapper.getCoreTech(inputValue).then((e) => {
+      callback(createOptions(e))
+    })
+  }
+
+  const loadJobOptions = (inputValue: string, callback: (options: IOption[]) => void) => {
+    callback(JOB.filter((e) => e.label.includes(inputValue)))
+  }
+
+  const loadJobObjectiveOptions = (inputValue: string, callback: (options: IOption[]) => void) => {
+    callback(JOB_OBJECTIVE.filter((e) => e.label.includes(inputValue)))
+  }
+
   const [newProfileData, setNewProfileData] = useState<IProfileData | undefined>(profileData);
 
   const submitProfileData = () => {
@@ -61,6 +83,7 @@ export const UserDataEditPage = () => {
   return (
     <PageTemplate>
       <MetaTag title='CS Broker - 정보 수정' />
+      {profileData &&
       <div className={pageWrapperStyle}>
         <h1 className={pageTitleStyle}>정보수정</h1>
         <form className={formWrapperStyle}>
@@ -73,8 +96,8 @@ export const UserDataEditPage = () => {
           />
           <DefaultSelect
             label='전공'
-            options={majors ?? []}
-            defaultValue={majors?.find((e) => e.label === profileData?.major)}
+            loadOptions={loadMajorOptions}
+            defaultValue={createOptions(profileData?.major ? [profileData.major] : [])}
             onChange={(majorOption: IOption) => {
               setNewProfileData(
                 newProfileData ? { ...newProfileData, major: majorOption.label } : undefined,
@@ -83,7 +106,9 @@ export const UserDataEditPage = () => {
           />
           <DefaultSelect
             label='직업'
+            isAsync={false}
             options={JOB}
+            loadOptions={loadJobOptions}
             defaultValue={JOB.find((e) => e.label === profileData?.job)}
             onChange={(jobOption: IOption) => {
               setNewProfileData(
@@ -93,9 +118,9 @@ export const UserDataEditPage = () => {
           />
           <DefaultSelect
             label='주요기술(최대 3개)'
-            options={techs ?? []}
+            loadOptions={loadTechOptions}
             isMulti={true}
-            defaultValue={techs?.filter((e) => profileData?.techs?.includes(e.label))}
+            defaultValue={createOptions(profileData?.techs ? profileData.techs : [])}
             onChange={(techOptions: IOption[]) => {
               setNewProfileData(
                 newProfileData
@@ -106,7 +131,9 @@ export const UserDataEditPage = () => {
           />
           <DefaultSelect
             label='희망 직무'
+            isAsync={false}
             options={JOB_OBJECTIVE}
+            loadOptions={loadJobObjectiveOptions}
             defaultValue={JOB_OBJECTIVE.find((e) => e.label === profileData?.jobObjective)}
             onChange={(jobOption: IOption) => {
               setNewProfileData(
@@ -139,7 +166,7 @@ export const UserDataEditPage = () => {
             수정하기
           </TextButton>
         </form>
-      </div>
+      </div>}
     </PageTemplate>
   );
 };
