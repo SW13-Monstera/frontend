@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
 import { INPUT_TYPE } from '../../constants/input';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import { passwordFormStyle } from './style.css';
 
 interface IPasswordForm {
   submitNewPassword: (newpassword: string) => void;
 }
 
 export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
-  const [isPasswordSame, setIsPasswordSame] = useState(false);
+  const [isPasswordSame, setIsPasswordSame] = useState(true);
+  const [isActivated, setIsActivated] = useState(false);
 
   const configureIsPasswordSame = () => {
     const passwordValue = (document.getElementById('password') as HTMLInputElement).value;
@@ -17,6 +19,7 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
       .value;
     if (!passwordValue) return;
     setIsPasswordSame(passwordValue === passwordConfirmValue);
+    setIsActivated(passwordValue === passwordConfirmValue);
   };
 
   const submit = () => {
@@ -25,7 +28,7 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
   };
 
   return (
-    <>
+    <div className={passwordFormStyle}>
       <DefaultInputBox
         id='password'
         placeholder='비밀번호를 입력해주세요'
@@ -49,10 +52,10 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
         theme={BUTTON_THEME.PRIMARY}
         size={BUTTON_SIZE.LARGE}
         onClick={submit}
-        isActivated={isPasswordSame}
+        isActivated={isActivated}
       >
         확인
       </TextButton>
-    </>
+    </div>
   );
 };

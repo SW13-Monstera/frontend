@@ -2,15 +2,23 @@ import { themeColors } from './../../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../../../constants/color';
 
-export const defaultInputStyle = style({
+export const defaultInputWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '.5rem',
   width: '100%',
-  height: '4.9375rem',
+  height: 'fit-content',
+  minHeight: '4.9375rem',
   fontWeight: '400',
   fontSize: '1rem',
   lineHeight: '1.5rem',
+  color: themeColors.text[5],
+});
+
+export const defaultInputStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
   color: themeColors.text[5],
 });
 
