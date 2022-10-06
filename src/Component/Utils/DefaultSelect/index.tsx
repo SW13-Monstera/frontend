@@ -44,6 +44,7 @@ export const DefaultSelect = ({
             ...theme.colors,
             primary: COLOR.PRIMARY,
             danger: COLOR.RED,
+            primary25: COLOR.BACKGROUND.LIGHT_BLUE,
             neutral90: themeColors.text[5],
           },
         })}
@@ -65,7 +66,7 @@ const customStyles = {
     border: 'none',
     backgroundColor: themeColors.background.F8,
     width: '100%',
-    height: '3rem',
+    minHeight: '3rem',
     fontWeight: '400',
     fontSize: '1rem',
     lineHeight: '1.4375rem',
@@ -79,5 +80,15 @@ const customStyles = {
   option: (provided: object) => ({
     ...provided,
     font: 'inherit',
+    color: themeColors.text[5],
+  }),
+  singleValue: (provided: object) => ({
+    ...provided,
+    font: 'inherit',
+    color: themeColors.text[5],
+  }),
+  menuList: (provided: object) => ({
+    ...provided,
+    backgroundColor: themeColors.background.F8,
   }),
 };

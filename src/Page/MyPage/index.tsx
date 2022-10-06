@@ -38,19 +38,16 @@ interface IProblemStatsData {
 }
 
 export const MyPage = () => {
-  const [problemStatsData, setProblemStatsData] = useState<IProblemStatsData>();
-
   const { data: profileData } = useQuery<IProfileData>(
     'getUserInfoData',
     () => userApiWrapper.getUserInfoData(),
     { refetchOnWindowFocus: false },
   );
-
-  useEffect(() => {
-    userApiWrapper.getStats().then((res: IProblemStatsData) => {
-      setProblemStatsData(res);
-    });
-  }, []);
+  const { data: problemStatsData } = useQuery<IProblemStatsData>(
+    'getStatsData',
+    () => userApiWrapper.getStats(),
+    { refetchOnWindowFocus: false },
+  );
 
   const getStatistics = () => {
     if (problemStatsData) {

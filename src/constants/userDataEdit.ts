@@ -10,12 +10,6 @@ export const JOB: IOption[] = [
   { value: 'etc', label: '기타' },
 ];
 
-export const CORE_TECH: IOption[] = [
-  { value: 'reactJS', label: 'ReactJS' },
-  { value: 'nodeJS', label: 'NodeJS' },
-  { value: 'java', label: 'Java' },
-];
-
 export const JOB_OBJECTIVE: IOption[] = [
   { value: 'BACKEND', label: '서버/백엔드' },
   { value: 'FRONTEND', label: '프론트엔드' },

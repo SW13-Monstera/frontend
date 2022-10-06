@@ -12,7 +12,7 @@ import { URL } from '../../constants/url';
 import { reGithub, reLinkedIn } from '../../utils/regex';
 import { UrlInputBox } from '../../Component/Box/InputBox/UrlInputBox';
 import { DefaultSelect } from '../../Component/Utils/DefaultSelect';
-import { CORE_TECH, JOB, JOB_OBJECTIVE } from '../../constants/userDataEdit';
+import { JOB, JOB_OBJECTIVE } from '../../constants/userDataEdit';
 import { IOption } from '../../types/select';
 import { useState } from 'react';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
@@ -23,13 +23,14 @@ export const UserDataEditPage = () => {
   const { data: profileData } = useQuery<IProfileData>(
     'getUserInfoData',
     () => userApiWrapper.getUserInfoData(),
-    { refetchOnWindowFocus: false },
+    { refetchOnWindowFocus: false, staleTime: 10000 },
   );
   const { data: techs } = useQuery<IOption[]>(
     'getTechs',
     () => commonApiWrapper.getCoreTech('').then((e) => createOptions(e)),
     {
       refetchOnWindowFocus: false,
+      staleTime: Infinity,
     },
   );
   const { data: majors } = useQuery<IOption[]>(
@@ -37,6 +38,7 @@ export const UserDataEditPage = () => {
     () => commonApiWrapper.getMajor('').then((e) => createOptions(e)),
     {
       refetchOnWindowFocus: false,
+      staleTime: Infinity,
     },
   );
   const [newProfileData, setNewProfileData] = useState<IProfileData | undefined>(profileData);
