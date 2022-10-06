@@ -15,7 +15,7 @@ export const userApiWrapper = {
       .then((res: { data: IProfileData }) => {
         setUserInfo({
           ...userInfo,
-          username: res.data.username,
+          username: res.data.username ?? '',
         });
         return res.data;
       });
