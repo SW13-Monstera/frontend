@@ -14,13 +14,13 @@ export interface IUpdateUserRequest {
 export interface IProfileData {
   id: string;
   email: string;
-  username: string;
+  username?: string;
   role: string;
-  major: string;
-  job: string;
-  jobObjective: string;
-  techs: string[];
-  githubUrl: string;
-  linkedinUrl: string;
-  profileImgUrl: string;
+  major?: string;
+  job?: string;
+  jobObjective?: string;
+  techs?: string[];
+  githubUrl?: string;
+  linkedinUrl?: string;
+  profileImgUrl?: string;
 }

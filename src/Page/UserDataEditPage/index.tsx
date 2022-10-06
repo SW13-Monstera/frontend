@@ -12,6 +12,11 @@ import { URL } from '../../constants/url';
 import { reGithub, reLinkedIn } from '../../utils/regex';
 import { UrlInputBox } from '../../Component/Box/InputBox/UrlInputBox';
 import { DefaultSelect } from '../../Component/Utils/DefaultSelect';
+import { CORE_TECH, JOB, JOB_OBJECTIVE } from '../../constants/userDataEdit';
+import { IOption } from '../../types/select';
+import { useState } from 'react';
+import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { createOptions } from '../../utils/createOptions';
 
 export const UserDataEditPage = () => {
   const navigate = useNavigate();
@@ -20,9 +25,25 @@ export const UserDataEditPage = () => {
     () => userApiWrapper.getUserInfoData(),
     { refetchOnWindowFocus: false },
   );
+  const { data: techs } = useQuery<IOption[]>(
+    'getTechs',
+    () => commonApiWrapper.getCoreTech('').then((e) => createOptions(e)),
+    {
+      refetchOnWindowFocus: false,
+    },
+  );
+  const { data: majors } = useQuery<IOption[]>(
+    'getMajors',
+    () => commonApiWrapper.getMajor('').then((e) => createOptions(e)),
+    {
+      refetchOnWindowFocus: false,
+    },
+  );
+  const [newProfileData, setNewProfileData] = useState<IProfileData | undefined>(profileData);
 
   const submitProfileData = () => {
-    const data: IUpdateUserRequest = {
+    userApiWrapper.updateUser({
+      ...newProfileData,
       username: (document.getElementById('username') as HTMLTextAreaElement).value ?? null,
       githubUrl:
         'https://www.github.com/' +
@@ -31,8 +52,7 @@ export const UserDataEditPage = () => {
         'https://www.linkedin.com/' +
           (document.getElementById('linkedin-url') as HTMLTextAreaElement).value ?? null,
       profileImgUrl: profileData?.profileImgUrl,
-    };
-    userApiWrapper.updateUser(data);
+    });
     navigate(URL.MYPAGE);
   };
 
@@ -49,7 +69,49 @@ export const UserDataEditPage = () => {
             defaultValue={profileData?.username}
             label='닉네임'
           />
-          <DefaultSelect label='전공' options={[]} defaultValue={[]} />
+          <DefaultSelect
+            label='전공'
+            options={majors ?? []}
+            defaultValue={majors?.find((e) => e.label === profileData?.major)}
+            onChange={(majorOption: IOption) => {
+              setNewProfileData(
+                newProfileData ? { ...newProfileData, major: majorOption.label } : undefined,
+              );
+            }}
+          />
+          <DefaultSelect
+            label='직업'
+            options={JOB}
+            defaultValue={JOB.find((e) => e.label === profileData?.job)}
+            onChange={(jobOption: IOption) => {
+              setNewProfileData(
+                newProfileData ? { ...newProfileData, job: jobOption.label } : undefined,
+              );
+            }}
+          />
+          <DefaultSelect
+            label='주요기술(최대 3개)'
+            options={techs ?? []}
+            isMulti={true}
+            defaultValue={techs?.filter((e) => profileData?.techs?.includes(e.label))}
+            onChange={(techOptions: IOption[]) => {
+              setNewProfileData(
+                newProfileData
+                  ? { ...newProfileData, techs: techOptions.map((e) => e.label) }
+                  : undefined,
+              );
+            }}
+          />
+          <DefaultSelect
+            label='희망 직무'
+            options={JOB_OBJECTIVE}
+            defaultValue={JOB_OBJECTIVE.find((e) => e.label === profileData?.jobObjective)}
+            onChange={(jobOption: IOption) => {
+              setNewProfileData(
+                newProfileData ? { ...newProfileData, jobObjective: jobOption.label } : undefined,
+              );
+            }}
+          />
           <UrlInputBox
             id='github-url'
             label='Github'

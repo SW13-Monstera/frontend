@@ -43,4 +43,12 @@ export const commonApiWrapper = {
       })
       .then((res) => res.data);
   },
+
+  getMajor: (query: string) => {
+    return apiClient
+      .get(API_URL.MAJOR, {
+        params: { query },
+      })
+      .then((res) => res.data);
+  },
 };

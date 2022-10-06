@@ -14,6 +14,7 @@ import {
   section3Style,
   imageUploadBackgroundStyle,
   editButtonListStyle,
+  coreTechListStyle,
 } from './style.css';
 import { Divider } from '../../Component/Divider';
 import { ProfileLabel } from '../../Component/Utils/ProfileLabel';
@@ -33,23 +34,16 @@ import { useCallback, useRef, useState } from 'react';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { toast } from 'react-toastify';
 import { RowBox } from '../../Component/Box/CustomBox';
+import { IProfileData } from '../../types/api/user';
+import { TechTagBox } from '../../Component/Box/TechTagBox';
 
 interface IProfileBox {
-  profileData: IProfileData;
+  profileData: IProfileBoxData;
 }
 
-interface IProfileData {
-  username: string;
-  profileImgUrl: string;
+interface IProfileBoxData extends IProfileData {
   rank: number;
   score: number;
-  githubUrl: string;
-  linkedinUrl: string;
-  email: string;
-  major: string;
-  job: string;
-  jobObjective: string;
-  techs: string[];
   statistics: IChartElement[];
 }
 
@@ -71,7 +65,7 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
   } = profileData;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [imgUrl, setImgUrl] = useState<string>(profileImgUrl);
+  const [imgUrl, setImgUrl] = useState<string>(profileImgUrl ?? '');
 
   const onUploadImage = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
@@ -138,6 +132,23 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
       <Divider />
       <div className={section2Style}>
         <ProfileLabel name={'이메일'} value={email} />
+        <ProfileLabel name={'전공'} value={major ? major : '선택 안 함'} />
+        <ProfileLabel name={'직업'} value={job ? job : '선택 안 함'} />
+        <ProfileLabel name={'희망직무'} value={jobObjective ? jobObjective : '선택 안 함'} />
+        <ProfileLabel
+          name={'주요 기술'}
+          value={
+            techs?.length === 1 && techs[0] === '' ? (
+              '선택 안 함'
+            ) : (
+              <ul className={coreTechListStyle}>
+                {techs?.map((e) => (
+                  <TechTagBox name={e} key={e} color={COLOR.TAG2} />
+                ))}
+              </ul>
+            )
+          }
+        />
       </div>
       <Divider />
       <div
