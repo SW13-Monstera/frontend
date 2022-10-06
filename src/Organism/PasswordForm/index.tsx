@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
 import { INPUT_TYPE } from '../../constants/input';

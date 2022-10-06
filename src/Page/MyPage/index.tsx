@@ -13,7 +13,6 @@ import {
 import { ProblemListBox } from '../../Component/Box/ProblemListBox';
 import { COLOR_LABEL_LIST } from '../../constants/colorLabel';
 import { MetaTag } from '../utils/MetaTag';
-import { useEffect, useState } from 'react';
 import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
 import { IMypageProblem } from '../../types/problem';
 import { DB, DS, NETWORK, OS } from '../../constants/category';

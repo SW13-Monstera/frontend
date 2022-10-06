@@ -5,7 +5,7 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { formWrapperStyle, pageTitleStyle, pageWrapperStyle } from './style.css';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
-import { IProfileData, IUpdateUserRequest } from '../../types/api/user';
+import { IProfileData } from '../../types/api/user';
 import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
