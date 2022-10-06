@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Select, { MultiValue, SingleValue } from 'react-select';
+import { COLOR } from '../../../constants/color';
+import { themeColors } from '../../../styles/theme.css';
 import { IOption } from '../../../types/select';
 import { defaultSelectWrapperStyle } from './style.css';
 
@@ -32,14 +34,50 @@ export const DefaultSelect = ({
         isMulti={isMulti}
         placeholder='입력...'
         isSearchable={true}
+        styles={customStyles}
+        theme={(theme) => ({
+          ...theme,
+          borderRadius: 8,
+          border: 0,
+
+          colors: {
+            ...theme.colors,
+            primary: COLOR.PRIMARY,
+            danger: COLOR.RED,
+            neutral90: themeColors.text[5],
+          },
+        })}
         onChange={(e: MultiValue<IOption> | SingleValue<IOption>) => {
           onChange(e);
-          setSelectedOptions(e);
+          if (isMulti) setSelectedOptions(e);
         }}
         isOptionDisabled={() =>
-          Array.isArray(selectedOptions) ? selectedOptions.length >= maxNumber : true
+          isMulti && Array.isArray(selectedOptions) ? selectedOptions?.length >= maxNumber : false
         }
       />
     </div>
   );
+};
+
+const customStyles = {
+  control: (provided: object) => ({
+    ...provided,
+    border: 'none',
+    backgroundColor: themeColors.background.F8,
+    width: '100%',
+    height: '3rem',
+    fontWeight: '400',
+    fontSize: '1rem',
+    lineHeight: '1.4375rem',
+    color: themeColors.text[5],
+  }),
+  placeholder: (provided: object) => ({
+    ...provided,
+    font: 'inherit',
+    color: themeColors.text[9],
+  }),
+  option: (provided: object) => ({
+    ...provided,
+    font: 'inherit',
+  }),
 };

@@ -2,7 +2,7 @@ import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
 import { PageTemplate } from '../../Template';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import { formWrapperStyle, pageWrapperStyle } from './style.css';
+import { formWrapperStyle, pageTitleStyle, pageWrapperStyle } from './style.css';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
 import { IProfileData, IUpdateUserRequest } from '../../types/api/user';
@@ -60,7 +60,7 @@ export const UserDataEditPage = () => {
     <PageTemplate>
       <MetaTag title='CS Broker - 정보 수정' />
       <div className={pageWrapperStyle}>
-        <h1>정보수정</h1>
+        <h1 className={pageTitleStyle}>정보수정</h1>
         <form className={formWrapperStyle}>
           <DefaultInputBox
             id='username'
@@ -134,7 +134,7 @@ export const UserDataEditPage = () => {
               submitProfileData();
             }}
           >
-            수정
+            수정하기
           </TextButton>
         </form>
       </div>

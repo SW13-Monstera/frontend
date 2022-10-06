@@ -1,5 +1,5 @@
 import { IInputBox } from '../../../../types/box';
-import { defaultInputBoxStyle, defaultInputStyle, inputBoxClass, warningStyle } from './style.css';
+import { defaultInputBoxStyle, defaultInputStyle, warningStyle } from './style.css';
 
 function DefaultInputBox({
   id,
@@ -21,7 +21,7 @@ function DefaultInputBox({
         name={name}
         placeholder={placeholder}
         type={type}
-        className={`${inputBoxClass} ${defaultInputBoxStyle}`}
+        className={defaultInputBoxStyle}
         onChange={onChange}
         defaultValue={defaultValue}
       >

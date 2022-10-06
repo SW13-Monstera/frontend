@@ -6,6 +6,11 @@ export const urlInputWrapperStyle = style({
   flexDirection: 'column',
   gap: '.5rem',
   width: '100%',
+  height: '4.4375rem',
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '23px',
+  color: themeColors.text[5],
 });
 
 export const urlWrapperStyle = style({
@@ -13,7 +18,6 @@ export const urlWrapperStyle = style({
   alignItems: 'center',
   gap: '.3rem',
   width: '100%',
-  padding: '1rem',
 });
 
 export const urlPrefixStyle = style({
@@ -25,10 +29,8 @@ export const urlInputStyle = style({
   width: '100%',
   height: '3rem',
   backgroundColor: themeColors.background.F8,
-  color: themeColors.text[5],
+  color: 'inherit',
   borderRadius: '8px',
-  paddingLeft: '.7rem',
-  fontWeight: '400',
-  fontSize: '1rem',
-  lineHeight: '1.4375rem',
+  paddingLeft: '1rem',
+  font: 'inherit',
 });

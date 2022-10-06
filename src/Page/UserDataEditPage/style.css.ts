@@ -11,6 +11,14 @@ export const pageWrapperStyle = style({
   padding: '3rem',
 });
 
+export const pageTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '2.25rem',
+  lineHeight: '3.25rem',
+  color: themeColors.text[1],
+  marginBottom: '3rem',
+});
+
 export const formWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
