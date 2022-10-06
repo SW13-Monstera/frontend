@@ -91,4 +91,9 @@ const customStyles = {
     ...provided,
     backgroundColor: themeColors.background.F8,
   }),
+  input: (provided: object) => ({
+    ...provided,
+    font: 'inherit',
+    color: themeColors.text[5],
+  }),
 };
