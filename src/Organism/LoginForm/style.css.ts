@@ -19,7 +19,7 @@ export const loginFormContentStyle = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '1rem',
+  gap: '1.5rem',
 });
 
 export const etcStyle = style({

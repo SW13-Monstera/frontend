@@ -8,8 +8,8 @@ export const urlInputWrapperStyle = style({
   width: '100%',
   height: '4.4375rem',
   fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '23px',
+  fontSize: '1rem',
+  lineHeight: '1.4375rem',
   color: themeColors.text[5],
 });
 
