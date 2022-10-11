@@ -1,3 +1,5 @@
+import { parseJson } from './parseJson';
+
 interface IItemWithExpiry {
   value: string;
   expiry: number;
@@ -18,7 +20,7 @@ const getItemWithExpiry = (key: string) => {
   const itemString = localStorage.getItem(key);
   if (!itemString) return null;
 
-  const item: IItemWithExpiry = JSON.parse(itemString);
+  const item: IItemWithExpiry = parseJson(itemString);
   const now = new Date();
   if (now.getTime() > item.expiry) {
     localStorage.removeItem(key);
