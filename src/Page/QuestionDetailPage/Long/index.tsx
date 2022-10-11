@@ -17,22 +17,25 @@ import { ILongProblemResultLocationState } from '../../../types/problem';
 import { useState, KeyboardEvent } from 'react';
 import { LONG_PROBLEM_ANSWER } from '../../../constants/localStorage';
 import { localStorageWithExpiry } from '../../../utils/localstorage';
+import { INVALID_ID_ERROR } from '../../../errors';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  if (!id) throw INVALID_ID_ERROR;
+
   const [userAnswer, setUserAnswer] = useState(
-    localStorageWithExpiry.getItem(LONG_PROBLEM_ANSWER(id!)) ?? '',
+    localStorageWithExpiry.getItem(LONG_PROBLEM_ANSWER(id)) ?? '',
   );
   const { data, refetch } = useQuery<ILongProblemDetailResponseData>(
     'longProblemDetail',
-    () => problemApiWrapper.longProblemDetail(id!),
+    () => problemApiWrapper.longProblemDetail(id),
     { refetchOnWindowFocus: false },
   );
 
   const handleSubmit = () => {
-    if (!id) throw new Error('invalid id');
+    if (!id) throw INVALID_ID_ERROR;
     localStorage.removeItem(LONG_PROBLEM_ANSWER(id));
     navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), {
       state: { userAnswer: userAnswer, title: data?.title } as ILongProblemResultLocationState,
