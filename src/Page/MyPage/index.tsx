@@ -37,15 +37,11 @@ interface IProblemStatsData {
 }
 
 export const MyPage = () => {
-  const { data: profileData } = useQuery<IProfileData>(
-    'getUserInfoData',
-    () => userApiWrapper.getUserInfoData(),
-    { refetchOnWindowFocus: false },
+  const { data: profileData } = useQuery<IProfileData>('getUserInfoData', () =>
+    userApiWrapper.getUserInfoData(),
   );
-  const { data: problemStatsData } = useQuery<IProblemStatsData>(
-    'getStatsData',
-    () => userApiWrapper.getStats(),
-    { refetchOnWindowFocus: false },
+  const { data: problemStatsData } = useQuery<IProblemStatsData>('getStatsData', () =>
+    userApiWrapper.getStats(),
   );
 
   const getStatistics = () => {
