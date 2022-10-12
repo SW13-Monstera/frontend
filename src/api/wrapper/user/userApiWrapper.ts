@@ -1,3 +1,4 @@
+import { INVALID_ID_ERROR } from './../../../errors/index';
 import apiClient from '../../apiClient';
 import { API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
 import { IProfileData, IUpdateUserRequest } from '../../../types/api/user';
@@ -8,7 +9,7 @@ import { toast } from 'react-toastify';
 export const userApiWrapper = {
   updateUser: (data: IUpdateUserRequest) => {
     const userInfo = getUserInfo();
-    if (!userInfo) throw new Error('invalid id');
+    if (!userInfo) throw INVALID_ID_ERROR;
 
     return apiClient
       .put(API_URL_WITH_PARAMS.UPDATE_USER(userInfo.id), data)
