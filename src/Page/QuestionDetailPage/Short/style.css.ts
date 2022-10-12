@@ -1,84 +1,6 @@
-import { createThemeContract, createTheme, style, keyframes } from '@vanilla-extract/css';
+import { themeColors } from './../../../styles/theme.css';
+import { style, keyframes, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
-import baseFontStyle from '../../../styles/font.css';
-
-export const vars = createThemeContract({
-  backgroundColor: null,
-  contentBackgroundColor: null,
-  textColor: null,
-});
-
-export const themeLightClass = createTheme(vars, {
-  backgroundColor: COLOR.WHITE,
-  contentBackgroundColor: COLOR.OFFWHITE,
-  textColor: COLOR.TITLEACTIVE,
-});
-
-export const themeDarkClass = createTheme(vars, {
-  backgroundColor: COLOR.TITLEACTIVE,
-  contentBackgroundColor: COLOR.DARKGRAY,
-  textColor: COLOR.WHITE,
-});
-
-const spread = keyframes({
-  '0%': { backgroundColor: 'inherit' },
-  '100%': { backgroundColor: vars.backgroundColor },
-});
-
-export const pageStyle = style({
-  boxSizing: 'border-box',
-
-  display: 'flex',
-  flexDirection: 'column',
-  flexWrap: 'wrap',
-  justifyContent: 'flex-start',
-  alignItems: 'stretch',
-  gap: '1.5rem',
-
-  width: '100%',
-
-  color: vars.textColor,
-  backgroundColor: vars.backgroundColor,
-
-  transition: 'background-color 0.2s',
-  animation: spread,
-  padding: '3rem',
-});
-
-export const topStyle = style({
-  display: 'flex',
-  alignItems: 'flex-start',
-  justifyContent: 'space-between',
-
-  width: '100%',
-});
-
-export const descStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'start',
-  justifyContent: 'center',
-});
-
-export const titleTagStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '1.5rem',
-});
-
-export const questionContentStyle = style({
-  display: 'flex',
-  height: '60vh',
-  background: vars.contentBackgroundColor,
-  padding: ' 0 1.5rem',
-  borderRadius: '10px',
-});
-
-export const splitStyle = style({
-  display: 'flex',
-  width: '100%',
-});
 
 export const contentWrapperStyle = style({
   display: 'flex',
@@ -87,57 +9,102 @@ export const contentWrapperStyle = style({
   justifyContent: 'flex-start',
   gap: '2rem',
 
-  padding: '1.5rem 0',
+  padding: '2rem',
 });
 
-export const contentTitleStyle = style([
-  baseFontStyle.xlarge,
-  {
-    color: vars.textColor,
-  },
-]);
+export const contentTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '1.5rem',
+  lineHeight: '2.1875rem',
+  color: themeColors.text[2],
+});
 
-export const problemDescContentStyle = style([
-  baseFontStyle.small,
-  {
-    overflowY: 'scroll',
-    color: vars.textColor,
-  },
-]);
+export const problemDescContentStyle = style({
+  overflow: 'auto',
+  fontWeight: '400',
+  fontSize: '1.25rem',
+  lineHeight: '1.8125rem',
+  color: themeColors.text[5],
+});
 
-export const questionDescStyle = style({
+const vibration = keyframes({
+  from: { transform: 'rotate(1deg)' },
+  to: { transform: 'rotate(-1deg)' },
+});
+
+export const resultWrapperStyle = style({
   display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'flex-start',
+  alignItems: 'center',
+  justifyContent: 'center',
   gap: '2.5rem',
-});
-
-export const answerInputStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
+  alignSelf: 'flex-end',
+  margin: '1.5rem',
 });
 
 export const answerInputContentStyle = style({
   display: 'flex',
-
-  width: '100%',
-
-  padding: '1rem',
-
-  color: vars.textColor,
-  backgroundColor: vars.backgroundColor,
-});
-
-export const buttonListStyle = style({
-  display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  alignSelf: 'flex-end',
-  gap: '1rem',
+
+  width: '17.5rem',
+  height: '4rem',
+
+  padding: '2rem 1rem',
+
+  color: themeColors.text[5],
+  background: themeColors.line.e,
+  border: `1px solid ${themeColors.line.d}`,
+  borderRadius: '8px',
+
+  fontWeight: '500',
+  fontSize: '1.5rem',
+  lineHeight: '1rem',
+
+  '::placeholder': {
+    fontWeight: '400',
+    fontSize: '1rem',
+    lineHeight: '4rem',
+    verticalAlign: 'middle',
+  },
 });
 
 export const tagListStyle = style({
   display: 'flex',
   gap: '0.25rem',
+});
+
+export const resultBoxWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '.625rem',
+
+  width: 'fit-content',
+  minWidth: '12rem',
+  maxWidth: '17.5rem',
+  height: '4rem',
+
+  padding: '2rem 1rem',
+
+  fontWeight: '700',
+  fontSize: '1.5rem',
+  lineHeight: '1.5rem',
+
+  borderRadius: '8px',
+
+  ':hover': { filter: 'brightness(102%)' },
+});
+
+export const resultAnswerStyle = styleVariants({
+  correct: [resultBoxWrapperStyle, { color: COLOR.GREEN, backgroundColor: COLOR.BACKGROUND.GREEN }],
+  wrong: [
+    resultBoxWrapperStyle,
+    {
+      color: COLOR.RED,
+      backgroundColor: COLOR.BACKGROUND.RED,
+      animationName: vibration,
+      animationDuration: '.1s',
+      animationIterationCount: 10,
+    },
+  ],
 });

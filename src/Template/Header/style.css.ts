@@ -1,42 +1,29 @@
+import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../constants/color';
-import baseFontStyle from '../../styles/font.css';
 
-export const headerStyle = style([
-  baseFontStyle.title,
-  {
-    boxSizing: 'border-box',
+export const headerStyle = style({
+  position: 'sticky',
+  left: '0px',
+  top: '0px',
 
-    position: 'sticky',
-    left: '0px',
-    top: '0px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
 
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  width: '100%',
+  height: '5rem',
 
-    width: '100%',
-    height: '10%',
-    paddingTop: '1rem',
+  backgroundColor: themeColors.background.FF,
+  borderBottom: `1px solid ${themeColors.line.e}`,
 
-    color: COLOR.WHITE,
-    backgroundColor: COLOR.TITLEACTIVE,
+  zIndex: 1,
+});
 
-    zIndex: 1,
-  },
-]);
-
-export const navStyle = style([
-  baseFontStyle.large,
-  {
-    boxSizing: 'border-box',
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: '2.5rem',
-  },
-]);
+export const leftSideWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
 
 export const menuStyle = style({
   boxSizing: 'border-box',
@@ -44,9 +31,8 @@ export const menuStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'right',
-  gap: '1rem',
+  gap: '10%',
 
-  width: '10%',
   padding: '1rem',
 });
 
@@ -57,4 +43,18 @@ export const iconButtonStyle = style({
   stroke: 'white',
 });
 
-export const logoStyle = style({ width: '12rem', padding: '2rem' });
+export const logoStyle = style({ width: '12rem', padding: '2rem', cursor: 'pointer' });
+
+export const buttonListWrapperBeforeLoginStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '0.0083%',
+});
+
+export const iconButtonListWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '1.4375rem',
+});

@@ -1,17 +1,19 @@
+import { themeColors } from './../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
 
 export const textBoxStyle = style({
   boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
-  justifyContent: 'center',
+  justifyContent: 'start',
 
-  color: COLOR.TITLEACTIVE,
-  backgroundColor: COLOR.OFFWHITE,
+  color: themeColors.text[1],
+  backgroundColor: themeColors.background.F3,
   borderRadius: '10px',
 
   width: '100%',
   height: '100%',
+
+  overflow: 'auto',
 });

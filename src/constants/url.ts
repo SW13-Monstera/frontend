@@ -1,7 +1,12 @@
 const URL = {
   MAIN: '/',
   JOIN: '/join',
-  NICKNAME: '/join/nickname',
+  LOGIN: '/login',
+  SEND_CHANGE_PASSWORD_EMAIL: '/change-password-email',
+  CHANGE_PASSWORD: '/password-change/:code',
+  CHANGE_PASSWORD_WITH_LOGIN: '/change-password',
+  MYPAGE: '/mypage',
+  USER_DATA_EDIT: '/mypage/edit',
   PROBLEM_LIST: '/problem',
   LONG_PROBLEM_DETAIL: '/problem/long/:id',
   LONG_PROBLEM_RESULT: '/problem/long/result/:id',
@@ -10,15 +15,17 @@ const URL = {
   MULTIPLE_PROBLEM_DETAIL: '/problem/multiple/:id',
   MULTIPLE__PROBLEM_RESULT: '/problem/multiple/result/:id',
   OAUTH_CALLBACK: '/oauth/redirect',
+  ERROR: '/error',
+  PAGE_NOT_FOUND: '/pagenotfound',
 };
 
 const URLWithParam = {
-  LONG_PROBLEM_DETAIL: (id: string) => `/problem/long/${id}`,
-  LONG_PROBLEM_RESULT: (id: string) => `/problem/long/result/${id}`,
-  SHORT_PROBLEM_DETAIL: (id: string) => `/problem/short/${id}`,
-  SHORT_PROBLEM_RESULT: (id: string) => `/problem/short/result/${id}`,
-  MULTIPLE_PROBLEM_DETAIL: (id: string) => `/problem/multiple/${id}`,
-  MULTIPLE_PROBLEM_RESULT: (id: string) => `/problem/multiple/result/${id}`,
+  LONG_PROBLEM_DETAIL: (id: number) => `/problem/long/${id}`,
+  LONG_PROBLEM_RESULT: (id: number) => `/problem/long/result/${id}`,
+  SHORT_PROBLEM_DETAIL: (id: number) => `/problem/short/${id}`,
+  SHORT_PROBLEM_RESULT: (id: number) => `/problem/short/result/${id}`,
+  MULTIPLE_PROBLEM_DETAIL: (id: number) => `/problem/multiple/${id}`,
+  MULTIPLE_PROBLEM_RESULT: (id: number) => `/problem/multiple/result/${id}`,
 };
 
 export { URL, URLWithParam };

@@ -1,17 +1,31 @@
-import { TAGLIST } from '../../../constants';
-import { tagStyle } from './style.css';
+import { ITagBox } from '../../../types/tag';
+import { deleteButtonIsShownStyle, filterTagStyle, tagColorStyle } from './style.css';
+import { XIcon } from '../../../Icon/XIcon';
+import { COLOR } from '../../../constants/color';
 
-interface ITagBox {
-  tagId: string;
-}
+const COLOR_MAP = {
+  color1: COLOR.PURPLE,
+  color2: COLOR.PINK,
+  color3: COLOR.ORANGE,
+  color4: COLOR.GREEN,
+};
 
-const category = TAGLIST.find((e) => e.name === '카테고리');
-
-function TagBox({ tagId }: ITagBox) {
-  const name = category?.elements.find((e) => e.id === tagId)?.name ?? '';
+function TagBox({
+  name,
+  color = 'color1',
+  isFilter = false,
+  onDeleteButtonClick,
+  className,
+}: ITagBox) {
   return (
-    <li className={tagStyle}>
-      <div>{name}</div>
+    <li className={`${tagColorStyle[color]} ${isFilter ? filterTagStyle : ''} ${className}`}>
+      <div className='tag'>{name}</div>
+      <button
+        className={deleteButtonIsShownStyle[isFilter ? 'true' : 'false']}
+        onClick={onDeleteButtonClick}
+      >
+        <XIcon width='.6rem' height='.6rem' fill={COLOR_MAP[color]} />
+      </button>
     </li>
   );
 }

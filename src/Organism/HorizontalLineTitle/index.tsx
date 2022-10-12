@@ -1,4 +1,5 @@
-import { horizontalLineStyle } from './style.css';
+import { Divider } from '../../Component/Divider';
+import { horizontalLineTitleStyle, horizontalLineTitleTextStyle } from './style.css';
 
 interface IHorizontalLineTitle {
   children: JSX.Element | string;
@@ -6,11 +7,11 @@ interface IHorizontalLineTitle {
 
 function HorizontalLineTitle({ children }: IHorizontalLineTitle) {
   return (
-    <>
-      <div className={horizontalLineStyle} />
-      <p>{children}</p>
-      <div className={horizontalLineStyle} />
-    </>
+    <div className={horizontalLineTitleStyle}>
+      <Divider />
+      <div className={horizontalLineTitleTextStyle}>{children}</div>
+      <Divider />
+    </div>
   );
 }
 export default HorizontalLineTitle;

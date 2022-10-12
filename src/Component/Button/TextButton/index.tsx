@@ -1,16 +1,39 @@
-import { IButtonDetail } from '../../../types/button';
-import { buttonThemeClass } from '../theme.css';
-import { textButtonSizeStyle, textButtonThemeStyle } from './style.css';
+import { ICustomButton, TButtonSize, TButtonTheme } from '../../../types/button';
+import { CustomButton } from '../CustomButton';
+import { textButtonSizeStyle, textButtonThemeStyle, unactivatedStyle } from './style.css';
 
-function TextButton({ type, theme, size, onClick, children }: IButtonDetail) {
+interface ITextButton extends ICustomButton {
+  theme: TButtonTheme;
+  size: TButtonSize;
+  isActivated?: boolean;
+  className?: string;
+}
+
+function TextButton({
+  type,
+  theme,
+  size,
+  onClick,
+  children,
+  className,
+  isActivated = true,
+}: ITextButton) {
   return (
-    <button
+    <CustomButton
       type={type}
-      onClick={onClick}
-      className={`${buttonThemeClass} ${textButtonThemeStyle[theme]} ${textButtonSizeStyle[size]}`}
+      onClick={
+        isActivated
+          ? onClick
+          : () => {
+              return;
+            }
+      }
+      className={`${className} ${textButtonThemeStyle[theme]} ${textButtonSizeStyle[size]} ${
+        !isActivated ? unactivatedStyle : ''
+      }`}
     >
       {children}
-    </button>
+    </CustomButton>
   );
 }
 export default TextButton;

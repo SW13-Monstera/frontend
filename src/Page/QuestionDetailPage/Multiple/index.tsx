@@ -1,171 +1,118 @@
-import Header from '../../../Template/Header';
-import Split from 'react-split';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import {
-  themeLightClass,
-  pageStyle,
-  topStyle,
-  descStyle,
-  titleTagStyle,
-  questionContentStyle,
-  splitStyle,
-  contentWrapperStyle,
-  contentTitleStyle,
-  problemDescContentStyle,
-  buttonListStyle,
-  themeDarkClass,
+  IMultipleProblemDetailResponseData,
+  IMultipleProblemResultData,
+} from '../../../types/api/problem';
+import {
+  choiceCheckboxStyle,
   choiceListStyle,
   choiceWrapperStyle,
-  choiceCheckboxStyle,
-  tagListStyle,
+  contentTitleStyle,
+  gradeResultScoredStyle,
+  resultWrapperStyle,
 } from './style.css';
-import '../gutter.css';
-import { Link, useParams } from 'react-router-dom';
-import Tag from '../../../Component/Box/TagBox';
-import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
-import TextButton from '../../../Component/Button/TextButton';
-import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
-import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
-import { useAuthStore } from '../../../hooks/useStore';
-import { useEffect, useState } from 'react';
-import baseFontStyle from '../../../styles/font.css';
-import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
-import { URL, URLWithParam } from '../../../constants/url';
-import { IProblemDetailResponseData } from '../../../types/api/problem';
-
-const choices = [
-  { id: 0, content: '선택지1' },
-  { id: 1, content: '선택지2' },
-  { id: 2, content: '선택지3' },
-];
+import { COLOR } from '../../../constants/color';
+import { XIcon } from '../../../Icon/XIcon';
+import { OIcon } from '../../../Icon/OIcon';
+import { useQuery } from 'react-query';
+import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
+import { MetaTag } from '../../utils/MetaTag';
+import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
+import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
-  const { isLogin } = useAuthStore();
-  const [data, setData] = useState<IProblemDetailResponseData>();
+  const { data, refetch } = useQuery<IMultipleProblemDetailResponseData>(
+    'multipleProblemDetail',
+    () => problemApiWrapper.multipleProblemDetail(id!),
+    { refetchOnWindowFocus: false },
+  );
+  const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
 
-  const [isDark, setIsDark] = useState(true);
+  const resetInput = () => {
+    (document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>).forEach(
+      (e) => (e.checked = false),
+    );
+  };
 
-  function toggleDarkMode() {
-    setIsDark((prev) => !prev);
-  }
+  const resetResult = () => {
+    if (!result) return;
+    resetInput();
+    setResult(null);
+  };
 
   function handleSubmit() {
-    const choices: boolean[] = [];
+    if (!id) return;
+    const answerIds: number[] = [];
     const checkboxes = document.querySelectorAll(
       'input[type="checkbox"]',
     ) as NodeListOf<HTMLInputElement>;
-    checkboxes.forEach((e) => choices.push(e.checked));
+    checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
+    problemApiWrapper.multipleProblemResult(id, answerIds).then((data) => {
+      setResult(data);
+      refetch();
+    });
   }
 
-  useEffect(() => {
-    if (!id) return;
-    problemApiWrapper.problemDetail(id).then((res) => {
-      setData(res.data);
-    });
-  }, []);
-
   return (
-    <div>
-      {data ? (
-        <>
-          <Header />
-          <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
-            <div className={topStyle}>
-              <div className={descStyle}>
-                <div className={titleTagStyle}>
-                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => (
-                      <Tag tagId={tagId} key={tagId} />
-                    ))}
-                  </ul>
-                </div>
-                <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 평균 점수 : ${
-                    data?.avgScore ?? 0
-                  }점, 최고점 : ${data?.topScore ?? 0}점 , 최저점 : ${data?.bottomScore ?? 0}점`}
-                </div>
-              </div>
+    <>
+      <MetaTag
+        title={`CS Broker - ${data?.title}`}
+        description={`${data?.title}에 관한 객관식 문제입니다. 모든 정답을 선택한 후 제출하기 버튼을 눌러주세요.`}
+        keywords={`${data?.tags.join(', ')}, ${data?.title}, 객관식`}
+      />
 
-              <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
+      <SplitProblemDetailPageTemplate
+        data={data}
+        handleSubmit={handleSubmit}
+        isResult={result !== null && result !== undefined}
+        resetResult={resetResult}
+        isSubmittable={true}
+        leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
+        rightSideContent={
+          <>
+            <label htmlFor='answer' className={contentTitleStyle}>
+              답안 선택
+            </label>
+            <div className={choiceListStyle} onClick={resetResult}>
+              {data?.choices.map((choice) => (
+                <label
+                  htmlFor={choice.id.toString()}
+                  className={choiceWrapperStyle}
+                  key={choice.id}
+                >
+                  <input
+                    type='checkbox'
+                    id={choice.id.toString()}
+                    className={choiceCheckboxStyle}
+                  />
+                  {choice.content}
+                </label>
+              ))}
             </div>
-            <div className={questionContentStyle}>
-              <Split
-                sizes={[25, 75]}
-                minSize={100}
-                expandToMin={false}
-                gutterSize={10}
-                gutterAlign='center'
-                snapOffset={30}
-                dragInterval={1}
-                direction='horizontal'
-                cursor='col-resize'
-                className={splitStyle}
-              >
-                <div className={contentWrapperStyle}>
-                  <div className={contentTitleStyle}>문제 설명</div>
-                  <div className={problemDescContentStyle}>{data?.description}</div>
-                </div>
-                <div className={contentWrapperStyle}>
-                  <label htmlFor='answer' className={contentTitleStyle}>
-                    답안 선택
-                  </label>
-                  <div className={choiceListStyle}>
-                    {choices.map((choice) => (
-                      <label
-                        htmlFor={choice.id.toString()}
-                        className={choiceWrapperStyle}
-                        key={choice.id}
-                      >
-                        <input
-                          type='checkbox'
-                          id={choice.id.toString()}
-                          className={choiceCheckboxStyle}
-                        />
-                        {choice.content}
-                      </label>
-                    ))}
+            <div className={resultWrapperStyle}>
+              <MyScoreBox score={result?.score} />
+              {result ? (
+                result.isAnswer ? (
+                  <div className={gradeResultScoredStyle.correct}>
+                    <div>정답입니다</div>
+                    <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
                   </div>
-                </div>
-              </Split>
-            </div>
-
-            <div className={buttonListStyle}>
-              {isLogin ? (
-                <Link to={URLWithParam.MULTIPLE_PROBLEM_RESULT(id!)}>
-                  <TextButton
-                    type={BUTTON_TYPE.SUBMIT}
-                    theme={BUTTON_THEME.PRIMARY}
-                    size={BUTTON_SIZE.MEDIUM}
-                    onClick={handleSubmit}
-                  >
-                    제출하기
-                  </TextButton>
-                </Link>
+                ) : (
+                  <div className={gradeResultScoredStyle.wrong}>
+                    <div>오답입니다</div>
+                    <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
+                  </div>
+                )
               ) : (
-                <TextButton
-                  type={BUTTON_TYPE.SUBMIT}
-                  theme={BUTTON_THEME.PRIMARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                >
-                  로그인
-                </TextButton>
+                <></>
               )}
-              <Link to={URL.PROBLEM_LIST}>
-                <TextButton
-                  type={BUTTON_TYPE.BUTTON}
-                  theme={BUTTON_THEME.SECONDARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                >
-                  돌아가기
-                </TextButton>
-              </Link>
             </div>
-          </main>
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
+          </>
+        }
+      ></SplitProblemDetailPageTemplate>
+    </>
   );
 }

@@ -1,40 +1,76 @@
+import { setUserInfo } from './../../../utils/userInfo';
 import apiClient from '../../apiClient';
 import { API_URL } from '../../../constants/apiUrl';
-import { USER_INFO } from '../../../constants/localStorage';
-import { IJoinRequest, ILoginRequest } from '../../../types/auth';
+import { IChangePassword, IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
+import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
+import { getUserInfo } from '../../../utils/userInfo';
+import { toast } from 'react-toastify';
+import { parseJwt } from '../../../utils/parseJwt';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
-    return apiClient.post(API_URL.LOGIN, data).then((res: { data: { accessToken: string } }) => {
-      apiClient.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`;
-      return res.data;
-    });
+    return apiClient.post(API_URL.LOGIN, data).then(
+      (res: { data: IUserInfo }) => {
+        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
+        setUserInfo(res.data);
+        return res.data;
+      },
+      (err) => {
+        toast('로그인 실패');
+        throw new Error('로그인 실패');
+      },
+    );
   },
 
   refresh: () => {
-    if (!localStorage.getItem(USER_INFO)) return new Error('localstorage.userInfo not found');
+    const userInfo = getUserInfo();
+    if (!userInfo) return;
 
-    apiClient
+    const { exp } = parseJwt(userInfo.accessToken);
+    if (Date.now() < exp * 1000 - 20) return;
+
+    return apiClient
       .get(API_URL.REFRESH, {
         headers: {
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem(USER_INFO)!).accessToken}`,
+          Authorization: BEARER_TOKEN(userInfo.accessToken),
         },
       })
-      .then((response: { data: { accessToken: string } }) => {
-        apiClient.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
-        const json = JSON.parse(localStorage.getItem(USER_INFO)!);
-        localStorage.setItem(USER_INFO, { ...json, accessToken: response.data.accessToken });
-      });
+      .then(
+        (res: { data: { accessToken: string } }) => {
+          if (res && res.data && res.data.accessToken) {
+            const newAccessToken = res.data.accessToken;
+            apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
+            setUserInfo({ ...userInfo, accessToken: newAccessToken });
+          }
+        },
+        (err) => {
+          return;
+        },
+      );
   },
 
   join: (data: IJoinRequest) => {
-    return apiClient.post(API_URL.JOIN, data);
+    apiClient.post(API_URL.JOIN, data).then(
+      (res) => res,
+      (err) => {
+        toast('회원가입 실패');
+        throw new Error('회원가입 실패');
+      },
+    );
   },
-  getUserInfo: (token: string) => {
+
+  getUserData: (token: string) => {
     return apiClient.get(API_URL.USER_INFO, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: BEARER_TOKEN(token),
       },
     });
+  },
+  sendChangePasswordEmail: (email: string) => {
+    return apiClient.post(API_URL.SEND_CHANGE_PASSWORD_EMAIL, { email: email });
+  },
+
+  changePassword: (data: IChangePassword) => {
+    apiClient.put(API_URL.CHANGE_PASSWORD, data);
   },
 };

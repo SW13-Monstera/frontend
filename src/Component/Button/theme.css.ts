@@ -13,6 +13,10 @@ export const [buttonThemeClass, vars] = createTheme({
     secondary: { back: COLOR.GRAY, text: COLOR.TITLEACTIVE },
   },
   size: {
+    small: {
+      width: '5.8125rem',
+      height: '2.1875rem',
+    },
     medium: {
       width: '9.25rem',
       height: '4.125rem',
@@ -23,6 +27,10 @@ export const [buttonThemeClass, vars] = createTheme({
     },
     icon: {
       length: '3.125rem',
+    },
+    largeMedium: {
+      width: '29rem',
+      height: '4rem',
     },
   },
   border: {

@@ -1,8 +1,15 @@
-import { ITag } from '../types/problem';
+import { ITagBox } from '../types/tag';
+import { IDropdownElement } from '../types/util';
+import { DB, DS, NETWORK, OS } from './category';
+import { PROBLEM_TYPE } from './problem';
+
+interface IDropdownElementWithColor extends IDropdownElement {
+  color: 'color1' | 'color2' | 'color3' | 'color4';
+}
 
 interface ITagListElement {
   name: string;
-  elements: ITag[];
+  elements: IDropdownElementWithColor[];
 }
 
 const TAGLIST: ITagListElement[] = [
@@ -10,20 +17,24 @@ const TAGLIST: ITagListElement[] = [
     name: '카테고리',
     elements: [
       {
-        id: 'network',
+        id: NETWORK,
         name: '네트워크',
+        color: 'color1',
       },
       {
-        id: 'os',
+        id: OS,
         name: '운영체제',
+        color: 'color1',
       },
       {
-        id: 'db',
+        id: DB,
         name: '데이터베이스',
+        color: 'color1',
       },
       {
-        id: 'ds',
+        id: DS,
         name: '자료구조',
+        color: 'color1',
       },
     ],
   },
@@ -31,16 +42,19 @@ const TAGLIST: ITagListElement[] = [
     name: '문제 유형',
     elements: [
       {
-        id: 'long',
+        id: PROBLEM_TYPE.LONG,
         name: '서술형',
+        color: 'color2',
       },
       {
-        id: 'short',
+        id: PROBLEM_TYPE.SHORT,
         name: '단답형',
+        color: 'color2',
       },
       {
-        id: 'multiple',
+        id: PROBLEM_TYPE.MULTIPLE,
         name: '객관식',
+        color: 'color2',
       },
     ],
   },
@@ -50,10 +64,12 @@ const TAGLIST: ITagListElement[] = [
       {
         id: 'solved',
         name: '푼 문제',
+        color: 'color3',
       },
       {
         id: 'unsolved',
         name: '안 푼 문제',
+        color: 'color3',
       },
     ],
   },
@@ -63,13 +79,25 @@ const TAGLIST: ITagListElement[] = [
       {
         id: 'gradeable',
         name: '채점 가능',
+        color: 'color4',
       },
       {
         id: 'ungradable',
         name: '채점 불가능',
+        color: 'color4',
       },
     ],
   },
 ];
 
-export { TAGLIST };
+const TAG_MAP_BY_ID: Map<string, ITagBox> = new Map();
+TAGLIST.map((tagType) =>
+  tagType.elements.map((tagElement) =>
+    TAG_MAP_BY_ID.set(tagElement.id, {
+      name: tagElement.name,
+      color: tagElement.color ?? 'color1',
+    }),
+  ),
+);
+
+export { TAGLIST, TAG_MAP_BY_ID };

@@ -17,20 +17,26 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "unused-imports"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "jsx-quotes": ["error", "prefer-single"],
     "no-duplicate-imports": "error",
     "block-scoped-var": "error",
-    "eqeqeq": "error",
+    "eqeqeq": "warn",
     "no-var": "error",
     "prefer-const": "error",
     "eol-last": "error",
     "prefer-arrow-callback": "error",
     "no-trailing-spaces": "error",
     "quotes": ["warn", "single", { "avoidEscape": true }],
+    "@typescript-eslint/no-unused-vars": "warn",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+    ],
     "no-restricted-properties": [
       "error",
       {

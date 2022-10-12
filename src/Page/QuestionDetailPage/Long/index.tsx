@@ -1,148 +1,92 @@
-import Header from '../../../Template/Header';
-import Split from 'react-split';
-import {
-  themeLightClass,
-  pageStyle,
-  topStyle,
-  descStyle,
-  titleTagStyle,
-  questionContentStyle,
-  splitStyle,
-  contentWrapperStyle,
-  contentTitleStyle,
-  problemDescContentStyle,
-  buttonListStyle,
-  themeDarkClass,
-  answerInputContentStyle,
-  tagListStyle,
-} from './style.css';
-import '../gutter.css';
-import { Link, useParams } from 'react-router-dom';
-import Tag from '../../../Component/Box/TagBox';
-import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
-import TextButton from '../../../Component/Button/TextButton';
-import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
-import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
-import { useAuthStore } from '../../../hooks/useStore';
-import { useEffect, useState } from 'react';
-import baseFontStyle from '../../../styles/font.css';
+import { useNavigate, useParams } from 'react-router-dom';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
-import { URL, URLWithParam } from '../../../constants/url';
-import { IProblemDetailResponseData } from '../../../types/api/problem';
+import { ILongProblemDetailResponseData } from '../../../types/api/problem';
+import { useQuery } from 'react-query';
+import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
+import { URLWithParam } from '../../../constants/url';
+import { MetaTag } from '../../utils/MetaTag';
+import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
+import {
+  answerInputContentStyle,
+  charCntWarningStyle,
+  charCntWrapperStyle,
+  contentTitleStyle,
+  hiddenStyle,
+} from './style.css';
+import { ILongProblemResultLocationState } from '../../../types/problem';
+import { useState, KeyboardEvent } from 'react';
+import { LONG_PROBLEM_ANSWER } from '../../../constants/localStorage';
+import { localStorageWithExpiry } from '../../../utils/localstorage';
+import { INVALID_ID_ERROR } from '../../../errors';
 
 export function LongQuestionDetailPage() {
   const { id } = useParams();
-  const { isLogin } = useAuthStore();
-  const [data, setData] = useState<IProblemDetailResponseData>();
+  const navigate = useNavigate();
 
-  const [isDark, setIsDark] = useState(true);
+  if (!id) throw INVALID_ID_ERROR;
 
-  function toggleDarkMode() {
-    setIsDark((prev) => !prev);
-  }
+  const [userAnswer, setUserAnswer] = useState(
+    localStorageWithExpiry.getItem(LONG_PROBLEM_ANSWER(id)) ?? '',
+  );
+  const { data, refetch } = useQuery<ILongProblemDetailResponseData>(
+    'longProblemDetail',
+    () => problemApiWrapper.longProblemDetail(id),
+    { refetchOnWindowFocus: false },
+  );
 
-  function handleSubmit() {
-    return;
-  }
-
-  useEffect(() => {
-    if (!id) return;
-    problemApiWrapper.problemDetail(id).then((res) => {
-      setData(res.data);
+  const handleSubmit = () => {
+    if (!id) throw INVALID_ID_ERROR;
+    localStorage.removeItem(LONG_PROBLEM_ANSWER(id));
+    navigate(URLWithParam.LONG_PROBLEM_RESULT(parseInt(id)), {
+      state: { userAnswer: userAnswer, title: data?.title } as ILongProblemResultLocationState,
     });
-  }, []);
+    refetch();
+  };
+
+  const onTextAreaChange = (event: KeyboardEvent) => {
+    const userAnswerValue = (event.target as HTMLTextAreaElement).value;
+    setUserAnswer(userAnswerValue);
+    if (!id) return;
+    localStorageWithExpiry.setItem(LONG_PROBLEM_ANSWER(id), userAnswerValue);
+  };
 
   return (
-    <div>
-      {data ? (
-        <>
-          <Header />
-          <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
-            <div className={topStyle}>
-              <div className={descStyle}>
-                <div className={titleTagStyle}>
-                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => (
-                      <Tag tagId={tagId} key={tagId} />
-                    ))}
-                  </ul>
-                </div>
-                <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 평균 점수 : ${
-                    data?.avgScore ?? 0
-                  }점, 최고점 : ${data?.topScore ?? 0}점 , 최저점 : ${data?.bottomScore ?? 0}점`}
-                </div>
-              </div>
-
-              <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
-            </div>
-            <div className={questionContentStyle}>
-              <Split
-                sizes={[25, 75]}
-                minSize={100}
-                expandToMin={false}
-                gutterSize={10}
-                gutterAlign='center'
-                snapOffset={30}
-                dragInterval={1}
-                direction='horizontal'
-                cursor='col-resize'
-                className={splitStyle}
+    <>
+      <MetaTag
+        title={`CS Broker - ${data?.title}`}
+        description={`${data?.title}에 관한 서술형 문제입니다. 답안 작성 후 제출하기 버튼을 눌러주세요.`}
+        keywords={`${data?.tags.join(', ')}, ${data?.title}, 서술형`}
+      />
+      <SplitProblemDetailPageTemplate
+        data={data}
+        handleSubmit={handleSubmit}
+        isSubmittable={userAnswer?.length >= 10}
+        leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
+        rightSideContent={
+          <>
+            <label htmlFor='answer' className={contentTitleStyle}>
+              답안 작성
+            </label>
+            <textarea
+              id='answer'
+              placeholder='답변을 입력해주세요'
+              className={answerInputContentStyle}
+              minLength={10}
+              maxLength={300}
+              onKeyUp={onTextAreaChange}
+              defaultValue={userAnswer ?? undefined}
+            ></textarea>
+            <div className={charCntWrapperStyle}>
+              <div>{userAnswer?.length}/300</div>
+              <div
+                className={`${charCntWarningStyle} ${userAnswer?.length >= 10 ? hiddenStyle : ''}`}
               >
-                <div className={contentWrapperStyle}>
-                  <div className={contentTitleStyle}>문제 설명</div>
-                  <div className={problemDescContentStyle}>{data?.description}</div>
-                </div>
-                <div className={contentWrapperStyle}>
-                  <label htmlFor='answer' className={contentTitleStyle}>
-                    답안 작성
-                  </label>
-                  <textarea
-                    id='answer'
-                    placeholder='답변을 입력해주세요'
-                    className={answerInputContentStyle}
-                  ></textarea>
-                </div>
-              </Split>
+                답변을 10자 이상 작성해주세요.
+              </div>
             </div>
-
-            <div className={buttonListStyle}>
-              {isLogin ? (
-                <Link to={URLWithParam.LONG_PROBLEM_RESULT(id!)}>
-                  <TextButton
-                    type={BUTTON_TYPE.SUBMIT}
-                    theme={BUTTON_THEME.PRIMARY}
-                    size={BUTTON_SIZE.MEDIUM}
-                    onClick={handleSubmit}
-                  >
-                    제출하기
-                  </TextButton>
-                </Link>
-              ) : (
-                <TextButton
-                  type={BUTTON_TYPE.SUBMIT}
-                  theme={BUTTON_THEME.PRIMARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                >
-                  로그인
-                </TextButton>
-              )}
-              <Link to={URL.PROBLEM_LIST}>
-                <TextButton
-                  type={BUTTON_TYPE.BUTTON}
-                  theme={BUTTON_THEME.SECONDARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                >
-                  돌아가기
-                </TextButton>
-              </Link>
-            </div>
-          </main>
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
+          </>
+        }
+      />
+    </>
   );
 }

@@ -1,148 +1,104 @@
-import Header from '../../../Template/Header';
-import Split from 'react-split';
 import {
-  themeLightClass,
-  pageStyle,
-  topStyle,
-  descStyle,
-  titleTagStyle,
-  questionContentStyle,
-  splitStyle,
   contentWrapperStyle,
   contentTitleStyle,
   problemDescContentStyle,
-  buttonListStyle,
-  themeDarkClass,
   answerInputContentStyle,
-  tagListStyle,
+  resultAnswerStyle,
+  resultWrapperStyle,
 } from './style.css';
-import '../gutter.css';
-import { Link, useParams } from 'react-router-dom';
-import Tag from '../../../Component/Box/TagBox';
-import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../types/button';
-import TextButton from '../../../Component/Button/TextButton';
-import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
-import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
-import { useAuthStore } from '../../../hooks/useStore';
-import { useEffect, useState } from 'react';
-import baseFontStyle from '../../../styles/font.css';
+import { useParams } from 'react-router-dom';
+import { useState, KeyboardEvent } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
-import { URL, URLWithParam } from '../../../constants/url';
-import { IProblemDetailResponseData } from '../../../types/api/problem';
+import {
+  IShortProblemDetailResponseData,
+  IShortProblemResultData,
+} from '../../../types/api/problem';
+import { XIcon } from '../../../Icon/XIcon';
+import { OIcon } from '../../../Icon/OIcon';
+import { COLOR } from '../../../constants/color';
+import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
+import { useQuery } from 'react-query';
+import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
+import { MetaTag } from '../../utils/MetaTag';
+import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
-  const { isLogin } = useAuthStore();
-  const [data, setData] = useState<IProblemDetailResponseData>();
+  const { data, refetch } = useQuery<IShortProblemDetailResponseData>(
+    'shortProblemDetail',
+    () => problemApiWrapper.shortProblemDetail(id!),
+    { refetchOnWindowFocus: false },
+  );
+  const [result, setResult] = useState<IShortProblemResultData | null>(null);
 
-  const [isDark, setIsDark] = useState(true);
+  const resetResult = () => {
+    setResult(null);
+  };
 
-  function toggleDarkMode() {
-    setIsDark((prev) => !prev);
+  function onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSubmit();
+    }
   }
 
   function handleSubmit() {
-    return;
+    if (!id) return;
+    const answer = (document.getElementById('answer') as HTMLInputElement).value.trim();
+    problemApiWrapper.shortProblemResult(id, answer).then((data) => {
+      setResult(data);
+      refetch();
+    });
   }
 
-  useEffect(() => {
-    if (!id) return;
-    problemApiWrapper.problemDetail(id).then((res) => {
-      setData(res.data);
-    });
-  }, []);
-
   return (
-    <div>
-      {data ? (
-        <>
-          <Header />
-          <main className={`${isDark ? themeDarkClass : themeLightClass} ${pageStyle}`}>
-            <div className={topStyle}>
-              <div className={descStyle}>
-                <div className={titleTagStyle}>
-                  <h1 className={baseFontStyle.title}>{data?.title}</h1>
-                  <ul className={tagListStyle}>
-                    {data?.tags.map((tagId) => (
-                      <Tag tagId={tagId} key={tagId} />
-                    ))}
-                  </ul>
-                </div>
-                <div className={baseFontStyle.medium}>
-                  {`제출 : ${data?.totalSolved ?? 0}, 평균 점수 : ${
-                    data?.avgScore ?? 0
-                  }점, 최고점 : ${data?.topScore ?? 0}점 , 최저점 : ${data?.bottomScore ?? 0}점`}
-                </div>
-              </div>
-
-              <button onClick={toggleDarkMode}>{isDark ? <MoonIcon /> : <SunIcon />}</button>
-            </div>
-            <div className={questionContentStyle}>
-              <Split
-                sizes={[25, 75]}
-                minSize={100}
-                expandToMin={false}
-                gutterSize={10}
-                gutterAlign='center'
-                snapOffset={30}
-                dragInterval={1}
-                direction='horizontal'
-                cursor='col-resize'
-                className={splitStyle}
-              >
-                <div className={contentWrapperStyle}>
-                  <div className={contentTitleStyle}>문제 설명</div>
-                  <div className={problemDescContentStyle}>{data?.description}</div>
-                </div>
-                <div className={contentWrapperStyle}>
-                  <label htmlFor='answer' className={contentTitleStyle}>
-                    답안 작성
-                  </label>
-                  <input
-                    id='answer'
-                    placeholder='답변을 입력해주세요'
-                    className={answerInputContentStyle}
-                  ></input>
-                </div>
-              </Split>
-            </div>
-
-            <div className={buttonListStyle}>
-              {isLogin ? (
-                <Link to={URLWithParam.SHORT_PROBLEM_RESULT(id!)}>
-                  <TextButton
-                    type={BUTTON_TYPE.SUBMIT}
-                    theme={BUTTON_THEME.PRIMARY}
-                    size={BUTTON_SIZE.MEDIUM}
-                    onClick={handleSubmit}
-                  >
-                    제출하기
-                  </TextButton>
-                </Link>
+    <ProblemDetailPageTemplate
+      data={data}
+      handleSubmit={handleSubmit}
+      isResult={result !== null && result !== undefined}
+      resetResult={resetResult}
+      isSubmittable={true}
+    >
+      <MetaTag
+        title={`CS Broker - ${data?.title}`}
+        description={`${data?.title}에 관한 단답형 문제입니다. 답안 작성 후 제출하기 버튼을 눌러주세요.`}
+        keywords={`${data?.tags.join(', ')}, ${data?.title}, 단답형`}
+      />
+      <div className={contentWrapperStyle}>
+        <div className={contentTitleStyle}>문제 설명</div>
+        <div className={problemDescContentStyle}>
+          <MarkdownBox>{data?.description}</MarkdownBox>
+        </div>
+      </div>
+      <div className={resultWrapperStyle}>
+        {result ? (
+          <>
+            <MyScoreBox score={result.score} />
+            <button
+              className={
+                result?.isAnswer ? resultAnswerStyle['correct'] : resultAnswerStyle['wrong']
+              }
+              onClick={resetResult}
+            >
+              {result.isAnswer ? (
+                <OIcon fill={COLOR.GREEN} width='1.5rem' height='1.5rem' />
               ) : (
-                <TextButton
-                  type={BUTTON_TYPE.SUBMIT}
-                  theme={BUTTON_THEME.PRIMARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                >
-                  로그인
-                </TextButton>
+                <XIcon fill={COLOR.RED} width='1.5rem' height='1.5rem' />
               )}
-              <Link to={URL.PROBLEM_LIST}>
-                <TextButton
-                  type={BUTTON_TYPE.BUTTON}
-                  theme={BUTTON_THEME.SECONDARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                >
-                  돌아가기
-                </TextButton>
-              </Link>
-            </div>
-          </main>
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
+              <div>{result.userAnswer}</div>
+            </button>
+          </>
+        ) : (
+          <input
+            id='answer'
+            placeholder={`답변을 "${data?.isEnglish ? '영어로' : '한글로'}" 입력해주세요`}
+            className={answerInputContentStyle}
+            autoComplete='off'
+            onFocus={resetResult}
+            onKeyDown={onKeyDown}
+          ></input>
+        )}
+      </div>
+    </ProblemDetailPageTemplate>
   );
 }

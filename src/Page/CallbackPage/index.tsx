@@ -1,24 +1,26 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import apiClient from '../../api/apiClient';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
-import { USER_INFO } from '../../constants/localStorage';
+import { AUTHORIZTION, BEARER_TOKEN } from '../../constants/api';
 import { URL } from '../../constants/url';
-import { useAuthStore, useUserInfoStore } from '../../hooks/useStore';
+import { useAuthStore } from '../../hooks/useStore';
+import { setUserInfo } from '../../utils/userInfo';
 
 const CallbackPage = () => {
   const { setIsLogin } = useAuthStore();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { setUserInfo } = useUserInfoStore();
 
   useEffect(() => {
     const token = searchParams.get('token');
+
     if (!token) return;
-    authApiWrapper.getUserInfo(token).then((res) => {
-      localStorage.setItem(USER_INFO, JSON.stringify({ ...res.data, accessToken: token }));
-      navigate(URL.NICKNAME);
+    authApiWrapper.getUserData(token).then((res) => {
+      apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(token);
+      setUserInfo({ ...res.data, accessToken: token });
+      navigate(URL.MAIN);
       setIsLogin(true);
-      setUserInfo(res.data);
     });
   }, []);
 

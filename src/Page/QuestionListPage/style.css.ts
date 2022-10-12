@@ -1,6 +1,6 @@
-import { style } from '@vanilla-extract/css';
+import { themeColors } from './../../styles/theme.css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
-import baseFontStyle from '../../styles/font.css';
 
 export const listPageWrapperStyle = style({
   marginBottom: '5rem',
@@ -8,6 +8,9 @@ export const listPageWrapperStyle = style({
 
 export const listPageMainWrapperStyle = style({
   display: 'flex',
+  justifyContent: 'center',
+  gap: '1.3125rem',
+  padding: '0 5rem',
 });
 
 export const asideStyle = style({
@@ -17,7 +20,8 @@ export const asideStyle = style({
   flexDirection: 'column',
   gap: '1.25rem',
 
-  width: '15.625rem',
+  width: '20%',
+  minWidth: '15rem',
   height: '12.5rem',
 
   padding: '1rem 0 0 1rem',
@@ -34,19 +38,29 @@ export const filterStyle = style({
   width: '100%',
   height: 'fit-content',
 
-  background: COLOR.OFFWHITE,
-  border: `1px solid ${COLOR.GRAY}`,
-  borderRadius: '10px',
+  background: themeColors.background.F8,
+  borderRadius: '8px',
 
-  padding: '1.25rem',
+  padding: '1.125rem 1.5rem',
 });
 
-export const filterTitleStyle = style([
-  baseFontStyle.medium,
-  {
-    color: COLOR.TITLEACTIVE,
-  },
-]);
+export const filterTitleWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: '100%',
+
+  padding: '0 0.5rem',
+});
+
+export const filterTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '1.125rem',
+  lineHeight: '1.5rem',
+
+  color: themeColors.text[2],
+  whiteSpace: 'nowrap',
+});
 
 export const dropdownListStyle = style({
   boxSizing: 'border-box',
@@ -55,18 +69,43 @@ export const dropdownListStyle = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: '0.625rem',
+
+  width: '100%',
+});
+
+export const checkedTagListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
+  width: '100%',
+});
+
+export const checkedTagListTitleStyle = style({
+  fontWeight: '500',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+  color: themeColors.text[1],
+});
+
+export const checkedTagListTitleIsShownStyle = styleVariants({
+  true: [checkedTagListTitleStyle],
+  false: [checkedTagListTitleStyle, { display: 'none' }],
 });
 
 export const checkedTagListStyle = style({
-  boxSizing: 'border-box',
-
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(50px, 1fr))',
-  gridGap: '0.2rem',
-
+  display: 'flex',
+  gap: '.5rem',
   width: '100%',
+  overflowX: 'auto',
+});
 
-  justifyItems: 'center',
+export const questionListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  width: '70%',
 });
 
 export const questionListStyle = style({
@@ -74,12 +113,12 @@ export const questionListStyle = style({
 
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gap: '10px',
+  rowGap: '1.25rem',
+  columnGap: '1.5rem',
 
-  width: '65%',
-  marginLeft: '1rem',
+  width: '100%',
 
-  padding: '1rem 0 0 1rem',
+  paddingTop: '1rem',
 
   '@media': {
     'screen and (max-width: 1600px)': {
@@ -89,4 +128,19 @@ export const questionListStyle = style({
       gridTemplateColumns: 'repeat(1, 1fr)',
     },
   },
+});
+
+export const resetButtonTextStyle = style({
+  '@media': { 'screen and (max-width: 660px)': { display: 'none' } },
+});
+
+export const resetButtonStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '.25rem',
+  fontWeight: '500',
+  fontSize: '.875rem',
+  lineHeight: '1.5rem',
+  color: COLOR.TEXT[7],
 });

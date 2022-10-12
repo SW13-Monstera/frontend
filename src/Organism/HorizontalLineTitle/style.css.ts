@@ -1,7 +1,15 @@
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../constants/color';
 
-export const horizontalLineStyle = style({
-  width: '14.875rem',
-  borderTop: `solid 1px ${COLOR.GRAY}`,
+export const horizontalLineTitleStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '1rem',
+  width: '100%',
+  margin: '1rem 0',
+});
+
+export const horizontalLineTitleTextStyle = style({
+  width: 'fit-content',
+  whiteSpace: 'nowrap',
 });

@@ -1,50 +1,39 @@
+import { CHECKED_TAGS } from './../constants/localStorage';
 import create from 'zustand';
-
-interface ITag {
-  id: string;
-  name: string;
-}
-
-interface ICheckedTags {
-  checkedTags: Set<ITag>;
-  handleCheckedTags: (tag: ITag, isChecked: boolean) => void;
-}
+import { ITagState } from '../types/tag';
 
 interface IAuth {
   isLogin: boolean;
   setIsLogin: (loginState: boolean) => void;
 }
 
-interface IUserInfo {
-  id: string;
-  username: string;
-  email: string;
-  role: string;
+interface IDarkMode {
+  isDark: boolean;
+  toggleIsDark: () => void;
+  setIsDark: (isDarkState: boolean) => void;
 }
 
-interface IUserInfoStore {
-  userInfo: IUserInfo;
-  setUserInfo: (userInfo: IUserInfo) => void;
+interface ITagStore {
+  checkedTags: ITagState[];
+  setCheckedTags: (tagState: ITagState[]) => void;
 }
-
-const useCheckedTagsStore = create<ICheckedTags>((set) => ({
-  checkedTags: new Set<ITag>(),
-  handleCheckedTags: (tag: ITag, isChecked: boolean) =>
-    set((state: ICheckedTags) => ({
-      checkedTags: isChecked
-        ? new Set([...state.checkedTags, tag])
-        : new Set([...state.checkedTags].filter((currTag) => currTag.id !== tag.id)),
-    })),
-}));
 
 const useAuthStore = create<IAuth>((set) => ({
   isLogin: false,
   setIsLogin: (loginState: boolean) => set((state) => ({ ...state, isLogin: loginState })),
 }));
 
-const useUserInfoStore = create<IUserInfoStore>((set) => ({
-  userInfo: { id: '', username: '', email: '', role: '' },
-  setUserInfo: (newUserInfo: IUserInfo) => set({ userInfo: newUserInfo }),
+const useDarkModeStore = create<IDarkMode>((set) => ({
+  isDark: false,
+  toggleIsDark: () => set((state) => ({ ...state, isDark: !state.isDark })),
+  setIsDark: (isDarkState: boolean) => set((state) => ({ ...state, isDark: isDarkState })),
 }));
 
-export { useCheckedTagsStore, useAuthStore, useUserInfoStore };
+const useCheckedTagStore = create<ITagStore>((set) => ({
+  checkedTags: sessionStorage.getItem(CHECKED_TAGS)
+    ? JSON.parse(sessionStorage.getItem(CHECKED_TAGS)!)
+    : [],
+  setCheckedTags: (tagState: ITagState[]) => set((state) => ({ ...state, checkedTags: tagState })),
+}));
+
+export { useAuthStore, useDarkModeStore, useCheckedTagStore };

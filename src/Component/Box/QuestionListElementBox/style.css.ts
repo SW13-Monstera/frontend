@@ -1,35 +1,42 @@
-import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
+import { themeColors } from './../../../styles/theme.css';
+import { keyframes, style, styleVariants } from '@vanilla-extract/css';
 import baseFontStyle from '../../../styles/font.css';
 
-export const textBoxStyle = style({
-  boxSizing: 'border-box',
+const spreadBoxShadow = keyframes({
+  '0%': { boxShadow: `0px 0px 4px ${themeColors.shadow[1]}` },
+  '100%': { boxShadow: `4px 8px 24px  ${themeColors.shadow[1]}` },
+});
 
+export const textBoxStyle = style({
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  gap: '10px',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
+  gap: '.625rem',
 
   width: '100%',
   height: '100%',
-  padding: '0.625rem',
+  padding: '1rem 1.5rem',
 
-  color: COLOR.TITLEACTIVE,
-  background: COLOR.WHITE,
-  border: `1px solid ${COLOR.GRAY}`,
-  borderRadius: '10px',
+  color: themeColors.text[1],
+  background: themeColors.background.FFLight,
+  boxShadow: `0px 0px 4px ${themeColors.shadow[1]}`,
+  borderRadius: '8px',
+  transition: 'box-shadow .3s',
+  animation: spreadBoxShadow,
+
+  ':hover': {
+    boxShadow: `4px 8px 24px  ${themeColors.shadow[1]}`,
+  },
 });
 
 export const textBoxMainStyle = style({
-  boxSizing: 'border-box',
-
   display: 'flex',
   flexDirection: 'column',
 
   '@media': {
-    'screen and (min-width: 600px)': {
-      flexDirection: 'row',
-      alignItems: 'center',
+    'screen and (max-width: 600px)': {
+      alignItems: 'start',
       justifyContent: 'space-between',
       gap: '1rem',
     },
@@ -44,19 +51,47 @@ export const detailWrapperStyle = style([
 ]);
 
 export const titleStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '1.5rem',
+  fontWeight: '700',
+  fontSize: '1.125rem',
   lineHeight: '1.5rem',
+  color: themeColors.text[1],
+});
+
+export const dividerStyle = style({
+  '@media': { 'screen and (max-width: 600px)': { display: 'none' } },
 });
 
 export const detailStyle = style({
-  fontFamily: 'Inter',
-  fontStyle: 'italic',
-  fontWeight: '300',
-  fontSize: '0.75rem',
-  lineHeight: '1rem',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'start',
+  justifyContent: 'center',
+  gap: '.25rem',
 });
 
-export const tagListStyle = style({ display: 'flex', gap: '0.125rem' });
+export const detailLabelStyle = style({
+  fontWeight: '400',
+  fontSize: '.875rem',
+  lineHeight: '1.125rem',
+  color: themeColors.text[9],
+});
+
+export const detailValueStyle = style({
+  fontWeight: '900',
+  fontSize: '.875rem',
+  lineHeight: '1.25rem',
+  color: themeColors.text[2],
+});
+
+export const tagListStyle = style({ display: 'flex', gap: '.5rem' });
+
+export const problemStatisticsWrapperBaseStyle = style({
+  display: 'flex',
+  alignItems: 'start',
+  justifyContent: 'start',
+});
+
+export const problemStatisticsWrapperStyle = styleVariants({
+  row: [problemStatisticsWrapperBaseStyle, { gap: '7.8125rem' }],
+  column: [problemStatisticsWrapperBaseStyle, { flexDirection: 'column', gap: '1.5rem' }],
+});

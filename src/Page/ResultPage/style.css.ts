@@ -1,6 +1,7 @@
+import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import { COLOR } from '../../constants/color';
 import baseFontStyle from '../../styles/font.css';
+import { COLOR } from '../../constants/color';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
@@ -15,7 +16,6 @@ export const pageStyle = style({
 });
 
 export const pageContentStyle = style({
-  boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'start',
   justifyContent: 'space-between',
@@ -34,28 +34,35 @@ export const subtitleStyle = style([
     display: 'flex',
     alignItems: 'center',
 
-    color: COLOR.TITLEACTIVE,
+    color: themeColors.text[1],
   },
 ]);
 
-export const answerContentStyle = style([
-  baseFontStyle.small,
+export const answerContentStyle = style({
+  overflow: 'auto',
+  textAlign: 'start',
+  fontWeight: '400',
+  fontSize: '1.25rem',
+  lineHeight: '1.8125rem',
+  color: themeColors.text[5],
+  wordBreak: 'break-all',
+});
+
+export const standardAnswerContentStyle = style([
+  answerContentStyle,
   {
-    overflowY: 'scroll',
-    color: COLOR.TITLEACTIVE,
+    padding: '1.5rem 1rem',
   },
 ]);
 
 export const keywordListStyle = style({
-  boxSizing: 'border-box',
-
-  display: 'grid',
-  gridAutoFlow: 'column',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(6.875rem, 1fr))',
-  gridGap: '0.2rem',
-
-  justifyItems: 'center',
+  display: 'flex',
+  alignItems: 'start',
+  justifyContent: 'start',
   gap: '0.9375rem',
+  flexWrap: 'wrap',
+  width: '100%',
+  overflowX: 'auto',
 });
 
 export const contentStyle = style({
@@ -67,17 +74,17 @@ export const contentStyle = style({
   gap: '1.5rem',
 
   width: '100%',
-  height: '60vh',
-  padding: '1rem 2rem',
+  height: '100%',
 
-  overflowY: 'scroll',
-
-  '@media': {
-    'screen and (max-width: 1100px)': {
-      height: 'fit-content',
-    },
-  },
+  padding: '2rem',
 });
+
+export const standardAnswerStyle = style([
+  contentStyle,
+  {
+    padding: '1rem',
+  },
+]);
 
 export const buttonListStyle = style({
   boxSizing: 'border-box',
@@ -88,3 +95,46 @@ export const buttonListStyle = style({
   alignSelf: 'flex-end',
   gap: '1rem',
 });
+
+export const scoreWrapperStyle = style([
+  baseFontStyle.xlarge,
+  {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem',
+    marginRight: '2rem',
+  },
+]);
+
+export const myScoreStyle = style({
+  alignSelf: 'end',
+});
+
+export const numberLineChartWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '5rem',
+  width: '100%',
+  height: '13.4375rem',
+
+  background: '#F8FAFD',
+  borderRadius: '24px',
+  color: COLOR.TITLEACTIVE,
+
+  padding: '2rem 1.5rem',
+});
+
+export const numberLineChartTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '1.5rem',
+  lineHeight: '2.1875rem',
+  color: COLOR.TITLEACTIVE,
+});
+
+export const numberLineChartStrongTitleStyle = style([
+  numberLineChartTitleStyle,
+  {
+    color: COLOR.PRIMARY,
+  },
+]);
