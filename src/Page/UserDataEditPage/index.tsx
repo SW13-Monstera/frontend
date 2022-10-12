@@ -62,18 +62,21 @@ export const UserDataEditPage = () => {
   const [newProfileData, setNewProfileData] = useState<IProfileData | undefined>(profileData);
 
   const submitProfileData = () => {
-    userApiWrapper.updateUser({
-      ...newProfileData,
-      username: (document.getElementById('username') as HTMLTextAreaElement).value ?? null,
-      githubUrl:
-        'https://www.github.com/' +
-          (document.getElementById('github-url') as HTMLTextAreaElement).value ?? null,
-      linkedinUrl:
-        'https://www.linkedin.com/' +
-          (document.getElementById('linkedin-url') as HTMLTextAreaElement).value ?? null,
-      profileImgUrl: profileData?.profileImgUrl,
-    });
-    navigate(URL.MYPAGE);
+    userApiWrapper
+      .updateUser({
+        ...newProfileData,
+        username: (document.getElementById('username') as HTMLTextAreaElement).value ?? null,
+        githubUrl:
+          'https://www.github.com/' +
+            (document.getElementById('github-url') as HTMLTextAreaElement).value ?? null,
+        linkedinUrl:
+          'https://www.linkedin.com/' +
+            (document.getElementById('linkedin-url') as HTMLTextAreaElement).value ?? null,
+        profileImgUrl: profileData?.profileImgUrl,
+      })
+      .then(() => {
+        navigate(URL.MYPAGE);
+      });
   };
 
   return (
