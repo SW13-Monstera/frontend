@@ -8,6 +8,7 @@ const API_URL = {
   STATS: 'v1/stats',
   UPLOAD_IMG: 'v1/upload/image',
   CORE_TECH: 'v1/techs',
+  MAJOR: 'v1/majors',
   SEND_CHANGE_PASSWORD_EMAIL: 'v1/auth/password/code',
   CHANGE_PASSWORD: 'v1/auth/password/change',
 };

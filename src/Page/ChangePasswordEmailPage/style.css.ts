@@ -4,11 +4,16 @@ import baseFontStyle from '../../styles/font.css';
 
 export const pageStyle = style({
   display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+});
+
+export const contentWrapperStyle = style({
+  display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
   alignItems: 'center',
   gap: '1.875rem',
-
   padding: '4.375rem',
 });
 

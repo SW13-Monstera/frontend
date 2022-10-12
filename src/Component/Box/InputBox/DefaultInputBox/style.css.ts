@@ -1,37 +1,43 @@
 import { themeColors } from './../../../../styles/theme.css';
-import { createTheme, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../../../constants/color';
 
-export const [inputBoxClass, inputVars] = createTheme({
-  size: {
-    medium: {
-      width: '31.25rem',
-      height: '4.375rem',
-    },
-  },
+export const defaultInputWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
+  width: '100%',
+  height: 'fit-content',
+  minHeight: '4.9375rem',
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+  color: themeColors.text[5],
+});
+
+export const defaultInputStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
+  color: themeColors.text[5],
 });
 
 export const defaultInputBoxStyle = style({
   display: 'flex',
   alignItems: 'center',
 
-  width: inputVars.size.medium.width,
-  height: inputVars.size.medium.height,
+  width: '100%',
+  height: '3rem',
 
-  color: themeColors.text[1],
-  background: themeColors.background.FF,
-  border: '1px solid #D9D9D9',
-  borderRadius: '10px',
+  font: 'inherit',
+  color: 'inherit',
+  background: themeColors.background.F8,
+  borderRadius: '8px',
 
   padding: '0 1rem',
 
   '::placeholder': {
-    fontFamily: 'Inter',
-    fontWeight: '300',
-    fontSize: '1.25rem',
-    lineHeight: '1.5rem',
-
-    color: COLOR.GRAY,
+    color: COLOR.TEXT[9],
   },
 });
 

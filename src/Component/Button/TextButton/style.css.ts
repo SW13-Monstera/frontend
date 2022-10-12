@@ -48,7 +48,16 @@ export const textButtonSizeStyle = styleVariants({
       borderRadius: '40px',
     },
   ],
-  large: [{ width: '31.5rem', height: '4.65rem', borderRadius: '8px' }],
+  large: [
+    {
+      width: '31.5rem',
+      height: '3rem',
+      fontWeight: '700',
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+      borderRadius: '8px',
+    },
+  ],
   largeMedium: [
     {
       width: vars.size.largeMedium.width,

@@ -14,6 +14,7 @@ import {
 
 interface IDropdownComponentProps extends IDropdownElement {
   isChecked?: boolean;
+  isCheckbox?: boolean;
   handleCheckedTags: (tagId: string, name: string, isChecked: boolean) => void;
 }
 
@@ -22,6 +23,7 @@ export function DropdownElement({
   name,
   handleCheckedTags,
   isChecked = false,
+  isCheckbox = false,
 }: IDropdownComponentProps) {
   function checkHandler({ target }: ChangeEvent<HTMLInputElement>) {
     handleCheckedTags(target.id, target.name, target.checked);
@@ -36,7 +38,7 @@ export function DropdownElement({
   return (
     <li className={dropdownContentElementStyle}>
       <input
-        type={INPUT_TYPE.CHECKBOX}
+        type={isCheckbox ? INPUT_TYPE.CHECKBOX : INPUT_TYPE.RADIO}
         name={name}
         id={id}
         onChange={checkHandler}

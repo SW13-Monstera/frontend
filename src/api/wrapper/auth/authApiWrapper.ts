@@ -5,6 +5,7 @@ import { IChangePassword, IJoinRequest, ILoginRequest, IUserInfo } from '../../.
 import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo } from '../../../utils/userInfo';
 import { toast } from 'react-toastify';
+import { parseJwt } from '../../../utils/parseJwt';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
@@ -24,6 +25,9 @@ export const authApiWrapper = {
   refresh: () => {
     const userInfo = getUserInfo();
     if (!userInfo) return;
+
+    const { exp } = parseJwt(userInfo.accessToken);
+    if (Date.now() < exp * 1000 - 20) return;
 
     return apiClient
       .get(API_URL.REFRESH, {

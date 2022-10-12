@@ -13,7 +13,6 @@ import {
 import { ProblemListBox } from '../../Component/Box/ProblemListBox';
 import { COLOR_LABEL_LIST } from '../../constants/colorLabel';
 import { MetaTag } from '../utils/MetaTag';
-import { useEffect, useState } from 'react';
 import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
 import { IMypageProblem } from '../../types/problem';
 import { DB, DS, NETWORK, OS } from '../../constants/category';
@@ -38,19 +37,16 @@ interface IProblemStatsData {
 }
 
 export const MyPage = () => {
-  const [problemStatsData, setProblemStatsData] = useState<IProblemStatsData>();
-
   const { data: profileData } = useQuery<IProfileData>(
     'getUserInfoData',
     () => userApiWrapper.getUserInfoData(),
     { refetchOnWindowFocus: false },
   );
-
-  useEffect(() => {
-    userApiWrapper.getStats().then((res: IProblemStatsData) => {
-      setProblemStatsData(res);
-    });
-  }, []);
+  const { data: problemStatsData } = useQuery<IProblemStatsData>(
+    'getStatsData',
+    () => userApiWrapper.getStats(),
+    { refetchOnWindowFocus: false },
+  );
 
   const getStatistics = () => {
     if (problemStatsData) {
