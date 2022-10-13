@@ -28,6 +28,7 @@ apiClient.interceptors.response.use(
     } else if (status === 401) {
       setLogout();
       toast('다시 로그인해주세요.');
+      Navigate({ to: URL.LOGIN });
     }
   },
 );

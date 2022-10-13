@@ -12,11 +12,13 @@ import {
   numberLineChartStrongTitleStyle,
   evaluationButtonListStyle,
   evaluationButtonListWrapperStyle,
+  evaluationWrapperStyle,
+  phraseStyle,
 } from './style.css';
 import { ASSESSMENT_TYPE, ILongProblemResultData, TAssessment } from '../../types/api/problem';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useMutation } from 'react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
 import { MarkdownBox } from '../../Component/Box/MarkdownBox';
 import { MetaTag } from '../utils/MetaTag';
@@ -28,17 +30,29 @@ import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { TextButton } from '../../Component/Button';
+import { displayNoneStyle } from '../../styles/util.css';
 
 export default function ResultPage() {
   const { id } = useParams();
   const { userAnswer, title } = useLocation().state as ILongProblemResultLocationState;
-
-  function handleSubmit() {
+  const [isEvaluated, setIsEvaluated] = useState(false);
+  const handleSubmit = () => {
     if (!id) throw INVALID_ID_ERROR;
     return problemApiWrapper.longProblemResult(id, userAnswer);
-  }
-
+  };
   const { data: result, isLoading, mutate } = useMutation<ILongProblemResultData>(handleSubmit);
+
+  const handleAssessmentSubmit = (value: string) => {
+    if (!result?.gradingHistoryId) throw new Error('invalid id');
+    problemApiWrapper
+      .assessment(result?.gradingHistoryId.toString(), {
+        assessmentType: value as TAssessment,
+        content: '',
+      })
+      .then(() => {
+        setIsEvaluated(true);
+      });
+  };
 
   useEffect(() => {
     mutate();
@@ -79,29 +93,32 @@ export default function ResultPage() {
               </div>
             </TextBox>
             <MyScoreBox score={result?.score} className={myScoreStyle} />
-            <div className={evaluationButtonListWrapperStyle}>
-              <div>채점 결과는 어땠나요?</div>
-              <div className={evaluationButtonListStyle}>
-                {[
-                  { label: '😀 좋아요', value: ASSESSMENT_TYPE.GOOD },
-                  { label: '😐 적당해요', value: ASSESSMENT_TYPE.NORMAL },
-                  { label: '🙁 별로예요', value: ASSESSMENT_TYPE.BAD },
-                ].map((e) => (
-                  <TextButton
-                    type={BUTTON_TYPE.BUTTON}
-                    theme={BUTTON_THEME.TERTIARY}
-                    size={BUTTON_SIZE.SMALL}
-                    onClick={() => {
-                      if (!id) throw new Error('invalid id');
-                      problemApiWrapper.assessment(id, {
-                        assessmentType: e.value as TAssessment,
-                      });
-                    }}
-                    key={e.value}
-                  >
-                    {e.label}
-                  </TextButton>
-                ))}
+
+            <div className={evaluationWrapperStyle}>
+              <div className={isEvaluated ? phraseStyle : displayNoneStyle}>
+                소중한 의견 감사합니다.
+              </div>
+              <div className={isEvaluated ? displayNoneStyle : evaluationButtonListWrapperStyle}>
+                <div className={phraseStyle}>채점 결과는 어땠나요?</div>
+                <div className={evaluationButtonListStyle}>
+                  {[
+                    { label: '😀 좋아요', value: ASSESSMENT_TYPE.GOOD },
+                    { label: '😐 적당해요', value: ASSESSMENT_TYPE.NORMAL },
+                    { label: '🙁 별로예요', value: ASSESSMENT_TYPE.BAD },
+                  ].map((e) => (
+                    <TextButton
+                      type={BUTTON_TYPE.BUTTON}
+                      theme={BUTTON_THEME.TERTIARY}
+                      size={BUTTON_SIZE.SMALL}
+                      onClick={() => {
+                        handleAssessmentSubmit(e.value);
+                      }}
+                      key={e.value}
+                    >
+                      {e.label}
+                    </TextButton>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
