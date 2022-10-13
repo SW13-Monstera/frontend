@@ -2,11 +2,6 @@ import { CHECKED_TAGS } from './../constants/localStorage';
 import create from 'zustand';
 import { ITagState } from '../types/tag';
 
-interface IAuth {
-  isLogin: boolean;
-  setIsLogin: (loginState: boolean) => void;
-}
-
 interface IDarkMode {
   isDark: boolean;
   toggleIsDark: () => void;
