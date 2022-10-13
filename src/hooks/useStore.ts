@@ -18,11 +18,6 @@ interface ITagStore {
   setCheckedTags: (tagState: ITagState[]) => void;
 }
 
-const useAuthStore = create<IAuth>((set) => ({
-  isLogin: false,
-  setIsLogin: (loginState: boolean) => set((state) => ({ ...state, isLogin: loginState })),
-}));
-
 const useDarkModeStore = create<IDarkMode>((set) => ({
   isDark: false,
   toggleIsDark: () => set((state) => ({ ...state, isDark: !state.isDark })),
@@ -36,4 +31,4 @@ const useCheckedTagStore = create<ITagStore>((set) => ({
   setCheckedTags: (tagState: ITagState[]) => set((state) => ({ ...state, checkedTags: tagState })),
 }));
 
-export { useAuthStore, useDarkModeStore, useCheckedTagStore };
+export { useDarkModeStore, useCheckedTagStore };

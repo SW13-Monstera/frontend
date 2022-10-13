@@ -12,11 +12,11 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import TextButton from '../../Component/Button/TextButton';
 import { URL } from '../../constants/url';
 import ProblemTitle from '../../Organism/ProblemTitle';
-import { useAuthStore } from '../../hooks/useStore';
 import { IProblemDetailPageTemplate } from '../../types/problem';
 import useModal from '../../hooks/useModal';
 import { CustomModal } from '../../Component/Utils/Modal/CustomModal';
 import PageTemplate from '../PageTemplate';
+import { getUserInfo } from '../../utils/userInfo';
 
 export const ProblemDetailPageTemplate = ({
   data,
@@ -31,7 +31,6 @@ export const ProblemDetailPageTemplate = ({
   isSubmittable = false,
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
-  const { isLogin } = useAuthStore();
   const { isModalOpen, openModal, closeModal } = useModal();
   const navigate = useNavigate();
 
@@ -84,7 +83,7 @@ export const ProblemDetailPageTemplate = ({
                   >
                     돌아가기
                   </TextButton>
-                  {isLogin ? (
+                  {getUserInfo() ? (
                     isResult ? (
                       <TextButton
                         type={BUTTON_TYPE.SUBMIT}

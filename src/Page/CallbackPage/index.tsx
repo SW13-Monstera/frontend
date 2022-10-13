@@ -4,11 +4,9 @@ import apiClient from '../../api/apiClient';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { AUTHORIZTION, BEARER_TOKEN } from '../../constants/api';
 import { URL } from '../../constants/url';
-import { useAuthStore } from '../../hooks/useStore';
 import { setUserInfo } from '../../utils/userInfo';
 
 const CallbackPage = () => {
-  const { setIsLogin } = useAuthStore();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -20,7 +18,7 @@ const CallbackPage = () => {
       apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(token);
       setUserInfo({ ...res.data, accessToken: token });
       navigate(URL.MAIN);
-      setIsLogin(true);
+      // setIsLogin(true);
     });
   }, []);
 

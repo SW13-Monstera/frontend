@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import Router from './Router/Router';
 import { appStyle } from './styles/App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuthStore, useDarkModeStore } from './hooks/useStore';
+import { useDarkModeStore } from './hooks/useStore';
 import { useEffect } from 'react';
 import { getUserInfo } from './utils/userInfo';
 import { setTokenHeader } from './api/setTokenHeader';
@@ -12,7 +12,6 @@ import { darkTheme, lightTheme } from './styles/theme.css';
 import { DARK_MODE } from './constants/localStorage';
 
 function App() {
-  const { setIsLogin } = useAuthStore();
   const { isDark, setIsDark } = useDarkModeStore();
 
   if (import.meta.env.PROD) {
@@ -24,7 +23,7 @@ function App() {
   useEffect(() => {
     const userInfo = getUserInfo();
     if (userInfo) {
-      setIsLogin(true);
+      // setIsLogin(true);
       setTokenHeader();
     }
 
