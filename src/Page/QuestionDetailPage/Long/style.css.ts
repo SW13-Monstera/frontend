@@ -40,7 +40,3 @@ export const charCntWrapperStyle = style({
 export const charCntWarningStyle = style({
   color: COLOR.RED,
 });
-
-export const hiddenStyle = style({
-  visibility: 'hidden',
-});

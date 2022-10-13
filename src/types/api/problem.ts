@@ -94,3 +94,16 @@ export interface IkeywordResult {
   isExist: boolean;
   idx: number[];
 }
+
+export const ASSESSMENT_TYPE = {
+  GOOD: 'GOOD',
+  BAD: 'BAD',
+  NORMAL: 'NORMAL',
+};
+
+export type TAssessment = keyof typeof ASSESSMENT_TYPE;
+
+export interface IAssessmentRequest {
+  assessmentType: TAssessment;
+  content?: string;
+}

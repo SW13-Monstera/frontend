@@ -10,8 +10,10 @@ import {
   numberLineChartWrapperStyle,
   numberLineChartTitleStyle,
   numberLineChartStrongTitleStyle,
+  evaluationButtonListStyle,
+  evaluationButtonListWrapperStyle,
 } from './style.css';
-import { ILongProblemResultData } from '../../types/api/problem';
+import { ASSESSMENT_TYPE, ILongProblemResultData, TAssessment } from '../../types/api/problem';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useMutation } from 'react-query';
 import { useEffect } from 'react';
@@ -24,6 +26,8 @@ import { MyScoreBox } from '../../Component/Box/MyScoreBox';
 import { NumberLineChart } from '../../Component/Chart/NumberLineChart';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
+import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
+import { TextButton } from '../../Component/Button';
 
 export default function ResultPage() {
   const { id } = useParams();
@@ -75,6 +79,31 @@ export default function ResultPage() {
               </div>
             </TextBox>
             <MyScoreBox score={result?.score} className={myScoreStyle} />
+            <div className={evaluationButtonListWrapperStyle}>
+              <div>채점 결과는 어땠나요?</div>
+              <div className={evaluationButtonListStyle}>
+                {[
+                  { label: '😀 좋아요', value: ASSESSMENT_TYPE.GOOD },
+                  { label: '😐 적당해요', value: ASSESSMENT_TYPE.NORMAL },
+                  { label: '🙁 별로예요', value: ASSESSMENT_TYPE.BAD },
+                ].map((e) => (
+                  <TextButton
+                    type={BUTTON_TYPE.BUTTON}
+                    theme={BUTTON_THEME.TERTIARY}
+                    size={BUTTON_SIZE.SMALL}
+                    onClick={() => {
+                      if (!id) throw new Error('invalid id');
+                      problemApiWrapper.assessment(id, {
+                        assessmentType: e.value as TAssessment,
+                      });
+                    }}
+                    key={e.value}
+                  >
+                    {e.label}
+                  </TextButton>
+                ))}
+              </div>
+            </div>
           </div>
         }
         bottomContent={
