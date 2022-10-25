@@ -26,6 +26,9 @@ import { NumberLineChart } from '../../Component/Chart/NumberLineChart';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
 import { useEffect } from 'react';
+import { COLOR } from '../../constants/color';
+
+const USER_ANSWER_DOM_ID = 'user-answer';
 
 export default function ResultPage() {
   const { id } = useParams();
@@ -38,9 +41,64 @@ export default function ResultPage() {
 
   const { data: result, isLoading, mutate } = useMutation<ILongProblemResultData>(handleSubmit);
 
+  const compareListRange = (arr1: number[], arr2: number[]) => {
+    if (arr1[1] > arr2[0]) return [Math.min(...arr1, ...arr2), Math.max(...arr1, ...arr2)];
+    return [arr1, arr2];
+  };
+
+  const createUserAnswerDOM = () => {
+    const keywordIdxList =
+      result?.keywords
+        .filter((e) => e.idx.length > 0)
+        .map((keyword) => keyword.idx)
+        .sort((a, b) => a[0] - b[0]) ?? [];
+
+    const refinedKeywordIdxList: number[][] = [];
+
+    for (let i = 0; i < keywordIdxList.length; i++) {
+      if (i !== keywordIdxList.length - 1 && keywordIdxList[i][1] > keywordIdxList[i + 1][0]) {
+        refinedKeywordIdxList.push([
+          Math.min(...keywordIdxList[i], ...keywordIdxList[i + 1]),
+          Math.max(...keywordIdxList[i], ...keywordIdxList[i + 1]),
+        ]);
+        i++;
+      } else {
+        refinedKeywordIdxList.push(keywordIdxList[i]);
+      }
+    }
+    const userAnswerHTML =
+      refinedKeywordIdxList.length > 0
+        ? `<span>${result?.userAnswer.substring(0, refinedKeywordIdxList[0][0])}</span>` +
+          refinedKeywordIdxList
+            ?.map((keywordIdx, idx) =>
+              idx !== refinedKeywordIdxList.length - 1
+                ? `<span style="color: ${COLOR.PRIMARY}">${result?.userAnswer.substring(
+                    keywordIdx[0],
+                    keywordIdx[1] + 1,
+                  )}</span>` +
+                  `<span>${result?.userAnswer.substring(
+                    keywordIdx[1] + 1,
+                    refinedKeywordIdxList[idx + 1][0],
+                  )}</span>`
+                : `<span style="color: ${COLOR.PRIMARY}">${result?.userAnswer.substring(
+                    keywordIdx[0],
+                    keywordIdx[1] + 1,
+                  )}</span>` + `<span>${result?.userAnswer.substring(keywordIdx[1] + 1)}</span>`,
+            )
+            .join('')
+        : result?.userAnswer;
+    document
+      .getElementById(USER_ANSWER_DOM_ID)
+      ?.insertAdjacentHTML('afterbegin', userAnswerHTML ?? '');
+  };
+
   useEffect(() => {
     mutate();
   }, []);
+
+  useEffect(() => {
+    createUserAnswerDOM();
+  });
 
   if (!id) return <></>;
   if (isLoading)
@@ -85,7 +143,7 @@ export default function ResultPage() {
                 </li>
               ))}
             </ul>
-            <TextBox className={answerContentStyle}>{userAnswer}</TextBox>
+            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
           </div>
         }
         bottomContent={
