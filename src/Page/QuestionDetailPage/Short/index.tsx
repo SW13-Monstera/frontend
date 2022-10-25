@@ -5,6 +5,9 @@ import {
   answerInputContentStyle,
   resultAnswerStyle,
   resultWrapperStyle,
+  gapStyle,
+  answerBoxWrapperStyle,
+  showAnswerButtonStyle,
 } from './style.css';
 import { useParams } from 'react-router-dom';
 import { useState, KeyboardEvent } from 'react';
@@ -21,6 +24,8 @@ import { useQuery } from 'react-query';
 import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
 import { MetaTag } from '../../utils/MetaTag';
 import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
+import { ColumnBox, RowBox } from '../../../Component/Box/CustomBox';
+import { hiddenStyle } from '../Long/style.css';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
@@ -30,9 +35,11 @@ export function ShortQuestionDetailPage() {
     { refetchOnWindowFocus: false },
   );
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
+  const [isAnswerShown, setIsAnswerShown] = useState<boolean>(false);
 
   const resetResult = () => {
     setResult(null);
+    setIsAnswerShown(false);
   };
 
   function onKeyDown(event: KeyboardEvent) {
@@ -72,22 +79,42 @@ export function ShortQuestionDetailPage() {
       </div>
       <div className={resultWrapperStyle}>
         {result ? (
-          <>
-            <MyScoreBox score={result.score} />
+          <ColumnBox className={gapStyle}>
             <button
-              className={
-                result?.isAnswer ? resultAnswerStyle['correct'] : resultAnswerStyle['wrong']
-              }
-              onClick={resetResult}
+              className={isAnswerShown ? hiddenStyle : showAnswerButtonStyle}
+              onClick={() => {
+                setIsAnswerShown(true);
+              }}
             >
-              {result.isAnswer ? (
-                <OIcon fill={COLOR.GREEN} width='1.5rem' height='1.5rem' />
-              ) : (
-                <XIcon fill={COLOR.RED} width='1.5rem' height='1.5rem' />
-              )}
-              <div>{result.userAnswer}</div>
+              정답 보기
             </button>
-          </>
+            <RowBox className={answerBoxWrapperStyle}>
+              <MyScoreBox score={result.score} />
+              <button
+                className={
+                  isAnswerShown
+                    ? resultAnswerStyle['shown']
+                    : result?.isAnswer
+                    ? resultAnswerStyle['correct']
+                    : resultAnswerStyle['wrong']
+                }
+                onClick={resetResult}
+              >
+                {isAnswerShown ? (
+                  <div>{result.correctAnswer}</div>
+                ) : (
+                  <>
+                    {result.isAnswer ? (
+                      <OIcon fill={COLOR.GREEN} width='1.5rem' height='1.5rem' />
+                    ) : (
+                      <XIcon fill={COLOR.RED} width='1.5rem' height='1.5rem' />
+                    )}
+                    {result.userAnswer}
+                  </>
+                )}
+              </button>
+            </RowBox>
+          </ColumnBox>
         ) : (
           <input
             id='answer'

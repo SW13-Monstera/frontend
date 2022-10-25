@@ -107,4 +107,22 @@ export const resultAnswerStyle = styleVariants({
       animationIterationCount: 10,
     },
   ],
+  shown: [resultBoxWrapperStyle, { color: COLOR.PRIMARY, backgroundColor: COLOR.BACKGROUND.BLUE }],
+});
+
+export const gapStyle = style({
+  gap: '1rem',
+});
+
+export const answerBoxWrapperStyle = style({
+  gap: '1rem',
+  alignSelf: 'flex-end',
+});
+
+export const showAnswerButtonStyle = style({
+  color: themeColors.text[3],
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+  alignSelf: 'flex-end',
 });
