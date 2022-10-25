@@ -81,7 +81,7 @@ export function ShortQuestionDetailPage() {
         {result ? (
           <ColumnBox className={gapStyle}>
             <button
-              className={isAnswerShown ? hiddenStyle : showAnswerButtonStyle}
+              className={isAnswerShown || result.isAnswer ? hiddenStyle : showAnswerButtonStyle}
               onClick={() => {
                 setIsAnswerShown(true);
               }}
