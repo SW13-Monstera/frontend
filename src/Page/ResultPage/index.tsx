@@ -10,11 +10,12 @@ import {
   numberLineChartWrapperStyle,
   numberLineChartTitleStyle,
   numberLineChartStrongTitleStyle,
+  contentElementStyle,
+  contentListStyle,
 } from './style.css';
 import { ILongProblemResultData } from '../../types/api/problem';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useMutation } from 'react-query';
-import { useEffect } from 'react';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
 import { MarkdownBox } from '../../Component/Box/MarkdownBox';
 import { MetaTag } from '../utils/MetaTag';
@@ -24,6 +25,7 @@ import { MyScoreBox } from '../../Component/Box/MyScoreBox';
 import { NumberLineChart } from '../../Component/Chart/NumberLineChart';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
+import { useEffect } from 'react';
 
 export default function ResultPage() {
   const { id } = useParams();
@@ -43,7 +45,7 @@ export default function ResultPage() {
   if (!id) return <></>;
   if (isLoading)
     return (
-      <SkeletonLongProblemResultPage title={title} userAnswer={userAnswer} id={id} tags={[]} />
+      <SkeletonLongProblemResultPage title={title} userAnswer={userAnswer} id={id!} tags={[]} />
     );
 
   return (
@@ -57,17 +59,6 @@ export default function ResultPage() {
         isResultPage={true}
         leftSideContent={
           <div className={contentStyle}>
-            <h3 className={subtitleStyle}>내 답안</h3>
-            <ul className={keywordListStyle}>
-              {result?.keywords?.map(({ id, content, isExist }) => (
-                <KeywordBox name={content} isIncluded={isExist} key={id} />
-              ))}
-            </ul>
-            <div className={answerContentStyle}>{userAnswer}</div>
-          </div>
-        }
-        rightSideContent={
-          <div className={contentStyle}>
             <h3 className={subtitleStyle}>모범 답안</h3>
             <TextBox>
               <div className={standardAnswerContentStyle}>
@@ -75,6 +66,26 @@ export default function ResultPage() {
               </div>
             </TextBox>
             <MyScoreBox score={result?.score} className={myScoreStyle} />
+          </div>
+        }
+        rightSideContent={
+          <div className={contentStyle}>
+            <h3 className={subtitleStyle}>내 답안</h3>
+            <h4>키워드 채점 기준</h4>
+            <ul className={keywordListStyle}>
+              {result?.keywords?.map(({ id, content, isExist }) => (
+                <KeywordBox name={content} isIncluded={isExist} key={id} />
+              ))}
+            </ul>
+            <h4>내용 채점 기준</h4>
+            <ul className={contentListStyle}>
+              {result?.contents?.map(({ id, content, isExist }) => (
+                <li key={id} className={contentElementStyle[isExist ? 'true' : 'false']}>
+                  {content}
+                </li>
+              ))}
+            </ul>
+            <TextBox className={answerContentStyle}>{userAnswer}</TextBox>
           </div>
         }
         bottomContent={

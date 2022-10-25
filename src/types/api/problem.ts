@@ -31,6 +31,7 @@ export interface ILongProblemResultData extends ILongProblemDetailResponseData {
   problemId: number;
   score: number;
   keywords: IkeywordResult[];
+  contents: IContentResult[];
   userAnswer: string;
   standardAnswer: string;
 }
@@ -94,4 +95,10 @@ export interface IkeywordResult {
   content: string;
   isExist: boolean;
   idx: number[];
+}
+
+export interface IContentResult {
+  id: number;
+  content: string;
+  isExist: boolean;
 }
