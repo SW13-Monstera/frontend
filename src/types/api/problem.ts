@@ -49,6 +49,7 @@ export interface IShortProblemResultData extends IShortProblemDetailResponseData
   userAnswer: string;
   isAnswer: boolean;
   answerLength: number;
+  correctAnswer: string;
 }
 
 export interface IMultipleProblemDetailResponseData extends IProblemDetailResponseData {
