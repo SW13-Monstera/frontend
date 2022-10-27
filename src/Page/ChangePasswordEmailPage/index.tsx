@@ -10,6 +10,8 @@ import logoWhite from '../../assets/images/csbroker-white-main.png';
 import { validateEmail } from '../../utils/validateEmail';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { PageTemplate } from '../../Template';
+import { MailIcon } from '../../Icon/MailIcon';
+import { themeColors } from '../../styles/theme.css';
 
 export function ChangePasswordEmailPage() {
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ export function ChangePasswordEmailPage() {
             placeholder='이메일을 입력해주세요'
             name='email'
             label=''
+            icon={<MailIcon width='1.25rem' height='1rem' fill={themeColors.text[3]} />}
           ></DefaultInputBox>
           <TextButton
             type={BUTTON_TYPE.SUBMIT}

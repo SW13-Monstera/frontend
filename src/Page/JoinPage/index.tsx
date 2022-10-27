@@ -1,15 +1,7 @@
 import DefaultInputBox from '../../Component/Box/InputBox/DefaultInputBox';
 import TextButton from '../../Component/Button/TextButton';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import {
-  dividerStyle,
-  inputListStyle,
-  linkStyle,
-  noticeStyle,
-  oauthJoinTitleStyle,
-  pageStyle,
-  titleStyle,
-} from './style.css';
+import { inputListStyle, linkStyle, noticeStyle, pageStyle, titleStyle } from './style.css';
 import { INPUT_TYPE } from '../../constants/input';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { IJoinRequest } from '../../types/auth';
@@ -24,8 +16,7 @@ import { MailIcon } from '../../Icon/MailIcon';
 import { themeColors } from '../../styles/theme.css';
 import { LockIcon } from '../../Icon/LockIcon';
 import { SmileIcon } from '../../Icon/SmileIcon';
-import { Divider } from '../../Component/Divider';
-import OAuthButtonList from '../../Organism/ButtonList/OAuthButtonList';
+import OAuthButtonListSection from '../../Organism/ButtonList/OAuthButtonListSection';
 
 function JoinPage() {
   const navigate = useNavigate();
@@ -81,7 +72,7 @@ function JoinPage() {
           <form className={inputListStyle} id='join-form'>
             <DefaultInputBox
               id='email'
-              placeholder='이메일을 입력해주세요'
+              placeholder='example@csbroker.com'
               type={INPUT_TYPE.EMAIL}
               name='email'
               label='이메일'
@@ -132,9 +123,7 @@ function JoinPage() {
             >
               회원가입
             </TextButton>
-            <Divider className={dividerStyle} />
-            <div className={oauthJoinTitleStyle}>간편 회원가입</div>
-            <OAuthButtonList />
+            <OAuthButtonListSection>간편 회원가입</OAuthButtonListSection>
           </form>
         </div>
       </PageTemplate>

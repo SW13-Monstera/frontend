@@ -11,7 +11,7 @@ export const oauthButtonStyle = style({
 
   padding: '0.75rem 1.5rem',
 
-  width: '30rem',
+  width: '31.5rem',
   height: '3rem',
 
   borderRadius: '8px',

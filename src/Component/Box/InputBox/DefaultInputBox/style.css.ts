@@ -53,12 +53,17 @@ export const defaultInputTagStyle = style({
   borderRadius: '8px',
   verticalAlign: 'middle',
 
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+  color: themeColors.text[1],
+
   ':focus': {
     border: COLOR.PRIMARY,
     background: themeColors.background.FF,
     filter: `drop-shadow(0px 2px 8px ${themeColors.shadow[1]})`,
   },
   '::placeholder': {
+    fontWeight: '300',
     color: COLOR.TEXT[9],
   },
 });
