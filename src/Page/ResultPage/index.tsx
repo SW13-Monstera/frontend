@@ -41,11 +41,6 @@ export default function ResultPage() {
 
   const { data: result, isLoading, mutate } = useMutation<ILongProblemResultData>(handleSubmit);
 
-  const compareListRange = (arr1: number[], arr2: number[]) => {
-    if (arr1[1] > arr2[0]) return [Math.min(...arr1, ...arr2), Math.max(...arr1, ...arr2)];
-    return [arr1, arr2];
-  };
-
   const createUserAnswerDOM = () => {
     const keywordIdxList =
       result?.keywords
