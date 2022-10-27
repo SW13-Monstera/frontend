@@ -9,4 +9,5 @@ export interface IInputBox {
   defaultValue?: string;
   isWarning?: boolean;
   warningMessage?: string;
+  icon?: React.ReactNode;
 }

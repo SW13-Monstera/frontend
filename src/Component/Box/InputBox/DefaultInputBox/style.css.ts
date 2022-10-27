@@ -23,8 +23,10 @@ export const defaultInputStyle = style({
 });
 
 export const defaultInputBoxStyle = style({
+  position: 'relative',
   display: 'flex',
   alignItems: 'center',
+  gap: '0.75rem',
 
   width: '100%',
   height: '3rem',
@@ -33,9 +35,29 @@ export const defaultInputBoxStyle = style({
   color: 'inherit',
   background: themeColors.background.F8,
   borderRadius: '8px',
+});
 
-  padding: '0 1rem',
+export const defaultInputIconStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0 0 0 1rem',
+  zIndex: 1,
+});
 
+export const defaultInputTagStyle = style({
+  position: 'absolute',
+  padding: '0 3rem',
+  width: '100%',
+  height: '100%',
+  background: themeColors.background.F8,
+  borderRadius: '8px',
+  verticalAlign: 'middle',
+
+  ':focus': {
+    border: COLOR.PRIMARY,
+    background: themeColors.background.FF,
+    filter: `drop-shadow(0px 2px 8px ${themeColors.shadow[1]})`,
+  },
   '::placeholder': {
     color: COLOR.TEXT[9],
   },

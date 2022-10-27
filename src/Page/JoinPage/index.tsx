@@ -13,6 +13,10 @@ import { MouseEvent } from 'react';
 import { validateEmail } from '../../utils/validateEmail';
 import { PageTemplate } from '../../Template';
 import { MetaTag } from '../utils/MetaTag';
+import { MailIcon } from '../../Icon/MailIcon';
+import { themeColors } from '../../styles/theme.css';
+import { LockIcon } from '../../Icon/LockIcon';
+import { SmileIcon } from '../../Icon/SmileIcon';
 
 function JoinPage() {
   const navigate = useNavigate();
@@ -72,6 +76,8 @@ function JoinPage() {
               type={INPUT_TYPE.EMAIL}
               name='email'
               label='이메일'
+              warningMessage='이메일은 필수 항목입니다.'
+              icon={<MailIcon width='1.25rem' height='1rem' fill={themeColors.text[3]} />}
             />
             <DefaultInputBox
               id='password'
@@ -79,6 +85,8 @@ function JoinPage() {
               type={INPUT_TYPE.PASSWORD}
               name='password'
               label='비밀번호'
+              warningMessage='비밀번호는 필수 항목입니다.'
+              icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
             />
             <DefaultInputBox
               id='password-confirm'
@@ -86,12 +94,15 @@ function JoinPage() {
               type={INPUT_TYPE.PASSWORD}
               name='password-confirm'
               label='비밀번호 확인'
+              warningMessage='비밀번호가 일치하지 않습니다.'
+              icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
             />
             <DefaultInputBox
               id='nickname'
               placeholder='닉네임을 입력해주세요'
               name='nickname'
               label='닉네임'
+              icon={<SmileIcon width='1.25rem' height='1.25rem' fill={themeColors.text[3]} />}
             ></DefaultInputBox>
             <TextButton
               type={BUTTON_TYPE.SUBMIT}
