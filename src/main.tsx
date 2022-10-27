@@ -9,7 +9,11 @@ import ReactGA from 'react-ga';
 import { HelmetProvider } from 'react-helmet-async';
 import { ErrorBoundary } from './ErrorBoundary';
 
-ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID);
+const GA_TRACKING_ID = { development: 'G-SX59LH5T59', production: 'G-5YDJ48WT3K' };
+
+ReactGA.initialize(
+  window.location.href.includes('dev') ? GA_TRACKING_ID.development : GA_TRACKING_ID.production,
+);
 
 const rootElement = document.getElementById('root');
 if (rootElement === null) throw new Error('Root container missing in index.html');
