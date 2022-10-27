@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
 import { INPUT_TYPE } from '../../constants/input';
+import { LockIcon } from '../../Icon/LockIcon';
+import { themeColors } from '../../styles/theme.css';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { passwordFormStyle } from './style.css';
 
@@ -36,6 +38,7 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
         name='password'
         label='비밀번호'
         onChange={configureIsPasswordSame}
+        icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
       />
       <DefaultInputBox
         id='password-confirm'
@@ -45,7 +48,8 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
         label='비밀번호 확인'
         onChange={configureIsPasswordSame}
         isWarning={!isPasswordSame}
-        warningMessage='비밀번호가 일치하지 않습니다.'
+        warningMessages={[{ text: '비밀번호가 일치하지 않습니다.', isWarning: false }]}
+        icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
       />
       <TextButton
         type={BUTTON_TYPE.SUBMIT}

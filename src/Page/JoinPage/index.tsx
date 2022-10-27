@@ -76,7 +76,7 @@ function JoinPage() {
               type={INPUT_TYPE.EMAIL}
               name='email'
               label='이메일'
-              warningMessage='이메일은 필수 항목입니다.'
+              warningMessages={[{ text: '이메일은 필수 항목입니다.', isWarning: false }]}
               icon={<MailIcon width='1.25rem' height='1rem' fill={themeColors.text[3]} />}
             />
             <DefaultInputBox
@@ -85,8 +85,14 @@ function JoinPage() {
               type={INPUT_TYPE.PASSWORD}
               name='password'
               label='비밀번호'
-              warningMessage='비밀번호는 필수 항목입니다.'
+              warningMessages={[
+                { text: '영문/숫자/특수문자 2가지 이상 포함', isWarning: true },
+                { text: '8자 이상 32자 이하 입력 (공백 제외)', isWarning: false },
+                { text: '연속 3자 이상 동일한 문자/숫자 제외', isWarning: false },
+                { text: '비밀번호에 사용할 수 없는 문자가 포함되어 있습니다.', isWarning: false },
+              ]}
               icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
+              isWarning
             />
             <DefaultInputBox
               id='password-confirm'
@@ -94,7 +100,7 @@ function JoinPage() {
               type={INPUT_TYPE.PASSWORD}
               name='password-confirm'
               label='비밀번호 확인'
-              warningMessage='비밀번호가 일치하지 않습니다.'
+              warningMessages={[{ text: '비밀번호가 일치하지 않습니다.', isWarning: false }]}
               icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
             />
             <DefaultInputBox

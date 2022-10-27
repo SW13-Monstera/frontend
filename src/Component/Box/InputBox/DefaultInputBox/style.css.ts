@@ -67,7 +67,3 @@ export const defaultInputTagStyle = style({
     color: COLOR.TEXT[9],
   },
 });
-
-export const warningStyle = style({
-  color: COLOR.RED,
-});

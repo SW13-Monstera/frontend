@@ -1,11 +1,11 @@
 import { IInputBox } from '../../../../types/box';
+import { WarningTextList } from '../../../Typography/WarningText';
 import {
   defaultInputBoxStyle,
   defaultInputIconStyle,
   defaultInputStyle,
   defaultInputTagStyle,
   defaultInputWrapperStyle,
-  warningStyle,
 } from './style.css';
 
 function DefaultInputBox({
@@ -16,7 +16,7 @@ function DefaultInputBox({
   name,
   label,
   isWarning = false,
-  warningMessage = '',
+  warningMessages = [],
   onChange,
   defaultValue,
   icon,
@@ -40,7 +40,7 @@ function DefaultInputBox({
           </input>
         </div>
       </div>
-      {isWarning ? <div className={warningStyle}>{warningMessage}</div> : <></>}
+      <WarningTextList isShown={isWarning} warningList={warningMessages} />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { IWarningText } from './input';
+
 export interface IInputBox {
   id: string;
   name: string;
@@ -8,6 +10,6 @@ export interface IInputBox {
   onChange?: () => void;
   defaultValue?: string;
   isWarning?: boolean;
-  warningMessage?: string;
+  warningMessages?: IWarningText[];
   icon?: React.ReactNode;
 }
