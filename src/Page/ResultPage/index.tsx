@@ -33,15 +33,14 @@ const USER_ANSWER_DOM_ID = 'user-answer';
 export default function ResultPage() {
   const { id } = useParams();
   const { userAnswer, title } = useLocation().state as ILongProblemResultLocationState;
+  const { data: result, isLoading, mutate } = useMutation<ILongProblemResultData>(handleSubmit);
 
   function handleSubmit() {
     if (!id) throw INVALID_ID_ERROR;
     return problemApiWrapper.longProblemResult(id, userAnswer);
   }
 
-  const { data: result, isLoading, mutate } = useMutation<ILongProblemResultData>(handleSubmit);
-
-  const createUserAnswerDOM = () => {
+  const createKeywordIdxList = () => {
     const keywordIdxList =
       result?.keywords
         .filter((e) => e.idx.length > 0)
@@ -61,19 +60,25 @@ export default function ResultPage() {
         refinedKeywordIdxList.push(keywordIdxList[i]);
       }
     }
+    return refinedKeywordIdxList;
+  };
+
+  const createUserAnswerDOM = () => {
+    console.log(1);
+    const keywordIdxList = createKeywordIdxList();
     const userAnswerHTML =
-      refinedKeywordIdxList.length > 0
-        ? `<span>${result?.userAnswer.substring(0, refinedKeywordIdxList[0][0])}</span>` +
-          refinedKeywordIdxList
+      keywordIdxList.length > 0
+        ? `<span>${result?.userAnswer.substring(0, keywordIdxList[0][0])}</span>` +
+          keywordIdxList
             ?.map((keywordIdx, idx) =>
-              idx !== refinedKeywordIdxList.length - 1
+              idx !== keywordIdxList.length - 1
                 ? `<span style="color: ${COLOR.PRIMARY}">${result?.userAnswer.substring(
                     keywordIdx[0],
                     keywordIdx[1] + 1,
                   )}</span>` +
                   `<span>${result?.userAnswer.substring(
                     keywordIdx[1] + 1,
-                    refinedKeywordIdxList[idx + 1][0],
+                    keywordIdxList[idx + 1][0],
                   )}</span>`
                 : `<span style="color: ${COLOR.PRIMARY}">${result?.userAnswer.substring(
                     keywordIdx[0],
@@ -92,8 +97,10 @@ export default function ResultPage() {
   }, []);
 
   useEffect(() => {
-    createUserAnswerDOM();
-  });
+    if (document.readyState === 'complete') {
+      createUserAnswerDOM();
+    }
+  }, [result]);
 
   if (!id) return <></>;
   if (isLoading)
@@ -138,7 +145,9 @@ export default function ResultPage() {
                 </li>
               ))}
             </ul>
-            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
+            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle}>
+              {}
+            </TextBox>
           </div>
         }
         bottomContent={
