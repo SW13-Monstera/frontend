@@ -149,9 +149,7 @@ export default function ResultPage() {
                 </li>
               ))}
             </ul>
-            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle}>
-              {}
-            </TextBox>
+            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
           </div>
         }
         bottomContent={
