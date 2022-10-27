@@ -47,24 +47,28 @@ export default function ResultPage() {
         .map((keyword) => keyword.idx)
         .sort((a, b) => a[0] - b[0]) ?? [];
 
-    const refinedKeywordIdxList: number[][] = [];
-
-    for (let i = 0; i < keywordIdxList.length; i++) {
-      if (i !== keywordIdxList.length - 1 && keywordIdxList[i][1] > keywordIdxList[i + 1][0]) {
-        refinedKeywordIdxList.push([
-          Math.min(...keywordIdxList[i], ...keywordIdxList[i + 1]),
-          Math.max(...keywordIdxList[i], ...keywordIdxList[i + 1]),
-        ]);
-        i++;
-      } else {
-        refinedKeywordIdxList.push(keywordIdxList[i]);
-      }
-    }
+    let kcnt = 0;
+    const refinedKeywordIdxList = keywordIdxList
+      .map((_, idx) => {
+        const kidx = idx + kcnt;
+        if (
+          idx !== keywordIdxList.length - 1 &&
+          keywordIdxList[kidx][1] > keywordIdxList[kidx + 1][0]
+        ) {
+          kcnt++;
+          return [
+            Math.min(...keywordIdxList[kidx], ...keywordIdxList[kidx + 1]),
+            Math.max(...keywordIdxList[kidx], ...keywordIdxList[kidx + 1]),
+          ];
+        } else {
+          return keywordIdxList[kidx];
+        }
+      })
+      .filter((e) => e);
     return refinedKeywordIdxList;
   };
 
   const createUserAnswerDOM = () => {
-    console.log(1);
     const keywordIdxList = createKeywordIdxList();
     const userAnswerHTML =
       keywordIdxList.length > 0
