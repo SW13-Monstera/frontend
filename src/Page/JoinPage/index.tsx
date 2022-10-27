@@ -1,12 +1,12 @@
 import DefaultInputBox from '../../Component/Box/InputBox/DefaultInputBox';
 import TextButton from '../../Component/Button/TextButton';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import { inputListStyle, pageStyle, titleStyle } from './style.css';
+import { inputListStyle, linkStyle, noticeStyle, pageStyle, titleStyle } from './style.css';
 import HorizontalOAuthButtonList from '../../Organism/ButtonList/HorizontalOAuthButtonList';
 import { INPUT_TYPE } from '../../constants/input';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { IJoinRequest } from '../../types/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 import { toast } from 'react-toastify';
 import { MouseEvent } from 'react';
@@ -104,6 +104,17 @@ function JoinPage() {
               label='닉네임'
               icon={<SmileIcon width='1.25rem' height='1.25rem' fill={themeColors.text[3]} />}
             ></DefaultInputBox>
+            <p className={noticeStyle}>
+              회원가입시{' '}
+              <Link to={URL.TERMS_OF_SERVICE} className={linkStyle}>
+                이용약관
+              </Link>{' '}
+              및{' '}
+              <Link to={URL.PRIVACY_POLICY} className={linkStyle}>
+                개인정보처리방침
+              </Link>
+              에 동의하는 것으로 간주합니다.
+            </p>
             <TextButton
               type={BUTTON_TYPE.SUBMIT}
               theme={BUTTON_THEME.PRIMARY}

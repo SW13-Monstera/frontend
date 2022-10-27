@@ -60,3 +60,14 @@ export const oauthButtonListStyle = style({
   justifyContent: 'center',
   gap: '1.5rem',
 });
+
+export const noticeStyle = style({
+  fontWeight: '400',
+  fontSize: '0.9375rem',
+  lineHeight: '1.375rem',
+  color: COLOR.TEXT[7],
+});
+
+export const linkStyle = style({
+  textDecoration: 'underline',
+});
