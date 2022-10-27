@@ -1,8 +1,15 @@
 import DefaultInputBox from '../../Component/Box/InputBox/DefaultInputBox';
 import TextButton from '../../Component/Button/TextButton';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import { inputListStyle, linkStyle, noticeStyle, pageStyle, titleStyle } from './style.css';
-import HorizontalOAuthButtonList from '../../Organism/ButtonList/HorizontalOAuthButtonList';
+import {
+  dividerStyle,
+  inputListStyle,
+  linkStyle,
+  noticeStyle,
+  oauthJoinTitleStyle,
+  pageStyle,
+  titleStyle,
+} from './style.css';
 import { INPUT_TYPE } from '../../constants/input';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { IJoinRequest } from '../../types/auth';
@@ -17,6 +24,8 @@ import { MailIcon } from '../../Icon/MailIcon';
 import { themeColors } from '../../styles/theme.css';
 import { LockIcon } from '../../Icon/LockIcon';
 import { SmileIcon } from '../../Icon/SmileIcon';
+import { Divider } from '../../Component/Divider';
+import OAuthButtonList from '../../Organism/ButtonList/OAuthButtonList';
 
 function JoinPage() {
   const navigate = useNavigate();
@@ -123,7 +132,9 @@ function JoinPage() {
             >
               회원가입
             </TextButton>
-            <HorizontalOAuthButtonList>간편 회원가입</HorizontalOAuthButtonList>
+            <Divider className={dividerStyle} />
+            <div className={oauthJoinTitleStyle}>간편 회원가입</div>
+            <OAuthButtonList />
           </form>
         </div>
       </PageTemplate>

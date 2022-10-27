@@ -71,3 +71,18 @@ export const noticeStyle = style({
 export const linkStyle = style({
   textDecoration: 'underline',
 });
+
+export const dividerStyle = style({
+  borderColor: themeColors.line.e,
+});
+
+export const oauthJoinTitleStyle = style({
+  fontWeight: '400',
+  fontSize: '16px',
+  lineHeight: '23px',
+
+  color: '#777777',
+  alignSelf: 'center',
+
+  padding: '1rem 0 0 0',
+});
