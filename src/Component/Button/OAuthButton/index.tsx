@@ -1,5 +1,6 @@
 import { BUTTON_TYPE } from '../../../types/button';
 import { oauthButtonThemeStyle, oauthIconStyle } from './style.css';
+import { API_BASE_URL, APP_URL } from '../../../constants/api';
 
 interface IOAuthButton {
   oAuth: TOAuth;
@@ -12,10 +13,7 @@ export const OAUTH = { GITHUB: 'github', GOOGLE: 'google' } as const;
 export type TOAuth = typeof OAUTH[keyof typeof OAUTH];
 
 function OAuthButton({ oAuth, icon, text }: IOAuthButton) {
-  const REDIRECT_URL = `${
-    import.meta.env.VITE_API_BASE_URL
-  }/oauth2/authorization/${oAuth}?redirect_uri=${import.meta.env.VITE_APP_URL}/oauth/redirect`;
-
+  const REDIRECT_URL = `${API_BASE_URL}/oauth2/authorization/${oAuth}?redirect_uri=${APP_URL}/oauth/redirect`;
   return (
     <a href={REDIRECT_URL}>
       <button className={oauthButtonThemeStyle[oAuth]} type={BUTTON_TYPE.SUBMIT}>

@@ -4,3 +4,18 @@ export const ROLES = {
   ROLE_ADMIN: 'ROLE_ADMIN',
   ROLE_USER: 'ROLE_USER',
 };
+
+export const API_BASE_URL =
+  window.location.href.includes('dev') || window.location.href.includes('localhost')
+    ? 'https://dev.api.csbroker.io'
+    : 'https://api.csbroker.io';
+
+export const APP_URL =
+  window.location.href.includes('dev') || window.location.href.includes('localhost')
+    ? 'https://dev.csbroker.io'
+    : 'https://csbroker.io';
+
+export const GA_TRACKING_ID =
+  window.location.href.includes('dev') || window.location.href.includes('localhost')
+    ? 'G-SX59LH5T59'
+    : 'G-5YDJ48WT3K';
