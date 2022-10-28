@@ -1,11 +1,16 @@
 import { textBoxStyle } from './style.css';
 
 interface ITextBoxProps {
-  children: JSX.Element | string;
+  children?: React.ReactNode;
   className?: string;
+  id?: string;
 }
 
-function TextBox({ children, className }: ITextBoxProps) {
-  return <div className={`${textBoxStyle} ${className}`}>{children}</div>;
+function TextBox({ children, className, id }: ITextBoxProps) {
+  return (
+    <div id={id} className={`${textBoxStyle} ${className}`}>
+      {children}
+    </div>
+  );
 }
 export default TextBox;

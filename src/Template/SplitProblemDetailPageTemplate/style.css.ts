@@ -19,8 +19,8 @@ export const contentWrapperStyle = style({
 });
 
 export const contentWrapperSideStyle = styleVariants({
-  left: [contentWrapperStyle, { padding: '2rem 0 2rem 2rem' }],
-  right: [contentWrapperStyle, { padding: '2rem 2rem 2rem 0' }],
+  left: [contentWrapperStyle, { padding: '1rem 0 1rem 1rem' }],
+  right: [contentWrapperStyle, { padding: '1rem 1rem 1rem 0' }],
 });
 
 export const contentTitleStyle = style({

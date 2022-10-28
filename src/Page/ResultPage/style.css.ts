@@ -1,5 +1,5 @@
 import { themeColors } from './../../styles/theme.css';
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import baseFontStyle from '../../styles/font.css';
 import { COLOR } from '../../constants/color';
 
@@ -46,6 +46,7 @@ export const answerContentStyle = style({
   lineHeight: '1.8125rem',
   color: themeColors.text[5],
   wordBreak: 'break-all',
+  padding: '1.5rem 1rem',
 });
 
 export const standardAnswerContentStyle = style([
@@ -59,10 +60,9 @@ export const keywordListStyle = style({
   display: 'flex',
   alignItems: 'start',
   justifyContent: 'start',
-  gap: '0.9375rem',
+  gap: '0.5rem',
   flexWrap: 'wrap',
   width: '100%',
-  overflowX: 'auto',
 });
 
 export const contentStyle = style({
@@ -138,3 +138,21 @@ export const numberLineChartStrongTitleStyle = style([
     color: COLOR.PRIMARY,
   },
 ]);
+
+export const contentListStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
+});
+
+export const contentElementBaseStyle = style({
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+  listStyleType: 'disc',
+});
+
+export const contentElementStyle = styleVariants({
+  true: [contentElementBaseStyle, { color: COLOR.PRIMARY }],
+  false: [contentElementBaseStyle, { color: themeColors.text[5] }],
+});
