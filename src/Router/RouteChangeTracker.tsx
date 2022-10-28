@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import { GA_TRACKING_ID } from '../constants/api';
 
 export const RouteChangeTracker = () => {
   const location = useLocation();
@@ -8,7 +9,7 @@ export const RouteChangeTracker = () => {
 
   useEffect(() => {
     if (window.location.href.includes('csbroker.io')) {
-      ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID);
+      ReactGA.initialize(GA_TRACKING_ID);
     }
     setInitialized(true);
   }, []);
