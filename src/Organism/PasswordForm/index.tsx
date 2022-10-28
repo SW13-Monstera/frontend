@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
 import { INPUT_TYPE } from '../../constants/input';
@@ -12,22 +12,12 @@ interface IPasswordForm {
 }
 
 export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
-  const [isPasswordSame, setIsPasswordSame] = useState(true);
-  const [isActivated, setIsActivated] = useState(false);
+  const [passwordValue, setPasswordValue] = useState('');
+  const [passwordConfirmValue, setPasswordConfirmValue] = useState('');
 
-  const configureIsPasswordSame = () => {
-    const passwordValue = (document.getElementById('password') as HTMLInputElement).value;
-    const passwordConfirmValue = (document.getElementById('password-confirm') as HTMLInputElement)
-      .value;
-    if (!passwordValue) return;
-    setIsPasswordSame(passwordValue === passwordConfirmValue);
-    setIsActivated(passwordValue === passwordConfirmValue);
-  };
-
-  const submit = () => {
-    const passwordValue = (document.getElementById('password') as HTMLInputElement).value;
-    submitNewPassword(passwordValue);
-  };
+  const isPasswordSame = useMemo(() => {
+    return passwordValue === passwordConfirmValue;
+  }, [passwordValue, passwordConfirmValue]);
 
   return (
     <div className={passwordFormStyle}>
@@ -37,7 +27,9 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
         type={INPUT_TYPE.PASSWORD}
         name='password'
         label='비밀번호'
-        onChange={configureIsPasswordSame}
+        onChange={(event) => {
+          setPasswordValue(event.target.value);
+        }}
         icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
       />
       <DefaultInputBox
@@ -46,7 +38,9 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
         type={INPUT_TYPE.PASSWORD}
         name='password-confirm'
         label='비밀번호 확인'
-        onChange={configureIsPasswordSame}
+        onChange={(event) => {
+          setPasswordConfirmValue(event.target.value);
+        }}
         isWarning={!isPasswordSame}
         warningMessages={[{ text: '비밀번호가 일치하지 않습니다.', isWarning: false }]}
         icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
@@ -55,8 +49,8 @@ export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
         type={BUTTON_TYPE.SUBMIT}
         theme={BUTTON_THEME.PRIMARY}
         size={BUTTON_SIZE.LARGE}
-        onClick={submit}
-        isActivated={isActivated}
+        onClick={() => submitNewPassword(passwordValue)}
+        isActivated={isPasswordSame}
       >
         확인
       </TextButton>
