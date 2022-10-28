@@ -48,7 +48,7 @@ export function LoginPage() {
       <MetaTag title='CS Broker - 로그인' />
       <PageTemplate>
         <div className={pageStyle}>
-          x<div className={titleStyle}>로그인</div>
+          <div className={titleStyle}>로그인</div>
           <LoginForm handleSubmit={handleSubmit} />
         </div>
       </PageTemplate>

@@ -26,7 +26,7 @@ function DefaultInputBox({
       <div className={defaultInputStyle}>
         <label htmlFor={id}>{label}</label>
         <div className={defaultInputBoxStyle}>
-          <image className={defaultInputIconStyle}>{icon}</image>
+          <p className={defaultInputIconStyle}>{icon}</p>
           <input
             id={id}
             name={name}
