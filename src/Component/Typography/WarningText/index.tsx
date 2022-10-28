@@ -18,7 +18,11 @@ export const WarningTextList = ({ isShown, warningList }: IWarningTextList) => {
   return (
     <ul className={isShown ? '' : displayNoneStyle}>
       {warningList.map((warningText) => (
-        <WarningText isWarning={false} text={warningText.text} key={warningText.text} />
+        <WarningText
+          isWarning={warningText.isWarning}
+          text={warningText.text}
+          key={warningText.text}
+        />
       ))}
     </ul>
   );

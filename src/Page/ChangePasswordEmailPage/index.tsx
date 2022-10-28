@@ -7,7 +7,7 @@ import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { contentWrapperStyle, descStyle, logoTitleStyle, pageStyle } from './style.css';
 import logo from '../../assets/images/csbroker-main.png';
 import logoWhite from '../../assets/images/csbroker-white-main.png';
-import { validateEmail } from '../../utils/validateEmail';
+import { validateEmail } from '../../utils/validate';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { PageTemplate } from '../../Template';
 import { MailIcon } from '../../Icon/MailIcon';

@@ -10,7 +10,7 @@ export const warningBaseStyle = style({
 
 export const warningStyle = styleVariants({
   true: [warningBaseStyle, { color: COLOR.RED }],
-  false: [warningBaseStyle, { color: COLOR.TEXT[7] }],
+  false: [warningBaseStyle, { display: 'none' }],
 });
 
 export const displayNoneStyle = style({

@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
 import { INPUT_TYPE } from '../../constants/input';
+import { usePasswordConfirm } from '../../hooks/usePasswordConfirm';
 import { LockIcon } from '../../Icon/LockIcon';
 import { themeColors } from '../../styles/theme.css';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
@@ -12,12 +12,8 @@ interface IPasswordForm {
 }
 
 export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
-  const [passwordValue, setPasswordValue] = useState('');
-  const [passwordConfirmValue, setPasswordConfirmValue] = useState('');
-
-  const isPasswordSame = useMemo(() => {
-    return passwordValue === passwordConfirmValue;
-  }, [passwordValue, passwordConfirmValue]);
+  const { passwordValue, setPasswordValue, setPasswordConfirmValue, isPasswordSame } =
+    usePasswordConfirm();
 
   return (
     <div className={passwordFormStyle}>

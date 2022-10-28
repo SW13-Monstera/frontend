@@ -4,7 +4,7 @@ import { useAuthStore } from '../../hooks/useStore';
 import LoginForm from '../../Organism/LoginForm';
 import { PageTemplate } from '../../Template';
 import { setUserInfo } from '../../utils/userInfo';
-import { validateEmail } from '../../utils/validateEmail';
+import { validateEmail } from '../../utils/validate';
 import { MetaTag } from '../utils/MetaTag';
 import { pageStyle, titleStyle } from './style.css';
 
