@@ -1,17 +1,17 @@
 import OAuthButton, { OAUTH } from '../../../Component/Button/OAuthButton';
-import githubLogo from '../../../assets/icons/github.svg';
-import googleLogo from '../../../assets/icons/google.svg';
-import { oauthButtonListStyle, oAuthGithubImgStyle, oAuthGoogleImgStyle } from './style.css';
+import { oauthButtonListStyle } from './style.css';
+import { GithubIcon } from '../../../Icon/GithubIcon';
+import { ReactComponent as GoogleIcon } from '../../../assets/icons/google.svg';
 
 function OAuthButtonList() {
   return (
     <div className={oauthButtonListStyle}>
-      <OAuthButton oAuth={OAUTH.GITHUB}>
-        <img src={githubLogo} alt='github logo' className={oAuthGithubImgStyle} />
-      </OAuthButton>
-      <OAuthButton oAuth={OAUTH.GOOGLE}>
-        <img src={googleLogo} alt='google logo' className={oAuthGoogleImgStyle} />
-      </OAuthButton>
+      <OAuthButton
+        oAuth={OAUTH.GITHUB}
+        icon={<GithubIcon width='1.5rem' height='1.5rem' />}
+        text='깃허브로 로그인'
+      />
+      <OAuthButton oAuth={OAUTH.GOOGLE} icon={<GoogleIcon />} text='구글로 로그인' />
     </div>
   );
 }

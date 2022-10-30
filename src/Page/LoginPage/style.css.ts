@@ -1,13 +1,20 @@
+import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
-import baseFontStyle from '../../styles/font.css';
 
-export const pageWrapperStyle = style({
+export const pageStyle = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '3rem',
+  gap: '1.875rem',
 
-  padding: '2rem',
+  padding: '4rem 0',
 });
-export const pageTitleStyle = style([baseFontStyle.title, {}]);
+
+export const titleStyle = style({
+  fontWeight: '700',
+  fontSize: '1.5rem',
+  lineHeight: '1.125rem',
+  textAlign: 'center',
+  color: themeColors.text[1],
+});

@@ -1,3 +1,6 @@
+import { ChangeEvent } from 'react';
+import { IWarningText } from './input';
+
 export interface IInputBox {
   id: string;
   name: string;
@@ -5,8 +8,9 @@ export interface IInputBox {
   type?: string;
   placeholder?: string;
   children?: JSX.Element | string;
-  onChange?: () => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   defaultValue?: string;
   isWarning?: boolean;
-  warningMessage?: string;
+  warningMessages?: IWarningText[];
+  icon?: React.ReactNode;
 }

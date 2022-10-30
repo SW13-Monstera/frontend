@@ -14,6 +14,8 @@ import { ChangePasswordEmailPage } from './ChangePasswordEmailPage';
 import { ChangePasswordWithoutLoginPage } from './ChangePasswordPageWithoutLogin';
 import { ChangePasswordWithLoginPage } from './ChangePasswordPageWithLogin';
 import { PageNotFoundPage } from './Error/PageNotFoundPage';
+import { TermsOfServicePage } from './Policy/TermsOfServicePage';
+import { PrivacyPolicyPage } from './Policy/PrivacyPolicyPage';
 
 export {
   MainPage,
@@ -32,4 +34,6 @@ export {
   ChangePasswordWithoutLoginPage,
   ChangePasswordWithLoginPage,
   PageNotFoundPage,
+  TermsOfServicePage,
+  PrivacyPolicyPage,
 };
