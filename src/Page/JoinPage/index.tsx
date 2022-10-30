@@ -65,7 +65,7 @@ function JoinPage() {
           <form className={inputListStyle} id='join-form'>
             <DefaultInputBox
               id='email'
-              placeholder='example@csbroker.com'
+              placeholder='이메일을 입력해주세요'
               type={INPUT_TYPE.EMAIL}
               name='email'
               label='이메일'

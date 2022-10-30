@@ -34,7 +34,7 @@ function LoginForm({ handleSubmit }: ILoginForm) {
         <DefaultInputBox
           id='email'
           name='email'
-          placeholder='example@csbroker.com'
+          placeholder='이메일을 입력해주세요'
           type={INPUT_TYPE.EMAIL}
           label='이메일'
           icon={<MailIcon width='1.25rem' height='1rem' fill={themeColors.text[3]} />}
