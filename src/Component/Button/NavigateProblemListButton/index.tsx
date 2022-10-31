@@ -1,26 +1,53 @@
 import { useNavigate } from 'react-router-dom';
 import { COLOR } from '../../../constants/color';
-import { URL } from '../../../constants/url';
 import { useDarkModeStore } from '../../../hooks/useStore';
 import { RightArrowWithLineIcon } from '../../../Icon/RightArrowWithLineIcon';
+import { BUTTON_THEME, TButtonTheme } from '../../../types/button';
 import { CustomButton } from '../CustomButton';
-import { problemListButtonStyle, mobileNotShownStyle } from './style.css';
+import {
+  mobileNotShownStyle,
+  problemListButtonPrimaryStyle,
+  problemListButtonSecondaryStyle,
+} from './style.css';
 
-export const NavigateProblemListButton = () => {
+interface INavigateProblemListButton {
+  mainText: string;
+  subText: string;
+  theme: TButtonTheme;
+  link: string;
+}
+export const NavigateProblemListButton = ({
+  mainText,
+  subText,
+  theme,
+  link,
+}: INavigateProblemListButton) => {
   const { isDark } = useDarkModeStore();
   const navigate = useNavigate();
 
   return (
     <CustomButton
-      className={problemListButtonStyle[isDark ? 'dark' : 'light']}
+      className={
+        theme === BUTTON_THEME.PRIMARY
+          ? problemListButtonPrimaryStyle[isDark ? 'dark' : 'light']
+          : problemListButtonSecondaryStyle[isDark ? 'dark' : 'light']
+      }
       onClick={() => {
-        navigate(URL.PROBLEM_LIST);
+        navigate(link);
       }}
     >
-      <span>모든문제</span>
-      <span className={mobileNotShownStyle}>바로가기</span>
+      <span>{mainText}</span>
+      <span className={mobileNotShownStyle}>{subText}</span>
       <RightArrowWithLineIcon
-        fill={isDark ? COLOR.WHITE : COLOR.PRIMARY}
+        fill={
+          theme === BUTTON_THEME.PRIMARY
+            ? isDark
+              ? COLOR.WHITE
+              : COLOR.PRIMARY
+            : isDark
+            ? COLOR.LINE.c
+            : COLOR.TEXT[1]
+        }
         width='1.25rem'
         height='1.25rem'
       />

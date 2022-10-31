@@ -19,6 +19,8 @@ import {
   PageNotFoundPage,
   TermsOfServicePage,
   PrivacyPolicyPage,
+  ProblemSetListPage,
+  ProblemSetDetailPage,
 } from '../Page';
 import { RouteChangeTracker } from './RouteChangeTracker';
 import { ProtectedLayout } from './ProtectedLayout';
@@ -41,9 +43,11 @@ function Router() {
         </Route>
         <Route path={URL.MAIN} element={<MainPage />} />
         <Route path={URL.PROBLEM_LIST} element={<QuestionListPage />} />
+        <Route path={URL.PROBLEM_SET_LIST} element={<ProblemSetListPage />} />
         <Route path={URL.LONG_PROBLEM_DETAIL} element={<LongQuestionDetailPage />} />
         <Route path={URL.SHORT_PROBLEM_DETAIL} element={<ShortQuestionDetailPage />} />
         <Route path={URL.MULTIPLE_PROBLEM_DETAIL} element={<MultipleQuestionDetailPage />} />
+        <Route path={URL.PROBLEM_SET_DETAIL} element={<ProblemSetDetailPage />} />
         <Route path={URL.LOGIN} element={<LoginPage />} />
         <Route path={URL.TERMS_OF_SERVICE} element={<TermsOfServicePage />} />
         <Route path={URL.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />

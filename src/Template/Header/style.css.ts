@@ -58,3 +58,7 @@ export const iconButtonListWrapperStyle = style({
   justifyContent: 'center',
   gap: '1.4375rem',
 });
+
+export const headerButtonListStyle = style({
+  gap: '.5rem',
+});

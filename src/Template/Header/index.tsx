@@ -7,6 +7,7 @@ import logo from '../../assets/images/csbroker.png';
 import logoWhite from '../../assets/images/csbroker-white.png';
 import {
   buttonListWrapperBeforeLoginStyle,
+  headerButtonListStyle,
   headerStyle,
   iconButtonListWrapperStyle,
   leftSideWrapperStyle,
@@ -26,6 +27,7 @@ import { NavigateProblemListButton } from '../../Component/Button/NavigateProble
 import AlarmIcon from '../../Icon/AlarmIcon';
 import { useEffect } from 'react';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
+import { RowBox } from '../../Component/Box/CustomBox';
 
 function Header() {
   const navigate = useNavigate();
@@ -68,7 +70,20 @@ function Header() {
             navigate(URL.MAIN);
           }}
         />
-        <NavigateProblemListButton />
+        <RowBox className={headerButtonListStyle}>
+          <NavigateProblemListButton
+            mainText='모든문제'
+            subText='바로가기'
+            theme={BUTTON_THEME.PRIMARY}
+            link={URL.PROBLEM_LIST}
+          />
+          <NavigateProblemListButton
+            mainText='면접대비'
+            subText='세트문제'
+            theme={BUTTON_THEME.SECONDARY}
+            link={URL.PROBLEM_SET_LIST}
+          />
+        </RowBox>
       </div>
       <div className={menuStyle}>
         <DarkmodeButton />

@@ -9,7 +9,6 @@ export const problemListButtonBaseStyle = style({
   textAlign: 'center',
   width: 'fit-content',
   height: '2.5rem',
-  color: COLOR.WHITE,
 
   borderRadius: '8px',
   padding: '0.5rem 1.2rem',
@@ -21,11 +20,19 @@ export const problemListButtonBaseStyle = style({
   ':hover': { filter: 'brightness(90%)' },
 });
 
-export const problemListButtonStyle = styleVariants({
-  light: [problemListButtonBaseStyle, { backgroundColor: COLOR.DARK[1] }],
-  dark: [problemListButtonBaseStyle, { backgroundColor: COLOR.PRIMARY }],
+export const problemListButtonPrimaryStyle = styleVariants({
+  light: [problemListButtonBaseStyle, { color: COLOR.WHITE, backgroundColor: COLOR.DARK[1] }],
+  dark: [problemListButtonBaseStyle, { color: COLOR.WHITE, backgroundColor: COLOR.PRIMARY }],
+});
+
+export const problemListButtonSecondaryStyle = styleVariants({
+  light: [
+    problemListButtonBaseStyle,
+    { color: COLOR.TEXT[1], border: `1px solid ${COLOR.LINE.c}` },
+  ],
+  dark: [problemListButtonBaseStyle, { color: COLOR.LINE.c, border: `1px solid ${COLOR.LINE.c}` }],
 });
 
 export const mobileNotShownStyle = style({
-  '@media': { 'screen and (max-width: 600px)': { display: 'none' } },
+  '@media': { 'screen and (max-width: 850px)': { display: 'none' } },
 });
