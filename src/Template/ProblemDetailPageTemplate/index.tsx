@@ -16,7 +16,6 @@ import { useAuthStore } from '../../hooks/useStore';
 import { IProblemDetailPageTemplate } from '../../types/problem';
 import useModal from '../../hooks/useModal';
 import { CustomModal } from '../../Component/Utils/Modal/CustomModal';
-import PageTemplate from '../PageTemplate';
 
 export const ProblemDetailPageTemplate = ({
   data,
@@ -44,7 +43,7 @@ export const ProblemDetailPageTemplate = ({
       </CustomModal>
       <div>
         {data ? (
-          <PageTemplate>
+          <>
             <div className={pageStyle}>
               <div className={topStyle}>
                 <div className={descStyle}>
@@ -123,7 +122,7 @@ export const ProblemDetailPageTemplate = ({
               </div>
             </div>
             <div className={bottomContentStyle}>{bottomContent}</div>
-          </PageTemplate>
+          </>
         ) : (
           <></>
         )}

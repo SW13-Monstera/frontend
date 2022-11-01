@@ -15,7 +15,6 @@ import {
   pageStyle,
   subtitleStyle,
 } from '../../../Page/ResultPage/style.css';
-import { PageTemplate } from '../../../Template';
 import { textButtonSizeStyle } from '../../Button/TextButton/style.css';
 import { buttonThemeClass } from '../../Button/theme.css';
 import { ILongProblemResultLocationState } from '../../../types/problem';
@@ -63,7 +62,7 @@ export const SkeletonLongProblemResultPage = ({
   tags,
 }: ILongProblemResultLocationState) => {
   return (
-    <PageTemplate>
+    <>
       <div className={pageStyle}>
         <ProblemTitle title={title} id={''} tags={[]} isSolved={true} />
         <div className={skeletonContentStyle}>
@@ -85,6 +84,6 @@ export const SkeletonLongProblemResultPage = ({
           <SkeletonTextButton />
         </div>
       </div>
-    </PageTemplate>
+    </>
   );
 };

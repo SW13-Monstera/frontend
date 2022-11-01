@@ -57,36 +57,40 @@ export function LongQuestionDetailPage() {
         description={`${data?.title}에 관한 서술형 문제입니다. 답안 작성 후 제출하기 버튼을 눌러주세요.`}
         keywords={`${data?.tags.join(', ')}, ${data?.title}, 서술형`}
       />
-      <SplitProblemDetailPageTemplate
-        data={data}
-        handleSubmit={handleSubmit}
-        isSubmittable={userAnswer?.length >= 10}
-        leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
-        rightSideContent={
-          <>
-            <label htmlFor='answer' className={contentTitleStyle}>
-              답안 작성
-            </label>
-            <textarea
-              id='answer'
-              placeholder='답변을 입력해주세요'
-              className={answerInputContentStyle}
-              minLength={10}
-              maxLength={300}
-              onKeyUp={onTextAreaChange}
-              defaultValue={userAnswer ?? undefined}
-            ></textarea>
-            <div className={charCntWrapperStyle}>
-              <div>{userAnswer?.length}/300</div>
-              <div
-                className={`${charCntWarningStyle} ${userAnswer?.length >= 10 ? hiddenStyle : ''}`}
-              >
-                답변을 10자 이상 작성해주세요.
+      <>
+        <SplitProblemDetailPageTemplate
+          data={data}
+          handleSubmit={handleSubmit}
+          isSubmittable={userAnswer?.length >= 10}
+          leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
+          rightSideContent={
+            <>
+              <label htmlFor='answer' className={contentTitleStyle}>
+                답안 작성
+              </label>
+              <textarea
+                id='answer'
+                placeholder='답변을 입력해주세요'
+                className={answerInputContentStyle}
+                minLength={10}
+                maxLength={300}
+                onKeyUp={onTextAreaChange}
+                defaultValue={userAnswer ?? undefined}
+              ></textarea>
+              <div className={charCntWrapperStyle}>
+                <div>{userAnswer?.length}/300</div>
+                <div
+                  className={`${charCntWarningStyle} ${
+                    userAnswer?.length >= 10 ? hiddenStyle : ''
+                  }`}
+                >
+                  답변을 10자 이상 작성해주세요.
+                </div>
               </div>
-            </div>
-          </>
-        }
-      />
+            </>
+          }
+        />
+      </>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { useAuthStore, useDarkModeStore } from '../../hooks/useStore';
@@ -147,7 +147,6 @@ function Header() {
           </div>
         )}
       </div>
-      <Outlet />
     </header>
   );
 }

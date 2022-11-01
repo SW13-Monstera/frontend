@@ -9,7 +9,6 @@ import logo from '../../assets/images/csbroker-main.png';
 import logoWhite from '../../assets/images/csbroker-white-main.png';
 import { validateEmail } from '../../utils/validate';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
-import { PageTemplate } from '../../Template';
 import { MailIcon } from '../../Icon/MailIcon';
 import { themeColors } from '../../styles/theme.css';
 
@@ -26,7 +25,7 @@ export function ChangePasswordEmailPage() {
     navigate(URL.MAIN);
   }
   return (
-    <PageTemplate>
+    <>
       <div className={pageStyle}>
         <div className={contentWrapperStyle}>
           <img src={isDark ? logoWhite : logo} className={logoTitleStyle}></img>
@@ -52,6 +51,6 @@ export function ChangePasswordEmailPage() {
           </TextButton>
         </div>
       </div>
-    </PageTemplate>
+    </>
   );
 }

@@ -1,8 +1,6 @@
-import { PageTemplate } from '../../../Template';
-
 export const TermsOfServicePage = () => {
   return (
-    <PageTemplate>{`제 1 장 총칙
+    <>{`제 1 장 총칙
 
   제 1 조 (목적)
   본 약관은 Monstera이 운영하는 웹 사이트 (https://csbroker.io)의 제반 서비스의 이용조건 및 절차에 관한 사항 및 기타 필요한 사항을 규정함을 목적으로 한다.
@@ -130,6 +128,6 @@ export const TermsOfServicePage = () => {
   
   <부칙>
   본 약관은 2022년 10월 1일부터 적용한다.
-  `}</PageTemplate>
+  `}</>
   );
 };

@@ -21,7 +21,6 @@ import {
   checkedTagListWrapperStyle,
   checkedTagListTitleIsShownStyle,
 } from './style.css';
-import { PageTemplate } from '../../Template';
 import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import {
@@ -95,7 +94,7 @@ function QuestionListPage() {
   }, [page]);
 
   return (
-    <PageTemplate>
+    <>
       <MetaTag
         title='CS Broker - 문제 목록'
         description='Computer Science 문제를 풀고
@@ -193,7 +192,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
           </div>
         </div>
       </div>
-    </PageTemplate>
+    </>
   );
 }
 

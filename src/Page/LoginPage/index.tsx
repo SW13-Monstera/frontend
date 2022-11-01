@@ -2,7 +2,6 @@ import { toast } from 'react-toastify';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { useAuthStore } from '../../hooks/useStore';
 import LoginForm from '../../Organism/LoginForm';
-import { PageTemplate } from '../../Template';
 import { setUserInfo } from '../../utils/userInfo';
 import { validateEmail } from '../../utils/validate';
 import { MetaTag } from '../utils/MetaTag';
@@ -46,12 +45,12 @@ export function LoginPage() {
   return (
     <>
       <MetaTag title='CS Broker - 로그인' />
-      <PageTemplate>
+      <>
         <div className={pageStyle}>
           <div className={titleStyle}>로그인</div>
           <LoginForm handleSubmit={handleSubmit} />
         </div>
-      </PageTemplate>
+      </>
     </>
   );
 }

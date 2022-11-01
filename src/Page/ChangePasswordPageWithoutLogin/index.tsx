@@ -2,7 +2,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { URL } from '../../constants/url';
 import { PasswordForm } from '../../Organism/PasswordForm';
-import { PageTemplate } from '../../Template';
 import { IChangePassword } from '../../types/auth';
 import { pageStyle, titleStyle } from './style.css';
 
@@ -24,11 +23,11 @@ export const ChangePasswordWithoutLoginPage = () => {
     navigate(URL.MAIN);
   };
   return (
-    <PageTemplate>
+    <>
       <div className={pageStyle}>
         <h2 className={titleStyle}>비밀번호 변경</h2>
         <PasswordForm submitNewPassword={submitNewPassword} />
       </div>
-    </PageTemplate>
+    </>
   );
 };

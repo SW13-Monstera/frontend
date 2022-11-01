@@ -14,7 +14,6 @@ import {
   validatePasswordElements,
   validatePasswordLength,
 } from '../../utils/validate';
-import { PageTemplate } from '../../Template';
 import { MetaTag } from '../utils/MetaTag';
 import { MailIcon } from '../../Icon/MailIcon';
 import { themeColors } from '../../styles/theme.css';
@@ -59,7 +58,7 @@ function JoinPage() {
   return (
     <>
       <MetaTag title='CS Broker - 회원가입' />
-      <PageTemplate>
+      <>
         <div className={pageStyle}>
           <h1 className={titleStyle}>회원가입</h1>
           <form className={inputListStyle} id='join-form'>
@@ -168,7 +167,7 @@ function JoinPage() {
             <OAuthButtonListSection>간편 회원가입</OAuthButtonListSection>
           </form>
         </div>
-      </PageTemplate>
+      </>
     </>
   );
 }
