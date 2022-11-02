@@ -79,5 +79,5 @@ AI 기반 서술형 채점 기법을 통해
 
 [ground-rule]: https://github.com/SW13-Monstera/.github/wiki/Ground-Rule
 [convention]: https://github.com/SW13-Monstera/.github/wiki/Convention
-[notion]: https://seed-cry-ce7.notion.site/QUARTER-f5f30a4b31264ae48129812cfb6e67f0
+[notion]: https://seed-cry-ce7.notion.site/SWM-13-1f4f3617206f417f89686fb875bb5fc8
 [figma]: https://www.figma.com/file/aBDgy14qYv8oEiqC6n8p4S/CS%2BBROKER-(1)?node-id=0%3A1
