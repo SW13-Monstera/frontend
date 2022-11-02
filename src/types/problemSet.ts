@@ -1,3 +1,4 @@
 export interface IProblemSetDetail {
-  problemId: number;
+  problemId: string;
+  moveNext: () => void;
 }

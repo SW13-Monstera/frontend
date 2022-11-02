@@ -14,26 +14,25 @@ import { MetaTag } from '../../utils/MetaTag';
 import { MultipleProblemSetDetail } from '../ProblemSetDetail/Multiple';
 import { ShortProblemSetDetail } from '../ProblemSetDetail/Short';
 import { LongProblemSetDetail } from '../ProblemSetDetail/Long';
-import { ProblemSetDetailButtonList } from '../../../Organism/ButtonList/ProblemSet';
 
 interface IProblemDetail {
   problemType: string;
   problemId: number;
+  moveNext: () => void;
 }
 
-const ProblemDetail = ({ problemType, problemId }: IProblemDetail) => {
+const ProblemDetail = ({ problemType, problemId, moveNext }: IProblemDetail) => {
   return (
     <div className={problemDetailWrapperStyle}>
       {problemType === 'long' ? (
-        <LongProblemSetDetail problemId={problemId} />
+        <LongProblemSetDetail problemId={problemId.toString()} moveNext={moveNext} />
       ) : problemType === 'short' ? (
-        <ShortProblemSetDetail problemId={problemId} />
+        <ShortProblemSetDetail problemId={problemId.toString()} moveNext={moveNext} />
       ) : problemType === 'multiple' ? (
-        <MultipleProblemSetDetail problemId={problemId} />
+        <MultipleProblemSetDetail problemId={problemId.toString()} moveNext={moveNext} />
       ) : (
         <></>
       )}
-      <ProblemSetDetailButtonList />
     </div>
   );
 };
@@ -50,6 +49,15 @@ export const ProblemSetDetailPage = () => {
       [...problemSetData.problems, problemSetData.final_problem_id].find((e) => e.id === problemId),
     [problemId],
   )?.type;
+  const moveNext = () => {
+    () => {
+      setProblemId(
+        [...problemSetData.problems, problemSetData.final_problem_id].findIndex(
+          (e) => e.id === problemId,
+        ) + 1,
+      );
+    };
+  };
 
   return (
     <>
@@ -64,18 +72,24 @@ export const ProblemSetDetailPage = () => {
       </div>
       <div className={contentWrapperStyle}>
         <div className={indexButtonWrapperStyle}>
-          {[...problemSetData.problems, problemSetData.final_problem_id].map((e, idx) => (
-            <TabMenuButton
-              key={e.id}
-              idx={idx}
-              isSelected={problemId === e.id}
-              onClick={() => {
-                setProblemId(e.id);
-              }}
-            />
-          ))}
+          {[...problemSetData.problems, problemSetData.final_problem_id].map((e, idx) => {
+            return (
+              <TabMenuButton
+                key={e.id}
+                idx={idx}
+                isSelected={problemId === e.id}
+                onClick={() => {
+                  setProblemId(e.id);
+                }}
+              />
+            );
+          })}
         </div>
-        {problemType ? <ProblemDetail problemType={problemType} problemId={problemId} /> : <></>}
+        {problemType ? (
+          <ProblemDetail problemType={problemType} problemId={problemId} moveNext={moveNext} />
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

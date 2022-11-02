@@ -11,10 +11,12 @@ interface IProblemSetDetailButtonList {
   resetResult?: () => void;
   isResultPage?: boolean;
   isSubmittable?: boolean;
+  moveNext: () => void;
 }
 
 export const ProblemSetDetailButtonList = ({
   handleSubmit,
+  moveNext,
   isResult = false,
   resetResult = () => {
     return;
@@ -27,27 +29,15 @@ export const ProblemSetDetailButtonList = ({
   return (
     <>
       <div className={buttonListWrapperStyle}>
-        <TextButton
-          type={BUTTON_TYPE.BUTTON}
-          theme={BUTTON_THEME.SECONDARY}
-          size={BUTTON_SIZE.MEDIUM}
-          onClick={() => {
-            navigate(URL.PROBLEM_LIST);
-          }}
-        >
-          돌아가기
-        </TextButton>
         {isLogin ? (
           isResult ? (
             <TextButton
               type={BUTTON_TYPE.SUBMIT}
               theme={BUTTON_THEME.PRIMARY}
               size={BUTTON_SIZE.MEDIUM}
-              onClick={() => {
-                isResultPage ? navigate(-1) : resetResult();
-              }}
+              onClick={moveNext}
             >
-              다시풀기
+              다음 문제로
             </TextButton>
           ) : (
             <TextButton
