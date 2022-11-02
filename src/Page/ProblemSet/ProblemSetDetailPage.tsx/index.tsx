@@ -1,18 +1,20 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import problemSet from '../../../mock/problemSet.json';
 import {
   contentWrapperStyle,
   indexButtonWrapperStyle,
+  problemDetailWrapperStyle,
   problemSetDetailTitleStyle,
+  problemSetTitleStyle,
 } from './style.css';
 import { TabMenuButton } from '../../../Component/Button/TabMenuButton';
-import { LongQuestionDetailPage } from '../../QuestionDetailPage/Long';
-import { useEffect, useMemo, useState } from 'react';
-import { ShortQuestionDetailPage } from '../../QuestionDetailPage/Short';
-import { MultipleQuestionDetailPage } from '../../QuestionDetailPage/Multiple';
+import { useMemo, useState } from 'react';
 import { ErrorPage } from '../../Error/ErrorPage';
 import { MetaTag } from '../../utils/MetaTag';
-import { URLWithParam } from '../../../constants/url';
+import { MultipleProblemSetDetail } from '../ProblemSetDetail/Multiple';
+import { ShortProblemSetDetail } from '../ProblemSetDetail/Short';
+import { LongProblemSetDetail } from '../ProblemSetDetail/Long';
+import { ProblemSetDetailButtonList } from '../../../Organism/ButtonList/ProblemSet';
 
 interface IProblemDetail {
   problemType: string;
@@ -20,27 +22,23 @@ interface IProblemDetail {
 }
 
 const ProblemDetail = ({ problemType, problemId }: IProblemDetail) => {
-  useEffect(() => {
-    console.log(problemId);
-  }, [problemId]);
-
   return (
-    <>
+    <div className={problemDetailWrapperStyle}>
       {problemType === 'long' ? (
-        <LongQuestionDetailPage />
+        <LongProblemSetDetail problemId={problemId} />
       ) : problemType === 'short' ? (
-        <ShortQuestionDetailPage />
+        <ShortProblemSetDetail problemId={problemId} />
       ) : problemType === 'multiple' ? (
-        <MultipleQuestionDetailPage />
+        <MultipleProblemSetDetail problemId={problemId} />
       ) : (
         <></>
       )}
-    </>
+      <ProblemSetDetailButtonList />
+    </div>
   );
 };
 
 export const ProblemSetDetailPage = () => {
-  const navigate = useNavigate();
   const { setId, id } = useParams();
 
   if (!setId || !id) return <ErrorPage />;
@@ -61,7 +59,7 @@ export const ProblemSetDetailPage = () => {
         keywords={`${problemSetData.set_title}, 서술형, 객관식, 단답형`}
       />
       <div className={problemSetDetailTitleStyle}>
-        <h1>{problemSetData.set_title}</h1>
+        <h1 className={problemSetTitleStyle}>{problemSetData.set_title}</h1>
         <div>{`문제수: ${problemSetData.problems?.length + 1}개`}</div>
       </div>
       <div className={contentWrapperStyle}>
@@ -73,7 +71,6 @@ export const ProblemSetDetailPage = () => {
               isSelected={problemId === e.id}
               onClick={() => {
                 setProblemId(e.id);
-                navigate(URLWithParam.PROBLEM_SET_DETAIL(parseInt(setId), e.id));
               }}
             />
           ))}

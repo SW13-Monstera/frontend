@@ -8,12 +8,21 @@ export const problemSetDetailTitleStyle = style({
   gap: '1rem',
   borderBottom: `1px solid ${themeColors.line.d}`,
   padding: '1.5rem',
+  fontWeight: '500',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+});
+
+export const problemSetTitleStyle = style({
+  fontWeight: '700',
+  fontSize: '2.25rem',
+  lineHeight: '1.75rem',
 });
 
 export const contentWrapperStyle = style({
   display: 'flex',
-  height: '100%',
-  padding: '0 1rem',
+  flex: 1,
+  padding: '0 0 0 1rem',
 });
 
 export const indexButtonBaseStyle = style({
@@ -27,13 +36,19 @@ export const indexButtonBaseStyle = style({
 export const indexButtonWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
+  flex: 1,
   gap: '.5rem',
   width: '2rem',
-  height: '100%',
   borderRight: `1px solid ${themeColors.line.d}`,
 });
 
 export const indexButtonStyle = styleVariants({
   selected: [indexButtonBaseStyle, { backgroundColor: themeColors.line.d }],
   default: [indexButtonBaseStyle, { backgroundColor: COLOR.TRANSPARENT }],
+});
+
+export const problemDetailWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
 });

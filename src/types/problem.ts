@@ -55,6 +55,7 @@ interface IProblemDetailPageTemplate {
   children?: React.ReactNode;
   handleSubmit?: () => void;
   isResult?: boolean;
+  isProblemSet?: boolean;
   resetResult?: () => void;
   isResultPage?: boolean;
   bottomContent?: React.ReactNode;
@@ -80,6 +81,13 @@ export interface ILongProblemResultLocationState {
   id: string;
   tags: string[];
 }
+
+export const PROBLEM_TITLE_SIZE = {
+  LARGE: 'large',
+  SMALL: 'small',
+} as const;
+
+export type TProblemTitleSize = typeof PROBLEM_TITLE_SIZE[keyof typeof PROBLEM_TITLE_SIZE];
 
 export type {
   IProblem,

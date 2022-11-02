@@ -1,26 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
-import {
-  IMultipleProblemDetailResponseData,
-  IMultipleProblemResultData,
-} from '../../../types/api/problem';
-import {
-  choiceCheckboxStyle,
-  choiceListStyle,
-  choiceWrapperStyle,
-  contentTitleStyle,
-  gradeResultScoredStyle,
-  resultWrapperStyle,
-} from './style.css';
-import { COLOR } from '../../../constants/color';
-import { XIcon } from '../../../Icon/XIcon';
-import { OIcon } from '../../../Icon/OIcon';
+import { IMultipleProblemDetailResponseData } from '../../../types/api/problem';
+
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
 import { MetaTag } from '../../utils/MetaTag';
-import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
 import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
+import { MultipleChoiceList } from '../../../Organism/ButtonList/MultipleChoiceList';
+import { useMultipleProblemResult } from '../../../hooks/useMultipleProblemResult';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
@@ -29,19 +16,7 @@ export function MultipleQuestionDetailPage() {
     () => problemApiWrapper.multipleProblemDetail(id!),
     { refetchOnWindowFocus: false },
   );
-  const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
-
-  const resetInput = () => {
-    (document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>).forEach(
-      (e) => (e.checked = false),
-    );
-  };
-
-  const resetResult = () => {
-    if (!result) return;
-    resetInput();
-    setResult(null);
-  };
+  const { result, setResult, resetResult } = useMultipleProblemResult();
 
   function handleSubmit() {
     if (!id) return;
@@ -72,45 +47,7 @@ export function MultipleQuestionDetailPage() {
           isSubmittable={true}
           leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
           rightSideContent={
-            <>
-              <label htmlFor='answer' className={contentTitleStyle}>
-                답안 선택
-              </label>
-              <div className={choiceListStyle} onClick={resetResult}>
-                {data?.choices.map((choice) => (
-                  <label
-                    htmlFor={choice.id.toString()}
-                    className={choiceWrapperStyle}
-                    key={choice.id}
-                  >
-                    <input
-                      type='checkbox'
-                      id={choice.id.toString()}
-                      className={choiceCheckboxStyle}
-                    />
-                    {choice.content}
-                  </label>
-                ))}
-              </div>
-              <div className={resultWrapperStyle}>
-                <MyScoreBox score={result?.score} />
-                {result ? (
-                  result.isAnswer ? (
-                    <div className={gradeResultScoredStyle.correct}>
-                      <div>정답입니다</div>
-                      <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
-                    </div>
-                  ) : (
-                    <div className={gradeResultScoredStyle.wrong}>
-                      <div>오답입니다</div>
-                      <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
-                    </div>
-                  )
-                ) : (
-                  <></>
-                )}
-              </div>
-            </>
+            <MultipleChoiceList choices={data?.choices} result={result} resetResult={resetResult} />
           }
         ></SplitProblemDetailPageTemplate>
       </>

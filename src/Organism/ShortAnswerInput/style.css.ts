@@ -1,31 +1,6 @@
-import { themeColors } from './../../../styles/theme.css';
+import { themeColors } from './../../styles/theme.css';
 import { style, keyframes, styleVariants } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
-
-export const contentWrapperStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'flex-start',
-  gap: '2rem',
-
-  padding: '2rem',
-});
-
-export const contentTitleStyle = style({
-  fontWeight: '700',
-  fontSize: '1.5rem',
-  lineHeight: '2.1875rem',
-  color: themeColors.text[2],
-});
-
-export const problemDescContentStyle = style({
-  overflow: 'auto',
-  fontWeight: '400',
-  fontSize: '1.25rem',
-  lineHeight: '1.8125rem',
-  color: themeColors.text[5],
-});
+import { COLOR } from '../../constants/color';
 
 const vibration = keyframes({
   from: { transform: 'rotate(1deg)' },
@@ -37,8 +12,9 @@ export const resultWrapperStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: '2.5rem',
-  alignSelf: 'flex-end',
-  margin: '1.5rem',
+  margin: '1.5rem 1.5rem 1.5rem 0',
+  width: '90%',
+  minWidth: '17.5rem',
 });
 
 export const answerInputContentStyle = style({
@@ -46,7 +22,8 @@ export const answerInputContentStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
 
-  width: '17.5rem',
+  minWidth: '17.5rem',
+  width: '100%',
   height: '4rem',
 
   padding: '2rem 1rem',
@@ -124,9 +101,5 @@ export const showAnswerButtonStyle = style({
   fontWeight: '400',
   fontSize: '1rem',
   lineHeight: '1.5rem',
-  alignSelf: 'flex-end',
-});
-
-export const inputWrapperStyle = style({
   alignSelf: 'flex-end',
 });
