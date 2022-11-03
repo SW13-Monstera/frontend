@@ -6,6 +6,6 @@ export interface IResult {
 export interface IProblemSetDetail {
   problemId: string;
   moveNext: () => void;
-  resultList?: IResult[];
-  pushResult: (result: IResult) => void;
+  resultList?: Map<string, IResult>;
+  pushResult: (problemId: string, result: IResult) => void;
 }

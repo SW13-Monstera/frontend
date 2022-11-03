@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ColumnBox, RowBox } from '../../../../Component/Box/CustomBox';
+import { ColumnBox } from '../../../../Component/Box/CustomBox';
 import { TextButton } from '../../../../Component/Button';
 import { CustomModal } from '../../../../Component/Utils/Modal/CustomModal';
 import { CustomSplit } from '../../../../Component/Utils/Split/CustomSplit';
@@ -30,14 +30,7 @@ export const LongProblemSetResult = ({ result, resultList }: IProblemSetLongProb
       <CustomModal isModalOpen={isModalOpen} closeModal={closeModal}>
         <ColumnBox>
           <div>결과</div>
-          <div>
-            {resultList?.map((e, idx) => (
-              <RowBox key={e.userAnswer + idx.toString()}>
-                <div>{idx}</div>
-                <div>{e.score}</div>
-              </RowBox>
-            ))}
-          </div>
+          <div></div>
           <TextButton
             type={BUTTON_TYPE.SUBMIT}
             theme={BUTTON_THEME.PRIMARY}

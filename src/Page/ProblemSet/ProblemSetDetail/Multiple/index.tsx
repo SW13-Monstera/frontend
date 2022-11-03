@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { problemApiWrapper } from '../../../../api/wrapper/problem/problemApiWrapper';
 import { CustomSplit } from '../../../../Component/Utils/Split/CustomSplit';
@@ -28,9 +29,13 @@ export const MultipleProblemSetDetail = ({
     checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
     problemApiWrapper.multipleProblemResult(problemId, answerIds).then((data) => {
       setResult(data);
-      pushResult({ userAnswer: data?.userAnswerIds, score: data?.score });
+      pushResult(problemId, { userAnswer: data?.userAnswerIds, score: data?.score });
     });
   };
+
+  useEffect(() => {
+    resetResult();
+  }, [problemId]);
 
   return (
     <>

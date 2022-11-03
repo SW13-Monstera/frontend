@@ -41,10 +41,7 @@ export const ProblemSetDetailButtonList = ({
               type={BUTTON_TYPE.SUBMIT}
               theme={BUTTON_THEME.PRIMARY}
               size={BUTTON_SIZE.MEDIUM}
-              onClick={() => {
-                moveNext();
-                resetResult();
-              }}
+              onClick={moveNext}
             >
               다음 문제로
             </TextButton>

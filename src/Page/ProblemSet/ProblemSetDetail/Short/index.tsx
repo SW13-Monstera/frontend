@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { problemApiWrapper } from '../../../../api/wrapper/problem/problemApiWrapper';
 import { CustomSplit } from '../../../../Component/Utils/Split/CustomSplit';
@@ -35,12 +35,16 @@ export const ShortProblemSetDetail = ({ problemId, moveNext, pushResult }: IProb
   function handleSubmit() {
     if (!problemId) return;
     const answer = (document.getElementById('answer') as HTMLInputElement).value.trim();
+
     problemApiWrapper.shortProblemResult(problemId, answer).then((data) => {
       setResult(data);
-      pushResult({ userAnswer: data?.userAnswer, score: data?.score });
+      pushResult(problemId, { userAnswer: data?.userAnswer, score: data?.score });
       refetch();
     });
   }
+  useEffect(() => {
+    resetResult();
+  }, [problemId]);
 
   return (
     <>

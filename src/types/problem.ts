@@ -96,7 +96,7 @@ export interface ILongProblemResult {
 }
 
 export interface IProblemSetLongProblemResult extends ILongProblemResult {
-  resultList: IResult[] | undefined;
+  resultList: Map<string, IResult> | undefined;
 }
 
 export type {

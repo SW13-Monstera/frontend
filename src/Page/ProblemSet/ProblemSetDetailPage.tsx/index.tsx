@@ -8,7 +8,7 @@ import {
   problemSetTitleStyle,
 } from './style.css';
 import { TabMenuButton } from '../../../Component/Button/TabMenuButton';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ErrorPage } from '../../Error/ErrorPage';
 import { MetaTag } from '../../utils/MetaTag';
 import { MultipleProblemSetDetail } from '../ProblemSetDetail/Multiple';
@@ -28,15 +28,11 @@ interface ICurrProblem {
 }
 
 const ProblemDetail = ({ problemType, problemId, moveNext }: IProblemDetail) => {
-  const [resultList, setResultList] = useState<IResult[]>([]);
+  const [resultList, setResultList] = useState<Map<string, IResult>>(new Map());
 
-  const pushResult = (newResult: IResult) => {
-    setResultList([...resultList, newResult]);
+  const pushResult = (problemId: string, newResult: IResult) => {
+    setResultList((prev) => new Map([...prev, [problemId, newResult]]));
   };
-
-  useEffect(() => {
-    console.log(resultList);
-  }, [resultList]);
 
   return (
     <div className={problemDetailWrapperStyle}>

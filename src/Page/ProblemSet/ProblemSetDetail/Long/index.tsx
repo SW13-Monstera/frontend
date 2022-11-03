@@ -32,7 +32,7 @@ export const LongProblemSetDetail = ({
     mutate,
   } = useMutation<ILongProblemResultData>(() =>
     problemApiWrapper.longProblemResult(problemId, userAnswer).then((data) => {
-      pushResult({ userAnswer: data?.userAnswer, score: data?.score });
+      pushResult(problemId, { userAnswer: data?.userAnswer, score: data?.score });
       return data;
     }),
   );
