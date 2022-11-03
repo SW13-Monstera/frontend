@@ -13,4 +13,5 @@ export interface IInputBox {
   isWarning?: boolean;
   warningMessages?: IWarningText[];
   icon?: React.ReactNode;
+  isRequired?: boolean;
 }
