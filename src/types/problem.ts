@@ -1,6 +1,7 @@
 import { PROBLEM_TYPE } from '../constants/problem';
 import {
   ILongProblemDetailResponseData,
+  ILongProblemResultData,
   IMultipleProblemDetailResponseData,
   IShortProblemDetailResponseData,
 } from './api/problem';
@@ -88,6 +89,10 @@ export const PROBLEM_TITLE_SIZE = {
 } as const;
 
 export type TProblemTitleSize = typeof PROBLEM_TITLE_SIZE[keyof typeof PROBLEM_TITLE_SIZE];
+
+export interface ILongProblemResult {
+  result: ILongProblemResultData | undefined;
+}
 
 export type {
   IProblem,

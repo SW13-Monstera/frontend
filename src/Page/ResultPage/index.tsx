@@ -1,34 +1,19 @@
 import { useLocation, useParams } from 'react-router-dom';
-import KeywordBox from '../../Component/Box/KeywordBox';
-import {
-  contentStyle,
-  keywordListStyle,
-  subtitleStyle,
-  answerContentStyle,
-  standardAnswerContentStyle,
-  myScoreStyle,
-  numberLineChartWrapperStyle,
-  numberLineChartTitleStyle,
-  numberLineChartStrongTitleStyle,
-  contentElementStyle,
-  contentListStyle,
-} from './style.css';
+
 import { ILongProblemResultData } from '../../types/api/problem';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useMutation } from 'react-query';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
-import { MarkdownBox } from '../../Component/Box/MarkdownBox';
 import { MetaTag } from '../utils/MetaTag';
 import { SplitProblemDetailPageTemplate } from '../../Template/SplitProblemDetailPageTemplate';
-import { TextBox } from '../../Component/Box';
-import { MyScoreBox } from '../../Component/Box/MyScoreBox';
-import { NumberLineChart } from '../../Component/Chart/NumberLineChart';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
 import { useEffect } from 'react';
 import { COLOR } from '../../constants/color';
-
-const USER_ANSWER_DOM_ID = 'user-answer';
+import { StandardAnswerContent } from './Content/StandardAnswer';
+import { USER_ANSWER_DOM_ID } from '../../constants/longProblem';
+import { UserAnswerContent } from './Content/UserAnswer';
+import { ChartContent } from './Content/Chart';
 
 export default function ResultPage() {
   const { id } = useParams();
@@ -121,45 +106,9 @@ export default function ResultPage() {
         handleSubmit={handleSubmit}
         isResult={true}
         isResultPage={true}
-        leftSideContent={
-          <div className={contentStyle}>
-            <h3 className={subtitleStyle}>모범 답안</h3>
-            <TextBox>
-              <div className={standardAnswerContentStyle}>
-                <MarkdownBox>{result?.standardAnswer}</MarkdownBox>
-              </div>
-            </TextBox>
-            <MyScoreBox score={result?.score} className={myScoreStyle} />
-          </div>
-        }
-        rightSideContent={
-          <div className={contentStyle}>
-            <h3 className={subtitleStyle}>내 답안</h3>
-            <h4>키워드 채점 기준</h4>
-            <ul className={keywordListStyle}>
-              {result?.keywords?.map(({ id, content, isExist }) => (
-                <KeywordBox name={content} isIncluded={isExist} key={id} />
-              ))}
-            </ul>
-            <h4>내용 채점 기준</h4>
-            <ul className={contentListStyle}>
-              {result?.contents?.map(({ id, content, isExist }) => (
-                <li key={id} className={contentElementStyle[isExist ? 'true' : 'false']}>
-                  {content}
-                </li>
-              ))}
-            </ul>
-            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
-          </div>
-        }
-        bottomContent={
-          <div className={numberLineChartWrapperStyle}>
-            <div className={numberLineChartTitleStyle}>
-              나는 <strong className={numberLineChartStrongTitleStyle}>평균 중 몇점</strong>일까?
-            </div>
-            <NumberLineChart myScore={result?.score} avgScore={result?.avgScore} />
-          </div>
-        }
+        leftSideContent={<StandardAnswerContent result={result} />}
+        rightSideContent={<UserAnswerContent result={result} />}
+        bottomContent={<ChartContent result={result} />}
       />
     </>
   );
