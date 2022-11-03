@@ -1,8 +1,7 @@
-import { themeColors } from './../../../styles/theme.css';
+import { themeColors } from './../../styles/theme.css';
 import { style, styleVariants } from '@vanilla-extract/css';
-import { COLOR } from '../../../constants/color';
-import baseFontStyle from '../../../styles/font.css';
-import { vars } from '../../Button/theme.css';
+import { COLOR } from '../../constants/color';
+import { vars } from '../Button/theme.css';
 
 export const pageStyle = style({
   boxSizing: 'border-box',
@@ -89,16 +88,13 @@ export const tagListStyle = style({
   display: 'flex',
 });
 
-export const problemDetailStyle = style([
-  baseFontStyle.medium,
-  {
-    display: 'flex',
-    gap: '1rem',
+export const problemDetailStyle = style({
+  display: 'flex',
+  gap: '1rem',
 
-    width: '25rem',
-    height: '1.75rem',
-  },
-]);
+  width: '25rem',
+  height: '1.75rem',
+});
 
 export const skeletonContentWrapperStyle = style({
   width: '100%',
@@ -111,4 +107,11 @@ export const skeletonScoreStyle = style({
   height: '2rem',
   backgroundColor: COLOR.GRAY,
   borderRadius: '8px',
+});
+
+export const skeletonButtonListWrapperStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: '1rem',
 });
