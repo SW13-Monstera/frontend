@@ -8,12 +8,13 @@ import {
   problemSetTitleStyle,
 } from './style.css';
 import { TabMenuButton } from '../../../Component/Button/TabMenuButton';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ErrorPage } from '../../Error/ErrorPage';
 import { MetaTag } from '../../utils/MetaTag';
 import { MultipleProblemSetDetail } from '../ProblemSetDetail/Multiple';
 import { ShortProblemSetDetail } from '../ProblemSetDetail/Short';
 import { LongProblemSetDetail } from '../ProblemSetDetail/Long';
+import { IResult } from '../../../types/problemSet';
 
 interface IProblemDetail {
   problemType: string;
@@ -21,15 +22,43 @@ interface IProblemDetail {
   moveNext: () => void;
 }
 
+interface ICurrProblem {
+  id: number;
+  index: number;
+}
+
 const ProblemDetail = ({ problemType, problemId, moveNext }: IProblemDetail) => {
+  const [resultList, setResultList] = useState<IResult[]>([]);
+
+  const pushResult = (newResult: IResult) => {
+    setResultList([...resultList, newResult]);
+  };
+
+  useEffect(() => {
+    console.log(resultList);
+  }, [resultList]);
+
   return (
     <div className={problemDetailWrapperStyle}>
       {problemType === 'long' ? (
-        <LongProblemSetDetail problemId={problemId.toString()} moveNext={moveNext} />
+        <LongProblemSetDetail
+          problemId={problemId.toString()}
+          moveNext={moveNext}
+          pushResult={pushResult}
+          resultList={resultList}
+        />
       ) : problemType === 'short' ? (
-        <ShortProblemSetDetail problemId={problemId.toString()} moveNext={moveNext} />
+        <ShortProblemSetDetail
+          problemId={problemId.toString()}
+          moveNext={moveNext}
+          pushResult={pushResult}
+        />
       ) : problemType === 'multiple' ? (
-        <MultipleProblemSetDetail problemId={problemId.toString()} moveNext={moveNext} />
+        <MultipleProblemSetDetail
+          problemId={problemId.toString()}
+          moveNext={moveNext}
+          pushResult={pushResult}
+        />
       ) : (
         <></>
       )}
@@ -42,21 +71,27 @@ export const ProblemSetDetailPage = () => {
 
   if (!setId || !id) return <ErrorPage />;
 
-  const [problemId, setProblemId] = useState(parseInt(id));
+  const [currProblem, setCurrProblem] = useState<ICurrProblem>({ id: parseInt(id), index: 0 });
   const problemSetData = problemSet[parseInt(setId)];
   const problemType = useMemo(
     () =>
-      [...problemSetData.problems, problemSetData.final_problem_id].find((e) => e.id === problemId),
-    [problemId],
+      [...problemSetData.problems, problemSetData.final_problem_id].find(
+        (e) => e.id === currProblem.id,
+      ),
+    [currProblem],
   )?.type;
+  const problemList: ICurrProblem[] = useMemo(
+    () =>
+      [...problemSetData.problems, problemSetData.final_problem_id].map((e, index) => {
+        return { id: e.id, index: index };
+      }),
+    [problemSetData],
+  );
+
   const moveNext = () => {
-    () => {
-      setProblemId(
-        [...problemSetData.problems, problemSetData.final_problem_id].findIndex(
-          (e) => e.id === problemId,
-        ) + 1,
-      );
-    };
+    const nextIndex = currProblem.index + 1;
+    if (nextIndex >= problemList.length || nextIndex < 0) return;
+    setCurrProblem(problemList[nextIndex]);
   };
 
   return (
@@ -77,16 +112,16 @@ export const ProblemSetDetailPage = () => {
               <TabMenuButton
                 key={e.id}
                 idx={idx}
-                isSelected={problemId === e.id}
+                isSelected={currProblem.id === e.id}
                 onClick={() => {
-                  setProblemId(e.id);
+                  setCurrProblem(problemList[idx]);
                 }}
               />
             );
           })}
         </div>
         {problemType ? (
-          <ProblemDetail problemType={problemType} problemId={problemId} moveNext={moveNext} />
+          <ProblemDetail problemType={problemType} problemId={currProblem.id} moveNext={moveNext} />
         ) : (
           <></>
         )}

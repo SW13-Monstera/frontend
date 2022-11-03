@@ -8,7 +8,11 @@ import ProblemTitle from '../../../../Organism/ProblemTitle';
 import { IMultipleProblemDetailResponseData } from '../../../../types/api/problem';
 import { IProblemSetDetail } from '../../../../types/problemSet';
 
-export const MultipleProblemSetDetail = ({ problemId, moveNext }: IProblemSetDetail) => {
+export const MultipleProblemSetDetail = ({
+  problemId,
+  moveNext,
+  pushResult,
+}: IProblemSetDetail) => {
   const { data } = useQuery<IMultipleProblemDetailResponseData>(
     ['multipleProblemDetail', problemId],
     () => problemApiWrapper.multipleProblemDetail(problemId),
@@ -24,6 +28,7 @@ export const MultipleProblemSetDetail = ({ problemId, moveNext }: IProblemSetDet
     checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
     problemApiWrapper.multipleProblemResult(problemId, answerIds).then((data) => {
       setResult(data);
+      pushResult({ userAnswer: data?.userAnswerIds, score: data?.score });
     });
   };
 

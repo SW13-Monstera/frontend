@@ -11,14 +11,20 @@ interface IProblemSetDetailButtonList {
   resetResult?: () => void;
   isResultPage?: boolean;
   isSubmittable?: boolean;
-  moveNext: () => void;
+  moveNext?: () => void;
+  exit?: () => void;
 }
 
 export const ProblemSetDetailButtonList = ({
   handleSubmit,
-  moveNext,
   isResult = false,
   resetResult = () => {
+    return;
+  },
+  moveNext = () => {
+    return;
+  },
+  exit = () => {
     return;
   },
   isResultPage = false,
@@ -35,9 +41,21 @@ export const ProblemSetDetailButtonList = ({
               type={BUTTON_TYPE.SUBMIT}
               theme={BUTTON_THEME.PRIMARY}
               size={BUTTON_SIZE.MEDIUM}
-              onClick={moveNext}
+              onClick={() => {
+                moveNext();
+                resetResult();
+              }}
             >
               다음 문제로
+            </TextButton>
+          ) : isResultPage ? (
+            <TextButton
+              type={BUTTON_TYPE.SUBMIT}
+              theme={BUTTON_THEME.PRIMARY}
+              size={BUTTON_SIZE.MEDIUM}
+              onClick={exit}
+            >
+              종료
             </TextButton>
           ) : (
             <TextButton

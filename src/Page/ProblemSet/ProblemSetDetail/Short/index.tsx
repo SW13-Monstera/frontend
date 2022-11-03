@@ -14,7 +14,7 @@ import { IProblemSetDetail } from '../../../../types/problemSet';
 import { contentTitleStyle } from '../../../QuestionDetailPage/Short/style.css';
 import { inputStyle } from './style.css';
 
-export const ShortProblemSetDetail = ({ problemId, moveNext }: IProblemSetDetail) => {
+export const ShortProblemSetDetail = ({ problemId, moveNext, pushResult }: IProblemSetDetail) => {
   const { data, refetch } = useQuery<IShortProblemDetailResponseData>(
     ['shortProblemDetail', problemId],
     () => problemApiWrapper.shortProblemDetail(problemId),
@@ -37,6 +37,7 @@ export const ShortProblemSetDetail = ({ problemId, moveNext }: IProblemSetDetail
     const answer = (document.getElementById('answer') as HTMLInputElement).value.trim();
     problemApiWrapper.shortProblemResult(problemId, answer).then((data) => {
       setResult(data);
+      pushResult({ userAnswer: data?.userAnswer, score: data?.score });
       refetch();
     });
   }

@@ -5,6 +5,7 @@ import {
   IMultipleProblemDetailResponseData,
   IShortProblemDetailResponseData,
 } from './api/problem';
+import { IResult } from './problemSet';
 import { ITagBox } from './tag';
 
 interface IProblem {
@@ -92,6 +93,10 @@ export type TProblemTitleSize = typeof PROBLEM_TITLE_SIZE[keyof typeof PROBLEM_T
 
 export interface ILongProblemResult {
   result: ILongProblemResultData | undefined;
+}
+
+export interface IProblemSetLongProblemResult extends ILongProblemResult {
+  resultList: IResult[] | undefined;
 }
 
 export type {
