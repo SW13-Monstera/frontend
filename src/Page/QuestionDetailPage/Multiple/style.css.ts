@@ -82,3 +82,9 @@ export const resultWrapperStyle = style({
   gap: '1rem',
   alignSelf: 'flex-end',
 });
+
+export const isMultipleAnswerStyle = style({
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+});

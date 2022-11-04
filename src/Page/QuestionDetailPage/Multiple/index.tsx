@@ -11,6 +11,7 @@ import {
   choiceWrapperStyle,
   contentTitleStyle,
   gradeResultScoredStyle,
+  isMultipleAnswerStyle,
   resultWrapperStyle,
 } from './style.css';
 import { COLOR } from '../../../constants/color';
@@ -32,7 +33,7 @@ export function MultipleQuestionDetailPage() {
   const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
 
   const resetInput = () => {
-    (document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>).forEach(
+    (document.querySelectorAll('input') as NodeListOf<HTMLInputElement>).forEach(
       (e) => (e.checked = false),
     );
   };
@@ -46,9 +47,7 @@ export function MultipleQuestionDetailPage() {
   function handleSubmit() {
     if (!id) return;
     const answerIds: number[] = [];
-    const checkboxes = document.querySelectorAll(
-      'input[type="checkbox"]',
-    ) as NodeListOf<HTMLInputElement>;
+    const checkboxes = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
     checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
     problemApiWrapper.multipleProblemResult(id, answerIds).then((data) => {
       setResult(data);
@@ -75,6 +74,9 @@ export function MultipleQuestionDetailPage() {
           <>
             <label htmlFor='answer' className={contentTitleStyle}>
               답안 선택
+              <span className={isMultipleAnswerStyle}>
+                {data?.isMultipleAnswer ? ' (복수 선택)' : ' (정답 한개)'}
+              </span>
             </label>
             <div className={choiceListStyle} onClick={resetResult}>
               {data?.choices.map((choice) => (
@@ -84,9 +86,10 @@ export function MultipleQuestionDetailPage() {
                   key={choice.id}
                 >
                   <input
-                    type='checkbox'
+                    type={data?.isMultipleAnswer ? 'checkbox' : 'radio'}
                     id={choice.id.toString()}
                     className={choiceCheckboxStyle}
+                    name='answer'
                   />
                   {choice.content}
                 </label>
