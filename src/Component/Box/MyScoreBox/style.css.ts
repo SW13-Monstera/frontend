@@ -4,8 +4,8 @@ import { themeColors } from '../../../styles/theme.css';
 
 export const scoreStyle = style({
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'end',
+  alignItems: 'flex-end',
+  justifyContent: 'flex-end',
   gap: '.5rem',
 });
 
@@ -19,6 +19,5 @@ export const scoreLabelStyle = style({
 export const scoreValueStyle = style({
   fontWeight: '700',
   fontSize: '1.5rem',
-  lineHeight: '2.1875rem',
   color: COLOR.RED,
 });

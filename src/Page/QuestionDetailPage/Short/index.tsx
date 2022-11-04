@@ -3,10 +3,8 @@ import {
   contentTitleStyle,
   problemDescContentStyle,
   answerInputContentStyle,
-  resultAnswerStyle,
   resultWrapperStyle,
   gapStyle,
-  answerBoxWrapperStyle,
   showAnswerButtonStyle,
 } from './style.css';
 import { useParams } from 'react-router-dom';
@@ -16,16 +14,13 @@ import {
   IShortProblemDetailResponseData,
   IShortProblemResultData,
 } from '../../../types/api/problem';
-import { XIcon } from '../../../Icon/XIcon';
-import { OIcon } from '../../../Icon/OIcon';
-import { COLOR } from '../../../constants/color';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
 import { useQuery } from 'react-query';
 import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
 import { MetaTag } from '../../utils/MetaTag';
-import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
-import { ColumnBox, RowBox } from '../../../Component/Box/CustomBox';
+import { ColumnBox } from '../../../Component/Box/CustomBox';
 import { hiddenStyle } from '../Long/style.css';
+import { ResultBox } from '../../../Component/Box/ResultBox';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
@@ -88,32 +83,13 @@ export function ShortQuestionDetailPage() {
             >
               정답 보기
             </button>
-            <RowBox className={answerBoxWrapperStyle}>
-              <MyScoreBox score={result.score} />
-              <button
-                className={
-                  isAnswerShown
-                    ? resultAnswerStyle['shown']
-                    : result?.isAnswer
-                    ? resultAnswerStyle['correct']
-                    : resultAnswerStyle['wrong']
-                }
-                onClick={resetResult}
-              >
-                {isAnswerShown ? (
-                  <div>{result.correctAnswer}</div>
-                ) : (
-                  <>
-                    {result.isAnswer ? (
-                      <OIcon fill={COLOR.GREEN} width='1.5rem' height='1.5rem' />
-                    ) : (
-                      <XIcon fill={COLOR.RED} width='1.5rem' height='1.5rem' />
-                    )}
-                    {result.userAnswer}
-                  </>
-                )}
-              </button>
-            </RowBox>
+            <ResultBox
+              isCorrect={result.isAnswer}
+              score={result.score}
+              onClick={resetResult}
+              text={isAnswerShown ? result.correctAnswer : result.userAnswer}
+              isStandardAnswer={isAnswerShown}
+            />
           </ColumnBox>
         ) : (
           <input

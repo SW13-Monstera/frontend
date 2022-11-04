@@ -10,18 +10,13 @@ import {
   choiceListStyle,
   choiceWrapperStyle,
   contentTitleStyle,
-  gradeResultScoredStyle,
   isMultipleAnswerStyle,
-  resultWrapperStyle,
 } from './style.css';
-import { COLOR } from '../../../constants/color';
-import { XIcon } from '../../../Icon/XIcon';
-import { OIcon } from '../../../Icon/OIcon';
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
 import { MetaTag } from '../../utils/MetaTag';
-import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
 import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
+import { ResultBox } from '../../../Component/Box/ResultBox';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
@@ -95,24 +90,16 @@ export function MultipleQuestionDetailPage() {
                 </label>
               ))}
             </div>
-            <div className={resultWrapperStyle}>
-              <MyScoreBox score={result?.score} />
-              {result ? (
-                result.isAnswer ? (
-                  <div className={gradeResultScoredStyle.correct}>
-                    <div>정답입니다</div>
-                    <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
-                  </div>
-                ) : (
-                  <div className={gradeResultScoredStyle.wrong}>
-                    <div>오답입니다</div>
-                    <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
-                  </div>
-                )
-              ) : (
-                <></>
-              )}
-            </div>
+            {result ? (
+              <ResultBox
+                isCorrect={result.isAnswer}
+                score={result.score}
+                onClick={resetResult}
+                text={result.isAnswer ? '정답입니다' : '오답입니다'}
+              />
+            ) : (
+              <></>
+            )}
           </>
         }
       ></SplitProblemDetailPageTemplate>
