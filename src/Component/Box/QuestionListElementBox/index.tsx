@@ -48,6 +48,7 @@ function QuestionListElementBox({
   title,
   avgScore,
   totalSubmission,
+  isSolved,
   tags,
   id,
   type,
@@ -67,6 +68,11 @@ function QuestionListElementBox({
                 name={type === 'long' ? '서술형' : type === 'short' ? '단답형' : '객관식'}
                 color='color2'
               />
+              {isSolved !== undefined ? (
+                <TagBox name={isSolved ? '푼 문제' : '안 푼 문제'} color='color3' />
+              ) : (
+                <></>
+              )}
             </ul>
             <p className={titleStyle}>{title}</p>
           </div>

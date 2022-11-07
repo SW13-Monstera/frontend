@@ -33,7 +33,7 @@ export const ProblemDetailButtonList = ({
             theme={BUTTON_THEME.SECONDARY}
             size={BUTTON_SIZE.MEDIUM}
             onClick={() => {
-              navigate(URL.PROBLEM_LIST);
+              navigate(isResultPage ? -2 : -1);
             }}
           >
             돌아가기

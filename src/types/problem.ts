@@ -33,6 +33,7 @@ interface IQuestionListElementBox {
   totalSubmission: number;
   avgScore: number;
   isColumn?: boolean;
+  isSolved?: boolean;
 }
 
 interface IProblemIdLinkState {

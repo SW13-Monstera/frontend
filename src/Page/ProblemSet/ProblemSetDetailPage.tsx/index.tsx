@@ -1,126 +1,81 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import problemSet from '../../../mock/problemSet.json';
-import {
-  contentWrapperStyle,
-  indexButtonWrapperStyle,
-  problemDetailWrapperStyle,
-  problemSetDetailTitleStyle,
-  problemSetTitleStyle,
-} from './style.css';
-import { TabMenuButton } from '../../../Component/Button/TabMenuButton';
-import { useMemo, useState } from 'react';
+import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
+import { QuestionListElementBox } from '../../../Component/Box';
+import { IProblemListElement, IProblemSetDataElement } from '../../../types/problemSet';
+import { isProduction } from '../../../utils/isProduction';
 import { ErrorPage } from '../../Error/ErrorPage';
 import { MetaTag } from '../../utils/MetaTag';
-import { MultipleProblemSetDetail } from '../ProblemSetDetail/Multiple';
-import { ShortProblemSetDetail } from '../ProblemSetDetail/Short';
-import { LongProblemSetDetail } from '../ProblemSetDetail/Long';
-import { IResult } from '../../../types/problemSet';
-
-interface IProblemDetail {
-  problemType: string;
-  problemId: number;
-  moveNext: () => void;
-}
-
-interface ICurrProblem {
-  id: number;
-  index: number;
-}
-
-const ProblemDetail = ({ problemType, problemId, moveNext }: IProblemDetail) => {
-  const [resultList, setResultList] = useState<Map<string, IResult>>(new Map());
-
-  const pushResult = (problemId: string, newResult: IResult) => {
-    setResultList((prev) => new Map([...prev, [problemId, newResult]]));
-  };
-
-  return (
-    <div className={problemDetailWrapperStyle}>
-      {problemType === 'long' ? (
-        <LongProblemSetDetail
-          problemId={problemId.toString()}
-          moveNext={moveNext}
-          pushResult={pushResult}
-          resultList={resultList}
-        />
-      ) : problemType === 'short' ? (
-        <ShortProblemSetDetail
-          problemId={problemId.toString()}
-          moveNext={moveNext}
-          pushResult={pushResult}
-        />
-      ) : problemType === 'multiple' ? (
-        <MultipleProblemSetDetail
-          problemId={problemId.toString()}
-          moveNext={moveNext}
-          pushResult={pushResult}
-        />
-      ) : (
-        <></>
-      )}
-    </div>
-  );
-};
+import {
+  problemSetDetailWrapperStyle,
+  problemSetListStyle,
+  problemSetTitleStyle,
+} from './style.css';
 
 export const ProblemSetDetailPage = () => {
-  const { setId, id } = useParams();
+  const { setId } = useParams();
 
-  if (!setId || !id) return <ErrorPage />;
+  if (!setId) return <ErrorPage />;
+  const [problemSetData, setProblemSetData] = useState<IProblemSetDataElement>();
+  const [problemList, setProblemList] = useState<IProblemListElement[]>();
 
-  const [currProblem, setCurrProblem] = useState<ICurrProblem>({ id: parseInt(id), index: 0 });
-  const problemSetData = problemSet[parseInt(setId)];
-  const problemType = useMemo(
-    () =>
-      [...problemSetData.problems, problemSetData.final_problem_id].find(
-        (e) => e.id === currProblem.id,
-      ),
-    [currProblem],
-  )?.type;
-  const problemList: ICurrProblem[] = useMemo(
-    () =>
-      [...problemSetData.problems, problemSetData.final_problem_id].map((e, index) => {
-        return { id: e.id, index: index };
-      }),
-    [problemSetData],
-  );
+  useEffect(() => {
+    if (isProduction) {
+      import('../../../mock/problemSet.json').then((data) =>
+        setProblemSetData(data.default[parseInt(setId)]),
+      );
+    } else {
+      import('../../../mock/problemSetDev.json').then((data) =>
+        setProblemSetData(data.default[parseInt(setId)]),
+      );
+    }
+  }, []);
 
-  const moveNext = () => {
-    const nextIndex = currProblem.index + 1;
-    if (nextIndex >= problemList.length || nextIndex < 0) return;
-    setCurrProblem(problemList[nextIndex]);
-  };
+  useEffect(() => {
+    problemSetData?.problems
+      .reduce<any>(async (prev, curr) => {
+        const prevResult = await prev;
+        let currResult = null;
+        if (curr.type === 'long') {
+          currResult = await problemApiWrapper.longProblemDetail(curr.id.toString());
+        } else if (curr.type === 'short') {
+          currResult = await problemApiWrapper.shortProblemDetail(curr.id.toString());
+        } else {
+          currResult = await problemApiWrapper.multipleProblemDetail(curr.id.toString());
+        }
+        prevResult.push({ ...currResult, type: curr.type });
+        return prev;
+      }, Promise.resolve([]))
+      .then((data: IProblemListElement[]) => {
+        setProblemList(data);
+      });
+  }, [problemSetData]);
 
   return (
     <>
       <MetaTag
-        title={`CS Broker - ${problemSetData.set_title}`}
-        description={`${problemSetData.set_title}에 관한 문제 세트입니다.`}
-        keywords={`${problemSetData.set_title}, 서술형, 객관식, 단답형`}
+        title={`CS Broker - ${problemSetData?.setTitle}`}
+        description={`${problemSetData?.setTitle}에 관한 문제 세트입니다.`}
+        keywords={`${problemSetData?.setTitle}, 서술형, 객관식, 단답형`}
       />
-      <div className={problemSetDetailTitleStyle}>
-        <h1 className={problemSetTitleStyle}>{problemSetData.set_title}</h1>
-        <div>{`문제수: ${problemSetData.problems?.length + 1}개`}</div>
-      </div>
-      <div className={contentWrapperStyle}>
-        <div className={indexButtonWrapperStyle}>
-          {[...problemSetData.problems, problemSetData.final_problem_id].map((e, idx) => {
+      <div className={problemSetDetailWrapperStyle}>
+        <div className={problemSetTitleStyle}>{problemSetData?.setTitle}</div>
+        <div className={problemSetListStyle}>
+          {problemList?.map((problem) => {
             return (
-              <TabMenuButton
-                key={e.id}
-                idx={idx}
-                isSelected={currProblem.id === e.id}
-                onClick={() => {
-                  setCurrProblem(problemList[idx]);
-                }}
+              <QuestionListElementBox
+                key={problem.id}
+                id={problem.id}
+                title={problem.title}
+                tags={problem.tags}
+                type={problem.type}
+                totalSubmission={problem.totalSubmission}
+                avgScore={problem.avgScore}
+                isSolved={problem.isSolved}
               />
             );
           })}
         </div>
-        {problemType ? (
-          <ProblemDetail problemType={problemType} problemId={currProblem.id} moveNext={moveNext} />
-        ) : (
-          <></>
-        )}
       </div>
     </>
   );
