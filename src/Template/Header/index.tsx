@@ -18,12 +18,10 @@ import { ICON } from '../../constants/icon';
 import { URL } from '../../constants/url';
 import CustomPopover from '../../Component/Utils/Popover';
 import { usePopover } from '../../hooks/usePopover';
-import { Typography } from '@mui/material';
 import { Divider } from '../../Component/Divider';
 import { setLogout } from '../../utils/setLogout';
 import { DarkmodeButton } from '../../Component/Button/DarkmodeButton';
 import { NavigateProblemListButton } from '../../Component/Button/NavigateProblemListButton';
-import AlarmIcon from '../../Icon/AlarmIcon';
 import { useEffect } from 'react';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { getUserInfo } from '../../utils/userInfo';
@@ -74,17 +72,6 @@ function Header() {
         <DarkmodeButton />
         {getUserInfo() ? (
           <div className={iconButtonListWrapperStyle}>
-            <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleAlarmClick}>
-              <AlarmIcon fill={COLOR.TEXT[5]} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
-            </IconButton>
-            <CustomPopover
-              id={alarmId}
-              open={alarmOpen}
-              anchorEl={alarmAnchorEl}
-              handleClose={handleAlarmClose}
-            >
-              <Typography sx={{ p: 2 }}>확인하지 않은 알림이 없습니다.</Typography>
-            </CustomPopover>
             <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleMypageClick}>
               <MyPageIcon fill={COLOR.PRIMARY} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
             </IconButton>
