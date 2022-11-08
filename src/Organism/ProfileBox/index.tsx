@@ -151,16 +151,21 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
         />
       </div>
       <Divider />
-      <div
-        className={section3Style}
-        style={{ display: statistics.every((e) => isNaN(e.value)) ? 'none' : 'flex' }}
-      >
-        <div className={labelTitleStyle}>통계</div>
-        <div className={chartWrapperStyle}>
-          <DoughnutChart data={createCategoryChartData(statistics)} />
-        </div>
-      </div>
-      <Divider />
+      <></>
+      {!statistics.every((e) => isNaN(e.value)) ? (
+        <>
+          <div className={section3Style}>
+            <div className={labelTitleStyle}>통계</div>
+            <div className={chartWrapperStyle}>
+              <DoughnutChart data={createCategoryChartData(statistics)} />
+            </div>
+          </div>
+          <Divider />
+        </>
+      ) : (
+        <></>
+      )}
+
       <RowBox className={editButtonListStyle}>
         <TextButton
           theme={BUTTON_THEME.PRIMARY}
