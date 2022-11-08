@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import MyPageIcon from '../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import { useAuthStore, useDarkModeStore } from '../../hooks/useStore';
+import { useDarkModeStore } from '../../hooks/useStore';
 import { IconButton, TextButton, TransparentButton } from '../../Component/Button';
 import logo from '../../assets/images/csbroker.png';
 import logoWhite from '../../assets/images/csbroker-white.png';
@@ -26,10 +26,10 @@ import { NavigateProblemListButton } from '../../Component/Button/NavigateProble
 import AlarmIcon from '../../Icon/AlarmIcon';
 import { useEffect } from 'react';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
+import { getUserInfo } from '../../utils/userInfo';
 
 function Header() {
   const navigate = useNavigate();
-  const { isLogin, setIsLogin } = useAuthStore();
   const { isDark } = useDarkModeStore();
 
   const {
@@ -49,7 +49,7 @@ function Header() {
 
   function handleLogout() {
     setLogout();
-    setIsLogin(false);
+    // setIsLogin(false);
     navigate(URL.MAIN);
     localStorage.clear();
   }
@@ -72,7 +72,7 @@ function Header() {
       </div>
       <div className={menuStyle}>
         <DarkmodeButton />
-        {isLogin ? (
+        {getUserInfo() ? (
           <div className={iconButtonListWrapperStyle}>
             <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleAlarmClick}>
               <AlarmIcon fill={COLOR.TEXT[5]} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />

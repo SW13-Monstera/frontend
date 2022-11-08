@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
 import { authApiWrapper } from '../../../../api/wrapper/auth/authApiWrapper';
-import { useAuthStore } from '../../../../hooks/useStore';
 import LoginForm from '../../../../Organism/LoginForm';
 import { setUserInfo } from '../../../../utils/userInfo';
 import { modalStyle } from './style.css';
@@ -14,8 +13,6 @@ interface IModal {
 }
 
 function LoginModal({ isModalOpen, closeModal }: IModal) {
-  const { setIsLogin } = useAuthStore();
-
   const handleSubmit = () => {
     const emailValue = (document.getElementById('email') as HTMLInputElement)?.value;
     const passwordValue = (document.getElementById('password') as HTMLInputElement)?.value;
@@ -30,7 +27,7 @@ function LoginModal({ isModalOpen, closeModal }: IModal) {
       .then(
         (res) => {
           setUserInfo(res);
-          setIsLogin(true);
+          // setIsLogin(true);
           return true;
         },
         (err) => false,

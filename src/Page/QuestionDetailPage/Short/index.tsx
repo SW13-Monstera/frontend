@@ -19,8 +19,8 @@ import { useQuery } from 'react-query';
 import { MarkdownBox } from '../../../Component/Box/MarkdownBox';
 import { MetaTag } from '../../utils/MetaTag';
 import { ColumnBox } from '../../../Component/Box/CustomBox';
-import { hiddenStyle } from '../Long/style.css';
 import { ResultBox } from '../../../Component/Box/ResultBox';
+import { hiddenStyle } from '../../../styles/util.css';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();

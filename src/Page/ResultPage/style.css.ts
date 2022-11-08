@@ -156,3 +156,32 @@ export const contentElementStyle = styleVariants({
   true: [contentElementBaseStyle, { color: COLOR.PRIMARY }],
   false: [contentElementBaseStyle, { color: themeColors.text[5] }],
 });
+
+export const evaluationButtonListStyle = style({
+  display: 'flex',
+  gap: '1rem',
+  alignItems: 'center',
+});
+
+export const evaluationButtonListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  gap: '.7rem',
+});
+
+export const evaluationWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  alignSelf: 'end',
+});
+
+export const phraseStyle = style({
+  fontWeight: '400',
+  fontSize: '1em',
+  lineHeight: '1.25rem',
+  color: themeColors.text[3],
+});
