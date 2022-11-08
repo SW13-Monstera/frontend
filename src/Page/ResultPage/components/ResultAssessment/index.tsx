@@ -24,7 +24,7 @@ interface IAssessmentPopover {
   gradingHistoryId?: number;
 }
 
-export const AssessmentPopover = ({ gradingHistoryId }: IAssessmentPopover) => {
+export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
   if (!gradingHistoryId) return <></>;
 
   const { anchorEl, handleClick, handleClose, id: popoverId, open } = usePopover();

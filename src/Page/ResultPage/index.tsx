@@ -27,7 +27,7 @@ import { NumberLineChart } from '../../Component/Chart/NumberLineChart';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
 import { COLOR } from '../../constants/color';
-import { AssessmentPopover } from './components/AssessmentPopover';
+import { ResultAssessment } from './components/ResultAssessment';
 
 const USER_ANSWER_DOM_ID = 'user-answer';
 
@@ -151,7 +151,7 @@ export default function ResultPage() {
                 </li>
               ))}
             </ul>
-            <AssessmentPopover gradingHistoryId={result?.gradingHistoryId} />
+            <ResultAssessment gradingHistoryId={result?.gradingHistoryId} />
           </div>
         }
         bottomContent={
