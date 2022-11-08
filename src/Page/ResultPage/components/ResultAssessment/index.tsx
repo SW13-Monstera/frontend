@@ -24,6 +24,19 @@ interface IAssessmentPopover {
   gradingHistoryId?: number;
 }
 
+const EVALUATIONS = [
+  { label: '😀 좋아요', value: ASSESSMENT_TYPE.GOOD },
+  { label: '😐 적당해요', value: ASSESSMENT_TYPE.NORMAL },
+  { label: '🙁 별로예요', value: ASSESSMENT_TYPE.BAD },
+];
+const COMMENTS = [
+  '키워드 채점 기준이 정확하게 적용되지 않은 것 같아요.',
+  '내용 채점 기준이 정확하게 적용되지 않은 것 같아요.',
+  '기타',
+];
+const ASSESSMENT_BAD_CLASS = 'assessment-bad';
+const ASSESSMENT_BAD_ETC_CLASS = 'assessment-bad--etc';
+
 export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
   if (!gradingHistoryId) return <></>;
 
@@ -49,11 +62,7 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
       <div className={isEvaluated ? displayNoneStyle : evaluationButtonListWrapperStyle}>
         <div className={phraseStyle}>채점 결과는 어땠나요?</div>
         <div className={evaluationButtonListStyle}>
-          {[
-            { label: '😀 좋아요', value: ASSESSMENT_TYPE.GOOD },
-            { label: '😐 적당해요', value: ASSESSMENT_TYPE.NORMAL },
-            { label: '🙁 별로예요', value: ASSESSMENT_TYPE.BAD },
-          ].map((e) => {
+          {EVALUATIONS.map((e) => {
             return (
               <TextButton
                 type={BUTTON_TYPE.BUTTON}
@@ -82,11 +91,7 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
               <div className={popoverMainContentStyle}>
                 <ul className={popoverListWrapperStyle}>
                   <div className={popoverTitleStyle}>개선이 필요한 내용을 알려주세요.</div>
-                  {[
-                    '키워드 채점 기준이 정확하게 적용되지 않은 것 같아요.',
-                    '내용 채점 기준이 정확하게 적용되지 않은 것 같아요.',
-                    '기타',
-                  ].map((comment) => (
+                  {COMMENTS.map((comment, idx) => (
                     <li
                       key={comment}
                       onClick={() => {
@@ -100,8 +105,10 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
                       <input
                         type='radio'
                         id={comment}
-                        className='assessment-bad'
-                        name='assessment-bad'
+                        className={`${ASSESSMENT_BAD_CLASS} ${
+                          idx === COMMENTS.length - 1 ? ASSESSMENT_BAD_ETC_CLASS : ''
+                        }`}
+                        name={ASSESSMENT_BAD_CLASS}
                         value={comment}
                       />
                       <label htmlFor={comment} className={popoverContentStyle}>
@@ -112,8 +119,9 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
                 </ul>
                 {isEvaluatedETC ? (
                   <input
+                    type='text'
                     placeholder='개선이 필요한 내용을 입력해주세요.'
-                    className={`assessment-bad-etc ${etcInputStyle}`}
+                    className={`${ASSESSMENT_BAD_ETC_CLASS} ${etcInputStyle}`}
                   />
                 ) : (
                   <></>
@@ -125,11 +133,11 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
                 className={popoverSubmitButtonStyle}
                 onClick={() => {
                   const comment = document.querySelector(
-                    'input[type=radio].assessment-bad:checked',
+                    `input[type=radio].${ASSESSMENT_BAD_CLASS}:checked`,
                   ) as HTMLInputElement;
-                  if (comment.value === '기타') {
+                  if (comment.classList.contains(ASSESSMENT_BAD_ETC_CLASS)) {
                     const commentETC = document.querySelector(
-                      'input.assessment-bad-etc',
+                      `input[type=text].${ASSESSMENT_BAD_ETC_CLASS}`,
                     ) as HTMLTextAreaElement;
                     handleAssessmentSubmit(ASSESSMENT_TYPE.BAD, commentETC.value);
                   } else {

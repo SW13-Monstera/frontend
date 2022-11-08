@@ -16,6 +16,7 @@ export const contentWrapperStyle = style({
   gap: '1.5rem',
 
   padding: '2rem 0 2rem 2rem',
+  minWidth: '21.875rem',
 });
 
 export const contentWrapperSideStyle = styleVariants({

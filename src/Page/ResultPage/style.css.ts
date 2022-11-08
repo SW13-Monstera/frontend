@@ -4,8 +4,6 @@ import baseFontStyle from '../../styles/font.css';
 import { COLOR } from '../../constants/color';
 
 export const pageStyle = style({
-  boxSizing: 'border-box',
-
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
@@ -66,7 +64,6 @@ export const keywordListStyle = style({
 });
 
 export const contentStyle = style({
-  boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
@@ -76,7 +73,7 @@ export const contentStyle = style({
   width: '100%',
   height: '100%',
 
-  padding: '2rem',
+  padding: '1rem',
 });
 
 export const standardAnswerStyle = style([
@@ -159,6 +156,7 @@ export const contentElementStyle = styleVariants({
 
 export const evaluationButtonListStyle = style({
   display: 'flex',
+  flex: 1,
   gap: '1rem',
   alignItems: 'center',
 });
@@ -229,4 +227,13 @@ export const etcInputStyle = style({
   padding: '.5rem',
   border: `1px solid ${COLOR.LINE.c}`,
   borderRadius: '8px',
+});
+
+export const scoreEvaluationWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  alignSelf: 'end',
+  gap: '.5rem',
 });

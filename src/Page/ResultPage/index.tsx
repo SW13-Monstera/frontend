@@ -12,6 +12,7 @@ import {
   numberLineChartStrongTitleStyle,
   contentElementStyle,
   contentListStyle,
+  scoreEvaluationWrapperStyle,
 } from './style.css';
 import { ILongProblemResultData } from '../../types/api/problem';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
@@ -136,7 +137,7 @@ export default function ResultPage() {
           <div className={contentStyle}>
             <h3 className={subtitleStyle}>내 답안</h3>
             <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
-            <MyScoreBox score={result?.score} className={myScoreStyle} />
+
             <h4>키워드 채점 기준</h4>
             <ul className={keywordListStyle}>
               {result?.keywords?.map(({ id, content, isExist }) => (
@@ -151,7 +152,10 @@ export default function ResultPage() {
                 </li>
               ))}
             </ul>
-            <ResultAssessment gradingHistoryId={result?.gradingHistoryId} />
+            <div className={scoreEvaluationWrapperStyle}>
+              <MyScoreBox score={result?.score} className={myScoreStyle} />
+              <ResultAssessment gradingHistoryId={result?.gradingHistoryId} />
+            </div>
           </div>
         }
         bottomContent={
