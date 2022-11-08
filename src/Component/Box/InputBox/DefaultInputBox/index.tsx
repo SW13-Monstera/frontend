@@ -1,9 +1,11 @@
 import { IInputBox } from '../../../../types/box';
+import { WarningTextList } from '../../../Typography/WarningText';
 import {
   defaultInputBoxStyle,
+  defaultInputIconStyle,
   defaultInputStyle,
+  defaultInputTagStyle,
   defaultInputWrapperStyle,
-  warningStyle,
 } from './style.css';
 
 function DefaultInputBox({
@@ -14,27 +16,31 @@ function DefaultInputBox({
   name,
   label,
   isWarning = false,
-  warningMessage = '',
+  warningMessages = [],
   onChange,
   defaultValue,
+  icon,
 }: IInputBox) {
   return (
     <div className={defaultInputWrapperStyle}>
       <div className={defaultInputStyle}>
         <label htmlFor={id}>{label}</label>
-        <input
-          id={id}
-          name={name}
-          placeholder={placeholder}
-          type={type}
-          className={defaultInputBoxStyle}
-          onChange={onChange}
-          defaultValue={defaultValue}
-        >
-          {children}
-        </input>
+        <div className={defaultInputBoxStyle}>
+          <p className={defaultInputIconStyle}>{icon}</p>
+          <input
+            id={id}
+            name={name}
+            placeholder={placeholder}
+            type={type}
+            onChange={onChange}
+            defaultValue={defaultValue}
+            className={defaultInputTagStyle}
+          >
+            {children}
+          </input>
+        </div>
       </div>
-      {isWarning ? <div className={warningStyle}>{warningMessage}</div> : <></>}
+      <WarningTextList isShown={isWarning} warningList={warningMessages} />
     </div>
   );
 }

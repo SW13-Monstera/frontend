@@ -10,17 +10,13 @@ import {
   choiceListStyle,
   choiceWrapperStyle,
   contentTitleStyle,
-  gradeResultScoredStyle,
-  resultWrapperStyle,
+  isMultipleAnswerStyle,
 } from './style.css';
-import { COLOR } from '../../../constants/color';
-import { XIcon } from '../../../Icon/XIcon';
-import { OIcon } from '../../../Icon/OIcon';
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
 import { MetaTag } from '../../utils/MetaTag';
-import { MyScoreBox } from '../../../Component/Box/MyScoreBox';
 import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
+import { ResultBox } from '../../../Component/Box/ResultBox';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
@@ -32,7 +28,7 @@ export function MultipleQuestionDetailPage() {
   const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
 
   const resetInput = () => {
-    (document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>).forEach(
+    (document.querySelectorAll('input') as NodeListOf<HTMLInputElement>).forEach(
       (e) => (e.checked = false),
     );
   };
@@ -46,9 +42,7 @@ export function MultipleQuestionDetailPage() {
   function handleSubmit() {
     if (!id) return;
     const answerIds: number[] = [];
-    const checkboxes = document.querySelectorAll(
-      'input[type="checkbox"]',
-    ) as NodeListOf<HTMLInputElement>;
+    const checkboxes = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
     checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
     problemApiWrapper.multipleProblemResult(id, answerIds).then((data) => {
       setResult(data);
@@ -75,6 +69,9 @@ export function MultipleQuestionDetailPage() {
           <>
             <label htmlFor='answer' className={contentTitleStyle}>
               답안 선택
+              <span className={isMultipleAnswerStyle}>
+                {data?.isMultipleAnswer ? ' (복수 선택)' : ' (정답 한개)'}
+              </span>
             </label>
             <div className={choiceListStyle} onClick={resetResult}>
               {data?.choices.map((choice) => (
@@ -84,32 +81,25 @@ export function MultipleQuestionDetailPage() {
                   key={choice.id}
                 >
                   <input
-                    type='checkbox'
+                    type={data?.isMultipleAnswer ? 'checkbox' : 'radio'}
                     id={choice.id.toString()}
                     className={choiceCheckboxStyle}
+                    name='answer'
                   />
                   {choice.content}
                 </label>
               ))}
             </div>
-            <div className={resultWrapperStyle}>
-              <MyScoreBox score={result?.score} />
-              {result ? (
-                result.isAnswer ? (
-                  <div className={gradeResultScoredStyle.correct}>
-                    <div>정답입니다</div>
-                    <OIcon fill={COLOR.CORRECT} width='2rem' height='2rem' />
-                  </div>
-                ) : (
-                  <div className={gradeResultScoredStyle.wrong}>
-                    <div>오답입니다</div>
-                    <XIcon fill={COLOR.ERROR} width='2rem' height='2rem' />
-                  </div>
-                )
-              ) : (
-                <></>
-              )}
-            </div>
+            {result ? (
+              <ResultBox
+                isCorrect={result.isAnswer}
+                score={result.score}
+                onClick={resetResult}
+                text={result.isAnswer ? '정답입니다' : '오답입니다'}
+              />
+            ) : (
+              <></>
+            )}
           </>
         }
       ></SplitProblemDetailPageTemplate>

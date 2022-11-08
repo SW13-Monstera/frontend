@@ -18,6 +18,8 @@ import { useState } from 'react';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { createOptions } from '../../utils/createOptions';
 import { debounce } from '../../utils/debounce';
+import { SmileIcon } from '../../Icon/SmileIcon';
+import { themeColors } from '../../styles/theme.css';
 
 export const UserDataEditPage = () => {
   const navigate = useNavigate();
@@ -92,6 +94,7 @@ export const UserDataEditPage = () => {
               placeholder='닉네임을 입력해주세요'
               defaultValue={profileData?.username}
               label='닉네임'
+              icon={<SmileIcon width='1.25rem' height='1.25rem' fill={themeColors.text[3]} />}
             />
             <DefaultSelect
               label='전공'

@@ -16,7 +16,7 @@ export const headerStyle = style({
   backgroundColor: themeColors.background.FF,
   borderBottom: `1px solid ${themeColors.line.e}`,
 
-  zIndex: 1,
+  zIndex: 999,
 });
 
 export const leftSideWrapperStyle = style({

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
-import { AUTHORIZTION, BEARER_TOKEN } from '../constants/api';
+import { API_BASE_URL, AUTHORIZTION, BEARER_TOKEN } from '../constants/api';
 import { URL } from '../constants/url';
 import { getUserInfo } from '../utils/userInfo';
 
 const apiClient = axios.create({
-  baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`,
+  baseURL: `${API_BASE_URL}/api`,
   withCredentials: true,
 });
 

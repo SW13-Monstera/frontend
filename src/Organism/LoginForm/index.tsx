@@ -3,10 +3,13 @@ import { DefaultInputBox } from '../../Component/Box';
 import { etcButtonStyle, etcStyle, loginFormContentStyle, loginFormStyle } from './style.css';
 import { TextButton } from '../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import HorizontalOAuthButtonList from '../ButtonList/HorizontalOAuthButtonList';
 import { INPUT_TYPE } from '../../constants/input';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
+import OAuthButtonListSection from '../ButtonList/OAuthButtonListSection';
+import { MailIcon } from '../../Icon/MailIcon';
+import { themeColors } from '../../styles/theme.css';
+import { LockIcon } from '../../Icon/LockIcon';
 
 interface ILoginForm {
   closeModal?: () => void;
@@ -34,6 +37,7 @@ function LoginForm({ handleSubmit }: ILoginForm) {
           placeholder='이메일을 입력해주세요'
           type={INPUT_TYPE.EMAIL}
           label='이메일'
+          icon={<MailIcon width='1.25rem' height='1rem' fill={themeColors.text[3]} />}
         />
         <DefaultInputBox
           id='password'
@@ -41,6 +45,7 @@ function LoginForm({ handleSubmit }: ILoginForm) {
           placeholder='비밀번호를 입력해주세요'
           type={INPUT_TYPE.PASSWORD}
           label='비밀번호'
+          icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
         />
         <TextButton
           theme={BUTTON_THEME.PRIMARY}
@@ -65,7 +70,7 @@ function LoginForm({ handleSubmit }: ILoginForm) {
           회원가입
         </button>
       </div>
-      <HorizontalOAuthButtonList>간편 로그인</HorizontalOAuthButtonList>
+      <OAuthButtonListSection>간편 로그인</OAuthButtonListSection>
     </div>
   );
 }

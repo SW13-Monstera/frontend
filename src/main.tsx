@@ -8,8 +8,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import ReactGA from 'react-ga';
 import { HelmetProvider } from 'react-helmet-async';
 import { ErrorBoundary } from './ErrorBoundary';
+import { GA_TRACKING_ID } from './constants/api';
 
-ReactGA.initialize(import.meta.env.VITE_GA_TRACKING_ID);
+ReactGA.initialize(GA_TRACKING_ID);
 
 const rootElement = document.getElementById('root');
 if (rootElement === null) throw new Error('Root container missing in index.html');
