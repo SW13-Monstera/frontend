@@ -9,7 +9,7 @@ Modal.setAppElement('#root');
 interface IModal {
   isModalOpen: boolean;
   closeModal: () => void;
-  children?: JSX.Element | string;
+  children?: React.ReactNode;
 }
 
 function LoginModal({ isModalOpen, closeModal }: IModal) {

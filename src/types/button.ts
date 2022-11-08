@@ -1,7 +1,7 @@
 import { MouseEventHandler } from 'react';
 
 export interface IButton {
-  children: JSX.Element | string;
+  children: React.ReactNode;
   type?: TButtonType;
   theme?: TButtonTheme;
   size?: TButtonSize;
