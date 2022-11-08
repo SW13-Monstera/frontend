@@ -169,6 +169,7 @@ export const evaluationButtonListWrapperStyle = style({
   alignItems: 'flex-end',
   justifyContent: 'center',
   gap: '.7rem',
+  paddingTop: '1rem',
 });
 
 export const evaluationWrapperStyle = style({
@@ -181,7 +182,51 @@ export const evaluationWrapperStyle = style({
 
 export const phraseStyle = style({
   fontWeight: '400',
-  fontSize: '1em',
+  fontSize: '1rem',
   lineHeight: '1.25rem',
   color: themeColors.text[3],
+});
+
+export const popoverWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  padding: '1rem',
+});
+
+export const popoverMainContentStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
+});
+
+export const popoverListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.25rem',
+});
+
+export const popoverTitleStyle = style({
+  fontWeight: '500',
+  fontSize: '1.25rem',
+  lineHeight: '1.5rem',
+  color: themeColors.text[1],
+  paddingBottom: '.5rem',
+});
+
+export const popoverContentStyle = style({
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.25rem',
+  color: themeColors.text[1],
+});
+
+export const popoverSubmitButtonStyle = style({
+  alignSelf: 'center',
+});
+
+export const etcInputStyle = style({
+  padding: '.5rem',
+  border: `1px solid ${COLOR.LINE.c}`,
+  borderRadius: '8px',
 });

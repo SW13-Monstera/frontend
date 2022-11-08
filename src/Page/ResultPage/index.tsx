@@ -12,15 +12,11 @@ import {
   numberLineChartStrongTitleStyle,
   contentElementStyle,
   contentListStyle,
-  evaluationButtonListStyle,
-  evaluationButtonListWrapperStyle,
-  evaluationWrapperStyle,
-  phraseStyle,
 } from './style.css';
-import { ASSESSMENT_TYPE, ILongProblemResultData, TAssessment } from '../../types/api/problem';
+import { ILongProblemResultData } from '../../types/api/problem';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useMutation } from 'react-query';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
 import { MarkdownBox } from '../../Component/Box/MarkdownBox';
 import { MetaTag } from '../utils/MetaTag';
@@ -31,11 +27,9 @@ import { NumberLineChart } from '../../Component/Chart/NumberLineChart';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
 import { COLOR } from '../../constants/color';
+import { AssessmentPopover } from './components/AssessmentPopover';
 
 const USER_ANSWER_DOM_ID = 'user-answer';
-import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
-import { TextButton } from '../../Component/Button';
-import { displayNoneStyle } from '../../styles/util.css';
 
 export default function ResultPage() {
   const { id } = useParams();
@@ -57,7 +51,7 @@ export default function ResultPage() {
     let kcnt = 0;
     const refinedKeywordIdxList = keywordIdxList
       .map((_, idx) => {
-        const kidx = idx + kcnt;
+        const kidx: number = idx + kcnt;
         if (
           idx !== keywordIdxList.length - 1 &&
           keywordIdxList[kidx][1] > keywordIdxList[kidx + 1][0]
@@ -102,19 +96,6 @@ export default function ResultPage() {
       .getElementById(USER_ANSWER_DOM_ID)
       ?.insertAdjacentHTML('afterbegin', userAnswerHTML ?? '');
   };
-  const [isEvaluated, setIsEvaluated] = useState(false);
-
-  const handleAssessmentSubmit = (value: string) => {
-    if (!result?.gradingHistoryId) throw new Error('invalid id');
-    problemApiWrapper
-      .assessment(result?.gradingHistoryId.toString(), {
-        assessmentType: value as TAssessment,
-        content: '',
-      })
-      .then(() => {
-        setIsEvaluated(true);
-      });
-  };
 
   useEffect(() => {
     mutate();
@@ -149,40 +130,13 @@ export default function ResultPage() {
                 <MarkdownBox>{result?.standardAnswer}</MarkdownBox>
               </div>
             </TextBox>
-            <MyScoreBox score={result?.score} className={myScoreStyle} />
-
-            <div className={evaluationWrapperStyle}>
-              <div className={isEvaluated ? phraseStyle : displayNoneStyle}>
-                소중한 의견 감사합니다.
-              </div>
-              <div className={isEvaluated ? displayNoneStyle : evaluationButtonListWrapperStyle}>
-                <div className={phraseStyle}>채점 결과는 어땠나요?</div>
-                <div className={evaluationButtonListStyle}>
-                  {[
-                    { label: '😀 좋아요', value: ASSESSMENT_TYPE.GOOD },
-                    { label: '😐 적당해요', value: ASSESSMENT_TYPE.NORMAL },
-                    { label: '🙁 별로예요', value: ASSESSMENT_TYPE.BAD },
-                  ].map((e) => (
-                    <TextButton
-                      type={BUTTON_TYPE.BUTTON}
-                      theme={BUTTON_THEME.TERTIARY}
-                      size={BUTTON_SIZE.SMALL}
-                      onClick={() => {
-                        handleAssessmentSubmit(e.value);
-                      }}
-                      key={e.value}
-                    >
-                      {e.label}
-                    </TextButton>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         }
         rightSideContent={
           <div className={contentStyle}>
             <h3 className={subtitleStyle}>내 답안</h3>
+            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
+            <MyScoreBox score={result?.score} className={myScoreStyle} />
             <h4>키워드 채점 기준</h4>
             <ul className={keywordListStyle}>
               {result?.keywords?.map(({ id, content, isExist }) => (
@@ -197,7 +151,7 @@ export default function ResultPage() {
                 </li>
               ))}
             </ul>
-            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
+            <AssessmentPopover gradingHistoryId={result?.gradingHistoryId} />
           </div>
         }
         bottomContent={
