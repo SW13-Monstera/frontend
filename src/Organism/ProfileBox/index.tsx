@@ -15,6 +15,7 @@ import {
   imageUploadBackgroundStyle,
   editButtonListStyle,
   coreTechListStyle,
+  defaultImageStyle,
 } from './style.css';
 import { Divider } from '../../Component/Divider';
 import { ProfileLabel } from '../../Component/Utils/ProfileLabel';
@@ -29,14 +30,13 @@ import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
 import { IChartElement } from '../../types/chart';
 import { UploadIcon } from '../../Icon/UploadIcon';
-import csbrokerLogo from '../../favicon.svg';
 import { useCallback, useRef, useState } from 'react';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { toast } from 'react-toastify';
 import { RowBox } from '../../Component/Box/CustomBox';
 import { IProfileData } from '../../types/api/user';
 import { TechTagBox } from '../../Component/Box/TechTagBox';
-
+import userImage from '../../assets/icons/mypage-icon.svg';
 interface IProfileBox {
   profileData: IProfileBoxData;
 }
@@ -65,7 +65,7 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
   } = profileData;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [imgUrl, setImgUrl] = useState<string>(profileImgUrl ?? '');
+  const [imgUrl, setImgUrl] = useState<string | null>(profileImgUrl ?? null);
 
   const onUploadImage = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
@@ -104,8 +104,8 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
             style={{ display: 'none' }}
           />
           <img
-            src={imgUrl === null ? csbrokerLogo : imgUrl}
-            className={imageStyle}
+            src={imgUrl ?? userImage}
+            className={imgUrl ? imageStyle : defaultImageStyle}
             onClick={onUploadImageButtonClick}
           />
         </div>
