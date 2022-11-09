@@ -23,6 +23,8 @@ interface IPageButton {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
+const MAX_PAGE_NUM = 10;
+
 const PageButton = ({ num, isCurrentPage, onClick }: IPageButton) => {
   return (
     <button
@@ -76,7 +78,7 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
       <IconButton type={BUTTON_TYPE.BUTTON} onClick={movePrevPage}>
         <ArrowLeftIcon fill={themeColors.text[5]} width='1rem' height='1rem' />
       </IconButton>
-      {totalPages <= 5
+      {totalPages <= MAX_PAGE_NUM
         ? Array(totalPages)
             .fill(null)
             .map((_, idx) => (
