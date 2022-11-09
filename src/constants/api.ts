@@ -17,5 +17,5 @@ export const APP_URL =
 
 export const GA_TRACKING_ID =
   window.location.href.includes('dev') || window.location.href.includes('localhost')
-    ? 'G-SX59LH5T59'
-    : 'G-5YDJ48WT3K';
+    ? 'UA-180471924-3'
+    : 'UA-180471924-2';

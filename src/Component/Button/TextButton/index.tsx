@@ -30,7 +30,7 @@ function TextButton({
       }
       className={`${className} ${textButtonThemeStyle[theme]} ${textButtonSizeStyle[size]} ${
         !isActivated ? unactivatedStyle : ''
-      }`}
+      } `}
     >
       {children}
     </CustomButton>

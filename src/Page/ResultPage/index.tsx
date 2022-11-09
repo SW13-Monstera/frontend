@@ -12,10 +12,12 @@ import {
   numberLineChartStrongTitleStyle,
   contentElementStyle,
   contentListStyle,
+  scoreEvaluationWrapperStyle,
 } from './style.css';
 import { ILongProblemResultData } from '../../types/api/problem';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import { useMutation } from 'react-query';
+import { useEffect } from 'react';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
 import { MarkdownBox } from '../../Component/Box/MarkdownBox';
 import { MetaTag } from '../utils/MetaTag';
@@ -25,8 +27,8 @@ import { MyScoreBox } from '../../Component/Box/MyScoreBox';
 import { NumberLineChart } from '../../Component/Chart/NumberLineChart';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
-import { useEffect } from 'react';
 import { COLOR } from '../../constants/color';
+import { ResultAssessment } from './components/ResultAssessment';
 
 const USER_ANSWER_DOM_ID = 'user-answer';
 
@@ -50,7 +52,7 @@ export default function ResultPage() {
     let kcnt = 0;
     const refinedKeywordIdxList = keywordIdxList
       .map((_, idx) => {
-        const kidx = idx + kcnt;
+        const kidx: number = idx + kcnt;
         if (
           idx !== keywordIdxList.length - 1 &&
           keywordIdxList[kidx][1] > keywordIdxList[kidx + 1][0]
@@ -129,12 +131,13 @@ export default function ResultPage() {
                 <MarkdownBox>{result?.standardAnswer}</MarkdownBox>
               </div>
             </TextBox>
-            <MyScoreBox score={result?.score} className={myScoreStyle} />
           </div>
         }
         rightSideContent={
           <div className={contentStyle}>
             <h3 className={subtitleStyle}>내 답안</h3>
+            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
+
             <h4>키워드 채점 기준</h4>
             <ul className={keywordListStyle}>
               {result?.keywords?.map(({ id, content, isExist }) => (
@@ -149,7 +152,10 @@ export default function ResultPage() {
                 </li>
               ))}
             </ul>
-            <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
+            <div className={scoreEvaluationWrapperStyle}>
+              <MyScoreBox score={result?.score} className={myScoreStyle} />
+              <ResultAssessment gradingHistoryId={result?.gradingHistoryId} />
+            </div>
           </div>
         }
         bottomContent={
