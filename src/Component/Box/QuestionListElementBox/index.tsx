@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TagBox from '../TagBox';
 import { IQuestionListElementBox, TProblemType } from '../../../types/problem';
 import {
@@ -90,7 +90,6 @@ function QuestionListElementBox({
           )}
         </div>
       </Link>
-      <Outlet />
     </>
   );
 }
