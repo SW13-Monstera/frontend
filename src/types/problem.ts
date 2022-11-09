@@ -30,8 +30,9 @@ interface IQuestionListElementBox {
   title: string;
   tags: string[];
   type: TProblemType;
-  totalSubmission: number;
-  avgScore: number;
+  totalSubmission?: number;
+  correctSubmission?: number;
+  avgScore?: number;
   isColumn?: boolean;
   isSolved?: boolean;
 }

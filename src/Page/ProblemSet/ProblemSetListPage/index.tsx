@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { URLWithParam } from '../../../constants/url';
 import { IProblemSetDataElement } from '../../../types/problemSet';
 import { isProduction } from '../../../utils/isProduction';
@@ -21,17 +21,15 @@ import { TextButton } from '../../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME } from '../../../types/button';
 
 export const ProblemSetListPage = () => {
-  const navigate = useNavigate();
   const [problemSetDataList, setProblemSetDataList] = useState<IProblemSetDataElement[]>();
 
   useEffect(() => {
-    if (isProduction) {
-      import('../../../mock/problemSet.json').then((data) => setProblemSetDataList(data.default));
-    } else {
-      import('../../../mock/problemSetDev.json').then((data) =>
-        setProblemSetDataList(data.default),
-      );
-    }
+    import(
+      isProduction ? '../../../mock/problemSet.json' : '../../../mock/problemSetDev.json'
+    ).then((data) => {
+      const json: IProblemSetDataElement[] = JSON.parse(JSON.stringify(data)).default;
+      setProblemSetDataList(json);
+    });
   }, []);
 
   return (

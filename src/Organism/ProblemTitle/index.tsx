@@ -13,6 +13,7 @@ import {
 } from './style.css';
 import { getTagById } from '../../utils/getTagbyId';
 import { RowBox } from '../../Component/Box/CustomBox';
+import { isStringNotEmpty } from '../../utils/isNotEmpty';
 
 interface IProblemDetail {
   totalSubmission: string;
@@ -38,23 +39,23 @@ const problemDetailMap: Record<
   (num: string | undefined) => IProblemDetailDescription | null
 > = {
   totalSubmission: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '제출', value: num, unit: null } : null,
+    isStringNotEmpty(num) ? { label: '제출', value: num, unit: null } : null,
   avgScore: (num: string | undefined) =>
-    num !== null && num !== undefined
-      ? { label: '평균 점수', value: parseFloat(num).toFixed(2), unit: '점' }
+    isStringNotEmpty(num)
+      ? { label: '평균 점수', value: parseFloat(num!).toFixed(2), unit: '점' }
       : null,
   topScore: (num: string | undefined) =>
-    num !== null && num !== undefined
-      ? { label: '최고점', value: parseFloat(num).toFixed(2), unit: '점' }
+    isStringNotEmpty(num)
+      ? { label: '최고점', value: parseFloat(num!).toFixed(2), unit: '점' }
       : null,
   bottomScore: (num: string | undefined) =>
-    num !== null && num !== undefined
-      ? { label: '최저점', value: parseFloat(num).toFixed(2), unit: '점' }
+    isStringNotEmpty(num)
+      ? { label: '최저점', value: parseFloat(num!).toFixed(2), unit: '점' }
       : null,
   correctSubmission: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '정답', value: num, unit: '' } : null,
+    isStringNotEmpty(num) ? { label: '정답', value: num, unit: '' } : null,
   correctUserCnt: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '맞힌 사람 수', value: num, unit: '명' } : null,
+    isStringNotEmpty(num) ? { label: '맞힌 사람 수', value: num, unit: '명' } : null,
 };
 
 function ProblemTitle(props: IProblemTitle) {

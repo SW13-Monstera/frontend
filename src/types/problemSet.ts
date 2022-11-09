@@ -19,12 +19,11 @@ export interface IProblemListElement {
   type: TProblemType;
   totalSubmission: number;
   isSolved: boolean;
-  avgScore: number;
 }
 
 export interface IProblemSetProblemsElement {
   id: number;
-  type: string;
+  type: TProblemType;
 }
 
 export interface IProblemSetDataElement {

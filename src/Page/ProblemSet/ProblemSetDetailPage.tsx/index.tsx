@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { QuestionListElementBox } from '../../../Component/Box';
-import { IProblemListElement, IProblemSetDataElement } from '../../../types/problemSet';
+import { IProblemDetailResponseData } from '../../../types/api/problem';
+import { TPartialProblemDetailResponseData } from '../../../types/problem';
+import { IProblemSetDataElement, IProblemSetProblemsElement } from '../../../types/problemSet';
 import { isProduction } from '../../../utils/isProduction';
 import { ErrorPage } from '../../Error/ErrorPage';
 import { MetaTag } from '../../utils/MetaTag';
@@ -17,36 +19,38 @@ export const ProblemSetDetailPage = () => {
 
   if (!setId) return <ErrorPage />;
   const [problemSetData, setProblemSetData] = useState<IProblemSetDataElement>();
-  const [problemList, setProblemList] = useState<IProblemListElement[]>();
+  const [problemList, setProblemList] = useState<TPartialProblemDetailResponseData[]>();
 
   useEffect(() => {
-    if (isProduction) {
-      import('../../../mock/problemSet.json').then((data) =>
-        setProblemSetData(data.default[parseInt(setId)]),
-      );
-    } else {
-      import('../../../mock/problemSetDev.json').then((data) =>
-        setProblemSetData(data.default[parseInt(setId)]),
-      );
-    }
+    import(
+      isProduction ? '../../../mock/problemSet.json' : '../../../mock/problemSetDev.json'
+    ).then((data) => {
+      const json: IProblemSetDataElement[] = JSON.parse(JSON.stringify(data)).default;
+      setProblemSetData(json[parseInt(setId)]);
+    });
   }, []);
 
   useEffect(() => {
     problemSetData?.problems
-      .reduce<any>(async (prev, curr) => {
-        const prevResult = await prev;
-        let currResult = null;
-        if (curr.type === 'long') {
-          currResult = await problemApiWrapper.longProblemDetail(curr.id.toString());
-        } else if (curr.type === 'short') {
-          currResult = await problemApiWrapper.shortProblemDetail(curr.id.toString());
-        } else {
-          currResult = await problemApiWrapper.multipleProblemDetail(curr.id.toString());
-        }
-        prevResult.push({ ...currResult, type: curr.type });
-        return prev;
-      }, Promise.resolve([]))
-      .then((data: IProblemListElement[]) => {
+      .reduce(
+        async (prev: Promise<IProblemDetailResponseData[]>, curr: IProblemSetProblemsElement) => {
+          const prevResult = await prev;
+          console.log(prev);
+          let currResult = null;
+          if (curr.type === 'long') {
+            currResult = await problemApiWrapper.longProblemDetail(curr.id.toString());
+          } else if (curr.type === 'short') {
+            currResult = await problemApiWrapper.shortProblemDetail(curr.id.toString());
+          } else {
+            currResult = await problemApiWrapper.multipleProblemDetail(curr.id.toString());
+          }
+          prevResult.push({ ...currResult, type: curr.type });
+          return prev;
+        },
+        Promise.resolve([]),
+      )
+      .then((data: IProblemDetailResponseData[]) => {
+        console.log(data);
         setProblemList(data);
       });
   }, [problemSetData]);
@@ -65,13 +69,14 @@ export const ProblemSetDetailPage = () => {
             return (
               <QuestionListElementBox
                 key={problem.id}
-                id={problem.id}
-                title={problem.title}
-                tags={problem.tags}
-                type={problem.type}
+                id={problem.id!}
+                title={problem.title!}
+                tags={problem.tags!}
+                type={problem.type!}
                 totalSubmission={problem.totalSubmission}
-                avgScore={problem.avgScore}
+                correctSubmission={problem.correctSubmission}
                 isSolved={problem.isSolved}
+                avgScore={problem.avgScore}
               />
             );
           })}

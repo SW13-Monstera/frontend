@@ -17,7 +17,7 @@ import { URLWithParam } from '../../../constants/url';
 import { getTagById } from '../../../utils/getTagbyId';
 import { Divider } from '../../Divider';
 import { formatNumber } from '../../../utils/formatNumber';
-import { RowBox } from '../CustomBox';
+import { isNumberNotEmpty } from '../../../utils/isNotEmpty';
 
 interface IProblemStatisticsBox {
   label: string;
@@ -48,6 +48,7 @@ function QuestionListElementBox({
   title,
   avgScore,
   totalSubmission,
+  correctSubmission,
   isSolved,
   tags,
   id,
@@ -77,17 +78,25 @@ function QuestionListElementBox({
             <p className={titleStyle}>{title}</p>
           </div>
           <Divider className={dividerStyle} />
-          {isColumn ? (
-            <div className={problemStatisticsWrapperStyle.column}>
-              <ProblemStatisticsBox label='제출' value={totalSubmission} unit='' />
-              <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
-            </div>
-          ) : (
-            <RowBox className={problemStatisticsWrapperStyle.row}>
-              <ProblemStatisticsBox label='제출' value={totalSubmission} unit='' />
-              <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
-            </RowBox>
-          )}
+
+          <div className={problemStatisticsWrapperStyle[isColumn ? 'column' : 'row']}>
+            {[
+              { value: totalSubmission, unit: '', label: '제출' },
+              { value: correctSubmission, unit: '', label: '정답' },
+              { value: avgScore, unit: '점', label: '평균점수' },
+            ].map((e) =>
+              isNumberNotEmpty(e.value) ? (
+                <ProblemStatisticsBox
+                  label={e.label}
+                  value={e.value!}
+                  unit={e.unit}
+                  key={e.label}
+                />
+              ) : (
+                <></>
+              ),
+            )}
+          </div>
         </div>
       </Link>
     </>
