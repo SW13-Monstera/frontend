@@ -95,11 +95,7 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
                     <li
                       key={comment}
                       onClick={() => {
-                        if (comment === '기타') {
-                          setIsEvaluatedETC(true);
-                        } else {
-                          setIsEvaluatedETC(false);
-                        }
+                        setIsEvaluatedETC(idx === COMMENTS.length - 1);
                       }}
                     >
                       <input
