@@ -88,6 +88,6 @@ export const problemStatisticsWrapperBaseStyle = style({
 });
 
 export const problemStatisticsWrapperStyle = styleVariants({
-  row: [problemStatisticsWrapperBaseStyle, { gap: '7.8125rem' }],
+  row: [problemStatisticsWrapperBaseStyle, { width: '100%', gap: '6rem' }],
   column: [problemStatisticsWrapperBaseStyle, { flexDirection: 'column', gap: '1.5rem' }],
 });
