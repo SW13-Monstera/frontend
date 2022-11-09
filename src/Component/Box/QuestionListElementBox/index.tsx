@@ -47,8 +47,11 @@ function ProblemStatisticsBox({ label, value, unit }: IProblemStatisticsBox) {
 function QuestionListElementBox({
   title,
   avgScore,
+  topScore,
+  bottomScore,
   totalSubmission,
   correctSubmission,
+  correctUserCnt,
   isSolved,
   tags,
   id,
@@ -83,7 +86,10 @@ function QuestionListElementBox({
             {[
               { value: totalSubmission, unit: '', label: '제출' },
               { value: correctSubmission, unit: '', label: '정답' },
+              { value: correctUserCnt, unit: '명', label: '맞힌 사람 수' },
               { value: avgScore, unit: '점', label: '평균점수' },
+              { value: topScore, unit: '점', label: '최고점' },
+              { value: bottomScore, unit: '점', label: '최저점' },
             ].map((e) =>
               isNumberNotEmpty(e.value) ? (
                 <ProblemStatisticsBox
@@ -93,7 +99,7 @@ function QuestionListElementBox({
                   key={e.label + id}
                 />
               ) : (
-                <div key={e.label + id}></div>
+                <div key={e.label + id} style={{ display: 'none' }}></div>
               ),
             )}
           </div>

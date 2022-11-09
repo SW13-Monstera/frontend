@@ -32,7 +32,10 @@ interface IQuestionListElementBox {
   type: TProblemType;
   totalSubmission?: number;
   correctSubmission?: number;
+  correctUserCnt?: number;
   avgScore?: number;
+  topScore?: number;
+  bottomScore?: number;
   isColumn?: boolean;
   isSolved?: boolean;
 }

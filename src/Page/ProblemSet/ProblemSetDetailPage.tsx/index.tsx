@@ -73,8 +73,11 @@ export const ProblemSetDetailPage = () => {
                 type={problem.type!}
                 totalSubmission={problem.totalSubmission}
                 correctSubmission={problem.correctSubmission}
+                correctUserCnt={problem.correctUserCnt}
                 isSolved={problem.isSolved}
                 avgScore={problem.avgScore}
+                topScore={problem.topScore}
+                bottomScore={problem.bottomScore}
               />
             );
           })}
