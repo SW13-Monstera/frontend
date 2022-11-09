@@ -1,15 +1,15 @@
 import { GA_TRACKING_ID } from '../constants/api';
 
 export const addGoogleAnalyticsTag = () => {
-  const googleAnalyticsTagElement = document.createElement('div');
-  googleAnalyticsTagElement.innerHTML = `
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}"></script>
-    <script>
+  const googleAnalyticsTagElement1 = document.createElement('script');
+  const googleAnalyticsTagElement2 = document.createElement('script');
+  googleAnalyticsTagElement1.async = true;
+  googleAnalyticsTagElement1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
+  googleAnalyticsTagElement2.innerHTML = `
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
-      gtag('config', ${GA_TRACKING_ID});
-    </script>`;
-  document.head.insertAdjacentElement('afterend', googleAnalyticsTagElement);
+      gtag('config', ${GA_TRACKING_ID});`;
+  document.head.insertAdjacentElement('afterbegin', googleAnalyticsTagElement2);
+  document.head.insertAdjacentElement('afterbegin', googleAnalyticsTagElement1);
 };
