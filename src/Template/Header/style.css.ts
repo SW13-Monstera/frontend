@@ -6,12 +6,8 @@ export const headerStyle = style({
   left: '0px',
   top: '0px',
 
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-
   width: '100%',
-  height: '5rem',
+  height: 'auto',
 
   backgroundColor: themeColors.background.FF,
   borderBottom: `1px solid ${themeColors.line.e}`,
@@ -25,15 +21,19 @@ export const leftSideWrapperStyle = style({
   justifyContent: 'center',
 });
 
-export const menuStyle = style({
-  boxSizing: 'border-box',
+export const defaultHeaderStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  '@media': { 'screen and (max-width: 720px)': { display: 'none' } },
+});
 
+export const menuStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'right',
-  gap: '10%',
-
-  padding: '1rem',
+  gap: '.5rem',
+  padding: '.5rem',
 });
 
 export const iconButtonStyle = style({

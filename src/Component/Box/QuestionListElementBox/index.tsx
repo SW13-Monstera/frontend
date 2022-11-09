@@ -90,10 +90,10 @@ function QuestionListElementBox({
                   label={e.label}
                   value={e.value!}
                   unit={e.unit}
-                  key={e.label}
+                  key={e.label + id}
                 />
               ) : (
-                <></>
+                <div key={e.label + id}></div>
               ),
             )}
           </div>

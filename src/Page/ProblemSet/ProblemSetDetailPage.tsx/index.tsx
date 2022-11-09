@@ -35,7 +35,6 @@ export const ProblemSetDetailPage = () => {
       .reduce(
         async (prev: Promise<IProblemDetailResponseData[]>, curr: IProblemSetProblemsElement) => {
           const prevResult = await prev;
-          console.log(prev);
           let currResult = null;
           if (curr.type === 'long') {
             currResult = await problemApiWrapper.longProblemDetail(curr.id.toString());
@@ -50,7 +49,6 @@ export const ProblemSetDetailPage = () => {
         Promise.resolve([]),
       )
       .then((data: IProblemDetailResponseData[]) => {
-        console.log(data);
         setProblemList(data);
       });
   }, [problemSetData]);
