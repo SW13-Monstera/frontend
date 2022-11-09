@@ -7,7 +7,7 @@ export interface IInputBox {
   label: string;
   type?: string;
   placeholder?: string;
-  children?: JSX.Element | string;
+  children?: React.ReactNode;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   defaultValue?: string;
   isWarning?: boolean;

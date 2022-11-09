@@ -4,7 +4,7 @@ import { MyScoreBox } from '../../Component/Box/MyScoreBox';
 import { COLOR } from '../../constants/color';
 import { OIcon } from '../../Icon/OIcon';
 import { XIcon } from '../../Icon/XIcon';
-import { hiddenStyle } from '../../Page/QuestionDetailPage/Long/style.css';
+import { hiddenStyle } from '../../styles/util.css';
 import { IShortProblemResultData } from '../../types/api/problem';
 import {
   answerInputContentStyle,

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { TextButton } from '../../../../Component/Button';
 import { URL } from '../../../../constants/url';
-import { useAuthStore } from '../../../../hooks/useStore';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../../types/button';
+import { getUserInfo } from '../../../../utils/userInfo';
 import { buttonListStyle, buttonListWrapperStyle } from '../../style.css';
 
 interface IProblemDetailButtonList {
@@ -22,7 +22,6 @@ export const ProblemDetailButtonList = ({
   isResultPage = false,
   isSubmittable = false,
 }: IProblemDetailButtonList) => {
-  const { isLogin } = useAuthStore();
   const navigate = useNavigate();
   return (
     <>
@@ -38,7 +37,7 @@ export const ProblemDetailButtonList = ({
           >
             돌아가기
           </TextButton>
-          {isLogin ? (
+          {getUserInfo() ? (
             isResult ? (
               <TextButton
                 type={BUTTON_TYPE.SUBMIT}

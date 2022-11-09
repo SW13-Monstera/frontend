@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import MyPageIcon from '../../../../Icon/MyPageIcon';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../../types/button';
-import { useAuthStore } from '../../../../hooks/useStore';
 import { IconButton, TextButton, TransparentButton } from '../../../../Component/Button';
 import {
   buttonListWrapperBeforeLoginStyle,
@@ -16,10 +15,10 @@ import { usePopover } from '../../../../hooks/usePopover';
 import { Divider } from '../../../../Component/Divider';
 import { setLogout } from '../../../../utils/setLogout';
 import { DarkmodeButton } from '../../../../Component/Button/DarkmodeButton';
+import { getUserInfo } from '../../../../utils/userInfo';
 
 export const RightSideButtonList = () => {
   const navigate = useNavigate();
-  const { isLogin, setIsLogin } = useAuthStore();
 
   const {
     anchorEl: mypageAnchorEl,
@@ -31,7 +30,6 @@ export const RightSideButtonList = () => {
 
   function handleLogout() {
     setLogout();
-    setIsLogin(false);
     navigate(URL.MAIN);
     localStorage.clear();
   }
@@ -39,7 +37,7 @@ export const RightSideButtonList = () => {
   return (
     <div className={menuStyle}>
       <DarkmodeButton />
-      {isLogin ? (
+      {getUserInfo() ? (
         <div className={iconButtonListWrapperStyle}>
           <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleMypageClick}>
             <MyPageIcon fill={COLOR.PRIMARY} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />

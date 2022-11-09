@@ -9,6 +9,7 @@ import {
   ILongProblemResultData,
   IShortProblemResultData,
   IMultipleProblemResultData,
+  IAssessmentRequest,
 } from '../../../types/api/problem';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { AxiosRequestConfig } from 'axios';
@@ -59,5 +60,8 @@ export const problemApiWrapper = {
     return apiClient
       .post(API_URL_WITH_PARAMS.MULTIPLE_PROBLEM_RESULT(problem_id), { answerIds: answerIds })
       .then((res: { data: IMultipleProblemResultData }) => res.data);
+  },
+  assessment: (problem_id: string, data: IAssessmentRequest) => {
+    return apiClient.post(API_URL_WITH_PARAMS.ASSESSMENT(problem_id), data);
   },
 };

@@ -18,9 +18,8 @@ export function LongQuestionDetailPage() {
   const navigate = useNavigate();
 
   if (!id) throw INVALID_ID_ERROR;
-
   const [userAnswer, setUserAnswer] = useState(
-    localStorageWithExpiry.getItem(LONG_PROBLEM_ANSWER(id)) ?? '',
+    localStorageWithExpiry.getItem(LONG_PROBLEM_ANSWER(id!)) ?? '',
   );
   const { data, refetch } = useQuery<ILongProblemDetailResponseData>(
     'longProblemDetail',

@@ -14,7 +14,7 @@ export const contentWrapperStyle = style({
   justifyContent: 'flex-start',
   gap: '1.5rem',
   padding: '2rem 0 2rem 2rem',
-  minWidth: '15rem',
+  minWidth: '16rem',
 });
 
 export const contentWrapperSideStyle = styleVariants({

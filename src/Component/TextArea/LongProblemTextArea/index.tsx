@@ -1,10 +1,10 @@
 import { KeyboardEvent } from 'react';
+import { hiddenStyle } from '../../../styles/util.css';
 import {
   answerInputContentStyle,
   charCntWarningStyle,
   charCntWrapperStyle,
   contentTitleStyle,
-  hiddenStyle,
 } from './style.css';
 
 interface ILongProblemTextArea {

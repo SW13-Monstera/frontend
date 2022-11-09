@@ -1,6 +1,5 @@
 import { toast } from 'react-toastify';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
-import { useAuthStore } from '../../hooks/useStore';
 import LoginForm from '../../Organism/LoginForm';
 import { setUserInfo } from '../../utils/userInfo';
 import { validateEmail } from '../../utils/validate';
@@ -8,8 +7,6 @@ import { MetaTag } from '../utils/MetaTag';
 import { pageStyle, titleStyle } from './style.css';
 
 export function LoginPage() {
-  const { setIsLogin } = useAuthStore();
-
   const handleSubmit = () => {
     const emailValue = (document.getElementById('email') as HTMLInputElement)?.value;
     const passwordValue = (document.getElementById('password') as HTMLInputElement)?.value;
@@ -35,7 +32,6 @@ export function LoginPage() {
       .then(
         (res) => {
           setUserInfo(res);
-          setIsLogin(true);
           return true;
         },
         (err) => false,

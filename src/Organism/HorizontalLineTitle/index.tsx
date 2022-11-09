@@ -2,7 +2,7 @@ import { Divider } from '../../Component/Divider';
 import { horizontalLineTitleStyle, horizontalLineTitleTextStyle } from './style.css';
 
 interface IHorizontalLineTitle {
-  children: JSX.Element | string;
+  children: React.ReactNode;
 }
 
 function HorizontalLineTitle({ children }: IHorizontalLineTitle) {

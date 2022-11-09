@@ -13,4 +13,7 @@ export const API_BASE_URL = isProduction
 
 export const APP_URL = isProduction ? 'https://csbroker.io' : 'https://dev.csbroker.io';
 
-export const GA_TRACKING_ID = isProduction ? 'G-5YDJ48WT3K' : 'G-SX59LH5T59';
+export const GA_TRACKING_ID =
+  window.location.href.includes('dev') || window.location.href.includes('localhost')
+    ? 'UA-180471924-3'
+    : 'UA-180471924-2';
