@@ -57,6 +57,7 @@ export interface IMultipleProblemDetailResponseData extends IProblemDetailRespon
   correctSubmission: number;
   correctUserCnt: number;
   choices: IChoice[];
+  isMultipleAnswer: boolean;
 }
 
 export interface IMultipleProblemResultData extends IMultipleProblemDetailResponseData {

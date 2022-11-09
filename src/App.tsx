@@ -10,6 +10,7 @@ import { setTokenHeader } from './api/setTokenHeader';
 import { Helmet } from 'react-helmet-async';
 import { darkTheme, lightTheme } from './styles/theme.css';
 import { DARK_MODE } from './constants/localStorage';
+import { addGoogleAnalyticsTag } from './utils/googleAnalytics';
 
 function App() {
   const { setIsLogin } = useAuthStore();
@@ -44,6 +45,8 @@ function App() {
     }
 
     history.scrollRestoration = 'auto';
+
+    addGoogleAnalyticsTag();
   }, []);
 
   return (

@@ -16,7 +16,6 @@ export const choiceListStyle = style({
 
   width: '100%',
   height: 'fit-content',
-  minHeight: '75%',
 
   overflow: 'auto',
 
@@ -79,4 +78,10 @@ export const resultWrapperStyle = style({
   justifyContent: 'center',
   gap: '1rem',
   alignSelf: 'flex-end',
+});
+
+export const isMultipleAnswerStyle = style({
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
 });

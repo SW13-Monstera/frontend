@@ -13,7 +13,6 @@ export const resultWrapperStyle = style({
   justifyContent: 'center',
   gap: '2.5rem',
   margin: '1.5rem 1.5rem 1.5rem 0',
-  width: '90%',
   minWidth: '17.5rem',
 });
 

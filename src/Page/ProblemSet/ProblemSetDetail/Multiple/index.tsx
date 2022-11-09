@@ -56,7 +56,12 @@ export const MultipleProblemSetDetail = ({
           </>
         }
         rightSideContent={
-          <MultipleChoiceList choices={data?.choices} result={result} resetResult={resetResult} />
+          <MultipleChoiceList
+            choices={data?.choices}
+            result={result}
+            resetResult={resetResult}
+            isMultipleAnswer={data?.isMultipleAnswer ?? false}
+          />
         }
       />
       <ProblemSetDetailButtonList

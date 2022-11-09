@@ -5,7 +5,7 @@ export const useMultipleProblemResult = () => {
   const [result, setResult] = useState<IMultipleProblemResultData | null>(null);
 
   const resetInput = () => {
-    (document.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>).forEach(
+    (document.querySelectorAll('input') as NodeListOf<HTMLInputElement>).forEach(
       (e) => (e.checked = false),
     );
   };

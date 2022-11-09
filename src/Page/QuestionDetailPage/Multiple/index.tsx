@@ -21,9 +21,7 @@ export function MultipleQuestionDetailPage() {
   function handleSubmit() {
     if (!id) return;
     const answerIds: number[] = [];
-    const checkboxes = document.querySelectorAll(
-      'input[type="checkbox"]',
-    ) as NodeListOf<HTMLInputElement>;
+    const checkboxes = document.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
     checkboxes.forEach((e) => (e.checked ? answerIds.push(parseInt(e.id)) : ''));
     problemApiWrapper.multipleProblemResult(id, answerIds).then((data) => {
       setResult(data);
@@ -38,19 +36,22 @@ export function MultipleQuestionDetailPage() {
         description={`${data?.title}에 관한 객관식 문제입니다. 모든 정답을 선택한 후 제출하기 버튼을 눌러주세요.`}
         keywords={`${data?.tags.join(', ')}, ${data?.title}, 객관식`}
       />
-      <>
-        <SplitProblemDetailPageTemplate
-          data={data}
-          handleSubmit={handleSubmit}
-          isResult={result !== null && result !== undefined}
-          resetResult={resetResult}
-          isSubmittable={true}
-          leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
-          rightSideContent={
-            <MultipleChoiceList choices={data?.choices} result={result} resetResult={resetResult} />
-          }
-        ></SplitProblemDetailPageTemplate>
-      </>
+      <SplitProblemDetailPageTemplate
+        data={data}
+        handleSubmit={handleSubmit}
+        isResult={result !== null && result !== undefined}
+        resetResult={resetResult}
+        isSubmittable={true}
+        leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
+        rightSideContent={
+          <MultipleChoiceList
+            choices={data?.choices}
+            result={result}
+            resetResult={resetResult}
+            isMultipleAnswer={data?.isMultipleAnswer ?? false}
+          />
+        }
+      />
     </>
   );
 }
