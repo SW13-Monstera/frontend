@@ -18,7 +18,6 @@ const CallbackPage = () => {
       apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(token);
       setUserInfo({ ...res.data, accessToken: token });
       navigate(URL.MAIN);
-      // setIsLogin(true);
     });
   }, []);
 

@@ -33,7 +33,6 @@ export function LoginPage() {
       .then(
         (res) => {
           setUserInfo(res);
-          // setIsLogin(true);
           return true;
         },
         (err) => false,

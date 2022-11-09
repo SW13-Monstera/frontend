@@ -24,7 +24,6 @@ function App() {
   useEffect(() => {
     const userInfo = getUserInfo();
     if (userInfo) {
-      // setIsLogin(true);
       setTokenHeader();
     }
 

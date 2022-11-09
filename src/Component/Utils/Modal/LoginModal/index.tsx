@@ -27,7 +27,6 @@ function LoginModal({ isModalOpen, closeModal }: IModal) {
       .then(
         (res) => {
           setUserInfo(res);
-          // setIsLogin(true);
           return true;
         },
         (err) => false,

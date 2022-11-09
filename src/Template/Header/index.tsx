@@ -49,7 +49,6 @@ function Header() {
 
   function handleLogout() {
     setLogout();
-    // setIsLogin(false);
     navigate(URL.MAIN);
     localStorage.clear();
   }
