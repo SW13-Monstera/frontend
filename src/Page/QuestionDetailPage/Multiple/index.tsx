@@ -6,17 +6,20 @@ import {
   IMultipleProblemResultData,
 } from '../../../types/api/problem';
 import {
-  choiceCheckboxStyle,
   choiceListStyle,
-  choiceWrapperStyle,
   contentTitleStyle,
   isMultipleAnswerStyle,
+  rightSideBottomContentWrapperStyle,
+  rightSideContentWrapperStyle,
+  rightSideTopContentWrapperStyle,
 } from './style.css';
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
 import { MetaTag } from '../../utils/MetaTag';
 import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescriptionBox';
 import { ResultBox } from '../../../Component/Box/ResultBox';
+import { Checkbox } from '../../../Component/Input/Checkbox';
+import { RadioButton } from '../../../Component/Input/RadioButton';
 
 export function MultipleQuestionDetailPage() {
   const { id } = useParams();
@@ -66,41 +69,47 @@ export function MultipleQuestionDetailPage() {
         isSubmittable={true}
         leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
         rightSideContent={
-          <>
-            <label htmlFor='answer' className={contentTitleStyle}>
-              답안 선택
-              <span className={isMultipleAnswerStyle}>
-                {data?.isMultipleAnswer ? ' (복수 선택)' : ' (정답 한개)'}
-              </span>
-            </label>
-            <div className={choiceListStyle} onClick={resetResult}>
-              {data?.choices.map((choice) => (
-                <label
-                  htmlFor={choice.id.toString()}
-                  className={choiceWrapperStyle}
-                  key={choice.id}
-                >
-                  <input
-                    type={data?.isMultipleAnswer ? 'checkbox' : 'radio'}
-                    id={choice.id.toString()}
-                    className={choiceCheckboxStyle}
-                    name='answer'
-                  />
-                  {choice.content}
-                </label>
-              ))}
+          <div className={rightSideContentWrapperStyle}>
+            <div className={rightSideTopContentWrapperStyle}>
+              <label htmlFor='answer' className={contentTitleStyle}>
+                답안 선택
+                <span className={isMultipleAnswerStyle}>
+                  {data?.isMultipleAnswer ? ' (복수 선택)' : ' (정답 한개)'}
+                </span>
+              </label>
+              <div className={choiceListStyle} onClick={resetResult}>
+                {data?.isMultipleAnswer
+                  ? data?.choices.map((choice) => (
+                      <Checkbox
+                        key={choice.id}
+                        id={choice.id.toString()}
+                        label={choice.content}
+                        name='answer'
+                      />
+                    ))
+                  : data?.choices.map((choice) => (
+                      <RadioButton
+                        key={choice.id}
+                        id={choice.id.toString()}
+                        label={choice.content}
+                        name='answer'
+                      />
+                    ))}
+              </div>
             </div>
-            {result ? (
-              <ResultBox
-                isCorrect={result.isAnswer}
-                score={result.score}
-                onClick={resetResult}
-                text={result.isAnswer ? '정답입니다' : '오답입니다'}
-              />
-            ) : (
-              <></>
-            )}
-          </>
+            <div className={rightSideBottomContentWrapperStyle}>
+              {result ? (
+                <ResultBox
+                  isCorrect={result.isAnswer}
+                  score={result.score}
+                  onClick={resetResult}
+                  text={result.isAnswer ? '정답입니다' : '오답입니다'}
+                />
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
         }
       ></SplitProblemDetailPageTemplate>
     </>
