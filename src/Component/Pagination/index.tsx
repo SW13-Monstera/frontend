@@ -5,7 +5,7 @@ import {
   paginationIsSelectedButtonStyle,
   paginationWrapperStyle,
 } from './style.css';
-import { MouseEventHandler } from 'react';
+import { MouseEvent, MouseEventHandler } from 'react';
 import { ArrowRightIcon } from '../../Icon/ArrowRightIcon';
 import { ArrowLeftIcon } from '../../Icon/ArrowLeftIcon';
 import { themeColors } from '../../styles/theme.css';
@@ -13,7 +13,9 @@ import { themeColors } from '../../styles/theme.css';
 interface IPagination {
   totalPages: number;
   page: number;
-  setPage: (currPage: number) => void;
+  movePrevPage: () => void;
+  moveNextPage: () => void;
+  changePage: (event: MouseEvent<HTMLButtonElement>) => void;
   size?: number;
 }
 
@@ -36,19 +38,13 @@ const PageButton = ({ num, isCurrentPage, onClick }: IPageButton) => {
   );
 };
 
-export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
-  const movePrevPage = () => {
-    if (page <= 0) return;
-    setPage(page - 1);
-  };
-  const moveNextPage = () => {
-    if (page >= totalPages - 1) return;
-    setPage(page + 1);
-  };
-  const changePage: MouseEventHandler<HTMLButtonElement> = (event) => {
-    const eventTarget = event.target as HTMLButtonElement;
-    setPage(parseInt(eventTarget.innerText) - 1);
-  };
+export const Pagination = ({
+  totalPages,
+  page,
+  movePrevPage,
+  moveNextPage,
+  changePage,
+}: IPagination) => {
   const createPageList = (totalPages: number, currPage: number) => {
     const pageList = [];
 

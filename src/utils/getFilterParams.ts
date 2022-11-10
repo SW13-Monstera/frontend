@@ -24,7 +24,7 @@ export const getFilterParams = (checkedTags: ITagState[]) => {
 
   if (!categoryTagIds || !solveTagIds || !typeIds || !gradableIds) return;
 
-  const query = (document.getElementById('search-problem') as HTMLInputElement).value;
+  const query = (document.getElementById('search-problem') as HTMLInputElement)?.value;
   const tags = isTagSelected(checkedTags, categoryTagIds);
   const type = isTagSelected(checkedTags, typeIds);
   const isSolved = isTagSelected(checkedTags, solveTagIds);

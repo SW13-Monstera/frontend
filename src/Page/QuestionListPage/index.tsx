@@ -1,28 +1,15 @@
-import SearchInputBox from '../../Component/Box/InputBox/SearchInputBox';
 import QuestionListElementBox from '../../Component/Box/QuestionListElementBox';
-import TagBox from '../../Component/Box/TagBox';
-import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
-import { TAGLIST } from '../../constants';
-import { useAuthStore } from '../../hooks/useStore';
+import { useCheckedTagStore } from '../../hooks/useStore';
 import {
   listPageWrapperStyle,
   listPageMainWrapperStyle,
   asideStyle,
-  checkedTagListStyle,
-  dropdownListStyle,
-  filterStyle,
-  filterTitleStyle,
   questionListStyle,
-  resetButtonStyle,
-  filterTitleWrapperStyle,
   questionListWrapperStyle,
-  resetButtonTextStyle,
-  checkedTagListWrapperStyle,
-  checkedTagListTitleIsShownStyle,
 } from './style.css';
 import { PageTemplate } from '../../Template';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, MouseEvent } from 'react';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import {
   IProblemListResponseData,
@@ -30,45 +17,63 @@ import {
   IProblemRequestParam,
 } from '../../types/api/problem';
 import { getFilterParams } from '../../utils/getFilterParams';
-import { getTagById } from '../../utils/getTagbyId';
-import { BUTTON_TYPE } from '../../types/button';
-import { resetSearchProblemInput } from '../../utils/resetSearchProblemInputs';
 import { Pagination } from '../../Component/Pagination';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
-import { RefreshIcon } from '../../Icon/RefreshIcon';
-import { COLOR } from '../../constants/color';
-import { useCheckedTags } from '../../hooks/useCheckedTags';
+import { ProblemFilter } from './components/ProblemFilter';
+
+export const getPage = parseInt(
+  new URL(window.location.toString()).searchParams.get('page') ?? '0',
+);
 
 function QuestionListPage() {
-  const [params, setParams] = useState<IProblemRequestParam>();
+  const { checkedTags } = useCheckedTagStore();
+  const [params, setParams] = useState<IProblemRequestParam>({
+    ...getFilterParams(checkedTags),
+    page: parseInt(new URL(window.location.toString()).searchParams.get('page') ?? '0'),
+  });
   const { data } = useQuery<IProblemListResponseData>(
     ['problemList', params],
     () => problemApiWrapper.problemList({ ...params, size: 12 }),
     { enabled: !!params },
   );
 
-  const { checkedTags, handleCheckedTags, resetCheckedTags, deleteCheckedTag } = useCheckedTags();
-  const [page, setPage] = useState(0);
-  const { isLogin } = useAuthStore();
+  const movePrevPage = () => {
+    if (params?.page && params?.page > 0) {
+      setParams({ ...params, page: params?.page - 1 });
+    }
+  };
+
+  const moveNextPage = () => {
+    if (
+      params?.page !== undefined &&
+      params?.page !== null &&
+      data?.totalPages !== undefined &&
+      data?.totalPages !== null &&
+      params?.page < data?.totalPages - 1
+    ) {
+      setParams({ ...params, page: params?.page + 1 });
+    }
+  };
+
+  const changePage = (event: MouseEvent<HTMLButtonElement>) => {
+    setParams({ ...params, page: parseInt((event.target as HTMLButtonElement).innerText) - 1 });
+  };
 
   const handleSearchInput = () => {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
-    setParams({ ...getFilterParams(checkedTags), page: page, query: query });
-    resetCheckedTags();
+    setParams({ ...getFilterParams(checkedTags), page: getPage, query: query });
+  };
+
+  const handleFilter = () => {
+    setParams({ ...getFilterParams(checkedTags), page: 0 });
   };
 
   useEffect(() => {
-    if (page === 0) {
-      setParams({ ...getFilterParams(checkedTags), page: page });
-    } else {
-      setPage(0);
-    }
-  }, [checkedTags]);
-
-  useEffect(() => {
-    setParams({ ...getFilterParams(checkedTags), page: page });
-  }, [page]);
+    const url = new URL(window.location.toString());
+    url.searchParams.set('page', (params.page ?? 0).toString());
+    window.history.pushState({}, '', url);
+  }, [params.page]);
 
   return (
     <PageTemplate>
@@ -83,74 +88,8 @@ AI 기반 문장 유사도 평가 기법을 채점받아
         <DefaultSlider />
         <div className={listPageMainWrapperStyle}>
           <aside className={asideStyle}>
-            <SearchInputBox handleSearchInput={handleSearchInput} />
-            <div className={filterStyle}>
-              <div className={filterTitleWrapperStyle}>
-                <div className={filterTitleStyle}>문제 검색</div>
-                <button
-                  type={BUTTON_TYPE.BUTTON}
-                  className={resetButtonStyle}
-                  onClick={() => {
-                    resetCheckedTags();
-                    resetSearchProblemInput();
-                  }}
-                >
-                  <div className={resetButtonTextStyle}>초기화</div>
-                  <RefreshIcon width='1.125rem' height='1.125rem' fill={COLOR.TEXT[7]} />
-                </button>
-              </div>
-              <div className={dropdownListStyle}>
-                {isLogin
-                  ? TAGLIST.map((tagtype) => (
-                      <Dropdown
-                        name={tagtype.name}
-                        elements={tagtype.elements}
-                        handleCheckedTags={handleCheckedTags}
-                        key={tagtype.name}
-                      />
-                    ))
-                  : TAGLIST.filter((e) => e.name !== '풀이 여부').map((tagtype) => (
-                      <Dropdown
-                        name={tagtype.name}
-                        elements={tagtype.elements}
-                        handleCheckedTags={handleCheckedTags}
-                        key={tagtype.name}
-                      />
-                    ))}
-              </div>
-              <div className={checkedTagListWrapperStyle}>
-                <div
-                  className={
-                    checkedTagListTitleIsShownStyle[
-                      checkedTags.filter((e) => e.isChecked).length ? 'true' : 'false'
-                    ]
-                  }
-                >
-                  선택된 필터
-                </div>
-                <ul className={checkedTagListStyle}>
-                  {[...checkedTags]
-                    .filter((tag) => tag.isChecked)
-                    .map((tag) => {
-                      const { name, color } = getTagById(tag.id);
-                      return (
-                        <TagBox
-                          key={tag.id}
-                          id={tag.id}
-                          name={name}
-                          color={color}
-                          isFilter
-                          onDeleteButtonClick={() => {
-                            deleteCheckedTag(tag.id);
-                          }}
-                        />
-                      );
-                    })}
-                </ul>
-              </div>
-            </div>
+            <ProblemFilter handleSearchInput={handleSearchInput} handleFilter={handleFilter} />
           </aside>
-
           <div className={questionListWrapperStyle}>
             <div className={questionListStyle}>
               {data?.contents?.map((problem: IProblemListResponseDataContents) => (
@@ -165,7 +104,13 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                 />
               ))}
             </div>
-            <Pagination totalPages={data?.totalPages ?? 0} page={page} setPage={setPage} />
+            <Pagination
+              totalPages={data?.totalPages ?? 0}
+              page={params.page ?? 0}
+              movePrevPage={movePrevPage}
+              moveNextPage={moveNextPage}
+              changePage={changePage}
+            />
           </div>
         </div>
       </div>

@@ -22,6 +22,7 @@ const URL = {
 };
 
 const URLWithParam = {
+  PROBLEM_LIST: (page: number) => `/problem?page=${page}`,
   LONG_PROBLEM_DETAIL: (id: number) => `/problem/long/${id}`,
   LONG_PROBLEM_RESULT: (id: number) => `/problem/long/result/${id}`,
   SHORT_PROBLEM_DETAIL: (id: number) => `/problem/short/${id}`,
