@@ -4,7 +4,7 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { useAuthStore, useCheckedTagStore } from '../../hooks/useStore';
+import { useAuthStore } from '../../hooks/useStore';
 import {
   listPageWrapperStyle,
   listPageMainWrapperStyle,
@@ -32,14 +32,13 @@ import {
 import { getFilterParams } from '../../utils/getFilterParams';
 import { getTagById } from '../../utils/getTagbyId';
 import { BUTTON_TYPE } from '../../types/button';
-import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
+import { resetSearchProblemInput } from '../../utils/resetSearchProblemInputs';
 import { Pagination } from '../../Component/Pagination';
-import { ITagState } from '../../types/tag';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
 import { RefreshIcon } from '../../Icon/RefreshIcon';
 import { COLOR } from '../../constants/color';
-import { CHECKED_TAGS } from '../../constants/localStorage';
+import { useCheckedTags } from '../../hooks/useCheckedTags';
 
 function QuestionListPage() {
   const [params, setParams] = useState<IProblemRequestParam>();
@@ -48,38 +47,15 @@ function QuestionListPage() {
     () => problemApiWrapper.problemList({ ...params, size: 12 }),
     { enabled: !!params },
   );
-  const { checkedTags, setCheckedTags } = useCheckedTagStore();
+
+  const { checkedTags, handleCheckedTags, resetCheckedTags, deleteCheckedTag } = useCheckedTags();
   const [page, setPage] = useState(0);
   const { isLogin } = useAuthStore();
-
-  const setCheckedTagsSync = (newCheckedTags: ITagState[]) => {
-    setCheckedTags(newCheckedTags);
-    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
-  };
-
-  const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {
-    setCheckedTagsSync(
-      checkedTags.map((tag: { id: string }) => tag.id).includes(id)
-        ? checkedTags.map((tag) => (tag.id === id ? { id, isChecked, name } : tag))
-        : [...checkedTags, { id, isChecked, name }],
-    );
-  };
-
-  const resetCheckedTags = () => {
-    resetCheckboxes();
-    setCheckedTagsSync([]);
-  };
 
   const handleSearchInput = () => {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
     setParams({ ...getFilterParams(checkedTags), page: page, query: query });
     resetCheckedTags();
-  };
-
-  const onDeleteButtonClick = (id: string) => {
-    const newCheckedTags = checkedTags.filter((e) => e.id !== id);
-    setCheckedTags(newCheckedTags);
-    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
   };
 
   useEffect(() => {
@@ -165,7 +141,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                           color={color}
                           isFilter
                           onDeleteButtonClick={() => {
-                            onDeleteButtonClick(tag.id);
+                            deleteCheckedTag(tag.id);
                           }}
                         />
                       );
