@@ -12,15 +12,6 @@ export interface IProblemSetDetail {
   pushResult: (problemId: string, result: IResult) => void;
 }
 
-export interface IProblemListElement {
-  id: number;
-  title: string;
-  tags: string[];
-  type: TProblemType;
-  totalSubmission: number;
-  isSolved: boolean;
-}
-
 export interface IProblemSetProblemsElement {
   id: number;
   type: TProblemType;
