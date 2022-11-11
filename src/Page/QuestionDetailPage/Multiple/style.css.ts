@@ -98,3 +98,22 @@ export const isMultipleAnswerStyle = style({
   fontSize: '1rem',
   lineHeight: '1.5rem',
 });
+
+export const rightSideContentWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  gap: '1.5rem',
+  height: '100%',
+});
+
+export const rightSideTopContentWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.5rem',
+});
+
+export const rightSideBottomContentWrapperStyle = style({
+  display: 'flex',
+  alignSelf: 'flex-end',
+});

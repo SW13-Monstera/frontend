@@ -10,11 +10,10 @@ export const splitStyle = style({
 export const contentWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'flex-start',
   gap: '1.5rem',
   padding: '2rem 0 2rem 2rem',
-  minWidth: '16rem',
+  minHeight: 'fit-content',
+  minWidth: '21.875rem',
 });
 
 export const contentWrapperSideStyle = styleVariants({

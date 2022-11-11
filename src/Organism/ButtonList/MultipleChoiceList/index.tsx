@@ -1,9 +1,9 @@
 import { ResultBox } from '../../../Component/Box/ResultBox';
+import { Checkbox } from '../../../Component/Input/Checkbox';
+import { RadioButton } from '../../../Component/Input/RadioButton';
 import { IChoice, IMultipleProblemResultData } from '../../../types/api/problem';
 import {
-  choiceCheckboxStyle,
   choiceListStyle,
-  choiceWrapperStyle,
   contentTitleStyle,
   isMultipleAnswerStyle,
   resultWrapperStyle,
@@ -27,21 +27,27 @@ export const MultipleChoiceList = ({
       <label htmlFor='answer' className={contentTitleStyle}>
         답안 선택
         <span className={isMultipleAnswerStyle}>
-          {isMultipleAnswer ? ' (복수 선택)' : ' (정답 한개)'}
+          {isMultipleAnswer ? ' (복수 선택)' : ' (정답 한 개)'}
         </span>
       </label>
       <div className={choiceListStyle} onClick={resetResult}>
-        {choices?.map((choice) => (
-          <label htmlFor={choice.id.toString()} className={choiceWrapperStyle} key={choice.id}>
-            <input
-              type={isMultipleAnswer ? 'checkbox' : 'radio'}
-              id={choice.id.toString()}
-              className={choiceCheckboxStyle}
-              name='answer'
-            />
-            {choice.content}
-          </label>
-        ))}
+        {isMultipleAnswer
+          ? choices?.map((choice) => (
+              <Checkbox
+                key={choice.id}
+                id={choice.id.toString()}
+                label={choice?.content}
+                name='answer'
+              />
+            ))
+          : choices?.map((choice) => (
+              <RadioButton
+                key={choice.id}
+                id={choice.id.toString()}
+                label={choice.content}
+                name='answer'
+              />
+            ))}
       </div>
       <div className={resultWrapperStyle}>
         {result ? (
