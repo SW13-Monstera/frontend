@@ -95,7 +95,7 @@ function JoinPage() {
               }
               warningMessages={[
                 {
-                  text: '영문/숫자/특수문자 각각 한개 이상 포함',
+                  text: '영문/숫자/특수문자 각각 한 개 이상 포함',
                   isWarning: !isPasswordElementsValidate,
                 },
                 {
