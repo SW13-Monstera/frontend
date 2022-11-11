@@ -74,7 +74,7 @@ export function MultipleQuestionDetailPage() {
               <label htmlFor='answer' className={contentTitleStyle}>
                 답안 선택
                 <span className={isMultipleAnswerStyle}>
-                  {data?.isMultipleAnswer ? ' (복수 선택)' : ' (정답 한개)'}
+                  {data?.isMultipleAnswer ? ' (복수 선택)' : ' (정답 한 개)'}
                 </span>
               </label>
               <div className={choiceListStyle} onClick={resetResult}>
