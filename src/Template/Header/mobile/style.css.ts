@@ -4,7 +4,7 @@ import { themeColors } from '../../../styles/theme.css';
 export const mobileHeaderStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  '@media': { 'screen and (min-width: 720px)': { display: 'none' } },
+  '@media': { 'screen and (min-width: 721px)': { display: 'none' } },
 });
 
 export const topWrapperStyle = style({
