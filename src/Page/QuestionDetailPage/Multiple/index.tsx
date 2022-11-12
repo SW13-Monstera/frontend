@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { IMultipleProblemDetailResponseData } from '../../../types/api/problem';
-
 import { useQuery } from 'react-query';
 import { SplitProblemDetailPageTemplate } from '../../../Template/SplitProblemDetailPageTemplate';
 import { MetaTag } from '../../utils/MetaTag';
