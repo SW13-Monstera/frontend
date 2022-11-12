@@ -164,8 +164,8 @@ function JoinPage() {
             >
               회원가입
             </TextButton>
-            <OAuthButtonListSection>간편 회원가입</OAuthButtonListSection>
           </form>
+          <OAuthButtonListSection>간편 회원가입</OAuthButtonListSection>
         </div>
       </>
     </>
