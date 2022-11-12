@@ -15,6 +15,7 @@ export const UserAnswerContent = ({ result }: ILongProblemResult) => {
   return (
     <div className={contentStyle}>
       <h3 className={subtitleStyle}>내 답안</h3>
+      <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
       <h4>키워드 채점 기준</h4>
       <ul className={keywordListStyle}>
         {result?.keywords?.map(({ id, content, isExist }) => (
@@ -29,7 +30,6 @@ export const UserAnswerContent = ({ result }: ILongProblemResult) => {
           </li>
         ))}
       </ul>
-      <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
       <ResultAssessment gradingHistoryId={result?.gradingHistoryId} />
     </div>
   );

@@ -47,7 +47,6 @@ export const problemDetailStyle = style({
   display: 'flex',
   gap: '3rem',
   width: 'fit-content',
-  minWidth: '100%',
   maxWidth: '100%',
   height: '3.3125rem',
   padding: '.75rem 1.5rem',
