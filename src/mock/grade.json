@@ -1,0 +1,29 @@
+{
+  "gradingHistoryId": 3,
+  "problemId": 1,
+  "title": "test1",
+  "tags": ["os"],
+  "description": "test",
+  "avgScore": 7.25,
+  "topScore": 9.5,
+  "bottomScore": 5.0,
+  "totalSubmission": 2,
+  "score": 5.0,
+  "keywords": [
+    {
+      "id": 1,
+      "content": "test",
+      "isExist": true,
+      "idx": [9, 13]
+    }
+  ],
+  "contents": [
+    {
+      "id": 2,
+      "content": "test",
+      "isExist": false
+    }
+  ],
+  "userAnswer": "정답의 키워드는 test를 포함해야합니다.",
+  "standardAnswer": "test"
+}
