@@ -1,6 +1,7 @@
 import { KeywordBox, TextBox } from '../../../../Component/Box';
 import { USER_ANSWER_DOM_ID } from '../../../../constants/longProblem';
 import { ILongProblemResult } from '../../../../types/problem';
+import { ResultAssessment } from '../../components/ResultAssessment';
 import {
   answerContentStyle,
   contentElementStyle,
@@ -29,6 +30,7 @@ export const UserAnswerContent = ({ result }: ILongProblemResult) => {
         ))}
       </ul>
       <TextBox id={USER_ANSWER_DOM_ID} className={answerContentStyle} />
+      <ResultAssessment gradingHistoryId={result?.gradingHistoryId} />
     </div>
   );
 };

@@ -13,7 +13,7 @@ export const contentWrapperStyle = style({
   gap: '1.5rem',
   padding: '2rem 0 2rem 2rem',
   minHeight: 'fit-content',
-  minWidth: '21.875rem',
+  minWidth: '17rem',
 });
 
 export const contentWrapperSideStyle = styleVariants({

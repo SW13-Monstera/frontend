@@ -2,6 +2,7 @@ import { MouseEvent, useState } from 'react';
 import { problemApiWrapper } from '../../../../api/wrapper/problem/problemApiWrapper';
 import { TextButton } from '../../../../Component/Button';
 import CustomPopover from '../../../../Component/Utils/Popover';
+import { INPUT_TYPE } from '../../../../constants/input';
 import { usePopover } from '../../../../hooks/usePopover';
 import { displayNoneStyle } from '../../../../styles/util.css';
 import { ASSESSMENT_TYPE, TAssessment } from '../../../../types/api/problem';
@@ -15,6 +16,7 @@ import {
   popoverContentStyle,
   popoverListWrapperStyle,
   popoverMainContentStyle,
+  popoverSelectWrapperStyle,
   popoverSubmitButtonStyle,
   popoverTitleStyle,
   popoverWrapperStyle,
@@ -97,9 +99,10 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
                       onClick={() => {
                         setIsEvaluatedETC(idx === COMMENTS.length - 1);
                       }}
+                      className={popoverSelectWrapperStyle}
                     >
                       <input
-                        type='radio'
+                        type={INPUT_TYPE.RADIO}
                         id={comment}
                         className={`${ASSESSMENT_BAD_CLASS} ${
                           idx === COMMENTS.length - 1 ? ASSESSMENT_BAD_ETC_CLASS : ''
@@ -115,7 +118,7 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
                 </ul>
                 {isEvaluatedETC ? (
                   <input
-                    type='text'
+                    type={INPUT_TYPE.TEXT}
                     placeholder='개선이 필요한 내용을 입력해주세요.'
                     className={`${ASSESSMENT_BAD_ETC_CLASS} ${etcInputStyle}`}
                   />
