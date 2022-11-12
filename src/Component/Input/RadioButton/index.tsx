@@ -1,5 +1,5 @@
 import { INPUT_TYPE } from '../../../constants/input';
-import './style.css';
+import { labelTextStyle, radioButtonStyle, radioButtonWrapperStyle } from './style.css';
 
 interface IRadioButton {
   id: string;
@@ -9,9 +9,9 @@ interface IRadioButton {
 
 export const RadioButton = ({ id, label, name }: IRadioButton) => {
   return (
-    <label htmlFor={id} className='radioButtonWrapperStyle'>
-      <input type={INPUT_TYPE.RADIO} id={id} name={name} className='radioButtonStyle' />
-      <span className='labelTextStyle'>{label}</span>
+    <label htmlFor={id} className={radioButtonWrapperStyle}>
+      <input type={INPUT_TYPE.RADIO} id={id} name={name} className={radioButtonStyle} />
+      <span className={labelTextStyle}>{label}</span>
     </label>
   );
 };
