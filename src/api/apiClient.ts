@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { API_BASE_URL, AUTHORIZTION, BEARER_TOKEN } from '../constants/api';
 import { URL } from '../constants/url';
@@ -24,7 +23,7 @@ apiClient.interceptors.response.use(
   (err) => {
     const { status } = err.response;
     if (status === 404) {
-      Navigate({ to: URL.PAGE_NOT_FOUND });
+      location.replace(URL.PAGE_NOT_FOUND);
     } else if (status === 401) {
       toast('로그인 후 이용가능해요😊');
       setTimeout(() => {
