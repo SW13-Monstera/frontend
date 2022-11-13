@@ -38,8 +38,8 @@ export const problemListTitleTextStyle = style({
 
 export const problemListTitleNumberStyle = style({
   fontWeight: '400',
-  fontSize: '16px',
-  lineHeight: '24px',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
   color: themeColors.text[5],
 });
 
