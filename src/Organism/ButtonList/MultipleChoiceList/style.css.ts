@@ -3,6 +3,20 @@ import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
 import baseFontStyle from '../../../styles/font.css';
 
+export const MultipleChoiceListStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  gap: '1.5rem',
+  height: '100%',
+});
+
+export const MultipleChoiceListTopStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.5rem',
+});
+
 export const contentTitleStyle = style({
   fontWeight: '700',
   fontSize: '1.5rem',
