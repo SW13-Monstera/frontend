@@ -78,7 +78,7 @@ interface ISplitProblemDetailPageTemplate extends IProblemDetailPageTemplate {
 export interface IMypageProblem {
   id: number;
   title: string;
-  type: string;
+  type: 'long' | 'short' | 'multiple';
 }
 
 export interface ILongProblemResultLocationState {

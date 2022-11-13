@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { COLOR_LABEL_LIST } from '../../../constants/colorLabel';
 import { PROBLEM_TYPE } from '../../../constants/problem';
 import { URLWithParam } from '../../../constants/url';
 import { problemTitleBoxStyle, textStyle } from './style.css';
@@ -7,7 +6,7 @@ import { problemTitleBoxStyle, textStyle } from './style.css';
 interface IProblemTitleBox {
   id: number;
   title: string;
-  type: string;
+  type: 'long' | 'short' | 'multiple';
 }
 
 export const ProblemTitleBox = ({ id, title, type }: IProblemTitleBox) => {
@@ -19,10 +18,7 @@ export const ProblemTitleBox = ({ id, title, type }: IProblemTitleBox) => {
       : URLWithParam.MULTIPLE_PROBLEM_DETAIL(id);
   return (
     <Link to={url}>
-      <div
-        style={{ backgroundColor: COLOR_LABEL_LIST.find((e) => e.type === type)?.color }}
-        className={problemTitleBoxStyle}
-      >
+      <div className={problemTitleBoxStyle[type]}>
         <span className={textStyle}>{title}</span>
       </div>
     </Link>

@@ -86,18 +86,9 @@ export const MyPage = () => {
             </div>
             {problemStatsData !== undefined ? (
               <ColumnBox className={problemStatsWrapperStyle}>
-                <ProblemListBox
-                  title='맞은 문제'
-                  problems={problemStatsData.correctAnsweredProblem}
-                />
-                <ProblemListBox
-                  title='틀린 문제'
-                  problems={problemStatsData.wrongAnsweredProblem}
-                />
-                <ProblemListBox
-                  title='부분 점수를 받은 문제'
-                  problems={problemStatsData.partialAnsweredProblem}
-                />
+                <ProblemListBox problems={problemStatsData.correctAnsweredProblem} type='correct' />
+                <ProblemListBox problems={problemStatsData.wrongAnsweredProblem} type='wrong' />
+                <ProblemListBox problems={problemStatsData.partialAnsweredProblem} type='partial' />
               </ColumnBox>
             ) : null}
           </div>
