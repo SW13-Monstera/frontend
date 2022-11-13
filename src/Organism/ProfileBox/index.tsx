@@ -16,6 +16,10 @@ import {
   editButtonListStyle,
   coreTechListStyle,
   defaultImageStyle,
+  userNameTextStyle,
+  section1NumberStyle,
+  section1UnitStyle,
+  section1LeftStyle,
 } from './style.css';
 import { Divider } from '../../Component/Divider';
 import { ProfileLabel } from '../../Component/Utils/ProfileLabel';
@@ -37,6 +41,8 @@ import { RowBox } from '../../Component/Box/CustomBox';
 import { IProfileData } from '../../types/api/user';
 import { TechTagBox } from '../../Component/Box/TechTagBox';
 import userImage from '../../assets/icons/mypage-icon.svg';
+import { formatNumber } from '../../utils/formatNumber';
+import { themeColors } from '../../styles/theme.css';
 interface IProfileBox {
   profileData: IProfileBoxData;
 }
@@ -91,42 +97,58 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
   return (
     <div className={boxStyle}>
       <div className={section1Style}>
-        <div className={imageWrapperStyle}>
-          <label htmlFor='profile-image' className={imageUploadBackgroundStyle}>
-            <UploadIcon width='2rem' height='2rem' fill={COLOR.WHITE} />
-          </label>
-          <input
-            id='profile-image'
-            type='file'
-            accept='image/*'
-            ref={inputRef}
-            onChange={onUploadImage}
-            style={{ display: 'none' }}
-          />
-          <img
-            src={imgUrl ?? userImage}
-            className={imgUrl ? imageStyle : defaultImageStyle}
-            onClick={onUploadImageButtonClick}
-          />
+        <div className={section1LeftStyle}>
+          <div className={imageWrapperStyle}>
+            <label htmlFor='profile-image' className={imageUploadBackgroundStyle}>
+              <UploadIcon width='2rem' height='2rem' fill={COLOR.WHITE} />
+            </label>
+            <input
+              id='profile-image'
+              type='file'
+              accept='image/*'
+              ref={inputRef}
+              onChange={onUploadImage}
+              style={{ display: 'none' }}
+            />
+            <img
+              src={imgUrl ?? userImage}
+              className={imgUrl ? imageStyle : defaultImageStyle}
+              onClick={onUploadImageButtonClick}
+            />
+          </div>
+          <div className={section1DataStyle}>
+            <div className={userNameTextStyle}>{username}</div>
+            <div className={section1NumericDataStyle}>
+              <div className={section1NumberStyle}>
+                {rank}
+                <span className={section1UnitStyle}>위</span>
+              </div>
+              <svg height='10' width='10'>
+                <circle
+                  cx='5'
+                  cy='5'
+                  r='1'
+                  stroke={themeColors.text[9]}
+                  fill={themeColors.text[9]}
+                />
+              </svg>
+              <div className={section1NumberStyle}>
+                {formatNumber(score)} <span className={section1UnitStyle}>점</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className={section1DataStyle}>
-          <div>{username}</div>
-          <div className={section1NumericDataStyle}>
-            <div>{rank}위 </div>
-            <div>{score}점</div>
-          </div>
-          <div className={linkButtonListStyle}>
-            {linkedinUrl && (
-              <a className={linkButtonByDomainStyle.linkedin} href={linkedinUrl} role='button'>
-                <img src={linkedinLogo} width='30px' height='30px' />
-              </a>
-            )}
-            {githubUrl && (
-              <a className={linkButtonByDomainStyle.github} href={githubUrl} role='button'>
-                <img src={githubLogo} width='30px' height='30px' />
-              </a>
-            )}
-          </div>
+        <div className={linkButtonListStyle}>
+          {linkedinUrl && (
+            <a className={linkButtonByDomainStyle.linkedin} href={linkedinUrl} role='button'>
+              <img src={linkedinLogo} width='30px' height='30px' />
+            </a>
+          )}
+          {githubUrl && (
+            <a className={linkButtonByDomainStyle.github} href={githubUrl} role='button'>
+              <img src={githubLogo} width='30px' height='30px' />
+            </a>
+          )}
         </div>
       </div>
       <Divider />

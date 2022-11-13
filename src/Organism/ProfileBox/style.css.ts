@@ -6,19 +6,29 @@ import baseFontStyle from '../../styles/font.css';
 export const boxStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: themeColors.background.F3,
+  backgroundColor: themeColors.background.FF,
   gap: '1rem',
 
   width: '100%',
   height: 'fit-content',
 
-  borderRadius: '20px',
+  border: '1px solid #DDDDDD',
+  borderRadius: '8px',
 
   padding: '2rem',
 });
 
 export const section1Style = style({
   display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '1rem',
+});
+
+export const section1LeftStyle = style({
+  display: 'flex',
+  flexWrap: 'wrap',
   alignItems: 'center',
   gap: '1rem',
 });
@@ -112,18 +122,37 @@ export const section1DataStyle = style([
   },
 ]);
 
-export const section1NumericDataStyle = style({
-  display: 'flex',
-  gap: '0.5rem',
+export const userNameTextStyle = style({
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
 });
 
-export const labelTitleStyle = style([
-  baseFontStyle.medium,
-  {
-    color: themeColors.text[3],
-    alignSelf: 'start',
-  },
-]);
+export const section1NumericDataStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.25rem',
+  fontSize: '1.125rem',
+  lineHeight: '1.5rem',
+});
+
+export const section1NumberStyle = style({
+  fontWeight: '900',
+  color: themeColors.text[1],
+});
+
+export const section1UnitStyle = style({
+  fontWeight: '400',
+  color: themeColors.text[9],
+});
+
+export const labelTitleStyle = style({
+  color: themeColors.text[5],
+  alignSelf: 'start',
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.5rem',
+});
 
 export const editButtonListStyle = style({
   gap: '1rem',

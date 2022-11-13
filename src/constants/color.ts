@@ -21,6 +21,13 @@ const COLOR = {
   ORANGE: '#EC882C',
   GREEN: '#29AE2E',
   RED: '#EE4242',
+  CHART: {
+    1: '#F3931B',
+    2: '#0459FE',
+    3: '#32BC69',
+    4: '#FFBB0C',
+  },
+
   TEXT: {
     '1': '#111111',
     '2': '#222222',
