@@ -157,8 +157,10 @@ export const contentElementStyle = styleVariants({
 export const evaluationButtonListStyle = style({
   display: 'flex',
   flex: 1,
-  gap: '1rem',
+  flexWrap: 'wrap',
+  gap: '.6rem',
   alignItems: 'center',
+  justifyContent: 'flex-end',
 });
 
 export const evaluationButtonListWrapperStyle = style({
@@ -210,6 +212,11 @@ export const popoverTitleStyle = style({
   lineHeight: '1.5rem',
   color: themeColors.text[1],
   paddingBottom: '.5rem',
+});
+
+export const popoverSelectWrapperStyle = style({
+  display: 'flex',
+  gap: '.3rem',
 });
 
 export const popoverContentStyle = style({

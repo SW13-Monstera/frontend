@@ -1,0 +1,23 @@
+[
+  {
+    "id": 0,
+    "setTitle": "컴파일러와 인터프리터",
+    "problems": [
+      { "id": 477, "type": "multiple" },
+      { "id": 479, "type": "short" },
+      { "id": 478, "type": "multiple" },
+      { "id": 480, "type": "multiple" },
+      { "id": 481, "type": "long" }
+    ]
+  },
+  {
+    "id": 1,
+    "setTitle": "부모 프로세스와 자식 프로세스",
+    "problems": [
+      { "id": 482, "type": "short" },
+      { "id": 483, "type": "short" },
+      { "id": 484, "type": "multiple" },
+      { "id": 485, "type": "long" }
+    ]
+  }
+]

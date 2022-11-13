@@ -1,10 +1,9 @@
 import { COLOR } from '../../../constants/color';
-import { PageTemplate } from '../../../Template';
 import './style.css';
 
 export const PageNotFoundPage = () => {
   return (
-    <PageTemplate>
+    <>
       <style></style>
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -115,6 +114,6 @@ export const PageNotFoundPage = () => {
           </g>
         </g>
       </svg>
-    </PageTemplate>
+    </>
   );
 };

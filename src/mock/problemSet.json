@@ -1,0 +1,54 @@
+[
+  {
+    "id": 0,
+    "setTitle": "컴파일러와 인터프리터",
+    "problems": [
+      { "id": 476, "type": "multiple" },
+      { "id": 479, "type": "short" },
+      { "id": 477, "type": "multiple" },
+      { "id": 478, "type": "multiple" },
+      { "id": 480, "type": "long" }
+    ]
+  },
+  {
+    "id": 1,
+    "setTitle": "부모 프로세스와 자식 프로세스",
+    "problems": [
+      { "id": 481, "type": "short" },
+      { "id": 482, "type": "short" },
+      { "id": 483, "type": "multiple" },
+      { "id": 484, "type": "long" }
+    ]
+  },
+  {
+    "id": 2,
+    "setTitle": "프로세스와 스레드",
+    "problems": [
+      { "id": 485, "type": "multiple" },
+      { "id": 488, "type": "short" },
+      { "id": 487, "type": "multiple" },
+      { "id": 486, "type": "multiple" },
+      { "id": 448, "type": "long" }
+    ]
+  },
+  {
+    "id": 3,
+    "setTitle": "RDBMS와 NoSQL",
+    "problems": [
+      { "id": 489, "type": "multiple" },
+      { "id": 492, "type": "short" },
+      { "id": 490, "type": "multiple" },
+      { "id": 491, "type": "long" }
+    ]
+  },
+  {
+    "id": 4,
+    "setTitle": "DNS의 동작과정을 완벽하게 이해하고 계신가요?",
+    "problems": [
+      { "id": 493, "type": "multiple" },
+      { "id": 494, "type": "multiple" },
+      { "id": 495, "type": "short" },
+      { "id": 496, "type": "long" }
+    ]
+  }
+]

@@ -5,4 +5,5 @@ export const INPUT_TYPE = {
   SEARCH: 'search',
   CHECKBOX: 'checkbox',
   RADIO: 'radio',
+  TEXT: 'text',
 };

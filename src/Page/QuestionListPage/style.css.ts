@@ -109,8 +109,6 @@ export const questionListWrapperStyle = style({
 });
 
 export const questionListStyle = style({
-  boxSizing: 'border-box',
-
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   rowGap: '1.25rem',

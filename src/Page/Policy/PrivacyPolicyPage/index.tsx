@@ -1,9 +1,8 @@
-import { PageTemplate } from '../../../Template';
 import { MetaTag } from '../../utils/MetaTag';
 
 export const PrivacyPolicyPage = () => {
   return (
-    <PageTemplate>
+    <>
       <MetaTag title='CS Broker - 개인정보처리방침' />
       <p>
         Monstera(https://csbroker.io/ 이하 CS Broker)은(는) 「개인정보 보호법」 제30조에 따라
@@ -484,6 +483,6 @@ export const PrivacyPolicyPage = () => {
         <br />
         예시 ) - 20XX. X. X ~ 20XX. X. X 적용 (클릭)
       </p>
-    </PageTemplate>
+    </>
   );
 };

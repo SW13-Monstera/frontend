@@ -9,9 +9,9 @@ import logo from '../../assets/images/csbroker-main.png';
 import logoWhite from '../../assets/images/csbroker-white-main.png';
 import { validateEmail } from '../../utils/validate';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
-import { PageTemplate } from '../../Template';
 import { MailIcon } from '../../Icon/MailIcon';
 import { themeColors } from '../../styles/theme.css';
+import { toast } from 'react-toastify';
 
 export function ChangePasswordEmailPage() {
   const navigate = useNavigate();
@@ -19,14 +19,16 @@ export function ChangePasswordEmailPage() {
 
   function submitEmail() {
     const emailValue = (document.getElementById('email') as HTMLInputElement)?.value;
-    if (!emailValue) return;
-    if (!validateEmail(emailValue)) return;
+    if (!emailValue || !validateEmail(emailValue)) {
+      toast.error('올바른 이메일을 입력해주세요');
+      return;
+    }
 
     authApiWrapper.sendChangePasswordEmail(emailValue);
     navigate(URL.MAIN);
   }
   return (
-    <PageTemplate>
+    <>
       <div className={pageStyle}>
         <div className={contentWrapperStyle}>
           <img src={isDark ? logoWhite : logo} className={logoTitleStyle}></img>
@@ -52,6 +54,6 @@ export function ChangePasswordEmailPage() {
           </TextButton>
         </div>
       </div>
-    </PageTemplate>
+    </>
   );
 }

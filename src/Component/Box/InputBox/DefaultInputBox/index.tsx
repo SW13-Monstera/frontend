@@ -3,9 +3,11 @@ import { WarningTextList } from '../../../Typography/WarningText';
 import {
   defaultInputBoxStyle,
   defaultInputIconStyle,
+  defaultInputLabelWrapperStyle,
   defaultInputStyle,
   defaultInputTagStyle,
   defaultInputWrapperStyle,
+  requiredMarkStyle,
 } from './style.css';
 
 function DefaultInputBox({
@@ -20,11 +22,15 @@ function DefaultInputBox({
   onChange,
   defaultValue,
   icon,
+  isRequired = false,
 }: IInputBox) {
   return (
     <div className={defaultInputWrapperStyle}>
       <div className={defaultInputStyle}>
-        <label htmlFor={id}>{label}</label>
+        <div className={defaultInputLabelWrapperStyle}>
+          <label htmlFor={id}>{label}</label>
+          {isRequired ? <span className={requiredMarkStyle}>*</span> : <></>}
+        </div>
         <div className={defaultInputBoxStyle}>
           <p className={defaultInputIconStyle}>{icon}</p>
           <input

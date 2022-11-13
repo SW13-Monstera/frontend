@@ -67,3 +67,12 @@ export const defaultInputTagStyle = style({
     color: COLOR.TEXT[9],
   },
 });
+
+export const defaultInputLabelWrapperStyle = style({
+  display: 'flex',
+  gap: '.1rem',
+});
+
+export const requiredMarkStyle = style({
+  color: COLOR.RED,
+});

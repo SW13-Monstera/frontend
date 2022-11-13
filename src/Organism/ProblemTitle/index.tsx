@@ -1,4 +1,4 @@
-import { IProblem } from '../../types/problem';
+import { IProblem, TProblemTitleSize } from '../../types/problem';
 import TagBox from '../../Component/Box/TagBox';
 import {
   descStyle,
@@ -8,10 +8,12 @@ import {
   problemDescriptionLabelStyle,
   problemDescriptionValueStyle,
   problemDescriptionElementWrapperStyle,
+  titleLargeStyle,
+  titleSmallStyle,
 } from './style.css';
-import baseFontStyle from '../../styles/font.css';
 import { getTagById } from '../../utils/getTagbyId';
 import { RowBox } from '../../Component/Box/CustomBox';
+import { isStringNotEmpty } from '../../utils/isNotEmpty';
 
 interface IProblemDetail {
   totalSubmission: string;
@@ -28,43 +30,51 @@ interface IProblemDetailDescription {
   unit: string | null;
 }
 
+interface IProblemTitle extends IProblem {
+  size?: TProblemTitleSize;
+}
+
 const problemDetailMap: Record<
   keyof IProblemDetail,
   (num: string | undefined) => IProblemDetailDescription | null
 > = {
   totalSubmission: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '제출', value: num, unit: null } : null,
+    isStringNotEmpty(num) ? { label: '제출', value: num, unit: null } : null,
   avgScore: (num: string | undefined) =>
-    num !== null && num !== undefined
-      ? { label: '평균 점수', value: parseFloat(num).toFixed(2), unit: '점' }
+    isStringNotEmpty(num)
+      ? { label: '평균 점수', value: parseFloat(num!).toFixed(2), unit: '점' }
       : null,
   topScore: (num: string | undefined) =>
-    num !== null && num !== undefined
-      ? { label: '최고점', value: parseFloat(num).toFixed(2), unit: '점' }
+    isStringNotEmpty(num)
+      ? { label: '최고점', value: parseFloat(num!).toFixed(2), unit: '점' }
       : null,
   bottomScore: (num: string | undefined) =>
-    num !== null && num !== undefined
-      ? { label: '최저점', value: parseFloat(num).toFixed(2), unit: '점' }
+    isStringNotEmpty(num)
+      ? { label: '최저점', value: parseFloat(num!).toFixed(2), unit: '점' }
       : null,
   correctSubmission: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '정답', value: num, unit: '' } : null,
+    isStringNotEmpty(num) ? { label: '정답', value: num, unit: '' } : null,
   correctUserCnt: (num: string | undefined) =>
-    num !== null && num !== undefined ? { label: '맞힌 사람 수', value: num, unit: '명' } : null,
+    isStringNotEmpty(num) ? { label: '맞힌 사람 수', value: num, unit: '명' } : null,
 };
 
-function ProblemTitle(props: IProblem) {
+function ProblemTitle(props: IProblemTitle) {
   return (
     <div className={descStyle}>
       <div className={titleTagStyle}>
-        <h1 className={baseFontStyle.title}>{props.title}</h1>
+        <h1 className={props.size === 'small' ? titleSmallStyle : titleLargeStyle}>
+          {props.title}
+        </h1>
         <ul className={tagListStyle}>
           {props.tags.map((tagId) => {
             const { name, color } = getTagById(tagId);
             return <TagBox name={name} color={color} key={tagId} />;
           })}
-          {
-            props.isSolved ? <TagBox name={'푼 문제'} color={'color3'} key={'solved'} /> : <TagBox name={'안 푼 문제'} color={'color3'} key={'solved'} />
-          }
+          {props.isSolved ? (
+            <TagBox name={'푼 문제'} color={'color3'} key={'solved'} />
+          ) : (
+            <TagBox name={'안 푼 문제'} color={'color3'} key={'solved'} />
+          )}
         </ul>
       </div>
       <div className={problemDetailStyle}>

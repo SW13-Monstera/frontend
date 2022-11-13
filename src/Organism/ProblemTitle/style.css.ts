@@ -2,6 +2,18 @@ import { themeColors } from './../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 
+export const titleLargeStyle = style({
+  fontWeight: '700',
+  fontSize: '2.25rem',
+  lineHeight: '3.25rem',
+});
+
+export const titleSmallStyle = style({
+  fontWeight: '500',
+  fontSize: '2rem',
+  lineHeight: '2rem',
+});
+
 export const descStyle = style({
   display: 'flex',
   flexDirection: 'column',
@@ -12,17 +24,23 @@ export const descStyle = style({
 });
 
 export const titleTagStyle = style({
-  boxSizing: 'border-box',
-
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
   gap: '1.5rem',
+  flexWrap: 'wrap',
+});
+
+export const titleTagSmallStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  gap: '1rem',
 });
 
 export const tagListStyle = style({
   display: 'flex',
   gap: '.2rem',
+  flex: 1,
 });
 
 export const problemDetailStyle = style({

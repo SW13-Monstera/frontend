@@ -50,7 +50,7 @@ function App() {
   return (
     <div className={`App ${isDark ? darkTheme : lightTheme} ${appStyle}`}>
       <Helmet />
-      <ToastContainer />
+      <ToastContainer limit={3} />
       <Router />
     </div>
   );

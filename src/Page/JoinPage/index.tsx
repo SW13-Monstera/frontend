@@ -14,7 +14,6 @@ import {
   validatePasswordElements,
   validatePasswordLength,
 } from '../../utils/validate';
-import { PageTemplate } from '../../Template';
 import { MetaTag } from '../utils/MetaTag';
 import { MailIcon } from '../../Icon/MailIcon';
 import { themeColors } from '../../styles/theme.css';
@@ -59,7 +58,7 @@ function JoinPage() {
   return (
     <>
       <MetaTag title='CS Broker - 회원가입' />
-      <PageTemplate>
+      <>
         <div className={pageStyle}>
           <h1 className={titleStyle}>회원가입</h1>
           <form className={inputListStyle} id='join-form'>
@@ -71,13 +70,13 @@ function JoinPage() {
               label='이메일'
               isWarning={emailValue.length <= 0 || !isEmailValidate}
               warningMessages={[
-                { text: '이메일은 필수 항목입니다.', isWarning: emailValue.length <= 0 },
                 { text: '이메일 형식이 올바르지 않습니다.', isWarning: !isEmailValidate },
               ]}
               icon={<MailIcon width='1.25rem' height='1rem' fill={themeColors.text[3]} />}
               onChange={(event) => {
                 setEmailValue(event.target.value);
               }}
+              isRequired
             />
             <DefaultInputBox
               id='password'
@@ -108,6 +107,7 @@ function JoinPage() {
                 },
               ]}
               icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
+              isRequired
             />
             <DefaultInputBox
               id='password-confirm'
@@ -123,6 +123,7 @@ function JoinPage() {
                 { text: '비밀번호가 일치하지 않습니다.', isWarning: !isPasswordSame },
               ]}
               icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
+              isRequired
             />
             <DefaultInputBox
               id='nickname'
@@ -130,14 +131,12 @@ function JoinPage() {
               name='nickname'
               label='닉네임'
               isWarning={nicknameValue.length <= 0}
-              warningMessages={[
-                { text: '닉네임은 필수 항목입니다.', isWarning: nicknameValue.length <= 0 },
-              ]}
               onChange={(event) => {
                 setNicknameValue(event.target.value);
               }}
               icon={<SmileIcon width='1.25rem' height='1.25rem' fill={themeColors.text[3]} />}
-            ></DefaultInputBox>
+              isRequired
+            />
             <p className={noticeStyle}>
               회원가입시{' '}
               <Link to={URL.TERMS_OF_SERVICE} className={linkStyle}>
@@ -165,10 +164,10 @@ function JoinPage() {
             >
               회원가입
             </TextButton>
-            <OAuthButtonListSection>간편 회원가입</OAuthButtonListSection>
           </form>
+          <OAuthButtonListSection>간편 회원가입</OAuthButtonListSection>
         </div>
-      </PageTemplate>
+      </>
     </>
   );
 }

@@ -1,9 +1,8 @@
-import { PageTemplate } from '../../../Template';
 import { MetaTag } from '../../utils/MetaTag';
 
 export const TermsOfServicePage = () => {
   return (
-    <PageTemplate>
+    <>
       <MetaTag title='CS Broker - 이용약관' />
       <p>제 1 장 총칙</p>
 
@@ -282,6 +281,6 @@ export const TermsOfServicePage = () => {
         부칙
         <br />본 약관은 2022년 10월 1일부터 적용한다.
       </p>
-    </PageTemplate>
+    </>
   );
 };

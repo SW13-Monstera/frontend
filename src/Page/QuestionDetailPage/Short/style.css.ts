@@ -126,3 +126,7 @@ export const showAnswerButtonStyle = style({
   lineHeight: '1.5rem',
   alignSelf: 'flex-end',
 });
+
+export const inputWrapperStyle = style({
+  alignSelf: 'flex-end',
+});

@@ -27,5 +27,5 @@ export const darkmodeButtonContentStyle = style({
 });
 
 export const darkmodeButtonTextStyle = style({
-  '@media': { 'screen and (max-width: 850px)': { display: 'none' } },
+  '@media': { 'screen and (max-width: 970px)': { display: 'none' } },
 });

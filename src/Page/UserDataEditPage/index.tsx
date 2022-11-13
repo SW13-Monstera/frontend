@@ -1,6 +1,5 @@
 import { DefaultInputBox } from '../../Component/Box';
 import { TextButton } from '../../Component/Button';
-import { PageTemplate } from '../../Template';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../types/button';
 import { formWrapperStyle, pageTitleStyle, pageWrapperStyle } from './style.css';
 import { useQuery } from 'react-query';
@@ -82,7 +81,7 @@ export const UserDataEditPage = () => {
   };
 
   return (
-    <PageTemplate>
+    <>
       <MetaTag title='CS Broker - 정보 수정' />
       {profileData && (
         <div className={pageWrapperStyle}>
@@ -170,6 +169,6 @@ export const UserDataEditPage = () => {
           </form>
         </div>
       )}
-    </PageTemplate>
+    </>
   );
 };

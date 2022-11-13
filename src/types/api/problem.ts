@@ -17,7 +17,7 @@ export interface IProblemDetailResponseData {
   description: string;
   totalSubmission: number;
   type: TProblemType;
-  isSolved: boolean;
+  isSolved?: boolean;
 }
 
 export interface ILongProblemDetailResponseData extends IProblemDetailResponseData {

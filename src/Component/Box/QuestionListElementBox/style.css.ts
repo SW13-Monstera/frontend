@@ -1,11 +1,7 @@
 import { themeColors } from './../../../styles/theme.css';
-import { keyframes, style, styleVariants } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import baseFontStyle from '../../../styles/font.css';
-
-const spreadBoxShadow = keyframes({
-  '0%': { boxShadow: `0px 0px 4px ${themeColors.shadow[1]}` },
-  '100%': { boxShadow: `4px 8px 24px  ${themeColors.shadow[1]}` },
-});
+import { spreadBoxShadow } from '../../../styles/keyframe.css';
 
 export const textBoxStyle = style({
   display: 'flex',
@@ -92,6 +88,6 @@ export const problemStatisticsWrapperBaseStyle = style({
 });
 
 export const problemStatisticsWrapperStyle = styleVariants({
-  row: [problemStatisticsWrapperBaseStyle, { gap: '7.8125rem' }],
+  row: [problemStatisticsWrapperBaseStyle, { width: '100%', gap: '6rem' }],
   column: [problemStatisticsWrapperBaseStyle, { flexDirection: 'column', gap: '1.5rem' }],
 });
