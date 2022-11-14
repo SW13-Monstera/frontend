@@ -18,6 +18,7 @@ import { DB, DS, NETWORK, OS } from '../../constants/category';
 import { ColumnBox } from '../../Component/Box/CustomBox';
 import { IProfileData } from '../../types/api/user';
 import { useQuery } from 'react-query';
+import { RESULT_TYPE } from '../../constants/problem';
 
 interface ITags {
   os: number;
@@ -86,9 +87,18 @@ export const MyPage = () => {
             </div>
             {problemStatsData !== undefined ? (
               <ColumnBox className={problemStatsWrapperStyle}>
-                <ProblemListBox problems={problemStatsData.correctAnsweredProblem} type='correct' />
-                <ProblemListBox problems={problemStatsData.wrongAnsweredProblem} type='wrong' />
-                <ProblemListBox problems={problemStatsData.partialAnsweredProblem} type='partial' />
+                <ProblemListBox
+                  problems={problemStatsData.correctAnsweredProblem}
+                  type={RESULT_TYPE.CORRECT}
+                />
+                <ProblemListBox
+                  problems={problemStatsData.wrongAnsweredProblem}
+                  type={RESULT_TYPE.WRONG}
+                />
+                <ProblemListBox
+                  problems={problemStatsData.partialAnsweredProblem}
+                  type={RESULT_TYPE.PARTIAL}
+                />
               </ColumnBox>
             ) : null}
           </div>

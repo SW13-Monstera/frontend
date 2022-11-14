@@ -6,7 +6,7 @@ import { problemTitleBoxStyle, textStyle } from './style.css';
 interface IProblemTitleBox {
   id: number;
   title: string;
-  type: 'long' | 'short' | 'multiple';
+  type: typeof PROBLEM_TYPE[keyof typeof PROBLEM_TYPE];
 }
 
 export const ProblemTitleBox = ({ id, title, type }: IProblemTitleBox) => {

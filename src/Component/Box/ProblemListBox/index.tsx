@@ -1,4 +1,5 @@
 import { COLOR } from '../../../constants/color';
+import { PROBLEM_TYPE, RESULT_TYPE } from '../../../constants/problem';
 import { OIcon } from '../../../Icon/OIcon';
 import { PolygonIcon } from '../../../Icon/PolygonIcon';
 import { XIcon } from '../../../Icon/XIcon';
@@ -15,7 +16,7 @@ import {
 
 interface IProblemListBox {
   problems: IMypageProblem[];
-  type: 'correct' | 'wrong' | 'partial';
+  type: typeof RESULT_TYPE[keyof typeof RESULT_TYPE];
 }
 
 const PROBLEM_TITLE = {
@@ -28,19 +29,18 @@ export const ProblemListBox = ({ problems, type }: IProblemListBox) => {
   return (
     <div className={problemListWrapperStyle}>
       <div className={problemListTitleStyle}>
-        {type === 'correct' ? (
+        {type === RESULT_TYPE.CORRECT ? (
           <OIcon fill={COLOR.GREEN} width='1.5rem' height='1.5rem' />
-        ) : type === 'wrong' ? (
+        ) : type === RESULT_TYPE.WRONG ? (
           <XIcon fill={COLOR.RED} width='1.5rem' height='1.5rem' />
         ) : (
           <PolygonIcon fill={COLOR.ORANGE} width='1.5rem' height='1.5rem'></PolygonIcon>
         )}
-
         <div className={problemListTitleTextStyle}>{PROBLEM_TITLE[type]}</div>
         <div className={problemListTitleNumberStyle}>{problems.length}개</div>
       </div>
       <div className={problemListInnerWrapperStyle}>
-        {['long', 'short', 'multiple'].map((type) => (
+        {Object.values(PROBLEM_TYPE).map((type) => (
           <ul className={problemListByTypeStyle} key={type}>
             {problems
               .filter((e) => e.type === type)

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { QuestionListElementBox } from '../../../Component/Box';
+import { PROBLEM_TYPE } from '../../../constants/problem';
 import { IProblemDetailResponseData } from '../../../types/api/problem';
 import { TPartialProblemDetailResponseData } from '../../../types/problem';
 import { IProblemSetDataElement, IProblemSetProblemsElement } from '../../../types/problemSet';
@@ -36,9 +37,9 @@ export const ProblemSetDetailPage = () => {
         async (prev: Promise<IProblemDetailResponseData[]>, curr: IProblemSetProblemsElement) => {
           const prevResult = await prev;
           let currResult = null;
-          if (curr.type === 'long') {
+          if (curr.type === PROBLEM_TYPE.LONG) {
             currResult = await problemApiWrapper.longProblemDetail(curr.id.toString());
-          } else if (curr.type === 'short') {
+          } else if (curr.type === PROBLEM_TYPE.SHORT) {
             currResult = await problemApiWrapper.shortProblemDetail(curr.id.toString());
           } else {
             currResult = await problemApiWrapper.multipleProblemDetail(curr.id.toString());

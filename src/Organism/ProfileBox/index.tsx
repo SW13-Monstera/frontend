@@ -165,7 +165,7 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
             ) : (
               <ul className={coreTechListStyle}>
                 {techs?.map((e) => (
-                  <TechTagBox name={e} key={e} color={COLOR.TAG2} />
+                  <TechTagBox name={e} key={e} />
                 ))}
               </ul>
             )

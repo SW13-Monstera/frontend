@@ -1,4 +1,3 @@
-import { themeColors } from './../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
 
@@ -10,7 +9,7 @@ export const tagStyle = style({
   width: 'fit-content',
   height: '1.5rem',
 
-  color: themeColors.text[5],
+  color: COLOR.TEXT[5],
   background: COLOR.BACKGROUND.BLUE,
   borderRadius: '4px',
 
