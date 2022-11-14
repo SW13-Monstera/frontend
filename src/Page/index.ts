@@ -16,6 +16,8 @@ import { ChangePasswordWithLoginPage } from './ChangePasswordPageWithLogin';
 import { PageNotFoundPage } from './Error/PageNotFoundPage';
 import { TermsOfServicePage } from './Policy/TermsOfServicePage';
 import { PrivacyPolicyPage } from './Policy/PrivacyPolicyPage';
+import { ProblemSetListPage } from './ProblemSet/ProblemSetListPage';
+import { ProblemSetDetailPage } from './ProblemSet/ProblemSetDetailPage.tsx/index';
 
 export {
   MainPage,
@@ -36,4 +38,6 @@ export {
   PageNotFoundPage,
   TermsOfServicePage,
   PrivacyPolicyPage,
+  ProblemSetListPage,
+  ProblemSetDetailPage,
 };

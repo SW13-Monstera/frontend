@@ -5,7 +5,7 @@ interface ICustomPopover {
   open: boolean;
   anchorEl: HTMLButtonElement | null;
   handleClose: (event: HTMLButtonElement) => void;
-  children: JSX.Element | string;
+  children: React.ReactNode;
 }
 
 export default function CustomPopover({

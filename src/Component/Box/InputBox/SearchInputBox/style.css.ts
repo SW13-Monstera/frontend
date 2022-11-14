@@ -20,7 +20,6 @@ export const searchInputBoxStyle = style({
 });
 
 export const inputTextBoxStyle = style({
-  width: '100%',
   border: 'none',
   fontWeight: '500',
   fontSize: '1rem',

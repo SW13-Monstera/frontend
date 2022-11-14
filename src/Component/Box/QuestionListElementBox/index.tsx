@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TagBox from '../TagBox';
 import { IQuestionListElementBox, TProblemType } from '../../../types/problem';
 import {
@@ -17,7 +17,7 @@ import { URLWithParam } from '../../../constants/url';
 import { getTagById } from '../../../utils/getTagbyId';
 import { Divider } from '../../Divider';
 import { formatNumber } from '../../../utils/formatNumber';
-import { RowBox } from '../CustomBox';
+import { isNumberNotEmpty } from '../../../utils/isNotEmpty';
 
 interface IProblemStatisticsBox {
   label: string;
@@ -47,7 +47,12 @@ function ProblemStatisticsBox({ label, value, unit }: IProblemStatisticsBox) {
 function QuestionListElementBox({
   title,
   avgScore,
+  topScore,
+  bottomScore,
   totalSubmission,
+  correctSubmission,
+  correctUserCnt,
+  isSolved,
   tags,
   id,
   type,
@@ -67,24 +72,39 @@ function QuestionListElementBox({
                 name={type === 'long' ? '서술형' : type === 'short' ? '단답형' : '객관식'}
                 color='color2'
               />
+              {isSolved !== undefined ? (
+                <TagBox name={isSolved ? '푼 문제' : '안 푼 문제'} color='color3' />
+              ) : (
+                <></>
+              )}
             </ul>
             <p className={titleStyle}>{title}</p>
           </div>
           <Divider className={dividerStyle} />
-          {isColumn ? (
-            <div className={problemStatisticsWrapperStyle.column}>
-              <ProblemStatisticsBox label='제출' value={totalSubmission} unit='' />
-              <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
-            </div>
-          ) : (
-            <RowBox className={problemStatisticsWrapperStyle.row}>
-              <ProblemStatisticsBox label='제출' value={totalSubmission} unit='' />
-              <ProblemStatisticsBox label='평균점수' value={avgScore} unit='점' />
-            </RowBox>
-          )}
+
+          <div className={problemStatisticsWrapperStyle[isColumn ? 'column' : 'row']}>
+            {[
+              { value: totalSubmission, unit: '', label: '제출' },
+              { value: correctSubmission, unit: '', label: '정답' },
+              { value: correctUserCnt, unit: '명', label: '맞힌 사람 수' },
+              { value: avgScore, unit: '점', label: '평균점수' },
+              { value: topScore, unit: '점', label: '최고점' },
+              { value: bottomScore, unit: '점', label: '최저점' },
+            ].map((e) =>
+              isNumberNotEmpty(e.value) ? (
+                <ProblemStatisticsBox
+                  label={e.label}
+                  value={e.value!}
+                  unit={e.unit}
+                  key={e.label + id}
+                />
+              ) : (
+                <div key={e.label + id} style={{ display: 'none' }}></div>
+              ),
+            )}
+          </div>
         </div>
       </Link>
-      <Outlet />
     </>
   );
 }

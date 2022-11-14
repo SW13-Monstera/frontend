@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import Router from './Router/Router';
 import { appStyle } from './styles/App.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuthStore, useDarkModeStore } from './hooks/useStore';
+import { useDarkModeStore } from './hooks/useStore';
 import { useEffect } from 'react';
 import { getUserInfo } from './utils/userInfo';
 import { setTokenHeader } from './api/setTokenHeader';
@@ -13,7 +13,6 @@ import { DARK_MODE } from './constants/localStorage';
 import { addGoogleAnalyticsTag } from './utils/googleAnalytics';
 
 function App() {
-  const { setIsLogin } = useAuthStore();
   const { isDark, setIsDark } = useDarkModeStore();
 
   if (import.meta.env.PROD) {
@@ -25,7 +24,6 @@ function App() {
   useEffect(() => {
     const userInfo = getUserInfo();
     if (userInfo) {
-      setIsLogin(true);
       setTokenHeader();
     }
 
@@ -52,7 +50,7 @@ function App() {
   return (
     <div className={`App ${isDark ? darkTheme : lightTheme} ${appStyle}`}>
       <Helmet />
-      <ToastContainer />
+      <ToastContainer limit={3} />
       <Router />
     </div>
   );

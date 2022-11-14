@@ -4,8 +4,6 @@ import baseFontStyle from '../../styles/font.css';
 import { COLOR } from '../../constants/color';
 
 export const pageStyle = style({
-  boxSizing: 'border-box',
-
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
@@ -66,7 +64,6 @@ export const keywordListStyle = style({
 });
 
 export const contentStyle = style({
-  boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'start',
@@ -76,7 +73,7 @@ export const contentStyle = style({
   width: '100%',
   height: '100%',
 
-  padding: '2rem',
+  padding: '1rem',
 });
 
 export const standardAnswerStyle = style([
@@ -155,4 +152,95 @@ export const contentElementBaseStyle = style({
 export const contentElementStyle = styleVariants({
   true: [contentElementBaseStyle, { color: COLOR.PRIMARY }],
   false: [contentElementBaseStyle, { color: themeColors.text[5] }],
+});
+
+export const evaluationButtonListStyle = style({
+  display: 'flex',
+  flex: 1,
+  flexWrap: 'wrap',
+  gap: '.6rem',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+});
+
+export const evaluationButtonListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  gap: '.7rem',
+  paddingTop: '1rem',
+});
+
+export const evaluationWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  alignSelf: 'end',
+});
+
+export const phraseStyle = style({
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.25rem',
+  color: themeColors.text[3],
+});
+
+export const popoverWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1rem',
+  padding: '1rem',
+});
+
+export const popoverMainContentStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.5rem',
+});
+
+export const popoverListWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '.25rem',
+});
+
+export const popoverTitleStyle = style({
+  fontWeight: '500',
+  fontSize: '1.25rem',
+  lineHeight: '1.5rem',
+  color: themeColors.text[1],
+  paddingBottom: '.5rem',
+});
+
+export const popoverSelectWrapperStyle = style({
+  display: 'flex',
+  gap: '.3rem',
+});
+
+export const popoverContentStyle = style({
+  fontWeight: '400',
+  fontSize: '1rem',
+  lineHeight: '1.25rem',
+  color: themeColors.text[1],
+});
+
+export const popoverSubmitButtonStyle = style({
+  alignSelf: 'center',
+});
+
+export const etcInputStyle = style({
+  padding: '.5rem',
+  border: `1px solid ${COLOR.LINE.c}`,
+  borderRadius: '8px',
+});
+
+export const scoreEvaluationWrapperStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+  justifyContent: 'center',
+  alignSelf: 'end',
+  gap: '.5rem',
 });

@@ -4,7 +4,7 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { useAuthStore, useCheckedTagStore } from '../../hooks/useStore';
+import { useCheckedTagStore } from '../../hooks/useStore';
 import {
   listPageWrapperStyle,
   listPageMainWrapperStyle,
@@ -21,7 +21,6 @@ import {
   checkedTagListWrapperStyle,
   checkedTagListTitleIsShownStyle,
 } from './style.css';
-import { PageTemplate } from '../../Template';
 import { useEffect, useState } from 'react';
 import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
 import {
@@ -40,6 +39,7 @@ import { MetaTag } from '../utils/MetaTag';
 import { RefreshIcon } from '../../Icon/RefreshIcon';
 import { COLOR } from '../../constants/color';
 import { CHECKED_TAGS } from '../../constants/localStorage';
+import { getUserInfo } from '../../utils/userInfo';
 
 function QuestionListPage() {
   const [params, setParams] = useState<IProblemRequestParam>();
@@ -50,7 +50,6 @@ function QuestionListPage() {
   );
   const { checkedTags, setCheckedTags } = useCheckedTagStore();
   const [page, setPage] = useState(0);
-  const { isLogin } = useAuthStore();
 
   const setCheckedTagsSync = (newCheckedTags: ITagState[]) => {
     setCheckedTags(newCheckedTags);
@@ -95,7 +94,7 @@ function QuestionListPage() {
   }, [page]);
 
   return (
-    <PageTemplate>
+    <>
       <MetaTag
         title='CS Broker - 문제 목록'
         description='Computer Science 문제를 풀고
@@ -124,7 +123,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                 </button>
               </div>
               <div className={dropdownListStyle}>
-                {isLogin
+                {getUserInfo()
                   ? TAGLIST.map((tagtype) => (
                       <Dropdown
                         name={tagtype.name}
@@ -193,7 +192,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
           </div>
         </div>
       </div>
-    </PageTemplate>
+    </>
   );
 }
 

@@ -1,5 +1,4 @@
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
-import { PageTemplate } from '../../Template';
 import logo from '../../assets/images/csbroker-main.png';
 import logoWhite from '../../assets/images/csbroker-white-main.png';
 import {
@@ -45,7 +44,7 @@ function MainPage() {
 
   const { isDark } = useDarkModeStore();
   return (
-    <PageTemplate>
+    <>
       <MetaTag
         title='CS Broker'
         description='Computer Science 문제를 풀고
@@ -68,7 +67,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
             <CountUpBox title='채점 가능한 문제 수' number={statistics?.gradableProblemCnt} />
             <CountUpBox title='전체 사용자 수' number={statistics?.userCnt} />
           </div>
-          <ColumnBox className={problemListWrapperStyle}>
+          <ColumnBox>
             <div className={problemListTitleStyle}>오늘의 문제</div>
             <div className={problemListWrapperStyle}>
               {problems?.map((problem) => (
@@ -87,7 +86,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
           </ColumnBox>
         </div>
       </>
-    </PageTemplate>
+    </>
   );
 }
 export default MainPage;

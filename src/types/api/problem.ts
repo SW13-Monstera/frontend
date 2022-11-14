@@ -17,7 +17,7 @@ export interface IProblemDetailResponseData {
   description: string;
   totalSubmission: number;
   type: TProblemType;
-  isSolved: boolean;
+  isSolved?: boolean;
 }
 
 export interface ILongProblemDetailResponseData extends IProblemDetailResponseData {
@@ -102,4 +102,17 @@ export interface IContentResult {
   id: number;
   content: string;
   isExist: boolean;
+}
+
+export const ASSESSMENT_TYPE = {
+  GOOD: 'GOOD',
+  BAD: 'BAD',
+  NORMAL: 'NORMAL',
+};
+
+export type TAssessment = keyof typeof ASSESSMENT_TYPE;
+
+export interface IAssessmentRequest {
+  assessmentType: TAssessment;
+  content?: string;
 }

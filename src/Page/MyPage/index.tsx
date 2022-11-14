@@ -1,6 +1,5 @@
 import { ColorLabel } from '../../Component/Utils/ColorLabel';
 import { ProfileBox } from '../../Organism/ProfileBox';
-import { PageTemplate } from '../../Template';
 import {
   colorLabelListStyle,
   leftSideWrapperStyle,
@@ -62,7 +61,7 @@ export const MyPage = () => {
   };
 
   return (
-    <PageTemplate>
+    <>
       <MetaTag title='CS Broker - 마이페이지' />
       <div className={pageWrapperStyle}>
         <div className={pageContentWrapperStyle}>
@@ -104,6 +103,6 @@ export const MyPage = () => {
           </div>
         </div>
       </div>
-    </PageTemplate>
+    </>
   );
 };

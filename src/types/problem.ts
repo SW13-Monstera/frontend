@@ -1,6 +1,7 @@
 import { PROBLEM_TYPE } from '../constants/problem';
 import {
   ILongProblemDetailResponseData,
+  ILongProblemResultData,
   IMultipleProblemDetailResponseData,
   IShortProblemDetailResponseData,
 } from './api/problem';
@@ -28,9 +29,14 @@ interface IQuestionListElementBox {
   title: string;
   tags: string[];
   type: TProblemType;
-  totalSubmission: number;
-  avgScore: number;
+  totalSubmission?: number;
+  correctSubmission?: number;
+  correctUserCnt?: number;
+  avgScore?: number;
+  topScore?: number;
+  bottomScore?: number;
   isColumn?: boolean;
+  isSolved?: boolean;
 }
 
 interface IProblemIdLinkState {
@@ -55,6 +61,7 @@ interface IProblemDetailPageTemplate {
   children?: React.ReactNode;
   handleSubmit?: () => void;
   isResult?: boolean;
+  isProblemSet?: boolean;
   resetResult?: () => void;
   isResultPage?: boolean;
   bottomContent?: React.ReactNode;
@@ -79,6 +86,17 @@ export interface ILongProblemResultLocationState {
   title: string;
   id: string;
   tags: string[];
+}
+
+export const PROBLEM_TITLE_SIZE = {
+  LARGE: 'large',
+  SMALL: 'small',
+} as const;
+
+export type TProblemTitleSize = typeof PROBLEM_TITLE_SIZE[keyof typeof PROBLEM_TITLE_SIZE];
+
+export interface ILongProblemResult {
+  result: ILongProblemResultData | undefined;
 }
 
 export type {

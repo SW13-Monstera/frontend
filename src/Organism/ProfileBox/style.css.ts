@@ -57,6 +57,14 @@ export const imageStyle = style({
   width: '100%',
 });
 
+export const defaultImageStyle = style({
+  position: 'absolute',
+  display: 'inline',
+  margin: '0 auto',
+  height: '50%',
+  width: '50%',
+});
+
 export const imageUploadBackgroundStyle = style({
   display: 'flex',
   alignItems: 'center',
