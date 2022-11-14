@@ -2,6 +2,7 @@ import { KeyboardEvent } from 'react';
 import { ColumnBox, RowBox } from '../../Component/Box/CustomBox';
 import { MyScoreBox } from '../../Component/Box/MyScoreBox';
 import { COLOR } from '../../constants/color';
+import { RESULT_TYPE } from '../../constants/problem';
 import { OIcon } from '../../Icon/OIcon';
 import { XIcon } from '../../Icon/XIcon';
 import { hiddenStyle } from '../../styles/util.css';
@@ -57,8 +58,8 @@ export const ShortAnswerInput = ({
                 isAnswerShown
                   ? resultAnswerStyle['shown']
                   : result?.isAnswer
-                  ? resultAnswerStyle['correct']
-                  : resultAnswerStyle['wrong']
+                  ? resultAnswerStyle[RESULT_TYPE.CORRECT]
+                  : resultAnswerStyle[RESULT_TYPE.WRONG]
               }
               onClick={resetResult}
             >

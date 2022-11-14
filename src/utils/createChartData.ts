@@ -8,8 +8,7 @@ export const createCategoryChartData = (chartData: IChartElement[]) => {
       {
         label: 'category',
         data: chartData.map((e) => e.value),
-        backgroundColor: [COLOR.POINT1, COLOR.POINT2, COLOR.POINT3, COLOR.POINT4],
-        borderColor: [COLOR.GRAY],
+        backgroundColor: Object.values(COLOR.CHART),
       },
     ],
   };

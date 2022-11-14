@@ -1,8 +1,7 @@
-import { style } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
-import baseFontStyle from '../../../styles/font.css';
 
-export const problemTitleBoxStyle = style({
+export const problemTitleBoxBaseStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -11,16 +10,29 @@ export const problemTitleBoxStyle = style({
   height: '2rem',
 
   padding: '0 1rem',
-
-  borderRadius: '20px',
-  color: COLOR.TITLEACTIVE,
+  borderRadius: '24px',
 });
 
-export const textStyle = style([
-  baseFontStyle.small,
-  {
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-  },
-]);
+export const problemTitleBoxStyle = styleVariants({
+  long: [
+    problemTitleBoxBaseStyle,
+    { color: COLOR.PURPLE, backgroundColor: COLOR.BACKGROUND.PURPLE },
+  ],
+  short: [
+    problemTitleBoxBaseStyle,
+    { color: COLOR.ORANGE, backgroundColor: COLOR.BACKGROUND.ORANGE },
+  ],
+  multiple: [
+    problemTitleBoxBaseStyle,
+    { color: COLOR.GREEN, backgroundColor: COLOR.BACKGROUND.GREEN },
+  ],
+});
+
+export const textStyle = style({
+  fontWeight: '400',
+  fontSize: '.875rem',
+  lineHeight: '1.125rem',
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+});

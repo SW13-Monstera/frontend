@@ -9,10 +9,6 @@ const COLOR = {
   DARKGRAY: '#121212',
   WHITE: '#FFFFFF', // 기본 배경색, 텍스트 등에 사용되는 흰색
   OFFWHITE: '#F5F5F5', // 서브 배경색
-  POINT1: '#EDEBFD', // 포인트 컬러 1
-  POINT2: '#FDF9EB', // 포인트 컬러 2
-  POINT3: '#EBFDEE', // 포인트 컬러 3
-  POINT4: '#F9EBFD', // 포인트 컬러 4
   TAG1: '#FFF1CD', //태그 컬러 1
   TAG2: '#FFDDDD', //태그 컬러 2,
   TRANSPARENT: 'transparent', //투명
@@ -21,6 +17,13 @@ const COLOR = {
   ORANGE: '#EC882C',
   GREEN: '#29AE2E',
   RED: '#EE4242',
+  CHART: {
+    1: '#F3931B',
+    2: '#0459FE',
+    3: '#32BC69',
+    4: '#FFBB0C',
+  },
+
   TEXT: {
     '1': '#111111',
     '2': '#222222',

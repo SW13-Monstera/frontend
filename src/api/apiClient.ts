@@ -27,6 +27,7 @@ apiClient.interceptors.response.use(
     } else if (status === 401) {
       toast('로그인 후 이용가능해요😊');
       setTimeout(() => {
+        setLogout();
         location.reload();
       }, 1000);
 

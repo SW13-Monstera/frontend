@@ -18,6 +18,7 @@ import { DB, DS, NETWORK, OS } from '../../constants/category';
 import { ColumnBox } from '../../Component/Box/CustomBox';
 import { IProfileData } from '../../types/api/user';
 import { useQuery } from 'react-query';
+import { RESULT_TYPE } from '../../constants/problem';
 
 interface ITags {
   os: number;
@@ -87,16 +88,16 @@ export const MyPage = () => {
             {problemStatsData !== undefined ? (
               <ColumnBox className={problemStatsWrapperStyle}>
                 <ProblemListBox
-                  title='맞은 문제'
                   problems={problemStatsData.correctAnsweredProblem}
+                  type={RESULT_TYPE.CORRECT}
                 />
                 <ProblemListBox
-                  title='틀린 문제'
                   problems={problemStatsData.wrongAnsweredProblem}
+                  type={RESULT_TYPE.WRONG}
                 />
                 <ProblemListBox
-                  title='부분 점수를 받은 문제'
                   problems={problemStatsData.partialAnsweredProblem}
+                  type={RESULT_TYPE.PARTIAL}
                 />
               </ColumnBox>
             ) : null}

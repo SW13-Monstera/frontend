@@ -5,9 +5,9 @@ interface ITechTagBox {
   color?: string;
 }
 
-export const TechTagBox = ({ name, color }: ITechTagBox) => {
+export const TechTagBox = ({ name }: ITechTagBox) => {
   return (
-    <li className={tagStyle} style={{ backgroundColor: color }}>
+    <li className={tagStyle}>
       <div>{name}</div>
     </li>
   );

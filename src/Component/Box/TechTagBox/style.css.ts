@@ -1,27 +1,25 @@
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
-import baseFontStyle from '../../../styles/font.css';
 
-export const tagStyle = style([
-  baseFontStyle.xsmall,
-  {
-    boxSizing: 'border-box',
+export const tagStyle = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  width: 'fit-content',
+  height: '1.5rem',
 
-    width: 'fit-content',
-    height: '1.5rem',
+  color: COLOR.TEXT[5],
+  background: COLOR.BACKGROUND.BLUE,
+  borderRadius: '4px',
 
-    color: 'black',
-    background: COLOR.TAG1,
-    borderRadius: '10px',
+  textAlign: 'center',
 
-    textAlign: 'center',
+  padding: '0.75rem 0.5rem',
 
-    padding: '0.5rem',
+  whiteSpace: 'nowrap',
 
-    whiteSpace: 'nowrap',
-  },
-]);
+  fontWeight: '400',
+  fontSize: '.875rem',
+  lineHeight: '1.5rem',
+});
