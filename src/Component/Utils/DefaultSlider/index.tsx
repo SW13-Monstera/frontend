@@ -2,6 +2,7 @@ import Carousel from 'react-material-ui-carousel';
 import {
   sliderContainerStyle,
   sliderImageStyle,
+  sliderItemCategoryStyle,
   sliderItemDescriptionStyle,
   sliderLeftStyle,
   sliderRightStyle,
@@ -22,7 +23,7 @@ function DefaultSlider() {
           <Link key={item.title} to={item.link}>
             <div className={sliderStyle}>
               <div className={sliderLeftStyle}>
-                <p>{item.category}</p>
+                <p className={sliderItemCategoryStyle}>{item.category}</p>
                 <h2>{item.title}</h2>
                 <p className={sliderItemDescriptionStyle}>{item.description}</p>
               </div>
