@@ -26,4 +26,5 @@ export const inputTextBoxStyle = style({
   lineHeight: '1.5rem',
   color: themeColors.text[1],
   backgroundColor: 'inherit',
+  width: '100%',
 });
