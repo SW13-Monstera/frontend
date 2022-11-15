@@ -17,7 +17,7 @@ export const DoughnutChart = ({ data }: IChart) => {
     plugins: {
       tooltip: {
         callbacks: {
-          label: (context: any) => context.formattedValue + '%',
+          label: (context: any) => `${context.label}: ${context.formattedValue}%`,
         },
       },
     },

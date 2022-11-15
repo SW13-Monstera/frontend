@@ -6,6 +6,8 @@ import {
   choiceListStyle,
   contentTitleStyle,
   isMultipleAnswerStyle,
+  MultipleChoiceListStyle,
+  MultipleChoiceListTopStyle,
   resultWrapperStyle,
 } from './style.css';
 
@@ -23,31 +25,33 @@ export const MultipleChoiceList = ({
   isMultipleAnswer,
 }: IMultipleChoiceList) => {
   return (
-    <>
-      <label htmlFor='answer' className={contentTitleStyle}>
-        답안 선택
-        <span className={isMultipleAnswerStyle}>
-          {isMultipleAnswer ? ' (복수 선택)' : ' (정답 한 개)'}
-        </span>
-      </label>
-      <div className={choiceListStyle} onClick={resetResult}>
-        {isMultipleAnswer
-          ? choices?.map((choice) => (
-              <Checkbox
-                key={choice.id}
-                id={choice.id.toString()}
-                label={choice?.content}
-                name='answer'
-              />
-            ))
-          : choices?.map((choice) => (
-              <RadioButton
-                key={choice.id}
-                id={choice.id.toString()}
-                label={choice.content}
-                name='answer'
-              />
-            ))}
+    <div className={MultipleChoiceListStyle}>
+      <div className={MultipleChoiceListTopStyle}>
+        <label htmlFor='answer' className={contentTitleStyle}>
+          답안 선택
+          <span className={isMultipleAnswerStyle}>
+            {isMultipleAnswer ? ' (복수 선택)' : ' (정답 한 개)'}
+          </span>
+        </label>
+        <div className={choiceListStyle} onClick={resetResult}>
+          {isMultipleAnswer
+            ? choices?.map((choice) => (
+                <Checkbox
+                  key={choice.id}
+                  id={choice.id.toString()}
+                  label={choice?.content}
+                  name='answer'
+                />
+              ))
+            : choices?.map((choice) => (
+                <RadioButton
+                  key={choice.id}
+                  id={choice.id.toString()}
+                  label={choice.content}
+                  name='answer'
+                />
+              ))}
+        </div>
       </div>
       <div className={resultWrapperStyle}>
         {result ? (
@@ -61,6 +65,6 @@ export const MultipleChoiceList = ({
           <></>
         )}
       </div>
-    </>
+    </div>
   );
 };

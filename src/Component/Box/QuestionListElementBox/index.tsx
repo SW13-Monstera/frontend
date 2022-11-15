@@ -18,6 +18,7 @@ import { getTagById } from '../../../utils/getTagbyId';
 import { Divider } from '../../Divider';
 import { formatNumber } from '../../../utils/formatNumber';
 import { isNumberNotEmpty } from '../../../utils/isNotEmpty';
+import { PROBLEM_TYPE } from '../../../constants/problem';
 
 interface IProblemStatisticsBox {
   label: string;
@@ -69,7 +70,13 @@ function QuestionListElementBox({
                 return <TagBox name={name} color={color} key={tagId} />;
               })}
               <TagBox
-                name={type === 'long' ? '서술형' : type === 'short' ? '단답형' : '객관식'}
+                name={
+                  type === PROBLEM_TYPE.LONG
+                    ? '서술형'
+                    : type === PROBLEM_TYPE.SHORT
+                    ? '단답형'
+                    : '객관식'
+                }
                 color='color2'
               />
               {isSolved !== undefined ? (
