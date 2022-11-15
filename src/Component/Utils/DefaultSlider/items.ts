@@ -16,6 +16,6 @@ export const SLIDER_ITEMS = [
     description:
       '서술형 문제를 풀고 AI로 채점받을 수 있어요. 어떤 방식으로 이루어지는지 함께 알아봐요.',
     imgSrc: computerImage,
-    link: URL.PROBLEM_LIST,
+    link: URL.DESCRIPTION,
   },
 ];

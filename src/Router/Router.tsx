@@ -26,6 +26,7 @@ import { RouteChangeTracker } from './RouteChangeTracker';
 import { ProtectedLayout } from './ProtectedLayout';
 import { PublicLayout } from './PublicLayout';
 import { PageTemplate } from '../Template';
+import { DescriptionPage } from '../Page/DescriptionPage';
 
 function Router() {
   return (
@@ -56,6 +57,7 @@ function Router() {
           <Route path={URL.LOGIN} element={<LoginPage />} />
           <Route path={URL.TERMS_OF_SERVICE} element={<TermsOfServicePage />} />
           <Route path={URL.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
+          <Route path={URL.DESCRIPTION} element={<DescriptionPage />} />
           <Route path={URL.OAUTH_CALLBACK} element={<CallbackPage />} />
           <Route path={URL.ERROR} element={<ErrorPage />} />
           <Route path={URL.PAGE_NOT_FOUND} element={<PageNotFoundPage />} />

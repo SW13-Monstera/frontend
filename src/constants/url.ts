@@ -21,6 +21,7 @@ const URL = {
   PAGE_NOT_FOUND: '/page-not-found',
   TERMS_OF_SERVICE: '/terms-of-service',
   PRIVACY_POLICY: '/privacy-policy',
+  DESCRIPTION: '/description',
 };
 
 const URLWithParam = {
