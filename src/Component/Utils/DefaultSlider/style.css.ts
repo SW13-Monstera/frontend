@@ -1,5 +1,5 @@
 import { themeColors } from './../../../styles/theme.css';
-import { style, styleVariants } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 export const sliderContainerStyle = style({
   position: 'absolute',
@@ -7,45 +7,56 @@ export const sliderContainerStyle = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '100vw',
-  height: '30vh',
+  width: '100%',
+  height: '15rem',
   overflow: 'hidden',
   color: themeColors.background.F0,
-  background: '#21185B',
+  background: '#0F052C',
   marginTop: '0px',
   zIndex: 0,
+  padding: '1rem 0',
 });
 
-export const slideStyle = style({
+export const sliderStyle = style({
+  display: 'flex',
+  alignItems: 'flex-end',
+  justifyContent: 'space-around',
+  gap: '1rem',
+  height: '15rem',
+  padding: '2rem 5rem 3rem 5rem',
+});
+
+export const sliderLeftStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
-  padding: '3rem',
+});
+
+export const sliderRightStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
 });
 
 export const sliderTransparentLayerStyle = style({
   position: 'relative',
-  width: 'fit-content',
-  height: 'fit-content',
+  width: '100%',
   background: 'rgba(76, 175, 80, 0.3)',
 });
 
-export const circleBaseStyle = style({
+export const sliderTransparentLayerCircleStyle = style({
   position: 'absolute',
-  width: '100px',
-  height: '100px',
+  width: '100%',
+  height: '100%',
+  background: 'transparent',
   zIndex: 1,
-});
-
-export const circleStyle = styleVariants({
-  1: [circleBaseStyle, { top: '-45px', left: '10%' }],
-  2: [circleBaseStyle, { top: '20%', left: '50%' }],
-  3: [circleBaseStyle, { top: '40%', left: '60%' }],
+  pointerEvents: 'none',
 });
 
 export const sliderImageStyle = style({
-  position: 'absolute',
-  width: '300px',
-  top: '2rem',
-  left: '650px',
+  width: '17rem',
+  margin: '2rem',
+  '@media': { 'screen and (max-width: 720px)': { display: 'none' } },
+});
+
+export const sliderItemDescriptionStyle = style({
+  wordBreak: 'break-all',
 });
