@@ -10,7 +10,7 @@ export const listPageMainWrapperStyle = style({
   display: 'flex',
   justifyContent: 'center',
   gap: '1.3125rem',
-  padding: '0 5rem',
+  padding: '3rem 5rem 0 5rem',
 });
 
 export const asideStyle = style({
