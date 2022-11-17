@@ -40,8 +40,10 @@ import { RefreshIcon } from '../../Icon/RefreshIcon';
 import { COLOR } from '../../constants/color';
 import { CHECKED_TAGS } from '../../constants/localStorage';
 import { getUserInfo } from '../../utils/userInfo';
+import { useNavigate } from 'react-router-dom';
 
 function QuestionListPage() {
+  const navigate = useNavigate();
   const [params, setParams] = useState<IProblemRequestParam>();
   const { data } = useQuery<IProblemListResponseData>(
     ['problemList', params],
@@ -49,11 +51,14 @@ function QuestionListPage() {
     { enabled: !!params },
   );
   const { checkedTags, setCheckedTags } = useCheckedTagStore();
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(
+    parseInt(new URLSearchParams(location.search).get('page') ?? '1') - 1,
+  );
 
   const setCheckedTagsSync = (newCheckedTags: ITagState[]) => {
     setCheckedTags(newCheckedTags);
     sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
+    setNewPage(0);
   };
 
   const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {
@@ -67,31 +72,41 @@ function QuestionListPage() {
   const resetCheckedTags = () => {
     resetCheckboxes();
     setCheckedTagsSync([]);
+    setNewPage(0);
   };
 
   const handleSearchInput = () => {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
     setParams({ ...getFilterParams(checkedTags), page: page, query: query });
     resetCheckedTags();
+    setNewPage(0);
   };
 
   const onDeleteButtonClick = (id: string) => {
     const newCheckedTags = checkedTags.filter((e) => e.id !== id);
     setCheckedTags(newCheckedTags);
     sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
+    setNewPage(0);
+  };
+
+  const setNewPage = (newPage: number) => {
+    navigate(location.pathname + `?page=${newPage + 1}`);
+    setPage(newPage);
   };
 
   useEffect(() => {
     if (page === 0) {
       setParams({ ...getFilterParams(checkedTags), page: page });
-    } else {
-      setPage(0);
     }
   }, [checkedTags]);
 
   useEffect(() => {
     setParams({ ...getFilterParams(checkedTags), page: page });
   }, [page]);
+
+  useEffect(() => {
+    setPage(parseInt(new URLSearchParams(location.search).get('page') ?? '1') - 1);
+  }, [location.search]);
 
   return (
     <>
@@ -188,7 +203,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                 />
               ))}
             </div>
-            <Pagination totalPages={data?.totalPages ?? 0} page={page} setPage={setPage} />
+            <Pagination totalPages={data?.totalPages ?? 0} page={page} setPage={setNewPage} />
           </div>
         </div>
       </div>
