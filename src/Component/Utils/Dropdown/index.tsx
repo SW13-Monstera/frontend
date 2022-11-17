@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { useCheckedTagStore } from '../../../hooks/useStore';
 import { DownArrowIcon } from '../../../Icon/DownArrowIcon';
 import { UpArrowIcon } from '../../../Icon/UpArrowIcon';
 import { themeColors } from '../../../styles/theme.css';
 import { BUTTON_TYPE } from '../../../types/button';
+import { ITagState } from '../../../types/tag';
 import { IDropdownElement } from '../../../types/util';
 import listenOutsideClick from '../../../utils/listenOutsideClick';
 import { DropdownElement } from '../DropdownElement';
@@ -20,13 +20,13 @@ interface ITagType {
 }
 
 interface IDropdownProps extends ITagType {
+  checkedTags: ITagState[];
   handleCheckedTags: (id: string, name: string, isChecked: boolean) => void;
 }
 
-function Dropdown({ name, elements, handleCheckedTags }: IDropdownProps) {
+function Dropdown({ name, elements, checkedTags, handleCheckedTags }: IDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { checkedTags } = useCheckedTagStore();
 
   function onClickDropdown() {
     setIsOpen(!isOpen);
