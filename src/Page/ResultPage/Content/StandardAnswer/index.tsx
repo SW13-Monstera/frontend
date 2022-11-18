@@ -1,13 +1,7 @@
 import { TextBox } from '../../../../Component/Box';
 import { MarkdownBox } from '../../../../Component/Box/MarkdownBox';
-import { MyScoreBox } from '../../../../Component/Box/MyScoreBox';
 import { ILongProblemResult } from '../../../../types/problem';
-import {
-  contentStyle,
-  myScoreStyle,
-  standardAnswerContentStyle,
-  subtitleStyle,
-} from '../../style.css';
+import { contentStyle, standardAnswerContentStyle, subtitleStyle } from '../../style.css';
 
 export const StandardAnswerContent = ({ result }: ILongProblemResult) => {
   return (
@@ -18,7 +12,6 @@ export const StandardAnswerContent = ({ result }: ILongProblemResult) => {
           <MarkdownBox>{result?.standardAnswer}</MarkdownBox>
         </div>
       </TextBox>
-      <MyScoreBox score={result?.score} className={myScoreStyle} />
     </div>
   );
 };
