@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { COLOR } from '../../../constants/color';
 import { INPUT_TYPE } from '../../../constants/input';
 import { Checkbox } from '../../../Icon/Checkbox';
@@ -25,26 +25,22 @@ export function DropdownElement({
   isChecked = false,
   isCheckbox = false,
 }: IDropdownComponentProps) {
-  function checkHandler({ target }: ChangeEvent<HTMLInputElement>) {
-    handleCheckedTags(target.id, target.name, target.checked);
-  }
   const onCheckboxClick = (event: MouseEvent<HTMLSpanElement>) => {
     event.stopPropagation();
-    const inputElement = event.currentTarget.previousSibling as HTMLInputElement;
+    const inputElement = event.currentTarget.firstChild as HTMLInputElement;
     handleCheckedTags(inputElement.id, inputElement.name, !isChecked);
     inputElement.checked = !isChecked;
   };
 
   return (
-    <li className={dropdownContentElementStyle}>
+    <li className={dropdownContentElementStyle} onClick={onCheckboxClick}>
       <input
         type={isCheckbox ? INPUT_TYPE.CHECKBOX : INPUT_TYPE.RADIO}
         name={name}
         id={id}
-        onChange={checkHandler}
         className={checkboxDefaultStyle}
       />
-      <span className={checkboxStyle} onClick={onCheckboxClick}>
+      <span className={checkboxStyle}>
         {isChecked ? (
           <CheckboxChecked
             width='1.25rem'
@@ -61,11 +57,7 @@ export function DropdownElement({
           />
         )}
       </span>
-
-      <label
-        htmlFor={id}
-        className={isChecked ? labelIsCheckedStyle.true : labelIsCheckedStyle.false}
-      >
+      <label className={isChecked ? labelIsCheckedStyle.true : labelIsCheckedStyle.false}>
         {name}
       </label>
     </li>
