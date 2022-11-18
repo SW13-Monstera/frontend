@@ -45,7 +45,7 @@ export default function ResultPage() {
       <MetaTag title='CS Broker - 채점 결과' />
       <SplitProblemDetailPageTemplate
         sizes={[50, 50]}
-        data={result}
+        data={{ ...result, isSolved: true }}
         handleSubmit={handleSubmit}
         isResult={true}
         isResultPage={true}

@@ -36,7 +36,7 @@ export const LongProblemAnswerPage = () => {
       <MetaTag title='CS Broker - 정답' />
       <SplitProblemDetailPageTemplate
         sizes={[50, 50]}
-        data={result}
+        data={{ ...result, isSolved: true }}
         handleSubmit={() => {
           return;
         }}
