@@ -53,7 +53,6 @@ export const sliderTransparentLayerCircleStyle = style({
 });
 
 export const sliderImageStyle = style({
-  width: '17rem',
   margin: '2rem',
   '@media': { 'screen and (max-width: 720px)': { display: 'none' } },
 });

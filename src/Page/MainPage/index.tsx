@@ -55,7 +55,12 @@ AI 기반 문장 유사도 평가 기법을 채점받아
       <>
         <DefaultSlider />
         <div className={pageWrapperStyle}>
-          <img src={isDark ? logoWhite : logo} className={logoTitleStyle}></img>
+          <img
+            src={isDark ? logoWhite : logo}
+            className={logoTitleStyle}
+            width='100%'
+            height='100%'
+          ></img>
           <div className={descriptionStyle}>
             AI 기반 서술형 채점 기법을 통해 <br />
             다양한 유형의 <strong className={strongDescriptionStyle}>Computer Science</strong>

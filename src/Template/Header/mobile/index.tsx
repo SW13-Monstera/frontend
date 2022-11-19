@@ -14,7 +14,7 @@ export const MobileHeader = () => {
     <div className={mobileHeaderStyle}>
       <div className={topWrapperStyle}>
         <Link to={URL.MAIN}>
-          <img src={isDark ? logoWhite : logo} className={logoStyle} />
+          <img src={isDark ? logoWhite : logo} className={logoStyle} width='100px' height='20px' />
         </Link>
         <RightSideButtonList />
       </div>

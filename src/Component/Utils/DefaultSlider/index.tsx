@@ -28,7 +28,7 @@ function DefaultSlider() {
                 <p className={sliderItemDescriptionStyle}>{item.description}</p>
               </div>
               <div className={sliderRightStyle}>
-                <img src={item.imgSrc} className={sliderImageStyle} />
+                <img width='250px' height='auto' src={item.imgSrc} className={sliderImageStyle} />
               </div>
             </div>
           </Link>

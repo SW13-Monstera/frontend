@@ -1,5 +1,5 @@
-import sliderImage from '../../../assets/images/slider-image-1.png';
-import computerImage from '../../../assets/images/computer-open-1.png';
+import sliderImage from '../../../assets/images/slider-image-1.webp';
+import computerImage from '../../../assets/images/computer-open-1.webp';
 import { URL } from '../../../constants/url';
 
 export const SLIDER_ITEMS = [

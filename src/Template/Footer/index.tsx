@@ -11,7 +11,7 @@ function Footer() {
 
   return (
     <footer className={footerStyle}>
-      <img src={isDark ? logoWhite : logo} width='100px' />
+      <img src={isDark ? logoWhite : logo} width='100px' height='19.3px' />
       <div>
         <div>주소: 서울특별시 강남구 테헤란로 311(역삼동) 아남타워빌딩 7층(06151)</div>
         <div>문의: monstera.swm13@gmail.com</div>
