@@ -76,7 +76,6 @@ export const ResultAssessment = ({ gradingHistoryId }: IAssessmentPopover) => {
                   } else {
                     handleAssessmentSubmit(e.value);
                   }
-                  handleClick(event);
                 }}
                 key={e.value}
               >

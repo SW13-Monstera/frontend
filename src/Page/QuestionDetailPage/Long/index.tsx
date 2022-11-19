@@ -36,6 +36,15 @@ export function LongQuestionDetailPage() {
     refetch();
   };
 
+  const getAnswerWithoutSubmit = () => {
+    if (!id) throw INVALID_ID_ERROR;
+    localStorage.removeItem(LONG_PROBLEM_ANSWER(id));
+    navigate(URLWithParam.LONG_PROBLEM_ANSWER(parseInt(id)), {
+      state: { userAnswer: userAnswer, title: data?.title } as ILongProblemResultLocationState,
+    });
+    refetch();
+  };
+
   const onTextAreaChange = (event: KeyboardEvent) => {
     const userAnswerValue = (event.target as HTMLTextAreaElement).value;
     setUserAnswer(userAnswerValue);
@@ -54,7 +63,9 @@ export function LongQuestionDetailPage() {
         <SplitProblemDetailPageTemplate
           data={data}
           handleSubmit={handleSubmit}
+          getAnswerWithoutSubmit={getAnswerWithoutSubmit}
           isSubmittable={userAnswer?.length >= 10}
+          isLong={true}
           leftSideContent={<ProblemDescriptionBox>{data?.description}</ProblemDescriptionBox>}
           rightSideContent={
             <LongProblemTextArea userAnswer={userAnswer} onTextAreaChange={onTextAreaChange} />

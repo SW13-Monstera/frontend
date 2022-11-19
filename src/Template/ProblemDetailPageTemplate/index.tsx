@@ -14,6 +14,7 @@ export const ProblemDetailPageTemplate = ({
   data,
   children,
   handleSubmit,
+  getAnswerWithoutSubmit,
   bottomContent,
   isResult = false,
   resetResult = () => {
@@ -21,6 +22,7 @@ export const ProblemDetailPageTemplate = ({
   },
   isResultPage = false,
   isSubmittable = false,
+  isLong = false,
 }: IProblemDetailPageTemplate) => {
   const { id } = useParams();
 
@@ -51,10 +53,12 @@ export const ProblemDetailPageTemplate = ({
               <div className={questionContentStyle}>{children}</div>
               <ProblemDetailButtonList
                 handleSubmit={handleSubmit}
+                getAnswerWithoutSubmit={getAnswerWithoutSubmit}
                 isResult={isResult}
                 resetResult={resetResult}
                 isResultPage={isResultPage}
                 isSubmittable={isSubmittable}
+                isLong={isLong}
               />
             </div>
             <div className={bottomContentStyle}>{bottomContent}</div>

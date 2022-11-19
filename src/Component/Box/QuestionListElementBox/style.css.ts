@@ -51,6 +51,7 @@ export const titleStyle = style({
   fontSize: '1.125rem',
   lineHeight: '1.5rem',
   color: themeColors.text[1],
+  margin: '1rem 0',
 });
 
 export const dividerStyle = style({

@@ -4,7 +4,6 @@ import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
 import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
-import { useCheckedTagStore } from '../../hooks/useStore';
 import {
   listPageWrapperStyle,
   listPageMainWrapperStyle,
@@ -31,67 +30,54 @@ import {
 import { getFilterParams } from '../../utils/getFilterParams';
 import { getTagById } from '../../utils/getTagbyId';
 import { BUTTON_TYPE } from '../../types/button';
-import { resetSearchProblemInput, resetCheckboxes } from '../../utils/resetSearchProblemInputs';
+import { resetSearchProblemInput } from '../../utils/resetSearchProblemInputs';
 import { Pagination } from '../../Component/Pagination';
-import { ITagState } from '../../types/tag';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
 import { RefreshIcon } from '../../Icon/RefreshIcon';
 import { COLOR } from '../../constants/color';
-import { CHECKED_TAGS } from '../../constants/localStorage';
 import { getUserInfo } from '../../utils/userInfo';
+import { useNavigate } from 'react-router-dom';
+import { useCheckedTags } from '../../hooks/useCheckedTags';
 
 function QuestionListPage() {
+  const navigate = useNavigate();
   const [params, setParams] = useState<IProblemRequestParam>();
+
   const { data } = useQuery<IProblemListResponseData>(
     ['problemList', params],
     () => problemApiWrapper.problemList({ ...params, size: 12 }),
     { enabled: !!params },
   );
-  const { checkedTags, setCheckedTags } = useCheckedTagStore();
-  const [page, setPage] = useState(0);
 
-  const setCheckedTagsSync = (newCheckedTags: ITagState[]) => {
-    setCheckedTags(newCheckedTags);
-    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
-  };
-
-  const handleCheckedTags = (id: string, name: string, isChecked: boolean) => {
-    setCheckedTagsSync(
-      checkedTags.map((tag: { id: string }) => tag.id).includes(id)
-        ? checkedTags.map((tag) => (tag.id === id ? { id, isChecked, name } : tag))
-        : [...checkedTags, { id, isChecked, name }],
-    );
-  };
-
-  const resetCheckedTags = () => {
-    resetCheckboxes();
-    setCheckedTagsSync([]);
-  };
+  const [page, setPage] = useState(
+    parseInt(new URLSearchParams(location.search).get('page') ?? '1') - 1,
+  );
+  const { checkedTags, handleCheckedTags, resetCheckedTags, onDeleteButtonClick } = useCheckedTags({
+    resetPage: () => {
+      setNewPage(0);
+    },
+  });
 
   const handleSearchInput = () => {
     const query = (document.getElementById('search-problem') as HTMLInputElement).value;
     setParams({ ...getFilterParams(checkedTags), page: page, query: query });
     resetCheckedTags();
+    setNewPage(0);
   };
 
-  const onDeleteButtonClick = (id: string) => {
-    const newCheckedTags = checkedTags.filter((e) => e.id !== id);
-    setCheckedTags(newCheckedTags);
-    sessionStorage.setItem(CHECKED_TAGS, JSON.stringify(newCheckedTags));
+  const setNewPage = (newPage: number) => {
+    navigate(location.pathname + `?page=${newPage + 1}`);
+    setPage(newPage);
   };
-
-  useEffect(() => {
-    if (page === 0) {
-      setParams({ ...getFilterParams(checkedTags), page: page });
-    } else {
-      setPage(0);
-    }
-  }, [checkedTags]);
 
   useEffect(() => {
     setParams({ ...getFilterParams(checkedTags), page: page });
-  }, [page]);
+  }, [checkedTags, page]);
+
+  useEffect(() => {
+    setPage(parseInt(new URLSearchParams(location.search).get('page') ?? '1') - 1);
+  }, [location.search]);
 
   return (
     <>
@@ -128,6 +114,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                       <Dropdown
                         name={tagtype.name}
                         elements={tagtype.elements}
+                        checkedTags={checkedTags}
                         handleCheckedTags={handleCheckedTags}
                         key={tagtype.name}
                       />
@@ -136,6 +123,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                       <Dropdown
                         name={tagtype.name}
                         elements={tagtype.elements}
+                        checkedTags={checkedTags}
                         handleCheckedTags={handleCheckedTags}
                         key={tagtype.name}
                       />
@@ -188,7 +176,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
                 />
               ))}
             </div>
-            <Pagination totalPages={data?.totalPages ?? 0} page={page} setPage={setPage} />
+            <Pagination totalPages={data?.totalPages ?? 0} page={page} setPage={setNewPage} />
           </div>
         </div>
       </div>

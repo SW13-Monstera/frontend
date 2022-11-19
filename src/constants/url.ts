@@ -11,6 +11,7 @@ const URL = {
   PROBLEM_SET_LIST: '/problem-set',
   LONG_PROBLEM_DETAIL: '/problem/long/:id',
   LONG_PROBLEM_RESULT: '/problem/long/result/:id',
+  LONG_PROBLEM_ANSWER: '/problem/long/answer/:id',
   SHORT_PROBLEM_DETAIL: '/problem/short/:id',
   SHORT_PROBLEM_RESULT: '/problem/short/result/:id',
   MULTIPLE_PROBLEM_DETAIL: '/problem/multiple/:id',
@@ -21,11 +22,13 @@ const URL = {
   PAGE_NOT_FOUND: '/page-not-found',
   TERMS_OF_SERVICE: '/terms-of-service',
   PRIVACY_POLICY: '/privacy-policy',
+  DESCRIPTION: '/description',
 };
 
 const URLWithParam = {
   LONG_PROBLEM_DETAIL: (id: number) => `/problem/long/${id}`,
   LONG_PROBLEM_RESULT: (id: number) => `/problem/long/result/${id}`,
+  LONG_PROBLEM_ANSWER: (id: number) => `/problem/long/answer/${id}`,
   SHORT_PROBLEM_DETAIL: (id: number) => `/problem/short/${id}`,
   SHORT_PROBLEM_RESULT: (id: number) => `/problem/short/result/${id}`,
   MULTIPLE_PROBLEM_DETAIL: (id: number) => `/problem/multiple/${id}`,
