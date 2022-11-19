@@ -9,21 +9,25 @@ export const SplitProblemDetailPageTemplate = ({
   rightSideContent,
   bottomContent,
   handleSubmit,
+  getAnswerWithoutSubmit,
   isResult,
   resetResult,
   isResultPage,
   isSubmittable = false,
+  isLong = false,
   sizes = [35, 65],
 }: ISplitProblemDetailPageTemplate) => {
   return (
     <ProblemDetailPageTemplate
       data={data}
       handleSubmit={handleSubmit}
+      getAnswerWithoutSubmit={getAnswerWithoutSubmit}
       isResult={isResult}
       resetResult={resetResult}
       isResultPage={isResultPage}
       bottomContent={bottomContent}
       isSubmittable={isSubmittable}
+      isLong={isLong}
     >
       <CustomSplit
         sizes={sizes}

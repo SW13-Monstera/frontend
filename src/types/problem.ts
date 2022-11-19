@@ -60,12 +60,14 @@ interface IProblemDetailPageTemplate {
   data: TPartialProblemDetailResponseData | undefined;
   children?: React.ReactNode;
   handleSubmit?: () => void;
+  getAnswerWithoutSubmit?: () => void;
   isResult?: boolean;
   isProblemSet?: boolean;
   resetResult?: () => void;
   isResultPage?: boolean;
   bottomContent?: React.ReactNode;
   isSubmittable?: boolean;
+  isLong?: boolean;
 }
 
 interface ISplitProblemDetailPageTemplate extends IProblemDetailPageTemplate {
@@ -73,6 +75,8 @@ interface ISplitProblemDetailPageTemplate extends IProblemDetailPageTemplate {
   rightSideContent?: React.ReactNode;
   sizes?: number[];
   isSubmittable?: boolean;
+  isLong?: boolean;
+  getAnswerWithoutSubmit?: () => void;
 }
 
 export interface IMypageProblem {

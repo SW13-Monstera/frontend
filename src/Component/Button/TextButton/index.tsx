@@ -7,6 +7,7 @@ interface ITextButton extends ICustomButton {
   size: TButtonSize;
   isActivated?: boolean;
   className?: string;
+  tag?: string;
 }
 
 function TextButton({
@@ -16,6 +17,7 @@ function TextButton({
   onClick,
   children,
   className,
+  tag,
   isActivated = true,
 }: ITextButton) {
   return (
@@ -31,6 +33,7 @@ function TextButton({
       className={`${className} ${textButtonThemeStyle[theme]} ${textButtonSizeStyle[size]} ${
         !isActivated ? unactivatedStyle : ''
       } `}
+      tag={tag}
     >
       {children}
     </CustomButton>

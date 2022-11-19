@@ -27,6 +27,7 @@ import { ProtectedLayout } from './ProtectedLayout';
 import { PublicLayout } from './PublicLayout';
 import { PageTemplate } from '../Template';
 import { DescriptionPage } from '../Page/DescriptionPage';
+import { LongProblemAnswerPage } from '../Page/LongProblemAnswerPage';
 
 function Router() {
   return (
@@ -51,6 +52,7 @@ function Router() {
           <Route path={URL.PROBLEM_LIST} element={<QuestionListPage />} />
           <Route path={URL.PROBLEM_SET_LIST} element={<ProblemSetListPage />} />
           <Route path={URL.LONG_PROBLEM_DETAIL} element={<LongQuestionDetailPage />} />
+          <Route path={URL.LONG_PROBLEM_ANSWER} element={<LongProblemAnswerPage />} />
           <Route path={URL.SHORT_PROBLEM_DETAIL} element={<ShortQuestionDetailPage />} />
           <Route path={URL.MULTIPLE_PROBLEM_DETAIL} element={<MultipleQuestionDetailPage />} />
           <Route path={URL.PROBLEM_SET_DETAIL} element={<ProblemSetDetailPage />} />

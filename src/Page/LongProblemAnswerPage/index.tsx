@@ -1,20 +1,18 @@
-import { useLocation, useParams } from 'react-router-dom';
-
-import { ILongProblemResultData } from '../../types/api/problem';
-import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
-import { useMutation } from 'react-query';
 import { useEffect } from 'react';
+import { useMutation } from 'react-query';
+import { useLocation, useParams } from 'react-router-dom';
+import { problemApiWrapper } from '../../api/wrapper/problem/problemApiWrapper';
+import { TextBox } from '../../Component/Box';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
-import { MetaTag } from '../utils/MetaTag';
-import { SplitProblemDetailPageTemplate } from '../../Template/SplitProblemDetailPageTemplate';
-import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
-import { StandardAnswerContent } from './Content/StandardAnswer';
-import { UserAnswerContent } from './Content/UserAnswer';
-import { ChartContent } from './Content/Chart';
-import { createUserAnswerDOM } from '../../utils/createLongProblemDOM';
+import { SplitProblemDetailPageTemplate } from '../../Template/SplitProblemDetailPageTemplate';
+import { ILongProblemResultData } from '../../types/api/problem';
+import { ILongProblemResultLocationState } from '../../types/problem';
+import { StandardAnswerContent } from '../ResultPage/Content/StandardAnswer';
+import { answerContentStyle, contentStyle, subtitleStyle } from '../ResultPage/style.css';
+import { MetaTag } from '../utils/MetaTag';
 
-export default function ResultPage() {
+export const LongProblemAnswerPage = () => {
   const { id } = useParams();
   const { userAnswer, title } = useLocation().state as ILongProblemResultLocationState;
   const { data: result, isLoading, mutate } = useMutation<ILongProblemResultData>(handleSubmit);
@@ -28,13 +26,6 @@ export default function ResultPage() {
     mutate();
   }, []);
 
-  useEffect(() => {
-    if (document.readyState === 'complete') {
-      createUserAnswerDOM(result);
-    }
-  }, [result]);
-
-  if (!id) return <></>;
   if (isLoading)
     return (
       <SkeletonLongProblemResultPage title={title} userAnswer={userAnswer} id={id!} tags={[]} />
@@ -42,17 +33,23 @@ export default function ResultPage() {
 
   return (
     <>
-      <MetaTag title='CS Broker - 채점 결과' />
+      <MetaTag title='CS Broker - 정답' />
       <SplitProblemDetailPageTemplate
         sizes={[50, 50]}
         data={{ ...result, isSolved: true }}
-        handleSubmit={handleSubmit}
+        handleSubmit={() => {
+          return;
+        }}
         isResult={true}
         isResultPage={true}
         leftSideContent={<StandardAnswerContent result={result} />}
-        rightSideContent={<UserAnswerContent result={result} />}
-        bottomContent={<ChartContent result={result} />}
+        rightSideContent={
+          <div className={contentStyle}>
+            <h3 className={subtitleStyle}>내 답안</h3>
+            <TextBox className={answerContentStyle}>{userAnswer}</TextBox>
+          </div>
+        }
       />
     </>
   );
-}
+};

@@ -41,4 +41,5 @@ export interface ICustomButton {
   type?: TButtonType;
   children?: React.ReactNode;
   className?: string;
+  tag?: string;
 }
