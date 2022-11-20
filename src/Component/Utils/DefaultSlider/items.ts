@@ -4,6 +4,7 @@ import { URL } from '../../../constants/url';
 
 export const SLIDER_ITEMS = [
   {
+    id: 0,
     category: '면접 대비 문제 세트',
     title: 'IT 기업 취업 면접 대비 문제 없어요!',
     description: '기술 면접에 꼭 나올 개념들만 모인 문제세트를 풀어보세요.',
@@ -11,6 +12,7 @@ export const SLIDER_ITEMS = [
     link: URL.PROBLEM_SET_LIST,
   },
   {
+    id: 1,
     category: 'AI 서술형 채점',
     title: 'AI 채점 베타서비스를 확인해보세요!',
     description:

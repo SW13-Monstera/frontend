@@ -23,6 +23,7 @@ import { MetaTag } from '../utils/MetaTag';
 import { useDarkModeStore } from '../../hooks/useStore';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { ICommonStats } from '../../types/api/common';
+import { CustomCarousel } from '../../Component/Utils/CustomSlider';
 
 const getProblemList = () => {
   const params = { page: 0, size: 4 };
@@ -54,6 +55,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
       />
       <>
         <DefaultSlider />
+        <CustomCarousel />
         <div className={pageWrapperStyle}>
           <img
             src={isDark ? logoWhite : logo}
