@@ -1,4 +1,3 @@
-import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import logo from '../../assets/images/csbroker-main.png';
 import logoWhite from '../../assets/images/csbroker-white-main.png';
 import {
@@ -54,7 +53,6 @@ AI 기반 문장 유사도 평가 기법을 채점받아
         keywords='csbroker, computer science, database, operating system, data structure, network, developer, '
       />
       <>
-        <DefaultSlider />
         <CustomCarousel />
         <div className={pageWrapperStyle}>
           <img

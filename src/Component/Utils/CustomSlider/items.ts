@@ -10,6 +10,7 @@ export const SLIDER_ITEMS = [
     description: '기술 면접에 꼭 나올 개념들만 모인 문제세트를 풀어보세요.',
     imgSrc: sliderImage,
     link: URL.PROBLEM_SET_LIST,
+    backgroundColor: '#0F052C',
   },
   {
     id: 1,
@@ -19,5 +20,6 @@ export const SLIDER_ITEMS = [
       '서술형 문제를 풀고 AI로 채점받을 수 있어요. 어떤 방식으로 이루어지는지 함께 알아봐요.',
     imgSrc: computerImage,
     link: URL.DESCRIPTION,
+    backgroundColor: '#001253',
   },
 ];

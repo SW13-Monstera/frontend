@@ -4,11 +4,12 @@ import { COLOR } from '../../../constants/color';
 export const containerStyle = style({
   display: 'flex',
   alignItems: 'center',
-  backgroundColor: COLOR.GREEN,
+  backgroundColor: COLOR.TITLEACTIVE,
   color: COLOR.BACKGROUND.F3,
 });
 
 export const windowStyle = style({
+  position: 'relative',
   width: '100%',
   height: '15rem',
   overflow: 'hidden',
@@ -16,7 +17,8 @@ export const windowStyle = style({
 
 export const flexBoxStyle = style({
   display: 'flex',
-  // transition: 'all 0.5s ease-in-out',
+  width: '100%',
+  height: '100%',
 });
 
 export const imageStyle = style({
@@ -27,19 +29,6 @@ export const imageStyle = style({
   backgroundRepeat: 'no-repeat',
   flex: 'none',
 });
-
-export const imageBackgroundStyle = style({
-  width: '100%',
-  height: '100%',
-});
-
-export const textWrapperStyle = style({
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '3rem',
-  gap: '.5rem',
-});
-
 
 export const sliderStyle = style({
   display: 'flex',
@@ -61,26 +50,6 @@ export const sliderRightStyle = style({
   flexDirection: 'column',
 });
 
-export const sliderTransparentLayerStyle = style({
-  position: 'relative',
-  width: '100%',
-  background: 'rgba(76, 175, 80, 0.3)',
-});
-
-export const sliderTransparentLayerCircleStyle = style({
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  background: 'transparent',
-  zIndex: 1,
-  pointerEvents: 'none',
-});
-
-export const sliderImageStyle = style({
-  margin: '2rem',
-  '@media': { 'screen and (max-width: 720px)': { display: 'none' } },
-});
-
 export const sliderItemCategoryStyle = style({
   fontWeight: '400',
   fontSize: '.75rem',
@@ -97,4 +66,34 @@ export const sliderItemDescriptionStyle = style({
   fontSize: '1rem',
   lineHeight: '1.25rem',
   color: COLOR.GRAY,
+});
+
+export const buttonListStyle = style({
+  position: 'absolute',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '.5rem',
+  right: '3rem',
+  bottom: '1rem',
+  zIndex: 1,
+  color: COLOR.GRAY,
+});
+
+export const buttonStyle = style({
+  color: COLOR.GRAY,
+});
+
+export const sliderTransparentLayerCircleStyle = style({
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  background: 'transparent',
+  zIndex: 1,
+  pointerEvents: 'none',
+});
+
+export const sliderImageStyle = style({
+  margin: '2rem',
+  '@media': { 'screen and (max-width: 720px)': { display: 'none' } },
 });
