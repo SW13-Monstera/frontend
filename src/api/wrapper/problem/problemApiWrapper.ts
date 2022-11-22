@@ -4,7 +4,6 @@ import { API_URL, API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
 import {
   IProblemRequestParam,
   ILongProblemDetailResponseData,
-  IShortProblemDetailResponseData,
   IMultipleProblemDetailResponseData,
   ILongProblemResultData,
   IShortProblemResultData,
@@ -36,11 +35,6 @@ export const problemApiWrapper = {
     return apiClient
       .get(API_URL_WITH_PARAMS.LONG_PROBLEM_DETAIL(problem_id))
       .then((res: { data: ILongProblemDetailResponseData }) => res.data);
-  },
-  shortProblemDetail: (problem_id: string) => {
-    return apiClient
-      .get(API_URL_WITH_PARAMS.SHORT_PROBLEM_DETAIL(problem_id))
-      .then((res: { data: IShortProblemDetailResponseData }) => res.data);
   },
   shortProblemDetailV2: (problem_id: string) => {
     return apiClient
