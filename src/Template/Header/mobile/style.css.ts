@@ -12,6 +12,7 @@ export const topWrapperStyle = style({
   alignItems: 'center',
   justifyContent: 'space-between',
   borderBottom: `1px solid ${themeColors.line.e}`,
+  padding: '1rem',
 });
 
 export const bottomWrapperStyle = style({

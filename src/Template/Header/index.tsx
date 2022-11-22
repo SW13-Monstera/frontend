@@ -16,7 +16,12 @@ const DefaultHeader = () => {
     <div className={defaultHeaderStyle}>
       <div className={leftSideWrapperStyle}>
         <Link to={URL.MAIN}>
-          <img src={isDark ? logoWhite : logo} className={logoStyle} />
+          <img
+            src={isDark ? logoWhite : logo}
+            className={logoStyle}
+            width='128px'
+            height='24.7px'
+          />
         </Link>
         <NavigationButtonList />
       </div>

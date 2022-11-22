@@ -19,12 +19,14 @@ export const leftSideWrapperStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  gap: '1rem',
 });
 
 export const defaultHeaderStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  padding: '1rem',
   '@media': { 'screen and (max-width: 720px)': { display: 'none' } },
 });
 
@@ -33,7 +35,6 @@ export const menuStyle = style({
   alignItems: 'center',
   justifyContent: 'right',
   gap: '.5rem',
-  padding: '.5rem',
 });
 
 export const iconButtonStyle = style({
@@ -43,7 +44,7 @@ export const iconButtonStyle = style({
   stroke: 'white',
 });
 
-export const logoStyle = style({ width: '12rem', padding: '2rem', cursor: 'pointer' });
+export const logoStyle = style({ cursor: 'pointer' });
 
 export const buttonListWrapperBeforeLoginStyle = style({
   display: 'flex',
