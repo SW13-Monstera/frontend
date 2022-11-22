@@ -6,7 +6,7 @@ import { RESULT_TYPE } from '../../constants/problem';
 import { OIcon } from '../../Icon/OIcon';
 import { XIcon } from '../../Icon/XIcon';
 import { hiddenStyle } from '../../styles/util.css';
-import { IShortProblemResultData } from '../../types/api/problem';
+import { IShortProblemResultData, TConsistOf } from '../../types/api/problem';
 import {
   answerInputContentStyle,
   resultAnswerStyle,
@@ -18,7 +18,7 @@ import {
 
 interface IShortAnswerInput {
   result: IShortProblemResultData | null;
-  isEnglish: boolean;
+  consistOf: TConsistOf;
   resetResult: () => void;
   handleSubmit: () => void;
   isAnswerShown: boolean;
@@ -28,7 +28,7 @@ interface IShortAnswerInput {
 export const ShortAnswerInput = ({
   result,
   resetResult,
-  isEnglish,
+  consistOf,
   handleSubmit,
   isAnswerShown,
   setIsAnswerShown,
@@ -81,7 +81,9 @@ export const ShortAnswerInput = ({
       ) : (
         <input
           id='answer'
-          placeholder={`답변을 "${isEnglish ? '영어로' : '한글로'}" 입력해주세요`}
+          placeholder={`답변을 "${
+            consistOf === 'ENGLISH' ? '영어로' : consistOf === 'KOREAN' ? '한글로' : '숫자로'
+          }" 입력해주세요`}
           className={answerInputContentStyle}
           autoComplete='off'
           onFocus={resetResult}

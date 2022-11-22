@@ -40,7 +40,7 @@ export const ProblemSetDetailPage = () => {
           if (curr.type === PROBLEM_TYPE.LONG) {
             currResult = await problemApiWrapper.longProblemDetail(curr.id.toString());
           } else if (curr.type === PROBLEM_TYPE.SHORT) {
-            currResult = await problemApiWrapper.shortProblemDetail(curr.id.toString());
+            currResult = await problemApiWrapper.shortProblemDetailV2(curr.id.toString());
           } else {
             currResult = await problemApiWrapper.multipleProblemDetail(curr.id.toString());
           }

@@ -10,6 +10,7 @@ import {
   IShortProblemResultData,
   IMultipleProblemResultData,
   IAssessmentRequest,
+  IShortProblemDetailResponseDataV2,
 } from '../../../types/api/problem';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { AxiosRequestConfig } from 'axios';
@@ -40,6 +41,11 @@ export const problemApiWrapper = {
     return apiClient
       .get(API_URL_WITH_PARAMS.SHORT_PROBLEM_DETAIL(problem_id))
       .then((res: { data: IShortProblemDetailResponseData }) => res.data);
+  },
+  shortProblemDetailV2: (problem_id: string) => {
+    return apiClient
+      .get(API_URL_WITH_PARAMS.SHORT_PROBLEM_DETAIL_V2(problem_id))
+      .then((res: { data: IShortProblemDetailResponseDataV2 }) => res.data);
   },
   multipleProblemDetail: (problem_id: string) => {
     return apiClient

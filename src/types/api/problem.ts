@@ -43,6 +43,17 @@ export interface IShortProblemDetailResponseData extends IProblemDetailResponseD
   isEnglish: boolean;
 }
 
+export const CONSIST_OF = { ENGLISH: 'ENGLISH', KOREAN: 'KOREAN', NUMERIC: 'NUMERIC' } as const;
+
+export type TConsistOf = typeof CONSIST_OF[keyof typeof CONSIST_OF];
+
+export interface IShortProblemDetailResponseDataV2 extends IProblemDetailResponseData {
+  correctSubmission: number;
+  correctUserCnt: number;
+  answerLength: number;
+  consistOf: TConsistOf;
+}
+
 export interface IShortProblemResultData extends IShortProblemDetailResponseData {
   gradingHistoryId: number;
   problemId: number;
