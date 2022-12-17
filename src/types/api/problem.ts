@@ -43,6 +43,21 @@ export interface IShortProblemDetailResponseData extends IProblemDetailResponseD
   isEnglish: boolean;
 }
 
+export const SHORT_ANSWER_TYPE = {
+  ENGLISH: 'english',
+  KOREAN: 'korean',
+  NUMERIC: 'numeric',
+} as const;
+
+export type TShortAnswerType = typeof SHORT_ANSWER_TYPE[keyof typeof SHORT_ANSWER_TYPE];
+
+export interface IShortProblemDetailResponseDataV2 extends IProblemDetailResponseData {
+  correctSubmission: number;
+  correctUserCnt: number;
+  answerLength: number;
+  consistOf: TShortAnswerType;
+}
+
 export interface IShortProblemResultData extends IShortProblemDetailResponseData {
   gradingHistoryId: number;
   problemId: number;

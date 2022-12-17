@@ -54,6 +54,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
       />
       <>
         <CustomCarousel />
+
         <div className={pageWrapperStyle}>
           <img
             src={isDark ? logoWhite : logo}

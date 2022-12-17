@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import {
-  IShortProblemDetailResponseData,
+  IShortProblemDetailResponseDataV2,
   IShortProblemResultData,
 } from '../../../types/api/problem';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
@@ -20,9 +20,9 @@ import { ShortAnswerInput } from '../../../Organism/ShortAnswerInput';
 
 export function ShortQuestionDetailPage() {
   const { id } = useParams();
-  const { data, refetch } = useQuery<IShortProblemDetailResponseData>(
+  const { data, refetch } = useQuery<IShortProblemDetailResponseDataV2>(
     'shortProblemDetail',
-    () => problemApiWrapper.shortProblemDetail(id!),
+    () => problemApiWrapper.shortProblemDetailV2(id!),
     { refetchOnWindowFocus: false },
   );
   const [result, setResult] = useState<IShortProblemResultData | null>(null);
@@ -71,7 +71,7 @@ export function ShortQuestionDetailPage() {
           <div className={inputWrapperStyle}>
             <ShortAnswerInput
               result={result}
-              isEnglish={data?.isEnglish ?? false}
+              answerType={data?.consistOf ?? null}
               resetResult={resetResult}
               handleSubmit={handleSubmit}
               isAnswerShown={isAnswerShown}
