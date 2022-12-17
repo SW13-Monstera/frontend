@@ -10,6 +10,7 @@ import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrappe
 import {
   IShortProblemDetailResponseDataV2,
   IShortProblemResultData,
+  SHORT_ANSWER_TYPE,
 } from '../../../types/api/problem';
 import { ProblemDetailPageTemplate } from '../../../Template/ProblemDetailPageTemplate';
 import { useQuery } from 'react-query';
@@ -71,7 +72,7 @@ export function ShortQuestionDetailPage() {
           <div className={inputWrapperStyle}>
             <ShortAnswerInput
               result={result}
-              consistOf={data?.consistOf ?? 'ENGLISH'}
+              answerType={data?.consistOf ?? SHORT_ANSWER_TYPE.ENGLISH}
               resetResult={resetResult}
               handleSubmit={handleSubmit}
               isAnswerShown={isAnswerShown}

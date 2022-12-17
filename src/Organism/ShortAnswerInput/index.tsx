@@ -6,7 +6,11 @@ import { RESULT_TYPE } from '../../constants/problem';
 import { OIcon } from '../../Icon/OIcon';
 import { XIcon } from '../../Icon/XIcon';
 import { hiddenStyle } from '../../styles/util.css';
-import { IShortProblemResultData, TConsistOf } from '../../types/api/problem';
+import {
+  IShortProblemResultData,
+  SHORT_ANSWER_TYPE,
+  TShortAnswerType,
+} from '../../types/api/problem';
 import {
   answerInputContentStyle,
   resultAnswerStyle,
@@ -18,7 +22,7 @@ import {
 
 interface IShortAnswerInput {
   result: IShortProblemResultData | null;
-  consistOf: TConsistOf;
+  answerType: TShortAnswerType;
   resetResult: () => void;
   handleSubmit: () => void;
   isAnswerShown: boolean;
@@ -28,7 +32,7 @@ interface IShortAnswerInput {
 export const ShortAnswerInput = ({
   result,
   resetResult,
-  consistOf,
+  answerType,
   handleSubmit,
   isAnswerShown,
   setIsAnswerShown,
@@ -39,6 +43,23 @@ export const ShortAnswerInput = ({
       handleSubmit();
     }
   }
+
+  function getPlaceholder() {
+    const placeholderString = (str: string) => `답변을 ${str}로 입력해주세요`;
+    const { ENGLISH, KOREAN, NUMERIC } = SHORT_ANSWER_TYPE;
+
+    switch (answerType) {
+      case ENGLISH:
+        return placeholderString('영어로');
+      case KOREAN:
+        return placeholderString('한글로');
+      case NUMERIC:
+        return placeholderString('숫자로');
+      default:
+        throw new Error('Short answer problem type not found');
+    }
+  }
+
   return (
     <div className={resultWrapperStyle}>
       {result ? (
@@ -81,9 +102,7 @@ export const ShortAnswerInput = ({
       ) : (
         <input
           id='answer'
-          placeholder={`답변을 "${
-            consistOf === 'ENGLISH' ? '영어로' : consistOf === 'KOREAN' ? '한글로' : '숫자로'
-          }" 입력해주세요`}
+          placeholder={getPlaceholder()}
           className={answerInputContentStyle}
           autoComplete='off'
           onFocus={resetResult}
