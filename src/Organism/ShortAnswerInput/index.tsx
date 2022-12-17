@@ -22,7 +22,7 @@ import {
 
 interface IShortAnswerInput {
   result: IShortProblemResultData | null;
-  answerType: TShortAnswerType;
+  answerType: TShortAnswerType | null;
   resetResult: () => void;
   handleSubmit: () => void;
   isAnswerShown: boolean;
