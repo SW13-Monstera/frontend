@@ -55,27 +55,15 @@ export const ProblemDetailButtonList = ({
                 다시풀기
               </TextButton>
             ) : isLong ? (
-              <>
-                <TextButton
-                  type={BUTTON_TYPE.BUTTON}
-                  theme={BUTTON_THEME.TERTIARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                  onClick={getAnswerWithoutSubmit}
-                  isActivated={isSubmittable}
-                >
-                  정답보기
-                </TextButton>
-                <TextButton
-                  type={BUTTON_TYPE.SUBMIT}
-                  theme={BUTTON_THEME.PRIMARY}
-                  size={BUTTON_SIZE.MEDIUM}
-                  onClick={handleSubmit}
-                  isActivated={isSubmittable}
-                  tag='Beta'
-                >
-                  AI 채점하기
-                </TextButton>
-              </>
+              <TextButton
+                type={BUTTON_TYPE.BUTTON}
+                theme={BUTTON_THEME.TERTIARY}
+                size={BUTTON_SIZE.MEDIUM}
+                onClick={getAnswerWithoutSubmit}
+                isActivated={isSubmittable}
+              >
+                정답보기
+              </TextButton>
             ) : (
               <TextButton
                 type={BUTTON_TYPE.SUBMIT}
