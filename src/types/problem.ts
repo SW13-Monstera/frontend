@@ -16,6 +16,7 @@ interface IProblem {
   avgScore?: number;
   topScore?: number;
   bottomScore?: number;
+  score?: number;
   desc?: string;
   keywordList?: string[];
   answer?: string;
