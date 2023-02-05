@@ -48,7 +48,13 @@ export const problemApiWrapper = {
   },
   longProblemResult: (problem_id: string, answer: string) => {
     return apiClient
-      .post(API_URL_WITH_PARAMS.LONG_PROBLEM_RESULT(problem_id), { answer: answer })
+      .post(
+        API_URL_WITH_PARAMS.LONG_PROBLEM_RESULT(problem_id),
+        {
+          answer: answer,
+        },
+        { params: { isGrading: false } },
+      )
       .then((res: { data: ILongProblemResultData }) => res.data);
   },
   shortProblemResult: (problem_id: string, answer: string) => {
