@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --mode development --port 3123",
-    "build:dev": "tsc && vite build --mode production --port 3123",
-    "build": "tsc && vite build --mode production --port 3123",
+    "build": "tsc && vite build --mode production",
     "preview": "vite preview",
     "lint": "eslint 'src/**/*.ts'",
     "lint-diff": "eslint $(git diff --name-only --diff-filter=duxb origin/$BASE origin/$HEAD | grep -E '\\.((j|t)sx?)$' | xargs)"
