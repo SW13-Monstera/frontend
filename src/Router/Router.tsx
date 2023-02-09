@@ -21,6 +21,7 @@ import {
   PrivacyPolicyPage,
   ProblemSetListPage,
   ProblemSetDetailPage,
+  NotificationPage,
 } from '../Page';
 import { RouteChangeTracker } from './RouteChangeTracker';
 import { ProtectedLayout } from './ProtectedLayout';
@@ -42,6 +43,7 @@ function Router() {
               path={URL.CHANGE_PASSWORD_WITH_LOGIN}
               element={<ChangePasswordWithLoginPage />}
             />
+            <Route path={URL.NOTIFICATION} element={<NotificationPage />} />
           </Route>
           <Route element={<PublicLayout />}>
             <Route path={URL.JOIN} element={<JoinPage />} />
