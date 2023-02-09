@@ -50,11 +50,11 @@ export const ShortAnswerInput = ({
 
     switch (answerType) {
       case ENGLISH:
-        return placeholderString('영어로');
+        return placeholderString('영어');
       case KOREAN:
-        return placeholderString('한글로');
+        return placeholderString('한글');
       case NUMERIC:
-        return placeholderString('숫자로');
+        return placeholderString('숫자');
       default:
         throw new Error('Short answer problem type not found');
     }

@@ -20,6 +20,7 @@ interface IProblemDetail {
   avgScore: string;
   topScore: string;
   bottomScore: string;
+  score: string;
   correctSubmission: string;
   correctUserCnt: string;
 }
@@ -51,6 +52,10 @@ const problemDetailMap: Record<
   bottomScore: (num: string | undefined) =>
     isStringNotEmpty(num)
       ? { label: '최저점', value: parseFloat(num!).toFixed(2), unit: '점' }
+      : null,
+  score: (num: string | undefined) =>
+    isStringNotEmpty(num)
+      ? { label: '배점', value: parseFloat(num!).toFixed(2), unit: '점' }
       : null,
   correctSubmission: (num: string | undefined) =>
     isStringNotEmpty(num) ? { label: '정답', value: num, unit: '' } : null,
