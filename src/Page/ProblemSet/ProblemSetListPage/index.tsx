@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { URLWithParam } from '../../../constants/url';
 import { IProblemSetDataElement } from '../../../types/problemSet';
-import { isProduction } from '../../../utils/isProduction';
-import roadmapImage from '../../../assets/images/roadmap.png';
+import roadmapImage from '../../../assets/images/roadmap.webp';
 import {
   problemSetBoxStyle,
   problemSetDescStyle,
@@ -19,24 +18,21 @@ import {
 } from './style.css';
 import { TextButton } from '../../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME } from '../../../types/button';
+import problemSetData from '../../../mock/problemSet.json';
 
 export const ProblemSetListPage = () => {
   const [problemSetDataList, setProblemSetDataList] = useState<IProblemSetDataElement[]>();
 
   useEffect(() => {
-    import(
-      isProduction ? '../../../mock/problemSet.json' : '../../../mock/problemSetDev.json'
-    ).then((data) => {
-      const json: IProblemSetDataElement[] = JSON.parse(JSON.stringify(data)).default;
-      setProblemSetDataList(json);
-    });
+    const json: IProblemSetDataElement[] = JSON.parse(JSON.stringify(problemSetData)).default;
+    setProblemSetDataList(json);
   }, []);
 
   return (
     <div className={problemSetListPageWrapperStyle}>
       <div className={problemSetListPageContentStyle}>
         <div className={titleWrapperStyle}>
-          <img src={roadmapImage} width='80px' />
+          <img src={roadmapImage} width='80px' height='80px' />
           <div className={titleDetailWrapperStyle}>
             <h1 className={titleStyle}>면접대비 문제세트</h1>
             <h2 className={titleDescStyle}>

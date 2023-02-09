@@ -44,6 +44,7 @@ export const ProblemDetailPageTemplate = ({
                     avgScore={data.avgScore}
                     topScore={data.topScore}
                     bottomScore={data.bottomScore}
+                    score={data.score}
                     correctSubmission={data.correctSubmission}
                     correctUserCnt={data.correctUserCnt}
                     isSolved={data.isSolved ?? false}

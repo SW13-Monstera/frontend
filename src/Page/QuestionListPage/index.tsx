@@ -2,7 +2,6 @@ import SearchInputBox from '../../Component/Box/InputBox/SearchInputBox';
 import QuestionListElementBox from '../../Component/Box/QuestionListElementBox';
 import TagBox from '../../Component/Box/TagBox';
 import Dropdown from '../../Component/Utils/Dropdown';
-import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import { TAGLIST } from '../../constants';
 import {
   listPageWrapperStyle,
@@ -39,6 +38,7 @@ import { COLOR } from '../../constants/color';
 import { getUserInfo } from '../../utils/userInfo';
 import { useNavigate } from 'react-router-dom';
 import { useCheckedTags } from '../../hooks/useCheckedTags';
+import { CustomCarousel } from '../../Component/Utils/CustomSlider';
 
 function QuestionListPage() {
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ AI 기반 문장 유사도 평가 기법을 채점받아
         keywords='computer science, database, operating system, data structure, network, developer, '
       />
       <div className={listPageWrapperStyle}>
-        <DefaultSlider />
+        <CustomCarousel />
         <div className={listPageMainWrapperStyle}>
           <aside className={asideStyle}>
             <SearchInputBox handleSearchInput={handleSearchInput} />

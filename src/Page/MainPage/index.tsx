@@ -1,4 +1,3 @@
-import DefaultSlider from '../../Component/Utils/DefaultSlider';
 import logo from '../../assets/images/csbroker-main.png';
 import logoWhite from '../../assets/images/csbroker-white-main.png';
 import {
@@ -23,6 +22,7 @@ import { MetaTag } from '../utils/MetaTag';
 import { useDarkModeStore } from '../../hooks/useStore';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { ICommonStats } from '../../types/api/common';
+import { CustomCarousel } from '../../Component/Utils/CustomSlider';
 
 const getProblemList = () => {
   const params = { page: 0, size: 4 };
@@ -53,9 +53,15 @@ AI 기반 문장 유사도 평가 기법을 채점받아
         keywords='csbroker, computer science, database, operating system, data structure, network, developer, '
       />
       <>
-        <DefaultSlider />
+        <CustomCarousel />
+
         <div className={pageWrapperStyle}>
-          <img src={isDark ? logoWhite : logo} className={logoTitleStyle}></img>
+          <img
+            src={isDark ? logoWhite : logo}
+            className={logoTitleStyle}
+            width='100%'
+            height='100%'
+          ></img>
           <div className={descriptionStyle}>
             AI 기반 서술형 채점 기법을 통해 <br />
             다양한 유형의 <strong className={strongDescriptionStyle}>Computer Science</strong>

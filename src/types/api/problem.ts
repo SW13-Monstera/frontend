@@ -18,6 +18,7 @@ export interface IProblemDetailResponseData {
   totalSubmission: number;
   type: TProblemType;
   isSolved?: boolean;
+  score: number;
 }
 
 export interface ILongProblemDetailResponseData extends IProblemDetailResponseData {
@@ -41,6 +42,21 @@ export interface IShortProblemDetailResponseData extends IProblemDetailResponseD
   correctUserCnt: number;
   answerLength: number;
   isEnglish: boolean;
+}
+
+export const SHORT_ANSWER_TYPE = {
+  ENGLISH: 'ENGLISH',
+  KOREAN: 'KOREAN',
+  NUMERIC: 'NUMERIC',
+} as const;
+
+export type TShortAnswerType = typeof SHORT_ANSWER_TYPE[keyof typeof SHORT_ANSWER_TYPE];
+
+export interface IShortProblemDetailResponseDataV2 extends IProblemDetailResponseData {
+  correctSubmission: number;
+  correctUserCnt: number;
+  answerLength: number;
+  consistOf: TShortAnswerType;
 }
 
 export interface IShortProblemResultData extends IShortProblemDetailResponseData {

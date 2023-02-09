@@ -6,7 +6,6 @@ import { PROBLEM_TYPE } from '../../../constants/problem';
 import { IProblemDetailResponseData } from '../../../types/api/problem';
 import { TPartialProblemDetailResponseData } from '../../../types/problem';
 import { IProblemSetDataElement, IProblemSetProblemsElement } from '../../../types/problemSet';
-import { isProduction } from '../../../utils/isProduction';
 import { ErrorPage } from '../../Error/ErrorPage';
 import { MetaTag } from '../../utils/MetaTag';
 import {
@@ -23,12 +22,8 @@ export const ProblemSetDetailPage = () => {
   const [problemList, setProblemList] = useState<TPartialProblemDetailResponseData[]>();
 
   useEffect(() => {
-    import(
-      isProduction ? '../../../mock/problemSet.json' : '../../../mock/problemSetDev.json'
-    ).then((data) => {
-      const json: IProblemSetDataElement[] = JSON.parse(JSON.stringify(data)).default;
-      setProblemSetData(json[parseInt(setId)]);
-    });
+    const json: IProblemSetDataElement[] = JSON.parse(JSON.stringify(problemSetData)).default;
+    setProblemSetData(json[parseInt(setId)]);
   }, []);
 
   useEffect(() => {
@@ -40,7 +35,7 @@ export const ProblemSetDetailPage = () => {
           if (curr.type === PROBLEM_TYPE.LONG) {
             currResult = await problemApiWrapper.longProblemDetail(curr.id.toString());
           } else if (curr.type === PROBLEM_TYPE.SHORT) {
-            currResult = await problemApiWrapper.shortProblemDetail(curr.id.toString());
+            currResult = await problemApiWrapper.shortProblemDetailV2(curr.id.toString());
           } else {
             currResult = await problemApiWrapper.multipleProblemDetail(curr.id.toString());
           }
