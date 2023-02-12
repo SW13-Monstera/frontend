@@ -11,6 +11,7 @@ const API_URL = {
   MAJOR: 'v1/majors',
   SEND_CHANGE_PASSWORD_EMAIL: 'v1/auth/password/code',
   CHANGE_PASSWORD: 'v1/auth/password/change',
+  NOTIFICATIONS: 'v1/notifications',
 };
 
 const API_URL_WITH_PARAMS = {

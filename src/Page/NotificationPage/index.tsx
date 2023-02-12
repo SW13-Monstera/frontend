@@ -1,7 +1,11 @@
+import { useQuery } from 'react-query';
+import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { INotificationList } from '../../types/api/common';
+import { timeForToday } from '../../utils/timeForToday';
 import { MetaTag } from '../utils/MetaTag';
 import {
   contentStyle,
-  itemDimmedStyle,
+  emptyStyle,
   itemLinkStyle,
   itemStyle,
   itemTextStyle,
@@ -12,35 +16,31 @@ import {
 } from './style.css';
 
 export const NotificationPage = () => {
+  const { data: notificationData } = useQuery<INotificationList>('getUserInfoData', () =>
+    commonApiWrapper.getNotifications(),
+  );
   return (
     <>
       <MetaTag title='CS Broker - 알림' />
       <section className={contentStyle}>
         <div className={titleWrapStyle}>
-          읽지 않은 알림 <strong className={titleNumberStyle}>5</strong>개
+          읽지 않은 알림{' '}
+          <strong className={titleNumberStyle}>{notificationData?.contents.length}</strong>개
         </div>
-        <ul className={listStyle}>
-          <li className={itemStyle}>
-            <a href='#0' className={itemLinkStyle}>
-              <div className={itemTextStyle}>
-                shiroed1211님이 6348번 (1085번 - 직사각형에서 탈출) 이슈에 댓글을 달았어요!
-              </div>
-              <span className={itemTimeStyle}>1분전</span>
-            </a>
-          </li>
-          <li className={itemDimmedStyle}>
-            <a href='#0' className={itemLinkStyle}>
-              <span className={itemTextStyle}>shiroed1211님이 1122번 이슈에 댓글을 달았어요!</span>
-              <span className={itemTimeStyle}>2시간전</span>
-            </a>
-          </li>
-          <li className={itemStyle}>
-            <a href='#0' className={itemLinkStyle}>
-              <span className={itemTextStyle}>34992번 문제가 재채점되었어요.</span>
-              <span className={itemTimeStyle}>28일전</span>
-            </a>
-          </li>
-        </ul>
+        {notificationData?.contents.length === 0 ? (
+          <p className={emptyStyle}>읽지 않은 알림이 없어요.</p>
+        ) : (
+          <ul className={listStyle}>
+            {notificationData?.contents.map(({ id, content, link, createdAt }) => (
+              <li className={itemStyle} key={id}>
+                <a href={link} className={itemLinkStyle}>
+                  <div className={itemTextStyle}>{content}</div>
+                  <span className={itemTimeStyle}>{timeForToday(createdAt)}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
     </>
   );

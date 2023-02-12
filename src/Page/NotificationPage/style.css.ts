@@ -64,3 +64,11 @@ export const itemTimeStyle = style({
   marginLeft: '1rem',
   whiteSpace: 'nowrap',
 });
+
+export const emptyStyle = style({
+  marginTop: '3rem',
+  fontSize: '2rem',
+  lineHeight: '2.25rem',
+  textAlign: 'center',
+  color: COLOR.TEXT[3],
+});
