@@ -6,6 +6,7 @@ import { MetaTag } from '../utils/MetaTag';
 import {
   contentStyle,
   emptyStyle,
+  itemDimmedStyle,
   itemLinkStyle,
   itemStyle,
   itemTextStyle,
@@ -31,8 +32,8 @@ export const NotificationPage = () => {
           <p className={emptyStyle}>읽지 않은 알림이 없어요.</p>
         ) : (
           <ul className={listStyle}>
-            {notificationData?.contents.map(({ id, content, link, createdAt }) => (
-              <li className={itemStyle} key={id}>
+            {notificationData?.contents.map(({ id, content, link, createdAt, isRead }) => (
+              <li className={isRead ? itemDimmedStyle : itemStyle} key={id}>
                 <a href={link} className={itemLinkStyle}>
                   <div className={itemTextStyle}>{content}</div>
                   <span className={itemTimeStyle}>{timeForToday(createdAt)}</span>
