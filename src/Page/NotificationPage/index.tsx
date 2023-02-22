@@ -20,13 +20,17 @@ export const NotificationPage = () => {
   const { data: notificationData } = useQuery<INotificationList>('getUserInfoData', () =>
     commonApiWrapper.getNotifications(),
   );
+
   return (
     <>
       <MetaTag title='CS Broker - 알림' />
       <section className={contentStyle}>
         <div className={titleWrapStyle}>
           읽지 않은 알림{' '}
-          <strong className={titleNumberStyle}>{notificationData?.contents.length}</strong>개
+          <strong className={titleNumberStyle}>
+            {notificationData?.contents.filter((e) => !e.isRead).length}
+          </strong>
+          개
         </div>
         {notificationData?.contents.length === 0 ? (
           <p className={emptyStyle}>읽지 않은 알림이 없어요.</p>
