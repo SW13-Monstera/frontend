@@ -51,7 +51,4 @@ export const commonApiWrapper = {
       })
       .then((res) => res.data);
   },
-  getNotifications: () => {
-    return apiClient.get(API_URL.NOTIFICATIONS).then((res) => res.data);
-  },
 };

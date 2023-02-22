@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
-import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
-import { INotificationList } from '../../types/api/common';
+import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
+import { INotificationList } from '../../types/api/user';
 import { timeForToday } from '../../utils/timeForToday';
 import { MetaTag } from '../utils/MetaTag';
 import {
@@ -18,7 +18,7 @@ import {
 
 export const NotificationPage = () => {
   const { data: notificationData } = useQuery<INotificationList>('getUserInfoData', () =>
-    commonApiWrapper.getNotifications(),
+    userApiWrapper.getNotifications(),
   );
 
   return (

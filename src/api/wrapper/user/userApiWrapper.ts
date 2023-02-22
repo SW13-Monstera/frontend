@@ -1,6 +1,6 @@
 import { INVALID_ID_ERROR } from './../../../errors/index';
 import apiClient from '../../apiClient';
-import { API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
+import { API_URL, API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
 import { IProfileData, IUpdateUserRequest } from '../../../types/api/user';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo, setUserInfo } from '../../../utils/userInfo';
@@ -61,5 +61,8 @@ export const userApiWrapper = {
           throw new Error('유저 조회 실패');
         },
       );
+  },
+  getNotifications: () => {
+    return apiClient.get(API_URL.NOTIFICATIONS).then((res) => res.data);
   },
 };
