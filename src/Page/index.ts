@@ -18,6 +18,7 @@ import { TermsOfServicePage } from './Policy/TermsOfServicePage';
 import { PrivacyPolicyPage } from './Policy/PrivacyPolicyPage';
 import { ProblemSetListPage } from './ProblemSet/ProblemSetListPage';
 import { ProblemSetDetailPage } from './ProblemSet/ProblemSetDetailPage.tsx/index';
+import { NotificationPage } from './NotificationPage';
 
 export {
   MainPage,
@@ -40,4 +41,5 @@ export {
   PrivacyPolicyPage,
   ProblemSetListPage,
   ProblemSetDetailPage,
+  NotificationPage,
 };
