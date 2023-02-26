@@ -7,8 +7,12 @@ export const paginationWrapperStyle = style({
   alignItems: 'center',
   justifyContent: 'center',
   gap: '1rem',
-
   padding: '2rem',
+});
+
+export const arrowButtonStyle = style({
+  width: '2rem',
+  height: '2rem',
 });
 
 export const paginationButtonStyle = style({
