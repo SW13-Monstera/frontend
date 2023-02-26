@@ -24,8 +24,15 @@ export function ChangePasswordEmailPage() {
       return;
     }
 
-    authApiWrapper.sendChangePasswordEmail(emailValue);
-    navigate(URL.MAIN);
+    authApiWrapper
+      .sendChangePasswordEmail(emailValue)
+      .then(() => {
+        toast('비밀번호 변경 메일이 발송되었어요!');
+        navigate(URL.MAIN);
+      })
+      .catch(() => {
+        toast.error('다시 시도해주세요.');
+      });
   }
   return (
     <>
