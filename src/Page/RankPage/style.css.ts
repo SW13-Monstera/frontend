@@ -1,74 +1,56 @@
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 
-export const contentStyle = style({
+export const sectionStyle = style({
   padding: '5rem 3rem',
 });
 
 export const titleWrapStyle = style({
-  padding: '1.2rem 1rem',
-  borderRadius: '4px',
-  backgroundColor: COLOR.BACKGROUND.F3,
-  color: COLOR.TEXT[1],
+  display: 'flex',
+  gap: '2rem',
+});
+
+export const titleTextWrapStyle = style({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+});
+
+export const titleStyle = style({
+  fontSize: '2rem',
+  lineHeight: '2.5rem',
+  fontWeight: 'bold',
+});
+
+export const descriptionStyle = style({
   fontSize: '1.25rem',
   lineHeight: '1.5rem',
 });
 
-export const titleNumberStyle = style({
-  color: COLOR.PRIMARY,
+export const tableWrapStyle = style({
+  maxWidth: '1000px',
+  margin: '0 auto',
 });
 
-export const listStyle = style({
-  marginTop: '1rem',
-  fontSize: '1.125rem',
-  lineHeight: '1.5rem',
-  overflow: 'hidden',
-});
-
-export const itemStyle = style({
-  '::before': {
-    float: 'left',
-    width: '0.5rem',
-    height: '0.5rem',
-    margin: '0.75rem 0.25rem 0 0',
-    borderRadius: '50%',
-    backgroundColor: COLOR.PRIMARY,
-    content: '',
-  },
-});
-
-export const itemDimmedStyle = style([
-  itemStyle,
-  {
-    color: COLOR.LINE.c,
-    '::before': {
-      backgroundColor: COLOR.LINE.c,
-    },
-  },
-]);
-
-export const itemLinkStyle = style({
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '0.25rem 0',
-  overflow: 'hidden',
-});
-
-export const itemTextStyle = style({
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-});
-
-export const itemTimeStyle = style({
-  marginLeft: '1rem',
-  whiteSpace: 'nowrap',
-});
-
-export const emptyStyle = style({
+export const tableStyle = style({
+  tableLayout: 'fixed',
+  borderCollapse: 'collapse',
+  width: '100%',
   marginTop: '3rem',
-  fontSize: '2rem',
-  lineHeight: '2.25rem',
+});
+
+export const tableHeadRowStyle = style({
+  borderBottom: `2px solid ${COLOR.TEXT[1]}`,
+});
+
+export const tableBodyStyle = style({
   textAlign: 'center',
-  color: COLOR.TEXT[3],
+});
+
+export const tableBodyRowStyle = style({
+  borderBottom: `1px solid ${COLOR.TEXT[9]}`,
+});
+
+export const tableCellStyle = style({
+  padding: '0.5rem 0',
 });
