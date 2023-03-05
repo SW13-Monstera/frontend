@@ -36,12 +36,12 @@ import { MetaTag } from '../utils/MetaTag';
 import { RefreshIcon } from '../../Icon/RefreshIcon';
 import { COLOR } from '../../constants/color';
 import { getUserInfo } from '../../utils/userInfo';
-import { useNavigate } from 'react-router-dom';
 import { useCheckedTags } from '../../hooks/useCheckedTags';
 import { CustomCarousel } from '../../Component/Utils/CustomSlider';
+import { usePagination } from '../../hooks/usePagination';
 
 function QuestionListPage() {
-  const navigate = useNavigate();
+  const { page, setNewPage } = usePagination();
   const [params, setParams] = useState<IProblemRequestParam>();
 
   const { data } = useQuery<IProblemListResponseData>(
@@ -50,9 +50,6 @@ function QuestionListPage() {
     { enabled: !!params },
   );
 
-  const [page, setPage] = useState(
-    parseInt(new URLSearchParams(location.search).get('page') ?? '1') - 1,
-  );
   const { checkedTags, handleCheckedTags, resetCheckedTags, onDeleteButtonClick } = useCheckedTags({
     resetPage: () => {
       setNewPage(0);
@@ -66,18 +63,9 @@ function QuestionListPage() {
     setNewPage(0);
   };
 
-  const setNewPage = (newPage: number) => {
-    navigate(location.pathname + `?page=${newPage + 1}`);
-    setPage(newPage);
-  };
-
   useEffect(() => {
     setParams({ ...getFilterParams(checkedTags), page: page });
   }, [checkedTags, page]);
-
-  useEffect(() => {
-    setPage(parseInt(new URLSearchParams(location.search).get('page') ?? '1') - 1);
-  }, [location.search]);
 
   return (
     <>
