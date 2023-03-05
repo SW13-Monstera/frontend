@@ -19,6 +19,7 @@ export const NavigationButtonList = () => {
         theme={BUTTON_THEME.SECONDARY}
         link={URL.PROBLEM_SET_LIST}
       />
+      <NavigateProblemListButton mainText='랭킹' theme={BUTTON_THEME.SECONDARY} link={URL.RANK} />
     </RowBox>
   );
 };
