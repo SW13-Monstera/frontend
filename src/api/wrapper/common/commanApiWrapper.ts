@@ -51,4 +51,7 @@ export const commonApiWrapper = {
       })
       .then((res) => res.data);
   },
+  getRank: (page: number) => {
+    return apiClient.get(API_URL.RANKING, { params: { page } }).then((res) => res.data);
+  },
 };

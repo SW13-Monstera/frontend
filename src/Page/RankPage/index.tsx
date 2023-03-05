@@ -1,6 +1,5 @@
 import { Pagination } from '../../Component/Pagination';
 import { MetaTag } from '../utils/MetaTag';
-import rankData from '../../mock/rank.json';
 import { usePagination } from '../../hooks/usePagination';
 import {
   descriptionStyle,
@@ -15,9 +14,15 @@ import {
   titleTextWrapStyle,
   titleWrapStyle,
 } from './style.css';
+import { useQuery } from 'react-query';
+import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { IRankList } from '../../types/api/common';
 
 export const RankPage = () => {
   const { page, setNewPage } = usePagination();
+  const { data: rankData } = useQuery<IRankList>(['getRankData', page], () =>
+    commonApiWrapper.getRank(page),
+  );
 
   return (
     <>
@@ -40,7 +45,7 @@ export const RankPage = () => {
               </tr>
             </thead>
             <tbody className={tableBodyStyle}>
-              {rankData.contents.map(({ rank, username, score, id }) => (
+              {rankData?.contents.map(({ rank, username, score, id }) => (
                 <tr className={tableBodyRowStyle} key={id}>
                   <td className={tableCellStyle}>{rank}</td>
                   <td className={tableCellStyle}>{username}</td>

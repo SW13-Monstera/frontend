@@ -20,8 +20,9 @@ import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
 
 export const NotificationPage = () => {
   const { page, setNewPage } = usePagination();
-  const { data: notificationData } = useQuery<INotificationList>('getUserInfoData', () =>
-    userApiWrapper.getNotifications(),
+  const { data: notificationData } = useQuery<INotificationList>(
+    ['getNotificationData', page],
+    () => userApiWrapper.getNotifications(page),
   );
 
   return (
