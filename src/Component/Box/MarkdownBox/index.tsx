@@ -4,7 +4,7 @@ import remarkGfm from 'remark-gfm';
 import './markdown.css';
 
 interface IMarkdownBox {
-  children: string | undefined;
+  children?: string | undefined;
 }
 
 export const MarkdownBox = ({ children }: IMarkdownBox) => {
