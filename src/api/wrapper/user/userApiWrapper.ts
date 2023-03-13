@@ -65,4 +65,9 @@ export const userApiWrapper = {
   getNotifications: () => {
     return apiClient.get(API_URL.NOTIFICATIONS).then((res) => res.data);
   },
+  readNotification: (notificationId: string) => {
+    return apiClient
+      .put(API_URL_WITH_PARAMS.READ_NOTIFICATION(notificationId))
+      .then((res) => res.data);
+  },
 };
