@@ -24,6 +24,11 @@ export const NotificationPage = () => {
     userApiWrapper.getNotifications(),
   );
 
+  const readNotification = (notificationId: number, isRead: boolean) => {
+    if (isRead) return;
+    userApiWrapper.readNotification(notificationId.toString());
+  };
+
   return (
     <>
       <MetaTag title='CS Broker - 알림' />
@@ -42,7 +47,11 @@ export const NotificationPage = () => {
             <ul className={listStyle}>
               {notificationData?.contents.map(({ id, content, link, createdAt, isRead }) => (
                 <li className={isRead ? itemDimmedStyle : itemStyle} key={id}>
-                  <a href={link} className={itemLinkStyle}>
+                  <a
+                    href={link}
+                    className={itemLinkStyle}
+                    onClick={() => readNotification(id, isRead)}
+                  >
                     <div className={itemTextStyle}>{content}</div>
                     <span className={itemTimeStyle}>{timeForToday(createdAt)}</span>
                   </a>
