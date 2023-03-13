@@ -1,14 +1,10 @@
-import { BUTTON_TYPE } from '../../types/button';
-import { IconButton } from '../Button';
 import {
+  arrowButtonStyle,
   dotdotdotStyle,
   paginationIsSelectedButtonStyle,
   paginationWrapperStyle,
 } from './style.css';
 import { MouseEventHandler } from 'react';
-import { ArrowRightIcon } from '../../Icon/ArrowRightIcon';
-import { ArrowLeftIcon } from '../../Icon/ArrowLeftIcon';
-import { themeColors } from '../../styles/theme.css';
 
 interface IPagination {
   totalPages: number;
@@ -75,9 +71,9 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
 
   return (
     <div className={paginationWrapperStyle}>
-      <IconButton type={BUTTON_TYPE.BUTTON} onClick={movePrevPage}>
-        <ArrowLeftIcon fill={themeColors.text[5]} width='1rem' height='1rem' />
-      </IconButton>
+      <button type='button' onClick={movePrevPage} className={arrowButtonStyle}>
+        <img src='/src/assets/images/arrow-left.png' width='7px' />
+      </button>
       {totalPages <= MAX_PAGE_NUM
         ? Array(totalPages)
             .fill(null)
@@ -93,9 +89,9 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
               </div>
             ),
           )}
-      <IconButton type={BUTTON_TYPE.BUTTON} onClick={moveNextPage}>
-        <ArrowRightIcon fill={themeColors.text[5]} width='1rem' height='1rem' />
-      </IconButton>
+      <button type='button' onClick={moveNextPage} className={arrowButtonStyle}>
+        <img src='/src/assets/images/arrow-right.png' width='7px' />
+      </button>
     </div>
   );
 };
