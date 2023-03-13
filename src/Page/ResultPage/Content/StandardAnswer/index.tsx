@@ -1,16 +1,31 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { TextBox } from '../../../../Component/Box';
 import { MarkdownBox } from '../../../../Component/Box/MarkdownBox';
 import { ILongProblemResult } from '../../../../types/problem';
-import { typewriter } from '../../../../utils/typewriter';
 import { contentStyle, standardAnswerContentStyle, subtitleStyle } from '../../style.css';
-import { textStyle } from './style.css';
 
 export const StandardAnswerContent = ({ result }: ILongProblemResult) => {
-  const answerRef = useRef<HTMLParagraphElement>(null);
+  const [text, setText] = useState('');
 
   useEffect(() => {
-    typewriter(answerRef, result?.standardAnswer);
+    const answer = result?.standardAnswer;
+    let curIdx = 0;
+
+    function write() {
+      if (!answer) return;
+
+      setText(answer.slice(0, curIdx));
+      if (curIdx++ === answer.length) {
+        curIdx = 0;
+        const cursor = document.querySelector('.markdown.standard-answer') as HTMLElement;
+        cursor.classList.add('done');
+      } else {
+        setTimeout(() => {
+          write();
+        }, 100);
+      }
+    }
+    write();
   }, []);
 
   return (
@@ -18,8 +33,7 @@ export const StandardAnswerContent = ({ result }: ILongProblemResult) => {
       <h3 className={subtitleStyle}>모범 답안</h3>
       <TextBox>
         <div className={standardAnswerContentStyle}>
-          <MarkdownBox></MarkdownBox>
-          <p ref={answerRef} className={textStyle}></p>
+          <MarkdownBox className={'standard-answer'}>{text}</MarkdownBox>
         </div>
       </TextBox>
     </div>

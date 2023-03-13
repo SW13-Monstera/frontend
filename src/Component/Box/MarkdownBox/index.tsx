@@ -5,12 +5,13 @@ import './markdown.css';
 
 interface IMarkdownBox {
   children?: string | undefined;
+  className?: string;
 }
 
-export const MarkdownBox = ({ children }: IMarkdownBox) => {
+export const MarkdownBox = ({ children, className }: IMarkdownBox) => {
   return (
     <ReactMarkdown
-      className='markdown'
+      className={`markdown ${className}`}
       rehypePlugins={[rehypeHighlight]}
       remarkPlugins={[remarkGfm]}
       components={{
