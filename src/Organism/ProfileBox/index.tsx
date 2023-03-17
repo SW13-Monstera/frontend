@@ -100,18 +100,24 @@ export const ProfileBox = ({ profileData, isMine }: IProfileBox) => {
     <div className={boxStyle}>
       <div className={section1Style}>
         <div className={section1LeftStyle}>
-          <div className={imageWrapperStyle}>
-            <label htmlFor='profile-image' className={imageUploadBackgroundStyle}>
-              <UploadIcon width='2rem' height='2rem' fill={COLOR.WHITE} />
-            </label>
-            <input
-              id='profile-image'
-              type='file'
-              accept='image/*'
-              ref={inputRef}
-              onChange={onUploadImage}
-              style={{ display: 'none' }}
-            />
+          <div className={imageWrapperStyle[isMine ? 'isMine' : 'others']}>
+            {isMine ? (
+              <>
+                <label htmlFor='profile-image' className={imageUploadBackgroundStyle}>
+                  <UploadIcon width='2rem' height='2rem' fill={COLOR.WHITE} />
+                </label>
+                <input
+                  id='profile-image'
+                  type='file'
+                  accept='image/*'
+                  ref={inputRef}
+                  onChange={onUploadImage}
+                  style={{ display: 'none' }}
+                />
+              </>
+            ) : (
+              <></>
+            )}
             <img
               src={imgUrl ?? userImage}
               className={imgUrl ? imageStyle : defaultImageStyle}
