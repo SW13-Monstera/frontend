@@ -19,6 +19,8 @@ import { ColumnBox } from '../../Component/Box/CustomBox';
 import { IProfileData } from '../../types/api/user';
 import { useQuery } from 'react-query';
 import { RESULT_TYPE } from '../../constants/problem';
+import { useParams } from 'react-router-dom';
+import { getUserInfo } from '../../utils/userInfo';
 
 interface ITags {
   os: number;
@@ -37,11 +39,14 @@ interface IProblemStatsData {
 }
 
 export const MyPage = () => {
-  const { data: profileData } = useQuery<IProfileData>('getUserInfoData', () =>
-    userApiWrapper.getUserInfoData(),
+  const { id: userId } = useParams();
+  if (!userId) return <></>;
+
+  const { data: profileData } = useQuery<IProfileData>(['getUserInfoData', userId], () =>
+    userApiWrapper.getUserInfoData(userId),
   );
-  const { data: problemStatsData } = useQuery<IProblemStatsData>('getStatsData', () =>
-    userApiWrapper.getStats(),
+  const { data: problemStatsData } = useQuery<IProblemStatsData>(['getStatsData', userId], () =>
+    userApiWrapper.getStats(userId),
   );
 
   const getStatistics = () => {
@@ -76,6 +81,7 @@ export const MyPage = () => {
                   score: problemStatsData.score,
                   statistics: getStatistics(),
                 }}
+                isMine={userId === getUserInfo()?.id}
               />
             ) : null}
           </div>

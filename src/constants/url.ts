@@ -5,7 +5,7 @@ const URL = {
   SEND_CHANGE_PASSWORD_EMAIL: '/change-password-email',
   CHANGE_PASSWORD: '/password-change/:code',
   CHANGE_PASSWORD_WITH_LOGIN: '/change-password',
-  MYPAGE: '/mypage',
+  MYPAGE: '/mypage/:id',
   USER_DATA_EDIT: '/mypage/edit',
   PROBLEM_LIST: '/problem',
   PROBLEM_SET_LIST: '/problem-set',
@@ -35,6 +35,7 @@ const URLWithParam = {
   MULTIPLE_PROBLEM_DETAIL: (id: number) => `/problem/multiple/${id}`,
   MULTIPLE_PROBLEM_RESULT: (id: number) => `/problem/multiple/result/${id}`,
   PROBLEM_SET_DETAIL: (setId: number) => `/problem-set/${setId}`,
+  MYPAGE: (id: string) => `/mypage/${id}`,
 };
 
 export { URL, URLWithParam };

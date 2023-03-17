@@ -1,17 +1,18 @@
 import { USER_INFO } from '../constants/localStorage';
 import { IUserInfo } from '../types/auth';
+import { localStorageWithExpiry } from './localstorage';
 
 export const setUserInfo = (userInfo: IUserInfo) => {
   try {
     const userInfoString = JSON.stringify(userInfo);
-    localStorage.setItem(USER_INFO, userInfoString);
+    localStorageWithExpiry.setItem(USER_INFO, userInfoString);
   } catch {
     throw new Error('invalid json string format');
   }
 };
 
 export const getUserInfo = (): IUserInfo | null => {
-  const userInfoString = localStorage.getItem(USER_INFO);
+  const userInfoString = localStorageWithExpiry.getItem(USER_INFO);
   if (!userInfoString) return null;
 
   try {
