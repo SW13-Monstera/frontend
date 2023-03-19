@@ -26,8 +26,9 @@ export const authApiWrapper = {
     const userInfo = getUserInfo();
     if (!userInfo) return;
 
-    const { exp } = parseJwt(userInfo.accessToken);
-    if (Date.now() < exp * 1000 - 20) return;
+    const result = parseJwt(userInfo.accessToken);
+    if (!result) return;
+    if (Date.now() < result.exp * 1000 - 20) return;
 
     return apiClient
       .get(API_URL.REFRESH, {
