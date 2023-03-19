@@ -1,6 +1,7 @@
 import { IParsedToken } from '../types/auth';
 
 export const parseJwt = (token: string) => {
+  if (!token) return;
   const base64Url = token.split('.')[1];
   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
   const jsonPayload = decodeURIComponent(

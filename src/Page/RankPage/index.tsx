@@ -17,6 +17,7 @@ import {
 import { useQuery } from 'react-query';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { IRankList } from '../../types/api/common';
+import rankingImage from '../../assets/images/ranking.png';
 
 export const RankPage = () => {
   const { page, setNewPage } = usePagination();
@@ -30,7 +31,7 @@ export const RankPage = () => {
       <section className={sectionStyle}>
         <div className={tableWrapStyle}>
           <div className={titleWrapStyle}>
-            <img src='/src/assets/images/ranking.png' alt='랭킹' width='100px'></img>
+            <img src={rankingImage} alt='랭킹' width='100px'></img>
             <div className={titleTextWrapStyle}>
               <h2 className={titleStyle}>리더보드</h2>
               <p className={descriptionStyle}>가장 많은 점수를 얻은 CS Broker가 되어보세요.</p>
