@@ -39,6 +39,10 @@ export const tableStyle = style({
   marginTop: '3rem',
 });
 
+export const rankColumnStyle = style({
+  width: '15%',
+});
+
 export const tableHeadRowStyle = style({
   borderBottom: `2px solid ${COLOR.TEXT[1]}`,
 });
@@ -53,4 +57,11 @@ export const tableBodyRowStyle = style({
 
 export const tableCellStyle = style({
   padding: '0.5rem 0',
+});
+
+export const linkStyle = style({
+  color: COLOR.PRIMARY,
+  ':hover': {
+    textDecoration: 'underline',
+  },
 });
