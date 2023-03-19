@@ -24,6 +24,7 @@ const URL = {
   PRIVACY_POLICY: '/privacy-policy',
   DESCRIPTION: '/description',
   NOTIFICATION: '/notification',
+  RANK: '/rank',
 };
 
 const URLWithParam = {

@@ -50,8 +50,8 @@ export const userApiWrapper = {
       },
     );
   },
-  getNotifications: () => {
-    return apiClient.get(API_URL.NOTIFICATIONS).then((res) => res.data);
+  getNotifications: (page: number) => {
+    return apiClient.get(API_URL.NOTIFICATIONS, { params: { page } }).then((res) => res.data);
   },
   readNotification: (notificationId: string) => {
     return apiClient
