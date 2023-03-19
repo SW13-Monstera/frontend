@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
+import { themeColors } from '../../styles/theme.css';
 
 export const sectionStyle = style({
   padding: '5rem 3rem',
@@ -44,7 +45,7 @@ export const rankColumnStyle = style({
 });
 
 export const tableHeadRowStyle = style({
-  borderBottom: `2px solid ${COLOR.TEXT[1]}`,
+  borderBottom: `2px solid ${themeColors.text[1]}`,
 });
 
 export const tableBodyStyle = style({

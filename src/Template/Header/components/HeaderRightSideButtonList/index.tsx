@@ -62,10 +62,10 @@ export const RightSideButtonList = () => {
                 onClick={() => {
                   const userInfo = getUserInfo();
                   if (!userInfo) return;
-                  navigate(URLWithParam.MYPAGE(userInfo.id));
+                  navigate(URLWithParam.PROFILE(userInfo.id));
                 }}
               >
-                마이 페이지
+                내 프로필
               </TransparentButton>
               <Divider />
               <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>

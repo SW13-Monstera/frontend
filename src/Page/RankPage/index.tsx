@@ -56,7 +56,7 @@ export const RankPage = () => {
                 <tr className={tableBodyRowStyle} key={id}>
                   <td className={tableCellStyle}>{rank}</td>
                   <td className={tableCellStyle}>
-                    <a href={URLWithParam.MYPAGE(id)} className={linkStyle}>
+                    <a href={URLWithParam.PROFILE(id)} className={linkStyle}>
                       {username}
                     </a>
                   </td>

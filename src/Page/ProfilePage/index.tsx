@@ -38,7 +38,7 @@ interface IProblemStatsData {
   score: number;
 }
 
-export const MyPage = () => {
+export const ProfilePage = () => {
   const { id: userId } = useParams();
   if (!userId) return <></>;
 
@@ -68,11 +68,11 @@ export const MyPage = () => {
 
   return (
     <>
-      <MetaTag title='CS Broker - 마이페이지' />
+      <MetaTag title='CS Broker - 프로필' />
       <div className={pageWrapperStyle}>
         <div className={pageContentWrapperStyle}>
           <div className={leftSideWrapperStyle}>
-            <h2 className={pageTitleStyle}>마이 페이지</h2>
+            <h2 className={pageTitleStyle}>{profileData?.username}님의 프로필</h2>
             {profileData && problemStatsData ? (
               <ProfileBox
                 profileData={{

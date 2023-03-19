@@ -10,7 +10,7 @@ import {
   MultipleQuestionDetailPage,
   LoginPage,
   ErrorPage,
-  MyPage,
+  ProfilePage,
   UserDataEditPage,
   ChangePasswordEmailPage,
   ChangePasswordWithLoginPage,
@@ -62,7 +62,7 @@ function Router() {
           <Route path={URL.TERMS_OF_SERVICE} element={<TermsOfServicePage />} />
           <Route path={URL.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
           <Route path={URL.DESCRIPTION} element={<DescriptionPage />} />
-          <Route path={URL.MYPAGE} element={<MyPage />} />
+          <Route path={URL.PROFILE} element={<ProfilePage />} />
           <Route path={URL.RANK} element={<RankPage />} />
           <Route path={URL.OAUTH_CALLBACK} element={<CallbackPage />} />
           <Route path={URL.ERROR} element={<ErrorPage />} />

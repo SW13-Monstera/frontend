@@ -81,7 +81,7 @@ export const UserDataEditPage = () => {
       .then(() => {
         const userInfo = getUserInfo();
         if (!userInfo) return;
-        navigate(URLWithParam.MYPAGE(userInfo.id));
+        navigate(URLWithParam.PROFILE(userInfo.id));
       });
   };
 
