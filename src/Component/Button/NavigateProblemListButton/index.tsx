@@ -12,7 +12,7 @@ import {
 
 interface INavigateProblemListButton {
   mainText: string;
-  subText: string;
+  subText?: string;
   theme: TButtonTheme;
   link: string;
 }

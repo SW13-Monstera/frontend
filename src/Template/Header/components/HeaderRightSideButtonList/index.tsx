@@ -16,6 +16,7 @@ import { Divider } from '../../../../Component/Divider';
 import { setLogout } from '../../../../utils/setLogout';
 import { DarkmodeButton } from '../../../../Component/Button/DarkmodeButton';
 import { getUserInfo } from '../../../../utils/userInfo';
+import { NotificationIcon } from '../../../../Icon/NotificationIcon';
 
 export const RightSideButtonList = () => {
   const navigate = useNavigate();
@@ -39,6 +40,14 @@ export const RightSideButtonList = () => {
       <DarkmodeButton />
       {getUserInfo() ? (
         <div className={iconButtonListWrapperStyle}>
+          <IconButton
+            type={BUTTON_TYPE.BUTTON}
+            onClick={() => {
+              navigate(URL.NOTIFICATION);
+            }}
+          >
+            <NotificationIcon width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
+          </IconButton>
           <IconButton type={BUTTON_TYPE.BUTTON} onClick={handleMypageClick}>
             <MyPageIcon fill={COLOR.PRIMARY} width={ICON.SIZE.SMALL} height={ICON.SIZE.SMALL} />
           </IconButton>

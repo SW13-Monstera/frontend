@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { URL } from '../constants/url';
 import {
   MainPage,
-  QuestionListPage,
   LongQuestionDetailPage,
   ResultPage,
   JoinPage,
@@ -21,6 +20,8 @@ import {
   PrivacyPolicyPage,
   ProblemSetListPage,
   ProblemSetDetailPage,
+  NotificationPage,
+  QuestionListPage,
 } from '../Page';
 import { RouteChangeTracker } from './RouteChangeTracker';
 import { ProtectedLayout } from './ProtectedLayout';
@@ -28,6 +29,7 @@ import { PublicLayout } from './PublicLayout';
 import { PageTemplate } from '../Template';
 import { DescriptionPage } from '../Page/DescriptionPage';
 import { LongProblemAnswerPage } from '../Page/LongProblemAnswerPage';
+import { RankPage } from '../Page/RankPage';
 
 function Router() {
   return (
@@ -42,6 +44,7 @@ function Router() {
               path={URL.CHANGE_PASSWORD_WITH_LOGIN}
               element={<ChangePasswordWithLoginPage />}
             />
+            <Route path={URL.NOTIFICATION} element={<NotificationPage />} />
           </Route>
           <Route element={<PublicLayout />}>
             <Route path={URL.JOIN} element={<JoinPage />} />
@@ -60,6 +63,7 @@ function Router() {
           <Route path={URL.TERMS_OF_SERVICE} element={<TermsOfServicePage />} />
           <Route path={URL.PRIVACY_POLICY} element={<PrivacyPolicyPage />} />
           <Route path={URL.DESCRIPTION} element={<DescriptionPage />} />
+          <Route path={URL.RANK} element={<RankPage />} />
           <Route path={URL.OAUTH_CALLBACK} element={<CallbackPage />} />
           <Route path={URL.ERROR} element={<ErrorPage />} />
           <Route path={URL.PAGE_NOT_FOUND} element={<PageNotFoundPage />} />

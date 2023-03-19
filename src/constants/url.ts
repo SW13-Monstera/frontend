@@ -23,6 +23,8 @@ const URL = {
   TERMS_OF_SERVICE: '/terms-of-service',
   PRIVACY_POLICY: '/privacy-policy',
   DESCRIPTION: '/description',
+  NOTIFICATION: '/notification',
+  RANK: '/rank',
 };
 
 const URLWithParam = {

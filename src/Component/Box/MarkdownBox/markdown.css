@@ -9,3 +9,25 @@
 .markdown p {
   margin: 0 0 1.25rem 0;
 }
+
+.markdown.standard-answer p:last-child::after {
+  -webkit-animation: blink 1s infinite;
+  animation: blink 1s infinite;
+  content: '▋';
+  margin-left: 0.25rem;
+  vertical-align: baseline;
+}
+
+.markdown.standard-answer.done p:last-child::after {
+  display: none;
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}

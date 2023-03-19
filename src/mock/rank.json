@@ -1,0 +1,26 @@
+{
+  "size": 3,
+  "totalPage": 1,
+  "currentPage": 0,
+  "numberOfElements": 3,
+  "contents": [
+    {
+      "id": "b41e5901-e395-40d3-8389-daab37338313",
+      "username": "test1",
+      "rank": 1,
+      "score": 100.0
+    },
+    {
+      "id": "b528336b-a6f9-4f2a-92c4-f53679281c7c",
+      "username": "test3",
+      "rank": 2,
+      "score": 99.0
+    },
+    {
+      "id": "908aa4aa-3926-4756-bf39-387387769e34",
+      "username": "test2",
+      "rank": 2,
+      "score": 99.0
+    }
+  ]
+}
