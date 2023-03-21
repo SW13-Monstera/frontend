@@ -20,6 +20,7 @@ import { useQuery } from 'react-query';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { IRankList } from '../../types/api/common';
 import { URLWithParam } from '../../constants/url';
+import { Link } from 'react-router-dom';
 
 export const RankPage = () => {
   const { page, setNewPage } = usePagination();
@@ -56,9 +57,9 @@ export const RankPage = () => {
                 <tr className={tableBodyRowStyle} key={id}>
                   <td className={tableCellStyle}>{rank}</td>
                   <td className={tableCellStyle}>
-                    <a href={URLWithParam.PROFILE(id)} className={linkStyle}>
+                    <Link to={URLWithParam.PROFILE(id)} className={linkStyle}>
                       {username}
-                    </a>
+                    </Link>
                   </td>
                   <td className={tableCellStyle}>{score}</td>
                 </tr>
