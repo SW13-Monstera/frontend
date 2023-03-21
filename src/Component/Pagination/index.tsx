@@ -5,6 +5,8 @@ import {
   paginationWrapperStyle,
 } from './style.css';
 import { MouseEventHandler } from 'react';
+import arrowLeftImage from '../../assets/images/arrow-left.png';
+import arrowRightImage from '../../assets/images/arrow-right.png';
 
 interface IPagination {
   totalPages: number;
@@ -72,7 +74,7 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
   return (
     <div className={paginationWrapperStyle}>
       <button type='button' onClick={movePrevPage} className={arrowButtonStyle}>
-        <img src='/src/assets/images/arrow-left.png' width='7px' />
+        <img src={arrowLeftImage} width='7px' />
       </button>
       {totalPages <= MAX_PAGE_NUM
         ? Array(totalPages)
@@ -90,7 +92,7 @@ export const Pagination = ({ totalPages, page, setPage }: IPagination) => {
             ),
           )}
       <button type='button' onClick={moveNextPage} className={arrowButtonStyle}>
-        <img src='/src/assets/images/arrow-right.png' width='7px' />
+        <img src={arrowRightImage} width='7px' />
       </button>
     </div>
   );
