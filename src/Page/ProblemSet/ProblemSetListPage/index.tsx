@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { URLWithParam } from '../../../constants/url';
-import { IProblemSetDataElement } from '../../../types/problemSet';
 import roadmapImage from '../../../assets/images/roadmap.webp';
 import {
   problemSetBoxStyle,
@@ -21,13 +19,6 @@ import { BUTTON_SIZE, BUTTON_THEME } from '../../../types/button';
 import problemSetData from '../../../mock/problemSet.json';
 
 export const ProblemSetListPage = () => {
-  const [problemSetDataList, setProblemSetDataList] = useState<IProblemSetDataElement[]>();
-
-  useEffect(() => {
-    const json: IProblemSetDataElement[] = JSON.parse(JSON.stringify(problemSetData)).default;
-    setProblemSetDataList(json);
-  }, []);
-
   return (
     <div className={problemSetListPageWrapperStyle}>
       <div className={problemSetListPageContentStyle}>
@@ -41,7 +32,7 @@ export const ProblemSetListPage = () => {
           </div>
         </div>
         <div className={problemSetListStyle}>
-          {problemSetDataList?.map((problemSet) => (
+          {problemSetData?.map((problemSet) => (
             <Link to={URLWithParam.PROBLEM_SET_DETAIL(problemSet.id)} key={problemSet.id}>
               <div className={problemSetBoxStyle}>
                 <div className={problemSetDetailWrapperStyle}>
