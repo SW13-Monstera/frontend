@@ -7,7 +7,7 @@ import { MetaTag } from '../utils/MetaTag';
 import { IProfileData } from '../../types/api/user';
 import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
 import { useNavigate } from 'react-router-dom';
-import { URL } from '../../constants/url';
+import { URLWithParam } from '../../constants/url';
 import { reGithub, reLinkedIn } from '../../utils/regex';
 import { UrlInputBox } from '../../Component/Box/InputBox/UrlInputBox';
 import { DefaultSelect } from '../../Component/Utils/DefaultSelect';
@@ -19,12 +19,15 @@ import { createOptions } from '../../utils/createOptions';
 import { debounce } from '../../utils/debounce';
 import { SmileIcon } from '../../Icon/SmileIcon';
 import { themeColors } from '../../styles/theme.css';
+import { getUserInfo } from '../../utils/userInfo';
 
 export const UserDataEditPage = () => {
+  const myUserInfo = getUserInfo();
+  if (!myUserInfo) return <></>;
   const navigate = useNavigate();
   const { data: profileData } = useQuery<IProfileData>(
     'getUserInfoData',
-    () => userApiWrapper.getUserInfoData(),
+    () => userApiWrapper.getUserInfoData(myUserInfo.id),
     { refetchOnWindowFocus: false, staleTime: 10000 },
   );
 
@@ -76,7 +79,9 @@ export const UserDataEditPage = () => {
         profileImgUrl: profileData?.profileImgUrl,
       })
       .then(() => {
-        navigate(URL.MYPAGE);
+        const userInfo = getUserInfo();
+        if (!userInfo) return;
+        navigate(URLWithParam.PROFILE(userInfo.id));
       });
   };
 

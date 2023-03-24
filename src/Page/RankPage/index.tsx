@@ -13,10 +13,14 @@ import {
   titleStyle,
   titleTextWrapStyle,
   titleWrapStyle,
+  linkStyle,
+  rankColumnStyle,
 } from './style.css';
 import { useQuery } from 'react-query';
 import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import { IRankList } from '../../types/api/common';
+import { URLWithParam } from '../../constants/url';
+import { Link } from 'react-router-dom';
 import rankingImage from '../../assets/images/ranking.png';
 
 export const RankPage = () => {
@@ -38,6 +42,10 @@ export const RankPage = () => {
             </div>
           </div>
           <table className={tableStyle}>
+            <colgroup>
+              <col className={rankColumnStyle}></col>
+              <col span={2}></col>
+            </colgroup>
             <thead>
               <tr className={tableHeadRowStyle}>
                 <th className={tableCellStyle}>랭킹</th>
@@ -49,7 +57,11 @@ export const RankPage = () => {
               {rankData?.contents.map(({ rank, username, score, id }) => (
                 <tr className={tableBodyRowStyle} key={id}>
                   <td className={tableCellStyle}>{rank}</td>
-                  <td className={tableCellStyle}>{username}</td>
+                  <td className={tableCellStyle}>
+                    <Link to={URLWithParam.PROFILE(id)} className={linkStyle}>
+                      {username}
+                    </Link>
+                  </td>
                   <td className={tableCellStyle}>{score}</td>
                 </tr>
               ))}

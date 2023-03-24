@@ -9,7 +9,7 @@ import {
 } from '../../style.css';
 import { COLOR } from '../../../../constants/color';
 import { ICON } from '../../../../constants/icon';
-import { URL } from '../../../../constants/url';
+import { URL, URLWithParam } from '../../../../constants/url';
 import CustomPopover from '../../../../Component/Utils/Popover';
 import { usePopover } from '../../../../hooks/usePopover';
 import { Divider } from '../../../../Component/Divider';
@@ -60,10 +60,12 @@ export const RightSideButtonList = () => {
             <>
               <TransparentButton
                 onClick={() => {
-                  navigate(URL.MYPAGE);
+                  const userInfo = getUserInfo();
+                  if (!userInfo) return;
+                  navigate(URLWithParam.PROFILE(userInfo.id));
                 }}
               >
-                마이 페이지
+                내 프로필
               </TransparentButton>
               <Divider />
               <TransparentButton onClick={handleLogout}>로그아웃</TransparentButton>

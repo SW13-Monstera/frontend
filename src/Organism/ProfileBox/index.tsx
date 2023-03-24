@@ -43,8 +43,10 @@ import { TechTagBox } from '../../Component/Box/TechTagBox';
 import userImage from '../../assets/icons/mypage-icon.svg';
 import { formatNumber } from '../../utils/formatNumber';
 import { themeColors } from '../../styles/theme.css';
+
 interface IProfileBox {
   profileData: IProfileBoxData;
+  isMine: boolean;
 }
 
 interface IProfileBoxData extends IProfileData {
@@ -53,7 +55,7 @@ interface IProfileBoxData extends IProfileData {
   statistics: IChartElement[];
 }
 
-export const ProfileBox = ({ profileData }: IProfileBox) => {
+export const ProfileBox = ({ profileData, isMine }: IProfileBox) => {
   const navigate = useNavigate();
   const {
     username,
@@ -98,18 +100,24 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
     <div className={boxStyle}>
       <div className={section1Style}>
         <div className={section1LeftStyle}>
-          <div className={imageWrapperStyle}>
-            <label htmlFor='profile-image' className={imageUploadBackgroundStyle}>
-              <UploadIcon width='2rem' height='2rem' fill={COLOR.WHITE} />
-            </label>
-            <input
-              id='profile-image'
-              type='file'
-              accept='image/*'
-              ref={inputRef}
-              onChange={onUploadImage}
-              style={{ display: 'none' }}
-            />
+          <div className={imageWrapperStyle[isMine ? 'isMine' : 'others']}>
+            {isMine ? (
+              <>
+                <label htmlFor='profile-image' className={imageUploadBackgroundStyle}>
+                  <UploadIcon width='2rem' height='2rem' fill={COLOR.WHITE} />
+                </label>
+                <input
+                  id='profile-image'
+                  type='file'
+                  accept='image/*'
+                  ref={inputRef}
+                  onChange={onUploadImage}
+                  style={{ display: 'none' }}
+                />
+              </>
+            ) : (
+              <></>
+            )}
             <img
               src={imgUrl ?? userImage}
               className={imgUrl ? imageStyle : defaultImageStyle}
@@ -172,44 +180,50 @@ export const ProfileBox = ({ profileData }: IProfileBox) => {
           }
         />
       </div>
-      <Divider />
+
       <></>
       {!statistics.every((e) => isNaN(e.value)) ? (
         <>
+          <Divider />
           <div className={section3Style}>
             <div className={labelTitleStyle}>통계</div>
             <div className={chartWrapperStyle}>
               <DoughnutChart data={createCategoryChartData(statistics)} />
             </div>
           </div>
-          <Divider />
         </>
       ) : (
         <></>
       )}
-
-      <RowBox className={editButtonListStyle}>
-        <TextButton
-          theme={BUTTON_THEME.PRIMARY}
-          size={BUTTON_SIZE.LARGE_MEDIUM}
-          className={editButtonStyle}
-          onClick={() => {
-            navigate(URL.USER_DATA_EDIT);
-          }}
-        >
-          프로필 수정하기
-        </TextButton>
-        <TextButton
-          theme={BUTTON_THEME.TERTIARY}
-          size={BUTTON_SIZE.LARGE_MEDIUM}
-          className={editButtonStyle}
-          onClick={() => {
-            navigate(URL.CHANGE_PASSWORD_WITH_LOGIN);
-          }}
-        >
-          비밀번호 수정하기
-        </TextButton>
-      </RowBox>
+      {isMine ? (
+        <>
+          <Divider />
+          <RowBox className={editButtonListStyle}>
+            <TextButton
+              theme={BUTTON_THEME.PRIMARY}
+              size={BUTTON_SIZE.LARGE_MEDIUM}
+              className={editButtonStyle}
+              onClick={() => {
+                navigate(URL.USER_DATA_EDIT);
+              }}
+            >
+              프로필 수정하기
+            </TextButton>
+            <TextButton
+              theme={BUTTON_THEME.TERTIARY}
+              size={BUTTON_SIZE.LARGE_MEDIUM}
+              className={editButtonStyle}
+              onClick={() => {
+                navigate(URL.CHANGE_PASSWORD_WITH_LOGIN);
+              }}
+            >
+              비밀번호 수정하기
+            </TextButton>
+          </RowBox>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
