@@ -13,21 +13,18 @@ import {
   problemSetListStyle,
   problemSetTitleStyle,
 } from './style.css';
+import problemSetData from '../../../mock/problemSet.json';
 
 export const ProblemSetDetailPage = () => {
   const { setId } = useParams();
 
-  if (!setId) return <ErrorPage />;
-  const [problemSetData, setProblemSetData] = useState<IProblemSetDataElement>();
+  if (!setId || !problemSetData[parseInt(setId)]) return <ErrorPage />;
+
+  const { problems, setTitle } = problemSetData[parseInt(setId)] as IProblemSetDataElement;
   const [problemList, setProblemList] = useState<TPartialProblemDetailResponseData[]>();
 
   useEffect(() => {
-    const json: IProblemSetDataElement[] = JSON.parse(JSON.stringify(problemSetData)).default;
-    setProblemSetData(json[parseInt(setId)]);
-  }, []);
-
-  useEffect(() => {
-    problemSetData?.problems
+    problems
       .reduce(
         async (prev: Promise<IProblemDetailResponseData[]>, curr: IProblemSetProblemsElement) => {
           const prevResult = await prev;
@@ -52,12 +49,12 @@ export const ProblemSetDetailPage = () => {
   return (
     <>
       <MetaTag
-        title={`CS Broker - ${problemSetData?.setTitle}`}
-        description={`${problemSetData?.setTitle}에 관한 문제 세트입니다.`}
-        keywords={`${problemSetData?.setTitle}, 서술형, 객관식, 단답형`}
+        title={`CS Broker - ${setTitle}`}
+        description={`${setTitle}에 관한 문제 세트입니다.`}
+        keywords={`${setTitle}, 서술형, 객관식, 단답형`}
       />
       <div className={problemSetDetailWrapperStyle}>
-        <div className={problemSetTitleStyle}>{problemSetData?.setTitle}</div>
+        <div className={problemSetTitleStyle}>{setTitle}</div>
         <div className={problemSetListStyle}>
           {problemList?.map((problem) => {
             return (
