@@ -8,7 +8,7 @@ import JoinPage from './JoinPage';
 import CallbackPage from './CallbackPage';
 import { LoginPage } from './LoginPage';
 import { ErrorPage } from './Error/ErrorPage';
-import { MyPage } from './MyPage';
+import { ProfilePage } from './ProfilePage';
 import { UserDataEditPage } from './UserDataEditPage';
 import { ChangePasswordEmailPage } from './ChangePasswordEmailPage';
 import { ChangePasswordWithoutLoginPage } from './ChangePasswordPageWithoutLogin';
@@ -31,7 +31,7 @@ export {
   JoinPage,
   LoginPage,
   ErrorPage,
-  MyPage,
+  ProfilePage,
   UserDataEditPage,
   ChangePasswordEmailPage,
   ChangePasswordWithoutLoginPage,

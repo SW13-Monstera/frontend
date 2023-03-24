@@ -19,6 +19,8 @@ import { ColumnBox } from '../../Component/Box/CustomBox';
 import { IProfileData } from '../../types/api/user';
 import { useQuery } from 'react-query';
 import { RESULT_TYPE } from '../../constants/problem';
+import { useParams } from 'react-router-dom';
+import { getUserInfo } from '../../utils/userInfo';
 
 interface ITags {
   os: number;
@@ -36,12 +38,15 @@ interface IProblemStatsData {
   score: number;
 }
 
-export const MyPage = () => {
-  const { data: profileData } = useQuery<IProfileData>('getUserInfoData', () =>
-    userApiWrapper.getUserInfoData(),
+export const ProfilePage = () => {
+  const { id: userId } = useParams();
+  if (!userId) return <></>;
+
+  const { data: profileData } = useQuery<IProfileData>(['getUserInfoData', userId], () =>
+    userApiWrapper.getUserInfoData(userId),
   );
-  const { data: problemStatsData } = useQuery<IProblemStatsData>('getStatsData', () =>
-    userApiWrapper.getStats(),
+  const { data: problemStatsData } = useQuery<IProblemStatsData>(['getStatsData', userId], () =>
+    userApiWrapper.getStats(userId),
   );
 
   const getStatistics = () => {
@@ -63,11 +68,11 @@ export const MyPage = () => {
 
   return (
     <>
-      <MetaTag title='CS Broker - 마이페이지' />
+      <MetaTag title='CS Broker - 프로필' />
       <div className={pageWrapperStyle}>
         <div className={pageContentWrapperStyle}>
           <div className={leftSideWrapperStyle}>
-            <h2 className={pageTitleStyle}>마이 페이지</h2>
+            <h2 className={pageTitleStyle}>{profileData?.username}님의 프로필</h2>
             {profileData && problemStatsData ? (
               <ProfileBox
                 profileData={{
@@ -76,6 +81,7 @@ export const MyPage = () => {
                   score: problemStatsData.score,
                   statistics: getStatistics(),
                 }}
+                isMine={userId === getUserInfo()?.id}
               />
             ) : null}
           </div>

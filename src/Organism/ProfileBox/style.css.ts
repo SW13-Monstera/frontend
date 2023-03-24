@@ -46,7 +46,7 @@ export const section3Style = style({
   gap: '0.5rem',
 });
 
-export const imageWrapperStyle = style({
+export const imageWrapperBaseStyle = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -55,8 +55,11 @@ export const imageWrapperStyle = style({
   position: 'relative',
   overflow: 'hidden',
   borderRadius: '50%',
-  cursor: 'pointer',
-  transition: '.3s linear',
+});
+
+export const imageWrapperStyle = styleVariants({
+  isMine: [imageWrapperBaseStyle, { cursor: 'pointer', transition: '.3s linear' }],
+  others: [imageWrapperBaseStyle],
 });
 
 export const imageStyle = style({
