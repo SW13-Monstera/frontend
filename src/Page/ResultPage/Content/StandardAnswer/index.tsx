@@ -22,7 +22,7 @@ export const StandardAnswerContent = ({ result }: ILongProblemResult) => {
       } else {
         setTimeout(() => {
           write();
-        }, 100);
+        }, 50);
       }
     }
     write();
