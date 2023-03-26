@@ -39,13 +39,7 @@ export const authApiWrapper = {
   },
 
   join: (data: IJoinRequest) => {
-    return apiClient.post(API_URL.JOIN, data).then((res) => {
-      console.log(res);
-      // if (status >= 400) {
-      //   toast('회원가입 실패');
-      //   console.log(data);
-      // }
-    });
+    return apiClient.post(API_URL.JOIN, data);
   },
 
   getUserData: (token: string) => {
