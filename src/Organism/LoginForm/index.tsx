@@ -1,4 +1,3 @@
-import { MouseEvent } from 'react';
 import { DefaultInputBox } from '../../Component/Box';
 import { etcButtonStyle, etcStyle, loginFormContentStyle, loginFormStyle } from './style.css';
 import { TextButton } from '../../Component/Button';
@@ -10,23 +9,50 @@ import OAuthButtonListSection from '../ButtonList/OAuthButtonListSection';
 import { MailIcon } from '../../Icon/MailIcon';
 import { themeColors } from '../../styles/theme.css';
 import { LockIcon } from '../../Icon/LockIcon';
+import { validateEmail } from '../../utils/validate';
+import { toast } from 'react-toastify';
+import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
+import { useMutation } from 'react-query';
 
-interface ILoginForm {
-  closeModal?: () => void;
-  handleSubmit: (event: MouseEvent) => Promise<boolean> | undefined;
-}
-
-function LoginForm({ handleSubmit }: ILoginForm) {
+function LoginForm() {
   const navigate = useNavigate();
 
-  function handleLogin(event: MouseEvent) {
-    event.preventDefault();
-    handleSubmit(event)?.then((isLoginSuccess) => {
-      if (isLoginSuccess) {
-        navigate(-1);
-      }
+  const validateForm = (emailValue: string, passwordValue: string) => {
+    let isValid = true;
+    if (!emailValue) {
+      toast.warn('이메일은 필수항목입니다.');
+      isValid = false;
+    } else if (!validateEmail(emailValue)) {
+      toast.warn('이메일 형식이 올바르지 않습니다.');
+      isValid = false;
+    } else if (!passwordValue) {
+      toast.warn('비밀번호는 필수항목입니다.');
+      isValid = false;
+    }
+    return isValid;
+  };
+
+  const handleSubmit = async () => {
+    const emailValue = (document.getElementById('email') as HTMLInputElement)?.value;
+    const passwordValue = (document.getElementById('password') as HTMLInputElement)?.value;
+
+    if (!validateForm(emailValue, passwordValue)) return;
+
+    const userInfo = await authApiWrapper.login({
+      email: emailValue,
+      password: passwordValue,
     });
-  }
+
+    if (userInfo) {
+      navigate(-1);
+    }
+  };
+
+  const { mutate: submit, isLoading } = useMutation(handleSubmit, {
+    onError: () => {
+      toast.error('올바른 이메일과 비밀번호인지 확인해주세요.');
+    },
+  });
 
   return (
     <div className={loginFormStyle}>
@@ -50,8 +76,9 @@ function LoginForm({ handleSubmit }: ILoginForm) {
         <TextButton
           theme={BUTTON_THEME.PRIMARY}
           size={BUTTON_SIZE.LARGE}
-          type={BUTTON_TYPE.SUBMIT}
-          onClick={handleLogin}
+          type={BUTTON_TYPE.BUTTON}
+          onClick={() => submit()}
+          isActivated={!isLoading}
         >
           로그인
         </TextButton>
