@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_BASE_URL, AUTHORIZTION, BEARER_TOKEN } from '../constants/api';
-import { URL } from '../constants/url';
 import { getUserInfo } from '../utils/userInfo';
 
 const apiClient = axios.create({
@@ -21,9 +20,7 @@ apiClient.interceptors.response.use(
   (res) => res.data,
   (err) => {
     const { status } = err.response;
-    if (status === 404) {
-      location.replace(URL.PAGE_NOT_FOUND);
-    } else if (status === 500) {
+    if (status >= 500) {
       toast.error('앗! 오류가 발생했어요🥲' + '\n' + '잠시 후에 다시 시도해보세요.');
     }
   },
