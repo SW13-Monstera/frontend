@@ -43,6 +43,7 @@ import { TechTagBox } from '../../Component/Box/TechTagBox';
 import userImage from '../../assets/icons/mypage-icon.svg';
 import { formatNumber } from '../../utils/formatNumber';
 import { themeColors } from '../../styles/theme.css';
+import { useMutation } from 'react-query';
 
 interface IProfileBox {
   profileData: IProfileBoxData;
@@ -75,19 +76,18 @@ export const ProfileBox = ({ profileData, isMine }: IProfileBox) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [imgUrl, setImgUrl] = useState<string | null>(profileImgUrl ?? null);
 
-  const onUploadImage = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
-    }
+  const uploadImage = async () => {
+    const files = inputRef.current?.files;
+    if (!files) return;
 
     const formData = new FormData();
-    formData.append('image', e.target.files[0]);
+    formData.append('image', files[0]);
+    console.log(files[0]);
+    const response = await commonApiWrapper.uploadImg(formData);
 
-    commonApiWrapper.uploadImg(formData).then((res) => {
-      toast('업로드가 완료되었습니다.');
-      setImgUrl(res);
-    });
-  }, []);
+    toast('업로드가 완료되었습니다.');
+    setImgUrl(response.data);
+  };
 
   const onUploadImageButtonClick = useCallback(() => {
     if (!inputRef.current) {
@@ -95,6 +95,16 @@ export const ProfileBox = ({ profileData, isMine }: IProfileBox) => {
     }
     inputRef.current.click();
   }, []);
+
+  const { mutate: uploadProfileImage } = useMutation(uploadImage, {
+    onError: (err: { response: { status: number } }) => {
+      if (err.response.status === 413) {
+        toast.error('이미지 사이즈가 너무 커요. 다른 사진으로 다시 시도해주세요. ');
+      } else {
+        toast.error('이미지 업로드에 실패했어요. 다시 시도해주세요.');
+      }
+    },
+  });
 
   return (
     <div className={boxStyle}>
@@ -111,7 +121,7 @@ export const ProfileBox = ({ profileData, isMine }: IProfileBox) => {
                   type='file'
                   accept='image/*'
                   ref={inputRef}
-                  onChange={onUploadImage}
+                  onChange={() => uploadProfileImage()}
                   style={{ display: 'none' }}
                 />
               </>
