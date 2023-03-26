@@ -82,7 +82,6 @@ export const ProfileBox = ({ profileData, isMine }: IProfileBox) => {
 
     const formData = new FormData();
     formData.append('image', files[0]);
-    console.log(files[0]);
     const response = await commonApiWrapper.uploadImg(formData);
 
     toast('업로드가 완료되었습니다.');
