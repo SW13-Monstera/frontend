@@ -91,6 +91,7 @@ const TAGLIST: ITagListElement[] = [
 ];
 
 const TAG_MAP_BY_ID: Map<string, ITagBox> = new Map();
+
 TAGLIST.map((tagType) =>
   tagType.elements.map((tagElement) =>
     TAG_MAP_BY_ID.set(tagElement.id, {
@@ -100,4 +101,6 @@ TAGLIST.map((tagType) =>
   ),
 );
 
-export { TAGLIST, TAG_MAP_BY_ID };
+const getTagValue = (tagId: string) => TAG_MAP_BY_ID.get(tagId.toLowerCase());
+
+export { TAGLIST, getTagValue };
