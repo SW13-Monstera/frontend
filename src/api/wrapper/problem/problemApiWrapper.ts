@@ -24,12 +24,7 @@ export const problemApiWrapper = {
       if (!userInfo) throw new Error('userinfo not found');
       config.headers = { Authorization: BEARER_TOKEN(userInfo.accessToken) };
     }
-    return apiClient.get(API_URL.PROBLEM_LIST, config).then(
-      (res) => res.data,
-      (err) => {
-        throw new Error('문제 목록 불러오기 실패');
-      },
-    );
+    return apiClient.get(API_URL.PROBLEM_LIST, config).then((res) => res.data);
   },
   longProblemDetail: (problem_id: string) => {
     return apiClient

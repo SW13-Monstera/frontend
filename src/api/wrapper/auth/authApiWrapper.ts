@@ -4,22 +4,15 @@ import { API_URL } from '../../../constants/apiUrl';
 import { IChangePassword, IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
 import { AUTHORIZTION, BEARER_TOKEN } from '../../../constants/api';
 import { getUserInfo } from '../../../utils/userInfo';
-import { toast } from 'react-toastify';
 import { parseJwt } from '../../../utils/parseJwt';
 
 export const authApiWrapper = {
   login: (data: ILoginRequest) => {
-    return apiClient.post(API_URL.LOGIN, data).then(
-      (res: { data: IUserInfo }) => {
-        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
-        setUserInfo(res.data);
-        return res.data;
-      },
-      (err) => {
-        toast('로그인 실패');
-        throw new Error('로그인 실패');
-      },
-    );
+    return apiClient.post(API_URL.LOGIN, data).then((res: { data: IUserInfo }) => {
+      apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
+      setUserInfo(res.data);
+      return res.data;
+    });
   },
 
   refresh: () => {
@@ -36,28 +29,15 @@ export const authApiWrapper = {
           Authorization: BEARER_TOKEN(userInfo.accessToken),
         },
       })
-      .then(
-        (res: { data: { accessToken: string } }) => {
-          if (res && res.data && res.data.accessToken) {
-            const newAccessToken = res.data.accessToken;
-            apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
-            setUserInfo({ ...userInfo, accessToken: newAccessToken });
-          }
-        },
-        (err) => {
-          return;
-        },
-      );
+      .then((res: { data: { accessToken: string } }) => {
+        const newAccessToken = res?.data?.accessToken;
+        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
+        setUserInfo({ ...userInfo, accessToken: newAccessToken });
+      });
   },
 
   join: (data: IJoinRequest) => {
-    apiClient.post(API_URL.JOIN, data).then(
-      (res) => res,
-      (err) => {
-        toast('회원가입 실패');
-        throw new Error('회원가입 실패');
-      },
-    );
+    return apiClient.post(API_URL.JOIN, data);
   },
 
   getUserData: (token: string) => {
