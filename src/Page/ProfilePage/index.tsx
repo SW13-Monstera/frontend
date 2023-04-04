@@ -19,8 +19,9 @@ import { ColumnBox } from '../../Component/Box/CustomBox';
 import { IProfileData } from '../../types/api/user';
 import { useQuery } from 'react-query';
 import { RESULT_TYPE } from '../../constants/problem';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getUserInfo } from '../../utils/userInfo';
+import { URL } from '../../constants/url';
 
 interface ITags {
   os: number;
@@ -40,13 +41,23 @@ interface IProblemStatsData {
 
 export const ProfilePage = () => {
   const { id: userId } = useParams();
-  if (!userId) return <></>;
+  const navigate = useNavigate();
+  if (!userId) throw new Error('유저 아이디 없음');
 
-  const { data: profileData } = useQuery<IProfileData>(['getUserInfoData', userId], () =>
-    userApiWrapper.getUserInfoData(userId),
+  const { data: profileData } = useQuery<IProfileData>(
+    ['getUserInfoData', userId],
+    () => userApiWrapper.getUserInfoData(userId),
+    {
+      retry: false,
+      onError: () => {
+        navigate(URL.PAGE_NOT_FOUND);
+      },
+    },
   );
-  const { data: problemStatsData } = useQuery<IProblemStatsData>(['getStatsData', userId], () =>
-    userApiWrapper.getStats(userId),
+  const { data: problemStatsData } = useQuery<IProblemStatsData>(
+    ['getStatsData', userId],
+    () => userApiWrapper.getStats(userId),
+    { retry: false },
   );
 
   const getStatistics = () => {

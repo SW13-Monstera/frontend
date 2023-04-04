@@ -21,6 +21,8 @@ import { LockIcon } from '../../Icon/LockIcon';
 import { SmileIcon } from '../../Icon/SmileIcon';
 import OAuthButtonListSection from '../../Organism/ButtonList/OAuthButtonListSection';
 import { usePasswordConfirm } from '../../hooks/usePasswordConfirm';
+import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 
 function JoinPage() {
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ function JoinPage() {
     [passwordValue],
   );
 
-  function handleJoin(event: MouseEvent) {
+  async function handleJoin(event: MouseEvent) {
     event.preventDefault();
 
     const data: IJoinRequest = {
@@ -51,9 +53,20 @@ function JoinPage() {
       username: nicknameValue,
     };
 
-    authApiWrapper.join(data);
+    await authApiWrapper.join(data);
+
     navigate(URL.MAIN);
   }
+
+  const { mutate: submit } = useMutation(handleJoin, {
+    onError: (err: { response: { status: number } }) => {
+      if (err.response.status === 409) {
+        toast.error('이메일이 중복되었습니다. 다른 이메일로 시도해주세요.');
+      } else {
+        toast.error('문제가 발생했습니다. 다시 시도해주세요.');
+      }
+    },
+  });
 
   return (
     <>
@@ -149,10 +162,10 @@ function JoinPage() {
               에 동의하는 것으로 간주합니다.
             </p>
             <TextButton
-              type={BUTTON_TYPE.SUBMIT}
+              type={BUTTON_TYPE.BUTTON}
               theme={BUTTON_THEME.PRIMARY}
               size={BUTTON_SIZE.LARGE}
-              onClick={handleJoin}
+              onClick={submit}
               isActivated={
                 validateEmail(emailValue) &&
                 isPasswordElementsValidate &&
