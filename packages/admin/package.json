@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite --port 3123",
     "build": "vite build --mode production",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint 'src/**/*.ts'",
+    "lint-diff": "eslint $(git diff --name-only --diff-filter=duxb origin/$BASE origin/$HEAD | grep -E '\\.((j|t)sx?)$' | xargs)"
   },
   "repository": {
     "type": "git",
