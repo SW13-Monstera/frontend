@@ -102,8 +102,13 @@ export const problemSetTitleStyle = style({
 });
 
 export const problemSetDescStyle = style({
-  fontWeight: '500',
-  fontSize: '1rem',
-  lineHeight: '1.25rem',
+  fontSize: '0.85rem',
+  lineHeight: '1rem',
+  color: themeColors.text[3],
+});
+
+export const problemSetCountStyle = style({
+  fontSize: '0.85rem',
+  lineHeight: '1rem',
   color: themeColors.text[1],
 });

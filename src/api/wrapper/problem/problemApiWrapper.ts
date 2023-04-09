@@ -10,6 +10,8 @@ import {
   IMultipleProblemResultData,
   IAssessmentRequest,
   IShortProblemDetailResponseDataV2,
+  TProblemSetListResponse,
+  IProblemSetDetailResponse,
 } from '../../../types/api/problem';
 import { BEARER_TOKEN } from '../../../constants/api';
 import { AxiosRequestConfig } from 'axios';
@@ -64,5 +66,13 @@ export const problemApiWrapper = {
   },
   assessment: (problem_id: string, data: IAssessmentRequest) => {
     return apiClient.post(API_URL_WITH_PARAMS.ASSESSMENT(problem_id), data);
+  },
+  problemSetList: () => {
+    return apiClient.get<TProblemSetListResponse>(API_URL.PROBLEM_SET_LIST).then((res) => res.data);
+  },
+  problemSetDetail: (problem_set_id: string) => {
+    return apiClient
+      .get<IProblemSetDetailResponse>(API_URL_WITH_PARAMS.PROBLEM_SET_DETAIL(problem_set_id))
+      .then((res) => res.data);
   },
 };
