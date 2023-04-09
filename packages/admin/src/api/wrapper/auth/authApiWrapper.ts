@@ -2,7 +2,7 @@ import { IUserInfo } from './../../../types/auth/index';
 import { getUserInfo, setUserInfo, setLogout } from './../../../utils/index';
 import apiClient from '../../apiClient';
 import { API_URL } from '../../../constants/apiUrl';
-import { AUTHORIZTION, BEARER_TOKEN, ROLES } from '../../../constants';
+import { AUTHORIZTION, BEARER_TOKEN, ROLES } from 'auth/constants';
 
 interface ILoginRequest {
   email: string;

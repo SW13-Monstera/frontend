@@ -1,6 +1,6 @@
 import { getUserInfo, parseJwt } from './../utils/index';
 import axios from 'axios';
-import { AUTHORIZTION, BEARER_TOKEN } from '../constants';
+import { AUTHORIZTION, BEARER_TOKEN } from 'auth/constants';
 import { authApiWrapper } from './wrapper/auth/authApiWrapper';
 
 const apiClient = axios.create({

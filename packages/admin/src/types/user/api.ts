@@ -1,4 +1,4 @@
-import { ROLES } from '../../constants';
+import { ROLES } from 'auth/constants';
 
 export interface IUserListResponseData {
   id: string;

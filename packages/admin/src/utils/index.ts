@@ -1,7 +1,6 @@
-import { USER_INFO } from '../constants/localStorage';
 import { IParsedToken, IUserInfo } from '../types/auth';
 import apiClient from '../api/apiClient';
-import { AUTHORIZTION, BEARER_TOKEN } from '../constants';
+import { AUTHORIZTION, BEARER_TOKEN, USER_INFO } from 'auth/constants';
 
 export const roundToSecondDigit = (num: number) => Math.round(num * 100) / 100;
 

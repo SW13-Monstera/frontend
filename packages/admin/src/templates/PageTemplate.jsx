@@ -17,9 +17,9 @@ import {
   IconButton,
   Container,
 } from '@mui/material';
-import { USER_INFO } from '../constants/localStorage';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../constants/url';
+import { USER_INFO } from 'auth/constants';
 
 const drawerWidth = 240;
 
