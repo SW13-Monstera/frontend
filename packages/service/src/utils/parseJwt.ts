@@ -1,4 +1,4 @@
-import { IParsedToken } from '../types/auth';
+import { IParsedToken } from 'auth/types';
 
 export const parseJwt = (token: string) => {
   if (!token) return;

@@ -1,5 +1,5 @@
 import { USER_INFO } from 'auth/constants';
-import { IUserInfo } from '../types/auth';
+import { IUserInfo } from 'auth/types';
 import { localStorageWithExpiry } from './localstorage';
 
 export const setUserInfo = (userInfo: IUserInfo) => {

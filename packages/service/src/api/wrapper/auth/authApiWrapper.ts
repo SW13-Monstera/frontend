@@ -1,7 +1,8 @@
 import { setUserInfo } from './../../../utils/userInfo';
 import apiClient from '../../apiClient';
 import { API_URL } from '../../../constants/apiUrl';
-import { IChangePassword, IJoinRequest, ILoginRequest, IUserInfo } from '../../../types/auth';
+import { IChangePassword, IJoinRequest, ILoginRequest } from '../../../types/auth';
+import { IUserInfo } from 'auth/types';
 import { AUTHORIZTION, BEARER_TOKEN } from 'auth/constants';
 import { getUserInfo } from '../../../utils/userInfo';
 import { parseJwt } from '../../../utils/parseJwt';
