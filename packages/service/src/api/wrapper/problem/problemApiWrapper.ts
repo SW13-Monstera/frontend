@@ -11,8 +11,8 @@ import {
   IAssessmentRequest,
   IShortProblemDetailResponseDataV2,
 } from '../../../types/api/problem';
-import { BEARER_TOKEN } from '../../../constants/api';
 import { AxiosRequestConfig } from 'axios';
+import { BEARER_TOKEN } from 'auth/constants';
 
 export const problemApiWrapper = {
   problemList: (params?: IProblemRequestParam) => {

@@ -1,4 +1,4 @@
-import { USER_INFO } from '../constants/localStorage';
+import { USER_INFO } from 'auth/constants';
 import { IUserInfo } from '../types/auth';
 import { localStorageWithExpiry } from './localstorage';
 

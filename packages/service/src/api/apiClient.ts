@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { API_BASE_URL, AUTHORIZTION, BEARER_TOKEN } from '../constants/api';
+import { API_BASE_URL } from '../constants/api';
 import { getUserInfo } from '../utils/userInfo';
+import { AUTHORIZTION, BEARER_TOKEN } from 'auth/constants';
 
 const apiClient = axios.create({
   baseURL: `${API_BASE_URL}/api`,

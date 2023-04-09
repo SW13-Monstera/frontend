@@ -1,4 +1,4 @@
-import { ROLES } from '../constants/api';
+import { ROLES } from 'auth/constants';
 
 export interface ILoginRequest {
   email: string;

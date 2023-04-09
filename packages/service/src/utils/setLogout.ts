@@ -1,5 +1,5 @@
 import apiClient from '../api/apiClient';
-import { AUTHORIZTION } from '../constants/api';
+import { AUTHORIZTION } from 'auth/constants';
 import { removeUserInfo } from './userInfo';
 
 export function setLogout() {

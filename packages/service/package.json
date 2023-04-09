@@ -26,6 +26,7 @@
     "@mui/material": "^5.10.14",
     "@vanilla-extract/css": "^1.7.2",
     "@vanilla-extract/vite-plugin": "^3.2.1",
+    "auth": "file:../auth",
     "axios": "^0.27.2",
     "chart.js": "^3.9.1",
     "moment": "^2.29.4",

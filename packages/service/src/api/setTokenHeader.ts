@@ -1,4 +1,4 @@
-import { AUTHORIZTION, BEARER_TOKEN } from './../constants/api';
+import { AUTHORIZTION, BEARER_TOKEN } from 'auth/constants';
 import apiClient from './apiClient';
 
 export const setTokenHeader = () => {
