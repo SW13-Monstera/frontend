@@ -5,7 +5,7 @@ import { appStyle } from './styles/App.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDarkModeStore } from './hooks/useStore';
 import { useEffect } from 'react';
-import { getUserInfo } from './utils/userInfo';
+import { getUserInfo } from 'auth/utils/userInfo';
 import { setTokenHeader } from './api/setTokenHeader';
 import { Helmet } from 'react-helmet-async';
 import { darkTheme, lightTheme } from './styles/theme.css';

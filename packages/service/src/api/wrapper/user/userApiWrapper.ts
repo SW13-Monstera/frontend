@@ -2,7 +2,7 @@ import { INVALID_ID_ERROR } from './../../../errors/index';
 import apiClient from '../../apiClient';
 import { API_URL, API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
 import { IProfileData, IUpdateUserRequest } from '../../../types/api/user';
-import { getUserInfo, setUserInfo } from '../../../utils/userInfo';
+import { getUserInfo, setUserInfo } from 'auth/utils/userInfo';
 
 export const userApiWrapper = {
   updateUser: (data: IUpdateUserRequest) => {

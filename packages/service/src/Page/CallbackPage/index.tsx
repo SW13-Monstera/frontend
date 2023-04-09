@@ -4,7 +4,7 @@ import apiClient from '../../api/apiClient';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { AUTHORIZTION, BEARER_TOKEN } from 'auth/constants';
 import { URL } from '../../constants/url';
-import { setUserInfo } from '../../utils/userInfo';
+import { setUserInfo } from 'auth/utils/userInfo';
 
 const CallbackPage = () => {
   const [searchParams] = useSearchParams();

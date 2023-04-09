@@ -9,7 +9,7 @@ import { ProblemDescriptionBox } from '../../../Component/Box/ProblemDescription
 import { ILongProblemResultLocationState } from '../../../types/problem';
 import { useState, KeyboardEvent } from 'react';
 import { LONG_PROBLEM_ANSWER } from '../../../constants/localStorage';
-import { localStorageWithExpiry } from '../../../utils/localstorage';
+import { localStorageWithExpiry } from 'auth/utils/localstorage';
 import { INVALID_ID_ERROR } from '../../../errors';
 import { LongProblemTextArea } from '../../../Component/TextArea/LongProblemTextArea';
 

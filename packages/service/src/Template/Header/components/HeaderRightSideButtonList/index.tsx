@@ -15,7 +15,7 @@ import { usePopover } from '../../../../hooks/usePopover';
 import { Divider } from '../../../../Component/Divider';
 import { setLogout } from '../../../../utils/setLogout';
 import { DarkmodeButton } from '../../../../Component/Button/DarkmodeButton';
-import { getUserInfo } from '../../../../utils/userInfo';
+import { getUserInfo } from 'auth/utils/userInfo';
 import { NotificationIcon } from '../../../../Icon/NotificationIcon';
 
 export const RightSideButtonList = () => {

@@ -1,6 +1,6 @@
 import apiClient from '../api/apiClient';
 import { AUTHORIZTION } from 'auth/constants';
-import { removeUserInfo } from './userInfo';
+import { removeUserInfo } from 'auth/utils/userInfo';
 
 export function setLogout() {
   removeUserInfo();

@@ -1,4 +1,4 @@
-import { getUserInfo } from './../../../utils/userInfo';
+import { getUserInfo } from 'auth/utils/userInfo';
 import apiClient from '../../apiClient';
 import { API_URL, API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
 import {

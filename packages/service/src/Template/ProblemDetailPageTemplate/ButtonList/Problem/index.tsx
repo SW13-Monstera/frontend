@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { TextButton } from '../../../../Component/Button';
 import { URL } from '../../../../constants/url';
 import { BUTTON_SIZE, BUTTON_THEME, BUTTON_TYPE } from '../../../../types/button';
-import { getUserInfo } from '../../../../utils/userInfo';
+import { getUserInfo } from 'auth/utils/userInfo';
 import { buttonListStyle, buttonListWrapperStyle } from '../../style.css';
 
 interface IProblemDetailButtonList {

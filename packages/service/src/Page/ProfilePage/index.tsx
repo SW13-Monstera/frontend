@@ -20,7 +20,7 @@ import { IProfileData } from '../../types/api/user';
 import { useQuery } from 'react-query';
 import { RESULT_TYPE } from '../../constants/problem';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getUserInfo } from '../../utils/userInfo';
+import { getUserInfo } from 'auth/utils/userInfo';
 import { URL } from '../../constants/url';
 
 interface ITags {

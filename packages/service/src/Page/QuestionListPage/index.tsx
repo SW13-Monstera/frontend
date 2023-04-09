@@ -35,7 +35,7 @@ import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
 import { RefreshIcon } from '../../Icon/RefreshIcon';
 import { COLOR } from '../../constants/color';
-import { getUserInfo } from '../../utils/userInfo';
+import { getUserInfo } from 'auth/utils/userInfo';
 import { useCheckedTags } from '../../hooks/useCheckedTags';
 import { CustomCarousel } from '../../Component/Utils/CustomSlider';
 import { usePagination } from '../../hooks/usePagination';

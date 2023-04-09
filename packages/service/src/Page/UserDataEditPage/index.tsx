@@ -19,7 +19,7 @@ import { createOptions } from '../../utils/createOptions';
 import { debounce } from '../../utils/debounce';
 import { SmileIcon } from '../../Icon/SmileIcon';
 import { themeColors } from '../../styles/theme.css';
-import { getUserInfo } from '../../utils/userInfo';
+import { getUserInfo } from 'auth/utils/userInfo';
 
 export const UserDataEditPage = () => {
   const myUserInfo = getUserInfo();
