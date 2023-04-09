@@ -1,5 +1,6 @@
 import { IUserInfo, TROLE } from 'auth/types';
-import { getUserInfo, setUserInfo, setLogout } from './../../../utils/index';
+import { setLogout } from './../../../utils/index';
+import { getUserInfo, setUserInfo } from 'auth/utils/userInfo';
 import apiClient from '../../apiClient';
 import { API_URL } from '../../../constants/apiUrl';
 import { AUTHORIZTION, BEARER_TOKEN, ROLES } from 'auth/constants';

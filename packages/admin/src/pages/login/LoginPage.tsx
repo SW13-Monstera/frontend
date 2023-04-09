@@ -6,7 +6,7 @@ import { Avatar, Button, CssBaseline, TextField, Box } from '@mui/material';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { useNavigate } from 'react-router-dom';
 import { URL } from '../../constants/url';
-import { setUserInfo } from '../../utils';
+import { setUserInfo } from 'auth/utils/userInfo';
 
 const theme = createTheme();
 

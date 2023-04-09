@@ -1,5 +1,6 @@
-import { getUserInfo, parseJwt } from './../utils/index';
 import axios from 'axios';
+import { getUserInfo } from 'auth/utils/userInfo';
+import { parseJwt } from 'auth/utils/parseJwt';
 import { AUTHORIZTION, BEARER_TOKEN } from 'auth/constants';
 import { authApiWrapper } from './wrapper/auth/authApiWrapper';
 
@@ -28,18 +29,14 @@ apiClient.interceptors.response.use(
       const userInfo = getUserInfo();
 
       if (userInfo) {
-        const { exp } = parseJwt(userInfo.accessToken);
-        if (Date.now() >= exp * 1000) {
+        const jwt = parseJwt(userInfo.accessToken);
+        if (jwt?.exp && Date.now() >= jwt.exp * 1000) {
           authApiWrapper.refresh()?.then((newAccessToken) => {
             originalRequest.headers[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
             return apiClient(originalRequest);
           });
         }
       }
-    } else if (status === 400 || status === 500) {
-      //   location.reload();
-    } else if (status !== 200) {
-      //   window.location.replace('/');
     }
     return Promise.reject(err);
   },

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Router from './Router';
-import { getUserInfo, setTokenHeader } from './utils';
+import { setTokenHeader } from './utils';
+import { getUserInfo } from 'auth/utils/userInfo';
 
 function App() {
   useEffect(() => {
