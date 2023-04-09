@@ -1,10 +1,10 @@
-import { ROLES } from '../constants';
+import { ROLES } from "../constants";
 
 export interface IUserInfo {
   accessToken: string;
   email: string;
   id: string;
-  role: typeof ROLES;
+  role: TROLE;
   username: string;
 }
 
@@ -13,3 +13,5 @@ export interface IParsedToken {
   exp: number;
   sub: string;
 }
+
+export type TROLE = typeof ROLES[keyof typeof ROLES];
