@@ -6,7 +6,8 @@
     "dev": "npm run dev --workspace=service",
     "dev:admin": "npm run dev --workspace=admin",
     "build": "npm run build --workspace=service",
-    "build:admin": "npm run build --workspace=admin"
+    "build:admin": "npm run build --workspace=admin",
+    "lint-diff": "npm run lint-diff --workspace=service"
   },
   "workspaces": [
     "packages/service",
