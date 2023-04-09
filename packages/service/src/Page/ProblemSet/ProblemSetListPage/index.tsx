@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import { URLWithParam } from '../../../constants/url';
 import roadmapImage from '../../../assets/images/roadmap.webp';
 import {
   problemSetBoxStyle,
+  problemSetCountStyle,
   problemSetDescStyle,
   problemSetDetailWrapperStyle,
   problemSetListPageContentStyle,
@@ -16,9 +18,10 @@ import {
 } from './style.css';
 import { TextButton } from '../../../Component/Button';
 import { BUTTON_SIZE, BUTTON_THEME } from '../../../types/button';
-import problemSetData from '../../../mock/problemSet.json';
+import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 
 export const ProblemSetListPage = () => {
+  const { data: problemSetList } = useQuery(['problemset-list'], problemApiWrapper.problemSetList);
   return (
     <div className={problemSetListPageWrapperStyle}>
       <div className={problemSetListPageContentStyle}>
@@ -32,12 +35,13 @@ export const ProblemSetListPage = () => {
           </div>
         </div>
         <div className={problemSetListStyle}>
-          {problemSetData?.map((problemSet) => (
-            <Link to={URLWithParam.PROBLEM_SET_DETAIL(problemSet.id)} key={problemSet.id}>
+          {problemSetList?.map(({ id, name, problemCnt, description }) => (
+            <Link to={URLWithParam.PROBLEM_SET_DETAIL(id)} key={id}>
               <div className={problemSetBoxStyle}>
                 <div className={problemSetDetailWrapperStyle}>
-                  <div className={problemSetTitleStyle}>{problemSet.setTitle}</div>
-                  <div className={problemSetDescStyle}>문제 수 {problemSet.problems.length}개</div>
+                  <div className={problemSetTitleStyle}>{name}</div>
+                  <div className={problemSetDescStyle}>{description}</div>
+                  <div className={problemSetCountStyle}>문제 수 {problemCnt}개</div>
                 </div>
                 <TextButton theme={BUTTON_THEME.PRIMARY} size={BUTTON_SIZE.SMALL}>
                   시작하기

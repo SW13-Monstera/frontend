@@ -13,6 +13,7 @@ const API_URL = {
   CHANGE_PASSWORD: 'v1/auth/password/change',
   NOTIFICATIONS: 'v1/notifications',
   RANKING: 'v1/ranks',
+  PROBLEM_SET_LIST: '/v1/problem-sets',
 };
 
 const API_URL_WITH_PARAMS = {
@@ -29,6 +30,7 @@ const API_URL_WITH_PARAMS = {
   USER_INFO: (user_id: string) => `/v1/users/${user_id}`,
   ASSESSMENT: (problem_id: string) => `/v1/problems/grade/${problem_id}/assessment`,
   READ_NOTIFICATION: (notification_id: string) => `v1/notifications/read/${notification_id}`,
+  PROBLEM_SET_DETAIL: (problem_set_id: string) => `/v1/problem-sets/${problem_set_id}`,
 };
 
 export { API_URL, API_URL_WITH_PARAMS };

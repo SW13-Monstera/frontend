@@ -132,3 +132,19 @@ export interface IAssessmentRequest {
   assessmentType: TAssessment;
   content?: string;
 }
+
+export type TProblemSetListResponse = IProblemSet[];
+
+export interface IProblemSet {
+  id: number;
+  problemCnt: number;
+  name: string;
+  description: string;
+}
+
+export interface IProblemSetDetailResponse {
+  id: number;
+  name: string;
+  description: string;
+  problems: IProblemListResponseDataContents[];
+}
