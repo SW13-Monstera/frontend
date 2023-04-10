@@ -36,5 +36,6 @@
         "property": "only"
       }
     ]
-  }
+  },
+  "ignorePatterns": ["**/node_modules/**"]
 }
