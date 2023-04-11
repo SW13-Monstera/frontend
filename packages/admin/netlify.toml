@@ -1,0 +1,7 @@
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
+
+[context."main".environment]
+VITE_API_BASE_URL = "https://api.csbroker.io/api"

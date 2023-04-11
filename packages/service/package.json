@@ -1,0 +1,61 @@
+{
+  "name": "service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --mode development --port 3123",
+    "build": "tsc && vite build --mode production",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SW13-Monstera/frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SW13-Monstera/frontend/issues"
+  },
+  "homepage": "https://github.com/SW13-Monstera/frontend#readme",
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.14",
+    "@vanilla-extract/css": "^1.7.2",
+    "@vanilla-extract/vite-plugin": "^3.2.1",
+    "auth": "file:../auth",
+    "axios": "^0.27.2",
+    "chart.js": "^3.9.1",
+    "moment": "^2.29.4",
+    "react": "^18.0.0",
+    "react-chartjs-2": "^4.3.1",
+    "react-countup": "^6.3.0",
+    "react-dom": "^18.0.0",
+    "react-ga": "^3.3.1",
+    "react-helmet-async": "^1.3.0",
+    "react-markdown": "^8.0.3",
+    "react-modal": "^3.15.1",
+    "react-query": "^3.39.2",
+    "react-router-dom": "^6.3.0",
+    "react-select": "^5.4.0",
+    "react-split": "^2.0.14",
+    "react-toastify": "^9.0.8",
+    "rehype-highlight": "^5.0.2",
+    "remark-gfm": "^3.0.1",
+    "vite-plugin-svgr": "^2.2.0",
+    "zustand": "^4.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-modal": "^3.13.1",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^1.3.0",
+    "prettier": "^2.7.1",
+    "rollup-plugin-visualizer": "^5.8.3",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.9",
+    "vite-plugin-remove-console": "^1.1.0"
+  }
+}
