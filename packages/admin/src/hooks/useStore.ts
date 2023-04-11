@@ -4,21 +4,6 @@ interface IAuthStoreState {
   isLogin: boolean;
 }
 
-interface IFilterElement {
-  standard: string;
-  value: string;
-}
-
-interface IFilterState {
-  longProblemFilters: IFilterElement[];
-  labelingDataFilters: IFilterElement[];
-  validatingDataFilters: IFilterElement[];
-  doneDataFilters: IFilterElement[];
-
-  addFilter: (filterElement: IFilterElement) => void;
-  deleteFilter: (filterElement: IFilterElement) => void;
-}
-
 const useAuthStore = create((set) => ({
   isLogin: false,
   setIsLogin: () => set((state: IAuthStoreState) => ({ isLogin: !state.isLogin })),

@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { TableCell, TableHead, TableRow, Checkbox } from '@mui/material';
+import { TableCell, TableHead, TableRow } from '@mui/material';
 import { ITableHead } from '../../types/etc';
 
 interface CustomTableProps {
@@ -10,7 +10,7 @@ interface CustomTableProps {
 }
 
 export function CustomTableHead(props: CustomTableProps) {
-  const { onSelectAllClick, numSelected, rowCount, tableHeads } = props;
+  const { tableHeads } = props;
 
   return (
     <TableHead>

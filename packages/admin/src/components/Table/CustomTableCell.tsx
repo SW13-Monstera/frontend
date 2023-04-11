@@ -34,7 +34,9 @@ export const CustomTableCell = ({
                 ? () => {
                     handleRowClick(row.id);
                   }
-                : () => {}
+                : () => {
+                    return;
+                  }
             }
           >
             {row[keyName] ?? 'N/A'}

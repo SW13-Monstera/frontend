@@ -9,9 +9,7 @@ import {
   TablePagination,
   TableRow,
   Typography,
-  Checkbox,
 } from '@mui/material';
-import { CustomTableToolbar } from './CustomToolbar';
 import { CustomTableHead } from './CustomTableHead';
 import { CustomTableCell } from './CustomTableCell';
 
@@ -47,7 +45,9 @@ export const BaseTable = ({
       <TableContainer>
         <Table sx={{ minWidth: 750 }} aria-labelledby='tableTitle' size='small'>
           <CustomTableHead
-            onSelectAllClick={() => {}}
+            onSelectAllClick={() => {
+              return;
+            }}
             rowCount={data?.length ?? 0}
             tableHeads={tableHeads}
           />

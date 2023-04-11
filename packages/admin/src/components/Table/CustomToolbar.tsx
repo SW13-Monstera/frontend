@@ -1,4 +1,4 @@
-import { Toolbar, Typography } from '@mui/material';
+import { Toolbar } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 
 export const CustomTableToolbar = (props: { numSelected?: any }) => {

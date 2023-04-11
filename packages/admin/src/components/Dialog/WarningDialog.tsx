@@ -19,14 +19,17 @@ interface IWarningDialog {
   onClick: () => void;
 }
 
-const Transition = forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
+// eslint-disable-next-line react/display-name
+const Transition = forwardRef(
+  (
+    props: TransitionProps & {
+      children: React.ReactElement<any, any>;
+    },
+    ref: React.Ref<unknown>,
+  ) => {
+    return <Slide direction='up' ref={ref} {...props} />;
   },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction='up' ref={ref} {...props} />;
-});
+);
 
 export const WarningDialog = ({ isOpen, handleClose, onClick }: IWarningDialog) => {
   return (
