@@ -7,12 +7,22 @@
     "dev:admin": "npm run dev --workspace=admin",
     "build": "npm run build --workspace=service",
     "build:admin": "npm run build --workspace=admin",
-    "lint": "npm run lint",
-    "lint-diff": "npm run lint-diff"
+    "lint": "eslint 'packages/**/src/**/*.ts'",
+    "lint-diff": "eslint $(git diff --name-only --diff-filter=duxb origin/$BASE origin/$HEAD | grep -E '\\.((j|t)sx?)$' | xargs)"
   },
   "workspaces": [
     "packages/service",
     "packages/admin",
     "packages/auth"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-plugin-react": "^7.30.1",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-unused-imports": "^2.0.0"
+  }
 }
