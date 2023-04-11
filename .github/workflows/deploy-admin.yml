@@ -1,4 +1,4 @@
-name: "deploy-admin"
+name: 'deploy-admin'
 
 on:
   push:
@@ -37,10 +37,10 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.2
         with:
-          publish-dir: "./dist"
+          publish-dir: './packages/admin/dist'
           production-branch: main
           github-token: ${{ github.token }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: 'Deploy from GitHub Actions'
           enable-pull-request-comment: false
           enable-commit-comment: true
           overwrites-pull-request-comment: true
