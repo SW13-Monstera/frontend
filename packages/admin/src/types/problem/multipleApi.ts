@@ -1,4 +1,3 @@
-import { IChoice } from '../etc';
 
 export interface IMultipleCreateRequest {
   title: string;

@@ -14,5 +14,4 @@ export const problemSetApiWrapper = {
     const res = await apiClient.post(API_URL.PROBLEM_SET_LIST_CREATE, data);
     return res.data;
   },
-  updateProblemSet: () => {},
 };

@@ -1,8 +1,5 @@
-import { useEffect, useState, MouseEvent } from 'react';
+import { useState, MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PROBLEM_FILTER } from '../constants/filter';
-import { IFilter } from '../types/etc';
-import { IProblemListRequest } from '../types/problem/api';
 
 export const useTable = (url?: (id: string) => string) => {
   const navigate = useNavigate();

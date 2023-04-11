@@ -1,4 +1,3 @@
-import { IParsedToken, IUserInfo } from 'auth/types';
 import apiClient from '../api/apiClient';
 import { AUTHORIZTION, BEARER_TOKEN, USER_INFO } from 'auth/constants';
 

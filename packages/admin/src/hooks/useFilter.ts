@@ -1,5 +1,4 @@
 import { useState, MouseEvent, ChangeEvent, useEffect } from 'react';
-import { PROBLEM_FILTER } from '../constants/filter';
 import { IFilter, IProblemCondition } from '../types/etc';
 
 export const useFilter = () => {

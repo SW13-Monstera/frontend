@@ -1,4 +1,4 @@
-import { useState, MouseEvent, useEffect, ChangeEvent } from 'react';
+import { useState, MouseEvent, ChangeEvent } from 'react';
 import { IChoiceElement } from '../types/problem/multipleApi';
 
 interface IChoiceElementWithId extends IChoiceElement {

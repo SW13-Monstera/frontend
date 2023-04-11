@@ -9,15 +9,13 @@ const apiClient = axios.create({
   withCredentials: true,
 });
 
-try {
-  const userInfo = getUserInfo();
-  if (userInfo) {
-    const token: string | null | undefined = userInfo.accessToken;
-    if (typeof token === 'string') {
-      apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(token);
-    }
+const userInfo = getUserInfo();
+if (userInfo) {
+  const token: string | null | undefined = userInfo.accessToken;
+  if (typeof token === 'string') {
+    apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(token);
   }
-} catch (e) {}
+}
 
 apiClient.interceptors.response.use(
   (res) => res.data,

@@ -1,4 +1,4 @@
-import { IUserInfo, TROLE } from 'auth/types';
+import { IUserInfo } from 'auth/types';
 import { setLogout } from './../../../utils/index';
 import { getUserInfo, setUserInfo } from 'auth/utils/userInfo';
 import apiClient from '../../apiClient';
