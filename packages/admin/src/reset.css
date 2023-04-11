@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  background: #fff;
+  color: #202124;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  border: none;
+  background: inherit;
+  box-shadow: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
+ol,
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+input {
+  border: none;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+}
