@@ -7,7 +7,7 @@
     "dev:admin": "npm run dev --workspace=admin",
     "build": "npm run build --workspace=service",
     "build:admin": "npm run build --workspace=admin",
-    "lint": "eslint 'packages/**/src/**/*.ts'",
+    "lint": "eslint 'packages/**/src/**/*.ts*'",
     "lint-diff": "eslint $(git diff --name-only --diff-filter=duxb origin/$BASE origin/$HEAD | grep -E '\\.((j|t)sx?)$' | xargs)"
   },
   "workspaces": [
