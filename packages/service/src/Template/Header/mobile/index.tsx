@@ -13,9 +13,16 @@ export const MobileHeader = () => {
   return (
     <div className={mobileHeaderStyle}>
       <div className={topWrapperStyle}>
-        <Link to={URL.MAIN}>
-          <img src={isDark ? logoWhite : logo} className={logoStyle} width='100px' height='20px' />
-        </Link>
+        <h1>
+          <Link to={URL.MAIN}>
+            <img
+              src={isDark ? logoWhite : logo}
+              className={logoStyle}
+              width='100px'
+              height='20px'
+            />
+          </Link>
+        </h1>
         <RightSideButtonList />
       </div>
       <div className={bottomWrapperStyle}>

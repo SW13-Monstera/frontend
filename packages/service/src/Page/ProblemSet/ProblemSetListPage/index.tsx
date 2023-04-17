@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { URLWithParam } from '../../../constants/url';
 import roadmapImage from '../../../assets/images/roadmap.webp';
 import {
+  descriptionWrapStyle,
   problemSetBoxStyle,
   problemSetCountStyle,
   problemSetDescStyle,
@@ -11,6 +12,7 @@ import {
   problemSetListPageWrapperStyle,
   problemSetListStyle,
   problemSetTitleStyle,
+  startButtonWrapStyle,
   titleDescStyle,
   titleDetailWrapperStyle,
   titleStyle,
@@ -40,12 +42,21 @@ export const ProblemSetListPage = () => {
               <div className={problemSetBoxStyle}>
                 <div className={problemSetDetailWrapperStyle}>
                   <div className={problemSetTitleStyle}>{name}</div>
-                  <div className={problemSetDescStyle}>{description}</div>
-                  <div className={problemSetCountStyle}>문제 수 {problemCnt}개</div>
+                  <div className={descriptionWrapStyle}>
+                    <TextButton
+                      theme={BUTTON_THEME.PRIMARY}
+                      size={BUTTON_SIZE.SMALL}
+                      className={startButtonWrapStyle}
+                    >
+                      시작하기
+                    </TextButton>
+                    <div className={problemSetDescStyle}>{description}</div>
+                  </div>
+
+                  <div className={problemSetCountStyle}>
+                    문제 수 <b>{problemCnt}</b>개
+                  </div>
                 </div>
-                <TextButton theme={BUTTON_THEME.PRIMARY} size={BUTTON_SIZE.SMALL}>
-                  시작하기
-                </TextButton>
               </div>
             </Link>
           ))}

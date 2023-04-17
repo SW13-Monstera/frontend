@@ -3,6 +3,7 @@ import { QuestionListElementBox } from '../../../Component/Box';
 import { ErrorPage } from '../../Error/ErrorPage';
 import { MetaTag } from '../../utils/MetaTag';
 import {
+  problemSetDescStyle,
   problemSetDetailWrapperStyle,
   problemSetListStyle,
   problemSetTitleStyle,
@@ -28,7 +29,10 @@ export const ProblemSetDetailPage = () => {
         keywords={`${problemSet?.name}, 서술형, 객관식, 단답형`}
       />
       <div className={problemSetDetailWrapperStyle}>
-        <div className={problemSetTitleStyle}>{problemSet?.name}</div>
+        <div>
+          <h2 className={problemSetTitleStyle}>{problemSet?.name}</h2>
+          <p className={problemSetDescStyle}>{problemSet?.description}</p>
+        </div>
         <div className={problemSetListStyle}>
           {problemSet?.problems?.map((problem) => {
             return (
