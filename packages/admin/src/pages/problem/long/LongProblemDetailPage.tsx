@@ -68,7 +68,9 @@ export const LongProblemDetailPage = () => {
       <MarkdownCard>{data?.description}</MarkdownCard>
       <Divider sx={{ my: 2 }} />
       <DetailTitle>모범답안</DetailTitle>
-      <MarkdownCard>{data?.standardAnswer}</MarkdownCard>
+      {data?.standardAnswers.map((answer) => (
+        <MarkdownCard key={answer}>{answer}</MarkdownCard>
+      ))}
       <Divider sx={{ my: 2 }} />
       <List>
         <ListSubheader

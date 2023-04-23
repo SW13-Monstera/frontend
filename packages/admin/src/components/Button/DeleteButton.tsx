@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 interface IDeleteButton {
-  id: string;
+  id?: string;
   onClick: (event: MouseEvent) => void;
 }
 

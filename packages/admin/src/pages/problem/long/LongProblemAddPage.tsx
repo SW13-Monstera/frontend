@@ -20,6 +20,8 @@ import { Link } from 'react-router-dom';
 import { StandardList } from '../../../components/FormGroup/StandardList';
 import { useStandard } from '../../../hooks/useStandard';
 import { MarkdownInputCard } from '../../../components/Card/MarkdownInputCard';
+import InputList from '../../../components/FormGroup/InputList';
+import { useList } from '../../../hooks/useList';
 
 export const LongProblemAddPage = () => {
   const [tagState, setTagState] = useState(
@@ -27,6 +29,7 @@ export const LongProblemAddPage = () => {
       return { id: tag.id, isChecked: false };
     }),
   );
+  const { ids: answerIds, addItem: addAnswer, deleteItem: deleteAnswer } = useList(1, 5);
   const {
     standardState: keywordStandardState,
     addStandard: addKeywordStandard,
@@ -52,8 +55,10 @@ export const LongProblemAddPage = () => {
     const data: IProblemCreateData = {
       title: (document.getElementById('title') as HTMLTextAreaElement).value || '',
       description: (document.getElementById('description') as HTMLTextAreaElement).value || '',
-      standardAnswer:
-        (document.getElementById('standardAnswer') as HTMLTextAreaElement).value || '',
+      standardAnswers:
+        Array.from(
+          document.getElementsByClassName('standard-answer') as HTMLCollectionOf<HTMLInputElement>,
+        ).map((e) => e.value) || [],
       tags: tagState.filter((tag) => tag.isChecked).map((e) => e.id),
       gradingStandards: [
         ...keywordStandardState.map(({ content, score, type }) => {
@@ -100,7 +105,13 @@ export const LongProblemAddPage = () => {
           </Box>
         </Card>
         <MarkdownInputCard id='description' title='문제 설명' />
-        <MarkdownInputCard id='standardAnswer' title='모범답안' />
+        <InputList
+          title='모범 답안'
+          ids={answerIds}
+          addItem={addAnswer}
+          deleteItem={deleteAnswer}
+          className='standard-answer'
+        />
         <Divider sx={{ my: 2 }} />
         <StandardList
           type={STANDARD_TYPE.KEYWORD}

@@ -78,7 +78,7 @@ export const LongProblemEditPage = () => {
     const data: IProblemCreateData = {
       title: (document.getElementById('title') as HTMLTextAreaElement).value || '',
       description: (document.getElementById('description') as HTMLTextAreaElement).value || '',
-      standardAnswer:
+      standardAnswers:
         (document.getElementById('standardAnswer') as HTMLTextAreaElement).value || '',
       tags: tagState.filter((tag) => tag.isChecked).map((e) => e.id),
       gradingStandards: [
@@ -135,11 +135,6 @@ export const LongProblemEditPage = () => {
           </Box>
         </Card>
         <MarkdownInputCard title='문제 설명' id='description' defaultValue={data?.description} />
-        <MarkdownInputCard
-          title='모범답안'
-          id='standardAnswer'
-          defaultValue={data?.standardAnswer}
-        />
         <Divider sx={{ my: 2 }} />
         <StandardList
           type={STANDARD_TYPE.KEYWORD}
