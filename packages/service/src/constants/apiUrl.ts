@@ -14,6 +14,7 @@ const API_URL = {
   NOTIFICATIONS: 'v1/notifications',
   RANKING: 'v1/ranks',
   PROBLEM_SET_LIST: '/v1/problem-sets',
+  PROBLEM_SHUFFLE: '/v1/problems/shuffle',
 };
 
 const API_URL_WITH_PARAMS = {
