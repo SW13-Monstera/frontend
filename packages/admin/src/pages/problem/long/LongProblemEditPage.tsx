@@ -21,11 +21,17 @@ import { STANDARD_TYPE } from '../../../constants/standard';
 import { useStandard } from '../../../hooks/useStandard';
 import { StandardList } from '../../../components/FormGroup/StandardList';
 import { MarkdownInputCard } from '../../../components/Card/MarkdownInputCard';
+import InputList from '../../../components/FormGroup/InputList';
+import { useList } from '../../../hooks/useList';
 
 export const LongProblemEditPage = () => {
   const { id } = useParams();
   const [data, setData] = useState<IProblemDetailResponse | null>(null);
-
+  const {
+    ids: answerIds,
+    addItem: addAnswer,
+    deleteItem: deleteAnswer,
+  } = useList(data?.standardAnswers.length, 1, 5);
   const [tagState, setTagState] = useState(
     TAGS.map((tag) => {
       return { id: tag.id, isChecked: false };
@@ -79,7 +85,9 @@ export const LongProblemEditPage = () => {
       title: (document.getElementById('title') as HTMLTextAreaElement).value || '',
       description: (document.getElementById('description') as HTMLTextAreaElement).value || '',
       standardAnswers:
-        (document.getElementById('standardAnswer') as HTMLTextAreaElement).value || '',
+        Array.from(
+          document.getElementsByClassName('standard-answer') as HTMLCollectionOf<HTMLInputElement>,
+        ).map((e) => e.value) || [],
       tags: tagState.filter((tag) => tag.isChecked).map((e) => e.id),
       gradingStandards: [
         ...keywordStandardState.map(({ content, score, type }) => {
@@ -135,6 +143,14 @@ export const LongProblemEditPage = () => {
           </Box>
         </Card>
         <MarkdownInputCard title='문제 설명' id='description' defaultValue={data?.description} />
+        <InputList
+          title='모범 답안'
+          ids={answerIds}
+          addItem={addAnswer}
+          deleteItem={deleteAnswer}
+          defaultValue={data?.standardAnswers}
+          className='standard-answer'
+        />
         <Divider sx={{ my: 2 }} />
         <StandardList
           type={STANDARD_TYPE.KEYWORD}

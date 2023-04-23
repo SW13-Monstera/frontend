@@ -6,27 +6,33 @@ interface IList {
   ids: string[];
   addItem: () => void;
   deleteItem: (id: string) => void;
+  defaultValue?: string[] | undefined;
   className: string;
 }
 
-const InputList = ({ title, ids, addItem, deleteItem, className }: IList) => {
+const InputList = ({ title, ids, addItem, deleteItem, defaultValue, className }: IList) => {
   return (
     <>
-      <Typography>{title}</Typography>
-      {ids.map((id) => (
-        <Box sx={{ display: 'flex', gap: 1, width: '100%' }} key={id}>
-          <TextField
-            variant='outlined'
-            sx={{ my: 1, mr: 1, width: '90%' }}
-            InputLabelProps={{ shrink: true }}
-            inputProps={{ className }}
-          />
-          <DeleteButton onClick={() => deleteItem(id)} />
-        </Box>
-      ))}
-      <Button variant='contained' sx={{ mt: 2 }} onClick={addItem}>
-        추가
-      </Button>
+      {defaultValue && (
+        <>
+          <Typography>{title}</Typography>
+          {ids.map((id, idx) => (
+            <Box sx={{ display: 'flex', gap: 1, width: '100%' }} key={id}>
+              <TextField
+                variant='outlined'
+                sx={{ my: 1, mr: 1, width: '90%' }}
+                InputLabelProps={{ shrink: true }}
+                inputProps={{ className }}
+                defaultValue={defaultValue[idx]}
+              />
+              <DeleteButton onClick={() => deleteItem(id)} />
+            </Box>
+          ))}
+          <Button variant='contained' sx={{ mt: 2 }} onClick={addItem}>
+            추가
+          </Button>
+        </>
+      )}
     </>
   );
 };

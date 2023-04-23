@@ -29,7 +29,7 @@ export const LongProblemAddPage = () => {
       return { id: tag.id, isChecked: false };
     }),
   );
-  const { ids: answerIds, addItem: addAnswer, deleteItem: deleteAnswer } = useList(1, 5);
+  const { ids: answerIds, addItem: addAnswer, deleteItem: deleteAnswer } = useList(1, 1, 5);
   const {
     standardState: keywordStandardState,
     addStandard: addKeywordStandard,

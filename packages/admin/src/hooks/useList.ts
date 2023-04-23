@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-export const useList = (minCount?: number, maxCount?: number) => {
-  const [ids, setIds] = useState<string[]>(Array(minCount).fill(uuid()));
+export const useList = (count?: number, minCount?: number, maxCount?: number) => {
+  const [ids, setIds] = useState<string[]>(Array(count ?? minCount).fill(uuid()));
 
   const addItem = () => {
     if (maxCount && ids.length >= maxCount) {
