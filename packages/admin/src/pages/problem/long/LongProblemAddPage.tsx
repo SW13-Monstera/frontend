@@ -111,6 +111,7 @@ export const LongProblemAddPage = () => {
           addItem={addAnswer}
           deleteItem={deleteAnswer}
           className='standard-answer'
+          defaultValue={[]}
         />
         <Divider sx={{ my: 2 }} />
         <StandardList

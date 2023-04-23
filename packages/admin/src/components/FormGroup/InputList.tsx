@@ -1,5 +1,6 @@
-import { Typography, Button, Box, TextField } from '@mui/material';
+import { Typography, Button, Box } from '@mui/material';
 import { DeleteButton } from '../Button/DeleteButton';
+import { MarkdownInputCard } from '../Card/MarkdownInputCard';
 
 interface IList {
   title: string;
@@ -18,13 +19,7 @@ const InputList = ({ title, ids, addItem, deleteItem, defaultValue, className }:
           <Typography>{title}</Typography>
           {ids.map((id, idx) => (
             <Box sx={{ display: 'flex', gap: 1, width: '100%' }} key={id}>
-              <TextField
-                variant='outlined'
-                sx={{ my: 1, mr: 1, width: '90%' }}
-                InputLabelProps={{ shrink: true }}
-                inputProps={{ className }}
-                defaultValue={defaultValue[idx]}
-              />
+              <MarkdownInputCard id={id} defaultValue={defaultValue[idx]} className={className} />
               <DeleteButton onClick={() => deleteItem(id)} />
             </Box>
           ))}
