@@ -28,7 +28,7 @@ export const UserDataEditPage = () => {
   const { data: profileData } = useQuery<IProfileData>(
     'getUserInfoData',
     () => userApiWrapper.getUserInfoData(myUserInfo.id),
-    { refetchOnWindowFocus: false, staleTime: 10000 },
+    { cacheTime: 0 },
   );
 
   const loadMajorOptions = (inputValue: string, callback: (options: IOption[]) => void) => {
@@ -63,7 +63,7 @@ export const UserDataEditPage = () => {
     callback(JOB_OBJECTIVE.filter((e) => e.label.includes(inputValue)));
   };
 
-  const [newProfileData, setNewProfileData] = useState<IProfileData | undefined>(profileData);
+  const [newProfileData, setNewProfileData] = useState<Partial<IProfileData>>();
 
   const submitProfileData = () => {
     userApiWrapper
@@ -105,9 +105,9 @@ export const UserDataEditPage = () => {
               loadOptions={loadMajorOptions}
               defaultValue={createOptions(profileData?.major ? [profileData.major] : [])}
               onChange={(majorOption: IOption) => {
-                setNewProfileData(
-                  newProfileData ? { ...newProfileData, major: majorOption.label } : undefined,
-                );
+                setNewProfileData((prev) => {
+                  return { ...prev, major: majorOption.label };
+                });
               }}
             />
             <DefaultSelect
@@ -117,9 +117,9 @@ export const UserDataEditPage = () => {
               loadOptions={loadJobOptions}
               defaultValue={JOB.find((e) => e.label === profileData?.job)}
               onChange={(jobOption: IOption) => {
-                setNewProfileData(
-                  newProfileData ? { ...newProfileData, job: jobOption.label } : undefined,
-                );
+                setNewProfileData((prev) => {
+                  return { ...prev, job: jobOption.label };
+                });
               }}
             />
             <DefaultSelect
@@ -128,11 +128,9 @@ export const UserDataEditPage = () => {
               isMulti={true}
               defaultValue={createOptions(profileData?.techs ? profileData.techs : [])}
               onChange={(techOptions: IOption[]) => {
-                setNewProfileData(
-                  newProfileData
-                    ? { ...newProfileData, techs: techOptions.map((e) => e.label) }
-                    : undefined,
-                );
+                setNewProfileData((prev) => {
+                  return { ...prev, techs: techOptions.map((e) => e.label) };
+                });
               }}
             />
             <DefaultSelect
@@ -142,9 +140,9 @@ export const UserDataEditPage = () => {
               loadOptions={loadJobObjectiveOptions}
               defaultValue={JOB_OBJECTIVE.find((e) => e.label === profileData?.jobObjective)}
               onChange={(jobOption: IOption) => {
-                setNewProfileData(
-                  newProfileData ? { ...newProfileData, jobObjective: jobOption.label } : undefined,
-                );
+                setNewProfileData((prev) => {
+                  return { ...prev, jobObjective: jobOption.label };
+                });
               }}
             />
             <UrlInputBox
