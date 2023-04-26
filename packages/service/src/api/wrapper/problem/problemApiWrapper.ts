@@ -75,4 +75,7 @@ export const problemApiWrapper = {
       .get<IProblemSetDetailResponse>(API_URL_WITH_PARAMS.PROBLEM_SET_DETAIL(problem_set_id))
       .then((res) => res.data);
   },
+  shuffle: (size: number) => {
+    return apiClient.get(API_URL.PROBLEM_SHUFFLE, { params: { size } }).then((res) => res.data);
+  },
 };
