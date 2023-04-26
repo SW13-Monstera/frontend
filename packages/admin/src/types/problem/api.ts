@@ -42,7 +42,7 @@ export interface IProblemDetailResponse {
   id: number;
   title: string;
   description: string;
-  standardAnswer: string;
+  standardAnswers: string[];
   tags: string[];
   gradingStandards: IStandardResponse[];
   isActive: boolean;
@@ -52,7 +52,7 @@ export interface IProblemDetailResponse {
 export interface IProblemCreateData {
   title: string;
   description: string;
-  standardAnswer: string;
+  standardAnswers: string | string[];
   tags: string[];
   gradingStandards: IStandard[];
 }
@@ -73,8 +73,8 @@ export interface IProblemListElement {
   avgContentScore?: number | null;
 }
 
-export type TProblemType = typeof PROBLEM_TYPE[keyof typeof PROBLEM_TYPE];
-export type TProblemTag = typeof PROBLEM_TAG[keyof typeof PROBLEM_TAG];
+export type TProblemType = (typeof PROBLEM_TYPE)[keyof typeof PROBLEM_TYPE];
+export type TProblemTag = (typeof PROBLEM_TAG)[keyof typeof PROBLEM_TAG];
 
 export interface ISearchProblem {
   contents: ISearchProblemElement[];
