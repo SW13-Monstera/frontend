@@ -25,10 +25,8 @@ export const UserDataEditPage = () => {
   const myUserInfo = getUserInfo();
   if (!myUserInfo) return <></>;
   const navigate = useNavigate();
-  const { data: profileData } = useQuery<IProfileData>(
-    'getUserInfoData',
-    () => userApiWrapper.getUserInfoData(myUserInfo.id),
-    { cacheTime: 0 },
+  const { data: profileData } = useQuery<IProfileData>('getUserInfoData', () =>
+    userApiWrapper.getUserInfoData(myUserInfo.id),
   );
 
   const loadMajorOptions = (inputValue: string, callback: (options: IOption[]) => void) => {
