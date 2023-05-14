@@ -4,14 +4,15 @@ import { MarkdownCard } from './MarkdownCard';
 
 interface IMarkdownCard {
   id: string;
-  title: string;
+  title?: string;
+  className?: string;
   defaultValue?: string | undefined;
 }
 
-export const MarkdownInputCard = ({ id, title, defaultValue }: IMarkdownCard) => {
+export const MarkdownInputCard = ({ id, title, className, defaultValue }: IMarkdownCard) => {
   const { value, handleValueChange } = useMarkdownInput(defaultValue);
   return (
-    <Card sx={{ p: 2, my: 1 }} variant='outlined'>
+    <Card sx={{ p: 2, my: 1, width: '100%' }} variant='outlined'>
       <Typography color='text.secondary' sx={{ fontSize: 12 }}>
         {title}
       </Typography>
@@ -23,7 +24,7 @@ export const MarkdownInputCard = ({ id, title, defaultValue }: IMarkdownCard) =>
         defaultValue={defaultValue}
         sx={{ my: 2, width: '100%' }}
         InputLabelProps={{ shrink: true }}
-        inputProps={{ maxLength: 5000 }}
+        inputProps={{ maxLength: 5000, className }}
         onChange={handleValueChange}
         variant='filled'
       />

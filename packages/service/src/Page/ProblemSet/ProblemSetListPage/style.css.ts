@@ -53,10 +53,9 @@ export const problemSetListStyle = style({
   gridTemplateColumns: 'repeat(3, 1fr)',
   rowGap: '1.25rem',
   columnGap: '1.5rem',
-
   width: '100%',
-
   paddingTop: '1rem',
+  overflowX: 'auto',
 
   '@media': {
     'screen and (max-width: 1600px)': {
@@ -69,20 +68,16 @@ export const problemSetListStyle = style({
 });
 
 export const problemSetBoxStyle = style({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
   width: '100%',
   height: '100%',
   padding: '1rem 1.5rem',
-
   color: themeColors.text[1],
   background: themeColors.background.FFLight,
   boxShadow: `0px 0px 4px ${themeColors.shadow[1]}`,
   borderRadius: '8px',
   transition: 'box-shadow .3s',
   animation: spreadBoxShadow,
-
+  overflow: 'hidden',
   ':hover': {
     boxShadow: `4px 8px 24px  ${themeColors.shadow[1]}`,
   },
@@ -99,16 +94,36 @@ export const problemSetTitleStyle = style({
   fontSize: '1.125rem',
   lineHeight: '1.5rem',
   color: themeColors.text[1],
+  '@media': {
+    'screen and (max-width: 650px)': {
+      width: '20rem',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
+  },
 });
 
 export const problemSetDescStyle = style({
   fontSize: '0.85rem',
-  lineHeight: '1rem',
   color: themeColors.text[3],
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+});
+
+export const descriptionWrapStyle = style({
+  height: '2.1875rem',
+  lineHeight: '2.1875rem',
 });
 
 export const problemSetCountStyle = style({
   fontSize: '0.85rem',
   lineHeight: '1rem',
   color: themeColors.text[1],
+});
+
+export const startButtonWrapStyle = style({
+  float: 'right',
+  marginLeft: '1rem',
 });

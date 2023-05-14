@@ -14,6 +14,11 @@ export const problemSetTitleStyle = style({
   lineHeight: '2.75rem',
 });
 
+export const problemSetDescStyle = style({
+  fontSize: '1.5rem',
+  lineHeight: '2.75rem',
+});
+
 export const problemSetListStyle = style({
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',

@@ -47,9 +47,10 @@ export const detailWrapperStyle = style([
 ]);
 
 export const titleStyle = style({
+  height: '2.5rem',
   fontWeight: '700',
   fontSize: '1.125rem',
-  lineHeight: '1.5rem',
+  lineHeight: '1.25rem',
   color: themeColors.text[1],
   margin: '1rem 0',
 });

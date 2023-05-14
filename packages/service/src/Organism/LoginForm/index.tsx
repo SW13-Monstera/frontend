@@ -13,6 +13,8 @@ import { validateEmail } from '../../utils/validate';
 import { toast } from 'react-toastify';
 import { authApiWrapper } from '../../api/wrapper/auth/authApiWrapper';
 import { useMutation } from 'react-query';
+import { getUserInfo } from 'auth/utils/userInfo';
+import { useEffect } from 'react';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -38,21 +40,26 @@ function LoginForm() {
 
     if (!validateForm(emailValue, passwordValue)) return;
 
-    const userInfo = await authApiWrapper.login({
+    await authApiWrapper.login({
       email: emailValue,
       password: passwordValue,
     });
-
-    if (userInfo) {
-      navigate(-1);
-    }
   };
 
   const { mutate: submit, isLoading } = useMutation(handleSubmit, {
+    onSuccess: () => {
+      navigate(-1);
+    },
     onError: () => {
       toast.error('올바른 이메일과 비밀번호인지 확인해주세요.');
     },
   });
+
+  useEffect(() => {
+    if (getUserInfo()) {
+      navigate(URL.MAIN);
+    }
+  }, []);
 
   return (
     <div className={loginFormStyle}>

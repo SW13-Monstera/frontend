@@ -25,10 +25,7 @@ import { ICommonStats } from '../../types/api/common';
 import { CustomCarousel } from '../../Component/Utils/CustomSlider';
 
 const getProblemList = () => {
-  const params = { page: 0, size: 4 };
-  return problemApiWrapper
-    .problemList(params)
-    .then((data: IProblemListResponseData) => data.contents);
+  return problemApiWrapper.shuffle(4).then((data: IProblemListResponseData) => data.contents);
 };
 
 const getStatistics = () => {
