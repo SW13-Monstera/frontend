@@ -80,12 +80,12 @@ export const chatAppStyle = style({
   right: '20px',
   float: 'right',
   maxWidth: '400px',
-  height: '300px',
+  height: '320px',
   marginRight: '30px',
   padding: '20px',
   border: '1px solid #ccc',
   borderRadius: '5px',
-  zIndex: '10',
+  zIndex: '20',
   backgroundColor: themeColors.background.FF,
 });
 

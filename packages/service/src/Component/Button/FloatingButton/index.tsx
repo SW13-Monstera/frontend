@@ -1,9 +1,10 @@
+import { IButton } from '../../../types/button';
 import { floatingButtonStyle } from './style.css';
 
-const FloatingButton = () => {
+const FloatingButton = (props: IButton) => {
   return (
-    <button type='button' className={floatingButtonStyle}>
-      FloatingButton
+    <button type='button' className={floatingButtonStyle} onClick={props.onClick}>
+      {props.children}
     </button>
   );
 };

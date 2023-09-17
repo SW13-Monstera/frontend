@@ -1,4 +1,6 @@
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import FloatingButton from '../../Component/Button/FloatingButton';
+import { displayNoneStyle } from '../../styles/util.css';
 import {
   chatAppStyle,
   chatAppTitleStyle,
@@ -62,7 +64,7 @@ const MessageInput = ({ onSendMessage }: { onSendMessage: (text: string) => void
   );
 };
 
-const ChatApp = () => {
+const ChatApp = ({ isShown }: { isShown: boolean }) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
 
   const handleSendMessage = (text: string) => {
@@ -73,7 +75,7 @@ const ChatApp = () => {
   };
 
   return (
-    <div className={chatAppStyle}>
+    <div className={isShown ? chatAppStyle : displayNoneStyle}>
       <p className={chatAppTitleStyle}>챗봇에게 궁금한 점을 물어보세요!</p>
       <MessageList messages={messages} />
       <MessageInput onSendMessage={handleSendMessage} />
@@ -81,4 +83,20 @@ const ChatApp = () => {
   );
 };
 
-export default ChatApp;
+const ChatBot = () => {
+  const [isShown, setIsShow] = useState(false);
+  return (
+    <>
+      <ChatApp isShown={isShown} />
+      <FloatingButton
+        onClick={() => {
+          setIsShow((prev) => !prev);
+        }}
+      >
+        ?
+      </FloatingButton>
+    </>
+  );
+};
+
+export default ChatBot;
