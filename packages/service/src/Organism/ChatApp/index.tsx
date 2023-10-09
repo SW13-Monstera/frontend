@@ -1,4 +1,7 @@
+import { AxiosError } from 'axios';
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import { useMutation } from 'react-query';
+import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
 import FloatingButton from '../../Component/Button/FloatingButton';
 import { displayNoneStyle } from '../../styles/util.css';
 import {
@@ -66,12 +69,15 @@ const MessageInput = ({ onSendMessage }: { onSendMessage: (text: string) => void
 
 const ChatApp = ({ isShown }: { isShown: boolean }) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
+  const { mutate } = useMutation<string, AxiosError, string>(commonApiWrapper.postChat, {
+    onSuccess: (answer) => {
+      setMessages((prev) => [...prev, { text: answer, isUser: false }]);
+    },
+  });
 
   const handleSendMessage = (text: string) => {
     setMessages((prev) => [...prev, { text, isUser: true }]);
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { text: '안녕하세요! 저는 챗봇입니다.', isUser: false }]);
-    }, 3000);
+    mutate(text);
   };
 
   return (
