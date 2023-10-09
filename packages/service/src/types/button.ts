@@ -6,6 +6,8 @@ export interface IButton {
   theme?: TButtonTheme;
   size?: TButtonSize;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  onMouseOver?: MouseEventHandler<HTMLButtonElement>;
+  onMouseOut?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
 }
 
@@ -17,7 +19,7 @@ export interface IButtonDetail extends IButton {
 
 export const BUTTON_TYPE = { SUBMIT: 'submit', BUTTON: 'button', RESET: 'reset' } as const;
 
-export type TButtonType = typeof BUTTON_TYPE[keyof typeof BUTTON_TYPE];
+export type TButtonType = (typeof BUTTON_TYPE)[keyof typeof BUTTON_TYPE];
 
 export const BUTTON_THEME = {
   PRIMARY: 'primary',
@@ -25,7 +27,7 @@ export const BUTTON_THEME = {
   TERTIARY: 'tertiary',
 } as const;
 
-export type TButtonTheme = typeof BUTTON_THEME[keyof typeof BUTTON_THEME];
+export type TButtonTheme = (typeof BUTTON_THEME)[keyof typeof BUTTON_THEME];
 
 export const BUTTON_SIZE = {
   LARGE: 'large',
@@ -34,7 +36,7 @@ export const BUTTON_SIZE = {
   SMALL: 'small',
 } as const;
 
-export type TButtonSize = typeof BUTTON_SIZE[keyof typeof BUTTON_SIZE];
+export type TButtonSize = (typeof BUTTON_SIZE)[keyof typeof BUTTON_SIZE];
 
 export interface ICustomButton {
   onClick?: MouseEventHandler<HTMLButtonElement>;

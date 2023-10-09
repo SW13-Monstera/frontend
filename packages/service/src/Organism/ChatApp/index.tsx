@@ -1,3 +1,4 @@
+import { getUserInfo } from 'auth/utils/userInfo';
 import { AxiosError } from 'axios';
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { useMutation } from 'react-query';
@@ -7,6 +8,7 @@ import { displayNoneStyle } from '../../styles/util.css';
 import {
   chatAppStyle,
   chatAppTitleStyle,
+  chatBotTooltipStyle,
   messageBotStyle,
   messageFormStyle,
   messageInputStyle,
@@ -89,14 +91,33 @@ const ChatApp = ({ isShown }: { isShown: boolean }) => {
   );
 };
 
+const ChatBotTooltip = ({ isShown }: { isShown: boolean }) => {
+  return <div className={isShown ? chatBotTooltipStyle : displayNoneStyle}>로그인 후 이용가능</div>;
+};
+
 const ChatBot = () => {
-  const [isShown, setIsShow] = useState(false);
+  const [isChatShown, setIsChatShow] = useState(false);
+  const [isTooltipShown, setIsTooltipShown] = useState(false);
+
   return (
     <>
-      <ChatApp isShown={isShown} />
+      <ChatApp isShown={isChatShown} />
+      <ChatBotTooltip isShown={isTooltipShown} />
       <FloatingButton
         onClick={() => {
-          setIsShow((prev) => !prev);
+          const userInfo = getUserInfo();
+          if (!userInfo) return;
+          setIsChatShow((prev) => !prev);
+        }}
+        onMouseOver={() => {
+          const userInfo = getUserInfo();
+          if (userInfo) return;
+          setIsTooltipShown(true);
+        }}
+        onMouseOut={() => {
+          const userInfo = getUserInfo();
+          if (userInfo) return;
+          setIsTooltipShown(false);
         }}
       >
         ?

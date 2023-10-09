@@ -94,3 +94,28 @@ export const chatAppTitleStyle = style({
   marginBottom: '20px',
   fontSize: '1.125rem',
 });
+
+export const chatBotTooltipStyle = style({
+  position: 'fixed',
+  bottom: '90px',
+  right: '0px',
+  float: 'right',
+  marginRight: '30px',
+  padding: '8px',
+  borderRadius: '5px',
+  zIndex: '30',
+  backgroundColor: COLOR.BACKGROUND.BLUE,
+  color: COLOR.TEXT[5],
+  opacity: 0.7,
+  '::before': {
+    content: '',
+    position: 'absolute',
+    borderTop: `9px solid ${COLOR.BACKGROUND.BLUE}`,
+    borderLeft: '9px solid transparent',
+    borderRight: '9px solid transparent',
+    borderBottom: '9px solid transparent',
+    bottom: '-18px',
+    right: '0px',
+    opacity: 0.7,
+  },
+});
