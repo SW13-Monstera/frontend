@@ -114,8 +114,7 @@ export const chatBotTooltipStyle = style({
     borderLeft: '9px solid transparent',
     borderRight: '9px solid transparent',
     borderBottom: '9px solid transparent',
-    bottom: '-18px',
-    right: '0px',
-    opacity: 0.7,
+    bottom: '-15px',
+    right: '0',
   },
 });
