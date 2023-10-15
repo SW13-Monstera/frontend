@@ -9,7 +9,6 @@ import { MetaTag } from '../utils/MetaTag';
 import { SplitProblemDetailPageTemplate } from '../../Template/SplitProblemDetailPageTemplate';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { INVALID_ID_ERROR } from '../../errors';
-import { StandardAnswerContent } from './Content/StandardAnswer';
 import { UserAnswerContent } from './Content/UserAnswer';
 import { ChartContent } from './Content/Chart';
 import { createUserAnswerDOM } from '../../utils/createLongProblemDOM';
@@ -49,7 +48,7 @@ export default function ResultPage() {
         handleSubmit={handleSubmit}
         isResult={true}
         isResultPage={true}
-        leftSideContent={<StandardAnswerContent result={result} />}
+        leftSideContent={<></>}
         rightSideContent={<UserAnswerContent result={result} />}
         bottomContent={<ChartContent result={result} />}
       />
