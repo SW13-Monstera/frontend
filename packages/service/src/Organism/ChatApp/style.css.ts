@@ -5,7 +5,6 @@ import { themeColors } from '../../styles/theme.css';
 export const messageBaseStyle = style({
   position: 'relative',
   margin: '0 16px 20px 16px',
-  maxHeight: '200px',
   padding: '8px',
   borderRadius: '4px',
 });
