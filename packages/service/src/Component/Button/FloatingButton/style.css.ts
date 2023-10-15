@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../../constants/color';
+import { themeColors } from '../../../styles/theme.css';
 
 export const floatingButtonStyle = style({
   position: 'fixed',
@@ -12,10 +13,9 @@ export const floatingButtonStyle = style({
   height: '56px',
   cursor: 'pointer',
   borderRadius: '24px',
-  background: COLOR.PRIMARY,
+  background: `linear-gradient(${COLOR.PRIMARY} 0%, rgba(42,90,243) 100%)`,
   color: COLOR.BACKGROUND.ALICE_BLUE,
   fontSize: '2rem',
-  boxShadow:
-    'rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.1) 0px 4px 6px, rgba(0, 0, 0,0)',
+  boxShadow: `1px 1px 4px ${themeColors.shadow[1]}`,
   zIndex: '10',
 });

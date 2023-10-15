@@ -16,7 +16,7 @@ import {
   messageSubmitButtonStyle,
   messageUserStyle,
 } from './style.css';
-
+import chatgptImg from '../../assets/images/chat-gpt.png';
 interface IMessage {
   text: string;
   isUser: boolean;
@@ -120,7 +120,7 @@ const ChatBot = () => {
           setIsTooltipShown(false);
         }}
       >
-        ?
+        <img src={chatgptImg} alt='AI 챗봇' width='32px' />
       </FloatingButton>
     </>
   );
