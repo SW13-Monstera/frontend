@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css';
+import { style, keyframes } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
 import { themeColors } from '../../styles/theme.css';
 
@@ -51,6 +51,72 @@ export const messageListStyle = style({
   overflowY: 'auto',
   height: 'calc(100% - 100px)',
 });
+
+export const loadingMessageStyle = style([
+  messageBotStyle,
+  {
+    display: 'inline-block',
+    position: 'relative',
+    width: '80px',
+    height: '35px',
+  },
+]);
+
+const ellipsisStyle = style({
+  position: 'absolute',
+  top: '12px',
+  width: '8px',
+  height: '8px',
+  borderRadius: '50%',
+  background: COLOR.WHITE,
+  animationTimingFunction: 'cubic-bezier(0, 1, 1, 0)',
+});
+
+const ellipsis1KeyframeStyle = keyframes({
+  '0%': { transform: 'scale(0)' },
+  '100%': { transform: 'scale(1)' },
+});
+
+const ellipsis2KeyframeStyle = keyframes({
+  '0%': { transform: 'translate(0, 0)' },
+  '100%': { transform: 'translate(24px, 0)' },
+});
+const ellipsis3KeyframeStyle = keyframes({
+  '0%': { transform: 'scale(1)' },
+  '100%': { transform: 'scale(0)' },
+});
+
+export const ellipsis1Style = style([
+  ellipsisStyle,
+  {
+    left: '10px',
+    animation: `${ellipsis1KeyframeStyle} 0.6s infinite`,
+  },
+]);
+
+export const ellipsis2Style = style([
+  ellipsisStyle,
+  {
+    left: '10px',
+    animation: `${ellipsis2KeyframeStyle} 0.6s infinite`,
+  },
+]);
+
+export const ellipsis3Style = style([
+  ellipsisStyle,
+  {
+    left: '34px',
+    animation: `${ellipsis2KeyframeStyle} 0.6s infinite`,
+  },
+]);
+
+export const ellipsis4Style = style([
+  ellipsisStyle,
+  {
+    left: '60px',
+    animation: `${ellipsis3KeyframeStyle} 0.6s infinite`,
+  },
+]);
 
 export const messageFormStyle = style({
   display: 'flex',
