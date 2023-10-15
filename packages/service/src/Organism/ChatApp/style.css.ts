@@ -50,7 +50,7 @@ export const messageListStyle = style({
   marginBottom: '20px',
   overflowX: 'hidden',
   overflowY: 'auto',
-  height: '190px',
+  height: 'calc(100% - 100px)',
 });
 
 export const messageFormStyle = style({
@@ -79,8 +79,10 @@ export const chatAppStyle = style({
   bottom: '80px',
   right: '20px',
   float: 'right',
-  maxWidth: '400px',
-  height: '320px',
+  width: '40%',
+  maxWidth: '700px',
+  minWidth: '300px',
+  height: '50%',
   marginRight: '30px',
   padding: '20px',
   border: '1px solid #ccc',
