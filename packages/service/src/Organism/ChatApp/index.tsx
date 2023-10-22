@@ -7,6 +7,7 @@ import FloatingButton from '../../Component/Button/FloatingButton';
 import { displayNoneStyle } from '../../styles/util.css';
 import {
   chatAppStyle,
+  chatAppTitleImgStyle,
   chatAppTitleStyle,
   chatBotTooltipStyle,
   ellipsis1Style,
@@ -107,7 +108,10 @@ const ChatApp = ({ isShown }: { isShown: boolean }) => {
 
   return (
     <div className={isShown ? chatAppStyle : displayNoneStyle}>
-      <p className={chatAppTitleStyle}>챗봇에게 궁금한 점을 물어보세요!</p>
+      <p className={chatAppTitleStyle}>
+        <img src={chatgptImg} alt='chatGPT' width='20px' className={chatAppTitleImgStyle} />
+        <span>챗봇에게 궁금한 점을 물어보세요!</span>
+      </p>
       <MessageList messages={messages} isLoading={isLoading} />
       <MessageInput onSendMessage={handleSendMessage} />
     </div>

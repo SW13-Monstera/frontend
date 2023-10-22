@@ -1,5 +1,6 @@
 import { style, keyframes } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
+import { themeColors } from '../../styles/theme.css';
 
 export const messageWrapStyle = style({
   display: 'flex',
@@ -153,6 +154,7 @@ export const chatAppStyle = style({
   borderRadius: '8px',
   zIndex: '20',
   backgroundColor: COLOR.WHITE,
+  boxShadow: `4px 4px 12px ${themeColors.shadow[1]}`,
 });
 
 export const chatAppTitleStyle = style({
@@ -160,6 +162,12 @@ export const chatAppTitleStyle = style({
   marginBottom: '20px',
   fontSize: '1.125rem',
   color: COLOR.TEXT[1],
+});
+
+export const chatAppTitleImgStyle = style({
+  marginRight: '8px',
+  marginTop: '-3px',
+  verticalAlign: 'middle',
 });
 
 export const chatBotTooltipStyle = style({
