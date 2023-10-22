@@ -18,4 +18,8 @@ export const floatingButtonStyle = style({
   fontSize: '2rem',
   boxShadow: `1px 1px 4px ${themeColors.shadow[1]}`,
   zIndex: '10',
+
+  ':hover': {
+    boxShadow: `4px 4px 12px ${themeColors.shadow[1]}`,
+  },
 });
