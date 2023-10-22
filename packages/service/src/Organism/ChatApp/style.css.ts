@@ -1,47 +1,45 @@
 import { style, keyframes } from '@vanilla-extract/css';
 import { COLOR } from '../../constants/color';
-import { themeColors } from '../../styles/theme.css';
 
-export const messageBaseStyle = style({
+export const messageWrapStyle = style({
+  display: 'flex',
   position: 'relative',
   margin: '0 16px 20px 16px',
+});
+
+export const messageBotWrapStyle = style([
+  messageWrapStyle,
+  {
+    justifyContent: 'flex-start',
+  },
+]);
+
+export const messageUserWrapStyle = style([
+  messageWrapStyle,
+  {
+    justifyContent: 'flex-end',
+  },
+]);
+
+export const messageBaseStyle = style({
   padding: '8px',
   borderRadius: '4px',
+  width: 'fit-content',
 });
 
 export const messageBotStyle = style([
   messageBaseStyle,
   {
-    backgroundColor: themeColors.background.F0,
-    color: themeColors.text[1],
-    '::before': {
-      content: '',
-      position: 'absolute',
-      borderTop: '9px solid transparent',
-      borderLeft: '9px solid transparent',
-      borderRight: `9px solid ${themeColors.background.F0}`,
-      borderBottom: '9px solid transparent',
-      top: '3px',
-      left: '-17px',
-    },
+    backgroundColor: COLOR.BACKGROUND.F0,
+    color: COLOR.TEXT[2],
   },
 ]);
 
 export const messageUserStyle = style([
   messageBaseStyle,
   {
-    backgroundColor: themeColors.text[2],
-    color: themeColors.background.F0,
-    '::before': {
-      content: '',
-      position: 'absolute',
-      borderTop: '9px solid transparent',
-      borderLeft: `9px solid ${themeColors.text[2]}`,
-      borderRight: '9px solid transparent',
-      borderBottom: '9px solid transparent',
-      bottom: '3px',
-      right: '-17px',
-    },
+    backgroundColor: COLOR.PRIMARY,
+    color: COLOR.WHITE,
   },
 ]);
 
@@ -59,6 +57,7 @@ export const loadingMessageStyle = style([
     position: 'relative',
     width: '80px',
     height: '35px',
+    margin: '0 16px 20px 16px',
   },
 ]);
 
@@ -135,13 +134,13 @@ export const messageSubmitButtonStyle = style({
   backgroundColor: COLOR.PRIMARY,
   border: 'none',
   borderRadius: '5px',
-  color: themeColors.background.F0,
+  color: COLOR.WHITE,
   cursor: 'pointer',
 });
 
 export const chatAppStyle = style({
   position: 'fixed',
-  bottom: '80px',
+  bottom: '90px',
   right: '20px',
   float: 'right',
   width: '40%',
@@ -151,15 +150,16 @@ export const chatAppStyle = style({
   marginRight: '30px',
   padding: '20px',
   border: '1px solid #ccc',
-  borderRadius: '5px',
+  borderRadius: '8px',
   zIndex: '20',
-  backgroundColor: themeColors.background.FF,
+  backgroundColor: COLOR.WHITE,
 });
 
 export const chatAppTitleStyle = style({
   textAlign: 'center',
   marginBottom: '20px',
   fontSize: '1.125rem',
+  color: COLOR.TEXT[1],
 });
 
 export const chatBotTooltipStyle = style({

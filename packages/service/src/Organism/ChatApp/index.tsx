@@ -15,11 +15,13 @@ import {
   ellipsis4Style,
   loadingMessageStyle,
   messageBotStyle,
+  messageBotWrapStyle,
   messageFormStyle,
   messageInputStyle,
   messageListStyle,
   messageSubmitButtonStyle,
   messageUserStyle,
+  messageUserWrapStyle,
 } from './style.css';
 import chatgptImg from '../../assets/images/chat-gpt.png';
 
@@ -29,7 +31,9 @@ interface IMessage {
 }
 
 const Message = ({ text, isUser }: IMessage) => (
-  <div className={isUser ? messageUserStyle : messageBotStyle}>{text}</div>
+  <div className={isUser ? messageUserWrapStyle : messageBotWrapStyle}>
+    <div className={isUser ? messageUserStyle : messageBotStyle}>{text}</div>
+  </div>
 );
 
 const MessageList = ({ messages, isLoading }: { messages: IMessage[]; isLoading: boolean }) => {
