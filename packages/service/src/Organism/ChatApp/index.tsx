@@ -31,11 +31,34 @@ interface IMessage {
   isUser: boolean;
 }
 
-const Message = ({ text, isUser }: IMessage) => (
-  <div className={isUser ? messageUserWrapStyle : messageBotWrapStyle}>
-    <div className={isUser ? messageUserStyle : messageBotStyle}>{text}</div>
-  </div>
-);
+const Message = ({ text, isUser }: IMessage) => {
+  const [botText, setBotText] = useState('');
+
+  useEffect(() => {
+    const answer = text;
+    let curIdx = 0;
+
+    function write() {
+      if (!answer) return;
+
+      setBotText(answer.slice(0, curIdx));
+      if (curIdx++ === answer.length) {
+        curIdx = 0;
+      } else {
+        setTimeout(() => {
+          write();
+        }, 50);
+      }
+    }
+    write();
+  }, []);
+
+  return (
+    <div className={isUser ? messageUserWrapStyle : messageBotWrapStyle}>
+      <div className={isUser ? messageUserStyle : messageBotStyle}>{isUser ? text : botText}</div>
+    </div>
+  );
+};
 
 const MessageList = ({ messages, isLoading }: { messages: IMessage[]; isLoading: boolean }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
