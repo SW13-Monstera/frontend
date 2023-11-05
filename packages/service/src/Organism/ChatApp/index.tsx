@@ -29,10 +29,15 @@ import chatgptImg from '../../assets/images/chat-gpt.png';
 interface IMessage {
   text: string;
   isUser: boolean;
+  scrollRef: React.MutableRefObject<HTMLDivElement | null>;
 }
 
-const Message = ({ text, isUser }: IMessage) => {
+const Message = ({ text, isUser, scrollRef }: IMessage) => {
   const [botText, setBotText] = useState('');
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [botText]);
 
   useEffect(() => {
     const answer = text;
@@ -60,17 +65,19 @@ const Message = ({ text, isUser }: IMessage) => {
   );
 };
 
-const MessageList = ({ messages, isLoading }: { messages: IMessage[]; isLoading: boolean }) => {
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
+const MessageList = ({
+  messages,
+  isLoading,
+  scrollRef,
+}: {
+  messages: IMessage[];
+  isLoading: boolean;
+  scrollRef: React.MutableRefObject<HTMLDivElement | null>;
+}) => {
   return (
     <div className={messageListStyle}>
       {messages.map((message, index) => (
-        <Message key={index} text={message.text} isUser={message.isUser} />
+        <Message key={index} text={message.text} isUser={message.isUser} scrollRef={scrollRef} />
       ))}
       {isLoading ? <LoadingMessage /> : <></>}
       <div ref={scrollRef}></div>
@@ -117,17 +124,22 @@ const LoadingMessage = () => {
 };
 
 const ChatApp = ({ isShown }: { isShown: boolean }) => {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
   const [messages, setMessages] = useState<IMessage[]>([]);
   const { mutate, isLoading } = useMutation<string, AxiosError, string>(commonApiWrapper.postChat, {
     onSuccess: (answer) => {
-      setMessages((prev) => [...prev, { text: answer, isUser: false }]);
+      setMessages((prev) => [...prev, { text: answer, isUser: false, scrollRef }]);
     },
   });
 
   const handleSendMessage = (text: string) => {
-    setMessages((prev) => [...prev, { text, isUser: true }]);
+    setMessages((prev) => [...prev, { text, isUser: true, scrollRef }]);
     mutate(text);
   };
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   return (
     <div className={isShown ? chatAppStyle : displayNoneStyle}>
@@ -135,7 +147,8 @@ const ChatApp = ({ isShown }: { isShown: boolean }) => {
         <img src={chatgptImg} alt='chatGPT' width='20px' className={chatAppTitleImgStyle} />
         <span>챗봇에게 궁금한 점을 물어보세요!</span>
       </p>
-      <MessageList messages={messages} isLoading={isLoading} />
+      <MessageList messages={messages} isLoading={isLoading} scrollRef={scrollRef} />
+
       <MessageInput onSendMessage={handleSendMessage} />
     </div>
   );
