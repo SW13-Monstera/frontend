@@ -36,6 +36,6 @@ export const commonApiWrapper = {
     return apiClient.get(API_URL.RANKING, { params: { page } }).then((res) => res.data);
   },
   postChat: (question: string | null) => {
-    return apiClient.post(API_URL.CHAT, { content: question }).then((res) => res.data as string);
+    return apiClient.post(API_URL.CHAT, { content: question }).then((res) => res.data);
   },
 };
