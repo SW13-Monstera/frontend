@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { TextBox } from '../../../../Component/Box';
 import { MarkdownBox } from '../../../../Component/Box/MarkdownBox';
-import { ILongProblemResult } from '../../../../types/problem';
+import { ILongProblemSubmitData } from '../../../../types/api/problem';
 import { contentStyle, standardAnswerContentStyle, subtitleStyle } from '../../style.css';
 
-export const StandardAnswerContent = ({ result }: ILongProblemResult) => {
+export const StandardAnswerContent = ({ result }: { result: ILongProblemSubmitData }) => {
   const [text, setText] = useState('');
 
   useEffect(() => {

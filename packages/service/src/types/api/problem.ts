@@ -27,6 +27,16 @@ export interface ILongProblemDetailResponseData extends IProblemDetailResponseDa
   bottomScore: number;
 }
 
+export interface ILongProblemSubmitData extends ILongProblemDetailResponseData {
+  title: string;
+  tags: string[];
+  description: string;
+  totalSubmissionCount: number;
+  userSubmissionCount: number;
+  userAnswer: string;
+  standardAnswer: string;
+}
+
 export interface ILongProblemResultData extends ILongProblemDetailResponseData {
   gradingHistoryId: number;
   problemId: number;
@@ -50,7 +60,7 @@ export const SHORT_ANSWER_TYPE = {
   NUMERIC: 'NUMERIC',
 } as const;
 
-export type TShortAnswerType = typeof SHORT_ANSWER_TYPE[keyof typeof SHORT_ANSWER_TYPE];
+export type TShortAnswerType = (typeof SHORT_ANSWER_TYPE)[keyof typeof SHORT_ANSWER_TYPE];
 
 export interface IShortProblemDetailResponseDataV2 extends IProblemDetailResponseData {
   correctSubmission: number;

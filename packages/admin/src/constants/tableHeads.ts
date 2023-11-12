@@ -14,14 +14,6 @@ export const longProblemTableHeads: ITableHead[] = [
     name: '제작자',
   },
   {
-    id: 'avgKeywordScore',
-    name: '평균 키워드 점수',
-  },
-  {
-    id: 'avgContentScore',
-    name: '평균 내용 점수',
-  },
-  {
     id: 'userAnswerCnt',
     name: '답변 수',
   },

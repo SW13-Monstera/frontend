@@ -6,7 +6,7 @@ import { TextBox } from '../../Component/Box';
 import { SkeletonLongProblemResultPage } from '../../Component/Skeleton/SkeletonLongProblemResultPage';
 import { INVALID_ID_ERROR } from '../../errors';
 import { SplitProblemDetailPageTemplate } from '../../Template/SplitProblemDetailPageTemplate';
-import { ILongProblemResultData } from '../../types/api/problem';
+import { ILongProblemSubmitData } from '../../types/api/problem';
 import { ILongProblemResultLocationState } from '../../types/problem';
 import { StandardAnswerContent } from '../ResultPage/Content/StandardAnswer';
 import { answerContentStyle, contentStyle, subtitleStyle } from '../ResultPage/style.css';
@@ -15,11 +15,16 @@ import { MetaTag } from '../utils/MetaTag';
 export const LongProblemAnswerPage = () => {
   const { id } = useParams();
   const { userAnswer, title } = useLocation().state as ILongProblemResultLocationState;
-  const { data: result, isLoading, mutate } = useMutation<ILongProblemResultData>(handleSubmit);
+  const {
+    data: result,
+    isLoading,
+    isSuccess,
+    mutate,
+  } = useMutation<ILongProblemSubmitData>(handleSubmit);
 
   function handleSubmit() {
     if (!id) throw INVALID_ID_ERROR;
-    return problemApiWrapper.longProblemResult(id, userAnswer);
+    return problemApiWrapper.longProblemSubmit(id, userAnswer);
   }
 
   useEffect(() => {
@@ -42,7 +47,7 @@ export const LongProblemAnswerPage = () => {
         }}
         isResult={true}
         isResultPage={true}
-        leftSideContent={<StandardAnswerContent result={result} />}
+        leftSideContent={isSuccess ? <StandardAnswerContent result={result} /> : <></>}
         rightSideContent={
           <div className={contentStyle}>
             <h3 className={subtitleStyle}>내 답안</h3>
