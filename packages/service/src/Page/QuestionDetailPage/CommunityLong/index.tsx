@@ -9,6 +9,7 @@ import { ErrorPage } from '../../Error/ErrorPage';
 import { pageWrap, postListWrap } from './style.css';
 import DescriptionBox from './components/DescriptionBox';
 import PostBox from './components/PostBox';
+import PostInput from './components/PostInput';
 
 export function CommunityLongQuestionDetailPage() {
   const { id } = useParams();
@@ -42,6 +43,7 @@ export function CommunityLongQuestionDetailPage() {
             <PostBox key={post.id} {...post}></PostBox>
           ))}
         </div>
+        <PostInput />
       </div>
     </>
   );
