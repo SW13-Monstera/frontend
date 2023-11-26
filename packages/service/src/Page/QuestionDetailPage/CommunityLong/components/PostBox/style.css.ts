@@ -104,6 +104,9 @@ export const addCommentButton = style({
   width: 'fit-content',
   marginTop: '0.75rem',
   color: themeColors.text[9],
+  fontSize: '0.9rem',
+  fontWeight: 400,
+  lineHeight: '1.25rem',
   textDecoration: 'underline',
   ':hover': {
     color: themeColors.text[5],
