@@ -20,6 +20,7 @@ import { COLOR } from '../../../../../constants/color';
 import { Link } from 'react-router-dom';
 import { URLWithParam } from '../../../../../constants/url';
 import { parseDateTime } from '../../../../../utils/parseDateTime';
+import CommentInput from '../CommentInput';
 
 interface LongProblemPostBase {
   id: number;
@@ -71,6 +72,7 @@ const PostBox = ({ content, username, likeCount, isLiked, comments }: LongProble
                 <span className={dateTime}>{parseDateTime(createdAt)}</span>
               </div>
             ))}
+            <CommentInput />
           </div>
         </div>
       </div>
