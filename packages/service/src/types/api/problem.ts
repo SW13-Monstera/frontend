@@ -50,7 +50,7 @@ export const SHORT_ANSWER_TYPE = {
   NUMERIC: 'NUMERIC',
 } as const;
 
-export type TShortAnswerType = typeof SHORT_ANSWER_TYPE[keyof typeof SHORT_ANSWER_TYPE];
+export type TShortAnswerType = (typeof SHORT_ANSWER_TYPE)[keyof typeof SHORT_ANSWER_TYPE];
 
 export interface IShortProblemDetailResponseDataV2 extends IProblemDetailResponseData {
   correctSubmission: number;
@@ -147,4 +147,8 @@ export interface IProblemSetDetailResponse {
   name: string;
   description: string;
   problems: IProblemListResponseDataContents[];
+}
+
+export interface ILikeProblemRequestParam {
+  problemId: string;
 }

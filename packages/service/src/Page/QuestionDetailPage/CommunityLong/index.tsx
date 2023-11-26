@@ -10,14 +10,20 @@ import { pageWrap, postListWrap } from './style.css';
 import DescriptionBox from './components/DescriptionBox';
 import PostBox from './components/PostBox';
 import PostInput from './components/PostInput';
+import { communityApiWrapper } from '../../../api/wrapper/community/communityApiWrapper';
 
 export function CommunityLongQuestionDetailPage() {
   const { id } = useParams();
   if (!id) throw INVALID_ID_ERROR;
 
   const { data } = useQuery<ILongProblemDetailResponseData>(
-    'longProblemDetail',
+    ['longProblemDetail', id],
     () => problemApiWrapper.longProblemDetail(id),
+    { refetchOnWindowFocus: false },
+  );
+  const { data: communityPost } = useQuery(
+    ['communityPost', id],
+    () => communityApiWrapper.getPost({ problemId: id }),
     { refetchOnWindowFocus: false },
   );
 
