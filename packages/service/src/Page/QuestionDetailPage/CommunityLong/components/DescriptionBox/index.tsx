@@ -3,7 +3,7 @@ import IconButton from '../IconButton';
 import { ReactComponent as StarIcon } from '../../../../../assets/icons/star.svg';
 import { ReactComponent as ThumbUpIcon } from '../../../../../assets/icons/thumb_up.svg';
 import { COLOR } from '../../../../../constants/color';
-import { buttonWrap, descriptionWrap, topWrap } from './style.css';
+import { buttonWrap, descriptionWrap, topWrap, wrap } from './style.css';
 
 type Props = {
   description: string;
@@ -11,7 +11,7 @@ type Props = {
 
 const DescriptionBox = ({ description }: Props) => {
   return (
-    <Box>
+    <Box className={wrap}>
       <div className={topWrap}>
         <div>문제 설명</div>
         <div className={buttonWrap}>

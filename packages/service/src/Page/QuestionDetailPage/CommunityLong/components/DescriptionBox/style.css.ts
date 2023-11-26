@@ -1,5 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
+export const wrap = style({
+  marginTop: '24px',
+});
+
 export const topWrap = style({
   display: 'flex',
   justifyContent: 'space-between',

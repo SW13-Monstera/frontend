@@ -2,10 +2,11 @@ import { boxStyle } from './style.css';
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
 };
 
-const Box = ({ children }: Props) => {
-  return <div className={boxStyle}>{children}</div>;
+const Box = ({ children, className }: Props) => {
+  return <div className={`${boxStyle} ${className}`}>{children}</div>;
 };
 
 export default Box;
