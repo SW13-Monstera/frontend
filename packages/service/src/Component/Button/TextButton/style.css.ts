@@ -65,6 +65,16 @@ export const textButtonSizeStyle = styleVariants({
       borderRadius: '8px',
     },
   ],
+  xsmall: [
+    {
+      width: '3.5rem',
+      height: '1.5rem',
+      fontWeight: '500',
+      fontSize: '0.75rem',
+      lineHeight: '1rem',
+      borderRadius: '4px',
+    },
+  ],
 });
 
 export const unactivatedStyle = style({
