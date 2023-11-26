@@ -1,4 +1,5 @@
 import {
+  addCommentButton,
   commentListWrap,
   contentWrap,
   dateTime,
@@ -21,6 +22,7 @@ import { Link } from 'react-router-dom';
 import { URLWithParam } from '../../../../../constants/url';
 import { parseDateTime } from '../../../../../utils/parseDateTime';
 import CommentInput from '../CommentInput';
+import { useState } from 'react';
 
 interface LongProblemPostBase {
   id: number;
@@ -39,6 +41,8 @@ interface LongProblemPost extends LongProblemPostBase {
 }
 
 const PostBox = ({ content, username, likeCount, isLiked, comments }: LongProblemPost) => {
+  const [isCommentInputShow, setIsCommentInputShow] = useState(false);
+
   return (
     <Box>
       <div className={mainWrap}>
@@ -59,6 +63,7 @@ const PostBox = ({ content, username, likeCount, isLiked, comments }: LongProble
         </div>
         <div className={rightWrap}>
           <div className={contentWrap}>{content}</div>
+
           <div className={commentListWrap}>
             {comments.map(({ id, content, username, createdAt }) => (
               <div key={id}>
@@ -72,7 +77,19 @@ const PostBox = ({ content, username, likeCount, isLiked, comments }: LongProble
                 <span className={dateTime}>{parseDateTime(createdAt)}</span>
               </div>
             ))}
-            <CommentInput />
+            {!isCommentInputShow ? (
+              <button
+                type='button'
+                onClick={() => {
+                  setIsCommentInputShow(true);
+                }}
+                className={addCommentButton}
+              >
+                댓글 작성하기
+              </button>
+            ) : (
+              <CommentInput />
+            )}
           </div>
         </div>
       </div>

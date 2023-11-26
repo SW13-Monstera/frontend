@@ -1,6 +1,6 @@
+import { themeColors } from './../../../../../styles/theme.css';
 import { style } from '@vanilla-extract/css';
 import { COLOR } from '../../../../../constants/color';
-import { themeColors } from '../../../../../styles/theme.css';
 
 export const mainWrap = style({
   display: 'flex',
@@ -98,4 +98,14 @@ export const userName = style({
 
 export const dateTime = style({
   color: themeColors.text[9],
+});
+
+export const addCommentButton = style({
+  width: 'fit-content',
+  marginTop: '0.75rem',
+  color: themeColors.text[9],
+  textDecoration: 'underline',
+  ':hover': {
+    color: themeColors.text[5],
+  },
 });
