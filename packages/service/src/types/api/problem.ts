@@ -25,6 +25,10 @@ export interface ILongProblemDetailResponseData extends IProblemDetailResponseDa
   avgScore: number;
   topScore: number;
   bottomScore: number;
+  likeCount: number;
+  bookmarkCount: number;
+  isLiked: boolean;
+  isBookmarked: boolean;
 }
 
 export interface ILongProblemResultData extends ILongProblemDetailResponseData {

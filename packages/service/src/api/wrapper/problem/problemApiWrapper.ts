@@ -80,9 +80,9 @@ export const problemApiWrapper = {
     return apiClient.get(API_URL.PROBLEM_SHUFFLE, { params: { size } }).then((res) => res.data);
   },
   likeProblem: ({ problemId }: ILikeProblemRequestParam) => {
-    return apiClient.get(API_URL_WITH_PARAMS.LIKE_PROBLEM(problemId)).then((res) => res.data);
+    return apiClient.post(API_URL_WITH_PARAMS.LIKE_PROBLEM(problemId)).then((res) => res.data);
   },
   bookmarkProblem: ({ problemId }: ILikeProblemRequestParam) => {
-    return apiClient.get(API_URL_WITH_PARAMS.BOOKMARK_PROBLEM(problemId)).then((res) => res.data);
+    return apiClient.post(API_URL_WITH_PARAMS.BOOKMARK_PROBLEM(problemId)).then((res) => res.data);
   },
 };

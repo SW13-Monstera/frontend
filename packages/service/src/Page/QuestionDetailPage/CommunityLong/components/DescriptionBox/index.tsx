@@ -4,12 +4,21 @@ import { ReactComponent as StarIcon } from '../../../../../assets/icons/star.svg
 import { ReactComponent as ThumbUpIcon } from '../../../../../assets/icons/thumb_up.svg';
 import { COLOR } from '../../../../../constants/color';
 import { buttonWrap, descriptionWrap, topWrap, wrap } from './style.css';
+import { useMutation } from 'react-query';
+import { problemApiWrapper } from '../../../../../api/wrapper/problem/problemApiWrapper';
 
 type Props = {
+  id: string;
   description: string;
 };
 
-const DescriptionBox = ({ description }: Props) => {
+const DescriptionBox = ({ id, description }: Props) => {
+  const { mutate: likeProblem } = useMutation(['likeProblem', id], () =>
+    problemApiWrapper.likeProblem({ problemId: id }),
+  );
+  const { mutate: bookmarkProblem } = useMutation(['bookmarkProblem', id], () =>
+    problemApiWrapper.bookmarkProblem({ problemId: id }),
+  );
   return (
     <Box className={wrap}>
       <div className={topWrap}>
@@ -18,7 +27,7 @@ const DescriptionBox = ({ description }: Props) => {
           <IconButton
             text='8'
             onClick={() => {
-              return null;
+              likeProblem();
             }}
           >
             <StarIcon fill={COLOR.GRAY} width='2rem' height='2rem' />
@@ -26,7 +35,7 @@ const DescriptionBox = ({ description }: Props) => {
           <IconButton
             text='10'
             onClick={() => {
-              return null;
+              bookmarkProblem();
             }}
           >
             <ThumbUpIcon fill={COLOR.GRAY} width='2rem' height='2rem' />

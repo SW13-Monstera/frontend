@@ -5,11 +5,14 @@ import {
   IAddCommunityPostRequestBody,
   ICommunityPostRequestParam,
   ILikeCommunityPostRequestParam,
+  LongProblemPost,
 } from '../../../types/api/community';
 
 export const communityApiWrapper = {
   getPost: async ({ problemId }: ICommunityPostRequestParam) => {
-    const res = await apiClient.get(API_URL_WITH_PARAMS.COMMUNITY_POST(problemId));
+    const res = await apiClient.get<LongProblemPost[]>(
+      API_URL_WITH_PARAMS.COMMUNITY_POST(problemId),
+    );
     return res.data;
   },
   addPost: async (data: IAddCommunityPostRequestBody) => {

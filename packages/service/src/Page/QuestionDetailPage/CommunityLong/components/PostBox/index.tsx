@@ -23,22 +23,7 @@ import { URLWithParam } from '../../../../../constants/url';
 import { parseDateTime } from '../../../../../utils/parseDateTime';
 import CommentInput from '../CommentInput';
 import { useState } from 'react';
-
-interface LongProblemPostBase {
-  id: number;
-  content: string;
-  username: string;
-  likeCount: number;
-  isLiked: boolean;
-}
-
-interface LongProblemPostComment extends LongProblemPostBase {
-  createdAt: string;
-}
-
-interface LongProblemPost extends LongProblemPostBase {
-  comments: LongProblemPostComment[];
-}
+import { LongProblemPost } from '../../../../../types/api/community';
 
 const PostBox = ({ content, username, likeCount, isLiked, comments }: LongProblemPost) => {
   const [isCommentInputShow, setIsCommentInputShow] = useState(false);
