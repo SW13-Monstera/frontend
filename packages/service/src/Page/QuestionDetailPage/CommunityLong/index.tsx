@@ -38,7 +38,7 @@ export function CommunityLongQuestionDetailPage() {
           id={id}
           title={data.title}
           tags={data.tags}
-          totalSubmission={data.totalSubmission}
+          answerCount={communityPost?.length}
           isSolved={data.isSolved}
         />
         <DescriptionBox
