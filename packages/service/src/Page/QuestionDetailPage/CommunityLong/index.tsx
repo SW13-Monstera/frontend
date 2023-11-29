@@ -16,8 +16,9 @@ export function CommunityLongQuestionDetailPage() {
   const { id } = useParams();
   if (!id) throw INVALID_ID_ERROR;
 
-  const { data } = useQuery<ILongProblemDetailResponseData>(['longProblemDetail', id], () =>
-    problemApiWrapper.longProblemDetail(id),
+  const { data, refetch: refetchProblemDetail } = useQuery<ILongProblemDetailResponseData>(
+    ['longProblemDetail', id],
+    () => problemApiWrapper.longProblemDetail(id),
   );
   const { data: communityPost } = useQuery(['communityPost', id], () =>
     communityApiWrapper.getPost({ problemId: id }),
@@ -40,7 +41,15 @@ export function CommunityLongQuestionDetailPage() {
           totalSubmission={data.totalSubmission}
           isSolved={data.isSolved}
         />
-        <DescriptionBox id={id} description={data.description} />
+        <DescriptionBox
+          id={id}
+          description={data.description}
+          isLiked={data.isLiked}
+          likeCount={data.likeCount}
+          isBookmarked={data.isBookmarked}
+          bookmarkCount={data.bookmarkCount}
+          refetchProblemDetail={refetchProblemDetail}
+        />
         <div className={postListWrap}>
           {communityPost?.map((post) => (
             <PostBox key={post.id} {...post}></PostBox>
