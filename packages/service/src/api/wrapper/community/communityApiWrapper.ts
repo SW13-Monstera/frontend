@@ -20,7 +20,7 @@ export const communityApiWrapper = {
     return res.data;
   },
   likePost: async ({ postId }: ILikeCommunityPostRequestParam) => {
-    const res = await apiClient.get(API_URL_WITH_PARAMS.LIKE_COMMUNITY_POST(postId));
+    const res = await apiClient.post(API_URL_WITH_PARAMS.LIKE_COMMUNITY_POST(postId.toString()));
     return res.data;
   },
   addComment: async (data: IAddCommunityCommentRequestBody) => {

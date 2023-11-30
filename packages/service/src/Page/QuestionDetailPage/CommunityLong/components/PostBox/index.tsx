@@ -24,7 +24,8 @@ import { parseDateTime } from '../../../../../utils/parseDateTime';
 import CommentInput from '../CommentInput';
 import { useState } from 'react';
 import { LongProblemPost } from '../../../../../types/api/community';
-import { QueryObserverResult } from 'react-query';
+import { QueryObserverResult, useMutation } from 'react-query';
+import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
 
 type Props = {
   refetchCommunityPost: () => Promise<QueryObserverResult<LongProblemPost[], unknown>>;
@@ -40,6 +41,11 @@ const PostBox = ({
   refetchCommunityPost,
 }: Props) => {
   const [isCommentInputShow, setIsCommentInputShow] = useState(false);
+  const { mutate: likePost } = useMutation(
+    ['likeProblem', id],
+    () => communityApiWrapper.likePost({ postId: id }),
+    { onSuccess: () => refetchCommunityPost() },
+  );
 
   return (
     <Box>
@@ -54,7 +60,13 @@ const PostBox = ({
             </div>
             <div className={mainUserName}> {username}</div>
           </Link>
-          <button type='button' className={likeButton}>
+          <button
+            type='button'
+            className={likeButton}
+            onClick={() => {
+              likePost();
+            }}
+          >
             <ThumbUpIcon fill={isLiked ? COLOR.PRIMARY : COLOR.GRAY} className={thumbUpIcon} />
             {likeCount}
           </button>

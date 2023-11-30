@@ -24,7 +24,7 @@ export interface IAddCommunityPostRequestBody {
 }
 
 export interface ILikeCommunityPostRequestParam {
-  postId: string;
+  postId: number;
 }
 
 export interface IAddCommunityCommentRequestBody {
