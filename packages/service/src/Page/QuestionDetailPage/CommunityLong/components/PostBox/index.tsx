@@ -24,8 +24,21 @@ import { parseDateTime } from '../../../../../utils/parseDateTime';
 import CommentInput from '../CommentInput';
 import { useState } from 'react';
 import { LongProblemPost } from '../../../../../types/api/community';
+import { QueryObserverResult } from 'react-query';
 
-const PostBox = ({ content, username, likeCount, isLiked, comments }: LongProblemPost) => {
+type Props = {
+  refetchCommunityPost: () => Promise<QueryObserverResult<LongProblemPost[], unknown>>;
+} & LongProblemPost;
+
+const PostBox = ({
+  id,
+  content,
+  username,
+  likeCount,
+  isLiked,
+  comments,
+  refetchCommunityPost,
+}: Props) => {
   const [isCommentInputShow, setIsCommentInputShow] = useState(false);
 
   return (
@@ -73,7 +86,7 @@ const PostBox = ({ content, username, likeCount, isLiked, comments }: LongProble
                 댓글 작성하기
               </button>
             ) : (
-              <CommentInput />
+              <CommentInput postId={id} refetchCommunityPost={refetchCommunityPost} />
             )}
           </div>
         </div>

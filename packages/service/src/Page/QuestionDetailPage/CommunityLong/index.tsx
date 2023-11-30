@@ -55,11 +55,10 @@ export function CommunityLongQuestionDetailPage() {
         />
         <div className={postListWrap}>
           {communityPost?.map((post) => (
-            <PostBox key={post.id} {...post}></PostBox>
+            <PostBox refetchCommunityPost={refetchCommunityPost} key={post.id} {...post}></PostBox>
           ))}
         </div>
         <form
-          id='post-form'
           onSubmit={(e) => {
             e.preventDefault();
             const formElement = e.target as HTMLFormElement;
