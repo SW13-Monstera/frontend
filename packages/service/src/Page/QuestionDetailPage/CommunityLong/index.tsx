@@ -20,10 +20,13 @@ export function CommunityLongQuestionDetailPage() {
     ['longProblemDetail', id],
     () => problemApiWrapper.longProblemDetail(id),
   );
-  const { data: communityPost } = useQuery(['communityPost', id], () =>
-    communityApiWrapper.getPost({ problemId: id }),
+  const { data: communityPost, refetch: refetchCommunityPost } = useQuery(
+    ['communityPost', id],
+    () => communityApiWrapper.getPost({ problemId: id }),
   );
-  const { mutate: addPost } = useMutation(communityApiWrapper.addPost);
+  const { mutate: addPost } = useMutation(communityApiWrapper.addPost, {
+    onSuccess: () => refetchCommunityPost(),
+  });
 
   if (!data) return <ErrorPage />;
 
@@ -59,10 +62,12 @@ export function CommunityLongQuestionDetailPage() {
           id='post-form'
           onSubmit={(e) => {
             e.preventDefault();
-            const data = new FormData(e.target as HTMLFormElement);
+            const formElement = e.target as HTMLFormElement;
+            const data = new FormData(formElement);
             const content = data.get('post-input')?.toString();
             if (!content) return;
             addPost({ problemId: parseInt(id), content });
+            formElement.reset();
           }}
         >
           <PostInput />
