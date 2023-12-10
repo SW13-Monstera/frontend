@@ -13,6 +13,7 @@ import {
   TProblemSetListResponse,
   IProblemSetDetailResponse,
   ILikeProblemRequestParam,
+  ILongProblemSubmitData,
 } from '../../../types/api/problem';
 import { AxiosRequestConfig } from 'axios';
 import { BEARER_TOKEN } from 'auth/constants';
@@ -43,6 +44,13 @@ export const problemApiWrapper = {
     return apiClient
       .get(API_URL_WITH_PARAMS.MULTIPLE_PROBLEM_DETAIL(problem_id))
       .then((res: { data: IMultipleProblemDetailResponseData }) => res.data);
+  },
+  longProblemSubmit: (problem_id: string, answer: string) => {
+    return apiClient
+      .post(API_URL_WITH_PARAMS.LONG_PROBLEM_SUBMIT(problem_id), {
+        answer,
+      })
+      .then((res: { data: ILongProblemSubmitData }) => res.data);
   },
   longProblemResult: (problem_id: string, answer: string) => {
     return apiClient

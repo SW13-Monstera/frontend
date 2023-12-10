@@ -31,6 +31,16 @@ export interface ILongProblemDetailResponseData extends IProblemDetailResponseDa
   isBookmarked: boolean;
 }
 
+export interface ILongProblemSubmitData extends ILongProblemDetailResponseData {
+  title: string;
+  tags: string[];
+  description: string;
+  totalSubmissionCount: number;
+  userSubmissionCount: number;
+  userAnswer: string;
+  standardAnswer: string;
+}
+
 export interface ILongProblemResultData extends ILongProblemDetailResponseData {
   gradingHistoryId: number;
   problemId: number;
