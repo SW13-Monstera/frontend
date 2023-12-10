@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { problemApiWrapper } from '../../../api/wrapper/problem/problemApiWrapper';
 import { ILongProblemDetailResponseData } from '../../../types/api/problem';
-import { useMutation, useQuery } from 'react-query';
+import { useQuery } from 'react-query';
 import { MetaTag } from '../../utils/MetaTag';
 import { INVALID_ID_ERROR } from '../../../errors';
 import ProblemTitle from '../../../Organism/ProblemTitle';
@@ -9,7 +9,6 @@ import { ErrorPage } from '../../Error/ErrorPage';
 import { pageWrap, postListWrap } from './style.css';
 import DescriptionBox from './components/DescriptionBox';
 import PostBox from './components/PostBox';
-import PostInput from './components/PostInput';
 import { communityApiWrapper } from '../../../api/wrapper/community/communityApiWrapper';
 
 export function CommunityLongQuestionDetailPage() {
@@ -24,9 +23,6 @@ export function CommunityLongQuestionDetailPage() {
     ['communityPost', id],
     () => communityApiWrapper.getPost({ problemId: id }),
   );
-  const { mutate: addPost } = useMutation(communityApiWrapper.addPost, {
-    onSuccess: () => refetchCommunityPost(),
-  });
 
   if (!data) return <ErrorPage />;
 
@@ -52,25 +48,13 @@ export function CommunityLongQuestionDetailPage() {
           isBookmarked={data.isBookmarked}
           bookmarkCount={data.bookmarkCount}
           refetchProblemDetail={refetchProblemDetail}
+          refetchCommunityPost={refetchCommunityPost}
         />
         <div className={postListWrap}>
           {communityPost?.map((post) => (
             <PostBox refetchCommunityPost={refetchCommunityPost} key={post.id} {...post}></PostBox>
           ))}
         </div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const formElement = e.target as HTMLFormElement;
-            const data = new FormData(formElement);
-            const content = data.get('post-input')?.toString();
-            if (!content) return;
-            addPost({ problemId: parseInt(id), content });
-            formElement.reset();
-          }}
-        >
-          <PostInput />
-        </form>
       </div>
     </>
   );

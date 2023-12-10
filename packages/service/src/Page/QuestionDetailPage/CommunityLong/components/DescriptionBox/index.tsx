@@ -7,6 +7,9 @@ import { buttonWrap, descriptionWrap, topWrap, wrap } from './style.css';
 import { QueryObserverResult, useMutation } from 'react-query';
 import { problemApiWrapper } from '../../../../../api/wrapper/problem/problemApiWrapper';
 import { ILongProblemDetailResponseData } from '../../../../../types/api/problem';
+import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
+import PostInput from '../PostInput';
+import { LongProblemPost } from '../../../../../types/api/community';
 
 type Props = {
   id: string;
@@ -16,6 +19,7 @@ type Props = {
   isBookmarked: boolean;
   bookmarkCount: number;
   refetchProblemDetail: () => Promise<QueryObserverResult<ILongProblemDetailResponseData, unknown>>;
+  refetchCommunityPost: () => Promise<QueryObserverResult<LongProblemPost[], unknown>>;
 };
 
 const DescriptionBox = ({
@@ -26,6 +30,7 @@ const DescriptionBox = ({
   isBookmarked,
   bookmarkCount,
   refetchProblemDetail,
+  refetchCommunityPost,
 }: Props) => {
   const { mutate: likeProblem } = useMutation(
     ['likeProblem', id],
@@ -37,6 +42,9 @@ const DescriptionBox = ({
     () => problemApiWrapper.bookmarkProblem({ problemId: id }),
     { onSuccess: () => refetchProblemDetail() },
   );
+  const { mutate: addPost } = useMutation(communityApiWrapper.addPost, {
+    onSuccess: () => refetchCommunityPost(),
+  });
 
   return (
     <Box className={wrap}>
@@ -62,6 +70,19 @@ const DescriptionBox = ({
         </div>
       </div>
       <div className={descriptionWrap}>{description}</div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const formElement = e.target as HTMLFormElement;
+          const data = new FormData(formElement);
+          const content = data.get('post-input')?.toString();
+          if (!content) return;
+          addPost({ problemId: parseInt(id), content });
+          formElement.reset();
+        }}
+      >
+        <PostInput />
+      </form>
     </Box>
   );
 };
