@@ -25,6 +25,7 @@ import { LongProblemPost } from '../../../../../types/api/community';
 import { QueryObserverResult, useMutation } from 'react-query';
 import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
 import IconButton from '../IconButton';
+import { getUserInfo } from 'auth/utils/userInfo';
 
 type Props = {
   refetchCommunityPost: () => Promise<QueryObserverResult<LongProblemPost[], unknown>>;
@@ -39,6 +40,7 @@ const PostBox = ({
   comments,
   refetchCommunityPost,
 }: Props) => {
+  const isLogin = !!getUserInfo()?.id;
   const [isCommentInputShow, setIsCommentInputShow] = useState(false);
   const { mutate: likePost } = useMutation(
     ['likeProblem', id],
@@ -86,19 +88,20 @@ const PostBox = ({
                   <span className={dateTime}>{parseDateTime(createdAt)}</span>
                 </div>
               ))}
-            {!isCommentInputShow ? (
-              <button
-                type='button'
-                onClick={() => {
-                  setIsCommentInputShow(true);
-                }}
-                className={addCommentButton}
-              >
-                댓글 작성하기
-              </button>
-            ) : (
-              <CommentInput postId={id} refetchCommunityPost={refetchCommunityPost} />
-            )}
+            {isLogin &&
+              (!isCommentInputShow ? (
+                <button
+                  type='button'
+                  onClick={() => {
+                    setIsCommentInputShow(true);
+                  }}
+                  className={addCommentButton}
+                >
+                  댓글 작성하기
+                </button>
+              ) : (
+                <CommentInput postId={id} refetchCommunityPost={refetchCommunityPost} />
+              ))}
           </div>
         </div>
       </div>
