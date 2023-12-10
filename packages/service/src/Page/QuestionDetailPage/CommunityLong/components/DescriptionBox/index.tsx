@@ -10,6 +10,7 @@ import { ILongProblemDetailResponseData } from '../../../../../types/api/problem
 import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
 import PostInput from '../PostInput';
 import { LongProblemPost } from '../../../../../types/api/community';
+import { getUserInfo } from 'auth/utils/userInfo';
 
 type Props = {
   id: string;
@@ -32,6 +33,7 @@ const DescriptionBox = ({
   refetchProblemDetail,
   refetchCommunityPost,
 }: Props) => {
+  const isLogin = !!getUserInfo()?.id;
   const { mutate: likeProblem } = useMutation(
     ['likeProblem', id],
     () => problemApiWrapper.likeProblem({ problemId: id }),
@@ -70,19 +72,21 @@ const DescriptionBox = ({
         </div>
       </div>
       <div className={descriptionWrap}>{description}</div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          const formElement = e.target as HTMLFormElement;
-          const data = new FormData(formElement);
-          const content = data.get('post-input')?.toString();
-          if (!content) return;
-          addPost({ problemId: parseInt(id), content });
-          formElement.reset();
-        }}
-      >
-        <PostInput />
-      </form>
+      {isLogin && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formElement = e.target as HTMLFormElement;
+            const data = new FormData(formElement);
+            const content = data.get('post-input')?.toString();
+            if (!content) return;
+            addPost({ problemId: parseInt(id), content });
+            formElement.reset();
+          }}
+        >
+          <PostInput />
+        </form>
+      )}
     </Box>
   );
 };
