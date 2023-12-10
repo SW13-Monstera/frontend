@@ -2,7 +2,7 @@ import { getUserInfo } from 'auth/utils/userInfo';
 import { AxiosError } from 'axios';
 import React, { FormEvent, useEffect, useRef, useState } from 'react';
 import { useMutation } from 'react-query';
-import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { commonApiWrapper } from '../../api/wrapper/common/commonApiWrapper';
 import FloatingButton from '../../Component/Button/FloatingButton';
 import { displayNoneStyle } from '../../styles/util.css';
 import {

@@ -35,7 +35,7 @@ import { URL } from '../../constants/url';
 import { IChartElement } from '../../types/chart';
 import { UploadIcon } from '../../Icon/UploadIcon';
 import { useCallback, useRef, useState } from 'react';
-import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { commonApiWrapper } from '../../api/wrapper/common/commonApiWrapper';
 import { toast } from 'react-toastify';
 import { RowBox } from '../../Component/Box/CustomBox';
 import { IProfileData } from '../../types/api/user';
