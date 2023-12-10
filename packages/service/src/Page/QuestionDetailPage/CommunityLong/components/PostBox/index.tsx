@@ -75,18 +75,20 @@ const PostBox = ({
           <div className={contentWrap}>{content}</div>
 
           <div className={commentListWrap}>
-            {comments.map(({ id, content, username, createdAt }) => (
-              <div key={id}>
-                {content} -{' '}
-                <Link
-                  to={URLWithParam.PROFILE('347df1ba-3c4b-4348-8201-4dc92c2d1c60')}
-                  className={userName}
-                >
-                  {username}
-                </Link>{' '}
-                <span className={dateTime}>{parseDateTime(createdAt)}</span>
-              </div>
-            ))}
+            {comments
+              .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+              .map(({ id, content, username, createdAt }) => (
+                <div key={id}>
+                  {content} -{' '}
+                  <Link
+                    to={URLWithParam.PROFILE('347df1ba-3c4b-4348-8201-4dc92c2d1c60')}
+                    className={userName}
+                  >
+                    {username}
+                  </Link>{' '}
+                  <span className={dateTime}>{parseDateTime(createdAt)}</span>
+                </div>
+              ))}
             {!isCommentInputShow ? (
               <button
                 type='button'
