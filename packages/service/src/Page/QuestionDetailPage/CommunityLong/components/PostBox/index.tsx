@@ -3,7 +3,6 @@ import {
   commentListWrap,
   contentWrap,
   dateTime,
-  likeButton,
   mainUserName,
   mainWrap,
   profileImage,
@@ -11,7 +10,6 @@ import {
   profileLink,
   profileWrap,
   rightWrap,
-  thumbUpIcon,
   userName,
 } from './style.css';
 import { ReactComponent as ProfileImageIcon } from '../../../../../assets/icons/mypage-icon.svg';
@@ -26,6 +24,7 @@ import { useState } from 'react';
 import { LongProblemPost } from '../../../../../types/api/community';
 import { QueryObserverResult, useMutation } from 'react-query';
 import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
+import IconButton from '../IconButton';
 
 type Props = {
   refetchCommunityPost: () => Promise<QueryObserverResult<LongProblemPost[], unknown>>;
@@ -60,16 +59,14 @@ const PostBox = ({
             </div>
             <div className={mainUserName}> {username}</div>
           </Link>
-          <button
-            type='button'
-            className={likeButton}
+          <IconButton
+            text={likeCount.toString()}
             onClick={() => {
               likePost();
             }}
           >
-            <ThumbUpIcon fill={isLiked ? COLOR.PRIMARY : COLOR.GRAY} className={thumbUpIcon} />
-            {likeCount}
-          </button>
+            <ThumbUpIcon fill={isLiked ? COLOR.PRIMARY : COLOR.GRAY} width='2rem' height='2rem' />
+          </IconButton>
         </div>
         <div className={rightWrap}>
           <div className={contentWrap}>{content}</div>
