@@ -1,4 +1,4 @@
-import { AUTHORIZTION, BEARER_TOKEN } from 'auth/constants';
+import { AUTHORIZATION, BEARER_TOKEN } from 'auth/constants';
 import apiClient from './apiClient';
 
 export const setTokenHeader = () => {
@@ -8,7 +8,7 @@ export const setTokenHeader = () => {
       const userInfo = JSON.parse(userInfoString);
       const token: string | null | undefined = userInfo.accessToken;
       if (typeof token === 'string') {
-        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(token);
+        apiClient.defaults.headers.common[AUTHORIZATION] = BEARER_TOKEN(token);
       }
     }
   } catch (e) {
