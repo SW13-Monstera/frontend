@@ -25,7 +25,7 @@ import { LongProblemPost } from '../../../../../types/api/community';
 import { QueryObserverResult, useMutation } from 'react-query';
 import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
 import IconButton from '../IconButton';
-import { getUserInfo } from 'auth/utils/userInfo';
+import { isLogin } from 'auth/utils/userInfo';
 
 type Props = {
   refetchCommunityPost: () => Promise<QueryObserverResult<LongProblemPost[], unknown>>;
@@ -40,7 +40,6 @@ const PostBox = ({
   comments,
   refetchCommunityPost,
 }: Props) => {
-  const isLogin = !!getUserInfo()?.id;
   const [isCommentInputShow, setIsCommentInputShow] = useState(false);
   const { mutate: likePost } = useMutation(
     ['likeProblem', id],
@@ -88,7 +87,7 @@ const PostBox = ({
                   <span className={dateTime}>{parseDateTime(createdAt)}</span>
                 </div>
               ))}
-            {isLogin &&
+            {isLogin() &&
               (!isCommentInputShow ? (
                 <button
                   type='button'

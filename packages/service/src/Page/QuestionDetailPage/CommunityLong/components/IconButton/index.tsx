@@ -1,4 +1,4 @@
-import { getUserInfo } from 'auth/utils/userInfo';
+import { isLogin } from 'auth/utils/userInfo';
 import { MouseEvent } from 'react';
 import { toast } from 'react-toastify';
 import { iconButtonStyle } from './style.css';
@@ -11,8 +11,7 @@ type Props = {
 
 const IconButton = ({ children, text, onClick }: Props) => {
   const onClickWithLoginStatus = (e: MouseEvent) => {
-    const isLogin = !!getUserInfo()?.id;
-    if (isLogin) {
+    if (isLogin()) {
       onClick(e);
       return;
     }

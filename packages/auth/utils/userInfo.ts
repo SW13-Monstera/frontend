@@ -26,3 +26,5 @@ export const getUserInfo = (): IUserInfo | null => {
 export const removeUserInfo = () => {
   localStorage.removeItem(USER_INFO);
 };
+
+export const isLogin = () => !!getUserInfo()?.id;

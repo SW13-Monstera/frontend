@@ -10,7 +10,7 @@ import { ILongProblemDetailResponseData } from '../../../../../types/api/problem
 import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
 import PostInput from '../PostInput';
 import { LongProblemPost } from '../../../../../types/api/community';
-import { getUserInfo } from 'auth/utils/userInfo';
+import { isLogin } from 'auth/utils/userInfo';
 
 type Props = {
   id: string;
@@ -33,7 +33,6 @@ const DescriptionBox = ({
   refetchProblemDetail,
   refetchCommunityPost,
 }: Props) => {
-  const isLogin = !!getUserInfo()?.id;
   const { mutate: likeProblem } = useMutation(
     ['likeProblem', id],
     () => problemApiWrapper.likeProblem({ problemId: id }),
@@ -72,7 +71,7 @@ const DescriptionBox = ({
         </div>
       </div>
       <div className={descriptionWrap}>{description}</div>
-      {isLogin && (
+      {isLogin() && (
         <form
           onSubmit={(e) => {
             e.preventDefault();
