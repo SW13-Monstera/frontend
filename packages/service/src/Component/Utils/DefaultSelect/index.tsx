@@ -56,7 +56,7 @@ export const DefaultSelect = ({
           },
         })}
         defaultValue={defaultValue}
-        onChange={(e: MultiValue<IOption> | SingleValue<IOption>) => {
+        onChange={(e) => {
           onChange(e);
           if (isMulti) setSelectedOptions(e);
         }}
@@ -85,7 +85,7 @@ export const DefaultSelect = ({
             neutral90: themeColors.text[5],
           },
         })}
-        onChange={(e: MultiValue<IOption> | SingleValue<IOption>) => {
+        onChange={(e) => {
           onChange(e);
           if (isMulti) setSelectedOptions(e);
         }}
