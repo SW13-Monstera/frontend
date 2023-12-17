@@ -7,17 +7,13 @@ import {
   mainWrap,
   profileImage,
   profileImageWrap,
-  profileLink,
   profileWrap,
   rightWrap,
-  userName,
 } from './style.css';
 import { ReactComponent as ProfileImageIcon } from '../../../../../assets/icons/mypage-icon.svg';
 import { ReactComponent as ThumbUpIcon } from '../../../../../assets/icons/thumb_up.svg';
 import Box from '../Box';
 import { COLOR } from '../../../../../constants/color';
-import { Link } from 'react-router-dom';
-import { URLWithParam } from '../../../../../constants/url';
 import { parseDateTime } from '../../../../../utils/parseDateTime';
 import CommentInput from '../CommentInput';
 import { useState } from 'react';
@@ -51,15 +47,16 @@ const PostBox = ({
     <Box>
       <div className={mainWrap}>
         <div className={profileWrap}>
+          {/* [TODO] User Id로 링크 연결하기
           <Link
             to={URLWithParam.PROFILE('347df1ba-3c4b-4348-8201-4dc92c2d1c60')}
             className={profileLink}
-          >
-            <div className={profileImageWrap}>
-              <ProfileImageIcon className={profileImage} />
-            </div>
-            <div className={mainUserName}> {username}</div>
-          </Link>
+          > */}
+          <div className={profileImageWrap}>
+            <ProfileImageIcon className={profileImage} />
+          </div>
+          <div className={mainUserName}> {username}</div>
+          {/* </Link> */}
           <IconButton
             text={likeCount.toString()}
             onClick={() => {
@@ -77,13 +74,14 @@ const PostBox = ({
               .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
               .map(({ id, content, username, createdAt }) => (
                 <div key={id}>
-                  {content} -{' '}
+                  {content} -
+                  {/* [TODO] User Id로 링크 연결하기
                   <Link
                     to={URLWithParam.PROFILE('347df1ba-3c4b-4348-8201-4dc92c2d1c60')}
                     className={userName}
-                  >
-                    {username}
-                  </Link>{' '}
+                  > */}
+                  {username}
+                  {/* </Link>{' '} */}
                   <span className={dateTime}>{parseDateTime(createdAt)}</span>
                 </div>
               ))}
