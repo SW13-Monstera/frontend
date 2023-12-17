@@ -54,7 +54,6 @@ export interface IProblemCreateData {
   description: string;
   standardAnswers: string | string[];
   tags: string[];
-  gradingStandards: IStandard[];
 }
 
 export interface IProblemUpdateData extends IProblemCreateData {

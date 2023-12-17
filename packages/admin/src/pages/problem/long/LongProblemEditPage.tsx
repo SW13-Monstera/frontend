@@ -2,7 +2,6 @@ import PageTemplate from '../../../templates/PageTemplate';
 import {
   Box,
   TextField,
-  Divider,
   Button,
   Card,
   FormControl,
@@ -17,9 +16,6 @@ import { WarningDialog } from '../../../components/Dialog/WarningDialog';
 import { useState, useEffect, ChangeEvent } from 'react';
 import { IProblemCreateData, IProblemDetailResponse } from '../../../types/problem/api';
 import { longProblemApiWrapper } from '../../../api/wrapper/problem/longProblemApiWrapper';
-import { STANDARD_TYPE } from '../../../constants/standard';
-import { useStandard } from '../../../hooks/useStandard';
-import { StandardList } from '../../../components/FormGroup/StandardList';
 import { MarkdownInputCard } from '../../../components/Card/MarkdownInputCard';
 import InputList from '../../../components/FormGroup/InputList';
 import { useList } from '../../../hooks/useList';
@@ -37,22 +33,6 @@ export const LongProblemEditPage = () => {
       return { id: tag.id, isChecked: false };
     }),
   );
-
-  const {
-    standardState: keywordStandardState,
-    setStandardState: setKeywordStandardState,
-    addStandard: addKeywordStandard,
-    deleteStandard: deleteKeywordStandard,
-    handleStandardChange: handleKeywordStandardChange,
-  } = useStandard(STANDARD_TYPE.KEYWORD);
-
-  const {
-    standardState: contentStandardState,
-    setStandardState: setContentStandardState,
-    addStandard: addContentStandard,
-    deleteStandard: deleteContentStandard,
-    handleStandardChange: handleContentStandardChange,
-  } = useStandard(STANDARD_TYPE.CONTENT);
 
   const handleTagChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id } = event.target;
@@ -75,8 +55,6 @@ export const LongProblemEditPage = () => {
         return { id: tag.id, isChecked: data.tags.includes(tag.id) };
       }),
     );
-    setKeywordStandardState(data.gradingStandards.filter((e) => e.type === STANDARD_TYPE.KEYWORD));
-    setContentStandardState(data.gradingStandards.filter((e) => e.type === STANDARD_TYPE.CONTENT));
   }, [data]);
 
   function editProblem() {
@@ -89,14 +67,6 @@ export const LongProblemEditPage = () => {
           document.getElementsByClassName('standard-answer') as HTMLCollectionOf<HTMLInputElement>,
         ).map((e) => e.value) || [],
       tags: tagState.filter((tag) => tag.isChecked).map((e) => e.id),
-      gradingStandards: [
-        ...keywordStandardState.map(({ content, score, type }) => {
-          return { content, score, type };
-        }),
-        ...contentStandardState.map(({ content, score, type }) => {
-          return { content, score, type };
-        }),
-      ],
     };
     longProblemApiWrapper.updateLongProblem(id, data);
   }
@@ -155,24 +125,6 @@ export const LongProblemEditPage = () => {
           deleteItem={deleteAnswer}
           defaultValue={data?.standardAnswers}
           className='standard-answer'
-        />
-        <Divider sx={{ my: 2 }} />
-        <StandardList
-          type={STANDARD_TYPE.KEYWORD}
-          title='키워드 채점 기준'
-          standards={keywordStandardState}
-          handleStandardChange={handleKeywordStandardChange}
-          addStandard={addKeywordStandard}
-          deleteStandard={deleteKeywordStandard}
-        />
-        <Divider sx={{ my: 2 }} />
-        <StandardList
-          type={STANDARD_TYPE.CONTENT}
-          title='내용 채점 기준'
-          standards={contentStandardState}
-          handleStandardChange={handleContentStandardChange}
-          addStandard={addContentStandard}
-          deleteStandard={deleteContentStandard}
         />
       </Box>
       <Button variant='contained' sx={{ mt: 2 }} onClick={handleDialogOpen}>

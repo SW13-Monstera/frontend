@@ -3,10 +3,6 @@ import {
   Typography,
   Box,
   Button,
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader,
   Divider,
   FormGroup,
   FormControlLabel,
@@ -16,7 +12,6 @@ import { Link, useParams } from 'react-router-dom';
 import { longProblemApiWrapper } from '../../../api/wrapper/problem/longProblemApiWrapper';
 import { URLWithParam } from '../../../constants/url';
 import { IProblemUpdateData } from '../../../types/problem/api';
-import { STANDARD_TYPE } from '../../../constants/standard';
 import { TAGS } from '../../../constants/tags';
 import { useQuery } from 'react-query';
 import { MarkdownCard } from '../../../components/Card/MarkdownCard';
@@ -72,51 +67,8 @@ export const LongProblemDetailPage = () => {
         <MarkdownCard key={answer}>{answer}</MarkdownCard>
       ))}
       <Divider sx={{ my: 2 }} />
-      <List>
-        <ListSubheader
-          component='div'
-          id='nested-list-subheader'
-          sx={{ bgcolor: 'transparent', paddingLeft: 0 }}
-        >
-          키워드 채점 기준
-        </ListSubheader>
-        {data?.gradingStandards
-          .filter((e) => e.type === STANDARD_TYPE.KEYWORD)
-          .map((keyword) => (
-            <ListItem key={keyword.content} disablePadding>
-              <ListItemText primary={keyword.content} sx={{ width: '30%' }} />
-              <ListItemText primary={keyword.score} />
-            </ListItem>
-          ))}
-      </List>
-      <Divider />
-      <List>
-        <ListSubheader
-          component='div'
-          id='nested-list-subheader'
-          sx={{ bgcolor: 'transparent', pl: 0 }}
-        >
-          내용 채점 기준
-        </ListSubheader>
-        {data?.gradingStandards
-          .filter((e) => e.type === STANDARD_TYPE.CONTENT)
-          .map((keyword) => (
-            <ListItem key={keyword.content} disablePadding>
-              <ListItemText primary={keyword.content} sx={{ width: '30%' }} />
-              <ListItemText primary={keyword.score} />
-            </ListItem>
-          ))}
-      </List>
-      <Divider sx={{ my: 2 }} />
       <Box sx={{ display: 'flex', gap: 1, justifyContent: 'space-between' }}>
         <FormGroup>
-          <FormControlLabel
-            disabled={!data?.isGradable}
-            checked={data?.isGradable}
-            control={<Switch checked={data?.isGradable ?? false} />}
-            label='채점 가능 여부'
-            onClick={handleProblemGradablility}
-          />
           <FormControlLabel
             checked={data?.isActive}
             control={<Switch checked={data?.isActive ?? false} />}
