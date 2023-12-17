@@ -12,7 +12,6 @@ type Props = {
 const IconButton = ({ children, text, onClick }: Props) => {
   const onClickWithLoginStatus = (e: MouseEvent) => {
     const isLogin = !!getUserInfo()?.id;
-    console.log(isLogin);
     if (isLogin) {
       onClick(e);
       return;
