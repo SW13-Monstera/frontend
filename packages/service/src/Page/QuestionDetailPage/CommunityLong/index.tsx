@@ -53,11 +53,17 @@ export function CommunityLongQuestionDetailPage() {
           refetchProblemDetail={refetchProblemDetail}
           refetchCommunityPost={refetchCommunityPost}
         />
-        <div className={postListWrap}>
-          {communityPost?.map((post) => (
-            <PostBox refetchCommunityPost={refetchCommunityPost} key={post.id} {...post}></PostBox>
-          ))}
-        </div>
+        {communityPost && (
+          <div className={postListWrap}>
+            {communityPost?.map((post) => (
+              <PostBox
+                refetchCommunityPost={refetchCommunityPost}
+                key={post.id}
+                {...post}
+              ></PostBox>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
