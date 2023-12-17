@@ -10,6 +10,7 @@ import { pageWrap, postListWrap } from './style.css';
 import DescriptionBox from './components/DescriptionBox';
 import PostBox from './components/PostBox';
 import { communityApiWrapper } from '../../../api/wrapper/community/communityApiWrapper';
+import { getTagById } from '../../../utils/getTagbyId';
 
 export function CommunityLongQuestionDetailPage() {
   const { id } = useParams();
@@ -30,7 +31,9 @@ export function CommunityLongQuestionDetailPage() {
     <>
       <MetaTag
         title={`${data?.title}`}
-        keywords={`${data?.tags.join(', ')}, ${data?.title}, 서술형`}
+        keywords={`${[...data.tags.map((tag) => getTagById(tag).name), data.title, '서술형']
+          .filter((data) => !!data)
+          .join(',')}`} //${data?.tags.join(', ')}, ${data?.title}, 서술형
       />
       <div className={pageWrap}>
         <ProblemTitle
