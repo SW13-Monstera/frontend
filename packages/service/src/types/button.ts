@@ -6,6 +6,8 @@ export interface IButton {
   theme?: TButtonTheme;
   size?: TButtonSize;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  onMouseOver?: MouseEventHandler<HTMLButtonElement>;
+  onMouseOut?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
 }
 

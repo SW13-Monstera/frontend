@@ -15,6 +15,7 @@ const API_URL = {
   RANKING: 'v1/ranks',
   PROBLEM_SET_LIST: '/v1/problem-sets',
   PROBLEM_SHUFFLE: '/v1/problems/shuffle',
+  CHAT: '/v1/chat',
   ADD_COMMUNITY_POST: '/v1/posts',
   ADD_COMMUNITY_COMMENT: '/v1/comments',
 };
