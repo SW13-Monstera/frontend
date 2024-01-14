@@ -223,7 +223,7 @@ export const ProfileBox = ({ profileData, isMine }: IProfileBox) => {
               size={BUTTON_SIZE.LARGE_MEDIUM}
               className={editButtonStyle}
               onClick={() => {
-                navigate(URL.CHANGE_PASSWORD_WITH_LOGIN);
+                navigate(URL.PREVIOUS_PASSWORD);
               }}
             >
               비밀번호 수정하기

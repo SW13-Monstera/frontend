@@ -5,6 +5,7 @@ const URL = {
   SEND_CHANGE_PASSWORD_EMAIL: '/change-password-email',
   CHANGE_PASSWORD: '/password-change/:code',
   CHANGE_PASSWORD_WITH_LOGIN: '/change-password',
+  PREVIOUS_PASSWORD: '/previous-password',
   PROFILE: '/profile/:id',
   USER_DATA_EDIT: '/mypage/edit',
   PROBLEM_LIST: '/problem',

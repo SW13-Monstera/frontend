@@ -30,6 +30,7 @@ import { PageTemplate } from '../Template';
 import { DescriptionPage } from '../Page/DescriptionPage';
 import { LongProblemAnswerPage } from '../Page/LongProblemAnswerPage';
 import { RankPage } from '../Page/RankPage';
+import PreviousPasswordPage from '../Page/PreviousPasswordPage';
 
 function Router() {
   return (
@@ -39,6 +40,7 @@ function Router() {
           <Route element={<ProtectedLayout />}>
             <Route path={URL.USER_DATA_EDIT} element={<UserDataEditPage />} />
             <Route path={URL.LONG_PROBLEM_RESULT} element={<ResultPage />} />
+            <Route path={URL.PREVIOUS_PASSWORD} element={<PreviousPasswordPage />} />
             <Route
               path={URL.CHANGE_PASSWORD_WITH_LOGIN}
               element={<ChangePasswordWithLoginPage />}
