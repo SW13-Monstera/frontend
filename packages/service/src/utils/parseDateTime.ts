@@ -6,5 +6,5 @@
 export const parseDateTime = (dateTimeString: string) => {
   const date = new Date(dateTimeString);
   const timeString = date.toLocaleTimeString('en-US', { hour12: false });
-  return `${date.toLocaleDateString()} ${timeString}`;
+  return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}. ${timeString}`;
 };
