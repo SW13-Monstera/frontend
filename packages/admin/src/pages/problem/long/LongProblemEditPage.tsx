@@ -87,7 +87,9 @@ export const LongProblemEditPage = () => {
       standardAnswers:
         Array.from(
           document.getElementsByClassName('standard-answer') as HTMLCollectionOf<HTMLInputElement>,
-        ).map((e) => e.value) || [],
+        )
+          .filter((e) => !e.ariaHidden)
+          .map((e) => e.value) || [],
       tags: tagState.filter((tag) => tag.isChecked).map((e) => e.id),
       gradingStandards: [
         ...keywordStandardState.map(({ content, score, type }) => {
