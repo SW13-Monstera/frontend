@@ -2,6 +2,7 @@ import { QueryObserverResult, useMutation } from 'react-query';
 import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
 import { TextButton } from '../../../../../Component/Button';
 import { LongProblemPost } from '../../../../../types/api/community';
+import { getSingleInputValueOnSubmit } from '../../../../../utils/getSingleInputValueOnSubmit';
 import { textareaStyle, textareaWrapStyle, wrapStyle } from './style.css';
 
 type Props = {
@@ -16,10 +17,8 @@ const CommentInput = ({ postId, refetchCommunityPost }: Props) => {
   return (
     <form
       onSubmit={(e) => {
-        e.preventDefault();
         const formElement = e.target as HTMLFormElement;
-        const data = new FormData(formElement);
-        const content = data.get('comment-input')?.toString();
+        const content = getSingleInputValueOnSubmit(e, 'comment-input');
         if (!content) return;
         addComment({ postId: postId, content });
         formElement.reset();

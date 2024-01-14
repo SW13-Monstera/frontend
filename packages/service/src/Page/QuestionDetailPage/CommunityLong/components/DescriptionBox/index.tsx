@@ -11,6 +11,7 @@ import { communityApiWrapper } from '../../../../../api/wrapper/community/commun
 import PostInput from '../PostInput';
 import { LongProblemPost } from '../../../../../types/api/community';
 import { isLogin } from 'auth/utils/userInfo';
+import { getSingleInputValueOnSubmit } from '../../../../../utils/getSingleInputValueOnSubmit';
 
 type Props = {
   id: string;
@@ -74,10 +75,8 @@ const DescriptionBox = ({
       {isLogin() && (
         <form
           onSubmit={(e) => {
-            e.preventDefault();
             const formElement = e.target as HTMLFormElement;
-            const data = new FormData(formElement);
-            const content = data.get('post-input')?.toString();
+            const content = getSingleInputValueOnSubmit(e, 'post-input');
             if (!content) return;
             addPost({ problemId: parseInt(id), content });
             formElement.reset();
