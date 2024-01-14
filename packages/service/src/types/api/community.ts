@@ -6,6 +6,7 @@ export interface LongProblemPostBase {
   id: number;
   content: string;
   username: string;
+  userId: string;
   likeCount: number;
   isLiked: boolean;
 }

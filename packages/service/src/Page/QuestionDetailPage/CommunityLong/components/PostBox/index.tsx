@@ -7,8 +7,10 @@ import {
   mainWrap,
   profileImage,
   profileImageWrap,
+  profileLink,
   profileWrap,
   rightWrap,
+  userName,
 } from './style.css';
 import { ReactComponent as ProfileImageIcon } from '../../../../../assets/icons/mypage-icon.svg';
 import { ReactComponent as ThumbUpIcon } from '../../../../../assets/icons/thumb_up.svg';
@@ -22,6 +24,8 @@ import { QueryObserverResult, useMutation } from 'react-query';
 import { communityApiWrapper } from '../../../../../api/wrapper/community/communityApiWrapper';
 import IconButton from '../IconButton';
 import { isLogin } from 'auth/utils/userInfo';
+import { Link } from 'react-router-dom';
+import { URLWithParam } from '../../../../../constants/url';
 
 type Props = {
   refetchCommunityPost: () => Promise<QueryObserverResult<LongProblemPost[], unknown>>;
@@ -30,6 +34,7 @@ type Props = {
 const PostBox = ({
   id,
   content,
+  userId,
   username,
   likeCount,
   isLiked,
@@ -47,16 +52,12 @@ const PostBox = ({
     <Box>
       <div className={mainWrap}>
         <div className={profileWrap}>
-          {/* [TODO] User Id로 링크 연결하기
-          <Link
-            to={URLWithParam.PROFILE('347df1ba-3c4b-4348-8201-4dc92c2d1c60')}
-            className={profileLink}
-          > */}
-          <div className={profileImageWrap}>
-            <ProfileImageIcon className={profileImage} />
-          </div>
-          <div className={mainUserName}> {username}</div>
-          {/* </Link> */}
+          <Link to={URLWithParam.PROFILE(userId)} className={profileLink}>
+            <div className={profileImageWrap}>
+              <ProfileImageIcon className={profileImage} />
+            </div>
+            <div className={mainUserName}> {username}</div>
+          </Link>
           <IconButton
             text={likeCount.toString()}
             onClick={() => {
@@ -72,16 +73,12 @@ const PostBox = ({
           <div className={commentListWrap}>
             {comments
               .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
-              .map(({ id, content, username, createdAt }) => (
+              .map(({ id, content, username, userId, createdAt }) => (
                 <div key={id}>
                   {content} -
-                  {/* [TODO] User Id로 링크 연결하기
-                  <Link
-                    to={URLWithParam.PROFILE('347df1ba-3c4b-4348-8201-4dc92c2d1c60')}
-                    className={userName}
-                  > */}
-                  {username}
-                  {/* </Link>{' '} */}
+                  <Link to={URLWithParam.PROFILE(userId)} className={userName}>
+                    {username}
+                  </Link>
                   <span className={dateTime}>{parseDateTime(createdAt)}</span>
                 </div>
               ))}
