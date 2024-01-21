@@ -1,6 +1,0 @@
-const STANDARD_TYPE = {
-  KEYWORD: 'KEYWORD',
-  CONTENT: 'CONTENT',
-};
-
-export { STANDARD_TYPE };

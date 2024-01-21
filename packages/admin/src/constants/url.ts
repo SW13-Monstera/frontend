@@ -1,11 +1,5 @@
 const URL = {
   LOGIN: '/',
-  LABELING_DATA_LIST: '/data/labeling',
-  VALIDATING_DATA_LIST: '/data/validating',
-  DONE_DATA_LIST: '/data/done',
-  DATA_LABELING: '/data/labeling/:id',
-  DATA_VALIDATING: '/data/validating/:id',
-  DATA_DONE: '/data/done/:id',
   LONG_PROBLEM_LIST: '/problem/long',
   SHORT_PROBLEM_LIST: '/problem/short',
   MULTIPLE_PROBLEM_LIST: '/problem/multiple',
@@ -26,9 +20,6 @@ const URL = {
 };
 
 const URLWithParam = {
-  DATA_LABELING: (id: string) => `/data/labeling/${id}`,
-  DATA_VALIDATING: (id: string) => `/data/validating/${id}`,
-  DATA_DONE: (id: string) => `/data/done/${id}`,
   LONG_PROBLEM_DETAIL: (id: string) => `/problem/long/${id}`,
   LONG_PROBLEM_EDIT: (id: string) => `/problem/long/edit/${id}`,
   SHORT_PROBLEM_DETAIL: (id: string) => `/problem/short/${id}`,

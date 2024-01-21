@@ -1,5 +1,4 @@
 import { IProblemListElement } from './../problem/api';
-import { IDataListElement } from '../data/api';
 
 interface HeadCell {
   disablePadding: boolean;
@@ -24,26 +23,14 @@ interface IProblemTable extends ICustomTable {
   tableHeads: (keyof IProblemListElement)[];
 }
 
-interface IDataTable extends ICustomTable {
-  tableHeads: (keyof IDataListElement)[];
-}
-
 interface IProblemCondition {
   id: string;
   title: string;
   description: string;
 }
 
-interface IDataCondition {
-  id: string;
-  title: string;
-  content: string;
-  assignedUser: string;
-  validatingUser: string;
-}
-
 interface IFilter {
-  condition: keyof IProblemCondition | keyof IDataCondition;
+  condition: keyof IProblemCondition;
   value: string;
   id: number;
 }
@@ -59,9 +46,7 @@ export type {
   ITableHead,
   IFilter,
   IProblemCondition,
-  IDataCondition,
   IChoice,
   ICustomTable,
   IProblemTable,
-  IDataTable,
 };
