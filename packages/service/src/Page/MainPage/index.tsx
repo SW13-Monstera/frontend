@@ -20,7 +20,7 @@ import { ColumnBox } from '../../Component/Box/CustomBox';
 import { useQuery } from 'react-query';
 import { MetaTag } from '../utils/MetaTag';
 import { useDarkModeStore } from '../../hooks/useStore';
-import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { commonApiWrapper } from '../../api/wrapper/common/commonApiWrapper';
 import { ICommonStats } from '../../types/api/common';
 import { CustomCarousel } from '../../Component/Utils/CustomSlider';
 

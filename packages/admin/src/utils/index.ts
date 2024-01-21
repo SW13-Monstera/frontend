@@ -1,5 +1,5 @@
 import apiClient from '../api/apiClient';
-import { AUTHORIZTION, BEARER_TOKEN, USER_INFO } from 'auth/constants';
+import { AUTHORIZATION, BEARER_TOKEN, USER_INFO } from 'auth/constants';
 
 export const roundToSecondDigit = (num: number) => Math.round(num * 100) / 100;
 
@@ -19,7 +19,7 @@ export const isNumeric = (value: any) => {
 
 export function setLogout() {
   localStorage.removeItem(USER_INFO);
-  delete apiClient.defaults.headers.common[AUTHORIZTION];
+  delete apiClient.defaults.headers.common[AUTHORIZATION];
 }
 
 export const setTokenHeader = () => {
@@ -29,7 +29,7 @@ export const setTokenHeader = () => {
       const userInfo = JSON.parse(userInfoString);
       const token: string | null | undefined = userInfo.accessToken;
       if (typeof token === 'string') {
-        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(token);
+        apiClient.defaults.headers.common[AUTHORIZATION] = BEARER_TOKEN(token);
       }
     }
   } catch (e) {

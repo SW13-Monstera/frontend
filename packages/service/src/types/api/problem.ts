@@ -25,6 +25,10 @@ export interface ILongProblemDetailResponseData extends IProblemDetailResponseDa
   avgScore: number;
   topScore: number;
   bottomScore: number;
+  likeCount: number;
+  bookmarkCount: number;
+  isLiked: boolean;
+  isBookmarked: boolean;
 }
 
 export interface ILongProblemSubmitData extends ILongProblemDetailResponseData {
@@ -157,4 +161,8 @@ export interface IProblemSetDetailResponse {
   name: string;
   description: string;
   problems: IProblemListResponseDataContents[];
+}
+
+export interface ILikeProblemRequestParam {
+  problemId: string;
 }

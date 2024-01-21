@@ -14,7 +14,7 @@ import { DefaultSelect } from '../../Component/Utils/DefaultSelect';
 import { JOB, JOB_OBJECTIVE } from '../../constants/userDataEdit';
 import { IOption } from '../../types/select';
 import { useState } from 'react';
-import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { commonApiWrapper } from '../../api/wrapper/common/commonApiWrapper';
 import { createOptions } from '../../utils/createOptions';
 import { debounce } from '../../utils/debounce';
 import { SmileIcon } from '../../Icon/SmileIcon';

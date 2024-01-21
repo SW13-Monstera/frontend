@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { URL } from '../constants/url';
 import {
   MainPage,
-  LongQuestionDetailPage,
   ResultPage,
   JoinPage,
   CallbackPage,
@@ -30,6 +29,7 @@ import { PageTemplate } from '../Template';
 import { DescriptionPage } from '../Page/DescriptionPage';
 import { LongProblemAnswerPage } from '../Page/LongProblemAnswerPage';
 import { RankPage } from '../Page/RankPage';
+import { CommunityLongQuestionDetailPage } from '../Page/QuestionDetailPage/CommunityLong';
 
 function Router() {
   return (
@@ -53,7 +53,7 @@ function Router() {
           <Route path={URL.MAIN} element={<MainPage />} />
           <Route path={URL.PROBLEM_LIST} element={<QuestionListPage />} />
           <Route path={URL.PROBLEM_SET_LIST} element={<ProblemSetListPage />} />
-          <Route path={URL.LONG_PROBLEM_DETAIL} element={<LongQuestionDetailPage />} />
+          <Route path={URL.LONG_PROBLEM_DETAIL} element={<CommunityLongQuestionDetailPage />} />
           <Route path={URL.LONG_PROBLEM_ANSWER} element={<LongProblemAnswerPage />} />
           <Route path={URL.SHORT_PROBLEM_DETAIL} element={<ShortQuestionDetailPage />} />
           <Route path={URL.MULTIPLE_PROBLEM_DETAIL} element={<MultipleQuestionDetailPage />} />

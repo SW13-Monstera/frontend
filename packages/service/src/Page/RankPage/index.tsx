@@ -17,7 +17,7 @@ import {
   rankColumnStyle,
 } from './style.css';
 import { useQuery } from 'react-query';
-import { commonApiWrapper } from '../../api/wrapper/common/commanApiWrapper';
+import { commonApiWrapper } from '../../api/wrapper/common/commonApiWrapper';
 import { IRankList } from '../../types/api/common';
 import { URLWithParam } from '../../constants/url';
 import { Link } from 'react-router-dom';
