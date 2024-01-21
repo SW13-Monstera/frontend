@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --mode development --port 3123",
     "build": "tsc && vite build --mode production",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "rehype-highlight": "^5.0.2",
     "remark-gfm": "^3.0.1",
     "vite-plugin-svgr": "^2.2.0",
+    "vitest": "^1.2.0",
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {

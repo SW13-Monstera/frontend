@@ -23,6 +23,7 @@ interface IProblem {
   correctSubmission?: number;
   correctUserCnt?: number;
   isSolved?: boolean;
+  answerCount?: number;
 }
 
 interface IQuestionListElementBox {
@@ -48,7 +49,7 @@ interface ITag extends ITagBox {
   id: string;
 }
 
-type TProblemType = typeof PROBLEM_TYPE[keyof typeof PROBLEM_TYPE];
+type TProblemType = (typeof PROBLEM_TYPE)[keyof typeof PROBLEM_TYPE];
 
 interface IProblemDetailResponseData
   extends IShortProblemDetailResponseData,
@@ -83,7 +84,7 @@ interface ISplitProblemDetailPageTemplate extends IProblemDetailPageTemplate {
 export interface IMypageProblem {
   id: number;
   title: string;
-  type: typeof PROBLEM_TYPE[keyof typeof PROBLEM_TYPE];
+  type: (typeof PROBLEM_TYPE)[keyof typeof PROBLEM_TYPE];
 }
 
 export interface ILongProblemResultLocationState {
@@ -98,7 +99,7 @@ export const PROBLEM_TITLE_SIZE = {
   SMALL: 'small',
 } as const;
 
-export type TProblemTitleSize = typeof PROBLEM_TITLE_SIZE[keyof typeof PROBLEM_TITLE_SIZE];
+export type TProblemTitleSize = (typeof PROBLEM_TITLE_SIZE)[keyof typeof PROBLEM_TITLE_SIZE];
 
 export interface ILongProblemResult {
   result: ILongProblemResultData | undefined;

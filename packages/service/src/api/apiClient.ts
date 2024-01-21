@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_BASE_URL } from '../constants/api';
 import { getUserInfo } from 'auth/utils/userInfo';
-import { AUTHORIZTION, BEARER_TOKEN } from 'auth/constants';
+import { AUTHORIZATION, BEARER_TOKEN } from 'auth/constants';
 import { setLogout } from '../utils/setLogout';
 
 const apiClient = axios.create({
@@ -13,7 +13,7 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use((config) => {
   const userInfo = getUserInfo();
   if (userInfo) {
-    config.headers![AUTHORIZTION] = BEARER_TOKEN(userInfo.accessToken);
+    config.headers![AUTHORIZATION] = BEARER_TOKEN(userInfo.accessToken);
   }
   return config;
 });

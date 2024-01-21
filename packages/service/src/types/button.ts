@@ -34,6 +34,7 @@ export const BUTTON_SIZE = {
   LARGE_MEDIUM: 'largeMedium',
   MEDIUM: 'medium',
   SMALL: 'small',
+  XSMALL: 'xsmall',
 } as const;
 
 export type TButtonSize = (typeof BUTTON_SIZE)[keyof typeof BUTTON_SIZE];

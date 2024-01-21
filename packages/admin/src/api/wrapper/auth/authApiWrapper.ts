@@ -3,7 +3,7 @@ import { setLogout } from './../../../utils/index';
 import { getUserInfo, setUserInfo } from 'auth/utils/userInfo';
 import apiClient from '../../apiClient';
 import { API_URL } from '../../../constants/apiUrl';
-import { AUTHORIZTION, BEARER_TOKEN, ROLES } from 'auth/constants';
+import { AUTHORIZATION, BEARER_TOKEN, ROLES } from 'auth/constants';
 
 interface ILoginRequest {
   email: string;
@@ -18,7 +18,7 @@ export const authApiWrapper = {
           alert('권한 없음');
           throw new Error('권한 없음');
         }
-        apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(res.data.accessToken);
+        apiClient.defaults.headers.common[AUTHORIZATION] = BEARER_TOKEN(res.data.accessToken);
         return res.data;
       },
       (err) => {
@@ -40,7 +40,7 @@ export const authApiWrapper = {
       .then(
         (res: { data: { accessToken: string } }) => {
           const newAccessToken = res.data.accessToken;
-          apiClient.defaults.headers.common[AUTHORIZTION] = BEARER_TOKEN(newAccessToken);
+          apiClient.defaults.headers.common[AUTHORIZATION] = BEARER_TOKEN(newAccessToken);
           setUserInfo({ ...userInfo, accessToken: newAccessToken });
           return res.data.accessToken;
         },

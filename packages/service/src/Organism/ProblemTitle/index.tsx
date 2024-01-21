@@ -23,6 +23,7 @@ interface IProblemDetail {
   score: string;
   correctSubmission: string;
   correctUserCnt: string;
+  answerCount: string;
 }
 
 interface IProblemDetailDescription {
@@ -61,6 +62,8 @@ const problemDetailMap: Record<
     isStringNotEmpty(num) ? { label: '정답', value: num, unit: '' } : null,
   correctUserCnt: (num: string | undefined) =>
     isStringNotEmpty(num) ? { label: '맞힌 사람 수', value: num, unit: '명' } : null,
+  answerCount: (num: string | undefined) =>
+    isStringNotEmpty(num) ? { label: '답변 수', value: num, unit: '' } : null,
 };
 
 function ProblemTitle(props: IProblemTitle) {

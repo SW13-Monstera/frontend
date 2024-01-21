@@ -16,6 +16,8 @@ const API_URL = {
   PROBLEM_SET_LIST: '/v1/problem-sets',
   PROBLEM_SHUFFLE: '/v1/problems/shuffle',
   CHAT: '/v1/chat',
+  ADD_COMMUNITY_POST: '/v1/posts',
+  ADD_COMMUNITY_COMMENT: '/v1/comments',
 };
 
 const API_URL_WITH_PARAMS = {
@@ -34,6 +36,10 @@ const API_URL_WITH_PARAMS = {
   ASSESSMENT: (problem_id: string) => `/v1/problems/grade/${problem_id}/assessment`,
   READ_NOTIFICATION: (notification_id: string) => `v1/notifications/read/${notification_id}`,
   PROBLEM_SET_DETAIL: (problem_set_id: string) => `/v1/problem-sets/${problem_set_id}`,
+  COMMUNITY_POST: (problem_id: string) => `/v1/problems/${problem_id}/posts`,
+  LIKE_COMMUNITY_POST: (post_id: string) => `/v1/posts/${post_id}/like`,
+  LIKE_PROBLEM: (problem_id: string) => `/v2/problems/${problem_id}/like`,
+  BOOKMARK_PROBLEM: (problem_id: string) => `/v2/problems/${problem_id}/bookmark`,
 };
 
 export { API_URL, API_URL_WITH_PARAMS };
