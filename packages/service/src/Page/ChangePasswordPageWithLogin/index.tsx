@@ -1,6 +1,7 @@
+import { getUserInfo } from 'auth/utils/userInfo';
 import { useNavigate } from 'react-router-dom';
 import { userApiWrapper } from '../../api/wrapper/user/userApiWrapper';
-import { URL } from '../../constants/url';
+import { URLWithParam } from '../../constants/url';
 import { PasswordForm } from '../../Organism/PasswordForm';
 import { IUpdateUserRequest } from '../../types/api/user';
 import { pageStyle, titleStyle } from './style.css';
@@ -20,8 +21,11 @@ export const ChangePasswordWithLoginPage = () => {
       originalPassword,
       password,
     };
-    userApiWrapper.updateUser(data);
-    navigate(URL.MAIN);
+    userApiWrapper.updateUser(data).then(() => {
+      const userInfo = getUserInfo();
+      if (!userInfo) return;
+      navigate(URLWithParam.PROFILE(userInfo.id));
+    });
   };
   return (
     <>
