@@ -14,7 +14,7 @@ import { TAGS } from '../../../constants/tags';
 import { useDialog } from '../../../hooks/useDialog';
 import { WarningDialog } from '../../../components/Dialog/WarningDialog';
 import { useState, useEffect, ChangeEvent } from 'react';
-import { IProblemCreateData, IProblemDetailResponse } from '../../../types/problem/api';
+import { IProblemDetailResponse, IProblemUpdateData } from '../../../types/problem/api';
 import { longProblemApiWrapper } from '../../../api/wrapper/problem/longProblemApiWrapper';
 import { MarkdownInputCard } from '../../../components/Card/MarkdownInputCard';
 import InputList from '../../../components/FormGroup/InputList';
@@ -58,8 +58,9 @@ export const LongProblemEditPage = () => {
   }, [data]);
 
   function editProblem() {
-    if (!id) return;
-    const data: IProblemCreateData = {
+    if (!id || !data) return;
+    const newData: IProblemUpdateData = {
+      ...data,
       title: (document.getElementById('title') as HTMLTextAreaElement).value || '',
       description: (document.getElementById('description') as HTMLTextAreaElement).value || '',
       standardAnswers:
@@ -67,8 +68,10 @@ export const LongProblemEditPage = () => {
           document.getElementsByClassName('standard-answer') as HTMLCollectionOf<HTMLInputElement>,
         ).map((e) => e.value) || [],
       tags: tagState.filter((tag) => tag.isChecked).map((e) => e.id),
+      // [TODO] AI 관련 속성 API에서 삭제시 함께 삭제
+      gradingStandards: [],
     };
-    longProblemApiWrapper.updateLongProblem(id, data);
+    longProblemApiWrapper.updateLongProblem(id, newData);
   }
 
   const { isDialogOpen, handleDialogOpen, handleDialogClose } = useDialog();

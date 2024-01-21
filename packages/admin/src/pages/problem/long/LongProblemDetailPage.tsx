@@ -31,15 +31,6 @@ export const LongProblemDetailPage = () => {
     });
   }
 
-  function handleProblemGradablility() {
-    if (!id || !data) return;
-    if (!data.isGradable) return;
-    const newData: IProblemUpdateData = { ...data, isGradable: !data.isGradable };
-    longProblemApiWrapper.updateLongProblem(id, newData).then(() => {
-      refetch();
-    });
-  }
-
   function handleProblemActivate() {
     if (!id || !data) return;
     const newData: IProblemUpdateData = { ...data, isActive: !data.isActive };

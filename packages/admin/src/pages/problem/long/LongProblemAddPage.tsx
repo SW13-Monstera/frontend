@@ -43,6 +43,8 @@ export const LongProblemAddPage = () => {
           document.getElementsByClassName('standard-answer') as HTMLCollectionOf<HTMLInputElement>,
         ).map((e) => e.value) || [],
       tags: tagState.filter((tag) => tag.isChecked).map((e) => e.id),
+      // [TODO] AI 관련 속성 API에서 삭제시 함께 삭제
+      gradingStandards: [],
     };
     longProblemApiWrapper.createLongProblem(data);
   }

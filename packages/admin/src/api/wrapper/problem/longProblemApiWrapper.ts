@@ -4,6 +4,7 @@ import {
   IProblemDetailResponse,
   IProblemCreateData,
   IProblemListData,
+  IProblemUpdateData,
 } from '../../../types/problem/api';
 import apiClient from '../../apiClient';
 import { API_URL, API_URL_WITH_PARAMS } from '../../../constants/apiUrl';
@@ -30,7 +31,7 @@ export const longProblemApiWrapper = {
   createLongProblem: (data: IProblemCreateData) => {
     apiClient.post(API_URL.LONG_PROBLEM_CREATE, data);
   },
-  updateLongProblem: (problem_id: string, data: IProblemCreateData) => {
+  updateLongProblem: (problem_id: string, data: IProblemUpdateData) => {
     isEmptyOrNotNumericError(problem_id);
     return apiClient.put(API_URL_WITH_PARAMS.LONG_PROBLEM_UPDATE(problem_id), data);
   },

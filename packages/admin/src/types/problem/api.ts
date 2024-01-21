@@ -35,7 +35,7 @@ export interface IStandardResponse extends IStandard {
 export interface IStandard {
   content: string;
   score: number;
-  type: string;
+  type: 'KEYWORD' | 'CONTENT';
 }
 
 export interface IProblemDetailResponse {
@@ -54,6 +54,8 @@ export interface IProblemCreateData {
   description: string;
   standardAnswers: string | string[];
   tags: string[];
+  // [TODO] AI 관련 속성 API에서 삭제시 함께 삭제
+  gradingStandards?: IStandard[];
 }
 
 export interface IProblemUpdateData extends IProblemCreateData {
