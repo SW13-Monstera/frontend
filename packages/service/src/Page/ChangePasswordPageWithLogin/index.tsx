@@ -9,13 +9,16 @@ export const ChangePasswordWithLoginPage = () => {
   const navigate = useNavigate();
 
   const submitNewPassword = () => {
-    const passwordValue = (document.getElementById('password') as HTMLInputElement).value;
-    const passwordConfirmValue = (document.getElementById('password-confirm') as HTMLInputElement)
+    const originalPassword = (document.getElementById('original-password') as HTMLInputElement)
       .value;
-    if (passwordValue !== passwordConfirmValue) return;
-    if (!passwordValue) return;
+    const password = (document.getElementById('password') as HTMLInputElement).value;
+    const passwordConfirm = (document.getElementById('password-confirm') as HTMLInputElement).value;
+
+    if (!password || password !== passwordConfirm) return;
+
     const data: IUpdateUserRequest = {
-      password: passwordValue,
+      originalPassword,
+      password,
     };
     userApiWrapper.updateUser(data);
     navigate(URL.MAIN);
@@ -24,7 +27,7 @@ export const ChangePasswordWithLoginPage = () => {
     <>
       <div className={pageStyle}>
         <h2 className={titleStyle}>비밀번호 변경</h2>
-        <PasswordForm submitNewPassword={submitNewPassword} />
+        <PasswordForm submitNewPassword={submitNewPassword} isWithLogin />
       </div>
     </>
   );
