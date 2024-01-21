@@ -2,7 +2,6 @@ import PageTemplate from '../../../templates/PageTemplate';
 import {
   Box,
   TextField,
-  Divider,
   Button,
   Card,
   FormControl,
@@ -13,12 +12,9 @@ import {
 import { TAGS } from '../../../constants/tags';
 import { longProblemApiWrapper } from '../../../api/wrapper/problem/longProblemApiWrapper';
 import { IProblemCreateData } from '../../../types/problem/api';
-import { STANDARD_TYPE } from '../../../constants/standard';
 import { useState, ChangeEvent } from 'react';
 import { URL } from '../../../constants/url';
 import { Link } from 'react-router-dom';
-import { StandardList } from '../../../components/FormGroup/StandardList';
-import { useStandard } from '../../../hooks/useStandard';
 import { MarkdownInputCard } from '../../../components/Card/MarkdownInputCard';
 import InputList from '../../../components/FormGroup/InputList';
 import { useList } from '../../../hooks/useList';
@@ -30,19 +26,6 @@ export const LongProblemAddPage = () => {
     }),
   );
   const { ids: answerIds, addItem: addAnswer, deleteItem: deleteAnswer } = useList(1, 1, 5);
-  const {
-    standardState: keywordStandardState,
-    addStandard: addKeywordStandard,
-    deleteStandard: deleteKeywordStandard,
-    handleStandardChange: handleKeywordStandardChange,
-  } = useStandard(STANDARD_TYPE.KEYWORD);
-
-  const {
-    standardState: contentStandardState,
-    addStandard: addContentStandard,
-    deleteStandard: deleteContentStandard,
-    handleStandardChange: handleContentStandardChange,
-  } = useStandard(STANDARD_TYPE.CONTENT);
 
   const handleTagChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id } = event.target;
@@ -60,14 +43,8 @@ export const LongProblemAddPage = () => {
           document.getElementsByClassName('standard-answer') as HTMLCollectionOf<HTMLInputElement>,
         ).map((e) => e.value) || [],
       tags: tagState.filter((tag) => tag.isChecked).map((e) => e.id),
-      gradingStandards: [
-        ...keywordStandardState.map(({ content, score, type }) => {
-          return { content, score, type };
-        }),
-        ...contentStandardState.map(({ content, score, type }) => {
-          return { content, score, type };
-        }),
-      ],
+      // [TODO] AI 관련 속성 API에서 삭제시 함께 삭제
+      gradingStandards: [],
     };
     longProblemApiWrapper.createLongProblem(data);
   }
@@ -112,24 +89,6 @@ export const LongProblemAddPage = () => {
           deleteItem={deleteAnswer}
           className='standard-answer'
           defaultValue={[]}
-        />
-        <Divider sx={{ my: 2 }} />
-        <StandardList
-          type={STANDARD_TYPE.KEYWORD}
-          title='키워드 채점 기준'
-          standards={keywordStandardState}
-          handleStandardChange={handleKeywordStandardChange}
-          addStandard={addKeywordStandard}
-          deleteStandard={deleteKeywordStandard}
-        />
-        <Divider sx={{ my: 2 }} />
-        <StandardList
-          type={STANDARD_TYPE.CONTENT}
-          title='내용 채점 기준'
-          standards={contentStandardState}
-          handleStandardChange={handleContentStandardChange}
-          addStandard={addContentStandard}
-          deleteStandard={deleteContentStandard}
         />
       </Box>
       <Link to={URL.LONG_PROBLEM_LIST}>

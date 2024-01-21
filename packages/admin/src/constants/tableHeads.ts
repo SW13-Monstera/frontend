@@ -79,67 +79,6 @@ export const shortTableHeads: ITableHead[] = [
   },
 ];
 
-export const validatingDataTableHeads: ITableHead[] = [
-  {
-    id: 'id',
-    name: 'Data ID',
-  },
-  {
-    id: 'problemTitle',
-    name: '문제 제목',
-  },
-  {
-    id: 'assignedUsername',
-    name: '담당자',
-  },
-  {
-    id: 'updatedAt',
-    name: '완료된 시간',
-  },
-];
-
-export const labelingDataTableHeads: ITableHead[] = [
-  {
-    id: 'id',
-    name: 'Data ID',
-  },
-  {
-    id: 'problemTitle',
-    name: '문제 제목',
-  },
-  {
-    id: 'assignedUsername',
-    name: '담당자',
-  },
-  {
-    id: 'updatedAt',
-    name: '생성 시간',
-  },
-];
-
-export const doneDataTableHeads: ITableHead[] = [
-  {
-    id: 'id',
-    name: 'Data ID',
-  },
-  {
-    id: 'problemTitle',
-    name: '문제 제목',
-  },
-  {
-    id: 'validatingUsername',
-    name: '검수자',
-  },
-  {
-    id: 'assignedUsername',
-    name: '담당자',
-  },
-  {
-    id: 'updatedAt',
-    name: '완료된 시간',
-  },
-];
-
 export const userTableHeads: ITableHead[] = [
   {
     id: 'id',

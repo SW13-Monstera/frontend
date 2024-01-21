@@ -1,18 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { URL } from './constants/url';
-import {
-  LoginPage,
-  DataLabelingPage,
-  DoneDataDetailPage,
-  ValidatingDataPage,
-  LabelingDataListPage,
-  ValidatingDataListPage,
-  DoneDataListPage,
-  LongProblemAddPage,
-  LongProblemDetailPage,
-  LongProblemListPage,
-  LongProblemEditPage,
-} from './pages';
+import { LoginPage } from './pages/login/LoginPage';
+import { LongProblemListPage } from './pages/problem/long/LongProblemListPage';
+import { LongProblemDetailPage } from './pages/problem/long/LongProblemDetailPage';
+import { LongProblemAddPage } from './pages/problem/long/LongProblemAddPage';
+import { LongProblemEditPage } from './pages/problem/long/LongProblemEditPage';
 import { MultipleProblemAddPage } from './pages/problem/multiple/MultipleProblemAddPage';
 import { MultipleProblemDetailPage } from './pages/problem/multiple/MultipleProblemDetailPage';
 import { MultipleProblemEditPage } from './pages/problem/multiple/MultipleProblemEditPage';
@@ -31,12 +23,6 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path={URL.LOGIN} element={<LoginPage />} />
-        <Route path={URL.LABELING_DATA_LIST} element={<LabelingDataListPage />} />
-        <Route path={URL.VALIDATING_DATA_LIST} element={<ValidatingDataListPage />} />
-        <Route path={URL.DONE_DATA_LIST} element={<DoneDataListPage />} />
-        <Route path={URL.DATA_LABELING} element={<DataLabelingPage />} />
-        <Route path={URL.DATA_VALIDATING} element={<ValidatingDataPage />} />
-        <Route path={URL.DATA_DONE} element={<DoneDataDetailPage />} />
         <Route path={URL.LONG_PROBLEM_LIST} element={<LongProblemListPage />} />
         <Route path={URL.LONG_PROBLEM_DETAIL} element={<LongProblemDetailPage />} />
         <Route path={URL.LONG_PROBLEM_ADD} element={<LongProblemAddPage />} />
