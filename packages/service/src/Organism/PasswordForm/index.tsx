@@ -9,14 +9,25 @@ import { passwordFormStyle } from './style.css';
 
 interface IPasswordForm {
   submitNewPassword: (newpassword: string) => void;
+  isWithLogin?: boolean;
 }
 
-export const PasswordForm = ({ submitNewPassword }: IPasswordForm) => {
+export const PasswordForm = ({ submitNewPassword, isWithLogin = false }: IPasswordForm) => {
   const { passwordValue, setPasswordValue, setPasswordConfirmValue, isPasswordSame } =
     usePasswordConfirm();
 
   return (
     <div className={passwordFormStyle}>
+      {isWithLogin && (
+        <DefaultInputBox
+          id='original-password'
+          placeholder='현재 비밀번호를 입력해주세요'
+          type={INPUT_TYPE.PASSWORD}
+          name='original-password'
+          label='현재 비밀번호'
+          icon={<LockIcon width='1.25rem' height='1.3125rem' fill={themeColors.text[3]} />}
+        />
+      )}
       <DefaultInputBox
         id='password'
         placeholder='비밀번호를 입력해주세요'

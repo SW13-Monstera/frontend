@@ -1,6 +1,7 @@
 export interface IUpdateUserRequest {
   profileImageUrl?: string | null;
   username?: string | null;
+  originalPassword?: string | null;
   password?: string | null;
   major?: string | null;
   job?: string | null;
